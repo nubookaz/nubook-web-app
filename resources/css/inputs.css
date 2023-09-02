@@ -1,0 +1,23 @@
+/* customTextInput.css */
+
+.custom-icon {
+    color: var(--tertiary-color);
+    position: absolute;
+    padding: 0px 1rem;
+    left: 0;
+    font-size: .75rem;
+}
+
+.custom-input {
+    background-color: var(--light-color);
+    color: var(--primary-color); /* Placeholder color */
+    font-size: 0.75rem; /* Font size in REM */
+    border: 1px solid var(--tertiary-color);
+    padding-left: 2.5rem;
+    border-radius: var(--rounded-corners);
+}
+
+.custom-input::placeholder {
+    color: var(--tertiary-color);
+    font-size: 0.75rem;
+}

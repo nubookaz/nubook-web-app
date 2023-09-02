@@ -1,0 +1,49 @@
+/* Sidebar.css */
+
+/* Styles for the sidebar container */
+.sidebar {
+    width: 4.5rem; /* 1rem = 16px, so 4.5rem = 72px */
+    background-color: #fff; /* Sidebar background color */
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem .75rem 1.5rem;
+}
+
+/* Styles for the logo */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center children horizontally */
+    margin: auto 0;
+}
+
+/* Styles for the navigation links */
+.nav-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center links horizontally */
+}
+
+.nav-links li {
+    margin-bottom: 1rem; /* Add margin between links, adjust as needed */
+}
+
+.nav-links .fa-icon {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+    color: var(--tertiary-color);
+}
+
+.nav-links .active-link {
+    color: var(--primary-color);
+}

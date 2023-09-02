@@ -1,7 +1,16 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import CardContainer from '@/Components/CardContainer';
+import PrimaryButton from '@/Components/PrimaryButton';
+import SecondaryButton from '@/Components/SecondaryButton';
+import PageButton from '@/Components/PageButton';
+
+import ProfilePicture from '@/Components/ProfilePicture';
+import CustomTextInput from '@/Components/Forms/CustomTextInput';
+
 
 export default function Dashboard({ auth }) {
     return (
@@ -14,10 +23,26 @@ export default function Dashboard({ auth }) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <CardContainer header="Hello!" showButtonIcon={true}>
-                        <div className="p-6 text-gray-900">You're logged in!</div>
+                        <div>You're logged in!</div>
+                        <PrimaryButton>I am a button</PrimaryButton>
+                        <SecondaryButton>I am a secondary button</SecondaryButton>
+                        <PageButton icon={faPlus} onClick={() => { /* Handle click */ }} />
                     </CardContainer>
+                    <h1 className="text-2xl font-bold mb-4">User Profile</h1>
+                    <CustomTextInput
+                placeholder="Username"
+                icon={<FontAwesomeIcon icon={faUser} />}
+            />
+            <ProfilePicture
+                alt="User's Profile"
+                width={150} // Adjust the width as needed
+                height={150} // Adjust the height as needed
+            />
+                
                 </div>
             </div>
+
         </AuthenticatedLayout>
+            
     );
 }

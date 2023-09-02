@@ -1,0 +1,32 @@
+:root {
+    --primary-color: #3B5E82;
+    --secondary-color: #8EA2B7;
+    --tertiary-color: #D7E1EE;
+    --light-color: #FBFDFF;
+    --primary-green-color: #44AD78;
+    --secondary-green-color: #E2F3EA;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.secondary-color {
+    color: var(--secondary-color);
+}
+
+.tertiary-color {
+    color: var(--tertiary-color);
+}
+
+.light-color {
+    color: var(--light-color);
+}
+
+.primary-green-color {
+    color: var(--primary-green-color);
+}
+
+.secondary-green-color {
+    color: var(--secondary-green-color);
+}

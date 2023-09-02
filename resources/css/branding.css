@@ -1,0 +1,9 @@
+.application-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-green-color);
+}
+.logo-icon {
+    height: 2rem;
+}

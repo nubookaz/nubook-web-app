@@ -1,0 +1,6 @@
+/* profile-picture.css */
+
+.profile-picture {
+    border: 2px solid var(--primary-green-color); /* 2px border with primary color */
+    border-radius: 50%; /* Rounded shape for a circular profile picture */
+}

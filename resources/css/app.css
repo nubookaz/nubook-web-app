@@ -1,59 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* Default classes */
+@import "./animations.css";
+@import "./buttons.css";
+@import "./colors.css";
+@import "./layouts.css";
+@import "./typography.css";
+@import "./profile.css";
+@import "./inputs.css";
+@import "./branding.css";
+@import "./sidebar.css";
 
-h1 {
-    font-size: 2.625rem; /* 42px converted to rems */
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-h2 {
-    font-size: 2.625rem; /* 42px converted to rems */
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-h3 {
-    font-size: 1.125rem; /* 18px converted to rems */
-    font-weight: 600; /* Semibold font weight */
-    line-height: 1.4;
-}
-
-/* In your CSS or Tailwind CSS configuration */
-/* Custom color classes */
-.primary-color {
-    color: #3B5E82; /* Replace with your primary color value */
-}
-
-.secondary-color {
-    color: #8EA2B7; /* Replace with your secondary color value */
-}
-
-.tertiary-color {
-    color: #D7E1EE; /* Replace with your tertiary color value */
-}
-
-.ligh-color {
-    color: #FBFDFF; /* Replace with your light color value */
-}
-
-.primary-green-color {
-    color: #44AD78; /* Replace with your primary green color value */
-}
-
-.primary-green-secondary-color {
-    color: #E2F3EA; /* Replace with your primary green secondary color value */
-}
-
-
-/* In your CSS or Tailwind CSS configuration */
-.card-container {
-    background-color: #ffffff; /* White background */
-    overflow: hidden; /* Hidden overflow content */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
-    border-radius: 0.5rem; /* Rounded corners on small screens */
-    padding: 25px;
+body {
+    background-color: var(--light-color);
 }

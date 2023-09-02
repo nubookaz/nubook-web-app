@@ -1,0 +1,59 @@
+/* buttons.css */
+
+.default-btn {
+    padding: 8px 32px;
+    border-radius: 999px; /* Pill shape */
+    font-weight: 600;
+}
+
+/* Primary button styles */
+.primary-button {
+    color: var(--secondary-green-color); /* Text color using CSS variable */
+    background-color: var(--primary-green-color); /* Background color using CSS variable */
+}
+
+.primary-button:hover,
+.primary-button:focus,
+.primary-button:active {
+    background-color: var(--secondary-green-color); /* Hover background color using CSS variable */
+    color: var(--primary-green-color); /* Hover text color using CSS variable */
+    outline: none;
+}
+
+.secondary-button {
+    color: var(--primary-green-color); /* Text color using CSS variable */
+    background-color: var(--secondary-green-color); /* Background color using CSS variable */
+}
+
+.secondary-button:hover,
+.secondary-button:focus,
+.secondary-button:active {
+    background-color: var(--primary-green-color); /* Hover background color using CSS variable */
+    color: var(--secondary-green-color); /* Hover text color using CSS variable */
+    outline: none;
+}
+
+.page-button {
+    background-color: #fff; /* White background */
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    border-radius: 8px; /* Rounded corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--tertiary-color); /* Icon color */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
+    transition: color 0.3s, outline 0.3s; /* Transition properties for color and outline */
+    border: 2px solid transparent; /* Transparent outline initially */
+}
+
+.page-button:hover {
+    color: var(--primary-green-color); /* Change icon color on hover */
+    outline: 4px solid var(--primary-green-color); /* Add an outline on hover */
+}
+
+.page-button:active {
+    background-color: var(--primary-green-color); /* Background color on click */
+    color: #fff; /* White icon color on click */
+    outline: none; /* Remove outline on click */
+}
