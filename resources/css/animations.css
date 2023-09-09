@@ -1,9 +1,5 @@
 /* Transition styles */
 
-:root {
-    --transition-speed: 0.3s; 
-}
-
 .button-transition {
     transition: background-color 0.3s, color var(--transition-speed);
 }

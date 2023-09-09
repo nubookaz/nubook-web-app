@@ -8,7 +8,6 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 100;
     overflow-x: hidden;
     transition: 0.5s;
     display: flex;
@@ -38,10 +37,20 @@
     margin-bottom: 1rem; /* Add margin between links, adjust as needed */
 }
 
-.nav-links .fa-icon {
+.nav-links a svg {
     font-size: 1.3rem;
-    margin: 1rem 0;
     color: var(--tertiary-color);
+    padding: 1rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    transition: var(--transition-speed);
+    border-radius: var(--rounded-corners);
+}
+
+.nav-links a svg:hover {
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.15);
+    background-color: var(--light-color);
+    color: var(--secondary-color);
 }
 
 .nav-links .active-link {

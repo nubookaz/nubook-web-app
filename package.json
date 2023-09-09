@@ -22,11 +22,20 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@fortawesome/fontawesome-free": "^6.4.2",
+        "@fortawesome/fontawesome-free-brands": "^5.0.13",
         "@fortawesome/fontawesome-svg-core": "^6.4.2",
         "@fortawesome/free-regular-svg-icons": "^6.4.2",
         "@fortawesome/free-solid-svg-icons": "^6.4.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@mdi/js": "^7.2.96",
-        "@mdi/react": "^1.6.1"
+        "@mdi/react": "^1.6.1",
+        "@mui/joy": "^5.0.0-beta.5",
+        "@mui/material": "^5.14.8",
+        "@mui/styled-engine-sc": "^5.14.8",
+        "react-circular-progressbar": "^2.1.0",
+        "styled-components": "^5.3.11"
     }
 }

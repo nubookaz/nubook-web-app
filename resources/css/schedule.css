@@ -1,0 +1,61 @@
+.schedule-container .col{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.schedule-container .col select {
+   appearance: none;
+   border: 0;
+   outline: none;
+   padding: 0rem 1.2rem;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   text-indent: 1px;
+   text-overflow: '';
+}
+
+.schedule-container .col select::-ms-expand {
+    display: none;
+}
+
+.schedule-container .col select:focus,
+.schedule-container .col select:active {
+   border: 0;
+   outline: none;
+   padding: 0rem 1.2rem;
+}
+
+/* .schedule-container.break-style {
+    background-color: var(--dark-color) !important;
+}
+
+.schedule-container.break-style .col{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+} */
+
+.int-day-combination.scene-style,
+.int-day-combination.scene-style .col select {
+    background-color: #fff !important;
+    color: var(--primary-color);
+}
+
+.int-night-combination.scene-style,
+.int-night-combination.scene-style .col select  {
+    background-color: #51B2DB !important;
+}
+
+.ext-day-combination.scene-style,
+.ext-day-combination.scene-style .col select  {
+    background-color: #FFF291 !important;
+    color: var(--primary-color);
+}
+
+.ext-night-combination.scene-style,
+.ext-night-combination.scene-style .col select  {
+    background-color: #3BAD74 !important;
+}

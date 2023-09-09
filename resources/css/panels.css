@@ -1,0 +1,48 @@
+
+  
+/* Common styles for panel containers */
+.panel-container {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    transition: right 0.3s ease-in-out;
+    padding: 2rem;
+}
+
+/* Right panel styles */
+.right-panel {
+    --panel-width: var(--right-panel-width);
+    right: calc(var(--panel-width) * var(--right-panel-direction));
+    width: var(--panel-width);
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.right-panel.visible {
+    right: 0;
+}
+
+/* Slide-out panel styles */
+.slide-out-panel {
+    width: 28rem;
+    right: -30rem;
+    background-color: black;
+    transition: right 0.6s ease;
+}
+
+.slide-out-panel.visible {
+    right: 30rem;
+    transition: right 0.3s ease;
+}
+
+/* Common panel content styles */
+.panel-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Common panel footer styles */
+.panel-footer {
+    margin-top: auto;
+}

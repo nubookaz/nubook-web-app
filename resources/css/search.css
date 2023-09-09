@@ -1,0 +1,85 @@
+
+.search {
+    background: transparent;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    transition: .3s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .search .overlay {
+    padding: 0rem;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .search .search-content {
+    justify-content: center;
+    margin-top: 13rem;
+    display: flex;
+    height: 100%;
+  }
+
+  .search .search-filter {
+    background-color: var(--secondary-color);
+    width: 5rem;
+    height: 100%;
+  }
+
+  .search input {
+    border: 0;
+    outline: none;
+    width: 100%;
+    padding: 1.3rem;
+    color: var(--primary-color);
+  }
+  
+  .search input:focus,
+  .search input:active {
+    border: 0;
+    outline: none;
+  }
+
+  .search input::placeholder {
+    color: var(--secondary-color)
+  }
+
+  .search .input-container {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
+    position: relative;
+    display: flex;
+    background: var(--light-color);
+    border-radius: 100px;
+    overflow: hidden;
+    width: 50rem;
+    flex-direction: row;
+    height: 4rem;
+    transition: opacity 0.8s ease; /* Transition opacity over 0.3 seconds with easing */
+  }
+
+
+  .icon {
+    position: absolute;
+    left: 10px; /* Adjust the left position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .search .search-button {
+    background-color: #fff;
+    width: 5rem;
+    height: 100%;
+    color: var(--primary-color);
+  }
+  
+  .search.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .search .input-container.open {
+    transition: opacity 0.3s ease; /* Transition opacity over 0.3 seconds with easing */
+  }

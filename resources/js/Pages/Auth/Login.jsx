@@ -1,11 +1,15 @@
 import { useEffect } from 'react';
-import Checkbox from '@/Components/Checkbox';
+import Checkbox from '@/Components/Forms/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import InputError from '@/Components/Forms/InputError';
+import InputLabel from '@/Components/Forms/InputLabel';
+import SecondaryButton from '@/Components/Buttons/SecondaryButton';
+import TextInput from '@/Components/Forms/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import CardContainer from '@/Components/Containers/CardContainer';
+import ImageContainer from '@/Components/Containers/ImageContainer';
+
+import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -28,70 +32,103 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: 'url("./images/background_images/guest_image_1.jpg")' }}>
+                <div className="overlay">
+                    <div className='floating-form flex flex-row justify-center items-center h-full'>
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                        <ImageContainer isPoster={true} className="my-auto">
+                            <h2 className="mb-4">
+                                Did you know?
+                            </h2>
+                            <ImageContainer isPoster={false} className="mb-4 !h-[28rem]" backgroundImage="./images/background_images/bg_image_2.jpg">
+                                {/* Your content here */}
+                            </ImageContainer>
+                            <h3>
+                                TARS, the AI machine in Interstellar, is real.
+                            </h3>
+                            <p className="p-base mt-2">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos beatae fugiat doloribus, provident aperiam, atque qui optio illum earum vel quasi molestiae est veniam mollitia fuga et, ipsum dicta sunt!
+                            </p>
+                        </ImageContainer>
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
+                        <CardContainer className="form-container">
+                        <h2 className="logo-name mb-8">Nubook</h2>
 
-                    <InputError message={errors.email} className="mt-2" />
+                        <p className="secondary-color text-base mb-10">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum, rem iste at, eligendi totam doloremque tempora esse illum perspiciatis autem.</p>
+
+                        <h1 className="primary-color mb-10 text-4xl">Welcome! Sign up for an account.</h1>
+
+                        {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                            <form onSubmit={submit}>
+                                <div>
+                                    <TextInput
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        value={data.email}
+                                        autoComplete="username"
+                                        icon={faEnvelope}
+                                        isFocused={true}
+                                        onChange={(e) => setData('email', e.target.value)}
+                                    />
+                                    <InputError message={errors.email} className="mt-2" />
+                                </div>
+                                <div className="mt-4">
+                                    <TextInput
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        value={data.password}
+                                        icon={faKey}
+                                        autoComplete="current-password"
+                                        onChange={(e) => setData('password', e.target.value)}
+                                    />
+                                    <InputError message={errors.password} className="mt-2" />
+
+
+                                </div>
+                                <div className="block mt-4 flex justify-between items-center">
+                                    <div className="flex items-center">
+                                        <label className="flex items-center">
+                                            <Checkbox
+                                                name="remember"
+                                                checked={data.remember}
+                                                onChange={(e) => setData('remember', e.target.checked)}
+                                            />
+                                            <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                                        </label>
+                                    </div>
+                                    {canResetPassword && (
+                                        <div className="text-right secondary-color">
+                                            <Link
+                                                href={route('password.request')}
+                                                className="underline text-sm hover:primary-color rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            >
+                                                Forgot your password?
+                                            </Link>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="flex items-center justify-start my-16">
+
+                                    <SecondaryButton className="ml-4" disabled={processing}>
+                                        Log in
+                                    </SecondaryButton>
+                                </div>
+
+                                <div>
+                                    <Link href={route('register')} className="text-sm secondary-color">Don’t have an account? Sign up!</Link>
+                                </div>
+                            </form>
+                        </CardContainer>
+
+                    </div>
+
                 </div>
+            </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
-            </form>
         </GuestLayout>
     );
 }

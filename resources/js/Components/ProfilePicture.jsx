@@ -1,35 +1,67 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
-function ProfilePicture({ alt, width, height, onClick }) {
-    // Define the default image path format
+function ProfilePicture({ alt, width, height, onClick, isUploadable }) {
     const defaultImagePathFormat = '/images/profile_images/profile_image_%d.svg';
-
-    // Define the total number of default images
     const totalImages = 12;
 
-    // Initialize a state variable to track the current image index
-    const [currentImageIndex, setCurrentImageIndex] = useState(1);
+    const [currentImageIndex, setCurrentImageIndex] = useState(null);
+    const [uploadedImage, setUploadedImage] = useState(null);
 
-    // Function to calculate the image index based on the current day of the week
     const calculateImageIndex = () => {
         const dayOfWeek = new Date().getDay();
         return (dayOfWeek % totalImages) + 1;
     };
 
-    // Use the current day to set the initial image index
     useEffect(() => {
-        setCurrentImageIndex(calculateImageIndex());
-    }, []);
+        if (!isUploadable) {
+            setCurrentImageIndex(calculateImageIndex());
+        }
+    }, [isUploadable]);
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'copy';
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const imageSrc = e.target.result;
+                setUploadedImage(imageSrc);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const containerStyle = {
+        backgroundImage: uploadedImage ? `url(${uploadedImage})` : isUploadable ? 'url(/images/user_uploaded_image.png)' : currentImageIndex !== null ? `url(${defaultImagePathFormat.replace('%d', currentImageIndex)})` : 'none',
+        backgroundSize: 'cover',
+        width: width + 'px',
+        height: height + 'px',
+        cursor: uploadedImage ? 'default' : isUploadable ? 'pointer' : 'default',
+    };
 
     return (
-        <img
-            src={defaultImagePathFormat.replace('%d', currentImageIndex)}
-            alt={alt}
-            width={width}
-            height={height}
-            className="rounded-full profile-picture"
-            onClick={onClick} // Pass the onClick handler to allow interaction
-        />
+        <div
+            className={`profile-picture-container ${uploadedImage ? '' : (isUploadable ? 'profile-upload-state' : '')}`}
+            style={containerStyle}
+            onClick={onClick}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+        >
+            {isUploadable && !uploadedImage && ( // Hide the centered content if not uploadable and no image is uploaded
+                <div className="centered-content">
+                    <FontAwesomeIcon icon={faImage} />
+                    <p>Drag and drop your profile photo here</p>
+                </div>
+            )}
+        </div>
     );
 }
 

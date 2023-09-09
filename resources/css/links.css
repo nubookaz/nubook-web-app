@@ -1,0 +1,10 @@
+.links {
+    padding: 0.5rem 2rem;
+    display: block;
+    width: 100%;
+}
+
+.links:hover {
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+}

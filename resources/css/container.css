@@ -1,0 +1,74 @@
+.container-base {
+    background-color: #ffffff; /* White background */
+    border-radius: var(--rounded-corners);
+    padding: 25px;
+    width: 100%;
+    overflow: hidden; /* Hidden overflow content */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
+  }
+  
+  .form-container {
+    max-width: 32rem;
+    height: auto;
+    padding: 3rem;
+  }
+  
+  .poster-container {
+    height: 46rem;
+    width: 28rem;
+    background-color: #000;
+    padding: 3rem;
+    border-top-left-radius: var(--rounded-corners) !important;
+    border-bottom-left-radius: var(--rounded-corners) !important;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+  
+  .poster-container * {
+    color: var(--light-color);
+    text-align: center;
+  }
+  
+  .image-container {
+    overflow: hidden; /* Hidden overflow content */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: var(--rounded-corners);
+  }
+
+  .image-container .image-overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* PricingPackage.css */
+
+.pricing-package {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 2px solid #fff;
+  transition: border 0.3s; /* Add a transition for smooth hover effect */
+  max-width: 50rem;
+  /* Optional: Add other styling for non-hovered state here */
+}
+
+.pricing-package:hover {
+  border: 2px solid var(--secondary-color); /* Change to the primary-green color on hover */
+}
+
+/* Add styles for the active state */
+.pricing-package.active {
+  border: 2px solid var(--primary-green-color); /* Change to the primary-green color on hover */
+}
+
+.email-container {
+  border-radius: var(--rounded-corners);
+  
+}

@@ -25,14 +25,33 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Authenticated and verified routes
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::prefix('projects')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('Projects/ProjectsOverview');
+        })->name('projects');
+
+        // Add more project-related routes here
+    });
+
+    Route::get('/account-settings', function () {
+        return Inertia::render('AccountSettings'); // Adjust the view name as needed
+    })->name('account-settings');
+
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        
+        // Add more profile-related routes here
+    });
 });
+
 
 require __DIR__.'/auth.php';

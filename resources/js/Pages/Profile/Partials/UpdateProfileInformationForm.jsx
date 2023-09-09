@@ -1,9 +1,11 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import InputError from '@/Components/Forms/InputError';
+import InputLabel from '@/Components/Forms/InputLabel';
+import PrimaryButton from '@/Components/Buttons/PrimaryButton';
+import TextInput from '@/Components/Forms/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
+
+import { faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
@@ -37,6 +39,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         id="name"
                         className="mt-1 block w-full"
                         value={data.name}
+                        icon={faUser}
                         onChange={(e) => setData('name', e.target.value)}
                         required
                         isFocused
@@ -54,6 +57,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         type="email"
                         className="mt-1 block w-full"
                         value={data.email}
+                        icon={faEnvelope}
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         autoComplete="username"

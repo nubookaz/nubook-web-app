@@ -1,7 +1,7 @@
 /* buttons.css */
 
 .default-btn {
-    padding: 8px 32px;
+    padding: 8px 36px;
     border-radius: 999px; /* Pill shape */
     font-weight: 600;
 }
@@ -23,6 +23,7 @@
 .secondary-button {
     color: var(--primary-green-color); /* Text color using CSS variable */
     background-color: var(--secondary-green-color); /* Background color using CSS variable */
+    font-size: .75rem;
 }
 
 .secondary-button:hover,
@@ -35,8 +36,6 @@
 
 .page-button {
     background-color: #fff; /* White background */
-    width: 50px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
     border-radius: 8px; /* Rounded corners */
     display: flex;
     justify-content: center;
@@ -45,15 +44,129 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
     transition: color 0.3s, outline 0.3s; /* Transition properties for color and outline */
     border: 2px solid transparent; /* Transparent outline initially */
+    margin: 0 auto 1rem;
+}
+
+.page-button-small {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
+
+.page-button-medium {
+    width: 65px; /* Adjust the width as needed */
+    height: 65px; /* Adjust the height as needed */
+    font-size: 1.5rem;
+}
+
+.page-button-large {
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
 }
 
 .page-button:hover {
     color: var(--primary-green-color); /* Change icon color on hover */
-    outline: 4px solid var(--primary-green-color); /* Add an outline on hover */
+    outline: 2px solid var(--primary-green-color); /* Add an outline on hover */
 }
 
 .page-button:active {
     background-color: var(--primary-green-color); /* Background color on click */
     color: #fff; /* White icon color on click */
     outline: none; /* Remove outline on click */
+}
+
+.circular-button {
+    background-color: var(--tertiary-color); /* White background */
+    border-radius: 100%; /* Rounded corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-color); /* Icon color */
+    transition: var(--transition-speed); /* Transition properties for color and outline */
+    border: 2px solid transparent; /* Transparent outline initially */
+}
+
+.circular-button-small {
+    height: 100%;
+    width: 2.2rem;
+}
+
+.circular-button-small {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
+
+.circular-button-medium {
+    width: 65px; /* Adjust the width as needed */
+    height: 65px; /* Adjust the height as needed */
+    font-size: 1.5rem;
+}
+
+.circular-button-large {
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+}
+
+.circular-button:hover {
+    color: #fff; /* Change icon color on hover */
+    background-color: var(--primary-color); /* Background color on click */
+}
+
+.circular-button:active {
+    color: #fff; /* Change icon color on hover */
+    background-color: var(--primary-color); /* Background color on click */
+}
+
+.search-btn svg {
+    background-color: var(--tertiary-color);
+    color: var(--primary-color) !important;
+    padding: 16px;
+    border-radius: var(--rounded-corners);
+}
+
+.dashboard-navlinks .active-link {
+    background-color: var(--primary-green-color); /* Background color on click */
+    color: #fff; /* White icon color on click */
+    outline: none; /* Remove outline on click */
+}
+
+.dashboard-navlinks span {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.settings-nav button{
+    padding: 1rem 1rem 1rem 2rem;
+    width: 100%;
+    justify-content: start !important;
+    margin: 0 0 1rem 0 !important;
+}
+
+.settings-nav button:hover {
+    outline: none;
+    background-color: var(--secondary-color);
+}
+
+.settings-nav button:hover > .button-text {
+    color: var(--light-color) !important;
+}
+
+.settings-nav .button-text {
+    text-align: left;
+    color: var(--secondary-color);
+}
+
+.settings-nav .active-link {
+    background-color: var(--primary-color);
+}
+
+.settings-nav .active-link > .button-text{
+    color: var(--light-color) ;
+}
+
+.pill-btn-secondary {
+    padding: 0.5rem 1rem;
+    max-width: 25rem;
+    margin: 0 auto;
+    color: var(--primary-green-color);
+    background-color: var(--secondary-green-color);
 }

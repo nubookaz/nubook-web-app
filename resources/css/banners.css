@@ -1,0 +1,60 @@
+
+/* Banner.css */
+
+/* Main banner container */
+.banner {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  justify-content: space-between;
+  padding: 27px 35px 27px 7rem;
+  color: #fff; /* Text color for header and date */
+}
+
+  /* CSS for the banner content */
+.banner-content {
+  position: relative; /* Ensure content is above the overlay */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.banner-footer-offset {
+  position: relative;
+  bottom: -2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mantra-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--light-color);  
+  line-height: 1.7rem;
+  padding: 1.6rem 0 4.8rem 2rem;
+}
+
+.small-banner {
+  height: 5.5rem; /* Adjust the height as needed */
+}
+.medium-banner {
+  height: 14rem; /* Adjust the height as needed */
+  margin-bottom: 4rem;
+}
+.medium-buttons-banner {
+  height: 8.5rem; /* Adjust the height as needed */
+  margin-bottom: 3rem;
+}
+.large-banner {
+  height: 30rem; /* Adjust the height as needed */
+}
+
+/* Right content (Date and Search Button) */
+.right-content {
+  display: flex;
+  align-items: center; /* Center content vertically */
+  gap: 2rem;
+}
+  

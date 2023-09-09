@@ -1,36 +1,100 @@
+import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import DeleteUserForm from './Partials/DeleteUserForm';
-import UpdatePasswordForm from './Partials/UpdatePasswordForm';
-import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import { Head } from '@inertiajs/react';
+import Banner from '@/Components/Layouts/Banner';
+import { faCcVisa } from '@fortawesome/fontawesome-free-brands'; // Import the "cc-visa" icon
 
-export default function Edit({ auth, mustVerifyEmail, status }) {
+import CardContainer from '@/Components/Containers/CardContainer';
+
+import SettingsNav from '@/Components/Navigations/SettingsNav';
+import ProfileSettings from './Partials/PofileSettings';
+import ProjectSettings from './Partials/ProjectSettings';
+import SocialSettings from './Partials/SocialSettings';
+import BudgetSettings from './Partials/BudgetSettings';
+import JobSettings from './Partials/JobSettings';
+import AccountSettings from './Partials/AccountSettings';
+import ImageContainer from '@/Components/Containers/ImageContainer';
+
+export default function Edit({ auth }) {
+    const [activeContent, setActiveContent] = useState('profile-settings');
+
+    const handleButtonClick = (content) => {
+        setActiveContent(content);
+    };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profile</h2>}
+            showBanner={true}
+            showPortalBody={true}
         >
-            <Head title="Profile" />
+            {{
+                banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} />,
+                portalBody: (
+                    <div className="h-full w-full flex gap-4 mx-auto max-w-[95rem]">
+                        {/* Left Column */}
+                        <div className="w-full max-w-[15rem]">
+                            <SettingsNav className="mt-4" activeContent={activeContent} handleButtonClick={handleButtonClick} />
+                        </div>
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <UpdateProfileInformationForm
-                            mustVerifyEmail={mustVerifyEmail}
-                            status={status}
-                            className="max-w-xl"
-                        />
+                        {/* Middle Column (Wider) */}
+                        <div className="w-full max-w-[60rem]">
+                            <CardContainer className="app-settings h-full">
+                                {activeContent === 'profile-settings' && (
+                                    <ProfileSettings />
+                                )}
+                                {activeContent === 'project-settings' && (
+                                    <ProjectSettings />
+                                )}
+                                {activeContent === 'social-settings' && (
+                                    <SocialSettings />
+                                )}
+                                {activeContent === 'budget-settings' && (
+                                    <BudgetSettings />
+                                )}
+                                {activeContent === 'job-settings' && (
+                                    <JobSettings />
+                                )}
+                                {activeContent === 'account-settings' && (
+                                    <AccountSettings />
+                                )}
+                            </CardContainer>
+                        </div>
+
+                        {/* Right Column (Second Widest) */}
+                        <div className="w-full max-w-[25rem]">
+                            <div className="settings-info flex flex-col gap-4">
+                                <ImageContainer
+                                    isPoster={false}
+                                    overlay={true} 
+                                    className="subscription-info !h-[23rem]"
+                                    backgroundImage="./images/cartoon_images/female_hollywood_filmmaker.png"
+                                    header="Subscription Type"
+                                    >
+                                    <h2 className='text-white text-[3rem]'>Hollywood Filmmaker</h2>
+                                </ImageContainer>
+
+                                <h3 className='text-lg font-medium secondary-color'>Payment Settings</h3>
+                                <ImageContainer 
+                                    overlay={true} 
+                                    className="payment-info !h-[16rem]" 
+                                    backgroundImage="./images/background_images/bg_image_10.jpg"
+                                    icon={faCcVisa}
+                                    header="Chase"
+                                    >
+                                    <div className='text-white text-[1rem]'>
+                                        <p>XXXX-XXXX-XXXX-3415</p>
+                                        <div className='flex flex-row justify-between w-full'>
+                                            <p className='uppercase'>Levi Elizaga</p> 
+                                            <p className=''>04/25</p>
+                                        </div>
+                                    </div>
+                                </ImageContainer>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <UpdatePasswordForm className="max-w-xl" />
-                    </div>
-
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <DeleteUserForm className="max-w-xl" />
-                    </div>
-                </div>
-            </div>
+                ),
+            }}
         </AuthenticatedLayout>
     );
 }
