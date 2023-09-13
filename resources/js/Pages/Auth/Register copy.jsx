@@ -12,8 +12,7 @@ import { faEnvelope, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        first_name: '',
-        last_name: '',
+        name: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -65,34 +64,33 @@ export default function Register() {
                             <form onSubmit={submit}>
                                 <div>
 
-        
+                                <Tooltip
+                                    title="Your Name is Required"
+                                    open={true}                                        
+                                    placement="top"
+                                    arrow
+                                    >      
                                     <Input
-                                        id="first_name"
-                                        name="first_name"
-                                        placeholder="Your First Name"
-                                        value={data.first_name}
-                                        autoComplete="first_name"
-                                        onChange={(e) => setData('first_name', e.target.value)}
+                                        id="name"
+                                        name="name"
+                                        placeholder="Your Name"
+                                        value={data.name}
+                                        autoComplete="name"
+                                        isFocused={true}
+                                        onChange={(e) => setData('name', e.target.value)}
                                         required
                                     />
+                                </Tooltip>
                                 </div>
-
-                                <div>
-
-        
-                                    <Input
-                                        id="last_name"
-                                        name="last_name"
-                                        placeholder="Your Last Name"
-                                        value={data.last_name}
-                                        autoComplete="last_name"
-                                        onChange={(e) => setData('last_name', e.target.value)}
-                                        required
-                                    />
-                                    </div>
 
                                 <div className="mt-4">
 
+                                <Tooltip
+                                    title="Email Address is Required"
+                                    open={true}                                        
+                                    placement="top"
+                                    arrow
+                                    >      
                                     <Input
                                         id="email"
                                         type="email"
@@ -104,11 +102,17 @@ export default function Register() {
                                         onChange={(e) => setData('email', e.target.value)}
                                         required
                                     />
+                                </Tooltip>      
                                 </div>
 
                                 <div className="mt-4">
 
-
+                                <Tooltip
+                                    title="Password is Required"
+                                    open={true}                                        
+                                    placement="top"
+                                    arrow
+                                    >      
                                     <Input
                                         id="password"
                                         type="password"
@@ -119,11 +123,17 @@ export default function Register() {
                                         onChange={(e) => setData('password', e.target.value)}
                                         required
                                     />
+                                </Tooltip>
                                 </div>
 
                                 <div className="mt-4">
 
-   
+                                <Tooltip
+                                    title="Please re-enter your password"
+                                    open={true}                                        
+                                    placement="top"
+                                    arrow
+                                    >      
                                     <Input
                                         id="password_confirmation"
                                         type="password"
@@ -134,6 +144,7 @@ export default function Register() {
                                         onChange={(e) => setData('password_confirmation', e.target.value)}
                                         required
                                     />
+                                </Tooltip>
                                 </div>
 
                                 <div className="flex items-center justify-start my-16">

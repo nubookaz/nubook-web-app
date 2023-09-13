@@ -3,6 +3,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
+
+
+
 function CardComponent({ children, header, showButtonIcon, openPage, openToolkit, className, size, backgroundColor }) {
     const handleButtonClick = () => {
         // Check conditions to decide whether to open a page or a toolkit
@@ -41,12 +44,17 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
 
     const containerClasses = `container-base card-container ${getSizeClass()} ${className} ${getBackgroundColorClass()}`;
 
+
+
+    
+
+
     return (
         <div className={containerClasses}>
             {header && (
                 <div className="card-header flex justify-between items-center mb-4">
                     <div className="flex items-center">
-                        {header && <h3 className="secondary-color container-header">{header}</h3>}
+                        {header && <h3 className="secondary-color container-header text-md font-normal">{header}</h3>}
                     </div>
                     {showButtonIcon && (
                         <div>

@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
 import Checkbox from '@/Components/Forms/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/Forms/InputError';
-import InputLabel from '@/Components/Forms/InputLabel';
+import Input from '@mui/joy/Input';
+import Tooltip from '@mui/joy/Tooltip';
+
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import TextInput from '@/Components/Forms/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import CardContainer from '@/Components/Containers/CardContainer';
 import ImageContainer from '@/Components/Containers/ImageContainer';
 
-import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
-
 export default function Login({ status, canResetPassword }) {
+
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -30,6 +29,8 @@ export default function Login({ status, canResetPassword }) {
         post(route('login'));
     };
 
+
+    
     return (
         <GuestLayout>
 
@@ -52,40 +53,38 @@ export default function Login({ status, canResetPassword }) {
                             </p>
                         </ImageContainer>
 
-                        <CardContainer className="form-container">
-                        <h2 className="logo-name mb-8">Nubook</h2>
+                        <CardContainer className="form-container flex flex-col justify-between">
+                            <h2 className="logo-name">Nubook</h2>
 
-                        <p className="secondary-color text-base mb-10">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum, rem iste at, eligendi totam doloremque tempora esse illum perspiciatis autem.</p>
+                            <p className="secondary-color text-base mb-14">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum, rem iste at, eligendi totam doloremque tempora esse illum perspiciatis autem.</p>
 
-                        <h1 className="primary-color mb-10 text-4xl">Welcome! Sign up for an account.</h1>
+                            <h1 className="primary-color mb-4 text-4xl">Welcome! Sign up for an account.</h1>
 
-                        {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                            
                             <form onSubmit={submit}>
-                                <div>
-                                    <TextInput
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={data.email}
-                                        autoComplete="username"
-                                        icon={faEnvelope}
-                                        isFocused={true}
-                                        onChange={(e) => setData('email', e.target.value)}
-                                    />
-                                    <InputError message={errors.email} className="mt-2" />
+                                 <div>
+                              
+                                        <Input
+                                            id="email"
+                                            type="email"
+                                            name="email"
+                                            value={data.email}
+                                            autoComplete="username"
+                                            onChange={(e) => setData('email', e.target.value)}
+                                        />
+
                                 </div>
                                 <div className="mt-4">
-                                    <TextInput
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        value={data.password}
-                                        icon={faKey}
-                                        autoComplete="current-password"
-                                        onChange={(e) => setData('password', e.target.value)}
-                                    />
-                                    <InputError message={errors.password} className="mt-2" />
-
+                    
+                                        <Input
+                                            id="password"
+                                            type="password"
+                                            name="password"
+                                            value={data.password}
+                                            autoComplete="current-password"
+                                            onChange={(e) => setData('password', e.target.value)}
+                                        />
 
                                 </div>
                                 <div className="block mt-4 flex justify-between items-center">
@@ -122,6 +121,7 @@ export default function Login({ status, canResetPassword }) {
                                     <Link href={route('register')} className="text-sm secondary-color">Don’t have an account? Sign up!</Link>
                                 </div>
                             </form>
+                            
                         </CardContainer>
 
                     </div>

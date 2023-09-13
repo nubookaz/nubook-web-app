@@ -21,7 +21,14 @@ function Sidebar({ toggleSearch, isOpen }) {
 
     return (
         <div className="sidebar shadow-md"
-        onMouseLeave={() => setTooltipVisible(false)}
+            onMouseLeave={() => {
+            // Delay in milliseconds (e.g., 1000ms = 1 second)
+            const delay = 800;
+        
+            setTimeout(() => {
+                setTooltipVisible(false);
+            }, delay);
+          }}
         >
             
             {/* Sidebar Content */}
@@ -40,7 +47,7 @@ function Sidebar({ toggleSearch, isOpen }) {
                             <NavLink href={route('dashboard')} active={route().current('dashboard')} activeClass="active-link" icon={faSquarePollHorizontal} />
                         </li>
                         <li>
-                            <NavLink href={route('projects')} active={route().current('projects')} activeClass="active-link" icon={faProjectDiagram}/>
+                            <NavLink href={route('projects.index')} active={route().current('projects.*')} activeClass="active-link" icon={faProjectDiagram}/>
                         </li>
                         <li>
                             <NavLink href="/social" icon={faComments}/>

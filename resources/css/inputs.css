@@ -7,18 +7,27 @@ textarea:focus, input:focus{
     box-shadow: none;
 }
 
-input {
-    background-color: var(--light-color);
-    color: var(--primary-color); /* Placeholder color */
-    font-size: 0.75rem; /* Font size in REM */
-    border: 1px solid var(--tertiary-color);
-    display: block;
-    padding: 1rem;
-    outline:none;
+.MuiInput-root, 
+.MuiSelect-root,
+.MuiTextarea-root {
+    background-color: #F8F8F8 !important;
+    color: var(--primary-color) !important;
+    font-size: 1rem !important;
+    border: 1px solid var(--tertiary-color) !important;
+    outline: none !important;
+    box-shadow: none !important; 
+    padding: 1.2rem 1.4rem !important;
 }
 
-input:placeholder {
-    color: var(--secondary-color);
+/* .MuiInput-root input {
+    padding: 1.2rem 1.4rem !important;
+} */
+
+.MuiInput-root:placeholder, 
+.MuiSelect-root:placeholder,
+.MuiTextarea-root:placeholder {
+    color: var(--secondary-color) !important;
+    font-size: 1rem;
 }
 
 .custom-icon {

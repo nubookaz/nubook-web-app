@@ -25,6 +25,7 @@ export default function Authenticated({ user, showBanner, showPortalBody, childr
             </div>
 
             <main className="grow z-40 absolute w-full h-full">
+                
                 {showBanner && (
                     <div id="banner" className="z-30 absolute">{children.banner}</div>
                 )}

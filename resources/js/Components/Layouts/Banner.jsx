@@ -77,13 +77,13 @@ const { auth } = usePage().props
           <div className="overlay"></div>
     
           <div className="banner-content" style={contentStyle}>
-            <div className="left-content flex">
+            <div className="flex left-content">
 
                 {showLeftContent && (
                     <div className="greeting">
                         {/* Header with time of day greeting and user's first name */}
                         <h1>
-                        {timeOfDayGreeting} {auth.user.name}
+                          {timeOfDayGreeting} {auth.user.first_name} {auth.user.last_name}
                         </h1>
                     </div>
                 )}
@@ -107,21 +107,21 @@ const { auth } = usePage().props
 
           {(size === 'medium' || size === 'large') && showProfilePhoto && (
             <div className="medium banner-footer-offset">
-                <div className="left-content flex">
+                <div className="flex left-content">
                     <ProfilePicture alt="User Profile" width={200} height={200} isUploadable={true}/>
                     
-                    <div className="mantra-text w-4/6">
+                    <div className="w-4/6 mantra-text">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quaerat et cupiditate cumque, fugiat voluptatibus dolorum pariatur tenetur?</p>
                     </div>
                 </div>
-                <div className="right-content -mb-20 w-full">
-                    <ul className="dashboard-navlinks text-center flex gap-20 mx-auto">
+                <div className="w-full -mb-20 justify-end mr-[10rem] right-content">
+                    <ul className="flex gap-20 text-center dashboard-navlinks">
                         <li>
                             <PageButton icon={faListCheck} size="medium" />
                             <span>Tasks</span>
                         </li>
                         <li>
-                            <PageButton href={route('projects')} active={route().current('projects')}  activeClass="active-link" icon={faProjectDiagram} size="medium" />
+                            <PageButton href={route('projects.index')} active={route().current('projects.index')}  activeClass="active-link" icon={faProjectDiagram} size="medium" />
                             <span>Projects</span>
                         </li>
                         <li>

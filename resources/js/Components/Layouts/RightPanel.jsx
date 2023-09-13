@@ -3,7 +3,7 @@ import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CircularButton from '../Buttons/CircularButton';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function RightPanel({ isRightPanelOpen, toggleRightPanel, children, panel_footer, showSlideOutPanel }) {
+export default function RightPanel({ isRightPanelOpen, toggleRightPanel, children, panel_header, panel_footer, showSlideOutPanel }) {
   const [slideOutPanelVisible, setSlideOutPanelVisible] = useState(false);
 
 
@@ -43,9 +43,8 @@ export default function RightPanel({ isRightPanelOpen, toggleRightPanel, childre
         {/* Panel Content */}
         <div className="panel-content">
           {/* Header */}
-          <div className="panel-header text-center mb-4">
-            <h2>Panel Header</h2>
-            <p className="p-base">Subtext goes here</p>
+          <div className="mb-8 text-center panel-header">
+            {panel_header}
           </div>
 
           {/* Body */}

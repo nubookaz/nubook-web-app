@@ -9,7 +9,7 @@
   
   .form-container {
     max-width: 32rem;
-    height: auto;
+    min-height: 52rem;
     padding: 3rem;
   }
   

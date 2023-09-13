@@ -12,3 +12,9 @@
     color: var(--primary-green-color);
     font-weight: 800;
 }
+
+.promo-ad .image-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}

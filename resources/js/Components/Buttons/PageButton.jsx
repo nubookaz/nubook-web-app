@@ -2,6 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from '@inertiajs/react';
 import React from 'react';
 
+
+
+
+
+
 function PageButton({ active = false, activeClass = '', className = '', icon, size, href, onClick, text }) {
   // Define a mapping of size to CSS class
   const sizeClass = {
@@ -13,11 +18,15 @@ function PageButton({ active = false, activeClass = '', className = '', icon, si
   // Determine the class based on the size prop
   const buttonClass = `page-button ${sizeClass[size] || ''} ${active ? activeClass : ''} ${className}`;
 
-  const handleClick = (e) => {
-    if (onClick) {
-      onClick(e);
-    }
-  };
+  // const handleClick = (e) => {
+  //   if (onClick) {
+  //     onClick(e);
+  //   }
+  // };
+
+
+
+
 
   if (href) {
     // Render a link if href is provided
@@ -30,12 +39,16 @@ function PageButton({ active = false, activeClass = '', className = '', icon, si
   } else {
     // Render a button if href is not provided
     return (
-      <button onClick={handleClick} className={buttonClass}>
+      <button onClick={onClick} className={buttonClass}> {/* Use onClick here */}
         {icon && <FontAwesomeIcon icon={icon} />}
         {text && <span className="button-text">{text}</span>}
       </button>
     );
   }
 }
+
+
+
+
 
 export default PageButton;

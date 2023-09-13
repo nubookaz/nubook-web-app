@@ -1,68 +1,123 @@
-import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
+import React, { useCallback, useEffect, useState } from 'react'
+import {useDropzone} from 'react-dropzone'
+import Avatar from '@mui/joy/Avatar';
 
-function ProfilePicture({ alt, width, height, onClick, isUploadable }) {
-    const defaultImagePathFormat = '/images/profile_images/profile_image_%d.svg';
+
+const thumbsContainer = {
+display: 'flex',
+flexDirection: 'row',
+flexWrap: 'wrap',
+marginTop: 16
+};
+
+const thumb = {
+display: 'inline-flex',
+borderRadius: 2,
+border: '1px solid #eaeaea',
+marginBottom: 8,
+marginRight: 8,
+width: 100,
+height: 100,
+padding: 4,
+boxSizing: 'border-box'
+};
+
+const thumbInner = {
+display: 'flex',
+minWidth: 0,
+overflow: 'hidden'
+};
+
+const img = {
+display: 'block',
+width: 'auto',
+height: '100%'
+};
+
+
+
+function ProfilePicture({ onClick, className, isUploadable }) {
     const totalImages = 12;
 
-    const [currentImageIndex, setCurrentImageIndex] = useState(null);
-    const [uploadedImage, setUploadedImage] = useState(null);
-
-    const calculateImageIndex = () => {
-        const dayOfWeek = new Date().getDay();
-        return (dayOfWeek % totalImages) + 1;
+    // Function to generate a random number between 1 and 12
+    const generateRandomIndex = () => {
+        return Math.floor(Math.random() * totalImages) + 1;
     };
 
-    useEffect(() => {
-        if (!isUploadable) {
-            setCurrentImageIndex(calculateImageIndex());
-        }
-    }, [isUploadable]);
+    // Check if there is a stored image index, if not, generate a new one
+    let storedImageIndex = localStorage.getItem('imageIndex');
+    if (!storedImageIndex) {
+        storedImageIndex = generateRandomIndex();
+        localStorage.setItem('imageIndex', storedImageIndex);
+    }
 
-    const handleDragOver = (e) => {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'copy';
-    };
+    // Set the image URL based on the stored or generated index
+    const imageUrl = `/images/profile_images/profile_image_${storedImageIndex}.svg`;
 
-    const handleDrop = (e) => {
-        e.preventDefault();
-        const file = e.dataTransfer.files[0];
 
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const imageSrc = e.target.result;
-                setUploadedImage(imageSrc);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
 
-    const containerStyle = {
-        backgroundImage: uploadedImage ? `url(${uploadedImage})` : isUploadable ? 'url(/images/user_uploaded_image.png)' : currentImageIndex !== null ? `url(${defaultImagePathFormat.replace('%d', currentImageIndex)})` : 'none',
-        backgroundSize: 'cover',
-        width: width + 'px',
-        height: height + 'px',
-        cursor: uploadedImage ? 'default' : isUploadable ? 'pointer' : 'default',
-    };
-
-    return (
-        <div
-            className={`profile-picture-container ${uploadedImage ? '' : (isUploadable ? 'profile-upload-state' : '')}`}
-            style={containerStyle}
-            onClick={onClick}
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-        >
-            {isUploadable && !uploadedImage && ( // Hide the centered content if not uploadable and no image is uploaded
-                <div className="centered-content">
-                    <FontAwesomeIcon icon={faImage} />
-                    <p>Drag and drop your profile photo here</p>
-                </div>
-            )}
+    const [files, setFiles] = useState([]);
+    const {getRootProps, getInputProps} = useDropzone({
+      accept: {
+        'image/*': []
+      },
+      onDrop: acceptedFiles => {
+        setFiles(acceptedFiles.map(file => Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })));
+      }
+    });
+    
+    const thumbs = files.map(file => (
+      <div style={thumb} key={file.name}>
+        <div style={thumbInner}>
+          <img
+            src={file.preview}
+            style={img}
+            // Revoke data uri after image is loaded
+            onLoad={() => { URL.revokeObjectURL(file.preview) }}
+          />
         </div>
-    );
+      </div>
+    ));
+
+    const imageUrls = files.map(file => file.preview);
+
+  
+    useEffect(() => {
+      // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+      return () => files.forEach(file => URL.revokeObjectURL(file.preview));
+    }, []);
+  
+   
+
+    // Conditional rendering based on the isUploadable prop
+    if (isUploadable) {
+        return (
+            <div
+                className={`${className} profile-photo ${imageUrls.length > 0 ? 'has-image' : ''} profile-upload-state`}
+                    {...getRootProps()}
+                    style={{
+                    backgroundImage: `url(${imageUrls.join(', ')})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                }}
+                >
+                <div {...getRootProps()} className={`dropzone uploaded-state ${imageUrls.length > 0 ? 'has-image' : ''}`}>
+                    <input {...getInputProps()} />
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div className={className} onClick={onClick}>
+                {/* Avatar component */}
+                <Avatar size="lg" alt="Remy Sharp" src={imageUrl} />
+            </div>
+        );
+    }
 }
 
 export default ProfilePicture;
