@@ -19,19 +19,6 @@ function ProjectsOverview({ auth, showBanner }) {
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const [projectData, setProjectData] = useState({
-    projectID: project.id || '',
-    projectName: project.projectName || '',
-    projectType: project.projectType || '',
-    projectDescription: project.projectDescription || '',
-    projectBudget: project.projectBudget || 0,
-    categoryType: project.categoryType || '',
-    projectStage: project.projectStage || '',
-    projectDays: project.projectDays || 0,
-    projectMonths: project.projectMonths || 0,
-    projectYears: project.projectYears || 0,
-    // Add other project-related fields here
-  });
 
   const toggleRightPanel = () => {
     setIsRightPanelOpen(!isRightPanelOpen);
@@ -50,7 +37,6 @@ function ProjectsOverview({ auth, showBanner }) {
   const handleBackClick = () => {
     // Use the route function to generate the URL for the "Projects Overview" page
     const url = route('projects.index'); // Replace with your actual route name
-    console.log("Click!!");
   };
 
   console.log(props.projects);
@@ -74,21 +60,21 @@ function ProjectsOverview({ auth, showBanner }) {
 
         ),
 
-        banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} projectData={projectData} />,
+        banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} project={project} />,
       
         portalBody: (
           <div className="w-full h-full">
 
-            <Toolbar
-              onBackClick={handleBackClick}
-              title="Projects Overview"
-              cta_text="Create a New Project"
-              onButtonClick={toggleRightPanel}
-            >
+           
               {hasProjects() ? ( // Corrected: Call the function with parentheses
-
-                <ProjectList projects={project} />
-
+                <Toolbar
+                  onBackClick={handleBackClick}
+                  title="Projects Overview"
+                  cta_text="Create a New Project"
+                  onButtonClick={toggleRightPanel}
+                  >
+                    <ProjectList projects={project} />
+                </Toolbar>
               ) : (
 
                 <EmptyContent
@@ -103,7 +89,7 @@ function ProjectsOverview({ auth, showBanner }) {
                 </EmptyContent>
 
               )}
-            </Toolbar>
+    
            
           </div>
         ),

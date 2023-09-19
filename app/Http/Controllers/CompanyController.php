@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company; // Replace with your Company model
 use Inertia\Inertia;
+use App\Http\Traits\ProjectTrait;
 
 class CompanyController extends Controller
 {
+    use ProjectTrait;
+
     public function index()
     {
         // Implement your logic to retrieve and display a list of companies
@@ -15,27 +18,6 @@ class CompanyController extends Controller
 
         return view('companies.index', ['companies' => $companies]);
     }
-
-    // public function store(Request $request)
-    // {
-    //     // Validate the incoming request data
-    //     $validatedData = $request->validate([
-    //         'companyName' => 'required|string|max:255',
-    //         'einNumber' => 'nullable|string|max:255', // Optional EIN field
-    //     ]);
-    
-    //     // Create a new company instance and fill it with validated data
-    //     $company = new Company;
-    //     $company->name = $validatedData['companyName'];
-    //     $company->ein = $validatedData['einNumber'];
-    
-    //     // Save the company record to the database
-    //     $company->save();
-    
-    //     // return redirect()->route('project.index')->with('success', 'Company created successfully');
-    //     return redirect()->route('projects.edit', ['id' => $project->id]);
-
-    // }
 
     public function store(Request $request)
     {

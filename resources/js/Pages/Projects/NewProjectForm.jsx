@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useForm } from 'react';
 import { router } from '@inertiajs/react';
 
 import RightPanel from '@/Components/Layouts/RightPanel';
@@ -8,6 +8,7 @@ import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons'; // Imp
 
 import ProjectDetailsForm from '@/Pages/Projects/Partials/ProjectDetailsForm';
 import ProjectClientForm from '@/Pages/Projects/Partials/ProjectClientForm';
+
 
 
 
@@ -213,10 +214,10 @@ function NewProjectForm(props) {
     };
       
 
-  const handleCompanyOwnerCheckedChange = (isChecked) => {
-      // Update the state with the new checkbox status
-      setCompanyOwnerCheckedChange(isChecked);
-  };
+    const handleCompanyOwnerCheckedChange = (isChecked) => {
+        // Update the state with the new checkbox status
+        setCompanyOwnerCheckedChange(isChecked);
+    };
 
     const handleBackButtonClick = () => {
         if (currentStep === 3) {

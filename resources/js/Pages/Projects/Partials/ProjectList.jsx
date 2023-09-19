@@ -22,7 +22,7 @@ function ProjectList({ projects }) {
       {projects.map(project => (
 
       <ActiveCard
-        title={project.projectStage}
+        status={project.projectStage}
         cardType="project"
         href={
           project.projectStage === 'Estimate'
@@ -30,7 +30,7 @@ function ProjectList({ projects }) {
             : route('projects.edit', { id: project.id }) // Default URL for other project stages
         }
         key={project.id}
-        projectName={project.projectName}
+        cardTitle={project.projectName}
         projectType={project.projectType}
         progressValue={75}
       />

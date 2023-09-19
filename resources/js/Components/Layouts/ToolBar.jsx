@@ -21,7 +21,7 @@ function Toolbar({ title, actionButtons, href, onButtonClick, children, cta_text
     <div className="toolbar-container flex flex-col h-full">
 
 
-      <div className="toolbar-content flex flex-row w-full justify-between items-center mb-8">
+      <div className="toolbar-content flex flex-row w-full justify-between items-center mb-4">
 
 
         {/* Column 1: Left Arrow Icon */}
@@ -47,11 +47,11 @@ function Toolbar({ title, actionButtons, href, onButtonClick, children, cta_text
 
 
         {/* Column 4: Optional Action Buttons */}
-        <div className="toolbar-column-3">
+        <div className="toolbar-column-3 flex flex-row gap-4">
           {actionButtons &&
             actionButtons.map((actionButton, index) => (
-              <div key={index} className="action-button">
-                <CircularButton icon={actionButton.icon} onClick={actionButton.onClick} />
+              <div key={index} className={`action-button ${actionButton.isActive ? 'active-button' : ''}`}>
+                <CircularButton className="circular-button-small" icon={actionButton.icon} onClick={actionButton.onClick} />
               </div>
             ))}
         </div>

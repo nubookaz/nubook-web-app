@@ -8,7 +8,7 @@ import ProfilePicture from '@/Components/ProfilePicture';
 import PageButton from '@/Components/Buttons/PageButton';
 import ProjectNavigation from '@/Pages/Projects/Partials/ProjectNavigation';
 
-function Banner({ projectData, backgroundImage, size, showLeftContent, showProfilePhoto }) {
+function Banner({ project, backgroundImage, size, showLeftContent, showProfilePhoto }) {
 
 const { auth } = usePage().props
 
@@ -23,7 +23,7 @@ const {
   projectDays = 0,
   projectMonths = 0,
   projectYears = 0,
-} = projectData || {}; 
+} = project || {}; 
 
   // Define the default image path format
   const defaultImagePathFormat = '/images/background_images/bg_image_%d.jpg';
@@ -118,11 +118,11 @@ const {
             </div>
 
             {(size === 'small-banner-buttons' ) && (
-              <ProjectNavigation projectData={projectData}/>
+              <ProjectNavigation project={project}/>
               )}
 
             {(size === 'medium-banner-buttons' ) && (
-              <ProjectNavigation projectData={projectData}/>
+              <ProjectNavigation project={project}/>
             )}
 
             {(size === 'medium-banner') && showProfilePhoto && (
@@ -163,7 +163,7 @@ const {
 
             {(size === 'large-banner-buttons' ) && (
                 <div className="banner-footer">
-                     <ProjectNavigation projectData={projectData}/>
+                     <ProjectNavigation project={project}/>
                 </div>
             
             )}

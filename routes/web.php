@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CompanyController; 
-use App\Http\Controllers\CallSheetsController; 
+use App\Http\Controllers\CallSheetController; 
 
 use App\Http\Controllers\AssociationController; 
 
@@ -60,8 +60,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
         // New routes for the "Call Sheets" page
         Route::prefix('{id}/call-sheets')->group(function () {
-            Route::get('/', [CallSheetsController::class, 'index'])->name('projects.callSheets.index');
-            // Add more routes related to Call Sheets here
+            Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
+            Route::post('/', [CallSheetController::class, 'store'])->name('projects.callSheets.create');
+            Route::get('{callSheetId}/edit', [CallSheetController::class, 'edit'])->name('projects.callSheets.edit');
+
         });
     });
     
@@ -95,6 +97,73 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
 });
 
+
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     // Authenticated and verified routes
+
+//     // Dashboard
+//     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+
+//     // Projects Resource Controller with nested Call Sheets
+//     Route::resource('projects', ProjectController::class)->except('edit'); // Exclude 'edit' route
+//     Route::prefix('projects/{project}')->group(function () {
+//         // Call Sheets for a Project
+//         Route::resource('call-sheets', CallSheetController::class)->except(['edit', 'show']); // Exclude 'edit' and 'show' routes
+        
+//         // Custom Association Controller route for storing (under the 'projects' namespace)
+//         Route::post('associations/custom-store', [AssociationController::class, 'yourCustomStoreMethod'])->name('projects.associations.customStore');
+//     });
+
+//     // Companies Resource Controller
+//     Route::resource('companies', CompanyController::class);
+
+//     // Account Settings
+//     Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');
+
+//     // Profile
+//     Route::prefix('profile')->group(function () {
+//         Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+//         Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+//         Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//         // Add more profile-related routes here
+//     });
+// });
+
+
+
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     // Authenticated and verified routes
+
+//     // Dashboard
+//     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+
+//     // Projects Resource Controller
+//     Route::resource('projects', ProjectController::class);
+
+//     // Call Sheets for a Project
+//     Route::name('projects.callSheets.')->prefix('projects/{project}/call-sheets')->group(function () {
+//         Route::get('/', [CallSheetController::class, 'index'])->name('index');
+//         Route::post('/', [CallSheetController::class, 'store'])->name('store');
+//         // Add more call sheet routes here
+//     });
+
+//     // Companies Resource Controller
+//     Route::resource('companies', CompanyController::class);
+
+//     // Associations
+//     Route::post('projects/{project/edit}', [AssociationController::class, 'ProjectCompaniesCreate'])->name('associations.create');
+
+//     // Account Settings
+//     Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');
+
+//     // Profile
+//     Route::prefix('profile')->group(function () {
+//         Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+//         Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+//         Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//         // Add more profile-related routes here
+//     });
+// });
 
 
 require __DIR__.'/auth.php';

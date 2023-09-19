@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Company;
 use App\Http\Traits\ProjectTrait;
+use App\Http\Traits\CallSheetTrait;
 
 use Inertia\Inertia;
 
@@ -15,6 +16,8 @@ class AssociationController extends Controller
 {
 
     use ProjectTrait;
+    use CallSheetTrait;
+
 
     public function ProjectCompaniesCreate(Request $request)
     {
@@ -33,6 +36,12 @@ class AssociationController extends Controller
         ? Inertia::render('Projects/ProjectEstimate', ['project' => $project, 'id' => $project->id])
         : Inertia::render('Projects/ProjectEdit', ['project' => $project, 'id' => $project->id]);
 
+    }
+
+
+    public function ProjectCallSheetCreate(Request $request)
+    {
+        
     }
 
 }

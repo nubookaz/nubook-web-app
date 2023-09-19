@@ -65,11 +65,11 @@ function ProjectEdit({ auth }) {
     <AuthenticatedLayout user={auth.user} showBanner={true} showPortalBody={true}>
       {{
         surface: <div className="relative z-50 w-full h-full"></div>,
-        banner: <Banner size="large-banner-buttons" showLeftContent={false} showProfilePhoto={false}  projectData={projectData}  />,
+        banner: <Banner size="large-banner-buttons" showLeftContent={false} showProfilePhoto={false}  project={project}  />,
         portalBody: (
-          <div className="w-full h-full pt-[24rem]">
-
-            <div>
+          <div className="w-full h-full pt-[19rem]">
+                
+            {/* <div>
                   <Tooltip title="Project Name" placement="top">
                     <Input
                       type="text"
@@ -138,8 +138,7 @@ function ProjectEdit({ auth }) {
                     />
                   </Tooltip>
                 </div>
-                {/* Add other project input fields here */}
-                <button onClick={submit}>Update Project</button>
+                <button onClick={submit}>Update Project</button> */}
           </div>
         ),
       }}

@@ -30,4 +30,9 @@ class Project extends Model
         return $this->belongsToMany(Company::class, 'company_project', 'project_id', 'company_id');
     }
 
+    public function callSheets()
+    {
+        return $this->hasMany(CallSheet::class);
+    }
+
 }

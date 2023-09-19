@@ -96,8 +96,8 @@
 }
 
 .circular-button-small {
-    width: 50px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
+    width: 45px; /* Adjust the width as needed */
+    height: 45px; /* Adjust the height as needed */
 }
 
 .circular-button-medium {
@@ -117,6 +117,11 @@
 }
 
 .circular-button:active {
+    color: #fff; /* Change icon color on hover */
+    background-color: var(--primary-color); /* Background color on click */
+}
+
+.active-button .circular-button {
     color: #fff; /* Change icon color on hover */
     background-color: var(--primary-color); /* Background color on click */
 }

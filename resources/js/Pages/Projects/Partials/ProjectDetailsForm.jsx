@@ -29,16 +29,22 @@ function ProjectDetailsForm(props) {
         setProjectYears,
         
         required,
-        checkFormStatus,
-      } = props;
+        checkFormStatus, 
+        nextButtonClicked } = props;
 
-    const { nextButtonClicked } = props;
 
+
+
+        
     const handleNextButtonClick = () => {
         // Set the state to indicate that the "Next" button has been clicked
         setNextButtonClicked(true);
         // Add your logic to handle the next step
-      };
+    };
+
+
+
+
 
 
     return (

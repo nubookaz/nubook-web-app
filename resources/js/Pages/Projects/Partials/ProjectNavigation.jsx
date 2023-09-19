@@ -1,39 +1,43 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faProjectDiagram, faInfo, faFeatherPointed, faClapperboard, faBarsStaggered, faPaperPlane, faAddressCard, faHandHoldingDollar, faPhotoFilm, faFolderTree, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { faProjectDiagram, faInfo, faFeatherPointed, faClapperboard, faBarsStaggered, faPaperPlane, faAddressCard, faHandHoldingDollar, faPhotoFilm, faFolderTree, faBriefcase, faSliders } from '@fortawesome/free-solid-svg-icons';
 import PageButton from '@/Components/Buttons/PageButton'; 
 import Tooltip from '@mui/joy/Tooltip';
 
-function ProjectNavigation({ projectData }) {
-
-  const {
-    projectID = '',
-    projectName = '',
-    projectType = '',
-    projectDescription = '',
-    projectBudget = 0,
-    categoryType = '',
-    projectStage = '',
-    projectDays = 0,
-    projectMonths = 0,
-    projectYears = 0,
-  } = projectData || {}; 
+function ProjectNavigation({ project }) {
+  // const {
+  //   projectID = '',
+  //   projectName = '',
+  //   projectType = '',
+  //   projectDescription = '',
+  //   projectBudget = 0,
+  //   categoryType = '',
+  //   projectStage = '',
+  //   projectDays = 0,
+  //   projectMonths = 0,
+  //   projectYears = 0,
+  // } = project || {}; 
+  console.log("project ID", project.id );
 
   return (
     <div className="flex flex-row w-full">
       <div className="left-content w-full">
-        <h1 className='text-3xl mb-2'>{projectName}</h1>
-        <h3>{projectType} :: {categoryType}</h3>
+        <h1 className='text-3xl mb-2'>{project.projectName}</h1>
+        <h3>{project.projectType} :: {project.categoryType}</h3>
       </div>
-      <div className="right-content justify-end w-full">
-        <ul className="dashboard-navlinks text-center flex gap-8">
+      <div className="right-content justify-end w-full pr-[2rem]">
+        <ul className="dashboard-navlinks text-center flex gap-6">
           <li>
             <Tooltip
               placement="top"
+              title="Project Overview"
               variant="plain"
             >
-              <PageButton href={route('projects.edit', { id: projectID })} active={route().current('projects.edit')}  activeClass="active-link" icon={faInfo} size="small" />
+              <div>
+                <PageButton href={route('projects.edit', { id: project.id })} active={route().current('projects.edit')}  activeClass="active-link" icon={faInfo} size="small" />
+              </div>
             </Tooltip>
+
           </li>
           <li>
             <PageButton className="disabled" icon={faProjectDiagram} size="small" />
@@ -48,7 +52,15 @@ function ProjectNavigation({ projectData }) {
             <PageButton className="disabled" icon={faBarsStaggered} size="small" />
           </li>
           <li>
-            <PageButton href={route('projects.callSheets.index', { id: projectID })} active={route().current('projects.callSheets.index')}  activeClass="active-link" icon={faPaperPlane} size="small" />
+          <Tooltip
+              placement="top"
+              title="Call Sheets"
+              variant="plain"
+            >
+              <div>
+                <PageButton href={route('projects.callSheets.index', { id: project.id })} active={route().current('projects.callSheets.*')}  activeClass="active-link" icon={faPaperPlane} size="small" />
+              </div>
+            </Tooltip>
           </li>
           <li>
             <PageButton className="disabled" icon={faAddressCard} size="small" />
@@ -64,6 +76,9 @@ function ProjectNavigation({ projectData }) {
           </li>
           <li>
             <PageButton className="disabled" icon={faFolderTree} size="small" />
+          </li>
+          <li>
+            <PageButton className="disabled" icon={faSliders} size="small" />
           </li>
         </ul>
       </div>
