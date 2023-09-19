@@ -49,26 +49,26 @@
 
   /* PricingPackage.css */
 
-.pricing-package {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border: 2px solid #fff;
-  transition: border 0.3s; /* Add a transition for smooth hover effect */
-  max-width: 50rem;
-  /* Optional: Add other styling for non-hovered state here */
-}
+  .pricing-package {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 2px solid #fff;
+    transition: border 0.3s; /* Add a transition for smooth hover effect */
+    max-width: 50rem;
+    /* Optional: Add other styling for non-hovered state here */
+  }
 
-.pricing-package:hover {
-  border: 2px solid var(--secondary-color); /* Change to the primary-green color on hover */
-}
+  .pricing-package:hover {
+    border: 2px solid var(--secondary-color); /* Change to the primary-green color on hover */
+  }
 
-/* Add styles for the active state */
-.pricing-package.active {
-  border: 2px solid var(--primary-green-color); /* Change to the primary-green color on hover */
-}
+  /* Add styles for the active state */
+  .pricing-package.active {
+    border: 2px solid var(--primary-green-color); /* Change to the primary-green color on hover */
+  }
 
-.email-container {
-  border-radius: var(--rounded-corners);
-  
+  .email-container {
+    border-radius: var(--rounded-corners);
+    
 }

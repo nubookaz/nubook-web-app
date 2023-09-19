@@ -67,7 +67,7 @@ function Toolbar({ title, actionButtons, href, onButtonClick, children, cta_text
 
 
       {/* Center Content */}
-      <div className="portal-body p-4 px-20">
+      <div className="portal-body h-full p-4 px-20">
         {children}
       </div>
 

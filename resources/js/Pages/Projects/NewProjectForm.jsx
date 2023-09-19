@@ -37,7 +37,6 @@ function NewProjectForm(props) {
     const [projectMonths, setProjectMonths] = useState(''); // Local state within ProjectForm
     const [projectYears, setProjectYears] = useState(''); // Local state within ProjectForm
 
-    const [clientType, setClientType] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [einNumber, setEinNumber] = useState('');
 
@@ -50,7 +49,7 @@ function NewProjectForm(props) {
     const [companyTypeChecked, setCompanyTypeCheckedChange] = useState(false);
     const [companyOwnerChecked, setCompanyOwnerCheckedChange] = useState(false);
 
-    const formData = {
+    const projectData = {
       projectName,
       projectBudget,
       projectType,
@@ -60,119 +59,145 @@ function NewProjectForm(props) {
       projectDays,
       projectMonths,
       projectYears,
-      clientType,
+    };
+
+    const companyData = {
       companyName,
       einNumber,
+    };
+
+    const clientData = {
+      companyTypeChecked,
       clientFirstName,
       clientMiddleInitial,
       clientLastName,
       clientJobTitle,
       clientEmailAddress,
       clientPhoneNumber,
-      companyTypeChecked,
-      companyOwnerChecked,
     };
-    
-
-
-
-
-
 
     const toggleRightPanelAndSlideOut = () => {
         setIsRightPanelOpen(!isRightPanelOpen);
         setShowSlideOutPanel(true); // Make sure the slide-out panel is always visible
     };
 
-    
-
-
     const validateForm = (event) => {
-        if (currentStep === 1) {
-          setNextButtonClicked(true); // Set nextButtonClicked to true when "Next" is clicked
-          const isStepOneValid = validateStepOne();
-      
-          if (isStepOneValid) {
-            console.log("Step one is valid!");
-            setCurrentStep(2); // Move to step 2 from step 1
-          } else {
-            // Display an error message or take appropriate action for missing requirements on step one
-            console.error('Please fill out all required fields on step one.');
-          }
-        } else if (currentStep === 2) {
-          const isStepTwoValid = validateStepTwo(); // Validate step two here
-      
-          if (isStepTwoValid) {
-            setCurrentStep(3); // Move to step 3 from step 2
-          } else {
-            // Display an error message or take appropriate action for missing requirements on step two
-            console.error('Please fill out all required fields on step two.');
-          }
+      if (currentStep === 1) {
+        setNextButtonClicked(true); // Set nextButtonClicked to true when "Next" is clicked
+        const isStepOneValid = validateStepOne();
+    
+        if (isStepOneValid) {
+          console.log("Step one is valid!");
+          setCurrentStep(2); // Move to step 2 from step 1
         } else {
-
-          submit(formData);
+          // Display an error message or take appropriate action for missing requirements on step one
+          console.error('Please fill out all required fields on step one.');
         }
-      };
-      
-      const submit = () => {
-        // Use router.post for form submission
-        router.post(route('projects.create'), formData, {
-          onSuccess: () => {
-            // Handle a successful response, e.g., show a success message
+      } else if (currentStep === 2) {
+        const isStepTwoValid = validateStepTwo(); // Validate step two here
+    
+        if (isStepTwoValid) {
+          setCurrentStep(3); // Move to step 3 from step 2
+        } else {
+          // Display an error message or take appropriate action for missing requirements on step two
+          console.error('Please fill out all required fields on step two.');
+        }
+      } else {
 
-            toggleRightPanel(false);
-            router.replace(route('projects.index'));
+        submit();
+        
+      }
+    };
+    
+    const createProject = (projectData) => {
+      return new Promise((resolve, reject) => {
+        router.post(route('projects.create'), projectData, {
+          onSuccess: (projectResponse) => {
+            console.log("response project", projectResponse);
+            const projectId = projectResponse.props.project.id;
+            resolve(projectId);
           },
-          onError: (error) => {
-            // Handle errors, e.g., show an error message
-            console.error('Error creating project:', error);
+          onError: (projectError) => {
+            console.error('Error creating project:', projectError);
+            reject(projectError);
+          },
+
+        });
+      });
+    };
+
+    const createAssociation = (associationData) => {
+      return new Promise((resolve, reject) => {
+        router.post(route('associations.create'), associationData, {
+          onSuccess: (associationResponse) => {
+            console.log("Association Created", associationResponse);
+            resolve();
+          },
+          onError: (associationError) => {
+            console.error('Error creating association:', associationError);
+            reject(associationError);
           },
         });
-      };
+      });
+    };
+    
+    const submit = async () => {
+      if (clientData.companyTypeChecked === true || companyData.companyName) {
+        // If clientType is true OR both clientType and companyName are true, create an association
+        await createAssociation({ projectData, companyData });
+      } else {
+        // Otherwise, create just a project
+        const projectId = await createProject(projectData);
+      }
+    };
+    
 
-
-
-
-
-
-      const validateStepOne = () => {
-        // Check if projectName and projectStatus are both filled out
-        const isNameValid = projectName.trim() !== '';
-        const isTypeValid = projectType !== '';
-        const isCategoryValid = categoryType !== '';
-        const isStageValid = projectStage !== '';
-
-        // Update the validation status for step one based on both fields
-        setIsStepOneValid(
-            isNameValid && 
-            isTypeValid && 
-            isCategoryValid && 
-            isStageValid
-            );
       
-        // Return true if both fields are filled out
-        return isNameValid && 
-            isTypeValid && 
-            isCategoryValid && 
-            isStageValid;
-      };
 
-      const validateStepTwo = () => {
-        // Check if companyName is filled out if companyTypeChecked is true
-        const isCompanyRequired = companyTypeChecked;
-        const isEinRequired = companyOwnerChecked;
 
-        // Check if companyName is filled out if it's required
-        const isCompanyValid = !isCompanyRequired || (isCompanyRequired && companyName.trim() !== '');
-        const isEinValid = (isCompanyRequired && einNumber.trim() !== '');
 
-        // Update the validation status for step two based on the field
-        setIsStepTwoValid(isCompanyValid);
-        console.log(companyTypeChecked, companyOwnerChecked, isCompanyValid);
-        
-        // Return true if the field is filled out or not required
-        return isCompanyValid;
-      };
+
+
+
+
+    const validateStepOne = () => {
+      // Check if projectName and projectStatus are both filled out
+      const isNameValid = projectName.trim() !== '';
+      const isTypeValid = projectType !== '';
+      const isCategoryValid = categoryType !== '';
+      const isStageValid = projectStage !== '';
+
+      // Update the validation status for step one based on both fields
+      setIsStepOneValid(
+          isNameValid && 
+          isTypeValid && 
+          isCategoryValid && 
+          isStageValid
+          );
+    
+      // Return true if both fields are filled out
+      return isNameValid && 
+          isTypeValid && 
+          isCategoryValid && 
+          isStageValid;
+    };
+
+    const validateStepTwo = () => {
+      // Check if companyName is filled out if companyTypeChecked is true
+      const isCompanyRequired = companyTypeChecked;
+      const isEinRequired = companyOwnerChecked;
+
+      // Check if companyName is filled out if it's required
+      const isCompanyValid = !isCompanyRequired || (isCompanyRequired && companyName.trim() !== '');
+      const isEinValid = (isCompanyRequired && einNumber.trim() !== '');
+
+      // Update the validation status for step two based on the field
+      setIsStepTwoValid(isCompanyValid);
+      console.log(companyTypeChecked, companyOwnerChecked, isCompanyValid);
+      
+      // Return true if the field is filled out or not required
+      return isCompanyValid;
+    };
       
       
       
@@ -222,7 +247,7 @@ function NewProjectForm(props) {
             setProjectMonths('');
             setProjectYears('');
 
-            setClientType('');
+            setCompanyTypeCheckedChange('');
             setCompanyName('');
             setEinNumber('');
             setClientFirstName('');

@@ -5,17 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Company;
+use App\Http\Traits\ProjectTrait;
+
+
 use Inertia\Inertia;
 
 
 class ProjectController extends Controller
 {
 
+    use ProjectTrait;
+
     public function index()
     {
         // Retrieve the user's projects
-        $projects = Project::where('user_id', auth()->id())->get();
-        
+        $projects = Project::where('user_id', auth()->id())->with('companies')->get();
+
         // // Render the projects index page using Inertia.js
         return Inertia::render('Projects/ProjectsOverview', [
             'projects' => $projects,
@@ -23,42 +29,17 @@ class ProjectController extends Controller
     
     }
 
-
     public function store(Request $request)
     {
         // Validate the incoming data
-        $validatedData = $request->validate([
-            'projectName' => 'required|string',
-            'projectDescription' => 'nullable|string',
-            'projectBudget' => 'nullable|numeric',
-            'projectType' => 'nullable|string',
-            'categoryType' => 'nullable|string',
-            'projectStage' => 'nullable|string',
-            'projectDays' => 'nullable|integer',
-            'projectMonths' => 'nullable|integer',
-            'projectYears' => 'nullable|integer',
-        ]);
+        $project = $this->createProject($request);
 
-        // Assuming you have the user's ID available, replace $userId with the actual user ID
-        $userId = auth()->user()->id; // Example: Get the user's ID from the authenticated user
+        // // Simulate a success response with an alert message
+        $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.edit';
 
-        // Create a new project record with the specified fields and user_id
-        $project = Project::create([
-            'projectName' => $validatedData['projectName'],
-            'projectDescription' => $validatedData['projectDescription'],
-            'projectBudget' => $validatedData['projectBudget'],
-            'projectType' => $validatedData['projectType'],
-            'categoryType' => $validatedData['categoryType'],
-            'projectStage' => $validatedData['projectStage'],
-            'projectDays' => $validatedData['projectDays'],
-            'projectMonths' => $validatedData['projectMonths'],
-            'projectYears' => $validatedData['projectYears'],
-            'user_id' => $userId, // Use the user's ID
-        ]);
-
-        // Simulate a success response with an alert message
-        return redirect()->route('projects.index');
-
+        // Render the view using Inertia.js and pass project data
+        return redirect()->route($viewName, ['id' => $project->id]);
+    
     }
 
     public function edit($id)
@@ -86,7 +67,6 @@ class ProjectController extends Controller
         if (!$project) {
             abort(404, 'Project not found');
         }
-
         // Check the project stage
      
         // If the project stage is "Estimate," render the estimate view
@@ -130,17 +110,12 @@ class ProjectController extends Controller
             'categoryType' => $validatedData['categoryType'],
             'projectStage' => $validatedData['projectStage'],
             'projectDays' => $validatedData['projectDays'],
-            'projectMonths' => $validatedData['projectMonths'],
+            'projectMonths' => $validatedData['projectMonths'], 
             'projectYears' => $validatedData['projectYears'],
         ]);
 
-        // Simulate a success response with an alert message
-        $response = [
-            'message' => 'Project updated successfully!',
-            'project' => $project,
-        ];
-
-        // Return the response as JSON
-        return response()->json($response, 200);
+        return Inertia::render('Projects/ProjectEdit', [
+            'project' => $project, // Pass the project data to the edit page
+        ]);
     }
 }

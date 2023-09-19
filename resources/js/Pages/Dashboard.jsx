@@ -21,7 +21,7 @@ export default function Dashboard({ auth }) {
           </div>
         ),
         banner: (
-          <Banner size="medium" showLeftContent={true} showProfilePhoto={true} />
+          <Banner size="medium-banner" showLeftContent={true} showProfilePhoto={true} />
         ),
         portalBody: (
           <div className="portal-body pt-[12rem] h-full w-full">

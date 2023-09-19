@@ -127,7 +127,7 @@ function ProjectClientForm(props) {
                                 const isFormFilled = checkFormStatus();
                             }}
                         />
-                        <p>
+                        <p className='secondary-color'>
                             The system will review the EIN and verify if the business is either verified or unverified.
                         </p>
                     </div>

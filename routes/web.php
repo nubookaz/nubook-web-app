@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CompanyController; 
+use App\Http\Controllers\CallSheetsController; 
+
+use App\Http\Controllers\AssociationController; 
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -47,19 +51,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
 
     Route::prefix('projects')->group(function () {
+        // Your existing project-related routes here
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
         Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
         Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
-        
-        // New route for projects with the "Estimate" stage
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');
-        
         Route::patch('/{id}', [ProjectController::class, 'update'])->name('projects.update');
+    
+        // New routes for the "Call Sheets" page
+        Route::prefix('{id}/call-sheets')->group(function () {
+            Route::get('/', [CallSheetsController::class, 'index'])->name('projects.callSheets.index');
+            // Add more routes related to Call Sheets here
+        });
     });
     
-    
 
+    Route::prefix('companies')->group(function () {
+        Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
+        Route::post('/create', [CompanyController::class, 'store'])->name('companies.create');
+        Route::get('/{id}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
+        Route::put('/{id}', [CompanyController::class, 'update'])->name('companies.update');
+    });
 
+    Route::prefix('associations')->group(function () {
+        Route::post('/create', [AssociationController::class, 'ProjectCompaniesCreate'])->name('associations.create');
+    });
 
     // Account Settings
     Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');

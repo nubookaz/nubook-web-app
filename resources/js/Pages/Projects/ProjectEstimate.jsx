@@ -15,6 +15,8 @@ import Tooltip from '@mui/joy/Tooltip';
 function ProjectEstimate({ auth }) {
     const { project } = usePage().props;
 
+    // console.log("Project", project, props);
+    
     const [projectData, setProjectData] = useState({
       projectName: project.projectName || '',
       projectType: project.projectType || '',
@@ -29,6 +31,7 @@ function ProjectEstimate({ auth }) {
     });
 
 
+    console.log(projectData);
 
 
 

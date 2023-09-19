@@ -16,6 +16,7 @@ function ProjectEdit({ auth }) {
   const { project } = usePage().props;
 
   const [projectData, setProjectData] = useState({
+    projectID: project.id || '',
     projectName: project.projectName || '',
     projectType: project.projectType || '',
     projectDescription: project.projectDescription || '',
@@ -38,18 +39,17 @@ function ProjectEdit({ auth }) {
       ...projectData,
       [name]: value,
     });
-  };
-
+  };  
 
   const submit = () => {
     // Use router.put for updating data
-    router.put(route('projects.update', { id: project.id }), projectData, {
+    router.patch(route('projects.update', { id: project.id }), projectData, {
       onSuccess: () => {
         // Handle a successful response, e.g., show a success message
         console.log('Project updated successfully');
         
         // Redirect to the projects index page or perform any other actions
-        router.replace(route('projects.index'));
+        router.get(route('projects.index'));
       },
       onError: (error) => {
         // Handle errors, e.g., show an error message
@@ -65,15 +65,11 @@ function ProjectEdit({ auth }) {
     <AuthenticatedLayout user={auth.user} showBanner={true} showPortalBody={true}>
       {{
         surface: <div className="relative z-50 w-full h-full"></div>,
-        banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} />,
+        banner: <Banner size="large-banner-buttons" showLeftContent={false} showProfilePhoto={false}  projectData={projectData}  />,
         portalBody: (
-          <div className="w-full h-full">
-            <Toolbar
-              href={route('projects.index')}
-              title={projectData.projectName}
-              cta_text="Create a New Project"
-            >
-                <div>
+          <div className="w-full h-full pt-[24rem]">
+
+            <div>
                   <Tooltip title="Project Name" placement="top">
                     <Input
                       type="text"
@@ -144,7 +140,6 @@ function ProjectEdit({ auth }) {
                 </div>
                 {/* Add other project input fields here */}
                 <button onClick={submit}>Update Project</button>
-            </Toolbar>
           </div>
         ),
       }}

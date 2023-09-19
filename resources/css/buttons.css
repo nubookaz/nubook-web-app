@@ -44,7 +44,7 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
     transition: color 0.3s, outline 0.3s; /* Transition properties for color and outline */
     border: 2px solid transparent; /* Transparent outline initially */
-    margin: 0 auto 1rem;
+    margin: auto;
 }
 
 .page-button-small {
@@ -61,6 +61,11 @@
 .page-button-large {
     width: 100px; /* Adjust the width as needed */
     height: 100px; /* Adjust the height as needed */
+}
+
+.page-button.disabled {
+    opacity: .4;
+    pointer-events: none;
 }
 
 .page-button:hover {

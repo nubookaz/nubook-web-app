@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { faListCheck, faProjectDiagram, faMoneyCheckDollar, faComments, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { usePage } from '@inertiajs/react'
 
@@ -6,9 +8,22 @@ import ProfilePicture from '@/Components/ProfilePicture';
 import PageButton from '@/Components/Buttons/PageButton';
 import ProjectNavigation from '@/Pages/Projects/Partials/ProjectNavigation';
 
-function Banner({ backgroundImage, size, showLeftContent, showProfilePhoto }) {
+function Banner({ projectData, backgroundImage, size, showLeftContent, showProfilePhoto }) {
 
 const { auth } = usePage().props
+
+const {
+  projectID = '',
+  projectName = '',
+  projectType = '',
+  projectDescription = '',
+  projectBudget = 0,
+  categoryType = '',
+  projectStage = '',
+  projectDays = 0,
+  projectMonths = 0,
+  projectYears = 0,
+} = projectData || {}; 
 
   // Define the default image path format
   const defaultImagePathFormat = '/images/background_images/bg_image_%d.jpg';
@@ -72,12 +87,13 @@ const { auth } = usePage().props
   let contentStyle = {};
 
     return (
-        <div className={`banner ${size}-banner`} style={{ backgroundImage: `url(${imageUrl})` }}>
+        <div className={`banner relative ${size}-height`} style={{ backgroundImage: `url(${imageUrl})` }}>
           {/* Overlay */}
           <div className="overlay"></div>
     
-          <div className="banner-content" style={contentStyle}>
-            <div className="flex left-content">
+          <div className="banner-content flex flex-col h-full" style={contentStyle}>
+            <div className='top-bar flex flex-row justify-between w-full'>
+              <div className="flex left-content justify-start">
 
                 {showLeftContent && (
                     <div className="greeting">
@@ -88,58 +104,74 @@ const { auth } = usePage().props
                     </div>
                 )}
 
-            </div>
-    
-            <div className="right-content">
-    
+                </div>
+
+                <div className="right-content">
+
               {/* Today's Date */}
               <p>{formattedDate}</p>
 
               {/* Primary Button */}
               <SecondaryButton>Your Subscription</SecondaryButton>
-              
+
+              </div>
             </div>
+
+            {(size === 'small-banner-buttons' ) && (
+              <ProjectNavigation projectData={projectData}/>
+              )}
+
+            {(size === 'medium-banner-buttons' ) && (
+              <ProjectNavigation projectData={projectData}/>
+            )}
+
+            {(size === 'medium-banner') && showProfilePhoto && (
+              <div className="banner-footer">
+                  <div className="flex left-content">
+                      <ProfilePicture alt="User Profile" width={200} height={200} isUploadable={true}/>
+                      
+                      <div className="w-4/6 mantra-text">
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quaerat et cupiditate cumque, fugiat voluptatibus dolorum pariatur tenetur?</p>
+                      </div>
+                  </div>
+                  <div className="w-full -mb-20 justify-end pr-[10rem] right-content">
+                      <ul className="flex gap-20 text-center dashboard-navlinks">
+                          <li>
+                              <PageButton icon={faListCheck} size="medium" />
+                              <span>Tasks</span>
+                          </li>
+                          <li>
+                              <PageButton href={route('projects.index')} active={route().current('projects.index')}  activeClass="active-link" icon={faProjectDiagram} size="medium" />
+                              <span>Projects</span>
+                          </li>
+                          <li>
+                              <PageButton icon={faComments} to="/settings" size="medium" />
+                              <span>Social</span>
+                          </li>
+                          <li>
+                              <PageButton icon={faMoneyCheckDollar} to="/settings" size="medium" />
+                              <span>Budget</span>
+                          </li>
+                          <li>
+                              <PageButton icon={faBriefcase} to="/settings" size="medium" />
+                              <span>Jobs</span>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              )}
+
+            {(size === 'large-banner-buttons' ) && (
+                <div className="banner-footer">
+                     <ProjectNavigation projectData={projectData}/>
+                </div>
+            
+            )}
+
+
           </div>
 
-          {(size === 'medium-buttons' ) && (
-            <ProjectNavigation projectName="Girl on Wave 2" projectType="Feature Film" projectCategory="Documentary"/>
-          )}
-
-          {(size === 'medium' || size === 'large') && showProfilePhoto && (
-            <div className="medium banner-footer-offset">
-                <div className="flex left-content">
-                    <ProfilePicture alt="User Profile" width={200} height={200} isUploadable={true}/>
-                    
-                    <div className="w-4/6 mantra-text">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quaerat et cupiditate cumque, fugiat voluptatibus dolorum pariatur tenetur?</p>
-                    </div>
-                </div>
-                <div className="w-full -mb-20 justify-end mr-[10rem] right-content">
-                    <ul className="flex gap-20 text-center dashboard-navlinks">
-                        <li>
-                            <PageButton icon={faListCheck} size="medium" />
-                            <span>Tasks</span>
-                        </li>
-                        <li>
-                            <PageButton href={route('projects.index')} active={route().current('projects.index')}  activeClass="active-link" icon={faProjectDiagram} size="medium" />
-                            <span>Projects</span>
-                        </li>
-                        <li>
-                            <PageButton icon={faComments} to="/settings" size="medium" />
-                            <span>Social</span>
-                        </li>
-                        <li>
-                            <PageButton icon={faMoneyCheckDollar} to="/settings" size="medium" />
-                            <span>Budget</span>
-                        </li>
-                        <li>
-                            <PageButton icon={faBriefcase} to="/settings" size="medium" />
-                            <span>Jobs</span>
-                        </li>
-                    </ul>
-                </div>
-             </div>
-             )}
+          
 
         </div>
       );

@@ -20,10 +20,14 @@ class Project extends Model
         'user_id', // Add 'user_id' to the fillable array
     ];
     
-    
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'company_project', 'project_id', 'company_id');
+    }
+
 }

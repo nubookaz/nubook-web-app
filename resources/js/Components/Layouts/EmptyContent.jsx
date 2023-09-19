@@ -10,7 +10,7 @@ function EmptyContent({ customSvgPath, children, buttonText,onButtonClick }) {
 
             {children}
 
-            <div className="my-8 mb-16 w-[32rem] opacity-25">
+            <div className="my-4 mb-16 w-[22rem] opacity-25">
                 <img src={svgPath} alt="Custom Icon" />
             </div>
             <SecondaryButton onClick={onButtonClick}>

@@ -12,14 +12,27 @@ import Toolbar from '@/Components/Layouts/Toolbar';
 
 function ProjectsOverview({ auth, showBanner }) {
   const { props } = usePage();
-  const projects = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
+  const project = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
+  const companies = props.companies || []; // Use an empty array as a fallback if 'projects' prop is undefined
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const [projectData, setProjectData] = useState({
+    projectID: project.id || '',
+    projectName: project.projectName || '',
+    projectType: project.projectType || '',
+    projectDescription: project.projectDescription || '',
+    projectBudget: project.projectBudget || 0,
+    categoryType: project.categoryType || '',
+    projectStage: project.projectStage || '',
+    projectDays: project.projectDays || 0,
+    projectMonths: project.projectMonths || 0,
+    projectYears: project.projectYears || 0,
+    // Add other project-related fields here
+  });
 
-  
   const toggleRightPanel = () => {
     setIsRightPanelOpen(!isRightPanelOpen);
   };
@@ -30,11 +43,17 @@ function ProjectsOverview({ auth, showBanner }) {
     return props.projects && props.projects.length > 0;
   };
 
+  const hasCompanies = () => {
+    return props.companies && props.companies.length > 0;
+  };
+
   const handleBackClick = () => {
     // Use the route function to generate the URL for the "Projects Overview" page
     const url = route('projects.index'); // Replace with your actual route name
     console.log("Click!!");
   };
+
+  console.log(props.projects);
 
 
 
@@ -55,13 +74,7 @@ function ProjectsOverview({ auth, showBanner }) {
 
         ),
 
-
-        
-
-        banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} />,
-
-
-
+        banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} projectData={projectData} />,
       
         portalBody: (
           <div className="w-full h-full">
@@ -72,9 +85,9 @@ function ProjectsOverview({ auth, showBanner }) {
               cta_text="Create a New Project"
               onButtonClick={toggleRightPanel}
             >
-               {hasProjects ? (
+              {hasProjects() ? ( // Corrected: Call the function with parentheses
 
-                <ProjectList projects={projects} />
+                <ProjectList projects={project} />
 
               ) : (
 

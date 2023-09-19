@@ -21,11 +21,12 @@
   width: 100%;
 }
 
-.banner-footer-offset {
-  position: relative;
-  bottom: -2rem;
+.banner-footer {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  position: relative;
+  /* margin-bottom: -16rem; */
 }
 
 .mantra-text {
@@ -36,21 +37,6 @@
   padding: 1.6rem 0 4.8rem 2rem;
 }
 
-.small-banner {
-  height: 5.5rem; /* Adjust the height as needed */
-}
-.medium-banner {
-  height: 14rem; /* Adjust the height as needed */
-  margin-bottom: 4rem;
-}
-.medium-buttons-banner {
-  height: 8.5rem; /* Adjust the height as needed */
-  margin-bottom: 3rem;
-}
-.large-banner {
-  height: 30rem; /* Adjust the height as needed */
-}
-
 /* Right content (Date and Search Button) */
 .right-content {
   display: flex;
@@ -58,3 +44,19 @@
   gap: 2rem;
 }
   
+
+.small-banner-buttons-height {
+  height: 12rem; /* Adjust the height as needed */
+}
+
+.large-banner-buttons-height {
+  height: 29rem; /* Adjust the height as needed */
+}
+
+.medium-banner-height {
+  height: 15rem;
+}
+
+.medium-banner-height .banner-footer {
+  margin-bottom: -5rem;
+}
