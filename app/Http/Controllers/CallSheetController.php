@@ -33,24 +33,21 @@ class CallSheetController extends Controller
     }
     
     
-    /**
-     * Store a newly created resource in storage.
-     */
+
+
     public function store(Request $request, $projectId)
     {
         // Retrieve the project data based on $projectId
-        $project = Project::find($projectId);
-    
+        $projects = Project::find($projectId);
         // Call createCallSheet method with the project ID
         $callSheets = $this->createCallSheet($request, $projectId);
     
-        // Pass the $project and $callSheets variables to the view
-        return Inertia::render('Projects/CallSheets/CallSheetOverview', [
-            'project' => $project, // Pass the project data
+        return redirect()->route('projects.callSheets.index', [
+            'id' => $projectId,
+            'projects' => $projects, 
             'callSheets' => $callSheets,
         ]);
     }
-    
     
 
     /**
@@ -81,10 +78,45 @@ class CallSheetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id, $callSheetId)
     {
-        //
+        // Find the CallSheet by ID
+        $callSheet = CallSheet::findOrFail($callSheetId);
+        $project = Project::find($id);
+    
+        // Define validation rules based on the presence of fields in the request
+        $validationRules = [];
+    
+        if ($request->has('status')) {
+            // If "status" field is present in the request (dropdown option selected), make it required
+            $validationRules['status'] = 'required'; // Customize validation rules as needed
+        }
+    
+        if ($request->has('bulletin')) {
+            // If "bulletin" field is present in the request (save button clicked), validate it
+            $validationRules['bulletin'] = 'nullable|string|max:400'; // Make bulletin field optional
+        }
+        
+    
+        // Validate the incoming request data
+        $validatedData = $request->validate($validationRules);
+    
+        // Update the CallSheet with validated data
+        $callSheet->update([
+            'status' => $validatedData['status'] ?? $callSheet->status, // Use the existing status if not in the request
+            'bulletin' => $validatedData['bulletin'] ?? $callSheet->bulletin, // Use the existing bulletin if not in the request
+        ]);
+    
+        // Return a response indicating success
+        return Inertia::render('Projects/CallSheets/CallSheetEdit', [
+            'id' => $id,
+            'project' => $project, // Pass the project data
+            'callSheet' => $callSheet, // Pass the project data to the edit page
+        ]);
     }
+    
+    
+    
 
     /**
      * Remove the specified resource from storage.

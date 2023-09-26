@@ -4,10 +4,10 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Banner from '@/Components/Layouts/Banner';
 import EmptyContent from '@/Components/Layouts/EmptyContent';
 import NewCallSheetForm from '@/Pages/Projects/CallSheets/NewCallSheetForm';
-import Toolbar from '@/Components/Layouts/Toolbar';
-
 import CallSheetList from '@/Pages/Projects/CallSheets/CallSheetList';
-
+import PortalLayout from '@/Components/Layouts/PortalLayout';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 
 
@@ -17,7 +17,13 @@ function CallSheetOverview({ auth, showBanner }) {
     const { props } = usePage();
     const project = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
     const callSheet = props.callSheets || []; // Use an empty array as a fallback if 'projects' prop is undefined
-  console.log("callsheet overview", callSheet);
+    const [callSheetView, setCallSheetView] = useState("View All");
+
+    const bannerProps = {
+      showGreeting: true, // Customize these props based on your conditions
+      size: 'page-banner',
+    };
+
     const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
  
     const handleBackClick = () => {
@@ -29,18 +35,25 @@ function CallSheetOverview({ auth, showBanner }) {
       setIsRightPanelOpen(!isRightPanelOpen);
     };
     
-  
+    // const hasCallSheets = () => {
+    //   return props.callSheets && props.callSheets.length > 0;
+    // };
 
-    const hasCallSheets = () => {
-      return props.callSheets && props.callSheets.length > 0;
+    const hasData = callSheet;
+    const toolbarTitle = "Call Sheets"; // Provide a title for the toolbar
+    const toolbarCTAText = "Create a New Call Sheet"; // Provide the button text
+    const buttonText = "Create a New Call Sheet"; // Provide the button text
+    const customSvgPath = "../../images/svg_images/undraw_call_sheets_1.svg"; // Provide the SVG path
+
+
+    const handleStatusChange = (value) => {
+      // Update the callSheetStatus state when the select dropdown value changes
+      setCallSheetView(value);  
     };
-
-
-
-
+  
   
     return (
-        <AuthenticatedLayout user={auth.user} showBanner={true} showPortalBody={true}>
+      <AuthenticatedLayout user={auth.user} project={project} bannerProps={bannerProps}>
 
         {{
         surface: (
@@ -57,37 +70,42 @@ function CallSheetOverview({ auth, showBanner }) {
           </div>
         ),
         
-        banner: <Banner size="small-banner-buttons" project={project} />,
-
         portalBody: (       
             
             <div className="w-full h-full">
           
-
-                {hasCallSheets() ? ( // Corrected: Call the function with parentheses
-                <Toolbar
-                  onBackClick={handleBackClick}
-                  title="Call Sheet Overview"
-                  cta_text="Create a New Call Sheet"
-                  onButtonClick={toggleRightPanel}
-                  >
-                      <CallSheetList project={project} callSheets={callSheet} />
-
-                </Toolbar>
-              ) : (
-
-                <EmptyContent
-                  customSvgPath="../../images/svg_images/undraw_call_sheets_1.svg"
-                  buttonText="Create a Call Sheet Now"
-                  onButtonClick={toggleRightPanel}
+                <PortalLayout
+                  hasData={hasData}
+                  toolbarTitle={toolbarTitle}
+                  toolbarCTAText={toolbarCTAText}
+                  buttonText={buttonText}
+                  customSvgPath={customSvgPath}
+                  toggleRightPanel={toggleRightPanel} // You can optionally pass this function
                 >
-                    <h2 className="mb-4">No call sheets have been created</h2>
-                    <p className="mb-4 p-base">
-                      Currently, there are no active call sheets. Please click the button below to create a call sheet now.
-                    </p>
-                </EmptyContent>
+                  {{
+                    middle: (
 
-              )}
+                      <Select
+                          defaultValue="View All"
+                          value={callSheetView}
+                          className="w-[18rem]"
+                          required
+                          onChange={(e, newValue) => {
+                            console.log('Select Value', newValue);
+                            setCallSheetView(newValue); // Update the selected option
+                          }}
+                        >
+                          <Option value="View All" default>View All</Option>
+                          <Option value="Draft">Drafts</Option>
+                          <Option value="Publish">Published</Option>
+                          <Option value="Unpublish">Unpublished</Option>
+                      </Select>                      
+                  ),
+                    content: (
+                      <CallSheetList project={project} callSheets={callSheet} view={callSheetView} ></CallSheetList>
+                    )
+                  }}
+                </PortalLayout>
 
 
               </div>

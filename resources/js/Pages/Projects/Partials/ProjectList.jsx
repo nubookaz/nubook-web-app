@@ -16,7 +16,7 @@ function ProjectList({ projects }) {
   return (
 
 
-    <div className='flex flex-row gap-4'> 
+    <div className='grid grid-cols-6 gap-4'> 
     
 
       {projects.map(project => (

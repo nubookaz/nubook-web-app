@@ -9,7 +9,7 @@ class CallSheet extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['project_id', 'callSheetTitle', 'callSheetDate', 'status_id'];
+    protected $fillable = ['project_id', 'status', 'callSheetTitle', 'callSheetDate', 'bulletin'];
 
     public function project()
     {

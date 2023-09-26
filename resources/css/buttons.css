@@ -23,12 +23,9 @@
 .secondary-button {
     color: var(--primary-green-color); /* Text color using CSS variable */
     background-color: var(--secondary-green-color); /* Background color using CSS variable */
-    font-size: .75rem;
 }
 
-.secondary-button:hover,
-.secondary-button:focus,
-.secondary-button:active {
+.secondary-button:hover {
     background-color: var(--primary-green-color); /* Hover background color using CSS variable */
     color: var(--secondary-green-color); /* Hover text color using CSS variable */
     outline: none;
@@ -96,8 +93,8 @@
 }
 
 .circular-button-small {
-    width: 45px; /* Adjust the width as needed */
-    height: 45px; /* Adjust the height as needed */
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
 }
 
 .circular-button-medium {

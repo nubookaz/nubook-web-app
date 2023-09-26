@@ -26,3 +26,7 @@
 .secondary-green-color {
     color: var(--secondary-green-color);
 }
+
+.weather-blue-color {
+    color: var(--weather-blue-color);
+}

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import Banner from '@/Components/Layouts/Banner';
-import Toolbar from '@/Components/Layouts/Toolbar';
 import { router } from '@inertiajs/react'; // Import the router object
-
-// Import MUI components
+import PortalLayout from '@/Components/Layouts/PortalLayout';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Input from '@mui/joy/Input';
@@ -15,8 +12,10 @@ import Tooltip from '@mui/joy/Tooltip';
 function ProjectEstimate({ auth }) {
     const { project } = usePage().props;
 
-    // console.log("Project", project, props);
-    
+    const bannerProps = {
+      showGreeting: true, // Customize these props based on your conditions
+    };
+        
     const [projectData, setProjectData] = useState({
       projectName: project.projectName || '',
       projectType: project.projectType || '',
@@ -31,24 +30,30 @@ function ProjectEstimate({ auth }) {
     });
 
 
-    console.log(projectData);
 
-
-
+    const hasData = project;
+    const toolbarTitle = project.projectName; // Provide a title for the toolbar
+    const toolbarCTAText = "Create a New Call Sheet"; // Provide the button text
+    const buttonText = "Create a New Call Sheet"; // Provide the button text
+    const customSvgPath = "../../images/svg_images/undraw_call_sheets_1.svg"; // Provide the SVG path
+    const backButtonHref = route('projects.index'); 
 
   return (
-    <AuthenticatedLayout user={auth.user} showBanner={true} showPortalBody={true}>
+    <AuthenticatedLayout user={auth.user} bannerProps={bannerProps}>
     {{
         surface: <div className="relative z-50 w-full h-full"></div>,
-        banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} />,
         portalBody: (
             <div className="w-full h-full">
-            <Toolbar
-              href={route('projects.index')}
-              title="Project Estimate"
-              cta_text="Create a New Project"
-            >
 
+                <PortalLayout
+                    backButtonHref={backButtonHref}
+                    hasData={hasData}
+                    toolbarTitle={toolbarTitle}
+                    toolbarCTAText={toolbarCTAText}
+                    buttonText={buttonText}
+                    customSvgPath={customSvgPath}
+                    >
+                      
                 <div>
                   <Tooltip title="Project Name" placement="top">
                     <Input
@@ -91,7 +96,9 @@ function ProjectEstimate({ auth }) {
                     />
                   </Tooltip>
                 </div>
-            </Toolbar>
+
+                </PortalLayout>
+
             </div>
         ),  
     }}

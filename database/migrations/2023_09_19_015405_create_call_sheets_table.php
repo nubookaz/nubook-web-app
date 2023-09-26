@@ -11,11 +11,12 @@ class CreateCallSheetsTable extends Migration
         Schema::create('call_sheets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('project_id');
+            $table->string('status')->default('Draft');
             $table->string('callSheetTitle');
-            $table->date('callSheetDate'); // Add a date column
+            $table->date('callSheetDate'); 
+            $table->text('bulletin')->nullable(); 
 
-            // Add any additional columns you need for CallSheets here
-            $table->timestamps();
+             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects');
         });

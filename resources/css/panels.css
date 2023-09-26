@@ -32,7 +32,7 @@
 
 .slide-out-panel.visible {
     right: 30rem;
-    transition: right 0.3s ease;
+    /* transition: right 0.6s ease; */
 }
 
 /* Common panel content styles */

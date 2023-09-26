@@ -64,16 +64,19 @@ export default function Login({ status, canResetPassword }) {
                             
                             <form onSubmit={submit}>
                                  <div>
-                              
-                                        <Input
-                                            id="email"
-                                            type="email"
-                                            name="email"
-                                            value={data.email}
-                                            autoComplete="username"
-                                            onChange={(e) => setData('email', e.target.value)}
-                                        />
-
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        value={data.email}
+                                        autoComplete="username"
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        sx={{
+                                            "--Input-focusedThickness": "1px",
+                                            "--Input-minHeight": "56px",
+                                            "--Input-paddingInline": "26px"
+                                        }}
+                                    />
                                 </div>
                                 <div className="mt-4">
                     

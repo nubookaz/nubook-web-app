@@ -18,21 +18,11 @@ function CallSheetPreview() {
     <div className='call-sheet'>
       <h1 className='text-center mb-4 secondary-color'>Call Sheet Name</h1>
       <div className='content flex flex-row w-full justify-center gap-4'>
-        <div className='call-sheet-views'>
-          <ul>
-            <li>
+        <div className='call-sheet-views flex flex-col gap-4'>
               <PageButton onClick={() => handleButtonClick('desktop-view')} className={activeContent === 'desktop-view' ? 'active-link' : ''} icon={faDesktop} size="small" />
-            </li>
-            <li>
               <PageButton onClick={() => handleButtonClick('mobile-view')} className={activeContent === 'mobile-view' ? 'active-link' : ''} icon={faMobileScreen} size="small" />
-            </li>
-            <li>
               <PageButton onClick={() => handleButtonClick('email-view')} className={activeContent === 'email-view' ? 'active-link' : ''} icon={faEnvelope} size="small" />
-            </li>
-            <li>
               <PageButton onClick={() => handleButtonClick('message-view')} className={activeContent === 'message-view' ? 'active-link' : ''} icon={faMessage} size="small" />
-            </li>
-          </ul>
         </div>
         <div className='body'>
           {activeContent === 'desktop-view' && (
@@ -62,21 +52,11 @@ function CallSheetPreview() {
           </div>
           )}
         </div>
-        <div className='call-sheet-anchors'>
-          <ul>
-            <li>
+        <div className='call-sheet-anchors flex flex-col gap-4'>
               <PageButton icon={faCircleInfo} to="/settings" size="small" />
-            </li>
-            <li>
               <PageButton icon={faMapLocation} to="/settings" size="small" />
-            </li>
-            <li>
               <PageButton icon={faCalendarDays} to="/settings" size="small" />
-            </li>
-            <li>
               <PageButton icon={faPeopleGroup} to="/settings" size="small" />
-            </li>
-          </ul>
         </div>
       </div>
     </div>

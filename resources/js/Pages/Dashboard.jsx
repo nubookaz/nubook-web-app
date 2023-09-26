@@ -10,21 +10,25 @@ import CardLayout from '@/Components/Layouts/CardLayout';
 
 export default function Dashboard({ auth }) {
   
+  const bannerProps = {
+    showGreeting: true, // Customize these props based on your conditions
+    showProfilePhoto: true,
+    size: 'banner-photo',
+    // Add any other props you need for this specific page's banner
+  };
 
 
   return (
-    <AuthenticatedLayout user={auth.user} showBanner={true} showPortalBody={true}>
+    <AuthenticatedLayout user={auth.user} bannerProps={bannerProps}>
       {{
         surface: (
           <div className="relative w-full h-full">
 
           </div>
         ),
-        banner: (
-          <Banner size="medium-banner" showLeftContent={true} showProfilePhoto={true} />
-        ),
+
         portalBody: (
-          <div className="portal-body pt-[12rem] h-full w-full">
+          <div className="h-full w-full">
 
             <CardLayout colSpans={[1, 1, 2, 0]} withRows={[false, false, true, false]}>
               {{
@@ -62,9 +66,7 @@ export default function Dashboard({ auth }) {
 
               }}
             </CardLayout> 
-
  
-    
           </div>
         ),
       }}

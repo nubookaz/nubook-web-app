@@ -37,7 +37,7 @@ const ActiveCard = ({ cardType, status, cardTitle, projectName, shootDate, proje
   );
 
   return (
-    <CardContainer header={status} showButtonIcon={true} className="max-w-[18rem]">
+    <CardContainer header={status} showButtonIcon={true} className="w-full">
       {href ? (
         <Link href={href}>{cardContent}</Link>
       ) : (

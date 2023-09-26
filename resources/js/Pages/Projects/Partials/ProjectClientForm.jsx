@@ -5,8 +5,19 @@ import Input from '@mui/joy/Input';
 import Textarea from '@mui/joy/Textarea';
 import Checkbox from '@mui/joy/Checkbox';
 import Tooltip from '@mui/joy/Tooltip';
+import CompanyEIN from '@/Components/CompanyEIN';
 
 function ProjectClientForm(props) {
+    const [einValue, setEINValue] = useState('');
+  
+    // Function to handle changes to the EIN input value
+    const handleEINChange = (formattedEIN) => {
+      setEINValue(formattedEIN);
+      // Call your checkFormStatus or any other logic here as needed
+      checkFormStatus();
+    };
+
+
     const {
         companyName,
         einNumber,
@@ -117,16 +128,7 @@ function ProjectClientForm(props) {
 
                 {companyOwnerChecked ? (
                     <div>
-                        <Input
-                            className="mb-4"
-                            placeholder="EIN Number"
-                            value={einNumber}
-                            onChange={(e) => {
-                                const newEinNumber = e.target.value;
-                                setEinNumber(newEinNumber);
-                                const isFormFilled = checkFormStatus();
-                            }}
-                        />
+                        <CompanyEIN onEINChange={handleEINChange} checkFormStatus={checkFormStatus} />
                         <p className='secondary-color'>
                             The system will review the EIN and verify if the business is either verified or unverified.
                         </p>

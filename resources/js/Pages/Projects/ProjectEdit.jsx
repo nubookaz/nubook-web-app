@@ -15,6 +15,11 @@ import Tooltip from '@mui/joy/Tooltip';
 function ProjectEdit({ auth }) {
   const { project } = usePage().props;
 
+  const bannerProps = {
+    showGreeting: true, // Customize these props based on your conditions
+    size: 'chapter-banner',
+  };
+
   const [projectData, setProjectData] = useState({
     projectID: project.id || '',
     projectName: project.projectName || '',
@@ -62,12 +67,11 @@ function ProjectEdit({ auth }) {
   
 
   return (
-    <AuthenticatedLayout user={auth.user} showBanner={true} showPortalBody={true}>
+    <AuthenticatedLayout user={auth.user} project={project} bannerProps={bannerProps}>
       {{
         surface: <div className="relative z-50 w-full h-full"></div>,
-        banner: <Banner size="large-banner-buttons" showLeftContent={false} showProfilePhoto={false}  project={project}  />,
         portalBody: (
-          <div className="w-full h-full pt-[19rem]">
+          <div className="w-full h-full disabled-feature">
                 
             {/* <div>
                   <Tooltip title="Project Name" placement="top">

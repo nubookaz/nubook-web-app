@@ -45,6 +45,10 @@
   color: var(--light-color);
 }
 
+.call-sheet-views .page-button, .call-sheet-anchors .page-button {
+  margin: 0;
+}
+
 .imessage-bubble {
   display: inline-block;
   max-width: 70%;

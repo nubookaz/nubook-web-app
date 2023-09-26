@@ -1,27 +1,56 @@
 /* customTextInput.css */
-
+/* 
 textarea:focus, input:focus{
     outline: none;
     border-color: inherit;
     -webkit-box-shadow: none;
     box-shadow: none;
-}
+} */
 
 .MuiInput-root, 
 .MuiSelect-root,
 .MuiTextarea-root {
+    appearance: none;
     background-color: #F8F8F8 !important;
-    color: var(--primary-color) !important;
-    font-size: 1rem !important;
-    border: 1px solid var(--tertiary-color) !important;
+    border: none !important;
     outline: none !important;
     box-shadow: none !important; 
-    padding: 1.2rem 1.4rem !important;
+    --Textarea-focusedThickness: 0 !important;
+    --Textarea-focusedHighlight: 0 !important;
+    --Input-focusedThickness: 0 !important;
+    --Input-focusedHighlight: 0 !important;
+
 }
 
-/* .MuiInput-root input {
+/* .MuiInput-root input{
     padding: 1.2rem 1.4rem !important;
 } */
+
+.MuiInput-root input,
+.MuiSelect-root option,
+.MuiTextarea-root textarea {
+    --Textarea-focusedThickness: 0 !important;
+    --Textarea-focusedHighlight: 0 !important;
+    --Input-focusedThickness: 0 !important;
+    --Input-focusedHighlight: 0 !important;
+}
+
+.MuiTextarea-root {
+    padding: 1rem 1rem 0rem 1rem !important;
+}
+
+.MuiInput-root input:focus,
+.MuiSelect-root option:focus,
+.MuiTextarea-root textarea:focus
+ {
+    border: #F8F8F8 !important;
+    outline:  #F8F8F8 !important;
+    appearance: none;
+    --Textarea-focusedThickness: 0 !important;
+    --Textarea-focusedHighlight: 0 !important;
+    --Input-focusedThickness: 0 !important;
+    --Input-focusedHighlight: 0 !important;
+}
 
 .MuiInput-root:placeholder, 
 .MuiSelect-root:placeholder,

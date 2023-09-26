@@ -7,6 +7,7 @@ import Textarea from '@mui/joy/Textarea';
 import Tooltip from '@mui/joy/Tooltip';
 
 function ProjectDetailsForm(props) {
+    
     const {
         projectName,
         projectBudget,
@@ -61,7 +62,7 @@ function ProjectDetailsForm(props) {
                             >
                             <Select
                                 placeholder="Project Type"
-                                value={projectType}
+                                value={projectType === '' ? undefined : projectType} 
                                 className="w-full"
                                 required
                                 onChange={(e, newProjectType) => {
@@ -72,7 +73,8 @@ function ProjectDetailsForm(props) {
                             >
                                 <Option value="Commercial">Commercial</Option>
                                 <Option value="Independent">Independent</Option>
-                                <Option value="Studio-Backed">Studio-Backed</Option>
+                                <Option value="Studio-Backed">Hollywood</Option>
+                                <Option value="Network TV" disabled>Network TV -- Coming Soon!</Option>
                             </Select>
                         </Tooltip>
 
@@ -86,7 +88,7 @@ function ProjectDetailsForm(props) {
                             >
                             <Select 
                                 placeholder="Category Type" 
-                                value={categoryType}
+                                value={categoryType === '' ? undefined : categoryType} 
                                 className='w-full'
                                 required
                                 onChange={(e, newCategoryType) => {
@@ -112,13 +114,13 @@ function ProjectDetailsForm(props) {
 
                                 {(projectType === 'Independent' || projectType === 'Studio-Backed') && (
                                     <>
-                                        <Option value="Short Films">Short Films</Option>
-                                        <Option value="Documentaries">Documentaries</Option>
+                                        <Option value="Short Films">Short Film</Option>
+                                        <Option value="Documentary">Documentary</Option>
                                         <Option value="Web Series">Web Series</Option>
-                                        <Option value="Music Videos">Music Videos</Option>
+                                        <Option value="Music Videos">Music Video</Option>
                                         <Option value="Animation">Animation</Option>
-                                        <Option value="Experimental Films">Experimental Films</Option>
-                                        <Option value="Student Films">Student Films</Option>
+                                        <Option value="Experimental Films">Experimental Film</Option>
+                                        <Option value="Student Films">Student Film</Option>
                                         <Option value="Travel & Adventure">Travel & Adventure</Option>
                                     </>
                                 )}
@@ -135,7 +137,7 @@ function ProjectDetailsForm(props) {
                     >
                     <Select
                         placeholder="Project Stage"
-                        value={projectStage}
+                        value={projectStage === '' ? undefined : projectStage} 
                         className="w-full"
                         required
                         onChange={(e, newProjectStage) => {
@@ -144,7 +146,7 @@ function ProjectDetailsForm(props) {
                             const isFormFilled = checkFormStatus();
                         }}
                         >
-                        <Option value="Estimate">Estimate</Option>
+                        <Option value="Estimate" disabled>Estimate -- Coming Soon!</Option>
                         <Option value="Creative Development">Creative Development</Option>
                         <Option value="Pre-production">Pre-production</Option>
                         <Option value="Production">Production</Option>

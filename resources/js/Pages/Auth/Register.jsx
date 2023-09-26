@@ -99,7 +99,6 @@ export default function Register() {
                                         name="email"
                                         placeholder="Email Address"
                                         value={data.email}
-                                        icon={faEnvelope}
                                         autoComplete="username"
                                         onChange={(e) => setData('email', e.target.value)}
                                         required

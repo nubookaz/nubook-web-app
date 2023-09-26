@@ -5,25 +5,12 @@ import PageButton from '@/Components/Buttons/PageButton';
 import Tooltip from '@mui/joy/Tooltip';
 
 function ProjectNavigation({ project }) {
-  // const {
-  //   projectID = '',
-  //   projectName = '',
-  //   projectType = '',
-  //   projectDescription = '',
-  //   projectBudget = 0,
-  //   categoryType = '',
-  //   projectStage = '',
-  //   projectDays = 0,
-  //   projectMonths = 0,
-  //   projectYears = 0,
-  // } = project || {}; 
-  console.log("project ID", project.id );
 
   return (
     <div className="flex flex-row w-full">
       <div className="left-content w-full">
         <h1 className='text-3xl mb-2'>{project.projectName}</h1>
-        <h3>{project.projectType} :: {project.categoryType}</h3>
+        <h3 className='light-color'>{project.projectType} :: {project.categoryType}</h3>
       </div>
       <div className="right-content justify-end w-full pr-[2rem]">
         <ul className="dashboard-navlinks text-center flex gap-6">
@@ -52,10 +39,10 @@ function ProjectNavigation({ project }) {
             <PageButton className="disabled" icon={faBarsStaggered} size="small" />
           </li>
           <li>
-          <Tooltip
-              placement="top"
-              title="Call Sheets"
-              variant="plain"
+            <Tooltip
+                placement="top"
+                title="Call Sheets"
+                variant="plain"
             >
               <div>
                 <PageButton href={route('projects.callSheets.index', { id: project.id })} active={route().current('projects.callSheets.*')}  activeClass="active-link" icon={faPaperPlane} size="small" />

@@ -54,6 +54,7 @@ function NewCallSheetForm(props) {
           
           // Include the projectId as a route parameter
           const routeParams = { id: projectId };
+
       
           router.post(route(routeName, routeParams), callSheetData, {
             onSuccess: (callSheetResponse) => {
@@ -75,7 +76,6 @@ function NewCallSheetForm(props) {
       const submit = async () => {
         console.log(callSheetData);
         const projectId = props.projectId; // Access the project ID from props
-        console.log(projectId);
       
         // Call createCallSheet without try-catch
         await createCallSheet(callSheetData, projectId);
@@ -160,7 +160,10 @@ return (
 
       panel_header={
         <div className='header'>
- 
+          <div>
+              <h2>Create a new call sheet</h2>
+              <p className="p-base">Enter details below for your new call sheet</p>
+          </div>
         </div>
       }
       

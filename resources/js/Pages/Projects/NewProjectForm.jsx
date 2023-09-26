@@ -20,6 +20,9 @@ function NewProjectForm(props) {
     const [currentStep, setCurrentStep] = useState(1); // Initialize the current step to 1
     const [showSlideOutPanel, setShowSlideOutPanel] = useState(false);
     const { isRightPanelOpen, toggleRightPanel } = props;
+
+
+    
     
     const [isStepOneValid, setIsStepOneValid] = useState(true); // Initialize to true
     const [isStepTwoValid, setIsStepTwoValid] = useState(true); // Initialize to true
@@ -76,6 +79,7 @@ function NewProjectForm(props) {
       clientEmailAddress,
       clientPhoneNumber,
     };
+    
 
     const toggleRightPanelAndSlideOut = () => {
         setIsRightPanelOpen(!isRightPanelOpen);
@@ -231,6 +235,7 @@ function NewProjectForm(props) {
     const handleCloseButtonClick = () => {
         // Assuming isFormComplete is a boolean indicating form completeness
         const isFormComplete = checkFormStatus();
+
       
         if (isFormComplete) {
           const result = window.confirm("Are you sure you want to proceed?");
@@ -259,6 +264,8 @@ function NewProjectForm(props) {
             setClientPhoneNumber('');
            
           }
+
+
         } else {          
           // Close the panel when the form is not complete
           toggleRightPanel(false);
@@ -272,15 +279,18 @@ function NewProjectForm(props) {
         if (currentStep === 1) {
           // Check if at least one of the required fields in step 1 is filled
           isFormComplete =
-            projectName.trim() !== '' ||
-            projectBudget.trim() !== '' ||
-            projectType !== '' ||
-            categoryType !== '' ||
-            projectStage !== '' ||
+            projectName !== '' ||
+            projectBudget !== '' ||
+            (projectType !== '' && projectType !== 'Select an option') ||
+            (categoryType !== '' && categoryType !== 'Select an option') ||
+            (projectStage !== '' && projectStage !== 'Select an option') ||
             projectDescription !== '' ||
             projectDays !== '' ||
             projectMonths !== '' ||
             projectYears !== '';
+
+            console.log(projectStage);
+
         } else if (currentStep === 2) {
           // Check if at least one of the required fields in step 2 (ProjectClientForm) is filled
           const isCompanyRequired = companyTypeChecked;
@@ -297,7 +307,6 @@ function NewProjectForm(props) {
           // For other steps, consider the form as complete
           isFormComplete = true;
         }
-      
         return isFormComplete;
       };
       
@@ -424,12 +433,12 @@ function NewProjectForm(props) {
             <div className='header'>
               {currentStep === 1 ? (
                 <div>
-                    <h2>Is this a new Client?</h2>
-                    <p className="p-base">Is this new project linked to an existing client, a new client, or a new exciting prospect?</p>
+                    <h2>Create a new project</h2>
+                    <p className="p-base">Enter details below for your new project</p>
                 </div>
               ) : currentStep === 2 ? (
                 <div>
-                    <h2>Create a new project</h2>
+                    <h2>Is this a new Client?</h2>
                     <p className="p-base">Do you want to associate this project with a client?</p>
                 </div>
               ) : (

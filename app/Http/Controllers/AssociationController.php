@@ -23,20 +23,19 @@ class AssociationController extends Controller
     {
         // Create a project
         $project = $this->createProject($request);
-
+    
         // Create a company
         $company = $this->createCompany($request);
-
+    
         // Attach the company to the project using the relationship
         $project->companies()->attach($company);
+    
+        $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.edit';
 
-        // dd($project, $company);
-
-        return $project->projectStage === "Estimate"
-        ? Inertia::render('Projects/ProjectEstimate', ['project' => $project, 'id' => $project->id])
-        : Inertia::render('Projects/ProjectEdit', ['project' => $project, 'id' => $project->id]);
-
+        // Redirect based on the project's projectStage
+        return redirect()->route($viewName, ['id' => $project->id]);
     }
+    
 
 
     public function ProjectCallSheetCreate(Request $request)

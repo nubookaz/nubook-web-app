@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '@/Components/Layouts/Sidebar';
 import TransparentSearchBar from '@/Components/Modals/TransparentSearchBar';
+import Banner from '@/Components/Layouts/Banner';
 
-export default function Authenticated({ user, showBanner, showPortalBody, children }) {
+export default function Authenticated({ user, bannerProps, children, project }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -18,23 +19,20 @@ export default function Authenticated({ user, showBanner, showPortalBody, childr
         <div className="min-h-screen tertiary-color relative">
             
             <div id="surface-layer" className="absolute z-50 w-full">
-            <TransparentSearchBar isOpen={isOpen} onClose={closeSearch} />
-            {children.surface}
-            <Sidebar toggleSearch={toggleSearch} isOpen={isOpen} closeSearch={closeSearch} />
+                
+                <TransparentSearchBar isOpen={isOpen} onClose={closeSearch} />
+                    {children.surface}
+                <Sidebar toggleSearch={toggleSearch} isOpen={isOpen} closeSearch={closeSearch} />
 
             </div>
 
-            <main className="grow z-40 absolute w-full h-full">
+            <main className="flex flex-col w-full h-screen overflow-hidden">
                 
-                {showBanner && (
-                    <div id="banner" className="z-30 absolute">{children.banner}</div>
-                )}
+                <Banner project={project} {...bannerProps}/>
 
-                {showPortalBody && (
-                    <div className="absolute w-full h-full z-20 pt-[8rem] pb-8 pl-[7rem] pr-[2.5rem]">
+                <div className="portal-body w-full h-full py-8 pl-[14rem] pr-[8.5rem]">
                         {children.portalBody}
-                    </div>
-                )}
+                </div>
 
             </main>
         </div>

@@ -8,7 +8,7 @@ import ProfilePicture from '@/Components/ProfilePicture';
 import PageButton from '@/Components/Buttons/PageButton';
 import ProjectNavigation from '@/Pages/Projects/Partials/ProjectNavigation';
 
-function Banner({ project, backgroundImage, size, showLeftContent, showProfilePhoto }) {
+function Banner({ project, backgroundImage, size, showGreeting, showProfilePhoto }) {
 
 const { auth } = usePage().props
 
@@ -24,6 +24,7 @@ const {
   projectMonths = 0,
   projectYears = 0,
 } = project || {}; 
+
 
   // Define the default image path format
   const defaultImagePathFormat = '/images/background_images/bg_image_%d.jpg';
@@ -95,7 +96,7 @@ const {
             <div className='top-bar flex flex-row justify-between w-full'>
               <div className="flex left-content justify-start">
 
-                {showLeftContent && (
+                {showGreeting && (
                     <div className="greeting">
                         {/* Header with time of day greeting and user's first name */}
                         <h1>
@@ -108,66 +109,65 @@ const {
 
                 <div className="right-content">
 
-              {/* Today's Date */}
-              <p>{formattedDate}</p>
+                  {/* Today's Date */}
+                  <p className='text-lg font-semibold'>{formattedDate}</p>
 
-              {/* Primary Button */}
-              <SecondaryButton>Your Subscription</SecondaryButton>
+                  {/* Primary Button */}
+                  <SecondaryButton>Your Subscription</SecondaryButton>
 
-              </div>
+                </div>
             </div>
 
-            {(size === 'small-banner-buttons' ) && (
-              <ProjectNavigation project={project}/>
-              )}
-
-            {(size === 'medium-banner-buttons' ) && (
-              <ProjectNavigation project={project}/>
-            )}
-
-            {(size === 'medium-banner') && showProfilePhoto && (
-              <div className="banner-footer">
-                  <div className="flex left-content">
-                      <ProfilePicture alt="User Profile" width={200} height={200} isUploadable={true}/>
-                      
-                      <div className="w-4/6 mantra-text">
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quaerat et cupiditate cumque, fugiat voluptatibus dolorum pariatur tenetur?</p>
-                      </div>
-                  </div>
-                  <div className="w-full -mb-20 justify-end pr-[10rem] right-content">
-                      <ul className="flex gap-20 text-center dashboard-navlinks">
-                          <li>
-                              <PageButton icon={faListCheck} size="medium" />
-                              <span>Tasks</span>
-                          </li>
-                          <li>
-                              <PageButton href={route('projects.index')} active={route().current('projects.index')}  activeClass="active-link" icon={faProjectDiagram} size="medium" />
-                              <span>Projects</span>
-                          </li>
-                          <li>
-                              <PageButton icon={faComments} to="/settings" size="medium" />
-                              <span>Social</span>
-                          </li>
-                          <li>
-                              <PageButton icon={faMoneyCheckDollar} to="/settings" size="medium" />
-                              <span>Budget</span>
-                          </li>
-                          <li>
-                              <PageButton icon={faBriefcase} to="/settings" size="medium" />
-                              <span>Jobs</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-              )}
-
-            {(size === 'large-banner-buttons' ) && (
-                <div className="banner-footer">
-                     <ProjectNavigation project={project}/>
+              {(size === 'banner-photo') && showProfilePhoto && (
+                <div className="banner-footer -mb-[5rem]">
+                    <div className="flex left-content">
+                        <ProfilePicture alt="User Profile" width={200} height={200} isUploadable={true}/>
+                        
+                        <div className="w-4/6 mantra-text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quaerat et cupiditate cumque, fugiat voluptatibus dolorum pariatur tenetur?</p>
+                        </div>
+                    </div>
+                    <div className="w-full -mb-20 justify-end pr-[10rem] right-content">
+                        <ul className="flex gap-20 text-center dashboard-navlinks">
+                            <li>
+                                <PageButton icon={faListCheck} size="medium" />
+                                <span className="mt-4 block">Tasks</span>
+                            </li>
+                            <li>
+                                <PageButton href={route('projects.index')} active={route().current('projects.index')}  activeClass="active-link" icon={faProjectDiagram} size="medium" />
+                                <span className="mt-4 block">Projects</span>
+                            </li>
+                            <li>
+                                <PageButton icon={faComments} to="/settings" size="medium" />
+                                <span className="mt-4 block">Social</span>
+                            </li>
+                            <li>
+                                <PageButton icon={faMoneyCheckDollar} to="/settings" size="medium" />
+                                <span className="mt-4 block">Budget</span>
+                            </li>
+                            <li>
+                                <PageButton icon={faBriefcase} to="/settings" size="medium" />
+                                <span className="mt-4 block">Jobs</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            
-            )}
+                )}
 
+              {(size === 'small-banner-buttons' ) && (
+                  <ProjectNavigation project={project}/>
+              )}
+
+              {(size === 'chapter-banner' ) && (
+                  <div className="banner-footer">
+                      <ProjectNavigation project={project}/>
+                  </div>
+              
+              )}
+
+              {(size === 'page-banner' ) && (
+                <ProjectNavigation project={project}/>
+              )}
 
           </div>
 

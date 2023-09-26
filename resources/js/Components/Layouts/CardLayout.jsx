@@ -4,7 +4,7 @@ function CardLayout({ colSpans, withRows, children }) {
   const totalRows = withRows.reduce((acc, curr) => (curr ? acc + 1 : acc), 0);
 
   return (
-    <div className={`grid grid-cols-4 gap-4 h-full w-full px-[5rem] mx-auto`}>
+    <div className={`grid grid-cols-4 gap-4 h-full w-full`}>
       {colSpans.map((colSpan, index) => (
         colSpan > 0 && (
           <div
