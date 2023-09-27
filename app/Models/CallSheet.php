@@ -23,11 +23,11 @@ class CallSheet extends Model
     //         ->using(CallSheetUser::class);
     // }
 
-    // public function locations()
-    // {
-    //     return $this->belongsToMany(Location::class, 'call_sheet_locations')
-    //         ->using(CallSheetLocation::class);
-    // }
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'call_sheet_locations')
+            ->using(CallSheetLocation::class);
+    }
 
     // public function schedule()
     // {

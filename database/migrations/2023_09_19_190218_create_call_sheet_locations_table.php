@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('call_sheet_locations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('call_sheet_id');
+            $table->unsignedBigInteger('location_id');
             $table->timestamps();
+        
+            $table->foreign('call_sheet_id')->references('id')->on('call_sheets');
+            $table->foreign('location_id')->references('id')->on('locations');
         });
+        
     }
 
     /**

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import CardContainer from '@/Components/Containers/CardContainer';
@@ -26,6 +26,8 @@ import NewLocationForm from '@/Pages/Projects/CallSheets/Locations/NewLocationFo
 function CallSheetEdit({ auth }) {
     const { project } = usePage().props;
     const { callSheet } = usePage().props;
+    const { locations } = usePage().props;
+
     const [callSheetStatus, setCallSheetStatus] = useState(callSheet.status || 'Draft');
     const [text, setText] = React.useState('');
     const maxLength = 400; // Set your desired maximum character length
@@ -38,7 +40,6 @@ function CallSheetEdit({ auth }) {
       setIsRightPanelOpen(!isRightPanelOpen);
     };
 
-
     const [callSheetData, setCallSheetData] = useState({
         callSheetID: callSheet.id || '',
         callSheetTitle: callSheet.callSheetTitle || '',
@@ -47,6 +48,7 @@ function CallSheetEdit({ auth }) {
       });
 
       
+      console.log(locations);
 
     const bannerProps = {
         showGreeting: true, // Customize these props based on your conditions
@@ -263,19 +265,29 @@ return (
                                     content: (
                                         <div className='flex flex-row gap-4 w-full h-full'>
                                             <div className='row-1 w-full left-col-content'>
-                                                <CardContainer className="h-full flex flex-col" header="Production and Location Details">
-                                                    <div className='production-date'>
-                                                        <div className='text-2xl primary-color font-semibold'>
-                                                            <FontAwesomeIcon icon={faCalendarDays} className='mr-4 primary-green-color'/>
-                                                            {formatDateWithDay(callSheet.callSheetDate)}
-                                                        </div>
-                                                    </div>
-                                                    <div className='empty-location text-center m-auto'>
-                                                        <p className='secondary-color text-lg w-2/3 mx-auto mb-4'>You have not entered a location yet. Click here to add a location for your production</p>
-                                                        <SecondaryButton
-                                                          onClick={toggleRightPanel}>Add a location</SecondaryButton>
-                                                    </div>
-                                                </CardContainer>
+                                            <CardContainer className="h-full flex flex-col" header="Production and Location Details">
+                                                <div className="production-date">
+                                                  <div className="text-2xl primary-color font-semibold">
+                                                    <FontAwesomeIcon icon={faCalendarDays} className="mr-4 primary-green-color" />
+                                                    {formatDateWithDay(callSheet.callSheetDate)}
+                                                  </div>
+                                                </div>
+                                                {location ? (
+                                                  // Render this div when a location exists
+                                                  <div className="location-exists-div">
+                                                    {location.name}
+                                                  </div>
+                                                ) : (
+                                                  // Render empty-location div only if no location exists
+                                                  <div className="empty-location text-center m-auto">
+                                                    <p className="secondary-color text-lg w-2/3 mx-auto mb-4">
+                                                      You have not entered a location yet. Click here to add a location for your production
+                                                    </p>
+                                                    <SecondaryButton onClick={toggleRightPanel}>Add a location</SecondaryButton>
+                                                  </div>
+                                                )}
+                                            </CardContainer>
+
                                             </div>
                                             <div className='row-2 w-[155rem]  enter-col-content flex flex-col gap-4 h-full'>
                                                 <CardContainer className="h-[20rem]" header="Bulletin">
@@ -283,8 +295,8 @@ return (
                                                     name="Soft" 
                                                     size="sm" 
                                                     variant="soft" 
-                                                    minRows={5} 
-                                                    maxRows={5}
+                                                    minRows={5.6} 
+                                                    maxRows={6}
                                                     defaultValue={callSheet.bulletin}
                                                     placeholder="Type anything…" 
                                                     maxLength={maxLength} // Set the maximum character length

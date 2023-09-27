@@ -97,7 +97,6 @@ function ProjectDetailsForm(props) {
                                     const isFormFilled = checkFormStatus();
                                 }}
                                 >
-                                        <Option value="disabled" disabled>Please choose a project type</Option>
 
                                 {(projectType === 'Commercial') && (
                                     <>

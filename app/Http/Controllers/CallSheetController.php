@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\CallSheet; 
+use App\Models\Location;  
 
 use App\Http\Traits\CallSheetTrait;
 
@@ -26,6 +27,8 @@ class CallSheetController extends Controller
         $projects = Project::findOrFail($id);
 
         $callSheets = $projects->callSheets; // Assuming you have defined the relationship correctly in your Project model
+
+
         return Inertia::render('Projects/CallSheets/CallSheetOverview', [
             'projects' => $projects,
             'callSheets' => $callSheets,
@@ -61,19 +64,27 @@ class CallSheetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id, $callSheetId)
-    {
-        // Retrieve the project by its ID
-        $project = Project::find($id);
 
-        $callSheet = CallSheet::findOrFail($callSheetId);
-    
-        // Render the project edit page using Inertia.js
-        return Inertia::render('Projects/CallSheets/CallSheetEdit', [
-            'project' => $project, // Pass the project data
-            'callSheet' => $callSheet, // Pass the project data to the edit page
-        ]);
-    }
+
+public function edit($id, $callSheetId)
+{
+    // Retrieve the project by its ID
+    $project = Project::find($id);
+
+    // Retrieve the call sheet by its ID
+    $callSheet = CallSheet::findOrFail($callSheetId);
+
+    // Retrieve associated locations for the call sheet
+    $locations = $callSheet->locations;
+    // dd($locations);
+
+    // Render the project edit page using Inertia.js
+    return Inertia::render('Projects/CallSheets/CallSheetEdit', [
+        'project' => $project, // Pass the project data
+        'callSheet' => $callSheet, // Pass the call sheet data to the edit page
+        'locations' => $locations, // Pass the associated locations data to the edit page
+    ]);
+}
 
     /**
      * Update the specified resource in storage.

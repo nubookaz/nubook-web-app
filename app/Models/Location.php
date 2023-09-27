@@ -27,7 +27,7 @@ class Location extends Model
 
     public function callSheet()
     {
-        return $this->belongsTo(CallSheet::class, 'call_sheet_id'); // Specify the foreign key for CallSheet
+        return $this->belongsToMany(CallSheet::class, 'call_sheet_location');
     }
 
     public function parkingLocation()
