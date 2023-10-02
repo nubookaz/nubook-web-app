@@ -3,7 +3,7 @@ import CircularProgress from '@mui/joy/CircularProgress';
 import CardContainer from '@/Components/Containers/CardContainer';
 import { Link } from '@inertiajs/react';
 
-const ActiveCard = ({ cardType, status, cardTitle, projectName, shootDate, projectType, progressValue, progressBar, RSVPs, href }) => {
+const ActiveCard = ({ cardType, menuItems, handleButtonClick, status, showButtonIcon, cardTitle, projectName, shootDate, projectType, progressValue, progressBar, RSVPs, href }) => {
 
 
   const cardContent = (
@@ -37,7 +37,7 @@ const ActiveCard = ({ cardType, status, cardTitle, projectName, shootDate, proje
   );
 
   return (
-    <CardContainer header={status} showButtonIcon={true} className="w-full">
+    <CardContainer header={status} menuItems={menuItems} showButtonIcon={showButtonIcon} handleButtonClick={handleButtonClick} className="w-full">
       {href ? (
         <Link href={href}>{cardContent}</Link>
       ) : (

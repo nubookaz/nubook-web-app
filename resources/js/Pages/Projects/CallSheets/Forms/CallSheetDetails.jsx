@@ -13,15 +13,12 @@ import Switch, { switchClasses } from '@mui/joy/Switch';
 
 
 
-function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, checkFormStatus }) {
 
+function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, checkFormStatus }) {
     const { callSheetTitle, callSheetDate } = callSheetData;
     const [checked, setChecked] = React.useState(false);
 
     const isFormFilled = checkFormStatus();
-
-
-
 
 
   return (
@@ -35,15 +32,17 @@ function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, 
                     placement="top"
                     arrow
                     >
-                    <Input 
-                        placeholder="Call Sheet Title" 
-                        value={callSheetTitle} 
-                        onChange={(e) => {
-                        const newCallSheetTitle = e.target.value;
-                        setCallSheetTitle(newCallSheetTitle); // Update parent component's state
-                        const isFormFilled = checkFormStatus();
-                        }}
-                    />
+                 <Input
+              placeholder="Call Sheet Title"
+              defaultValue={callSheetTitle}
+
+              onChange={(e) => {
+                const newCallSheetTitle = e.target.value;
+                setCallSheetTitle(newCallSheetTitle);
+                console.log('New Title:', newCallSheetTitle);
+              }}
+              
+            />
                 </Tooltip>
             </div>
             <div className='w-full input-group'>
@@ -52,16 +51,15 @@ function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, 
                     placement="top"
                     arrow
                     >
-                    <Input 
-                        placeholder="Call Sheet Date" 
-                        type="date"
-                        value={callSheetDate} 
-                        onChange={(e) => {
-                        const newCallSheetDate = e.target.value;
-                        setCallSheetDate(newCallSheetDate); // Update parent component's state
-                        const isFormFilled = checkFormStatus();
-                        }}
-                    />
+           <Input
+              placeholder="Call Sheet Date"
+              type="date"
+              defaultValue={callSheetDate}
+              onChange={(e) => {
+                const newCallSheetDate = e.target.value;
+                setCallSheetDate(newCallSheetDate); // Update parent component's state
+              }}
+            />
                 </Tooltip>
             </div>
         </div>

@@ -1,4 +1,17 @@
-
+@font-face {
+    font-family: "SF Pro Rounded";
+    src: url('fonts/SF-Pro-Rounded-Black.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Bold.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Heavy.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Light.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Medium.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Regular.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Semibold.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Thin.woff') format('woff'),
+         url('fonts/SF-Pro-Rounded-Ultralight.woff') format('woff'),;
+  }
+  
+  
 h1 {
     font-size: 1.75rem; /* 42px converted to rems */
     font-weight: 700;
@@ -19,11 +32,14 @@ h3 {
     color: var(--primary-color);
 }
 
+p {
+    color: var(--secondary-color);
+}
+
 .p-base {
     font-size: 1rem; /* 18px converted to rems */
     font-weight: 400; /* Semibold font weight */
     line-height: 1.2;
-    color: var(--secondary-color);
 }
 
 span {

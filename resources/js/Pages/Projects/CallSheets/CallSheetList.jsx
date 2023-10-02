@@ -36,7 +36,7 @@ const sortCallSheets = (callSheets) => {
   const sortedCallSheets = sortCallSheets(filteredCallSheets);
 
   return (
-    <div className="grid grid-cols-6 gap-4 flex-wrap">
+    <div className="grid grid-cols-4 gap-4 flex-wrap">
       {sortedCallSheets.map(callSheet => (
         <ActiveCard
           status={callSheet.status}

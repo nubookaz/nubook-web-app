@@ -1,9 +1,8 @@
 .container-base {
     background-color: #ffffff; /* White background */
     border-radius: var(--rounded-corners);
-    padding: 25px;
+    padding: 30px;
     width: 100%;
-    overflow: hidden; /* Hidden overflow content */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
   }
   

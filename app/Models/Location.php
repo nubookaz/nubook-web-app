@@ -20,23 +20,20 @@ class Location extends Model
         'hospital_location_id',
     ];
 
-    public function project()
-    {
-        return $this->belongsTo(Project::class, 'project_id'); // Specify the foreign key for Project
-    }
 
-    public function callSheet()
+    public function callSheets()
     {
-        return $this->belongsToMany(CallSheet::class, 'call_sheet_location');
+        return $this->belongsToMany(CallSheet::class, 'call_sheet_locations');
     }
-
+    
     public function parkingLocation()
     {
         return $this->belongsTo(ParkingLocation::class, 'parking_location_id');
     }
-
+    
     public function hospitalLocation()
     {
         return $this->belongsTo(HospitalLocation::class, 'hospital_location_id');
     }
+    
 }

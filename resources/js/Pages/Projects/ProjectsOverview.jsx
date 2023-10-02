@@ -3,8 +3,8 @@ import { usePage } from '@inertiajs/react';
 
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import ProjectForm from '@/Pages/Projects/NewProjectForm';
-import ProjectList from '@/Pages/Projects/Partials/ProjectList';
+import ProjectForm from '@/Pages/Projects/Projects/NewProjectForm';
+import ProjectList from '@/Pages/Projects/Projects/ProjectList';
 import PortalLayout from '@/Components/Layouts/PortalLayout';
 
 
@@ -21,6 +21,7 @@ function ProjectsOverview({ auth, showBanner }) {
   };
 
   const toggleRightPanel = () => {
+    console.log("Click");
     setIsRightPanelOpen(!isRightPanelOpen);
   };
 
@@ -79,7 +80,7 @@ function ProjectsOverview({ auth, showBanner }) {
                   >
                  {{
                     content: (
-                      <ProjectList projects={project} />
+                      <ProjectList projects={project} handleButtonClick={toggleRightPanel}/>
                     )
                   }}
  

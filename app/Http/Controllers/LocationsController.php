@@ -9,6 +9,9 @@ use App\Models\CallSheet;
 use App\Models\ParkingLocation;
 use App\Models\HospitalLocation;
 
+use Inertia\Inertia;
+use DB;
+
 class LocationsController extends Controller
 {
     public function create($callSheetId)
@@ -20,68 +23,65 @@ class LocationsController extends Controller
 
     public function store(Request $request, $id, $callSheetId)
     {
-        // Validate the request data for the main location
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'street_address' => 'required|string',
-            'city' => 'required|string',
-            'state' => 'required|string',
-            'zip_code' => 'required|string',
-            'country' => 'required|string',
-        ]);
-    
-        // Create a new location record for the main location
-        $mainLocation = new Location($validatedData);
-    
-        // Conditionally create a parking location if provided
-        if ($request->has('parking_location')) {
-            $validatedParkingData = $request->validate([
-                'parking_location.name' => 'required|string',
-                'parking_location.street_address' => 'required|string',
-                'parking_location.city' => 'required|string',
-                'parking_location.state' => 'required|string',
-                'parking_location.zip_code' => 'required|string',
-                'parking_location.country' => 'required|string',
+
+            // Validate the request data for the main location
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'street_address' => 'required|string',
+                'city' => 'required|string',
+                'state' => 'required|string',
+                'zip_code' => 'required|string',
+                'country' => 'required|string',
             ]);
+        
+            // Create a new location record for the main location
+            $mainLocation = Location::create($validatedData);
     
-            $parkingLocation = new ParkingLocation($validatedParkingData);
-            $parkingLocation->save();
+            // Associate the main location with the call sheet
     
-            // Associate the parking location with the main location
-            $mainLocation->parkingLocation()->associate($parkingLocation);
-        }
+            // Conditionally create a parking location if provided
+            if ($request->has('parking_location')) {
+                $parkingLocationData = $request->input('parking_location');
+                
+                // Create a new ParkingLocation model
+                $parkingLocation = new ParkingLocation($parkingLocationData);
+                
+                // Save the ParkingLocation model
+                $parkingLocation->save();
+                
+                // Set the parking_location_id on the main Location model
+                $mainLocation->parking_location_id = $parkingLocation->id;
+                
+                // Save the main Location to update the foreign key
+                $mainLocation->save();
+            }
+
+            // Conditionally create a hospital location if provided
+            if ($request->has('hospital_location')) {
+                $hospitalLocationData = $request->input('hospital_location');
+                
+                // Create a new HospitalLocation model
+                $hospitalLocation = new HospitalLocation($hospitalLocationData);
+                
+                // Save the HospitalLocation model
+                $hospitalLocation->save();
+                
+                // Set the hospital_location_id on the main Location model
+                $mainLocation->hospital_location_id = $hospitalLocation->id;
+                
+                // Save the main Location to update the foreign key
+                $mainLocation->save();
+            }
+
+            $mainLocation->callSheets()->attach($callSheetId);
+
     
-        // Conditionally create a hospital location if provided
-        if ($request->has('hospital_location')) {
-            $validatedHospitalData = $request->validate([
-                'hospital_location.name' => 'required|string',
-                'hospital_location.street_address' => 'required|string',
-                'hospital_location.city' => 'required|string',
-                'hospital_location.state' => 'required|string',
-                'hospital_location.zip_code' => 'required|string',
-                'hospital_location.country' => 'required|string',
-            ]);
-    
-            $hospitalLocation = new HospitalLocation($validatedHospitalData);
-            $hospitalLocation->save();
-    
-            // Associate the hospital location with the main location
-            $mainLocation->hospitalLocation()->associate($hospitalLocation);
-        }
-    
-        // Associate the main location with the call sheet and project
-        $mainLocation->callSheet()->associate($callSheetId);
-        $mainLocation->project()->associate($id);
-    
-        // Save the main location record to the database
-        $mainLocation->save();
-    
-        // Redirect back to the call sheet edit page or another appropriate page
-        return redirect()->route('projects.callSheets.edit', [
-            'id' => $id,
-            'callSheetId' => $callSheetId,
-        ])->with('success', 'Location added successfully');
+            return redirect()->route('projects.callSheets.edit', [
+                'id' => $id,
+                'callSheetId' => $callSheetId,
+            ])->with('success', 'Location added successfully');
     }
+    
     
 
 

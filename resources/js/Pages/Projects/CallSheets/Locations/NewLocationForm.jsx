@@ -100,99 +100,91 @@ export default function NewLocationForm({ callSheet, ...props }) {
     };
 
 
-    // Function to prepare main location data
-    const prepareMainLocationData = () => {
-        return {
-            name: mainLocation.name,
-            street_address: mainLocation.street_address,
-            city: mainLocation.city,
-            state: mainLocation.state,
-            zip_code: mainLocation.zip_code,
-            country: mainLocation.country, // Assuming you have this field in your schema
-            parking_location_id: null, // Set this based on your logic or leave it as null
-            hospital_location_id: null, // Set this based on your logic or leave it as null
-        };
+   // Function to prepare main location data
+const prepareMainLocationData = () => {
+    return {
+        name: mainLocation.name,
+        street_address: mainLocation.street_address,
+        city: mainLocation.city,
+        state: mainLocation.state,
+        zip_code: mainLocation.zip_code,
+        country: mainLocation.country,
     };
-  
-    // Function to prepare parking location data (if available)
-    const prepareParkingLocationData = () => {
-        if (parkingLocation.name) {
+};
+
+// Function to prepare parking location data (if available)
+const prepareParkingLocationData = () => {
+    if (parkingLocation.name !== undefined && parkingLocation.name.trim() !== '') {
         return {
             name: parkingLocation.name,
             street_address: parkingLocation.street_address,
             city: parkingLocation.city,
             state: parkingLocation.state,
             zip_code: parkingLocation.zip_code,
-            country: parkingLocation.country, // Assuming you have this field in your schema
+            country: parkingLocation.country,
         };
-        }
-        return null; // Return null if parking location data is not available
-    };
-  
-    // Function to prepare hospital location data (if available)
-    const prepareHospitalLocationData = () => {
-        if (hospitalLocation.name) {
-            return {
-                name: hospitalLocation.name,
-                street_address: hospitalLocation.street_address,
-                city: hospitalLocation.city,
-                state: hospitalLocation.state,
-                zip_code: hospitalLocation.zip_code,
-                country: hospitalLocation.country, // Assuming you have this field in your schema
-            };
-        }
-        return null; // Return null if hospital location data is not available
-    };
-  
-  // Function to handle saving the location
-    const handleSave = () => {
-        setIsSubmitClicked(true); // Set the submit flag to true
-    
-        // Validate main location
-        const isMainLocationValid = validateMainLocation();
-    
-        if (isMainLocationValid) {
-            // Prepare the main location data
+    }
+    return null;
+};
+
+// Function to prepare hospital location data (if available)
+const prepareHospitalLocationData = () => {
+    if (hospitalLocation.name !== undefined && hospitalLocation.name.trim() !== '') {
+        return {
+            name: hospitalLocation.name,
+            street_address: hospitalLocation.street_address,
+            city: hospitalLocation.city,
+            state: hospitalLocation.state,
+            zip_code: hospitalLocation.zip_code,
+            country: hospitalLocation.country,
+        };
+    }
+    return null;
+};
+
+// Function to handle saving the location
+const handleSave = async () => {
+    setIsSubmitClicked(true);
+
+    const isMainLocationValid = validateMainLocation();
+
+    if (isMainLocationValid) {
+        try {
             const mainLocationData = prepareMainLocationData();
-        
-            // Prepare the parking location data (if available)
             const parkingLocationData = prepareParkingLocationData();
-        
-            // Prepare the hospital location data (if available)
             const hospitalLocationData = prepareHospitalLocationData();
-        
-            // Prepare the final location data
+
             const locationData = {
                 ...mainLocationData,
                 parking_location: parkingLocationData,
                 hospital_location: hospitalLocationData,
-      };
-  
-      // Use the route helper to generate the URL for creating a location
-      const routeName = 'locations.store'; // Update to the correct route name
-  
-      // Include the projectId as a route parameter
-      const idRoute = { id: callSheet.project_id };
-      const callSheetRoute = { callSheetId: callSheet.id };
-  
-      axios
-        .post(route(routeName, { ...idRoute, ...callSheetRoute }), locationData)
-        .then((locationResponse) => {
-          console.log('Location data saved successfully:', locationResponse);
-          toggleRightPanel(false); // Close the right panel
-        })
-        .catch((locationError) => {
-          console.error('Error saving location data:', locationError);
-          // Optionally, you can display an error message to the user
-        });
+            };
+
+            const routeName = 'locations.store';
+            const idRoute = { id: callSheet.project_id };
+            const callSheetRoute = { callSheetId: callSheet.id };
+
+            const locationResponse = await router.post(
+                route(routeName, { ...idRoute, ...callSheetRoute }),
+                locationData
+            );
+
+            console.log('Location data saved successfully:', locationResponse);
+            toggleRightPanel(false);
+        } catch (locationError) {
+            console.error('Error saving location data:', locationError);
+            console.error('Error saving location data:', locationError.data);
+
+            console.error('Error saving location data:', locationError.response.data.message);
+
+            // Display an error message to the user if needed
+        }
     } else {
-      // Main location is not valid, display an error message or handle as needed
-      console.error('Main location is not valid');
-      // Optionally, you can display an error message to the user
+        console.error('Main location is not valid');
+        // Display an error message to the user if needed
     }
-  };
-  
-  
+};
+
 
 
 

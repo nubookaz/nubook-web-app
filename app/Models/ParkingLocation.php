@@ -18,8 +18,8 @@ class ParkingLocation extends Model
         'country',
     ];
 
-    public function mainLocation()
+    public function location()
     {
-        return $this->hasOne(Location::class, 'parking_location_id');
+        return $this->belongsTo(Location::class, 'parking_location_id');
     }
 }

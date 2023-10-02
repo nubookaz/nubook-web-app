@@ -19,8 +19,8 @@ class HospitalLocation extends Model
     ];
 
     // Define the relationship to the Location model
-    public function mainLocation()
+    public function location()
     {
-        return $this->hasOne(Location::class, 'hospital_location_id');
+        return $this->belongsTo(Location::class, 'hospital_location_id');
     }
 }

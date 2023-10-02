@@ -25,10 +25,9 @@ class CallSheet extends Model
 
     public function locations()
     {
-        return $this->belongsToMany(Location::class, 'call_sheet_locations')
-            ->using(CallSheetLocation::class);
+        return $this->belongsToMany(Location::class, 'call_sheet_locations');
     }
-
+    
     // public function schedule()
     // {
     //     return $this->hasOne(Schedule::class);

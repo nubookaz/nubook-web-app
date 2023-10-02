@@ -2,6 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
+
 @import "./variables.css";
 @import "./animations.css";
 @import "./buttons.css";
@@ -21,19 +23,7 @@
 @import "./search.css";
 @import "./call-sheets.css";
 
-@font-face {
-    font-family: "SF Pro Rounded";
-    src: url('fonts/SF-Pro-Rounded-Black.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Bold.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Heavy.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Light.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Medium.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Regular.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Semibold.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Thin.woff') format('woff'),
-         url('fonts/SF-Pro-Rounded-Ultralight.woff') format('woff'),;
-  }
-  
+
 body {
     background-color: var(--light-color);
     display: flex;

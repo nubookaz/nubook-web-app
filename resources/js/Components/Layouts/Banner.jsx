@@ -6,7 +6,7 @@ import { usePage } from '@inertiajs/react'
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import ProfilePicture from '@/Components/ProfilePicture'; 
 import PageButton from '@/Components/Buttons/PageButton';
-import ProjectNavigation from '@/Pages/Projects/Partials/ProjectNavigation';
+import ProjectNavigation from '@/Pages/Projects/ProjectNavigation';
 
 function Banner({ project, backgroundImage, size, showGreeting, showProfilePhoto }) {
 

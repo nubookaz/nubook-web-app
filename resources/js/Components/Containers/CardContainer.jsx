@@ -3,20 +3,14 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
 
 
 
-function CardComponent({ children, header, showButtonIcon, openPage, openToolkit, className, size, backgroundColor }) {
-    const handleButtonClick = () => {
-        // Check conditions to decide whether to open a page or a toolkit
-        if (openPage) {
-            // Logic to open a page
-            console.log('Opening a page...');
-        } else if (openToolkit) {
-            // Logic to open a toolkit
-            console.log('Opening a toolkit...');
-        }
-    };
+function CardComponent({ children, header, showButtonIcon, openPage, openToolkit, className, size, backgroundColor, menuItems }) {
 
     const getSizeClass = () => {
         switch (size) {
@@ -42,8 +36,7 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
         }
     };
 
-    const containerClasses = `container-base card-container ${getSizeClass()} ${className} ${getBackgroundColorClass()}`;
-
+    const containerClasses = `container-base card-container flex flex-col gap-4 ${getSizeClass()} ${className} ${getBackgroundColorClass()}`;
 
 
     
@@ -52,15 +45,29 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
     return (
         <div className={containerClasses}>
             {header && (
-                <div className="card-header flex justify-between items-center mb-4">
+                <div className="card-header flex justify-between items-center">
                     <div className="flex items-center">
                         {header && <h3 className="secondary-color container-header text-md font-normal">{header}</h3>}
                     </div>
                     {showButtonIcon && (
                         <div>
-                            <button onClick={handleButtonClick} className="secondary-color">
+                            <Dropdown>
+                                <MenuButton variant="plain" className="secondary-color">
+                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                </MenuButton>
+                                <Menu>
+                                {menuItems &&
+                                    menuItems.map((item, index) => (
+                                        <MenuItem key={index} onClick={item.onClick}>
+                                             {item.label}
+                                        </MenuItem>
+                                ))}
+                                </Menu>
+                              
+                            </Dropdown>
+                            {/* <button onClick={handleButtonClick} className="secondary-color">
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
-                            </button>
+                            </button> */}
                         </div>
                     )}
                 </div>
@@ -68,6 +75,17 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
             {children}
         </div>
     );
+
+
+
+
+
+
 }
+
+
+
+
+
 
 export default CardComponent;

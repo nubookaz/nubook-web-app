@@ -17,16 +17,14 @@ import PageButton from '@/Components/Buttons/PageButton';
 import Typography from '@mui/joy/Typography';
 
 import NewLocationForm from '@/Pages/Projects/CallSheets/Locations/NewLocationForm';
-
-
-
+import LocationDetails from '@/Pages/Projects/CallSheets/Locations/LocationDetails';
+import EditCallSheetForm from '@/Pages/Projects/CallSheets/Forms/EditCallSheetForm';
+import Weather from '@/Pages/Projects/CallSheets/Locations/Weather';
 
 
 
 function CallSheetEdit({ auth }) {
-    const { project } = usePage().props;
-    const { callSheet } = usePage().props;
-    const { locations } = usePage().props;
+  const { project, callSheet, locations } = usePage().props;
 
     const [callSheetStatus, setCallSheetStatus] = useState(callSheet.status || 'Draft');
     const [text, setText] = React.useState('');
@@ -34,10 +32,21 @@ function CallSheetEdit({ auth }) {
     const remainingCharacters = maxLength - text.length;
     const [modalContent, setModalContent] = useState(null); // State for modal content
 
-    const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
-    const toggleRightPanel = () => {
-      console.log("click");
-      setIsRightPanelOpen(!isRightPanelOpen);
+    const [isToggleCallSheetOpen, setIsToggleCallSheetOpen] = useState(false);
+    const [isToggleLocationPanelOpen, setIsToggleLocationPanelOpen] = useState(false);
+
+
+
+
+
+    const toggleLocationPanel = () => {
+      console.log("location");
+      setIsToggleLocationPanelOpen(!isToggleLocationPanelOpen);
+    };
+    
+    const toggleCallSheetPanel = () => {
+      console.log("edit");
+      setIsToggleCallSheetOpen(!isToggleCallSheetOpen);
     };
 
     const [callSheetData, setCallSheetData] = useState({
@@ -48,8 +57,6 @@ function CallSheetEdit({ auth }) {
       });
 
       
-      console.log(locations);
-
     const bannerProps = {
         showGreeting: true, // Customize these props based on your conditions
         size: 'page-banner',
@@ -90,11 +97,20 @@ function CallSheetEdit({ auth }) {
         setIsSlideUpModalOpen(true);
     };
 
+  
+    console.log(callSheet.callSheetDate);
 
    function formatDateWithDay(dateString) {
-        const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
+        const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
+
+    console.log(formatDateWithDay(callSheet.callSheetDate));
+
+
+    
+
+
     const hasData = callSheet;
     const toolbarTitle = callSheet.callSheetTitle; // Provide a title for the toolbar
     const toolbarCTAText = "Send Call Sheet"; // Provide the button text
@@ -195,23 +211,33 @@ const updateStatus = (newStatus) => {
 
 
 
+  const handleEditClick = () => {
+    setIsToggleCallSheetOpen(true);
+  };
 
-
-
-
-  const openLocationPanel = () => {
-    // Set the content component for the "Add a location" button click
-    toggleRightPanel(true);
+  const handleUnpublishClick = () => {
+    // Handle unpublish click logic
+    console.log('Unpublish clicked');
   };
 
 
+  const menuItems = [
+    { label: 'Edit', onClick: handleEditClick },
+    { label: 'Unpublish', onClick: handleUnpublishClick },
+    // Add more menu items as needed
+  ];
 
 
 
+  const apiKey = '2fddf0abeecb6640ae37fdf8735cb722';
 
+  const city = locations.length > 0 ? locations[0].city : '';
+  const street_address = locations.length > 0 ? locations[0].street_address : '';
+  const zip_code = locations.length > 0 ? locations[0].zip_code : '';
+  const country = locations.length > 0 ? locations[0].country : '';
 
-
-
+  const date = callSheet.callSheetDate;
+  console.log(street_address);
 return (
 
 
@@ -224,10 +250,17 @@ return (
                         </SlideUpModal>
 
                         <NewLocationForm
-                          isRightPanelOpen={isRightPanelOpen}
-                          toggleRightPanel={toggleRightPanel}
+                          isRightPanelOpen={isToggleLocationPanelOpen}
+                          toggleRightPanel={toggleLocationPanel}
                           callSheet={callSheet}
                           project={project}
+                        />
+
+                        <EditCallSheetForm
+                          isRightPanelOpen={isToggleCallSheetOpen}
+                          toggleRightPanel={toggleCallSheetPanel}
+                          callSheet={callSheet}
+                          projectId={project.id}
                         />
 
                      </div>,
@@ -264,60 +297,75 @@ return (
                                     ),
                                     content: (
                                         <div className='flex flex-row gap-4 w-full h-full'>
-                                            <div className='row-1 w-full left-col-content'>
-                                            <CardContainer className="h-full flex flex-col" header="Production and Location Details">
-                                                <div className="production-date">
-                                                  <div className="text-2xl primary-color font-semibold">
-                                                    <FontAwesomeIcon icon={faCalendarDays} className="mr-4 primary-green-color" />
-                                                    {formatDateWithDay(callSheet.callSheetDate)}
+                                            <div className='col-1 w-full flex flex-col left-col-content gap-4'>
+                                              <CardContainer className="" header="Production Date" showButtonIcon={true} menuItems={menuItems}>
+                                                  <div className="production-date">
+                                                    <div className="text-2xl primary-color flex flex-row font-semibold">
+                                                      <FontAwesomeIcon icon={faCalendarDays} className="mr-4 primary-green-color" />
+                                                      <p>{formatDateWithDay(callSheet.callSheetDate)}</p>
+                                                    </div>
                                                   </div>
-                                                </div>
-                                                {location ? (
+                                              </CardContainer>
+                                              <div className="h-full flex flex-col" header="Location Details">
+                                                {locations?.length > 0 ? (
                                                   // Render this div when a location exists
                                                   <div className="location-exists-div">
-                                                    {location.name}
+                                                    {locations.map((location) => (
+                                                      <div key={location.id} className="mb-4">
+                                                        {/* Render basic location details */}
+                                                        {location && <LocationDetails header="Location Details" location={location} />}
+
+                                                        {/* Conditionally render parking information */}
+                                                        {location.parking_location && <LocationDetails header="Parking Details" location={location.parking_location} />}
+
+                                                        {/* Conditionally render hospital information */}
+                                                        {location.hospital_location && <LocationDetails header="Hospital Details" location={location.hospital_location} />}
+                                                      </div>
+                                                    ))}
                                                   </div>
                                                 ) : (
                                                   // Render empty-location div only if no location exists
+                                                  <CardContainer className="h-full" header="Production Location">
                                                   <div className="empty-location text-center m-auto">
                                                     <p className="secondary-color text-lg w-2/3 mx-auto mb-4">
                                                       You have not entered a location yet. Click here to add a location for your production
                                                     </p>
-                                                    <SecondaryButton onClick={toggleRightPanel}>Add a location</SecondaryButton>
+                                                    <SecondaryButton onClick={toggleLocationPanel}>Add a location</SecondaryButton>
                                                   </div>
+                                                  </CardContainer>
                                                 )}
-                                            </CardContainer>
+                                              </div>
+
 
                                             </div>
-                                            <div className='row-2 w-[155rem]  enter-col-content flex flex-col gap-4 h-full'>
+                                            <div className='col-2 w-[155rem]  enter-col-content flex flex-col gap-4 h-full'>
                                                 <CardContainer className="h-[20rem]" header="Bulletin">
-                                                <Textarea 
-                                                    name="Soft" 
-                                                    size="sm" 
-                                                    variant="soft" 
-                                                    minRows={5.6} 
-                                                    maxRows={6}
-                                                    defaultValue={callSheet.bulletin}
-                                                    placeholder="Type anything…" 
-                                                    maxLength={maxLength} // Set the maximum character length
-                                                    onKeyDown={(event) => {
-                                                        if (event.key === 'Enter') {
-                                                            event.preventDefault(); // Prevent the default behavior of Enter key
-                                                            // Optionally, you can perform some other action here
-                                                        }
-                                                    }}
-                                                    onChange={(event) => {
-                                                        if (event.target.value.length <= maxLength) {
-                                                            setText(event.target.value);
-                                                        }
-                                                    }}                                                    
-                                                    endDecorator={
-                                                        <Typography level="body-xs" sx={{ ml: 'auto' }}>
-                                                            {text.length} / {maxLength} character(s) ({remainingCharacters} remaining)
-                                                        </Typography>
-                                                    }
-                                                />
-                                                    {/* <span className='flex justify-end'>Remaining Characters: 450</span> */}
+                                                  <Textarea 
+                                                      name="Soft" 
+                                                      size="sm" 
+                                                      variant="soft" 
+                                                      minRows={5.5} 
+                                                      maxRows={6}
+                                                      defaultValue={callSheet.bulletin}
+                                                      placeholder="Type anything…" 
+                                                      maxLength={maxLength} // Set the maximum character length
+                                                      onKeyDown={(event) => {
+                                                          if (event.key === 'Enter') {
+                                                              event.preventDefault(); // Prevent the default behavior of Enter key
+                                                              // Optionally, you can perform some other action here
+                                                          }
+                                                      }}
+                                                      onChange={(event) => {
+                                                          if (event.target.value.length <= maxLength) {
+                                                              setText(event.target.value);
+                                                          }
+                                                      }}                                                    
+                                                      endDecorator={
+                                                          <Typography level="body-xs" sx={{ ml: 'auto' }}>
+                                                              {text.length} / {maxLength} character(s) ({remainingCharacters} remaining)
+                                                          </Typography>
+                                                      }
+                                                  />
                                                 </CardContainer>
                                                 <CardContainer className="h-full flex flex-col" header="Recipients">
                                                         <div className='rsvp-overview'>
@@ -334,12 +382,14 @@ return (
                                                         </div>
                                                 </CardContainer>
                                             </div>
-                                            <div className='row-3 w-full right-col-content flex flex-col gap-4 h-full'>
+                                            <div className='col-3 w-full right-col-content flex flex-col gap-4 h-full'>
                                                 <div className='flex flex-row gap-4 h-[12rem]'>
                                                     <CardContainer className="h-full">
                                                         
                                                     </CardContainer>
-                                                    <CardContainer className="h-full"></CardContainer>
+                                                    <CardContainer className="h-full">
+                                                    <Weather apiKey={apiKey} street_address={street_address} zip_code={zip_code} date={date} country={country} />
+                                                    </CardContainer>
                                                 </div>
                                                 <div className='flex flex-col gap-4 h-full'>
                                                     <CardContainer className="h-full flex flex-col" header="Production Schedule">

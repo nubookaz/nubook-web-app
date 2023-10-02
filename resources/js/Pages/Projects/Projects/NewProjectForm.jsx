@@ -6,8 +6,8 @@ import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CircularButton from '@/Components/Buttons/CircularButton';
 import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
 
-import ProjectDetailsForm from '@/Pages/Projects/Partials/ProjectDetailsForm';
-import ProjectClientForm from '@/Pages/Projects/Partials/ProjectClientForm';
+import ProjectDetailsForm from '@/Pages/Projects/Projects/ProjectDetailsForm';
+import ProjectClientForm from '@/Pages/Projects/Projects/ProjectClientForm';
 
 
 

@@ -21,16 +21,16 @@ return new class extends Migration
             $table->string('country');
             $table->unsignedBigInteger('parking_location_id')->nullable();
             $table->unsignedBigInteger('hospital_location_id')->nullable();
-            $table->unsignedBigInteger('project_id'); // Added foreign key for project
-            $table->unsignedBigInteger('call_sheet_id'); // Added foreign key for callSheet
             $table->timestamps();
     
-            $table->foreign('parking_location_id')->references('id')->on('locations');
-            $table->foreign('hospital_location_id')->references('id')->on('locations');
-            $table->foreign('project_id')->references('id')->on('projects'); // Foreign key for project
-            $table->foreign('call_sheet_id')->references('id')->on('call_sheets'); // Foreign key for callSheet
+            // Add foreign key constraint for parking_location_id
+            $table->foreign('parking_location_id')->references('id')->on('parking_locations');
+    
+            // Add foreign key constraint for hospital_location_id
+            $table->foreign('hospital_location_id')->references('id')->on('hospital_locations');
         });
     }
+    
     
 
     /**

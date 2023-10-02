@@ -7,7 +7,7 @@ import ActiveCard from '@/Components/ActiveCard';
 
 
 
-function ProjectList({ projects }) {
+function ProjectList({ projects, handleButtonClick }) {
 
 
 
@@ -16,7 +16,7 @@ function ProjectList({ projects }) {
   return (
 
 
-    <div className='grid grid-cols-6 gap-4'> 
+    <div className='grid grid-cols-4 gap-4'> 
     
 
       {projects.map(project => (
@@ -33,6 +33,7 @@ function ProjectList({ projects }) {
         cardTitle={project.projectName}
         projectType={project.projectType}
         progressValue={75}
+        // handleButtonClick={handleButtonClick}
       />
 
 
