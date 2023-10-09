@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('phone_numbers', function (Blueprint $table) {
             $table->id();
+            $table->string('number')->nullable(); // or $table->string('number')->default('your_default_value');
             $table->timestamps();
+
+            // Add a foreign key to associate with users table
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

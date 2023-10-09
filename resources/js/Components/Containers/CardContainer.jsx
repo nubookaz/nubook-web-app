@@ -38,10 +38,11 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
 
     const containerClasses = `container-base card-container flex flex-col gap-4 ${getSizeClass()} ${className} ${getBackgroundColorClass()}`;
 
-
-    
-
-
+    // Set default prop values
+    CardComponent.defaultProps = {
+        menuItems: [], // Provide an empty array as a default value
+    };
+        
     return (
         <div className={containerClasses}>
             {header && (
@@ -55,7 +56,7 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
                                 <MenuButton variant="plain" className="secondary-color">
                                     <FontAwesomeIcon icon={faEllipsisVertical} />
                                 </MenuButton>
-                                <Menu>
+                                <Menu placement="top-start">
                                 {menuItems &&
                                     menuItems.map((item, index) => (
                                         <MenuItem key={index} onClick={item.onClick}>

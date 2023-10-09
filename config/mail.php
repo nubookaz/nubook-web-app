@@ -85,6 +85,13 @@ return [
                 'log',
             ],
         ],
+        
+        'views' => [
+            'text' => 'emails.text',
+            'html' => 'emails.html',
+            'raw' => 'emails.raw',
+        ],
+        
     ],
 
     /*

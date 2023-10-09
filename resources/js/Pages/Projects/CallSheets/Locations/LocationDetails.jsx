@@ -8,10 +8,12 @@ import { faLocationArrow, faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 
 
-const LocationDetails = ({ location, header }) => (
+export default function LocationDetails({ location, header, showButtonIcon, menuItems }) {
 
 
-  <CardContainer className="mt-2" header={header}>
+  return (
+
+    <CardContainer className="mt-2" header={header} showButtonIcon={showButtonIcon} menuItems={menuItems}>
     <div>
         <h3 className='mb-4 text-2xl'>
             <FontAwesomeIcon icon={faLocationArrow} className='mr-4 primary-green-color text-xl' />
@@ -26,15 +28,10 @@ const LocationDetails = ({ location, header }) => (
 
     </div>
   </CardContainer>
+  );
+
+
+}
 
 
 
-);
-
-
-
-
-
-
-
-export default LocationDetails;

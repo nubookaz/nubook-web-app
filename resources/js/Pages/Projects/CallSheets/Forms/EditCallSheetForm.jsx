@@ -50,16 +50,24 @@ function EditCallSheetForm(props) {
 
   const updateCallSheet = async () => {
     const projectId = props.projectId;
-    const callSheetId = callSheet.id; // Assuming your callSheet object has an 'id' property
+    const callSheetId = callSheet.id;
   
     try {
+      const payload = {
+        ...(callSheetData || {}),
+      };
+  
+      if (callSheetTitle !== callSheetData.callSheetTitle) {
+        payload.callSheetTitle = callSheetTitle;
+      }
+  
+      if (callSheetDate !== callSheetData.callSheetDate) {
+        payload.callSheetDate = callSheetDate;
+      }
+  
       const callSheetResponse = await router.patch(
-        route('projects.callSheets.update', { id: projectId, callSheetId }), // Adjust the route as needed
-        {
-          ...callSheetData,
-          callSheetTitle, // Add these lines to send callSheetTitle and callSheetDate
-          callSheetDate,
-        }
+        route('projects.callSheets.update', { id: projectId, callSheetId }),
+        payload
       );
   
       console.log('Response Call Sheet', callSheetResponse);
@@ -68,6 +76,7 @@ function EditCallSheetForm(props) {
       console.error('Error updating Call Sheet:', error);
     }
   };
+  
   
   
 

@@ -16,4 +16,9 @@ class Company extends Model
         return $this->belongsToMany(Project::class, 'company_project', 'company_id', 'project_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

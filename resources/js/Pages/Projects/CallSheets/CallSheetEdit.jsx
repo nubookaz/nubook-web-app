@@ -215,19 +215,15 @@ const updateStatus = (newStatus) => {
     setIsToggleCallSheetOpen(true);
   };
 
-  const handleUnpublishClick = () => {
-    // Handle unpublish click logic
-    console.log('Unpublish clicked');
-  };
-
-
-  const menuItems = [
-    { label: 'Edit', onClick: handleEditClick },
-    { label: 'Unpublish', onClick: handleUnpublishClick },
-    // Add more menu items as needed
+  const productionDetailsList = [
+    { label: 'Edit Production Details', onClick: handleEditClick },
   ];
 
-
+  const locationDetailsList = [
+    { label: 'Edit Location', onClick: handleEditClick },
+    { label: 'Add Parking Location', onClick: handleEditClick },
+    { label: 'Add Nearest Hospital Location', onClick: handleEditClick },
+  ];
 
   const apiKey = '2fddf0abeecb6640ae37fdf8735cb722';
 
@@ -237,8 +233,8 @@ const updateStatus = (newStatus) => {
   const country = locations.length > 0 ? locations[0].country : '';
 
   const date = callSheet.callSheetDate;
-  console.log(street_address);
-return (
+  
+  return (
 
 
     <AuthenticatedLayout user={auth.user} project={project} bannerProps={bannerProps}>
@@ -298,11 +294,11 @@ return (
                                     content: (
                                         <div className='flex flex-row gap-4 w-full h-full'>
                                             <div className='col-1 w-full flex flex-col left-col-content gap-4'>
-                                              <CardContainer className="" header="Production Date" showButtonIcon={true} menuItems={menuItems}>
+                                              <CardContainer className="" header="Production Date" showButtonIcon={true} menuItems={productionDetailsList}>
                                                   <div className="production-date">
                                                     <div className="text-2xl primary-color flex flex-row font-semibold">
                                                       <FontAwesomeIcon icon={faCalendarDays} className="mr-4 primary-green-color" />
-                                                      <p>{formatDateWithDay(callSheet.callSheetDate)}</p>
+                                                      <p className='primary-color'>{formatDateWithDay(callSheet.callSheetDate)}</p>
                                                     </div>
                                                   </div>
                                               </CardContainer>
@@ -313,10 +309,10 @@ return (
                                                     {locations.map((location) => (
                                                       <div key={location.id} className="mb-4">
                                                         {/* Render basic location details */}
-                                                        {location && <LocationDetails header="Location Details" location={location} />}
+                                                        {location && <LocationDetails header="Location Details" location={location} showButtonIcon={true} menuItems={locationDetailsList}/>}
 
                                                         {/* Conditionally render parking information */}
-                                                        {location.parking_location && <LocationDetails header="Parking Details" location={location.parking_location} />}
+                                                        {location.parking_location && <LocationDetails header="Parking Details" location={location.parking_location} menuItems={locationDetailsList}/>}
 
                                                         {/* Conditionally render hospital information */}
                                                         {location.hospital_location && <LocationDetails header="Hospital Details" location={location.hospital_location} />}

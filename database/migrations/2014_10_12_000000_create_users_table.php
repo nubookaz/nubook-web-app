@@ -13,15 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name'); // Add first name column
-            $table->string('last_name'); // Add last name column
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('verification_code')->nullable();
+            $table->boolean('email_verified')->default(false); // Track email verification step
+            $table->boolean('code_verified')->default(false); // Track code verification step
+            $table->boolean('personal_info_completed')->default(false); // Track personal info completion step
+            $table->boolean('company_info_completed')->default(false); // Track company info completion step
+            $table->boolean('registration_complete')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
-        
     }
 
     /**

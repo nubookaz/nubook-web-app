@@ -22,6 +22,7 @@ class User extends Authenticatable
         'last_name',  // Add last name field
         'email',
         'password',
+        'verification_code',
     ];
 
     /**
@@ -43,4 +44,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function phone()
+    {
+        return $this->hasOne(PhoneNumber::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
 }

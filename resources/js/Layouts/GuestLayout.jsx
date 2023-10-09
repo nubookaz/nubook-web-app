@@ -1,16 +1,70 @@
-import { Link } from '@inertiajs/react';
+import CardContainer from '@/Components/Containers/CardContainer';
+import ImageContainer from '@/Components/Containers/ImageContainer';
+
 
 export default function Guest({ children }) {
-    return (
-        <div className="min-h-screen">
-            {/* <div className="relative">
-                <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: 'url("/path/to/your-background-image.jpg")' }}></div>
-                <h1 className="logo-name">Nubook</h1>
-            </div> */}
 
-            {/* <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"> */}
-                {children}
-            {/* </div> */}
+
+
+
+
+
+    return (
+
+
+
+        
+
+        <div className="min-h-screen">
+           <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: 'url("/images/background_images/guest_image_1.jpg")' }}>
+                <div className="overlay">
+                    <div className='floating-form flex flex-row justify-center items-center h-full'>
+
+                        <ImageContainer isPoster={true} className="my-auto">
+                                <h2 className="mb-4">
+                                    Did you know?
+                                </h2>
+                                <ImageContainer isPoster={false} className="mb-4 !h-[28rem]" backgroundImage="/images/background_images/bg_image_2.jpg">
+                                    {/* Your content here */}
+                                </ImageContainer>
+                                <h3>
+                                    TARS, the AI machine in Interstellar, is real.
+                                </h3>
+                                <p className="p-base mt-2">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos beatae fugiat doloribus, provident aperiam, atque qui optio illum earum vel quasi molestiae est veniam mollitia fuga et, ipsum dicta sunt!
+                                </p>
+                        </ImageContainer>
+
+                        <CardContainer className="form-container flex flex-col justify-between">
+                            <h2 className="logo-name">Nubook</h2>
+
+                            <p className="secondary-color text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum, rem iste at, eligendi totam doloremque tempora esse illum perspiciatis autem.</p>
+
+                            <h1 className="primary-color mb-4 text-4xl">Welcome! Sign up for an account.</h1>
+
+                            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                            
+                            <div className='min-h-[20rem]'>
+                                 {children.form}
+                            </div>
+
+                            
+                            <div className='justify-end'>
+                                {children.footer}
+                            </div>
+
+                        </CardContainer>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+
+
+
+
+
     );
 }

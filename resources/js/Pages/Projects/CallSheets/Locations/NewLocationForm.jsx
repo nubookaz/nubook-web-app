@@ -6,8 +6,8 @@ import CircularButton from '@/Components/Buttons/CircularButton';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Input from '@mui/joy/Input';
 import Tooltip from '@mui/joy/Tooltip';
-import axios from 'axios';
-
+import ParkingLocationForm from '@/Pages/Projects/CallSheets/Locations/ParkingLocationForm';
+import HospitalLocationForm from '@/Pages/Projects/CallSheets/Locations/HospitalLocationForm';
 
 
 
@@ -142,7 +142,9 @@ const prepareHospitalLocationData = () => {
     return null;
 };
 
-// Function to handle saving the location
+
+
+
 const handleSave = async () => {
     setIsSubmitClicked(true);
 
@@ -156,8 +158,8 @@ const handleSave = async () => {
 
             const locationData = {
                 ...mainLocationData,
-                parking_location: parkingLocationData,
-                hospital_location: hospitalLocationData,
+                ...(parkingLocationData && { parking_location: parkingLocationData }),
+                ...(hospitalLocationData && { hospital_location: hospitalLocationData }),
             };
 
             const routeName = 'locations.store';
@@ -175,7 +177,9 @@ const handleSave = async () => {
             console.error('Error saving location data:', locationError);
             console.error('Error saving location data:', locationError.data);
 
-            console.error('Error saving location data:', locationError.response.data.message);
+            const errorMessage =
+                locationError.response?.data?.message || 'An error occurred while saving location data.';
+            console.error('Error saving location data:', errorMessage);
 
             // Display an error message to the user if needed
         }
@@ -215,23 +219,9 @@ const handleSave = async () => {
               }
             >
 
-
-
-
-
-
-
-
-
                 <div>
                     <div className="mb-10 form-group">
                         <div className='w-full mb-2 input-group'>
-                            <Tooltip
-                                title="Location Name is required"
-                                placement="top"
-                                arrow
-                                open={isSubmitClicked && !mainLocationValid}
-                                >
                                 <Input
                                     type="text"
                                     name="name"
@@ -239,14 +229,8 @@ const handleSave = async () => {
                                     onChange={handleMainLocationChange}
                                     placeholder="Name"
                                 />
-                            </Tooltip>
                         </div>                       
                         <div className='w-full mb-2 input-group'>
-                            <Tooltip
-                                title="Street Address is required"
-                                placement="top"
-                                arrow
-                                >
                                 <Input
                                     type="text"
                                     name="street_address"
@@ -254,16 +238,11 @@ const handleSave = async () => {
                                     onChange={handleMainLocationChange}
                                     placeholder="Street Address"
                                 />
-                            </Tooltip>
                         </div>              
                         <div className='flex flex-row gap-2 mb-2 input-group'>
          
                             <div className='w-full'>
-                                <Tooltip
-                                    title="City is required"
-                                    placement="top"
-                                    arrow
-                                    >
+                               
                                     <Input
                                         type="text"
                                         name="city"
@@ -271,14 +250,9 @@ const handleSave = async () => {
                                         onChange={handleMainLocationChange}
                                         placeholder="City"
                                     />
-                                </Tooltip>
                             </div>                       
                             <div className='w-[9rem]'>
-                                <Tooltip
-                                    title="State is required"
-                                    placement="top"
-                                    arrow
-                                    >
+                              
                                     <Input
                                         type="text"
                                         name="state"
@@ -286,14 +260,9 @@ const handleSave = async () => {
                                         onChange={handleMainLocationChange}
                                         placeholder="State"
                                     />
-                                </Tooltip>
                             </div>                       
                             <div className='w-[10rem]'>
-                                <Tooltip
-                                    title="ZIP Code is required"
-                                    placement="top"
-                                    arrow
-                                    >
+
                                     <Input
                                         type="text"
                                         name="zip_code"
@@ -301,15 +270,10 @@ const handleSave = async () => {
                                         onChange={handleMainLocationChange}
                                         placeholder="ZIP Code"
                                     />
-                                </Tooltip>
                             </div>
                         </div>
                         <div className='w-full mb-2 input-group'>
-                            <Tooltip
-                                title="Street Address is required"
-                                placement="top"
-                                arrow
-                                >
+
                                 <Input
                                     type="text"
                                     name="country"
@@ -317,129 +281,13 @@ const handleSave = async () => {
                                     onChange={handleMainLocationChange}
                                     placeholder="Country"
                                 />
-                            </Tooltip>
                         </div>    
                     </div>
                     <div className="mb-10 form-group">
-                        <h3 className='mb-4'>Parking Details</h3>
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    value={parkingLocation.name}
-                                    onChange={handleParkingLocationChange}
-                                    placeholder="Name"
-                                />
-                        </div>                       
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="street_address"
-                                    value={parkingLocation.street_address}
-                                    onChange={handleParkingLocationChange}
-                                    placeholder="Street Address"
-                                />
-                        </div>                      
-                        <div className='flex flex-row gap-2 mb-2 input-group'>
-         
-                            <div className='w-full'>
-                                    <Input
-                                        type="text"
-                                        name="city"
-                                        value={parkingLocation.city}
-                                        onChange={handleParkingLocationChange}
-                                        placeholder="City"
-                                    />
-                            </div>                       
-                            <div className='w-[9rem]'>
-                                    <Input
-                                        type="text"
-                                        name="state"
-                                        value={parkingLocation.state}
-                                        onChange={handleParkingLocationChange}
-                                        placeholder="State"
-                                    />
-                            </div>                       
-                            <div className='w-[10rem]'>
-                                    <Input
-                                        type="text"
-                                        name="zip_code"
-                                        value={parkingLocation.zip_code}
-                                        onChange={handleParkingLocationChange}
-                                        placeholder="ZIP Code"
-                                    />
-                            </div>
-                        </div>
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="country"
-                                    value={parkingLocation.country}
-                                    onChange={handleParkingLocationChange}
-                                    placeholder="Country"
-                                />
-                        </div>    
+                        <ParkingLocationForm parkingLocation={parkingLocation} onParkingLocationChange={handleParkingLocationChange} />
                     </div>
                     <div className="mb- form-group">
-                        <h3 className='mb-4'>Nearest Hospital</h3>
-
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    value={hospitalLocation.name}
-                                    onChange={handleHospitalLocationChange}
-                                    placeholder="Name"
-                                />
-                        </div>                       
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="street_address"
-                                    value={hospitalLocation.street_address}
-                                    onChange={handleHospitalLocationChange}
-                                    placeholder="Street Address"
-                                />
-                        </div>                       
-                        <div className='flex flex-row gap-2 mb-2 input-group'>
-         
-                            <div className='w-full'>
-                                    <Input
-                                        type="text"
-                                        name="city"
-                                        value={hospitalLocation.city}
-                                        onChange={handleHospitalLocationChange}
-                                        placeholder="City"
-                                    />
-                            </div>                       
-                            <div className='w-[9rem]'>
-                                    <Input
-                                        type="text"
-                                        name="state"
-                                        value={hospitalLocation.state}
-                                        onChange={handleHospitalLocationChange}
-                                        placeholder="State"
-                                    />
-                            </div>                       
-                            <div className='w-[10rem]'>
-                                    <Input
-                                        type="text"
-                                        name="zip_code"
-                                        value={hospitalLocation.zip_code}
-                                        onChange={handleHospitalLocationChange}
-                                        placeholder="ZIP Code"
-                                    />
-                            </div>
-                        </div>
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="country"
-                                    value={hospitalLocation.country}
-                                    onChange={handleHospitalLocationChange}
-                                    placeholder="Country"
-                                />
-                        </div>  
+                        <HospitalLocationForm hospitalLocation={hospitalLocation} onHospitalLocationChange={handleHospitalLocationChange} />
                     </div>
                 </div>
 

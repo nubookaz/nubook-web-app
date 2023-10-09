@@ -12,6 +12,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\VerificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,14 +42,56 @@ Route::get('/', function () {
 });
 
 
+// Route::middleware(['guest'])->group(function () {
+//     // Registration routes
+//     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
+//     Route::post('/register', [RegisteredUserController::class, 'store'])->name('registration.store');
+
+//     // Verification route
+//     Route::get('/register/verify/form', [RegisteredUserController::class, 'showVerificationForm'])->name('registration.verification.form');
+//     Route::get('/register/verify/{code}', [RegisteredUserController::class, 'verificationCode'])->name('registration.verification');
+//     Route::post('/register/verify', [RegisteredUserController::class, 'verifyCode'])->name('registration.verifyCode');
+
+//     Route::get('/register/personal-info/form', [RegisteredUserController::class, 'showPersonalInfo'])->name('registration.personal.form');
+//     Route::post('/register/personal-info', [RegisteredUserController::class, 'storePersonalInfo'])->name('registration.storePersonalInfo');
+
+//     Route::get('/register/company-info/form', [RegisteredUserController::class, 'showCompanyInfo'])->name('registration.company.form');
+//     Route::post('/register/company-info', [RegisteredUserController::class, 'storeCompanyInfo'])->name('registration.storeCompanyInfo');
+// });
+
+
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
+    Route::post('/register', [RegisteredUserController::class, 'store'])->name('registration.store');
+});
+
+Route::middleware(['requires_email_verification'])->group(function () {
+    Route::get('/register/verify/form', [RegisteredUserController::class, 'showVerificationForm'])->name('registration.verification.form');
+    Route::get('/register/verify/{code}', [RegisteredUserController::class, 'verificationCode'])->name('registration.verification');
+    Route::post('/register/verify', [RegisteredUserController::class, 'verifyCode'])->name('registration.verifyCode');
+});
+
+Route::middleware(['requires_email_verification', 'requires_code_verification'])->group(function () {
+    Route::get('/register/personal-info/form', [RegisteredUserController::class, 'showPersonalInfo'])->name('registration.personal.form');
+    Route::post('/register/personal-info', [RegisteredUserController::class, 'storePersonalInfo'])->name('registration.personal.store');
+});
+
+Route::middleware(['requires_email_verification', 'requires_code_verification', 'requires_personal_info'])->group(function () {
+    Route::get('/register/company-info/form', [RegisteredUserController::class, 'showCompanyInfo'])->name('registration.company.form');
+    Route::post('/register/company-info', [RegisteredUserController::class, 'storeCompanyInfo'])->name('registration.company.store');
+});
+
+
+
+
+
+
 
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Authenticated and verified routes
-
-
-
 
     // Dashboard
     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
@@ -96,8 +141,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Account Settings
     Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');
-
-
 
     // Profile
     Route::prefix('profile')->group(function () {

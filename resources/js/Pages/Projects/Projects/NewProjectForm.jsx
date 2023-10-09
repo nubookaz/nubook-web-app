@@ -21,9 +21,6 @@ function NewProjectForm(props) {
     const [showSlideOutPanel, setShowSlideOutPanel] = useState(false);
     const { isRightPanelOpen, toggleRightPanel } = props;
 
-
-    
-    
     const [isStepOneValid, setIsStepOneValid] = useState(true); // Initialize to true
     const [isStepTwoValid, setIsStepTwoValid] = useState(true); // Initialize to true
 
@@ -165,6 +162,14 @@ function NewProjectForm(props) {
 
 
 
+
+
+
+
+
+
+
+
     const validateStepOne = () => {
       // Check if projectName and projectStatus are both filled out
       const isNameValid = projectName.trim() !== '';
@@ -207,6 +212,16 @@ function NewProjectForm(props) {
       
       
       
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -316,6 +331,13 @@ function NewProjectForm(props) {
 
     
 
+
+
+
+
+
+
+      
 
 
 
