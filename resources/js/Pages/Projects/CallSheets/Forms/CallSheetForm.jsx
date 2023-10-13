@@ -1,7 +1,7 @@
 // CallSheetForm.jsx
 
 import React from 'react';
-import CallSheetDetails from '@/Pages/Projects/CallSheets/Forms/CallSheetDetails';
+import CallSheetDetailsForm from '@/Pages/Projects/CallSheets/Forms/CallSheetDetailsForm';
 
 const CallSheetForm = ({
   callSheetData,
@@ -11,7 +11,7 @@ const CallSheetForm = ({
 }) => {
   return (
     <div>
-      <CallSheetDetails
+      <CallSheetDetailsForm
         callSheetData={callSheetData}
         setCallSheetTitle={setCallSheetTitle}
         setCallSheetDate={setCallSheetDate}

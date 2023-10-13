@@ -10,8 +10,12 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('user_id')->constrained(); // Add foreign key to users table
+            $table->string('name')->nullable();
             $table->string('ein')->nullable(); // Employer Identification Number, optional
+            $table->string('job_title')->nullable();
+            $table->string('number_of_employees')->nullable();
+            $table->string('referral')->nullable();
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@
   .form-container {
     max-width: 32rem;
     min-height: 52rem;
-    padding: 3rem;
+    padding: 2.5rem;
   }
   
   .poster-container {
@@ -45,8 +45,6 @@
     flex-direction: column;
     justify-content: space-between;
   }
-
-  /* PricingPackage.css */
 
   .pricing-package {
     display: flex;

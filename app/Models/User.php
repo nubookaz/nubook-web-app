@@ -23,6 +23,12 @@ class User extends Authenticatable
         'email',
         'password',
         'verification_code',
+        'email_verified_at', // Add email_verified_at field
+        'email_verified',    // Add email_verified field
+        'code_verified',     // Add code_verified field
+        'personal_info_completed', // Add personal_info_completed field
+        'company_info_completed',  // Add company_info_completed field
+        'registration_complete',   // Add registration_complete field
     ];
 
     /**
@@ -57,6 +63,6 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->hasOne(Company::class);
+        return $this->hasOne(Company::class, 'user_id');
     }
 }

@@ -14,15 +14,17 @@ class EmailVerifiedMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     
-     public function handle($request, Closure $next)
-     {
-         if (!$request->session()->has('registration.email_verified')) {
-             return redirect('/register')->with('error', 'Email verification not completed.');
+    public function handle($request, Closure $next)
+    {
+        $user = $request->user();
 
-         }
- 
-         return $next($request);
-     }
+        if ($user && $user->email_verified_at !== null) {
+            // Allow access if email is verified
+            return $next($request);
+        }
+
+        // Redirect to registration page if email is not verified
+        return redirect('/register')->with('error', 'Email verification not completed.');
+    }
 }
-
 

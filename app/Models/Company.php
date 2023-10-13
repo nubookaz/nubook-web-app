@@ -9,7 +9,7 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'ein'];
+    protected $fillable = ['user_id', 'name', 'ein', 'job_title', 'number_of_employees', 'referral'];
 
     public function projects()
     {
@@ -18,7 +18,6 @@ class Company extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
-
 }

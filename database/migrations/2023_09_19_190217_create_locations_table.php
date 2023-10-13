@@ -24,10 +24,10 @@ return new class extends Migration
             $table->timestamps();
     
             // Add foreign key constraint for parking_location_id
-            $table->foreign('parking_location_id')->references('id')->on('parking_locations');
-    
+            $table->foreign('parking_location_id')->references('id')->on('parking_locations')->onDelete('cascade');
+
             // Add foreign key constraint for hospital_location_id
-            $table->foreign('hospital_location_id')->references('id')->on('hospital_locations');
+            $table->foreign('hospital_location_id')->references('id')->on('hospital_locations')->onDelete('cascade');
         });
     }
     

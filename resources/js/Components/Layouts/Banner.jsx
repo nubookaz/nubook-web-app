@@ -130,7 +130,7 @@ const {
                     <div className="w-full -mb-20 justify-end pr-[10rem] right-content">
                         <ul className="flex gap-20 text-center dashboard-navlinks">
                             <li>
-                                <PageButton icon={faListCheck} size="medium" />
+                                <PageButton className="disabled" icon={faListCheck} size="medium" />
                                 <span className="mt-4 block">Tasks</span>
                             </li>
                             <li>
@@ -138,15 +138,15 @@ const {
                                 <span className="mt-4 block">Projects</span>
                             </li>
                             <li>
-                                <PageButton icon={faComments} to="/settings" size="medium" />
+                                <PageButton className="disabled" icon={faComments} to="/settings" size="medium" />
                                 <span className="mt-4 block">Social</span>
                             </li>
                             <li>
-                                <PageButton icon={faMoneyCheckDollar} to="/settings" size="medium" />
+                                <PageButton className="disabled" icon={faMoneyCheckDollar} to="/settings" size="medium" />
                                 <span className="mt-4 block">Budget</span>
                             </li>
                             <li>
-                                <PageButton icon={faBriefcase} to="/settings" size="medium" />
+                                <PageButton className="disabled" icon={faBriefcase} to="/settings" size="medium" />
                                 <span className="mt-4 block">Jobs</span>
                             </li>
                         </ul>

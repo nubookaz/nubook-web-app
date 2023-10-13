@@ -3,6 +3,17 @@ import Input from '@mui/joy/Input';
 
  const ParkingLocationForm = ({ parkingLocation, onParkingLocationChange }) => {
 
+    const defaultParkingLocation = {
+        name: '',
+        street_address: '',
+        city: '',
+        state: '',
+        zip_code: '',
+        country: '',
+    };
+
+    const currentParkingLocation = parkingLocation || defaultParkingLocation;
+
     return (
         
             <div>
@@ -11,7 +22,7 @@ import Input from '@mui/joy/Input';
                         <Input
                             type="text"
                             name="name"
-                            value={parkingLocation.name}
+                            value={currentParkingLocation.name}
                             onChange={onParkingLocationChange}
                             placeholder="Name"
                         />
@@ -20,7 +31,7 @@ import Input from '@mui/joy/Input';
                         <Input
                             type="text"
                             name="street_address"
-                            value={parkingLocation.street_address}
+                            value={currentParkingLocation.street_address}
                             onChange={onParkingLocationChange}
                             placeholder="Street Address"
                         />
@@ -31,7 +42,7 @@ import Input from '@mui/joy/Input';
                             <Input
                                 type="text"
                                 name="city"
-                                value={parkingLocation.city}
+                                value={currentParkingLocation.city}
                                 onChange={onParkingLocationChange}
                                 placeholder="City"
                             />
@@ -40,7 +51,7 @@ import Input from '@mui/joy/Input';
                             <Input
                                 type="text"
                                 name="state"
-                                value={parkingLocation.state}
+                                value={currentParkingLocation.state}
                                 onChange={onParkingLocationChange}
                                 placeholder="State"
                             />
@@ -49,7 +60,7 @@ import Input from '@mui/joy/Input';
                             <Input
                                 type="text"
                                 name="zip_code"
-                                value={parkingLocation.zip_code}
+                                value={currentParkingLocation.zip_code}
                                 onChange={onParkingLocationChange}
                                 placeholder="ZIP Code"
                             />
@@ -59,7 +70,7 @@ import Input from '@mui/joy/Input';
                         <Input
                             type="text"
                             name="country"
-                            value={parkingLocation.country}
+                            value={currentParkingLocation.country}
                             onChange={onParkingLocationChange}
                             placeholder="Country"
                         />

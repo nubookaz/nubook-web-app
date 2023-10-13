@@ -16,11 +16,15 @@ import LinearProgress from '@mui/joy/LinearProgress';
 import PageButton from '@/Components/Buttons/PageButton'; 
 import Typography from '@mui/joy/Typography';
 
-import NewLocationForm from '@/Pages/Projects/CallSheets/Locations/NewLocationForm';
+import NewLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/NewLocationForm';
 import LocationDetails from '@/Pages/Projects/CallSheets/Locations/LocationDetails';
 import EditCallSheetForm from '@/Pages/Projects/CallSheets/Forms/EditCallSheetForm';
 import Weather from '@/Pages/Projects/CallSheets/Locations/Weather';
 
+
+import LocationEdit from '@/Pages/Projects/CallSheets/Locations/Partials/LocationEdit';
+import ParkingLocationEdit from '@/Pages/Projects/CallSheets/Locations/Partials/ParkingLocationEdit';
+import HospitalLocationEdit from '@/Pages/Projects/CallSheets/Locations/Partials/HospitalLocationEdit';
 
 
 function CallSheetEdit({ auth }) {
@@ -32,20 +36,11 @@ function CallSheetEdit({ auth }) {
     const remainingCharacters = maxLength - text.length;
     const [modalContent, setModalContent] = useState(null); // State for modal content
 
-    const [isToggleCallSheetOpen, setIsToggleCallSheetOpen] = useState(false);
-    const [isToggleLocationPanelOpen, setIsToggleLocationPanelOpen] = useState(false);
 
 
-
-
-
-    const toggleLocationPanel = () => {
-      console.log("location");
-      setIsToggleLocationPanelOpen(!isToggleLocationPanelOpen);
-    };
+    
     
     const toggleCallSheetPanel = () => {
-      console.log("edit");
       setIsToggleCallSheetOpen(!isToggleCallSheetOpen);
     };
 
@@ -98,14 +93,11 @@ function CallSheetEdit({ auth }) {
     };
 
   
-    console.log(callSheet.callSheetDate);
-
    function formatDateWithDay(dateString) {
         const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
-    console.log(formatDateWithDay(callSheet.callSheetDate));
 
 
     
@@ -210,20 +202,73 @@ const updateStatus = (newStatus) => {
 
 
 
-
+  const [isToggleCallSheetOpen, setIsToggleCallSheetOpen] = useState(false);
   const handleEditClick = () => {
     setIsToggleCallSheetOpen(true);
   };
+
 
   const productionDetailsList = [
     { label: 'Edit Production Details', onClick: handleEditClick },
   ];
 
-  const locationDetailsList = [
-    { label: 'Edit Location', onClick: handleEditClick },
-    { label: 'Add Parking Location', onClick: handleEditClick },
-    { label: 'Add Nearest Hospital Location', onClick: handleEditClick },
+
+
+
+
+
+  // const [isToggleEditMainLocationFormPanelOpen, setIsToggleEditMainLocationFormPanelOpen] = useState(false);
+  // const [isToggleEditParkingLocationFormPanelOpen, setIsToggleEditParkingLocationFormPanelOpen] = useState(false);
+  // const [isToggleEditHospitalLocationFormPanelOpen, setIsToggleEditHospitalLocationFormPanelOpen] = useState(false);
+
+  // const toggleMainLocationEditPanel = () => {
+  //   setIsToggleEditMainLocationFormPanelOpen(!isToggleEditMainLocationFormPanelOpen);
+  // };
+  // const toggleParkingLocationEditPanel = () => {
+  //   setIsToggleEditParkingLocationFormPanelOpen(!isToggleEditParkingLocationFormPanelOpen);
+  // };
+  // const toggleHospitalLocationEditPanel = () => {
+  //   setIsToggleEditHospitalLocationFormPanelOpen(!isToggleEditHospitalLocationFormPanelOpen);
+  // };
+
+  // const handleEditMainLocationForm = () => {
+  //   setIsToggleEditMainLocationFormPanelOpen(true);
+  // };
+  // const handleEditParkingLocationForm = () => {
+  //   setIsToggleEditParkingLocationFormPanelOpen(true);
+  // };
+  // const handleEditHospitalLocationForm = () => {
+  //   setIsToggleEditHospitalLocationFormPanelOpen(true);
+  // };
+
+
+  const [isToggleLocationPanelOpen, setIsToggleLocationPanelOpen] = useState(false);
+  const toggleLocationPanel = () => {
+    setIsToggleLocationPanelOpen(!isToggleLocationPanelOpen);
+  };
+
+  const locationDetailsMenu = (locationId) => {
+    const hasParkingLocation = locations.find(location => location.id === locationId)?.parking_location;
+  
+    const menuItems = [
+      { label: 'Edit Location', onClick: () => toggleLocationPanel(locationId) },
+      { label: 'Add Nearest Hospital Location', onClick: () => handleEditClick(locationId) },
+    ];
+  
+    if (!hasParkingLocation) {
+      menuItems.push({ label: 'Add Parking Location', onClick: () => handleEditParkingLocationForm(locationId) });
+    }
+  
+    return menuItems;
+  };
+
+  const parkingLocationDetailsMenu = (locationId) => [
+    { label: 'Edit Parking Location', onClick: () => handleEditParkingLocationForm(locationId) },
   ];
+
+  // const hospitalLocationDetailsMenu = (locationId) => [
+  //   { label: 'Edit Parking Location', onClick: () => handleEditHospitalLocationForm(locationId) },
+  // ];
 
   const apiKey = '2fddf0abeecb6640ae37fdf8735cb722';
 
@@ -234,6 +279,21 @@ const updateStatus = (newStatus) => {
 
   const date = callSheet.callSheetDate;
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
 
 
@@ -245,12 +305,36 @@ const updateStatus = (newStatus) => {
                             <CallSheetPreview />
                         </SlideUpModal>
 
-                        <NewLocationForm
+                        {/* <NewLocationForm
                           isRightPanelOpen={isToggleLocationPanelOpen}
                           toggleRightPanel={toggleLocationPanel}
                           callSheet={callSheet}
                           project={project}
-                        />
+                        /> */}
+
+                        <LocationEdit
+                          isRightPanelOpen={isToggleLocationPanelOpen}
+                          toggleRightPanel={toggleLocationPanel}
+                          callSheet={callSheet}
+                          project={project}
+                          locations={locations}
+                        />      
+
+                        {/* <ParkingLocationEdit
+                          isRightPanelOpen={isToggleEditParkingLocationFormPanelOpen}
+                          toggleRightPanel={toggleParkingLocationEditPanel}
+                          callSheet={callSheet}
+                          project={project}
+                          locations={locations}
+                        />      
+
+                        <HospitalLocationEdit
+                          isRightPanelOpen={isToggleEditHospitalLocationFormPanelOpen}
+                          toggleRightPanel={toggleHospitalLocationEditPanel}
+                          callSheet={callSheet}
+                          project={project}
+                          locations={locations}
+                        />       */}
 
                         <EditCallSheetForm
                           isRightPanelOpen={isToggleCallSheetOpen}
@@ -308,14 +392,11 @@ const updateStatus = (newStatus) => {
                                                   <div className="location-exists-div">
                                                     {locations.map((location) => (
                                                       <div key={location.id} className="mb-4">
-                                                        {/* Render basic location details */}
-                                                        {location && <LocationDetails header="Location Details" location={location} showButtonIcon={true} menuItems={locationDetailsList}/>}
+                                                        {location && <LocationDetails header="Location Details" location={location} showButtonIcon={true} menuItems={locationDetailsMenu(location.id)}/>}
 
-                                                        {/* Conditionally render parking information */}
-                                                        {location.parking_location && <LocationDetails header="Parking Details" location={location.parking_location} menuItems={locationDetailsList}/>}
+                                                        {location.parking_location && <LocationDetails header="Parking Details" location={location.parking_location} showButtonIcon={true} menuItems={parkingLocationDetailsMenu(location.parking_location_id)} />}
 
-                                                        {/* Conditionally render hospital information */}
-                                                        {location.hospital_location && <LocationDetails header="Hospital Details" location={location.hospital_location} />}
+                                                        {location.hospital_location && <LocationDetails header="Hospital Details" location={location.hospital_location} showButtonIcon={true} menuItems={hospitalLocationDetailsMenu(location.hospital_location_id)} />}
                                                       </div>
                                                     ))}
                                                   </div>

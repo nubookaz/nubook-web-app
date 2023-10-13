@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Tooltip from '@mui/joy/Tooltip';
 import Input from '@mui/joy/Input';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 
@@ -14,7 +13,7 @@ import Switch, { switchClasses } from '@mui/joy/Switch';
 
 
 
-function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, checkFormStatus }) {
+function CallSheetDetailsForm({ callSheetData, setCallSheetTitle, setCallSheetDate, checkFormStatus }) {
     const { callSheetTitle, callSheetDate } = callSheetData;
     const [checked, setChecked] = React.useState(false);
 
@@ -27,11 +26,6 @@ function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, 
     <div >
         <div className="mb-6 form-group">
             <div className='w-full input-group mb-2'>        
-                <Tooltip
-                    title="Call Sheet Title is required"
-                    placement="top"
-                    arrow
-                    >
                  <Input
               placeholder="Call Sheet Title"
               defaultValue={callSheetTitle}
@@ -39,18 +33,11 @@ function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, 
               onChange={(e) => {
                 const newCallSheetTitle = e.target.value;
                 setCallSheetTitle(newCallSheetTitle);
-                console.log('New Title:', newCallSheetTitle);
               }}
               
             />
-                </Tooltip>
             </div>
             <div className='w-full input-group'>
-                <Tooltip
-                    title="Call Sheet Date is Required"
-                    placement="top"
-                    arrow
-                    >
            <Input
               placeholder="Call Sheet Date"
               type="date"
@@ -60,10 +47,9 @@ function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, 
                 setCallSheetDate(newCallSheetDate); // Update parent component's state
               }}
             />
-                </Tooltip>
             </div>
         </div>
-        <div className="mb-6 mt-8 form-group">
+        {/* <div className="mb-6 mt-8 form-group">
             <div className='primary-color'>
                 <h2>Settings</h2>
                 <p className='mb-8'>You can adjust sending options here</p>
@@ -217,7 +203,7 @@ function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, 
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
     </div>
 
 
@@ -232,4 +218,4 @@ function CallSheetDetails({ callSheetData, setCallSheetTitle, setCallSheetDate, 
 
 
 
-export default CallSheetDetails;
+export default CallSheetDetailsForm;

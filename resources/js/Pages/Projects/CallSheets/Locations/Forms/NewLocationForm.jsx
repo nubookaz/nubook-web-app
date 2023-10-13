@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { router } from '@inertiajs/react';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+
+import MainLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/LocationForm';
+import ParkingLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/ParkingLocationForm';
+import HospitalLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/HospitalLocationForm';
+
 import RightPanel from '@/Components/Layouts/RightPanel';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CircularButton from '@/Components/Buttons/CircularButton';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import Input from '@mui/joy/Input';
-import Tooltip from '@mui/joy/Tooltip';
-import ParkingLocationForm from '@/Pages/Projects/CallSheets/Locations/ParkingLocationForm';
-import HospitalLocationForm from '@/Pages/Projects/CallSheets/Locations/HospitalLocationForm';
-
 
 
 
@@ -85,10 +85,19 @@ export default function NewLocationForm({ callSheet, ...props }) {
         setHospitalLocation({ ...hospitalLocation, [name]: value });
     };
 
-
     const handleCloseButtonClick = () => {
         toggleRightPanel(false);
     };
+
+
+
+
+
+
+
+
+
+
 
 
     // Function to validate the main location
@@ -141,6 +150,15 @@ const prepareHospitalLocationData = () => {
     }
     return null;
 };
+
+
+
+
+
+
+
+
+
 
 
 
@@ -211,6 +229,10 @@ const handleSave = async () => {
                     
                 </div> 
             }
+
+
+
+            
             panel_footer={
                 <div className='flex flex-row gap-4'>
                     <CircularButton icon={faXmark} size="small" onClick={handleCloseButtonClick} />
@@ -218,70 +240,15 @@ const handleSave = async () => {
                 </div>
               }
             >
+                
+
+
+
+
 
                 <div>
                     <div className="mb-10 form-group">
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    value={mainLocation.name}
-                                    onChange={handleMainLocationChange}
-                                    placeholder="Name"
-                                />
-                        </div>                       
-                        <div className='w-full mb-2 input-group'>
-                                <Input
-                                    type="text"
-                                    name="street_address"
-                                    value={mainLocation.street_address}
-                                    onChange={handleMainLocationChange}
-                                    placeholder="Street Address"
-                                />
-                        </div>              
-                        <div className='flex flex-row gap-2 mb-2 input-group'>
-         
-                            <div className='w-full'>
-                               
-                                    <Input
-                                        type="text"
-                                        name="city"
-                                        value={mainLocation.city}
-                                        onChange={handleMainLocationChange}
-                                        placeholder="City"
-                                    />
-                            </div>                       
-                            <div className='w-[9rem]'>
-                              
-                                    <Input
-                                        type="text"
-                                        name="state"
-                                        value={mainLocation.state}
-                                        onChange={handleMainLocationChange}
-                                        placeholder="State"
-                                    />
-                            </div>                       
-                            <div className='w-[10rem]'>
-
-                                    <Input
-                                        type="text"
-                                        name="zip_code"
-                                        value={mainLocation.zip_code}
-                                        onChange={handleMainLocationChange}
-                                        placeholder="ZIP Code"
-                                    />
-                            </div>
-                        </div>
-                        <div className='w-full mb-2 input-group'>
-
-                                <Input
-                                    type="text"
-                                    name="country"
-                                    value={mainLocation.country}
-                                    onChange={handleMainLocationChange}
-                                    placeholder="Country"
-                                />
-                        </div>    
+                        <MainLocationForm mainLocation={mainLocation} onMainLocationChange={handleMainLocationChange} />
                     </div>
                     <div className="mb-10 form-group">
                         <ParkingLocationForm parkingLocation={parkingLocation} onParkingLocationChange={handleParkingLocationChange} />
@@ -290,6 +257,14 @@ const handleSave = async () => {
                         <HospitalLocationForm hospitalLocation={hospitalLocation} onHospitalLocationChange={handleHospitalLocationChange} />
                     </div>
                 </div>
+
+
+
+
+
+
+
+
 
              </RightPanel>
 

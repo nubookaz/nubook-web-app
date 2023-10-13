@@ -68,8 +68,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 
-
-
     protected $routeMiddleware = [
         'requires_email_verification' => \App\Http\Middleware\EmailVerifiedMiddleware::class,
         'requires_code_verification' => \App\Http\Middleware\CodeVerifiedMiddleware::class,

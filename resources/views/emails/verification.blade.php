@@ -38,10 +38,9 @@
     <div class="company-name">Nubook</div>
     <div class="email-container">
         <div class="email-body">
-            <p>Hello {{ $user->first_name }},</p>
+            <p>Hello,</p>
             <p>Thank you for registering. To verify your email, please use the following one-time code:</p>
             <p><strong>{{ $verificationCode }}</strong></p>
-            Click [here]({{ $verificationUrl }}) to verify your email.
 
             <p>If you didn't register, you can ignore this email.</p>
         </div>

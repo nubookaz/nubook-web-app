@@ -42,52 +42,14 @@ Route::get('/', function () {
 });
 
 
-// Route::middleware(['guest'])->group(function () {
-//     // Registration routes
-//     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
-//     Route::post('/register', [RegisteredUserController::class, 'store'])->name('registration.store');
-
-//     // Verification route
-//     Route::get('/register/verify/form', [RegisteredUserController::class, 'showVerificationForm'])->name('registration.verification.form');
-//     Route::get('/register/verify/{code}', [RegisteredUserController::class, 'verificationCode'])->name('registration.verification');
-//     Route::post('/register/verify', [RegisteredUserController::class, 'verifyCode'])->name('registration.verifyCode');
-
-//     Route::get('/register/personal-info/form', [RegisteredUserController::class, 'showPersonalInfo'])->name('registration.personal.form');
-//     Route::post('/register/personal-info', [RegisteredUserController::class, 'storePersonalInfo'])->name('registration.storePersonalInfo');
-
-//     Route::get('/register/company-info/form', [RegisteredUserController::class, 'showCompanyInfo'])->name('registration.company.form');
-//     Route::post('/register/company-info', [RegisteredUserController::class, 'storeCompanyInfo'])->name('registration.storeCompanyInfo');
-// });
-
-
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
-    Route::post('/register', [RegisteredUserController::class, 'store'])->name('registration.store');
-});
-
-Route::middleware(['requires_email_verification'])->group(function () {
-    Route::get('/register/verify/form', [RegisteredUserController::class, 'showVerificationForm'])->name('registration.verification.form');
-    Route::get('/register/verify/{code}', [RegisteredUserController::class, 'verificationCode'])->name('registration.verification');
+    Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
     Route::post('/register/verify', [RegisteredUserController::class, 'verifyCode'])->name('registration.verifyCode');
-});
-
-Route::middleware(['requires_email_verification', 'requires_code_verification'])->group(function () {
-    Route::get('/register/personal-info/form', [RegisteredUserController::class, 'showPersonalInfo'])->name('registration.personal.form');
     Route::post('/register/personal-info', [RegisteredUserController::class, 'storePersonalInfo'])->name('registration.personal.store');
-});
-
-Route::middleware(['requires_email_verification', 'requires_code_verification', 'requires_personal_info'])->group(function () {
-    Route::get('/register/company-info/form', [RegisteredUserController::class, 'showCompanyInfo'])->name('registration.company.form');
     Route::post('/register/company-info', [RegisteredUserController::class, 'storeCompanyInfo'])->name('registration.company.store');
 });
-
-
-
-
-
-
-
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -111,13 +73,52 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('{callSheetId}/edit', [CallSheetController::class, 'edit'])->name('projects.callSheets.edit');
             Route::patch('/{callSheetId}', [CallSheetController::class, 'update'])->name('projects.callSheets.update');
 
-                    // Add routes for managing locations within a call sheet
+            //         // Add routes for managing locations within a call sheet
+            // Route::prefix('{callSheetId}/locations')->group(function () {
+            //     Route::get('create', [LocationsController::class, 'create'])->name('');
+            //     Route::post('/', [LocationsController::class, 'store'])->name('locations.store');
+            //     Route::get('{locationId}/edit', [LocationsController::class, 'edit'])->name('locations.edit');
+
+
+
+
+
+            //     // Route for updating the location
+            //     Route::patch('/locations/{locationId}', [LocationsController::class, 'updateMainLocation'])->name('locations.updateMainLocation');
+            //     // Store a new parking location
+            //     Route::post('/parking-locations', [LocationsController::class, 'storeParkingLocation'])->name('locations.storeParkingLocation');
+
+            //     // Update an existing parking location
+            //     Route::patch('/parking-locations/{locationId}', [LocationsController::class, 'updateParkingLocation'])->name('locations.updateParkingLocation');
+            // });
+
+
             Route::prefix('{callSheetId}/locations')->group(function () {
-                Route::get('create', [LocationsController::class, 'create'])->name('');
+                // Create a location
+                Route::get('create', [LocationsController::class, 'create'])->name('locations.create');
                 Route::post('/', [LocationsController::class, 'store'])->name('locations.store');
+    
+                // Edit a location
                 Route::get('{locationId}/edit', [LocationsController::class, 'edit'])->name('locations.edit');
-                Route::patch('/{locationId}', [LocationsController::class, 'update'])->name('locations.update');
+    
+                // Update a location
+                Route::patch('{locationId}', [LocationsController::class, 'update'])->name('locations.update');
+    
+                // Soft delete a location
+                Route::delete('{locationId}/soft-delete', [LocationsController::class, 'softDelete'])->name('locations.softDelete');
+    
+                // Destroy a location
+                Route::delete('{locationId}/destroy', [LocationsController::class, 'destroy'])->name('locations.destroy');
+    
+                // Other routes for parking locations
+                // Route::post('parking-locations', [LocationsController::class, 'storeParkingLocation'])->name('locations.storeParkingLocation');
+                // Route::patch('parking-locations/{locationId}', [LocationsController::class, 'updateParkingLocation'])->name('locations.updateParkingLocation');
             });
+
+
+
+
+            
             
         });
 

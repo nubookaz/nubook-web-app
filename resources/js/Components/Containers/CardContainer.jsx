@@ -10,7 +10,7 @@ import Dropdown from '@mui/joy/Dropdown';
 
 
 
-function CardComponent({ children, header, showButtonIcon, openPage, openToolkit, className, size, backgroundColor, menuItems }) {
+function CardContainer({ children, header, showButtonIcon, openPage, openToolkit, className, size, backgroundColor, menuItems }) {
 
     const getSizeClass = () => {
         switch (size) {
@@ -39,7 +39,7 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
     const containerClasses = `container-base card-container flex flex-col gap-4 ${getSizeClass()} ${className} ${getBackgroundColorClass()}`;
 
     // Set default prop values
-    CardComponent.defaultProps = {
+    CardContainer.defaultProps = {
         menuItems: [], // Provide an empty array as a default value
     };
         
@@ -57,14 +57,13 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
                                     <FontAwesomeIcon icon={faEllipsisVertical} />
                                 </MenuButton>
                                 <Menu placement="top-start">
-                                {menuItems &&
+                                {Array.isArray(menuItems) &&
                                     menuItems.map((item, index) => (
-                                        <MenuItem key={index} onClick={item.onClick}>
-                                             {item.label}
-                                        </MenuItem>
-                                ))}
+                                    <MenuItem key={index} onClick={item.onClick}>
+                                        {item.label}
+                                    </MenuItem>
+                                    ))}
                                 </Menu>
-                              
                             </Dropdown>
                             {/* <button onClick={handleButtonClick} className="secondary-color">
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
@@ -89,4 +88,4 @@ function CardComponent({ children, header, showButtonIcon, openPage, openToolkit
 
 
 
-export default CardComponent;
+export default CardContainer;

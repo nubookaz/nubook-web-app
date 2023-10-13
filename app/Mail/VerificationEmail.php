@@ -26,7 +26,6 @@ class VerificationEmail extends Mailable
         return $this->markdown('emails.verification')->with([
             'user' => $this->user,
             'verificationCode' => $this->verificationCode,
-            'verificationUrl' => route('registration.verification.form'), // Update to the form route
         ]);
     }
     

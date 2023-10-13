@@ -88,7 +88,7 @@ export default function Login({ status, canResetPassword }) {
             footer: (
                 <div>
                     <div className="mb-4">
-                        <SecondaryButton onClick={submit} className="ml-4" disabled={processing}>
+                        <SecondaryButton onClick={submit} disabled={processing}>
                             Login
                         </SecondaryButton>
                     </div>

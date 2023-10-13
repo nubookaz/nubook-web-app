@@ -10,7 +10,6 @@ import { faLocationArrow, faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 export default function LocationDetails({ location, header, showButtonIcon, menuItems }) {
 
-
   return (
 
     <CardContainer className="mt-2" header={header} showButtonIcon={showButtonIcon} menuItems={menuItems}>

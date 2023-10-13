@@ -3,6 +3,18 @@ import Input from '@mui/joy/Input';
 
  const HospitalLocationForm = ({ hospitalLocation, onHospitalLocationChange }) => {
 
+    const defaultHospitalLocation = {
+        name: '',
+        street_address: '',
+        city: '',
+        state: '',
+        zip_code: '',
+        country: '',
+    };
+
+    const currentHospitalLocation = hospitalLocation || defaultHospitalLocation;
+
+
     return (
         
             <div>
@@ -12,7 +24,7 @@ import Input from '@mui/joy/Input';
                         <Input
                             type="text"
                             name="name"
-                            value={hospitalLocation.name}
+                            value={currentHospitalLocation.name}
                             onChange={onHospitalLocationChange}
                             placeholder="Name"
                         />
@@ -21,7 +33,7 @@ import Input from '@mui/joy/Input';
                         <Input
                             type="text"
                             name="street_address"
-                            value={hospitalLocation.street_address}
+                            value={currentHospitalLocation.street_address}
                             onChange={onHospitalLocationChange}
                             placeholder="Street Address"
                         />
@@ -32,7 +44,7 @@ import Input from '@mui/joy/Input';
                             <Input
                                 type="text"
                                 name="city"
-                                value={hospitalLocation.city}
+                                value={currentHospitalLocation.city}
                                 onChange={onHospitalLocationChange}
                                 placeholder="City"
                             />
@@ -41,7 +53,7 @@ import Input from '@mui/joy/Input';
                             <Input
                                 type="text"
                                 name="state"
-                                value={hospitalLocation.state}
+                                value={currentHospitalLocation.state}
                                 onChange={onHospitalLocationChange}
                                 placeholder="State"
                             />
@@ -50,7 +62,7 @@ import Input from '@mui/joy/Input';
                             <Input
                                 type="text"
                                 name="zip_code"
-                                value={hospitalLocation.zip_code}
+                                value={currentHospitalLocation.zip_code}
                                 onChange={onHospitalLocationChange}
                                 placeholder="ZIP Code"
                             />
@@ -60,7 +72,7 @@ import Input from '@mui/joy/Input';
                         <Input
                             type="text"
                             name="country"
-                            value={hospitalLocation.country}
+                            value={currentHospitalLocation.country}
                             onChange={onHospitalLocationChange}
                             placeholder="Country"
                         />

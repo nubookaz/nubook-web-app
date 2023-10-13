@@ -35,10 +35,10 @@ export default function Guest({ children }) {
                                 </p>
                         </ImageContainer>
 
-                        <CardContainer className="form-container flex flex-col justify-between">
+                        <CardContainer className="form-container !gap-2 justify-between">
                             <h2 className="logo-name">Nubook</h2>
 
-                            <p className="secondary-color text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum, rem iste at, eligendi totam doloremque tempora esse illum perspiciatis autem.</p>
+                            <p className="secondary-color text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum.</p>
 
                             <h1 className="primary-color mb-4 text-4xl">Welcome! Sign up for an account.</h1>
 

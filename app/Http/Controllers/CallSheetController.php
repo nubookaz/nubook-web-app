@@ -83,7 +83,7 @@ class CallSheetController extends Controller
         //  $locations = $callSheet->locations; // Assuming $callSheet is an instance of CallSheet
 
         // Render the project edit page using Inertia.js
-        return Inertia::render('Projects/CallSheets/CallSheetEdit', [
+        return Inertia::render('Projects/CallSheets/CallSheetDetails', [
             'project' => $project, // Pass the project data
             'callSheet' => $callSheet, // Pass the call sheet data to the edit page
             'locations' => $locations, // Pass the associated locations data to the edit page
