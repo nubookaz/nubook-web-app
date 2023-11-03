@@ -40,6 +40,7 @@ function NewProjectForm(props) {
 
     const [companyName, setCompanyName] = useState('');
     const [einNumber, setEinNumber] = useState('');
+    console.log(einNumber);
 
     const [clientFirstName, setClientFirstName] = useState('');
     const [clientMiddleInitial, setClientMiddleInitial] = useState('');
@@ -380,7 +381,6 @@ function NewProjectForm(props) {
                 <ProjectClientForm
                     companyName={companyName}
                     setCompanyName={setCompanyName}
-                    einNumber={einNumber}
                     setEinNumber={setEinNumber}
                     clientFirstName={clientFirstName}
                     setClientFirstName={setClientFirstName}

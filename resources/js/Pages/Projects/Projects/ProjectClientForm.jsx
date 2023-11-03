@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import Input from '@mui/joy/Input';
 import Textarea from '@mui/joy/Textarea';
 import Checkbox from '@mui/joy/Checkbox';
-import Tooltip from '@mui/joy/Tooltip';
 import CompanyEIN from '@/Components/CompanyEIN';
 
 function ProjectClientForm(props) {
-    const [einValue, setEINValue] = useState('');
   
     // Function to handle changes to the EIN input value
     const handleEINChange = (formattedEIN) => {
-      setEINValue(formattedEIN);
+      setEinNumber(formattedEIN);
       // Call your checkFormStatus or any other logic here as needed
       checkFormStatus();
     };
@@ -20,7 +17,6 @@ function ProjectClientForm(props) {
 
     const {
         companyName,
-        einNumber,
         setCompanyName,
         setEinNumber,
         clientFirstName,
@@ -54,27 +50,21 @@ function ProjectClientForm(props) {
     return (
         <div className='new-project-form'>
             <div className='mb-8 form-group'>
-            <Checkbox
-                label="This is a brand new client"
-                checked={props.companyTypeChecked} // Use the prop here
-                onChange={(event) => {
-                    const isChecked = event.target.checked;
-                    props.handleCompanyTypeCheckedChange(isChecked); // Call the function with the value
-                    console.log(isChecked);
-                }}
-            />
+                <Checkbox
+                    label="This is a brand new client"
+                    checked={props.companyTypeChecked} // Use the prop here
+                    onChange={(event) => {
+                        const isChecked = event.target.checked;
+                        props.handleCompanyTypeCheckedChange(isChecked); // Call the function with the value
+                        console.log(isChecked);
+                    }}
+                />
 
             </div>
 
             <div className='mb-8 form-group'>
-                <Tooltip
-                    title={companyTypeChecked ? "Company Name is required" : ""}
-                    open={nextButtonClicked && companyTypeChecked && !companyName}
-                    placement="top"
-                    arrow
-                >
                     {companyTypeChecked ? (
-                        <Input
+                        <input
                             className="mb-4"
                             placeholder="Company Name"
                             value={companyName}
@@ -86,7 +76,7 @@ function ProjectClientForm(props) {
                             }}
                         />
                     ) : (
-                        <Input
+                        <input
                             className="mb-4"
                             placeholder="Company Name"
                             value={companyName}
@@ -97,7 +87,6 @@ function ProjectClientForm(props) {
                             }}
                         />
                     )}
-                </Tooltip>
             </div>
 
             {companyName && (
@@ -119,12 +108,6 @@ function ProjectClientForm(props) {
 
                 <div className='mb-8 form-group'>
 
-                    <Tooltip
-                        title={companyOwnerChecked ? "Please provide a registered EIN number" : ""}
-                        open={nextButtonClicked && companyOwnerChecked}
-                        placement="top"
-                        arrow
-                    >
 
                 {companyOwnerChecked ? (
                     <div>
@@ -139,15 +122,13 @@ function ProjectClientForm(props) {
                          <div></div>
 
                     )}
-                        </Tooltip>
                 </div>
 
                 
             <div className='mb-8 form-group'>
                 <h3 className='mb-4 font-semibold primary-color'>Client Contact</h3>
                 <div className='flex flex-row gap-2 mb-4'>
-                    <Input
-                        fullWidth
+                    <input
                         placeholder="First Name"
                         value={clientFirstName}
                         onChange={(e) => {
@@ -156,7 +137,7 @@ function ProjectClientForm(props) {
                             const isFormFilled = checkFormStatus();
                         }}
                     />
-                    <Input
+                    <input
                         placeholder="Middle Initial"
                         value={clientMiddleInitial}
                         onChange={(e) => {
@@ -166,9 +147,8 @@ function ProjectClientForm(props) {
                         }}
                     />
                 </div>
-                <Input
+                <input
                     sx={{ mb: 2 }}
-                    fullWidth
                     placeholder="Last Name"
                     value={clientLastName}
                     onChange={(e) => {
@@ -177,8 +157,7 @@ function ProjectClientForm(props) {
                         const isFormFilled = checkFormStatus();
                     }}
                 />
-                <Input
-                    fullWidth
+                <input
                     placeholder="Job Title"
                     value={clientJobTitle}
                     onChange={(e) => {
@@ -189,8 +168,7 @@ function ProjectClientForm(props) {
                 />
             </div>
             <div className='mb-8 form-group'>
-                <Input
-                    fullWidth
+                <input
                     sx={{ mb: 2 }}
                     placeholder="Email Address"
                     value={clientEmailAddress}
@@ -200,8 +178,7 @@ function ProjectClientForm(props) {
                         const isFormFilled = checkFormStatus();
                     }}
                 />
-                <Input
-                    fullWidth
+                <input
                     placeholder="Phone Number"
                     value={clientPhoneNumber}
                     onChange={(e) => {

@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompaniesTable extends Migration
+class CreateProductionCompaniesTable extends Migration
 {
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('production_companies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained(); // Add foreign key to users table
             $table->string('name')->nullable();
@@ -22,6 +22,6 @@ class CreateCompaniesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('production_companies');
     }
 }

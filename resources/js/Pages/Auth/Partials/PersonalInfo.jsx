@@ -5,6 +5,7 @@ import { useForm } from '@inertiajs/react';
 
 
 export default function PersonalInfo({ onUpdatePersonalInfo }) {
+    
     const { data, setData } = useForm({
         first_name: '',
         last_name: '',

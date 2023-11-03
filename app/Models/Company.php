@@ -9,15 +9,11 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'ein', 'job_title', 'number_of_employees', 'referral'];
+    protected $fillable = [ 'name', 'ein' ];
 
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class, 'company_project', 'company_id', 'project_id');
-    }
 
-    public function user()
+    public function clients()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsToMany(Client::class, 'client_id');
     }
 }

@@ -34,7 +34,7 @@ export default function Login({ status, canResetPassword }) {
             form: (
                 <div>
                         <div>
-                            <Input
+                            <input
                                 id="email"
                                 type="email"
                                 name="email"
@@ -50,7 +50,7 @@ export default function Login({ status, canResetPassword }) {
                         </div>
                         <div className="mt-4">
             
-                                <Input
+                                <input
                                     id="password"
                                     type="password"
                                     name="password"

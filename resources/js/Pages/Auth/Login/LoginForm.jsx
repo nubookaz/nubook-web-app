@@ -1,63 +1,99 @@
+import { useEffect } from 'react';
+import { useForm } from '@inertiajs/react';
+import Checkbox from '@/Components/Forms/Checkbox';
 
-<form onSubmit={submit}>
-                                 <div>
-                                    <Input
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={data.email}
-                                        autoComplete="username"
-                                        onChange={(e) => setData('email', e.target.value)}
-                                        sx={{
-                                            "--Input-focusedThickness": "1px",
-                                            "--Input-minHeight": "56px",
-                                            "--Input-paddingInline": "26px"
-                                        }}
-                                    />
-                                </div>
-                                <div className="mt-4">
-                    
-                                        <Input
-                                            id="password"
-                                            type="password"
-                                            name="password"
-                                            value={data.password}
-                                            autoComplete="current-password"
-                                            onChange={(e) => setData('password', e.target.value)}
-                                        />
 
-                                </div>
-                                <div className="block mt-4 flex justify-between items-center">
-                                    <div className="flex items-center">
-                                        <label className="flex items-center">
-                                            <Checkbox
-                                                name="remember"
-                                                checked={data.remember}
-                                                onChange={(e) => setData('remember', e.target.checked)}
-                                            />
-                                            <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                                        </label>
-                                    </div>
-                                    {canResetPassword && (
-                                        <div className="text-right secondary-color">
-                                            <Link
-                                                href={route('password.request')}
-                                                className="underline text-sm hover:primary-color rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                            >
-                                                Forgot your password?
-                                            </Link>
-                                        </div>
-                                    )}
-                                </div>
+export default function LoginForm({ canResetPassword, onUpdateLoginInfo }) {
 
-                                <div className="flex items-center justify-start my-16">
+    const { data, setData, reset } = useForm({
+        email: '',
+        password: '',
+        remember: false,
+    });
 
-                                    <SecondaryButton className="ml-4" disabled={processing}>
-                                        Log in
-                                    </SecondaryButton>
-                                </div>
+    useEffect(() => {
+        return () => {
+            reset('password');
+        };
+    }, []);
 
-                                <div>
-                                    <Link href={route('register')} className="text-sm secondary-color">Don’t have an account? Sign up!</Link>
-                                </div>
-                            </form>
+
+    const handleChange = (field, value) => {
+        setData(field, value);
+    
+        // Notify the parent about the updated login info
+        onUpdateLoginInfo({
+            ...data,
+            [field]: value,
+        });
+    };
+    
+
+
+
+    
+        // useEffect(() => {
+        //     // Set the form data initially when the component mounts
+        //     setFormData(data);
+        //     return () => {
+        //         reset('password');
+        //     };
+        // }, [data, setFormData, reset]);
+    
+
+
+    return (
+        <div>
+            <div>
+                <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder='Email Address'
+                    value={data.email}
+                    autoComplete="email"
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    required
+                />
+            </div>
+            <div className="mt-4">
+
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder='Password'
+                    value={data.password}
+                    autoComplete="current-password"
+                    onChange={(e) => handleChange('password', e.target.value)}
+                    required
+                />
+
+            </div>
+            <div className="block mt-4 flex justify-between items-center">
+                <div className="flex items-center">
+                    <label className="flex items-center">
+                        <Checkbox
+                            name="remember"
+                            checked={data.remember}
+                            onChange={(e) => handleChange('remember', e.target.checked)}
+                        />
+                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                    </label>
+                </div>
+                {canResetPassword && (
+                    <div className="text-right secondary-color">
+                        <Link
+                            href={route('password.request')}
+                            className="underline text-sm hover:primary-color rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Forgot your password?
+                        </Link>
+                    </div>
+                )}
+            </div>
+
+        </div>
+
+    );
+}

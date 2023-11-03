@@ -12,7 +12,7 @@ class CreateCompanyClientTable extends Migration
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('client_id');
-            $table->string('ein')->nullable(); // Optional EIN
+            $table->string('ein')->nullable();
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');

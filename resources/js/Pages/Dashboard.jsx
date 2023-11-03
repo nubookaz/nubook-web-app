@@ -3,13 +3,30 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
 import CardContainer from '@/Components/Containers/CardContainer';
 import ImageContainer from '@/Components/Containers/ImageContainer';
-
-import Banner from '@/Components/Layouts/Banner';
+import Modal from '@/Components/Modals/Modal';
+import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 
 import CardLayout from '@/Components/Layouts/CardLayout';
 
 export default function Dashboard({ auth }) {
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentStep, setCurrentStep] = useState('');
+
+  useEffect(() => {
+    if (!auth.user.email_verified) {
+      setCurrentStep('verification');
+      setIsModalOpen(true);
+    } else if (!auth.user.personal_info_completed ) {
+      setCurrentStep('personalInfo');
+      setIsModalOpen(true);
+    } else if (!auth.user.company_info_completed){
+      setCurrentStep('companyInfo');
+      setIsModalOpen(true);
+    } else if (auth.user.registration_complete){
+      setIsModalOpen(false);
+    }
+  }, [auth]);
+
   const bannerProps = {
     showGreeting: true, // Customize these props based on your conditions
     showProfilePhoto: true,
@@ -17,13 +34,18 @@ export default function Dashboard({ auth }) {
     // Add any other props you need for this specific page's banner
   };
 
-
   return (
-    <AuthenticatedLayout user={auth.user} bannerProps={bannerProps}>
+    <AuthenticatedLayout bannerProps={bannerProps}>
       {{
         surface: (
           <div className="relative w-full h-full">
-
+            <Modal show={isModalOpen}>
+              <VerificationProcess 
+                currentStep={currentStep}
+                setCurrentStep={setCurrentStep}
+                setIsModalOpen={setIsModalOpen}
+                />
+            </Modal>
           </div>
         ),
 

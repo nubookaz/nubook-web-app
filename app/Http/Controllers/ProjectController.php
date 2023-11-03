@@ -20,7 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         // Retrieve the user's projects
-        $projects = Project::where('user_id', auth()->id())->with('companies')->get();
+        $projects = Project::where('user_id', auth()->id())->with('productionCompany')->get();
 
         // // Render the projects index page using Inertia.js
         return Inertia::render('Projects/ProjectsOverview', [

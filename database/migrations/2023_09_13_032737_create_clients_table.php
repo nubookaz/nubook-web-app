@@ -10,12 +10,11 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('company_email');
-            $table->unsignedBigInteger('address_id')->nullable();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('job_title');
+            $table->string('email');
             $table->timestamps();
-
-            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

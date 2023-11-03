@@ -25,14 +25,19 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function companies()
+    public function productionCompany()
     {
-        return $this->belongsToMany(Company::class, 'company_project', 'project_id', 'company_id');
+        return $this->belongsToMany(ProductionCompany::class, 'production_company_project', 'project_id', 'company_id');
     }
 
     public function callSheets()
     {
         return $this->hasMany(CallSheet::class);
+    }
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class, 'client_project');
     }
 
 }

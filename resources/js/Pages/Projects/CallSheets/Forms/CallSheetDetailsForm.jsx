@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Input from '@mui/joy/Input';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 
 
@@ -26,7 +25,7 @@ function CallSheetDetailsForm({ callSheetData, setCallSheetTitle, setCallSheetDa
     <div >
         <div className="mb-6 form-group">
             <div className='w-full input-group mb-2'>        
-                 <Input
+                 <input
               placeholder="Call Sheet Title"
               defaultValue={callSheetTitle}
 
@@ -38,7 +37,7 @@ function CallSheetDetailsForm({ callSheetData, setCallSheetTitle, setCallSheetDa
             />
             </div>
             <div className='w-full input-group'>
-           <Input
+           <input
               placeholder="Call Sheet Date"
               type="date"
               defaultValue={callSheetDate}

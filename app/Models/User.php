@@ -61,8 +61,14 @@ class User extends Authenticatable
         return $this->hasOne(Address::class);
     }
 
-    public function company()
+    public function productionCompany()
     {
-        return $this->hasOne(Company::class, 'user_id');
+        return $this->hasOne(ProductionCompany::class, 'user_id');
     }
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class, 'user_client');
+    }
+    
 }

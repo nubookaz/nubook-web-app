@@ -12,9 +12,46 @@ select {
     border: 1px solid var(--tertiary-color) !important;
     outline: none !important;
     width: 100%;
+    color: var(--primary-color) !important;
 }
 
 input::placeholder,
 select::placeholder {
     font-size: .85rem;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border: 0px transparent;
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+input:focus,
+textarea:active {
+    outline: none;
+    border: 0px;
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+
+/* Joy MUI Components */
+.css-1btz9nl-JoyTextarea-root {
+    --Textarea-focused: 0 !important;
+    --Textarea-focusedThickness: var(--joy-focus-thickness, 0px) !important;
+}
+
+.css-nubfs2-JoySelect-root,
+.css-gawb0e-JoyTextarea-root {
+    border-radius: var(--rounded-corners) !important;
+    padding: .75rem 1rem !important;
+    background-color: var(--light-color) !important;
+    border: 1px solid var(--tertiary-color) !important;
+    outline: none !important;
+    width: 100%;
+    color: var(--primary-color) !important;
 }

@@ -5,8 +5,11 @@ function CompanyEIN({ onEINChange, checkFormStatus }) {
   const [einNumber, setEinNumber] = useState('');
 
   useEffect(() => {
-    checkFormStatus(); // Call the checkFormStatus function when the component mounts
-  }, []); // Empty dependency array means this effect runs once on mount
+    if (checkFormStatus) {
+      checkFormStatus();  
+    }  
+  }, []); 
+
 
   const formatEIN = (value) => {
     // Remove any non-digit characters
@@ -29,14 +32,14 @@ function CompanyEIN({ onEINChange, checkFormStatus }) {
     const formattedEinNumber = formatEIN(newEinNumber);
 
     setEinNumber(formattedEinNumber);
-
-    onEINChange(formattedEinNumber); // Pass the formatted EIN to the parent component
+    onEINChange('ein_number', formattedEinNumber); // Pass the formatted EIN to the parent component
   };
 
   return (
     <div>
-      <Input
+      <input
         className="mb-4"
+        name="ein_number"
         placeholder="EIN Number (XX-XXXXXXX)"
         maxLength="9" // Limit input to 10 characters
         value={einNumber}

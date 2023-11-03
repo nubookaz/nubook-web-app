@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Company;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 trait ProjectTrait
 
@@ -14,8 +15,6 @@ trait ProjectTrait
     public function createProject(Request $request)
     {
         // Access the JSON data directly
-
-        // dd("1", $projectData);
 
         if ($request->has('projectData')) {
             // Extract the projectData from the request
@@ -27,10 +26,6 @@ trait ProjectTrait
             // Handle the case where projectData is not present in the request
             $projectData = $request->all();
         }
-        
-
-        // dd("2", $projectData);
-
 
         // Validate the incoming data within the projectData section
         $validatedData = Validator::make($projectData, [
@@ -46,7 +41,7 @@ trait ProjectTrait
         ])->validate();
 
         // Assuming you have the user's ID available, replace $userId with the actual user ID
-        $userId = auth()->user()->id; // Example: Get the user's ID from the authenticated user
+        $userId = auth()->user()->id; 
 
         // Merge the validated projectData with user_id
         $projectData['user_id'] = $userId;
@@ -62,8 +57,7 @@ trait ProjectTrait
 
 
     public function createCompany(Request $request)
-    {
-        // Access the JSON data directly
+    {        // Access the JSON data directly
         $companyData = $request->json('companyData');
 
         // Validate the incoming JSON data
@@ -72,10 +66,13 @@ trait ProjectTrait
             'einNumber' => 'nullable|string|max:255', // Optional EIN field
         ])->validate();
 
+        $userId = Auth::id();
+
         // Create a new company instance and fill it with validated data
         $company = Company::create([
             'name' => $validatedData['companyName'],
             'ein' => $validatedData['einNumber'],
+            'user_id' => $userId,
         ]);
 
         return $company;

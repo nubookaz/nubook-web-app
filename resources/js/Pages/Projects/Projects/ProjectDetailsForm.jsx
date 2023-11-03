@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import Input from '@mui/joy/Input';
 import Textarea from '@mui/joy/Textarea';
-import Tooltip from '@mui/joy/Tooltip';
 
 function ProjectDetailsForm(props) {
     
@@ -54,12 +52,6 @@ function ProjectDetailsForm(props) {
             <div className="mb-6 form-group">
                 <div className="flex flex-row gap-2 mb-2">
                     <div className='w-full input-group'>
-                        <Tooltip
-                            title="Project Type is required"
-                            open={nextButtonClicked && !projectType}
-                            placement="top"
-                            arrow
-                            >
                             <Select
                                 placeholder="Project Type"
                                 value={projectType === '' ? undefined : projectType} 
@@ -76,16 +68,8 @@ function ProjectDetailsForm(props) {
                                 <Option value="Studio-Backed">Hollywood</Option>
                                 <Option value="Network TV" disabled>Network TV -- Coming Soon!</Option>
                             </Select>
-                        </Tooltip>
-
                     </div>
                     <div className='w-full input-group'>
-                        <Tooltip
-                            title="Category Type is required"
-                            open={nextButtonClicked && !categoryType}
-                            placement="top"
-                            arrow
-                            >
                             <Select 
                                 placeholder="Category Type" 
                                 value={categoryType === '' ? undefined : categoryType} 
@@ -124,16 +108,10 @@ function ProjectDetailsForm(props) {
                                     </>
                                 )}
                             </Select>  
-                        </Tooltip>
                     </div>
 
                 </div>
-                <Tooltip
-                    title="Project Stage is required"
-                    open={nextButtonClicked && !projectStage}
-                    placement="top"
-                    arrow
-                    >
+
                     <Select
                         placeholder="Project Stage"
                         value={projectStage === '' ? undefined : projectStage} 
@@ -151,17 +129,10 @@ function ProjectDetailsForm(props) {
                         <Option value="Production">Production</Option>
                         <Option value="Post-production">Post-production</Option>
                     </Select>
-                </Tooltip>
             </div>
             <div className="mb-6 form-group">
                 <div className='w-full mb-2 input-group'>
-                    <Tooltip
-                        title="Project Name is required"
-                        open={nextButtonClicked && !props.projectName}
-                        placement="top"
-                        arrow
-                        >
-                        <Input 
+                        <input 
                             placeholder="Project Name" 
                             value={props.projectName} 
                             onChange={(e) => {
@@ -170,7 +141,6 @@ function ProjectDetailsForm(props) {
                             const isFormFilled = props.checkFormStatus();
                             }}
                         />
-                    </Tooltip>
                 </div>
                 <div className='w-full input-group'>
                     <Textarea 
@@ -191,7 +161,7 @@ function ProjectDetailsForm(props) {
   
             </div>
             <div className="mb-6 form-group">
-                <Input 
+                <input 
                     placeholder="Project Budget" 
                     value={props.projectBudget}
                     onChange={(e) => {
@@ -206,7 +176,7 @@ function ProjectDetailsForm(props) {
                 <h3 className='font-semibold primary-color'>Initial filming estimate</h3>
                 <p className='text-lg secondary-color'>How long will it take you to film it? Provide your initial filming estimate; this will assist in generating detailed reports and automating production.</p>
                 <div className='flex flex-row w-full gap-2 mt-6'>
-                    <Input 
+                    <input 
                         placeholder="Project Days" 
                         value={props.projectDays}
                         onChange={(e) => {
@@ -217,7 +187,7 @@ function ProjectDetailsForm(props) {
                         }}
                     />
 
-                    <Input 
+                    <input 
                         placeholder="Project Months" 
                         value={props.projectMonths}
                         onChange={(e) => {
@@ -228,7 +198,7 @@ function ProjectDetailsForm(props) {
                         }}
                     />
 
-                    <Input 
+                    <input 
                         placeholder="Project Years" 
                         value={props.projectYears}
                         onChange={(e) => {

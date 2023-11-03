@@ -1,5 +1,11 @@
 <?php
 
+
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\LoginController;
+
+use App\Http\Controllers\Auth\VerificationController;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CompanyController; 
@@ -12,8 +18,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,25 +40,29 @@ use App\Http\Controllers\VerificationController;
 // });
 
 
-Route::get('/', function () {
-    // Redirect to the login route when the root URL is accessed
-    return redirect()->route('login');
-});
+// Route::get('/', function () {
+//     // Redirect to the login route when the root URL is accessed
+//     return redirect()->route('login');
+// });
+
 
 
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
-    Route::post('/register/verify', [RegisteredUserController::class, 'verifyCode'])->name('registration.verifyCode');
-    Route::post('/register/personal-info', [RegisteredUserController::class, 'storePersonalInfo'])->name('registration.personal.store');
-    Route::post('/register/company-info', [RegisteredUserController::class, 'storeCompanyInfo'])->name('registration.company.store');
+    Route::get('/', [LoginController::class, 'show'])->name('show.login');
 });
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Authenticated and verified routes
 
+    Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
+    Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
+    Route::post('/verification/company-info', [VerificationController::class, 'storeCompanyInfo'])->name('verification.company.store');
+
+    
     // Dashboard
     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
 
@@ -72,26 +80,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/', [CallSheetController::class, 'store'])->name('projects.callSheets.create');
             Route::get('{callSheetId}/edit', [CallSheetController::class, 'edit'])->name('projects.callSheets.edit');
             Route::patch('/{callSheetId}', [CallSheetController::class, 'update'])->name('projects.callSheets.update');
-
-            //         // Add routes for managing locations within a call sheet
-            // Route::prefix('{callSheetId}/locations')->group(function () {
-            //     Route::get('create', [LocationsController::class, 'create'])->name('');
-            //     Route::post('/', [LocationsController::class, 'store'])->name('locations.store');
-            //     Route::get('{locationId}/edit', [LocationsController::class, 'edit'])->name('locations.edit');
-
-
-
-
-
-            //     // Route for updating the location
-            //     Route::patch('/locations/{locationId}', [LocationsController::class, 'updateMainLocation'])->name('locations.updateMainLocation');
-            //     // Store a new parking location
-            //     Route::post('/parking-locations', [LocationsController::class, 'storeParkingLocation'])->name('locations.storeParkingLocation');
-
-            //     // Update an existing parking location
-            //     Route::patch('/parking-locations/{locationId}', [LocationsController::class, 'updateParkingLocation'])->name('locations.updateParkingLocation');
-            // });
-
 
             Route::prefix('{callSheetId}/locations')->group(function () {
                 // Create a location

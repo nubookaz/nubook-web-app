@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // Import useState from react
 import NavLink from '@/Components/Navigations/NavLink';
+import { Link } from '@inertiajs/react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePollHorizontal, faComments, faMoneyCheckDollar, faBriefcase, faMagnifyingGlass, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +9,16 @@ import ResponsiveNavLink from '@/Components/Navigations/ResponsiveNavLink';
 
 import ProfilePicture from '@/Components/ProfilePicture';
 import Tooltip from '@/Components/Containers/ToolTip';
+
+
+
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
+
+
+
 
 function Sidebar({ toggleSearch, isOpen }) {
 
@@ -49,7 +60,7 @@ function Sidebar({ toggleSearch, isOpen }) {
                         <li>
                             <NavLink href={route('projects.index')} active={route().current('projects.*')} activeClass="active-link" icon={faProjectDiagram}/>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink href="/social" icon={faComments}/>
                         </li>
                         <li>
@@ -57,26 +68,39 @@ function Sidebar({ toggleSearch, isOpen }) {
                         </li>
                         <li>
                             <NavLink href="/jobs" icon={faBriefcase}/>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
             </div>
             <div className="sidebar-footer">
 
-                <ProfilePicture alt="User's Profile" onClick={toggleTooltip}/>
 
-                {tooltipVisible && (
-                    <Tooltip customClassName="account-tooltip">
-                        <ul>
+                <Dropdown>
+                    <MenuButton>
+                        <ProfilePicture alt="User's Profile" onClick={toggleTooltip}/>
+                    </MenuButton>
+
+                    <Menu>
                             <ResponsiveNavLink href={route('profile.edit')} as="button">
-                                Account Settings
+                              Account Settings
+                          </ResponsiveNavLink>
+                          <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                               Log Out
+                            </ResponsiveNavLink>    
+                    </Menu>
+
+                </Dropdown>
+
+                    {/* <Tooltip customClassName="account-tooltip">
+                       <ul>
+                           <ResponsiveNavLink href={route('profile.edit')} as="button">
+                              Account Settings
+                          </ResponsiveNavLink>
+                          <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                               Log Out
                             </ResponsiveNavLink>
-                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                Log Out
-                            </ResponsiveNavLink>
-                        </ul>
-                    </Tooltip>
-                 )}
+                       </ul>
+                   </Tooltip> */}
             </div>
         </div>
     );

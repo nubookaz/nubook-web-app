@@ -14,7 +14,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            'sans': ['"SF Pro Rounded"', 'Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },

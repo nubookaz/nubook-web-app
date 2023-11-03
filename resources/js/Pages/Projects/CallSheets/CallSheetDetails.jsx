@@ -28,7 +28,7 @@ import HospitalLocationEdit from '@/Pages/Projects/CallSheets/Locations/Partials
 
 
 function CallSheetEdit({ auth }) {
-  const { project, callSheet, locations } = usePage().props;
+  const { project, callSheet, locations, userCompany } = usePage().props;
 
     const [callSheetStatus, setCallSheetStatus] = useState(callSheet.status || 'Draft');
     const [text, setText] = React.useState('');
@@ -37,7 +37,7 @@ function CallSheetEdit({ auth }) {
     const [modalContent, setModalContent] = useState(null); // State for modal content
 
 
-
+  console.log(userCompany);
     
     
     const toggleCallSheetPanel = () => {
@@ -243,9 +243,11 @@ const updateStatus = (newStatus) => {
 
 
   const [isToggleLocationPanelOpen, setIsToggleLocationPanelOpen] = useState(false);
+
   const toggleLocationPanel = () => {
     setIsToggleLocationPanelOpen(!isToggleLocationPanelOpen);
   };
+  
 
   const locationDetailsMenu = (locationId) => {
     const hasParkingLocation = locations.find(location => location.id === locationId)?.parking_location;
@@ -261,6 +263,7 @@ const updateStatus = (newStatus) => {
   
     return menuItems;
   };
+
 
   const parkingLocationDetailsMenu = (locationId) => [
     { label: 'Edit Parking Location', onClick: () => handleEditParkingLocationForm(locationId) },
@@ -461,11 +464,11 @@ const updateStatus = (newStatus) => {
                                             </div>
                                             <div className='col-3 w-full right-col-content flex flex-col gap-4 h-full'>
                                                 <div className='flex flex-row gap-4 h-[12rem]'>
-                                                    <CardContainer className="h-full">
-                                                        
+                                                    <CardContainer className="h-full secondary-color">
+                                                      {userCompany.name}
                                                     </CardContainer>
-                                                    <CardContainer className="h-full">
-                                                    <Weather apiKey={apiKey} street_address={street_address} zip_code={zip_code} date={date} country={country} />
+                                                    <CardContainer className="h-full secondary-color">
+                                                       <Weather apiKey={apiKey} street_address={street_address} zip_code={zip_code} date={date} country={country} />
                                                     </CardContainer>
                                                 </div>
                                                 <div className='flex flex-col gap-4 h-full'>

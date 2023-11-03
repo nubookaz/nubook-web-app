@@ -56,3 +56,10 @@
 .nav-links .active-link {
     color: var(--primary-color);
 }
+
+
+.css-sbbi8o-JoyMenuButton-root {
+    padding: 0 !important;
+    border-radius: 100% !important;
+    border: 0px !important;
+}

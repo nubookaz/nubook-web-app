@@ -26,7 +26,6 @@ export default function CompanyInfo({ onUpdateCompanyInfo }) {
     };
 
 
-
     return (
 
         <div>
@@ -39,16 +38,19 @@ export default function CompanyInfo({ onUpdateCompanyInfo }) {
                     value={data.company_name}
                     onChange={(e) => handleChange('company_name', e.target.value)}
                 />
+
             </div>
             <div className='form-group'>   
-                <input
+                {/* <input
                     id="ein_number"
                     type="text"
                     name="ein_number"
                     placeholder="Ein Number"
                     value={data.ein_number}
                     onChange={(e) => handleChange('ein_number', e.target.value)}
-                />
+                /> */}
+                <CompanyEIN onEINChange={handleChange}/>
+
             </div>
             <div className='form-group'>   
                 <input

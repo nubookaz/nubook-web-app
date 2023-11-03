@@ -1,5 +1,9 @@
 import React from 'react';
-import Input from '@mui/joy/Input';
+
+
+
+
+
 
 const LocationForm = ({ location, onLocationChange }) => {
   const defaultLocation = {
@@ -16,7 +20,7 @@ const LocationForm = ({ location, onLocationChange }) => {
   return (
     <div>
       <div className='w-full mb-2 input-group'>
-        <Input
+        <input
           type="text"
           name="name"
           defaultValue={currentLocation.name}
@@ -26,7 +30,7 @@ const LocationForm = ({ location, onLocationChange }) => {
         />
       </div>
       <div className='w-full mb-2 input-group'>
-        <Input
+        <input
           type="text"
           name="street_address"
           defaultValue={currentLocation.street_address}
@@ -37,7 +41,7 @@ const LocationForm = ({ location, onLocationChange }) => {
       </div>
       <div className='flex flex-row gap-2 mb-2 input-group'>
         <div className='w-full'>
-          <Input
+          <input
             type="text"
             name="city"
             defaultValue={currentLocation.city}
@@ -47,7 +51,7 @@ const LocationForm = ({ location, onLocationChange }) => {
           />
         </div>
         <div className='w-[9rem]'>
-          <Input
+          <input
             type="text"
             name="state"
             defaultValue={currentLocation.state}
@@ -57,7 +61,7 @@ const LocationForm = ({ location, onLocationChange }) => {
           />
         </div>
         <div className='w-[10rem]'>
-          <Input
+          <input
             type="text"
             name="zip_code"
             defaultValue={currentLocation.zip_code}
@@ -68,7 +72,7 @@ const LocationForm = ({ location, onLocationChange }) => {
         </div>
       </div>
       <div className='w-full mb-2 input-group'>
-        <Input
+        <input
           type="text"
           name="country"
           defaultValue={currentLocation.country}
