@@ -27,19 +27,7 @@ export default function LoginForm({ canResetPassword, onUpdateLoginInfo }) {
             [field]: value,
         });
     };
-    
 
-
-
-    
-        // useEffect(() => {
-        //     // Set the form data initially when the component mounts
-        //     setFormData(data);
-        //     return () => {
-        //         reset('password');
-        //     };
-        // }, [data, setFormData, reset]);
-    
 
 
     return (

@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
 
 import Input from '@mui/joy/Input';
-import CompanyEIN from '@/Components/CompanyEIN';
+import CompanyEIN from '@/Components/Forms/CompanyEIN';
 
 
 

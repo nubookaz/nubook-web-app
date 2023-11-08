@@ -8,9 +8,7 @@ import { router } from '@inertiajs/react'; // Import the router object
 // Import MUI components
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import Input from '@mui/joy/Input';
 import Textarea from '@mui/joy/Textarea';
-import Tooltip from '@mui/joy/Tooltip';
 
 function ProjectEdit({ auth }) {
   const { project } = usePage().props;
@@ -71,21 +69,18 @@ function ProjectEdit({ auth }) {
       {{
         surface: <div className="relative z-50 w-full h-full"></div>,
         portalBody: (
-          <div className="w-full h-full disabled-feature">
+          <div className="w-full h-full">
                 
-            {/* <div>
-                  <Tooltip title="Project Name" placement="top">
-                    <Input
+            <div>
+                    <input
                       type="text"
                       id="projectName"
                       name="projectName"
                       value={projectData.projectName}
                       onChange={handleInputChange}
                     />
-                  </Tooltip>
                 </div>
                 <div>
-                  <Tooltip title="Project Type" placement="top">
                     <Select
                       placeholder="Project Type"
                       value={projectData.projectType}
@@ -103,14 +98,9 @@ function ProjectEdit({ auth }) {
                       <Option value="Independent">Independent</Option>
                       <Option value="Studio-Backed">Studio-Backed</Option>
                     </Select>
-                  </Tooltip>
                 </div>
                 <div>
-                <Tooltip
-                    title="Project Stage is required"
-                    placement="top"
-                    arrow
-                    >
+
                     <Select
                         placeholder="Project Stage"
                         value={projectData.projectStage}
@@ -130,19 +120,18 @@ function ProjectEdit({ auth }) {
                         <Option value="Production">Production</Option>
                         <Option value="Post-production">Post-production</Option>
                     </Select>
-                </Tooltip>
+
                 </div>
                 <div>
-                  <Tooltip title="Project Description" placement="top">
                     <Textarea
                       id="projectDescription"
                       name="projectDescription"
                       value={projectData.projectDescription}
                       onChange={handleInputChange}
                     />
-                  </Tooltip>
+
                 </div>
-                <button onClick={submit}>Update Project</button> */}
+                <button onClick={submit}>Update Project</button>
           </div>
         ),
       }}

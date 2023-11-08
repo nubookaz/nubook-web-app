@@ -55,3 +55,16 @@ textarea:active {
     width: 100%;
     color: var(--primary-color) !important;
 }
+.css-rmmrnf-JoyAutocomplete-root{
+    width: 100% !important;
+}
+
+.css-rmmrnf-JoyAutocomplete-root input {
+    border-radius: var(--rounded-corners) !important;
+    padding: .75rem .25rem !important;
+    background-color: var(--light-color) !important;
+    border: none !important;
+    outline: none !important;
+    width: 100%;
+    color: var(--primary-color) !important;
+}

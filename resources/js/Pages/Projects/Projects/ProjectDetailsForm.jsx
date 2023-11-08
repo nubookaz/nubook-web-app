@@ -58,8 +58,7 @@ function ProjectDetailsForm(props) {
                                 className="w-full"
                                 required
                                 onChange={(e, newProjectType) => {
-                                console.log("New Project Type:", newProjectType);
-                                setProjectType(newProjectType); // Use the prop function to update the value
+                                 setProjectType(newProjectType); // Use the prop function to update the value
                                 const isFormFilled = checkFormStatus();
                                 }}
                             >
@@ -76,8 +75,7 @@ function ProjectDetailsForm(props) {
                                 className='w-full'
                                 required
                                 onChange={(e, newCategoryType) => {
-                                    console.log("New Category Type:", newCategoryType);
-                                    setCategoryType(newCategoryType); // Use the prop function to update the value
+                                     setCategoryType(newCategoryType); // Use the prop function to update the value
                                     const isFormFilled = checkFormStatus();
                                 }}
                                 >
@@ -118,16 +116,15 @@ function ProjectDetailsForm(props) {
                         className="w-full"
                         required
                         onChange={(e, newProjectStage) => {
-                            console.log("New Project Stage:", newProjectStage);
-                            setProjectStage(newProjectStage); // Use the prop function to update the value
+                             setProjectStage(newProjectStage); // Use the prop function to update the value
                             const isFormFilled = checkFormStatus();
                         }}
                         >
                         <Option value="Estimate" disabled>Estimate -- Coming Soon!</Option>
                         <Option value="Creative Development">Creative Development</Option>
-                        <Option value="Pre-production">Pre-production</Option>
+                        <Option value="Pre-Production">Pre-Production</Option>
                         <Option value="Production">Production</Option>
-                        <Option value="Post-production">Post-production</Option>
+                        <Option value="Post-Production">Post-Production</Option>
                     </Select>
             </div>
             <div className="mb-6 form-group">
@@ -149,8 +146,6 @@ function ProjectDetailsForm(props) {
                         value={projectDescription} // Bind to the projectDescription prop from the parent
                         onChange={(e) => {
                             const newProjectDescription = e.target.value;
-                            console.log("New Project Description:", newProjectDescription); // Log the new value
-
                             // No need to update local state in ProjectForm, as it's controlled by the parent
                             props.setProjectDescription(newProjectDescription); // Update parent component's state
                             const isFormFilled = props.checkFormStatus();
@@ -161,16 +156,15 @@ function ProjectDetailsForm(props) {
   
             </div>
             <div className="mb-6 form-group">
-                <input 
-                    placeholder="Project Budget" 
-                    value={props.projectBudget}
-                    onChange={(e) => {
-                        const newProjectBudget = e.target.value;
-                        console.log("Project Budget:", newProjectBudget); // Log the new value
-                        props.setProjectBudget(newProjectBudget); // Update parent component's state
-                        const isFormFilled = props.checkFormStatus();
-                    }}
-                />
+            <input 
+                placeholder="Project Budget" 
+                value={props.projectBudget ? `$${props.projectBudget.toLocaleString()}` : ''} // Format with dollar sign and commas
+                onChange={(e) => {
+                    const newProjectBudget = parseFloat(e.target.value.replace(/[^0-9.-]+/g,"")); // Remove non-numeric characters
+                    props.setProjectBudget(newProjectBudget); // Update parent component's state
+                    const isFormFilled = props.checkFormStatus();
+                }}
+            />
             </div>
             <div className="mt-8 form-group">
                 <h3 className='font-semibold primary-color'>Initial filming estimate</h3>
@@ -181,8 +175,7 @@ function ProjectDetailsForm(props) {
                         value={props.projectDays}
                         onChange={(e) => {
                             const newProjectDays = e.target.value;
-                            console.log("Project Days:", newProjectDays); // Log the new value
-                            props.setProjectDays(newProjectDays); // Update parent component's state
+                             props.setProjectDays(newProjectDays); // Update parent component's state
                             const isFormFilled = props.checkFormStatus();
                         }}
                     />
@@ -192,8 +185,7 @@ function ProjectDetailsForm(props) {
                         value={props.projectMonths}
                         onChange={(e) => {
                             const newProjectMonths = e.target.value;
-                            console.log("Project Months:", newProjectMonths); // Log the new value
-                            props.setProjectMonths(newProjectMonths); // Update parent component's state
+                             props.setProjectMonths(newProjectMonths); // Update parent component's state
                             const isFormFilled = props.checkFormStatus();
                         }}
                     />
@@ -203,8 +195,7 @@ function ProjectDetailsForm(props) {
                         value={props.projectYears}
                         onChange={(e) => {
                             const newProjectYears = e.target.value;
-                            console.log("Project Years:", newProjectYears); // Log the new value
-                            props.setProjectYears(newProjectYears); // Update parent component's state
+                             props.setProjectYears(newProjectYears); // Update parent component's state
                             const isFormFilled = props.checkFormStatus();
                         }}
                     />

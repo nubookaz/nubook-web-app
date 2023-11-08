@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Company;
 use App\Http\Traits\ProjectTrait;
+use Illuminate\Support\Facades\Auth;
 
 
 use Inertia\Inertia;
@@ -20,10 +21,11 @@ class ProjectController extends Controller
     public function index()
     {
         // Retrieve the user's projects
-        $projects = Project::where('user_id', auth()->id())->with('productionCompany')->get();
-
+        $projects = Project::where('user_id', auth()->id())->with('productionCompany', 'clients')->get();
+        $user = Auth::user()->load('clients');
         // // Render the projects index page using Inertia.js
         return Inertia::render('Projects/ProjectsOverview', [
+            'auth' => $user,
             'projects' => $projects,
         ]);    
     
@@ -75,8 +77,6 @@ class ProjectController extends Controller
         ]);
 
     }
-
-    
 
     public function update(Request $request, $id)
     {

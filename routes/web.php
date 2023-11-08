@@ -55,17 +55,34 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
+
+
+
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
-    // Authenticated and verified routes
+
 
     Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
     Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
     Route::post('/verification/company-info', [VerificationController::class, 'storeCompanyInfo'])->name('verification.company.store');
 
+
+
+
+
+
     
     // Dashboard
-    Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('/dashboard', function () {
+        $user = Auth::user()->load('clients'); 
+        $projects = $user->projects;
+        return Inertia::render('Dashboard', ['auth' => $user, 'projects' => $projects ]);
+    })->name('dashboard');
 
+
+
+    
     Route::prefix('projects')->group(function () {
         // Your existing project-related routes here
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');

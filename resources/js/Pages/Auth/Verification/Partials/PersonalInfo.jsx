@@ -37,7 +37,7 @@ export default function PersonalInfo({ onUpdatePersonalInfo }) {
                     <input
                         id="first_name"
                         name="first_name"
-                        placeholder="Your First Name"
+                        placeholder="Your First Name *"
                         value={data.first_name}
                         autoComplete="given-name"
                         onChange={(e) => handleChange('first_name', e.target.value)}
@@ -56,7 +56,7 @@ export default function PersonalInfo({ onUpdatePersonalInfo }) {
                 <input
                     id="last_name"
                     name="last_name"
-                    placeholder="Your Last Name"
+                    placeholder="Your Last Name *"
                     value={data.last_name}
                     autoComplete="family-name"
                     onChange={(e) => handleChange('last_name', e.target.value)}

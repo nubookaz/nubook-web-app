@@ -1,7 +1,7 @@
 import React from 'react';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 
-function EmptyContent({ customSvgPath, children, buttonText,onButtonClick }) {
+function EmptyContent({ customSvgPath, children, buttonText,onButtonClick, svgWidth }) {
 
     const svgPath = customSvgPath || '/undraw_default_1.svg';
 
@@ -10,7 +10,7 @@ function EmptyContent({ customSvgPath, children, buttonText,onButtonClick }) {
 
             {children}
 
-            <div className="my-4 mb-16 w-[22rem] opacity-25">
+            <div className={`my-4 mb-16 w-[22rem] opacity-25 ${svgWidth}`}>
                 <img src={svgPath} alt="Custom Icon" />
             </div>
             <SecondaryButton onClick={onButtonClick}>

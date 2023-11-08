@@ -18,15 +18,6 @@ function PageButton({ active = false, activeClass = '', className = '', icon, si
   // Determine the class based on the size prop
   const buttonClass = `page-button ${sizeClass[size] || ''} ${active ? activeClass : ''} ${className}`;
 
-  // const handleClick = (e) => {
-  //   if (onClick) {
-  //     onClick(e);
-  //   }
-  // };
-
-
-
-
 
   if (href) {
     // Render a link if href is provided

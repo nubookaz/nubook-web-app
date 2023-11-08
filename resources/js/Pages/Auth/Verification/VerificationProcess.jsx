@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import PersonalInfo from '@/Pages/Auth/Partials/PersonalInfo';
-import CompanyInfo from '@/Pages/Auth/Partials/CompanyInfo';
+import PersonalInfo from '@/Pages/Auth/Verification/Partials/PersonalInfo';
+import CompanyInfo from '@/Pages/Auth/Verification/Partials/CompanyInfo';
 
 export default function VerificationProcess({ 
     currentStep, 
@@ -33,26 +33,6 @@ export default function VerificationProcess({
         number_of_employees: '',
         referral: '',
     });
-    
-
-    
-    
-
-
-
-
-    
-    // useEffect(() => {
-    //     // Set the initial current step based on user progress
-    //     if (userProgress?.companyInfoComplete) {
-    //         setCurrentStep('someOtherStep'); // Adjust this based on your actual steps
-    //     } else if (userProgress?.personalInfoComplete) {
-    //         setCurrentStep('companyInfo');
-    //     } else if (userProgress?.verificationComplete) {
-    //         setCurrentStep('personalInfo');
-    //     }
-    //     // By default, it will remain on 'verification'
-    // }, [userProgress, setCurrentStep]);
 
 
 
@@ -146,25 +126,55 @@ export default function VerificationProcess({
     
 
     return (
-        <div>
-            {currentStep === 'verification' && 
-                <div>
-                    <VerificationStep />
-                    <SecondaryButton onClick={verifyCode}>Verify Code</SecondaryButton>
-                </div>
-            }
-            {currentStep === 'personalInfo' && 
-                <div>   
-                    <PersonalInfo onUpdatePersonalInfo={setPersonalInfo} />
-                    <SecondaryButton onClick={savePersonalInfo}>Register</SecondaryButton>
-                </div>
-            }
-            {currentStep === 'companyInfo' && 
-                <div>
-                    <CompanyInfo onUpdateCompanyInfo={setCompanyInfo} />
-                    <SecondaryButton onClick={saveCompanyInfo}>Register</SecondaryButton>
-                </div>                
-            }
+        <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
+
+                {currentStep === 'verification' && 
+                    <div className='flex flex-row gap-8 h-full'>
+                        <div className='w-1/2 h-full flex flex-col justify-center'>
+                            <img className="mx-auto max-w-[15rem]" src="./images/svg_images/undraw_mailbox.svg" alt="" />
+                        </div>
+                        <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
+                            <h2>Verify Your Email</h2>
+                            <p>
+                                To ensure the security of your account, please check your email inbox for a verification code. To complete the verification process, paste the code in the provided field. Thank you for confirming your email address and enhancing your account's security.
+                            </p>
+                            <VerificationStep />
+                            <SecondaryButton onClick={verifyCode}>Verify Code</SecondaryButton>
+                        </div>
+                    </div>
+                }
+                {currentStep === 'personalInfo' && 
+                    <div className='flex flex-row gap-8 h-full'>
+                        <div className='w-1/2 h-full flex flex-col justify-center'>
+                            <img className="mx-auto max-w-[25rem]" src="./images/svg_images/undraw_personal_info.svg" alt="" />
+                        </div>
+                        <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
+                            <h2>Tell us about yourself...</h2>
+                            <p>
+                                Please complete the personal information form by providing your first and last name, phone number, and address. Your details are important for us to enhance your experience and ensure accurate communication. Thank you for providing this information.                            
+                            </p>
+                            <PersonalInfo onUpdatePersonalInfo={setPersonalInfo} />
+                            <SecondaryButton onClick={savePersonalInfo}>Next</SecondaryButton>
+                        </div>
+                    </div>
+                }
+                {currentStep === 'companyInfo' && 
+                    <div className='flex flex-row gap-8 h-full'>
+                        <div className='w-1/2 h-full flex flex-col justify-center'>
+                            <img className="mx-auto max-w-[25rem]" src="./images/svg_images/undraw_logo_design.svg" alt="" />
+                        </div>
+                        <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
+                            <h2>Your Company Info</h2>
+                            <p>
+                                Please complete the company information form by providing essential details about your organization. Your input helps us better tailor our services to your business needs and provide you with the best support. Thank you for sharing this information with us.
+                            </p>
+                            <CompanyInfo onUpdateCompanyInfo={setCompanyInfo} />
+                            <SecondaryButton onClick={saveCompanyInfo}>Complete Registration</SecondaryButton>
+                        </div>      
+                    </div>
+          
+                }
+            
         </div>
     );
 }

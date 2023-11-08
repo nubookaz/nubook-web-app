@@ -4,63 +4,59 @@ import { usePage } from '@inertiajs/react';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import ProjectForm from '@/Pages/Projects/Projects/NewProjectForm';
-import ProjectList from '@/Pages/Projects/Projects/ProjectList';
+import ProjectList from '@/Components/Projects/ProjectList';
 import PortalLayout from '@/Components/Layouts/PortalLayout';
+import CardContainer from '@/Components/Containers/CardContainer';
+
+import EmptyContent from '@/Components/Layouts/EmptyContent';
+import Overview from '@/Components/Projects/Overview';
+import Budget from '@/Components/Projects/Budget';
+
 
 
 function ProjectsOverview({ auth, showBanner }) {
-  const { props } = usePage();
-  const project = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
-  const companies = props.companies || []; // Use an empty array as a fallback if 'projects' prop is undefined
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+    const { props } = usePage();
+    const projects = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
+    const companies = props.companies || []; // Use an empty array as a fallback if 'projects' prop is undefined
+    const [currentStep, setCurrentStep] = useState(1);
+    const [isProjectFormPanel, setProjectFormPanel] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-  const bannerProps = {
-    showGreeting: true, // Customize these props based on your conditions
-  };
+    const bannerProps = {
+      showGreeting: true, // Customize these props based on your conditions
+    };
 
-  const toggleRightPanel = () => {
-    console.log("Click");
-    setIsRightPanelOpen(!isRightPanelOpen);
-  };
+    const openProjectFormPanel = () => {
+      setProjectFormPanel(!isProjectFormPanel);
+    };
 
-
-
-  const hasProjects = () => {
-    return props.projects && props.projects.length > 0;
-  };
-
-  const hasCompanies = () => {
-    return props.companies && props.companies.length > 0;
-  };
-
-  const handleBackClick = () => {
-    // Use the route function to generate the URL for the "Projects Overview" page
-    const url = route('projects.index'); // Replace with your actual route name
-  };
+    const hasClients = projects.some(projects => projects.clients && projects.clients.length > 0);
 
 
-    const hasData = project;
+    const hasData = projects;
     const toolbarTitle = "Project Overview"; // Provide a title for the toolbar
     const pageType = "Projects"; // Provide a title for the toolbar
-    const toolbarCTAText = "Create a New Project"; // Provide the button text
-    const buttonText = "Create a New Project"; // Provide the button text
+    const toolbarCTAText = "Start A New Project"; // Provide the button text
+    const buttonText = "Start a New Project"; // Provide the button text
     const customSvgPath = "../../images/svg_images/undraw_projects_1.svg"; // Provide the SVG path
+
+    const emptyContentSvg = "../../images/svg_images/undraw_clients.svg"; // Provide the SVG path
+
 
 
   return (
 
-    <AuthenticatedLayout user={auth.user} bannerProps={bannerProps}>
+    <AuthenticatedLayout bannerProps={bannerProps}>
       {{
         surface: (
 
           <div className="relative z-50 w-full h-full">
               <ProjectForm
+                auth={auth}
                 currentStep={currentStep}
                 setCurrentStep={setCurrentStep}
-                isRightPanelOpen={isRightPanelOpen}
-                toggleRightPanel={toggleRightPanel}
+                isRightPanelOpen={isProjectFormPanel}
+                toggleRightPanel={openProjectFormPanel}
               />
           </div>
 
@@ -76,11 +72,50 @@ function ProjectsOverview({ auth, showBanner }) {
                   toolbarCTAText={toolbarCTAText}
                   buttonText={buttonText}
                   customSvgPath={customSvgPath}
-                  toggleRightPanel={toggleRightPanel}
+                  toggleRightPanel={openProjectFormPanel}
                   >
                  {{
                     content: (
-                      <ProjectList projects={project} handleButtonClick={toggleRightPanel}/>
+                      <div className='flex flex-col gap-6 h-full max-h-[1080px]'>
+                        <div className='flex flex-row gap-6 h-[35%]'>
+                        <CardContainer header="Summary" className='!w-1/2 text-center'>
+                          <Overview
+                              projects={projects}
+                              isPortrait={false}
+                           />
+                        </CardContainer>
+
+                          
+                          <CardContainer header="Budget" className='!w-1/2'>
+                            <Budget 
+                              projects={projects}
+                            />
+                          </CardContainer>
+                        </div>
+                        <div className='flex flex-row gap-6 h-[65%] w-full'>
+                          <CardContainer header="Clients" className='!w-[30%]'>
+                          {hasClients ? (
+                              <div>
+                                Clients!
+                              </div>
+                          ): (
+                              <EmptyContent
+                                customSvgPath={emptyContentSvg}
+                                buttonText={buttonText}
+                                onButtonClick={openProjectFormPanel}
+                                svgWidth="!max-w-[12rem] !mt-2 !mb-10"
+                              > 
+                                <h3 className='mb-4'>No Clients Attached</h3>
+                                <p className='-mb-8'>You currently don't have any projects attached to a client. Either start a new project or attach a client to an existing project.</p>
+                              </EmptyContent>
+                          )}
+                          </CardContainer>
+                          <div className='flex flex-col w-full h-full'>
+                            <h2 className='mb-4'>Projects</h2>
+                            <ProjectList projects={projects} />
+                          </div>
+                        </div>
+                      </div>
                     )
                   }}
  

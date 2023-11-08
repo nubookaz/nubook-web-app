@@ -16,10 +16,10 @@ import ProjectClientForm from '@/Pages/Projects/Projects/ProjectClientForm';
 
 
 function NewProjectForm(props) {
+  const { isRightPanelOpen, toggleRightPanel, auth } = props;
 
     const [currentStep, setCurrentStep] = useState(1); // Initialize the current step to 1
     const [showSlideOutPanel, setShowSlideOutPanel] = useState(false);
-    const { isRightPanelOpen, toggleRightPanel } = props;
 
     const [isStepOneValid, setIsStepOneValid] = useState(true); // Initialize to true
     const [isStepTwoValid, setIsStepTwoValid] = useState(true); // Initialize to true
@@ -40,7 +40,6 @@ function NewProjectForm(props) {
 
     const [companyName, setCompanyName] = useState('');
     const [einNumber, setEinNumber] = useState('');
-    console.log(einNumber);
 
     const [clientFirstName, setClientFirstName] = useState('');
     const [clientMiddleInitial, setClientMiddleInitial] = useState('');
@@ -305,8 +304,6 @@ function NewProjectForm(props) {
             projectMonths !== '' ||
             projectYears !== '';
 
-            console.log(projectStage);
-
         } else if (currentStep === 2) {
           // Check if at least one of the required fields in step 2 (ProjectClientForm) is filled
           const isCompanyRequired = companyTypeChecked;
@@ -379,6 +376,7 @@ function NewProjectForm(props) {
             return (
               <div className='step-2'>
                 <ProjectClientForm
+                    auth={auth}
                     companyName={companyName}
                     setCompanyName={setCompanyName}
                     setEinNumber={setEinNumber}

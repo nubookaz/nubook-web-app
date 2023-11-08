@@ -51,6 +51,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    
     public function phone()
     {
         return $this->hasOne(PhoneNumber::class);
@@ -66,9 +67,15 @@ class User extends Authenticatable
         return $this->hasOne(ProductionCompany::class, 'user_id');
     }
 
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+    
     public function clients()
     {
         return $this->belongsToMany(Client::class, 'user_client');
     }
+    
     
 }

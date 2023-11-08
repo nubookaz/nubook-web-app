@@ -6,6 +6,10 @@ import Tooltip from '@mui/joy/Tooltip';
 
 function ProjectNavigation({ project }) {
 
+  const handleSettingsClick = () => {
+    console.log('Button clicked in child component');
+  };
+
   return (
     <div className="flex flex-row w-full">
       <div className="left-content w-full">
@@ -65,7 +69,7 @@ function ProjectNavigation({ project }) {
             <PageButton className="disabled" icon={faFolderTree} size="small" />
           </li>
           <li>
-            <PageButton className="disabled" icon={faSliders} size="small" />
+            <PageButton onClick={handleSettingsClick} icon={faSliders} size="small" />
           </li>
         </ul>
       </div>

@@ -19,6 +19,13 @@ h3 {
     color: var(--primary-color);
 }
 
+h4 {
+    font-size: 1rem; /* 42px converted to rems */
+    font-weight: 600;
+    line-height: 1;
+    color: var(--primary-color);
+}
+
 p {
     color: var(--secondary-color);
 }

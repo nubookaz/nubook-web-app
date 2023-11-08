@@ -6,12 +6,11 @@ import { usePage } from '@inertiajs/react'
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import ProfilePicture from '@/Components/ProfilePicture'; 
 import PageButton from '@/Components/Buttons/PageButton';
-import ProjectNavigation from '@/Pages/Projects/ProjectNavigation';
+import ProjectNavigation from '@/Components/Projects/ProjectNavigation';
 
 function Banner({ project, backgroundImage, size, showGreeting, showProfilePhoto }) {
 
 const { auth } = usePage().props
-
 const {
   projectID = '',
   projectName = '',
@@ -100,7 +99,7 @@ const {
                     <div className="greeting">
                         {/* Header with time of day greeting and user's first name */}
                         <h1>
-                          {timeOfDayGreeting} {auth.user.first_name} {auth.user.last_name}
+                          {timeOfDayGreeting} {auth.first_name} {auth.last_name}
                         </h1>
                     </div>
                 )}

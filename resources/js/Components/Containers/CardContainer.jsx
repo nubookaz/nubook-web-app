@@ -10,7 +10,7 @@ import Dropdown from '@mui/joy/Dropdown';
 
 
 
-function CardContainer({ children, header, showButtonIcon, openPage, openToolkit, className, size, backgroundColor, menuItems }) {
+function CardContainer({ children, bgColor, textColor, header, showButtonIcon, openPage, openToolkit, className, size, menuItems }) {
 
     const getSizeClass = () => {
         switch (size) {
@@ -24,19 +24,10 @@ function CardContainer({ children, header, showButtonIcon, openPage, openToolkit
                 return '';
         }
     };
+ 
+    const containerClasses = `container-base card-container flex flex-col gap-4 ${getSizeClass()} ${className} ${textColor}`;
 
-    const getBackgroundColorClass = () => {
-        switch (backgroundColor) {
-            case 'light':
-                return 'bg-light-color'; // Define the CSS class for light background color
-            case 'dark':
-                return 'primary-color'; // Define the CSS class for dark background color
-            default:
-                return ''; // No background color class
-        }
-    };
-
-    const containerClasses = `container-base card-container flex flex-col gap-4 ${getSizeClass()} ${className} ${getBackgroundColorClass()}`;
+        console.log(bgColor);
 
     // Set default prop values
     CardContainer.defaultProps = {
@@ -44,16 +35,16 @@ function CardContainer({ children, header, showButtonIcon, openPage, openToolkit
     };
         
     return (
-        <div className={containerClasses}>
+        <div className={containerClasses} style={{ background: bgColor }}>
             {header && (
                 <div className="card-header flex justify-between items-center">
                     <div className="flex items-center">
-                        {header && <h3 className="secondary-color container-header text-md font-normal">{header}</h3>}
+                        {header && <h3 className={`secondary-color container-header text-[1.2rem] font-semibold ${textColor}`}>{header}</h3>}
                     </div>
                     {showButtonIcon && (
                         <div>
                             <Dropdown>
-                                <MenuButton variant="plain" className="secondary-color">
+                                <MenuButton variant="plain" className={`secondary-color ${textColor}`}>
                                     <FontAwesomeIcon icon={faEllipsisVertical} />
                                 </MenuButton>
                                 <Menu placement="top-start">
@@ -65,14 +56,12 @@ function CardContainer({ children, header, showButtonIcon, openPage, openToolkit
                                     ))}
                                 </Menu>
                             </Dropdown>
-                            {/* <button onClick={handleButtonClick} className="secondary-color">
-                                <FontAwesomeIcon icon={faEllipsisVertical} />
-                            </button> */}
+  
                         </div>
                     )}
                 </div>
             )}
-            {children}
+             {children} 
         </div>
     );
 
