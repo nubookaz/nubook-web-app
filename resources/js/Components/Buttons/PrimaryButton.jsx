@@ -1,8 +1,11 @@
 // PrimaryButton.jsx
-function PrimaryButton({ children, onClick }) {
+function PrimaryButton({ children, onClick, className }) {
+
+    const classes = `default-btn primary-button button-transition ${className}`;
+
     return (
         <button
-            className="default-btn primary-button button-transition"
+            className={classes}
             onClick={onClick}
         >
             {children}

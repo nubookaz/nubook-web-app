@@ -37,43 +37,43 @@ export default function Overview({
                     completedProjects={completedProjects}
                 />
             </div>
-            <div className={`flex flex-col flex-wrap gap-4 m-auto ${isPortrait ? 'my-[6rem] w-full' : 'w-1/2'}`}>
-                <div className={`grid grid-cols-2 gap-4 w-full ${isPortrait ? 'mb-14' : ''}`}>
+            <div className={`flex flex-col flex-wrap gap-4 m-auto ${isPortrait ? 'w-full' : 'w-1/2'}`}>
+                <div className={`grid grid-cols-2 gap-4 w-full ${isPortrait ? 'mb-4' : ''}`}>
                     <div>
-                        <span className='text-3xl'>{estimateProjects.length}</span>
+                        <span className='text-2xl'>{estimateProjects.length}</span>
                         <h4 className='mt-4'>Estimate</h4>
                     </div>
                     <div>
-                        <span className='text-3xl'>{creativeDevelopmentProjects.length}</span>
+                        <span className='text-2xl'>{creativeDevelopmentProjects.length}</span>
                         <h4 className='mt-4'>Creative Development</h4>
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-4'>
+                <div className={`grid grid-cols-2 gap-4 w-full ${isPortrait ? 'mb-4' : ''}`}>
                     <div>
-                        <span className='text-3xl'>{preProductionProjects.length}</span>
+                        <span className='text-2xl'>{preProductionProjects.length}</span>
                         <h4 className='mt-4'>Pre-Production</h4>
                     </div>
                     <div>
-                        <span className='text-3xl'>{productionProjects.length}</span>
+                        <span className='text-2xl'>{productionProjects.length}</span>
                         <h4 className='mt-4'>Production</h4>
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-4'>
+                <div className={`grid grid-cols-2 gap-4 w-full ${isPortrait ? 'mb-4' : ''}`}>
                     <div>
-                        <span className='text-3xl'>{postProductionProjects.length}</span>
+                        <span className='text-2xl'>{postProductionProjects.length}</span>
                         <h4 className='mt-4'>Post-Production</h4>
                     </div>
                     <div>
-                        <span className='text-3xl'>{completedProjects.length}</span>
+                        <span className='text-2xl'>{completedProjects.length}</span>
                         <h4 className='mt-4'>Completed</h4>
                     </div>
                 </div>
             </div>
            
             {isPortrait && (
-                <div className='justify-end mb-8'>
-                    <SecondaryButton onClick={onClick}>
-                        {buttonText}
+                <div className='justify-end mb-8 w-3/4 mx-auto'>
+                    <SecondaryButton href={route('projects.index')}>
+                        View Projects
                     </SecondaryButton>
                 </div>
             )}

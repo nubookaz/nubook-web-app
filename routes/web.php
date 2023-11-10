@@ -30,23 +30,6 @@ use Inertia\Inertia;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
-
-// Route::get('/', function () {
-//     // Redirect to the login route when the root URL is accessed
-//     return redirect()->route('login');
-// });
-
-
-
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
@@ -56,23 +39,22 @@ Route::middleware(['guest'])->group(function () {
 
 
 
-
-
-
-
 Route::middleware(['auth', 'verified'])->group(function () {
-
 
     Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
     Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
     Route::post('/verification/company-info', [VerificationController::class, 'storeCompanyInfo'])->name('verification.company.store');
-
-
-
-
-
-
     
+    // Account Settings
+    Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');
+
+    // Profile
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/', [ProfileController::class, 'updateProfileInfo'])->name('profile.update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
     // Dashboard
     Route::get('/dashboard', function () {
         $user = Auth::user()->load('clients'); 
@@ -81,11 +63,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
 
+    Route::get('/get-profile-image', [ProfileController::class, 'getProfileImage'])->name('profile.get-image');
+    Route::post('/upload-profile-image', [ProfileController::class, 'uploadProfileImage'])->name('profile.upload-image');
 
     
     Route::prefix('projects')->group(function () {
         // Your existing project-related routes here
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
+        Route::get('/all-projects', [ProjectController::class, 'showList'])->name('projects.list');
         Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
         Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');
@@ -120,24 +105,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 // Route::patch('parking-locations/{locationId}', [LocationsController::class, 'updateParkingLocation'])->name('locations.updateParkingLocation');
             });
 
-
-
-
-            
-            
         });
 
-    // Routes related to associations within the project group
-    Route::prefix('associations')->group(function () {
-        // Original route using AssociationController
-        Route::post('/create', [AssociationController::class, 'ProjectCompaniesCreate'])->name('associations.create');
-        
-        // Additional routes related to associations
-        // ...
-    });
-});
-    
+        // Routes related to associations within the project group
+        Route::prefix('associations')->group(function () {
+            Route::post('/create', [AssociationController::class, 'ProjectCompaniesCreate'])->name('associations.create');
+        });
 
+        
+    });
+    
     Route::prefix('companies')->group(function () {
         Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
         Route::post('/create', [CompanyController::class, 'store'])->name('companies.create');
@@ -145,20 +122,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/{id}', [CompanyController::class, 'update'])->name('companies.update');
     });
 
-    // Account Settings
-    Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');
-
-    // Profile
-    Route::prefix('profile')->group(function () {
-        Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
-        // Add more profile-related routes here
-    });
-
-
-
-    
 });
 
 

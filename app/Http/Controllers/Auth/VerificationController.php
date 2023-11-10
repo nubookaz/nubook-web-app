@@ -50,7 +50,7 @@ class VerificationController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'middle_initial' => 'nullable|string|max:1',
-            'phone' => 'nullable|string|max:15',
+            'tel' => 'nullable|string|max:15',
             'street_address' => 'nullable|string|max:255',
             'city' => 'nullable|string|max:255',
             'state' => 'nullable|string|max:255',
@@ -78,7 +78,7 @@ class VerificationController extends Controller
             'code_verified' => true, 
         ]);
     
-        $user->phone()->updateOrCreate([], ['number' => $request->input('phone')]);
+        $user->phone()->updateOrCreate([], ['tel' => $request->input('tel')]);
     
         $user->address()->updateOrCreate([], [
             'street_address' => $request->input('street_address'),
@@ -86,15 +86,7 @@ class VerificationController extends Controller
             'state' => $request->input('state'),
             'zip_code' => $request->input('zip_code'),
         ]);
-    
-        // if (!$request->session()->get('registration.personal_info_completed')) {
-        //     $request->session()->put('registration.personal_info_completed', true);
-        //     $user->update([
-        //         'personal_info_completed' => true,
-        //         'code_verified' => true, // Set code_verified to true
-        //     ]);
-        // }
-    
+ 
         return response()->json(['success' => true]);
     }
 
@@ -117,8 +109,8 @@ class VerificationController extends Controller
         }
 
         $companyData = [
-            'name' => $request->input('company_name'),
-            'ein' => $request->input('ein_number'),
+            'company_name' => $request->input('company_name'),
+            'ein_number' => $request->input('ein_number'),
             'job_title' => $request->input('job_title'),
             'number_of_employees' => $request->input('number_of_employees'),
             'referral' => $request->input('referral'),
@@ -132,16 +124,7 @@ class VerificationController extends Controller
             'registration_complete' => true,
         ]);
 
-        // Mark company info as completed
-        // if (!$request->session()->get('registration.company_info_completed')) {
-        //     $request->session()->put('registration.company_info_completed', true);
-        //     $user->update([
-        //         'company_info_completed' => true,
-        //         'registration_complete' => true,
-        //     ]);
-        // }
-
-        // $request->session()->flush();
+ 
         
         return response()->json([
             'success' => 'Company Info saved successfully',

@@ -16,15 +16,35 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
+  border: solid 2px var(--light-color);
+}
+
+.profile-overlay {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0;
+  display: flex;
+  cursor: pointer;
+  transition: .6s;
+}
+
+.profile-photo:hover .profile-overlay {
+  opacity: .85;
+}
+ 
+.profile-photo:hover p {
+  display: block;
 }
 
 .profile-upload-state {
-  border: dashed 3px var(--light-color);
   background-color: var(--secondary-color);
   color: var(--light-color);
-  padding: 0 2rem;
   text-align: center;
+  position: relative; /* Add this line to create a stacking context */
 }
+
 
 .profile-photo.has-image{
   border: solid 3px var(--light-color);

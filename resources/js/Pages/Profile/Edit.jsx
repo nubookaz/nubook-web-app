@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import Banner from '@/Components/Layouts/Banner';
-import { faCcVisa } from '@fortawesome/fontawesome-free-brands'; // Import the "cc-visa" icon
-
+import { faCcVisa } from '@fortawesome/fontawesome-free-brands'; 
 import CardContainer from '@/Components/Containers/CardContainer';
 
 import SettingsNav from '@/Components/Navigations/SettingsNav';
-import ProfileSettings from './Partials/PofileSettings';
+import ProfileSettings from './PofileSettings';
 import ProjectSettings from './Partials/ProjectSettings';
 import SocialSettings from './Partials/SocialSettings';
 import BudgetSettings from './Partials/BudgetSettings';
@@ -14,21 +12,65 @@ import JobSettings from './Partials/JobSettings';
 import AccountSettings from './Partials/AccountSettings';
 import ImageContainer from '@/Components/Containers/ImageContainer';
 
-export default function Edit({ auth }) {
-    const [activeContent, setActiveContent] = useState('profile-settings');
+import Snackbar from '@mui/joy/Snackbar';
 
+
+
+
+
+
+
+
+export default function Edit({ auth }) {
+
+    const [activeContent, setActiveContent] = useState('profile-settings');
+    const [savedProfileSettings, setSavedProfileSettings] = useState(false);
+    
+    const handleSavedClick = () => {
+        setSavedProfileSettings(true);
+    
+        // Set a timeout to reset the state after 1000 milliseconds (1 second)
+        setTimeout(() => {
+          setSavedProfileSettings(false);
+        }, 3000);
+      };
+    
+      // Optional: If you want to reset the state when the component unmounts
+      useEffect(() => {
+        return () => {
+          clearTimeout(); // Clear the timeout to avoid state updates on unmounted components
+        };
+      }, []);
+    
     const handleButtonClick = (content) => {
         setActiveContent(content);
     };
 
+    const bannerProps = {
+        showGreeting: true, // Customize these props based on your conditions
+      };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
-            showBanner={true}
-            showPortalBody={true}
+            bannerProps={bannerProps}
         >
             {{
-                banner: <Banner size="small" showLeftContent={true} showProfilePhoto={true} />,
+
+                
+                surface:(
+                    <div className="relative z-50 w-full h-full">
+                        <Snackbar
+                            color="success"
+                            size="lg"
+                            variant="solid"
+                            open={savedProfileSettings}
+                            className="w-full max-w-[30rem]"
+                        >
+                            Profile Settings Saved!
+                        </Snackbar>
+                    </div>
+                ),
                 portalBody: (
                     <div className="h-full w-full flex gap-4 mx-auto max-w-[95rem]">
                         {/* Left Column */}
@@ -38,9 +80,11 @@ export default function Edit({ auth }) {
 
                         {/* Middle Column (Wider) */}
                         <div className="w-full max-w-[60rem]">
-                            <CardContainer className="app-settings h-full">
+                            <div className="app-settings h-full">
                                 {activeContent === 'profile-settings' && (
-                                    <ProfileSettings />
+                                    <CardContainer className="h-full overflow-hidden !p-0">
+                                        <ProfileSettings auth={auth} saved={handleSavedClick}/>
+                                    </CardContainer>
                                 )}
                                 {activeContent === 'project-settings' && (
                                     <ProjectSettings />
@@ -57,7 +101,7 @@ export default function Edit({ auth }) {
                                 {activeContent === 'account-settings' && (
                                     <AccountSettings />
                                 )}
-                            </CardContainer>
+                            </div>
                         </div>
 
                         {/* Right Column (Second Widest) */}

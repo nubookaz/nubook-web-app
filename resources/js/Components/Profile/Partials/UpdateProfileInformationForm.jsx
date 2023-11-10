@@ -4,14 +4,13 @@ import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 import TextInput from '@/Components/Forms/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
-
-import { faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
+ 
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        name: user.name,
+        name: user.first_name,
         email: user.email,
     });
 
@@ -22,6 +21,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     };
 
     return (
+
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
@@ -32,22 +32,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
-                        id="name"
-                        className="mt-1 block w-full"
-                        value={data.name}
-                        icon={faUser}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                        isFocused
-                        autoComplete="name"
-                    />
-
-                    <InputError className="mt-2" message={errors.name} />
-                </div>
+                
 
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
@@ -57,7 +42,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         type="email"
                         className="mt-1 block w-full"
                         value={data.email}
-                        icon={faEnvelope}
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         autoComplete="username"

@@ -1,8 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Input from '@mui/joy/Input';
+import React, { useEffect } from 'react';
+import { useForm } from '@inertiajs/react';
 
-function CompanyEIN({ onEINChange, checkFormStatus }) {
-  const [einNumber, setEinNumber] = useState('');
+function CompanyEIN({ onEINChange, checkFormStatus, required, existingData }) {
+
+  const { data, setData } = useForm({
+    ein_number: '',
+  });
+
+
+  useEffect(() => {
+    if (existingData) {
+      setData(existingData);
+    }
+  }, [existingData]);
 
   useEffect(() => {
     if (checkFormStatus) {
@@ -31,19 +41,20 @@ function CompanyEIN({ onEINChange, checkFormStatus }) {
 
     const formattedEinNumber = formatEIN(newEinNumber);
 
-    setEinNumber(formattedEinNumber);
-    onEINChange('ein_number', formattedEinNumber); // Pass the formatted EIN to the parent component
+    // Update the parent component with the formatted EIN
+    onEINChange('ein_number', formattedEinNumber);
   };
 
   return (
     <div>
       <input
-        className="mb-4"
+        type="text"
         name="ein_number"
-        placeholder="EIN Number (XX-XXXXXXX)"
+        placeholder=" XX-XXXXXXX"
         maxLength="9" // Limit input to 10 characters
-        value={einNumber}
-        onChange={handleChange}
+        value={data.ein_number}
+        onChange={handleChange} 
+        required={required}
       />
     </div>
   );

@@ -1,56 +1,79 @@
-import React, { useEffect } from 'react';
-import NavLink from '@/Components/Navigations/NavLink';
-import { faSquarePollHorizontal } from '@fortawesome/free-solid-svg-icons';
 import ActiveCard from '@/Components/Containers/ActiveCard';
 import {
-  estimateBackgroundColor,
-  creativeDevelopmentBackgroundColor,
-  preProductionBackgroundColor,
-  productionBackgroundColor,
-  postProductionBackgroundColor,
-  completedBackgroundColor,
-} from '@/Components/Projects/ProjectBgColors';
+  estimateColor,
+  creativeDevelopmentColor,
+  preProductionColor,
+  productionColor,
+  postProductionColor,
+  completedColor,
+} from '@/Components/Projects/ProjectColors';
 
 
 
 
-function ProjectList({ projects, className }) {
-  const containerClasses = `grid grid-cols-4 grids-rows-2 gap-6 h-full ${className}`;
-  
-  // const estimateBackgroundColor = '!bg-gray-400';
-  // const creativeDevelopmentBackgroundColor = '!bg-purple-600';
-  // const preProductionBackgroundColor = '!bg-amber-600';
-  // const productionBackgroundColor = '!bg-yellow-400';
-  // const postProductionBackgroundColor = '!bg-sky-600';
-  // const completedBackgroundColor = '!bg-green-600';
+function ProjectList({ projects, className, cols = 4, view }) {
+  const containerClasses = `grid grid-cols-${cols} gap-6 h-full ${className}`;
+
+
+  const sortProjects = (projects) => {
+      // Define the desired status order
+      const statusOrder = {
+        "Production": 1,
+        "Post-Production": 2,
+        "Pre-Production": 3,
+        "Creative Developement": 4,
+        "Estimate": 5,
+        "Completed": 6,
+      };
+
+      // Create an array to store call sheets with status order information
+      const projectsWithOrder = projects.map((project) => ({
+        ...project,
+        statusOrder: statusOrder[project.projectStage],
+      }));
+
+      // Sort call sheets by status order (most recent first)
+      projectsWithOrder.sort((a, b) => {
+        // Sort by status order first
+        if (a.statusOrder !== b.statusOrder) {
+          return a.statusOrder - b.statusOrder;
+        }
+        // If status order is the same, sort by last updated time (most recent first)
+        return new Date(b.updatedAt) - new Date(a.updatedAt);
+      });
+
+      return projectsWithOrder;
+  };
+
+
+
+  // Get the filtered and sorted call sheets based on the selected view
+  const filteredProjects = view === "View All" ? projects : projects.filter(project => project.projectStage === view);
+  const sortedProjects = sortProjects(filteredProjects);
 
 
   return (
     <div className={containerClasses}>
-      {projects.map(project => {
-        let bgColor = '';
+      
+      {sortedProjects.map(project => {
+        let projectColor = '';
         let textColor = '';
         if (project.projectStage === 'Estimate') {
-          bgColor = estimateBackgroundColor;
-          textColor = '!text-white';
+          projectColor = estimateColor;
         } else if (project.projectStage === 'Creative Development') {
-          bgColor = creativeDevelopmentBackgroundColor;
-          textColor = '!text-white';
+          projectColor = creativeDevelopmentColor;
         } else if (project.projectStage === 'Pre-Production') {
-          bgColor = preProductionBackgroundColor;
-          textColor = '!text-white';
+          projectColor = preProductionColor;
         } else if (project.projectStage === 'Production') {
-          bgColor = productionBackgroundColor;
-          textColor = '!text-white';
+          projectColor = productionColor;
         } else if (project.projectStage === 'Post-Production') {
-          bgColor = postProductionBackgroundColor;
-          textColor = '!text-white';
+          projectColor = postProductionColor;
         } else if (project.projectStage === 'Completed') {
-          bgColor = completedBackgroundColor;
-          textColor = '!text-white';
+          projectColor = completedColor;
         }  
 
         return (
+          
           <ActiveCard
             status={project.projectStage}
             cardType="project"
@@ -63,55 +86,19 @@ function ProjectList({ projects, className }) {
             cardTitle={project.projectName}
             projectType={project.projectType}
             progressValue={75}
-            bgColor={bgColor}
-            textColor={textColor}
+            headerColor={projectColor}
           />
+
         );
       })}
     </div>
   );
+
+
+
+
+  
 }
 
 
 export default ProjectList;
-
-
-
-// import React, { useEffect } from 'react';
- 
-// import ActiveCard from '@/Components/Containers/ActiveCard';
-// import ProjectBgColors from '@/Components/Projects/ProjectBgColors';
-
-
-
-
-
-// function ProjectList({ projects, className }) {
-//   const containerClasses = `grid grid-cols-4 grids-rows-2 gap-6 h-full ${className}`;
-
-//   return (
-//     <div className='h-full'>
-//       <ProjectBgColors containerClasses={containerClasses} projects={projects}>
-//         {(project, bgColor, textColor) => (
-//           <ActiveCard
-//             status={project.projectStage}
-//             cardType="project"
-//             href={
-//               project.projectStage === 'Estimate'
-//                 ? route('projects.estimate', { id: project.id })
-//                 : route('projects.edit', { id: project.id })
-//             }
-//             key={project.id}
-//             cardTitle={project.projectName}
-//             projectType={project.projectType}
-//             progressValue={75}
-//             bgColor={bgColor}
-//             textColor={textColor}
-//           />
-//         )}
-//       </ProjectBgColors>
-//     </div>
-//   );
-// }
-
-// export default ProjectList;

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { usePage } from '@inertiajs/react'
+
 import Sidebar from '@/Components/Layouts/Sidebar';
 import TransparentSearchBar from '@/Components/Modals/TransparentSearchBar';
 import Banner from '@/Components/Layouts/Banner';
@@ -13,8 +15,8 @@ import CardContent from '@mui/joy/CardContent';
 
 
 
-
-export default function AuthenticatedLayout({ bannerProps, children, project, verification }) {
+export default function AuthenticatedLayout({  bannerProps, children, project, verification }) {
+    const { auth } = usePage().props
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -25,13 +27,16 @@ export default function AuthenticatedLayout({ bannerProps, children, project, ve
     const closeSearch = () => {
         setIsOpen(false);
     };
-
+ 
+ 
     return (
+
         <div className="min-h-screen tertiary-color relative">
 
             <div id="surface-layer" className="absolute z-50 w-full">
                 
                 <TransparentSearchBar isOpen={isOpen} onClose={closeSearch} />
+
                     {children.surface}
                 
                 {verification ? (
@@ -89,11 +94,11 @@ export default function AuthenticatedLayout({ bannerProps, children, project, ve
                     </Card>
                     </div>
                 ):(
-                    <Banner project={project} {...bannerProps}/>
+                    <Banner auth={auth} project={project} {...bannerProps} />
                 )}
                 
                     <div className="portal-body w-full h-full py-8 pl-[14rem] pr-[8.5rem]">
-                            {children.portalBody}
+                        {children.portalBody}
                     </div>
 
                 </main>
@@ -101,5 +106,6 @@ export default function AuthenticatedLayout({ bannerProps, children, project, ve
             
            
         </div>
+
     );
 }

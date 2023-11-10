@@ -4,21 +4,26 @@
 }
 
 
-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
 select {
     border-radius: var(--rounded-corners) !important;
-    padding: .75rem 1rem !important;
+    padding: .65rem .85rem !important;
     background-color: var(--light-color) !important;
     border: 1px solid var(--tertiary-color) !important;
     outline: none !important;
     width: 100%;
     color: var(--primary-color) !important;
-}
-
-input::placeholder,
-select::placeholder {
     font-size: .85rem;
 }
+ 
+input::placeholder,
+select option:disabled {
+    font-size: .85rem;
+    color: rgb(0,0,0,.2);
+ }
 
 input:focus,
 textarea:focus {

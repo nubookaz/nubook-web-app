@@ -13,47 +13,47 @@ trait LocationTrait
 
 {
   public function storeLocation(Request $request, Location $mainLocation, $locationType)
-{
-    // Validate the request data for the specified location type
-    $validatedData = $request->validate([
-        "{$locationType}_location.name" => 'required|string',
-        "{$locationType}_location.street_address" => 'required|string',
-        "{$locationType}_location.city" => 'required|string',
-        "{$locationType}_location.state" => 'required|string',
-        "{$locationType}_location.zip_code" => 'required|string',
-        "{$locationType}_location.country" => 'required|string',
-    ]);
+    {
+        // Validate the request data for the specified location type
+        $validatedData = $request->validate([
+            "{$locationType}_location.name" => 'required|string',
+            "{$locationType}_location.street_address" => 'required|string',
+            "{$locationType}_location.city" => 'required|string',
+            "{$locationType}_location.state" => 'required|string',
+            "{$locationType}_location.zip_code" => 'required|string',
+            "{$locationType}_location.country" => 'required|string',
+        ]);
 
-    // Create a new location record for the specified location type
-    $locationModelClass = $this->getLocationModel($locationType . "_location");
-    $locationTypeModel = $locationType . "Location";
+        // Create a new location record for the specified location type
+        $locationModelClass = $this->getLocationModel($locationType . "_location");
+        $locationTypeModel = $locationType . "Location";
 
-    if (!$locationModelClass) {
-        // Handle the case where the location type is not recognized
-        return response()->json(['error' => 'Invalid location type'], 422);
+        if (!$locationModelClass) {
+            // Handle the case where the location type is not recognized
+            return response()->json(['error' => 'Invalid location type'], 422);
+        }
+
+        $locationModel = new $locationModelClass(); // Instantiate the model class
+        $location = $locationModel->create($validatedData["{$locationType}_location"]);
+
+        // Associate the location with the main location using the relationship
+        $mainLocation->{$locationTypeModel}()->associate($location);
+        $mainLocation->save();
     }
 
-    $locationModel = new $locationModelClass(); // Instantiate the model class
-    $location = $locationModel->create($validatedData["{$locationType}_location"]);
+        
 
-    // Associate the location with the main location using the relationship
-    $mainLocation->{$locationTypeModel}()->associate($location);
-    $mainLocation->save();
-}
+        
+    private function getLocationModel($locationType)
+    {
+        // Map location type to the corresponding model
+        $modelMap = [
+            'parking_location' => ParkingLocation::class,
+            'hospital_location' => HospitalLocation::class,
+        ];
 
-    
-
-    
-private function getLocationModel($locationType)
-{
-    // Map location type to the corresponding model
-    $modelMap = [
-        'parking_location' => ParkingLocation::class,
-        'hospital_location' => HospitalLocation::class,
-    ];
-
-    return $modelMap[$locationType] ?? null;
-}
+        return $modelMap[$locationType] ?? null;
+    }
     
     
     

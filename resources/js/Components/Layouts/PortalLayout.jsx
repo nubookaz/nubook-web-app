@@ -5,11 +5,6 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import PageButton from '@/Components/Buttons/PageButton';
 
 function PortalLayout({  hasData, toolbarTitle, pageType, toolbarCTAText, buttonText, customSvgPath, toggleRightPanel, children, backButtonHref, actionButtons, secondary_cta_text, handleSecondaryButtonClick }) {
-    // const [status, setStatus] = useState( );
-
-    const hasDataRoutes = ['projects.index', 'projects.callSheets.index'];
-    const currentRouteName = route().current();
-    const shouldHaveData = hasDataRoutes.includes(currentRouteName);
 
     return (
       <div className="w-full h-full relative">

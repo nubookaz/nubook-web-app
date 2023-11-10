@@ -1,22 +1,17 @@
 import React, { useState } from 'react'; // Import useState from react
 import NavLink from '@/Components/Navigations/NavLink';
-import { Link } from '@inertiajs/react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePollHorizontal, faComments, faMoneyCheckDollar, faBriefcase, faMagnifyingGlass, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 import ApplicationLogo from '@/Components/Branding/ApplicationLogo';
 import ResponsiveNavLink from '@/Components/Navigations/ResponsiveNavLink';
 
-import ProfilePicture from '@/Components/ProfilePicture';
-import Tooltip from '@/Components/Containers/ToolTip';
-
-
+import ProfilePicture from '@/Components/Profile/ProfilePicture';
 
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
-import MenuItem from '@mui/joy/MenuItem';
 import Dropdown from '@mui/joy/Dropdown';
-
+import MenuItem from '@mui/joy/MenuItem';
 
 
 
@@ -74,33 +69,21 @@ function Sidebar({ toggleSearch, isOpen }) {
             </div>
             <div className="sidebar-footer">
 
-
                 <Dropdown>
-                    <MenuButton>
-                        <ProfilePicture alt="User's Profile" onClick={toggleTooltip}/>
+                    <MenuButton className="w-full !p-0 !border-0">
+                        <ProfilePicture alt="User's Profile" className="!h-[3rem]" onClick={toggleTooltip} />
                     </MenuButton>
 
-                    <Menu>
-                            <ResponsiveNavLink href={route('profile.edit')} as="button">
-                              Account Settings
-                          </ResponsiveNavLink>
-                          <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                               Log Out
-                            </ResponsiveNavLink>    
+                    <Menu className='!ml-[1rem] !mb-2'>
+                        <ResponsiveNavLink href={route('profile.edit')} as="button">
+                            Account Settings
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                            Log Out
+                        </ResponsiveNavLink>    
                     </Menu>
-
                 </Dropdown>
 
-                    {/* <Tooltip customClassName="account-tooltip">
-                       <ul>
-                           <ResponsiveNavLink href={route('profile.edit')} as="button">
-                              Account Settings
-                          </ResponsiveNavLink>
-                          <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                               Log Out
-                            </ResponsiveNavLink>
-                       </ul>
-                   </Tooltip> */}
             </div>
         </div>
     );

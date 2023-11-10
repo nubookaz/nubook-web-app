@@ -23,9 +23,20 @@ class ProjectController extends Controller
         // Retrieve the user's projects
         $projects = Project::where('user_id', auth()->id())->with('productionCompany', 'clients')->get();
         $user = Auth::user()->load('clients');
-        // // Render the projects index page using Inertia.js
-        return Inertia::render('Projects/ProjectsOverview', [
+ 
+         return Inertia::render('Projects/ProjectsOverview', [
             'auth' => $user,
+            'projects' => $projects,
+        ]);    
+    
+    }
+
+    public function showList()
+    {
+        
+        $projects = Project::where('user_id', auth()->id())->with('productionCompany')->get();
+
+        return Inertia::render('Projects/ProjectListPage', [
             'projects' => $projects,
         ]);    
     
@@ -55,7 +66,7 @@ class ProjectController extends Controller
         }
     
         // Render the project edit page using Inertia.js
-        return Inertia::render('Projects/ProjectEdit', [
+        return Inertia::render('Projects/ProjectEditPage', [
             'project' => $project, // Pass the project data to the edit page
         ]);
     }
@@ -114,7 +125,7 @@ class ProjectController extends Controller
             'projectYears' => $validatedData['projectYears'],
         ]);
 
-        return Inertia::render('Projects/ProjectEdit', [
+        return Inertia::render('Projects/ProjectEditPage', [
             'project' => $project, // Pass the project data to the edit page
         ]);
     }

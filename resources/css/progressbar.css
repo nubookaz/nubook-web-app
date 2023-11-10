@@ -21,7 +21,6 @@
     right: 0;
     bottom: 0;
     border-radius: inherit;
-   
     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 36px), #fff calc(100% - 15px));
   }
   

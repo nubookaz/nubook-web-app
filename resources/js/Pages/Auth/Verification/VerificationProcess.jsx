@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import PersonalInfo from '@/Pages/Auth/Verification/Partials/PersonalInfo';
-import CompanyInfo from '@/Pages/Auth/Verification/Partials/CompanyInfo';
+import PersonalInfo from '@/Components/Profile/PersonalInfo';
+import CompanyInfo from '@/Components/Profile/CompanyInfo';
 
 export default function VerificationProcess({ 
     currentStep, 
     setCurrentStep, 
-     setIsModalOpen,
+    setIsModalOpen,
  }) {
 
     
@@ -18,13 +18,12 @@ export default function VerificationProcess({
         first_name: '',
         last_name: '',
         middle_initial: '',
-        phone: '',
+        tel: '',
         street_address: '',
         city: '',
         state: '',
         zip_code: '',
     });
-
 
     const [companyInfo, setCompanyInfo] = useState({
         company_name: '',
@@ -33,12 +32,12 @@ export default function VerificationProcess({
         number_of_employees: '',
         referral: '',
     });
-
-
+    console.log(companyInfo);
 
     const VerificationStep = () => (
         <div>
             <input
+                type="text"
                 id="verification_code"
                 name="code"
                 placeholder="One Time Code"
@@ -49,8 +48,6 @@ export default function VerificationProcess({
             {error && <div style={{ color: 'red' }}>{error}</div>}
         </div>
     );
-
- 
 
     const handleError = (error, message) => {
         const errorMessage = error.message || message;
@@ -98,7 +95,6 @@ export default function VerificationProcess({
     const savePersonalInfo = async () => {
         try {
             const response = await axios.post(route('verification.personal.store'), personalInfo);
-    
             handleResponse(response, () => {
                 // Handle success case
                 setCurrentStep('companyInfo');
@@ -122,8 +118,6 @@ export default function VerificationProcess({
             handleError(error, 'Error during company info request');
         }
     };
- 
-    
 
     return (
         <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
@@ -168,7 +162,13 @@ export default function VerificationProcess({
                             <p>
                                 Please complete the company information form by providing essential details about your organization. Your input helps us better tailor our services to your business needs and provide you with the best support. Thank you for sharing this information with us.
                             </p>
-                            <CompanyInfo onUpdateCompanyInfo={setCompanyInfo} />
+                            <span className='text-sm font-semibold'>
+                                * If you enter a Company Name then the EIN Number and Job Title will be required
+                            </span>
+                            <div className='my-6'>
+                                <CompanyInfo onUpdateCompanyInfo={setCompanyInfo} />
+                            </div>
+                            
                             <SecondaryButton onClick={saveCompanyInfo}>Complete Registration</SecondaryButton>
                         </div>      
                     </div>

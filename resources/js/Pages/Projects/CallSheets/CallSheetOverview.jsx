@@ -23,32 +23,17 @@ function CallSheetOverview({ auth, showBanner }) {
     };
 
     const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
- 
-    const handleBackClick = () => {
-      // Use the route function to generate the URL for the "Projects Overview" page
-      const url = route('projects.edit', { id: project.id }); // Replace with your actual route name
-    };
+
 
     const toggleRightPanel = () => {
       setIsRightPanelOpen(!isRightPanelOpen);
     };
-    
-    // const hasCallSheets = () => {
-    //   return props.callSheets && props.callSheets.length > 0;
-    // };
 
     const hasData = callSheet;
     const toolbarTitle = "Call Sheets"; // Provide a title for the toolbar
     const toolbarCTAText = "Create a New Call Sheet"; // Provide the button text
     const buttonText = "Create a New Call Sheet"; // Provide the button text
     const customSvgPath = "../../images/svg_images/undraw_call_sheets_1.svg"; // Provide the SVG path
-
-
-    const handleStatusChange = (value) => {
-      // Update the callSheetStatus state when the select dropdown value changes
-      setCallSheetView(value);  
-    };
-  
   
     return (
       <AuthenticatedLayout user={auth.user} project={project} bannerProps={bannerProps}>

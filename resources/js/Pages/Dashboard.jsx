@@ -49,8 +49,6 @@ export default function Dashboard({ auth }) {
     }
   }, [auth]);
 
-
-
   const bannerProps = {
     showGreeting: true, // Customize these props based on your conditions
     showProfilePhoto: true,

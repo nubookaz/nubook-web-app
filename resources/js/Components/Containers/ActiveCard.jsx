@@ -3,11 +3,11 @@ import CircularProgress from '@mui/joy/CircularProgress';
 import CardContainer from '@/Components/Containers/CardContainer';
 import { Link } from '@inertiajs/react';
 
-const ActiveCard = ({ cardType, bgColor, textColor, menuItems, handleButtonClick, status, showButtonIcon, cardTitle, projectName, shootDate, projectType, progressValue, progressBar, RSVPs, href }) => {
+const ActiveCard = ({ cardType, className, headerColor, textColor, menuItems, handleButtonClick, status, showButtonIcon, cardTitle, shootDate, projectType, progressValue, progressBar, RSVPs, href }) => {
 
   const cardContent = (
-    <div className='flex flex-col justify-between h-full w-[12rem]'>
-      <h2 className={`text-xl primary-green-color ${textColor}`}>{cardTitle}</h2>
+    <div className='flex flex-col justify-between h-full'>
+      <h2 className='text-xl primary-green-color' style={{ color: headerColor }}>{cardTitle}</h2>
       <div>
 
         {cardType === 'callSheet' && (
@@ -36,7 +36,7 @@ const ActiveCard = ({ cardType, bgColor, textColor, menuItems, handleButtonClick
   );
 
   return (
-    <CardContainer bgColor={bgColor} textColor={textColor} header={status} menuItems={menuItems} showButtonIcon={showButtonIcon} handleButtonClick={handleButtonClick} className="w-full h-full max-h-[19rem]">
+    <CardContainer textColor={textColor} header={status} menuItems={menuItems} showButtonIcon={showButtonIcon} handleButtonClick={handleButtonClick} className={`w-full h-full ${className}`}>
       {href ? (
         <Link className='h-full' href={href}>{cardContent}</Link>
       ) : (

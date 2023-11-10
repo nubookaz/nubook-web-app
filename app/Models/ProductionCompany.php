@@ -9,7 +9,13 @@ class ProductionCompany extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'ein', 'job_title', 'number_of_employees', 'referral'];
+    protected $fillable = [
+        'user_id', 
+        'company_name', 
+        'ein_number', 
+        'job_title', 
+        'number_of_employees', 
+        'referral'];
 
     public function projects()
     {

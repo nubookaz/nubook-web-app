@@ -39,7 +39,6 @@ class CallSheetController extends Controller
     
     
 
-
     public function store(Request $request, $projectId)
     {
         // Retrieve the project data based on $projectId
@@ -74,7 +73,7 @@ class CallSheetController extends Controller
         // Retrieve the project by its ID
         $project = Project::find($id);
         $user = User::find($project->user_id);
-        $userCompany = $user->company;
+        $userCompany = $user->productionCompany;
 
         // Retrieve the call sheet by its ID
         $callSheet = CallSheet::findOrFail($callSheetId);

@@ -18,7 +18,7 @@ function SettingsNav({ activeContent, handleButtonClick }) {
         <li>
             <PageButton
                 onClick={() => handleButtonClick('project-settings')}
-                className={activeContent === 'project-settings' ? 'active-link' : ''}
+                className={activeContent === 'project-settings' ? 'active-link' : 'disabled'}
                 text="Project Settings"
             >
                 Project Settings
@@ -27,7 +27,7 @@ function SettingsNav({ activeContent, handleButtonClick }) {
         <li>
             <PageButton
                 onClick={() => handleButtonClick('social-settings')}
-                className={activeContent === 'social-settings' ? 'active-link' : ''}
+                className={activeContent === 'social-settings' ? 'active-link' : 'disabled'}
                 text="Social Settings"
             >
                 Social Settings
@@ -36,7 +36,7 @@ function SettingsNav({ activeContent, handleButtonClick }) {
         <li>
             <PageButton
                 onClick={() => handleButtonClick('budget-settings')}
-                className={activeContent === 'budget-settings' ? 'active-link' : ''}
+                className={activeContent === 'budget-settings' ? 'active-link' : 'disabled'}
                 text="Budget Settings"
             >
                 Budget Settings
@@ -45,7 +45,7 @@ function SettingsNav({ activeContent, handleButtonClick }) {
         <li>
             <PageButton
                 onClick={() => handleButtonClick('job-settings')}
-                className={activeContent === 'job-settings' ? 'active-link' : ''}
+                className={activeContent === 'job-settings' ? 'active-link' : 'disabled'}
                 text="Job Settings"
             >
                 Job Settings

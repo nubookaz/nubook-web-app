@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Checkbox from '@mui/joy/Checkbox';
-import CompanyEIN from '@/Components/Forms/CompanyEIN';
+import CompanyEIN from '@/Components/Profile/CompanyEIN';
 import AutoCompleteList from '@/Components/Clients/AutoCompleteList';
 
 function ProjectClientForm(props) {

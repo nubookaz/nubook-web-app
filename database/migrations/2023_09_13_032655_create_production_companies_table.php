@@ -11,8 +11,8 @@ class CreateProductionCompaniesTable extends Migration
         Schema::create('production_companies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained(); // Add foreign key to users table
-            $table->string('name')->nullable();
-            $table->string('ein')->nullable(); // Employer Identification Number, optional
+            $table->string('company_name')->nullable();
+            $table->string('ein_number')->nullable(); // Employer Identification Number, optional
             $table->string('job_title')->nullable();
             $table->string('number_of_employees')->nullable();
             $table->string('referral')->nullable();

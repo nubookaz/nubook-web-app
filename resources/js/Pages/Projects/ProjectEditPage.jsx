@@ -10,7 +10,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Textarea from '@mui/joy/Textarea';
 
-function ProjectEdit({ auth }) {
+function ProjectEditPage({ auth }) {
   const { project } = usePage().props;
 
   const bannerProps = {
@@ -139,4 +139,4 @@ function ProjectEdit({ auth }) {
   );
 }
 
-export default ProjectEdit;
+export default ProjectEditPage;

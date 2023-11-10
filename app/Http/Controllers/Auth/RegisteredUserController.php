@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Log;
 
 class RegisteredUserController extends Controller
 {
+
+
+
     public function create()
     {
         return Inertia::render('Auth/Registration/Register');

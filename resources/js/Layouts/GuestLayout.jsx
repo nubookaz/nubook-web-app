@@ -42,7 +42,7 @@ export default function Guest({ children, auth }) {
 
                             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
                             
-                            <div className='min-h-[20rem]'>
+                            <div className='mt-6 min-h-[23rem]'>
                                  {children.form}
                             </div>
 
