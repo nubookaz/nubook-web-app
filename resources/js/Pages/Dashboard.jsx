@@ -9,11 +9,8 @@ import ImageContainer from '@/Components/Containers/ImageContainer';
 import Modal from '@/Components/Modals/Modal';
 import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 import Overview from '@/Components/Projects/Overview';
-import ProjectForm from '@/Pages/Projects/Projects/NewProjectForm';
 
 import Skeleton from '@mui/joy/Skeleton';
-import Stack from '@mui/joy/Stack';
-import AspectRatio from '@mui/joy/AspectRatio';
 import Budget from '@/Components/Projects/Budget';
 
 

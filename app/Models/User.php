@@ -24,6 +24,7 @@ class User extends Authenticatable
         'profile_photo', // Add profile photo field
         'email',
         'password',
+        'subscription_type',
         'verification_code',
         'email_verified_at', // Add email_verified_at field
         'email_verified',    // Add email_verified field

@@ -87,12 +87,13 @@ export default function EmailStep({ formData, setFormData, errorText }) {
 
             <Stack spacing={0.5} sx={{ '--hue': Math.min(emailValue.length * 10, 120) }}>
 
-                <FormControl error={shouldShowEmailHelperText()} className="!mb-2">
+                <FormControl error={shouldShowEmailHelperText()} className="!mb-2 flex flex-col gap-2">
+                    <label htmlFor="email" value="email" className='text-gray-400 text-sm'> Email Address * </label>
                     <input
                         id="email"
                         type="email"
                         name="email"
-                        placeholder="Email Address"
+                        placeholder="indy@indianjones.com"
                         onChange={(event) => {
                             setEmailValue(event.target.value);
                             setFormData((prevData) => ({ ...prevData, email: event.target.value }));
@@ -104,7 +105,8 @@ export default function EmailStep({ formData, setFormData, errorText }) {
                 </FormControl>
 
 
-                <FormControl error={shouldShowPasswordHelperText()} className="!mb-1">
+                <FormControl error={shouldShowPasswordHelperText()} className="!mb-1 flex flex-col gap-2">
+                    <label htmlFor="password" value="password" className='text-gray-400 text-sm'> Password * </label>
                     <input
                         id="password"
                         type="password"
@@ -129,7 +131,8 @@ export default function EmailStep({ formData, setFormData, errorText }) {
                 </FormControl>
 
 
-                <FormControl error={shouldShowPasswordConfirmationHelperText()}>
+                <FormControl error={shouldShowPasswordConfirmationHelperText()} className="flex flex-col gap-2">
+                    <label htmlFor="password_confirmation" value="password_confirmation" className='text-gray-400 text-sm'> Confirm Password * </label>
                     <input
                         id="password_confirmation"
                         type="password"

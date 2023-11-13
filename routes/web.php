@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebsiteController;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -14,9 +15,7 @@ use App\Http\Controllers\LocationsController;
 
 use App\Http\Controllers\AssociationController; 
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+
 
 
 /*
@@ -31,10 +30,15 @@ use Inertia\Inertia;
 */
 
 
+
 Route::middleware(['guest'])->group(function () {
+
+     Route::get('/', [WebsiteController::class, 'index'])->name('website.home');
+   
+    
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
-    Route::get('/', [LoginController::class, 'show'])->name('show.login');
+    Route::get('/login', [LoginController::class, 'show'])->name('show.login');
 });
 
 

@@ -1,9 +1,21 @@
+import { Link } from '@inertiajs/react';
 
-function ApplicationName({className}) {
+function ApplicationName({ href, className}) {
+
     return (
-        <div className={`application-name primary-green-color text-4xl font-bold ${className}`}>
-            Nubook
-        </div>
+        
+        <>
+            {href ? (
+                <Link href={href} className={`application-name primary-green-color text-3xl font-bold ${className}`}>
+                    Nubook
+                </Link>
+            ):(
+                <div className={`application-name primary-green-color text-3xl font-bold ${className}`}>
+                    Nubook
+                </div>
+            )}
+        </>
+ 
     );
 }
 

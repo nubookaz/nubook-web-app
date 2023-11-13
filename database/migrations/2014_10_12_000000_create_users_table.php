@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('subscription_type');
             $table->string('verification_code')->nullable();
             $table->boolean('email_verified')->default(false); // Track email verification step
             $table->boolean('code_verified')->default(false); // Track code verification step
