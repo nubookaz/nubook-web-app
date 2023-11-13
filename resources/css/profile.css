@@ -1,4 +1,3 @@
-/* profile-picture.css */
 .MuiAvatar-root {
   margin: 0 auto !important;
 }
@@ -8,18 +7,18 @@
   height: var(--Avatar-size, 12rem);
 }
 
-.profile-photo {
+.avatar {
   border-radius: 50%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
-  width: 12rem;
-  height: 12rem;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   display: flex;
   flex-direction: column;
   border: solid 2px var(--light-color);
 }
 
-.profile-overlay {
+.avatar-overlay {
   border-radius: 50%;
   width: 100%;
   height: 100%;
@@ -30,11 +29,11 @@
   transition: .6s;
 }
 
-.profile-photo:hover .profile-overlay {
+.uploadable-avatar:hover .avatar-overlay {
   opacity: .85;
 }
  
-.profile-photo:hover p {
+.uploadable-avatar:hover p {
   display: block;
 }
 
@@ -44,7 +43,6 @@
   text-align: center;
   position: relative; /* Add this line to create a stacking context */
 }
-
 
 .profile-photo.has-image{
   border: solid 3px var(--light-color);

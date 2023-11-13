@@ -41,6 +41,13 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
+    Route::middleware(['auth', 'verified'])->get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
+
+
+
+
+    
+
     Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
     Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
     Route::post('/verification/company-info', [VerificationController::class, 'storeCompanyInfo'])->name('verification.company.store');

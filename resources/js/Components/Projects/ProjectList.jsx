@@ -6,7 +6,7 @@ import {
   productionColor,
   postProductionColor,
   completedColor,
-} from '@/Components/Projects/ProjectColors';
+} from '@/Components/Scripts/ProjectColors';
 
 
 

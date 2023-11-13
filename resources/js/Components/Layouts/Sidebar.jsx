@@ -70,12 +70,12 @@ function Sidebar({ toggleSearch, isOpen }) {
             <div className="sidebar-footer">
 
                 <Dropdown>
-                    <MenuButton className="w-full !p-0 !border-0">
+                    <MenuButton className="!bg-transparent w-full !p-0 !border-0">
                         <ProfilePicture alt="User's Profile" className="!h-[3rem]" onClick={toggleTooltip} />
                     </MenuButton>
 
                     <Menu className='!ml-[1rem] !mb-2'>
-                        <ResponsiveNavLink href={route('profile.edit')} as="button">
+                        <ResponsiveNavLink href={route('profile.edit') + '#profile-settings'} as="button">
                             Account Settings
                         </ResponsiveNavLink>
                         <ResponsiveNavLink method="post" href={route('logout')} as="button">

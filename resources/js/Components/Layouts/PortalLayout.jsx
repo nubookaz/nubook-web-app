@@ -40,7 +40,7 @@ function PortalLayout({  hasData, toolbarTitle, pageType, toolbarCTAText, button
             buttonText={buttonText}
             onButtonClick={toggleRightPanel}
           >
-            <h2 className="mb-4">No data available</h2>
+            <h2 className="mb-4">No {pageType} Available</h2>
             <p className="mb-4 p-base">
                 {`Currently, there are no ${pageType ? pageType.toLowerCase() : 'data'}.`} {/* Change "Call Sheet" to a prop */}
                 Please click the button below to create one.

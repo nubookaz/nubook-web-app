@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
+
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { faCcVisa } from '@fortawesome/fontawesome-free-brands'; 
 import CardContainer from '@/Components/Containers/CardContainer';
 
 import SettingsNav from '@/Components/Navigations/SettingsNav';
-import ProfileSettings from './PofileSettings';
+
+import ProfileSettings from './Partials/PofileSettings';
 import ProjectSettings from './Partials/ProjectSettings';
 import SocialSettings from './Partials/SocialSettings';
 import BudgetSettings from './Partials/BudgetSettings';
 import JobSettings from './Partials/JobSettings';
+import SubscriptionSettings from './Partials/SubscriptionSettings';
 import AccountSettings from './Partials/AccountSettings';
 import ImageContainer from '@/Components/Containers/ImageContainer';
 
@@ -26,12 +29,13 @@ export default function Edit({ auth }) {
     const [activeContent, setActiveContent] = useState('profile-settings');
     const [savedProfileSettings, setSavedProfileSettings] = useState(false);
     
-    const handleSavedClick = () => {
+    const handleOnSavedClick = () => {
         setSavedProfileSettings(true);
     
         // Set a timeout to reset the state after 1000 milliseconds (1 second)
         setTimeout(() => {
           setSavedProfileSettings(false);
+
         }, 3000);
       };
     
@@ -41,15 +45,27 @@ export default function Edit({ auth }) {
           clearTimeout(); // Clear the timeout to avoid state updates on unmounted components
         };
       }, []);
-    
-    const handleButtonClick = (content) => {
+      
+      const handleButtonClick = (content) => {
         setActiveContent(content);
-    };
-
+        window.location.href = `/profile#${content}`;
+      };
+      
+      useEffect(() => {
+        // Use the URL to determine the active content
+        const hashContent = window.location.hash.substring(1); // Remove the '#' symbol
+        const urlActiveContent = hashContent || 'defaultContent'; // Use 'defaultContent' if no hash is present
+        
+        // Set the activeContent based on the URL
+        setActiveContent(urlActiveContent);
+      }, []);
+      
+      
     const bannerProps = {
         showGreeting: true, // Customize these props based on your conditions
       };
 
+      
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -67,7 +83,7 @@ export default function Edit({ auth }) {
                             open={savedProfileSettings}
                             className="w-full max-w-[30rem]"
                         >
-                            Profile Settings Saved!
+                            Saved! Profile Settings Saved!
                         </Snackbar>
                     </div>
                 ),
@@ -83,7 +99,7 @@ export default function Edit({ auth }) {
                             <div className="app-settings h-full">
                                 {activeContent === 'profile-settings' && (
                                     <CardContainer className="h-full overflow-hidden !p-0">
-                                        <ProfileSettings auth={auth} saved={handleSavedClick}/>
+                                        <ProfileSettings auth={auth} onSave={handleOnSavedClick}/>
                                     </CardContainer>
                                 )}
                                 {activeContent === 'project-settings' && (
@@ -98,8 +114,15 @@ export default function Edit({ auth }) {
                                 {activeContent === 'job-settings' && (
                                     <JobSettings />
                                 )}
+                                {activeContent === 'subscription-settings' && (
+                                    <CardContainer className="h-full overflow-hidden">
+                                        <SubscriptionSettings />
+                                    </CardContainer>                                    
+                                )}
                                 {activeContent === 'account-settings' && (
-                                    <AccountSettings />
+                                    <CardContainer className="h-full overflow-hidden">
+                                        <AccountSettings />
+                                    </CardContainer>
                                 )}
                             </div>
                         </div>
@@ -126,10 +149,10 @@ export default function Edit({ auth }) {
                                     header="Chase"
                                     >
                                     <div className='text-white text-[1rem]'>
-                                        <p>XXXX-XXXX-XXXX-3415</p>
+                                        <p className='text-white'>XXXX-XXXX-XXXX-3415</p>
                                         <div className='flex flex-row justify-between w-full'>
-                                            <p className='uppercase'>Levi Elizaga</p> 
-                                            <p className=''>04/25</p>
+                                            <p className='uppercase text-white'>Levi Elizaga</p> 
+                                            <p className='text-white'>04/25</p>
                                         </div>
                                     </div>
                                 </ImageContainer>

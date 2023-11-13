@@ -1,6 +1,3 @@
-/* Sidebar.css */
-
-/* Styles for the sidebar container */
 .sidebar {
     width: 4.5rem; /* 1rem = 16px, so 4.5rem = 72px */
     background-color: #fff; /* Sidebar background color */
@@ -10,12 +7,11 @@
     left: 0;
     overflow-x: hidden;
     transition: 0.5s;
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 2rem .75rem 1.5rem;
 }
 
-/* Styles for the logo */
 .sidebar-content {
     display: flex;
     flex-direction: column;
@@ -23,7 +19,6 @@
     margin: auto 0;
 }
 
-/* Styles for the navigation links */
 .nav-links ul {
     list-style: none;
     padding: 0;
@@ -57,9 +52,41 @@
     color: var(--primary-color);
 }
 
-
 .css-sbbi8o-JoyMenuButton-root {
     padding: 0 !important;
     border-radius: 100% !important;
     border: 0px !important;
 }
+
+
+
+
+
+
+/* Extra Small (xs) */
+@media only screen and (min-width: 575px) {
+
+}
+  
+  /* Small (sm) */
+  @media only screen and (min-width: 860px) {
+    .sidebar {
+        display: flex;
+    }  
+  }
+  
+  /* Medium (md) */
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    /* CSS styles for medium screens */
+  }
+  
+  /* Large (lg) */
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    /* CSS styles for large screens */
+  }
+  
+  /* Extra Large (xl) */
+  @media only screen and (min-width: 1200px) {
+    /* CSS styles for extra large screens */
+  }
+  

@@ -4,63 +4,55 @@ import PageButton from '@/Components/Buttons/PageButton';
 
 function SettingsNav({ activeContent, handleButtonClick }) {
   return (
-    <div className="settings-nav">
-      <ul>
-      <li>
+    <div className="settings-nav flex flex-col gap-6">
             <PageButton
                 onClick={() => handleButtonClick('profile-settings')}
-                className={activeContent === 'profile-settings' ? 'active-link' : ''}
-                text="Profile Settings"
+                className={`py-4 px-10 !justify-start ${activeContent === 'profile-settings' ? 'active-link' : ''}`}
+                inText="Profile Settings"
             >
-                Profile Settings
             </PageButton>
-        </li>
-        <li>
+
             <PageButton
                 onClick={() => handleButtonClick('project-settings')}
-                className={activeContent === 'project-settings' ? 'active-link' : 'disabled'}
-                text="Project Settings"
+                className={`py-4 px-10 !justify-start ${activeContent === 'project-settings' ? 'active-link' : 'disabled'}`}
+                inText="Project Settings"
             >
-                Project Settings
             </PageButton>
-        </li>
-        <li>
+
             <PageButton
                 onClick={() => handleButtonClick('social-settings')}
-                className={activeContent === 'social-settings' ? 'active-link' : 'disabled'}
-                text="Social Settings"
+                className={`py-4 px-10 !justify-start ${activeContent === 'social-settings' ? 'active-link' : 'disabled'}`}
+                inText="Social Settings"
             >
-                Social Settings
             </PageButton>
-        </li>
-        <li>
+
             <PageButton
                 onClick={() => handleButtonClick('budget-settings')}
-                className={activeContent === 'budget-settings' ? 'active-link' : 'disabled'}
-                text="Budget Settings"
+                className={`py-4 px-10 !justify-start ${activeContent === 'budget-settings' ? 'active-link' : 'disabled'}`}
+                inText="Budget Settings"
             >
-                Budget Settings
             </PageButton>
-        </li>
-        <li>
+
             <PageButton
                 onClick={() => handleButtonClick('job-settings')}
-                className={activeContent === 'job-settings' ? 'active-link' : 'disabled'}
-                text="Job Settings"
+                className={`py-4 px-10 !justify-start ${activeContent === 'job-settings' ? 'active-link' : 'disabled'}`}
+                inText="Job Settings"
             >
-                Job Settings
             </PageButton>
-        </li>
-        <li>
+
+            <PageButton
+                onClick={() => handleButtonClick('subscription-settings')}
+                className={`py-4 px-10 !justify-start ${activeContent === 'subscription-settings' ? 'active-link' : ''}`}
+                inText="Subscription Settings"
+            >
+            </PageButton>
+
             <PageButton
                 onClick={() => handleButtonClick('account-settings')}
-                className={activeContent === 'account-settings' ? 'active-link' : ''}
-                text="Account Settings"
+                className={`py-4 px-10 !justify-start ${activeContent === 'account-settings' ? 'active-link' : ''}`}
+                inText="Account Settings"
             >
-                Account Settings
             </PageButton>
-        </li>
-      </ul>
     </div>
   );
 }

@@ -1,0 +1,28 @@
+body {
+    background-color: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: "SF Pro Rounded", sans-serif;
+}
+
+.disabled-feature {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+}
+  
+.disabled-feature::before {
+    content: "Coming Soon!";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+}

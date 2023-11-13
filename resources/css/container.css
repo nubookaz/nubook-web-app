@@ -1,4 +1,4 @@
-.container-base {
+  .container-base {
     background-color: #ffffff; /* White background */
     border-radius: var(--rounded-corners);
     padding: 20px;
@@ -37,7 +37,7 @@
   }
 
   .image-container .image-overlay {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     height: 100%;
     width: 100%;
     padding: 25px;

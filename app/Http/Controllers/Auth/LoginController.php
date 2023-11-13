@@ -43,7 +43,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        dd($request);
         // Perform login
         $credentials = $request->only('email', 'password');
     

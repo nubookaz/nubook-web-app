@@ -7,7 +7,7 @@ import React from 'react';
 
 
 
-function PageButton({ active = false, activeClass = '', className = '', icon, size, href, onClick, text }) {
+function PageButton({ active = false, activeClass = '', className, icon, size, href, onClick, children, inText }) {
   // Define a mapping of size to CSS class
   const sizeClass = {
     small: 'page-button-small',
@@ -22,18 +22,25 @@ function PageButton({ active = false, activeClass = '', className = '', icon, si
   if (href) {
     // Render a link if href is provided
     return (
-      <Link href={href} className={buttonClass}>
-        {icon && <FontAwesomeIcon icon={icon} />}
-        {text && <span className="button-text">{text}</span>}
-      </Link>
+      <div className='flex flex-col gap-2'>
+        <Link href={href} className={buttonClass}>
+          {icon && <FontAwesomeIcon icon={icon} />}
+          {inText && <span className="button-text">{inText}</span>}
+        </Link>
+        {children && <span className="button-text">{children}</span>}
+      </div>
     );
   } else {
     // Render a button if href is not provided
     return (
-      <button onClick={onClick} className={buttonClass}> {/* Use onClick here */}
-        {icon && <FontAwesomeIcon icon={icon} />}
-        {text && <span className="button-text">{text}</span>}
-      </button>
+      <div className='flex flex-col gap-2'>
+        <button onClick={onClick} className={buttonClass}> {/* Use onClick here */}
+          {icon && <FontAwesomeIcon icon={icon} />}
+          {inText && <span className="button-text">{inText}</span>}
+        </button>
+        {children && <span className="button-text">{children}</span>}
+      </div>
+
     );
   }
 

@@ -27,17 +27,6 @@
    padding: 0rem 1.2rem;
 }
 
-/* .schedule-container.break-style {
-    background-color: var(--dark-color) !important;
-}
-
-.schedule-container.break-style .col{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-weight: 600;
-} */
-
 .int-day-combination.scene-style,
 .int-day-combination.scene-style .col select {
     background-color: #fff !important;

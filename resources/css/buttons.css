@@ -51,17 +51,16 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
     transition: color 0.3s, outline 0.3s; /* Transition properties for color and outline */
     border: 2px solid transparent; /* Transparent outline initially */
-    margin: auto;
 }
 
 .page-button-small {
-    width: 50px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
+    width: 45px; /* Adjust the width as needed */
+    height: 45px; /* Adjust the height as needed */
 }
 
 .page-button-medium {
-    width: 65px; /* Adjust the width as needed */
-    height: 65px; /* Adjust the height as needed */
+    width: 55px; /* Adjust the width as needed */
+    height: 55px; /* Adjust the height as needed */
     font-size: 1.5rem;
 }
 
@@ -80,9 +79,10 @@
     outline: 2px solid var(--primary-green-color); /* Add an outline on hover */
 }
 
-.page-button:active {
+.page-button:active,
+.page-button:active * {
     background-color: var(--primary-green-color); /* Background color on click */
-    color: #fff; /* White icon color on click */
+    color: #fff; 
     outline: none; /* Remove outline on click */
 }
 
@@ -155,7 +155,6 @@
     padding: 1rem 1rem 1rem 2rem;
     width: 100%;
     justify-content: start !important;
-    margin: 0 0 1rem 0 !important;
 }
 
 .settings-nav button:hover {

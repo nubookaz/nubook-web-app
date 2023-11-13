@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
+@import "./system.css";
 
 @import "./variables.css";
 @import "./animations.css";
@@ -12,8 +12,8 @@
 @import "./typography.css";
 @import "./profile.css";
 @import "./inputs.css";
-@import "./branding.css";
 @import "./sidebar.css";
+@import "./branding.css";
 @import "./switches.css";
 @import "./panels.css";
 @import "./banners.css";
@@ -24,11 +24,3 @@
 @import "./call-sheets.css";
 @import "./progressbar.css";
 
-
-body {
-    background-color: var(--light-color);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    font-family: "SF Pro Rounded", sans-serif;
-}

@@ -21,6 +21,13 @@ class ProfileController extends Controller
 {
     use ProfileTrait;
 
+    public function fetchUserData()
+    {
+        // Replace this logic with your actual user data retrieval logic
+        $user = auth()->user()->load('clients', 'phone', 'address', 'productionCompany');
+
+        return response()->json($user);
+    }
 
     /**
      * Display the user's profile form.

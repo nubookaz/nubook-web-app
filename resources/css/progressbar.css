@@ -1,28 +1,25 @@
 .bar {
-    font-size: 10em;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    position:relative;
-    z-index:0;
-  }
-  
-  .bar::after {
-    font-size: .45em;
-  }
-  
-  .bar::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: inherit;
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 36px), #fff calc(100% - 15px));
-  }
-  
+  font-size: 10em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position:relative;
+  z-index:0;
+}
 
+.bar::after {
+  font-size: .45em;
+}
 
+.bar::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 36px), #fff calc(100% - 15px));
+}

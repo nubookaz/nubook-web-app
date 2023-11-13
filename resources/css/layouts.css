@@ -1,5 +1,4 @@
 
-/* CSS for positioning the tooltip */
 .account-tooltip {
   position: fixed;
   bottom: 5.5rem; /* Adjust the top position as needed */
@@ -23,7 +22,6 @@
   background: var(--overlay-color); /* Use your CSS variable here */
 }
 
-/* Custom SlideUpModal class */
 .slide-up-modal {
   position: fixed;
   width: 100%;
@@ -43,30 +41,8 @@
   bottom: -0;
 }
 
-/* Style for close button, you can adjust this as needed */
 .slide-up-modal .close-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
-}
-
-.disabled-feature {
-  opacity: 0.5;
-  pointer-events: none;
-  position: relative;
-}
-
-.disabled-feature::before {
-  content: "Coming Soon!";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 2rem;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
 }

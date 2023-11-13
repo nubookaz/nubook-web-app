@@ -1,13 +1,14 @@
 import { useForm } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
+import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
 
-
+import UserName from '@/Components/Profile/Partials/UserName';
 
 
 export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
     
-    const { data, setData } = useForm({  
+    const [data, setData] = useState({
         first_name: '',
         last_name: '',
         middle_initial: '',
@@ -19,29 +20,34 @@ export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
     });
 
     useEffect(() => {
-    if (existingData) {
-        setData(existingData);
-    }
+        if (existingData) {
+            setData(existingData);
+        }
     }, [existingData]);
-    
-    const handleChange = (field, value) => {
-        setData(field, value);
 
+    const handleChange = (field, value) => {
+        setData((prevData) => ({
+          ...prevData,
+          [field]: value,
+        }));
         onUpdatePersonalInfo({
             ...data,
             [field]: value,
         });
-    };
-      
+      };
+
+ 
     const formatPhoneNumber = (value) => {
-        const cleanedValue = value.replace(/\D/g, ''); 
+        const cleanedValue = value.replace(/\D/g, '');
         const formattedValue = `(${cleanedValue.slice(0, 3)}) ${cleanedValue.slice(3, 6)}-${cleanedValue.slice(6, 10)}`;
         return formattedValue;
     };
- 
+
     return (
 
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 grow'>
+            {/* <UserName onUpdateUserInfo={setData} existingData={data}/> */}
+            
             <div className='flex flex-row gap-2 w-full'>
                 <div className='flex flex-col gap-2 grow'>
                     <label htmlFor="first_name" value="first_name" className='text-gray-400 text-sm'> First Name * </label>
@@ -69,7 +75,7 @@ export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
                         maxLength={1} 
                         onChange={(e) => handleChange('middle_initial', e.target.value)}
                     />
-                </div>
+                    </div>
                 <div className='flex flex-col gap-2 grow'>
                     <label htmlFor="last_name" value="last_name" className='text-gray-400 text-sm'> Last Name * </label>
                     <input
@@ -84,7 +90,7 @@ export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
                     />   
                 </div>
             </div>
-            
+
             <div className='flex flex-col gap-2 w-full '>
                 <label htmlFor="tel" value="tel" className='text-gray-400 text-sm'> Phone Number </label>
                 <input
@@ -98,7 +104,7 @@ export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
                 /> 
             </div>
         
-            <div className='flex flex-col gap-2 w-full'>
+            <div className='flex flex-col gap-4 w-full'>
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="street_address" value="street_address" className='text-gray-400 text-sm'> Street Address </label>
                     <input
@@ -151,8 +157,7 @@ export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
                 </div>
                
             </div>                
-
-    </div> 
+        </div> 
 
     );
 

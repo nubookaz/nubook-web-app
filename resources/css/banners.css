@@ -1,7 +1,4 @@
 
-/* Banner.css */
-
-/* Main banner container */
 .banner {
   width: 100%;
   background-size: cover;
@@ -11,7 +8,6 @@
   color: #fff; /* Text color for header and date */
 }
 
-  /* CSS for the banner content */
 .banner-content {
   position: relative; /* Ensure content is above the overlay */
   display: flex;
@@ -21,8 +17,6 @@
 }
 
 .banner-footer {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   position: relative;
 }
@@ -32,10 +26,9 @@
   font-weight: 600;
   color: var(--light-color);  
   line-height: 1.7rem;
-  padding: 1.6rem 0 4.8rem 2rem;
+  padding: 1.2rem 0 4.6rem 2rem;
 }
 
-/* Right content (Date and Search Button) */
 .right-content {
   display: flex;
   align-items: center; /* Center content vertically */
@@ -44,6 +37,7 @@
 
 .banner-photo-height {
   margin-bottom: 3rem;
+  max-height: 14rem;
 }
 
 .chapter-banner-height {
@@ -57,10 +51,6 @@
 .small-banner-buttons-height {
   height: 12rem; /* Adjust the height as needed */
 }
-
-
-
-
 
 .medium-banner-height .banner-footer {
   margin-bottom: -5rem;

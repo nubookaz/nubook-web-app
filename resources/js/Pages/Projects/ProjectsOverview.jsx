@@ -41,6 +41,7 @@ function ProjectsOverview({ auth }) {
 
     const limitedProjects = projects.slice(0, 8);
 
+
     return (
 
       <AuthenticatedLayout bannerProps={bannerProps}>

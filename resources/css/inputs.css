@@ -14,17 +14,19 @@ select {
     background-color: var(--light-color) !important;
     border: 1px solid var(--tertiary-color) !important;
     outline: none !important;
-    width: 100%;
+    width: 100% !important;
     color: var(--primary-color) !important;
-    font-size: .85rem;
+    font-size: .85rem !important;
+    box-shadow: 0px 1px 1px rgba(0,0,0,.1) !important;
 }
  
 input::placeholder,
-select option:disabled {
-    font-size: .85rem;
-    color: rgb(0,0,0,.2);
- }
-
+select option:disabled,
+textarea::placeholder {
+    font-size: .85rem !important;
+    color: rgb(0,0,0,.2) !important;
+}
+ 
 input:focus,
 textarea:focus {
     outline: none;
@@ -43,23 +45,26 @@ textarea:active {
     border-color: transparent;
 }
 
-
 /* Joy MUI Components */
 .css-1btz9nl-JoyTextarea-root {
     --Textarea-focused: 0 !important;
     --Textarea-focusedThickness: var(--joy-focus-thickness, 0px) !important;
 }
 
-.css-nubfs2-JoySelect-root,
-.css-gawb0e-JoyTextarea-root {
+.MuiSelect-root,
+.MuiTextarea-root,
+.MuiAutocomplete-root {
     border-radius: var(--rounded-corners) !important;
-    padding: .75rem 1rem !important;
+    padding: .65rem .85rem !important;
     background-color: var(--light-color) !important;
     border: 1px solid var(--tertiary-color) !important;
     outline: none !important;
-    width: 100%;
+    width: 100% !important;
     color: var(--primary-color) !important;
+    font-size: .85rem !important;
+    box-shadow: 0px 1px 1px rgba(0,0,0,.1) !important;
 }
+
 .css-rmmrnf-JoyAutocomplete-root{
     width: 100% !important;
 }

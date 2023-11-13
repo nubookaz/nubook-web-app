@@ -3,7 +3,7 @@ import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CircularButton from '../Buttons/CircularButton';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function RightPanel({ isRightPanelOpen, toggleRightPanel, children, panel_header, panel_footer, showSlideOutPanel }) {
+export default function RightPanel({ isRightPanelOpen, isForm, onSubmitForm, formAction, toggleRightPanel, children, panel_header, panel_footer, showSlideOutPanel }) {
   const [slideOutPanelVisible, setSlideOutPanelVisible] = useState(false);
 
 
@@ -40,24 +40,47 @@ export default function RightPanel({ isRightPanelOpen, toggleRightPanel, childre
   return (
     <div className="relative">
       <div className={`panel-container right-panel z-40 ${isRightPanelOpen ? 'visible' : ''}`}>
-        {/* Panel Content */}
-        <div className="panel-content">
-          {/* Header */}
-          <div className="mb-8 text-center panel-header">
-            {panel_header}
-          </div>
+ 
 
-          {/* Body */}
-          <div className="panel-body">
-            {children}
-          </div>
+          {isForm ? (
 
-          {/* Footer */}
-          <div className="panel-footer">
-            {panel_footer}
-          </div> 
+            <form className="panel-content" action={formAction} onSubmit={onSubmitForm}>
+               {/* Header */}
+              <div className="mb-8 text-center panel-header">
+                {panel_header}
+              </div>
 
-        </div>
+              {/* Body */}
+              <div className="panel-body">
+                {children}
+              </div>
+
+              {/* Footer */}
+              <div className="panel-footer">
+                {panel_footer}
+              </div> 
+            </form>
+
+          ):(
+            <div className="panel-content">
+              {/* Header */}
+              <div className="mb-8 text-center panel-header">
+                {panel_header}
+              </div>
+
+              {/* Body */}
+              <div className="panel-body">
+                {children}
+              </div>
+
+              {/* Footer */}
+              <div className="panel-footer">
+                {panel_footer}
+              </div> 
+            </div>
+          )}
+         
+
       </div>
       {/* Slide-Out Panel */}
       <div className={`panel-container slide-out-panel z-30 ${isRightPanelOpen && showSlideOutPanel ? 'visible' : ''}`}>

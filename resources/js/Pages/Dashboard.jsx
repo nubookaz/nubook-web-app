@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
+import { useAuth } from '@/Components/Contexts/AuthContext';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
@@ -22,7 +23,16 @@ import Budget from '@/Components/Projects/Budget';
 
 
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({auth}) {
+  const { user, fetchUserData } = useAuth();
+
+  useEffect(() => {
+    // Fetch user data on component mount
+    fetchUserData();
+  }, []);
+  
+
+
   const { props } = usePage();
   const projects = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
 
@@ -58,6 +68,7 @@ export default function Dashboard({ auth }) {
 
   const verification = !auth.email_verified || !auth.personal_info_completed || !auth.company_info_completed;
 
+
   return (
     <AuthenticatedLayout bannerProps={bannerProps} verification={verification}>
       {{
@@ -70,10 +81,6 @@ export default function Dashboard({ auth }) {
                 setIsModalOpen={setIsModalOpen}
                 />
             </Modal>
-            <ProjectForm
-                isRightPanelOpen={isProjectFormPanel}
-                toggleRightPanel={openProjectFormPanel}
-            />
           </div>
         ),
 
@@ -113,7 +120,7 @@ export default function Dashboard({ auth }) {
                           className="promo-ad"                            
                           backgroundImage="./images/cartoon_images/female_professional_filmmaker.png"
                         >
-                          <h2 className='text-white text-[3rem]'>Hollywood Filmmaker</h2>
+                          <h2 className='text-white text-[2rem]'>Hollywood Filmmaker</h2>
                         </ImageContainer>
                       </div>
                     </div>

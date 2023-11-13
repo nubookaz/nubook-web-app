@@ -1,5 +1,4 @@
-
-.search {
+  .search {
     background: transparent;
     height: 100vh;
     position: fixed;
@@ -59,7 +58,6 @@
     height: 4rem;
     transition: opacity 0.8s ease; /* Transition opacity over 0.3 seconds with easing */
   }
-
 
   .icon {
     position: absolute;

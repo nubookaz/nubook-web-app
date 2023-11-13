@@ -52,9 +52,10 @@ const img = {
 
 
 export default function ProfilePicture({ onClick, className, isUploadable }) {
-  const [userProfileImage, setUserProfileImage] = useState(null); // State to store the user's profile image
+  const [userProfileImage, setUserProfileImage] = useState(null);  
+  const [isLoading, setIsLoading] = useState(true);  
   const [lastUpdateTimestamp, setLastUpdateTimestamp] = useState(0);
-  const [totalImages, setTotalImages] = useState(12); // Initial value, you can set it based on your requirement
+  const [totalImages, setTotalImages] = useState(12);  
 
 
   useEffect(() => {
@@ -66,10 +67,13 @@ export default function ProfilePicture({ onClick, className, isUploadable }) {
         setUserProfileImage(imageUrl !== false ? imageUrl : null);
         setLastUpdateTimestamp(lastUpdateTimestamp);
         setTotalImages(imagesCount || 12); // Use the count from the server or fallback to 12
+        setIsLoading(false); // Set loading to false after fetching data
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false); // Set loading to false on error
       });
+
   }, []);
 
 
@@ -167,7 +171,7 @@ export default function ProfilePicture({ onClick, className, isUploadable }) {
   return (
  
       <div
-        className={`${className} profile-photo ${imageUrls.length > 0 ? 'has-image' : ''} ${isUploadable ? '' : ''}`}
+        className={`${className} avatar ${imageUrls.length > 0 ? 'has-image' : ''} ${isUploadable ? 'uploadable-avatar' : ''}`}
         {...rootProps}
         style={{
           backgroundImage: `url(${profileImageUrl})`,
@@ -178,8 +182,8 @@ export default function ProfilePicture({ onClick, className, isUploadable }) {
         }}
       >
         {isUploadable ? (
-          <div className='profile-overlay'>
-            <p className='text-white text-center font-semibold m-auto w-[75%] hidden'>Drag 'n' drop some files here, or click to select files</p>
+          <div className='avatar-overlay'>
+            <p className='text-white text-center text-sm font-semibold m-auto w-[75%] hidden'>Drag 'n' drop some files here, or click to select files</p>
             <div {...getRootProps()} className={`dropzone uploaded-state ${imageUrls.length > 0 ? 'has-image' : ''}`}>
               <input {...getInputProps()} />
             </div>
