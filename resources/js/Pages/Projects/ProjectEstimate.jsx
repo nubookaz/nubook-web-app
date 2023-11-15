@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { router } from '@inertiajs/react'; // Import the router object
-import PortalLayout from '@/Components/Layouts/PortalLayout';
+import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Input from '@mui/joy/Input';

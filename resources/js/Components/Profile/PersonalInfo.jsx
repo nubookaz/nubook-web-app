@@ -4,9 +4,14 @@ import { useState, useEffect } from 'react';
 import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
 
 import UserName from '@/Components/Profile/Partials/UserName';
+import Input from '@/Components/Forms/Input';
 
+export default function PersonalInfo({ 
+    
+    onUpdatePersonalInfo, 
+    existingData 
 
-export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
+}) {
     
     const [data, setData] = useState({
         first_name: '',
@@ -49,19 +54,15 @@ export default function PersonalInfo({ onUpdatePersonalInfo, existingData }) {
             {/* <UserName onUpdateUserInfo={setData} existingData={data}/> */}
             
             <div className='flex flex-row gap-2 w-full'>
-                <div className='flex flex-col gap-2 grow'>
-                    <label htmlFor="first_name" value="first_name" className='text-gray-400 text-sm'> First Name * </label>
-                    <input
-                        type="text"
-                        id="first_name"
-                        name="first_name"
-                        placeholder="Daniel"
-                        value={data.first_name}
-                        autoComplete="given-name"
-                        onChange={(e) => handleChange('first_name', e.target.value)}
-                        required
-                    />
-                </div>
+                <Input 
+                    required={true}
+                    label="First Name"
+                    type="text"
+                    name="first_name"
+                    value={data.first_name}
+                    autoComplete="given-name"
+                    onChange={(e) => handleChange('first_name', e.target.value)}
+                />
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="middle_initial" value="middle_initial" className='text-gray-400 text-sm'> M.I. </label>
                     <input

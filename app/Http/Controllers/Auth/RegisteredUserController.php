@@ -39,7 +39,6 @@ class RegisteredUserController extends Controller
             'email.unique' => 'This email address is already in use.',
             'password.required' => 'A password is required.',
             'password.confirmed' => 'Password confirmation does not match.',
-            // Add more messages for password rules as needed
         ];
 
         $request->validate([
@@ -58,23 +57,14 @@ class RegisteredUserController extends Controller
             'email_verified_at' => null,
             'email_verified' => false,
         ]);
-        // $request->session()->put('registration.user_id', $user->id);
-        // $request->session()->put('registration.email_verified', false);
-
-
+ 
         event(new Registered($user));
         Auth::login($user);
 
     
-        // try {
-            Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
-        // } catch (\Exception $e) {
-        //     Log::error("Error sending verification email to {$user->email}: " . $e->getMessage());
-        //     Log::error($e->getTraceAsString());
-
-        //     return response()->json(['error' => 'Failed to send verification email. Please try again.'], 500);
-        // }
-
-        return redirect(RouteServiceProvider::HOME);    }
+        Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
+ 
+        return redirect(RouteServiceProvider::HOME);   
+    }
     
 }

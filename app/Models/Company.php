@@ -9,7 +9,10 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'name', 'ein' ];
+    protected $fillable = [ 
+        'name', 
+        'ein' 
+    ];
 
 
     public function clients()

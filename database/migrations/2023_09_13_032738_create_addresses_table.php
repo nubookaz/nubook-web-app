@@ -10,10 +10,10 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('street_address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('zip_code');
+            $table->string('street_address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
             $table->string('country')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('client_id')->nullable();

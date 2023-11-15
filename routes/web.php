@@ -15,6 +15,7 @@ use App\Http\Controllers\LocationsController;
 
 use App\Http\Controllers\AssociationController; 
 
+use Inertia\Inertia;
 
 
 
@@ -34,7 +35,8 @@ use App\Http\Controllers\AssociationController;
 Route::middleware(['guest'])->group(function () {
 
      Route::get('/', [WebsiteController::class, 'index'])->name('website.home');
-   
+     Route::post('/beta-register', [WebsiteController::class, 'betaStore'])->name('website.beta.register');
+
     
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
@@ -46,12 +48,8 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::middleware(['auth', 'verified'])->get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
-
-
-
-
     
-
+    Route::post('/verification/update-password', [VerificationController::class, 'updatePassword'])->name('verification.updatePassword');
     Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
     Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
     Route::post('/verification/company-info', [VerificationController::class, 'storeCompanyInfo'])->name('verification.company.store');
@@ -64,6 +62,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/', [ProfileController::class, 'updateProfileInfo'])->name('profile.update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        
+        Route::get('/get-profile-image', [ProfileController::class, 'getProfileImage'])->name('profile.get-image');
+        Route::post('/upload-profile-image', [ProfileController::class, 'uploadProfileImage'])->name('profile.upload-image');
+
     });
 
     // Dashboard
@@ -74,8 +76,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
 
-    Route::get('/get-profile-image', [ProfileController::class, 'getProfileImage'])->name('profile.get-image');
-    Route::post('/upload-profile-image', [ProfileController::class, 'uploadProfileImage'])->name('profile.upload-image');
 
     
     Route::prefix('projects')->group(function () {

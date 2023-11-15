@@ -9,7 +9,7 @@ import {  faInfo, faPeopleGroup, faEye, faCalendarDays } from '@fortawesome/free
 import Textarea from '@mui/joy/Textarea';
 import SlideUpModal from '@/Components/Modals/SlideUpModal'; 
 import CallSheetPreview from '@/Components/CallSheets/CallSheetPreview';
-import PortalLayout from '@/Components/Layouts/PortalLayout';
+import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import LinearProgress from '@mui/joy/LinearProgress';

@@ -18,6 +18,7 @@ function MultiCircularProgress({
   productionProjects,
   postProductionProjects,
   completedProjects,
+  multiCircularProgressSize,
  }) {
 
   const totalProject = projects.length;
@@ -56,9 +57,9 @@ function MultiCircularProgress({
   return (
 
       <div>
-        <div className="bar w-[250px] h-[250px] flex flex-col" 
+        <div className={`bar ${multiCircularProgressSize} flex flex-col`}
           style={{ 
-           "padding": "30px",
+           "padding": "20px",
            "--p1": p1Condition, // Use the conditional value for --p1
            "--p2": p2Condition,
            "--p3": p3Condition,

@@ -12,7 +12,7 @@ import {
 
 
 function ProjectList({ projects, className, cols = 4, view }) {
-  const containerClasses = `grid grid-cols-${cols} gap-6 h-full ${className}`;
+  const containerClasses = `grid grid-cols-${cols} grid-rows-2 gap-6 h-full ${className}`;
 
 
   const sortProjects = (projects) => {
@@ -29,7 +29,7 @@ function ProjectList({ projects, className, cols = 4, view }) {
       // Create an array to store call sheets with status order information
       const projectsWithOrder = projects.map((project) => ({
         ...project,
-        statusOrder: statusOrder[project.projectStage],
+        statusOrder: statusOrder[project.project_stage],
       }));
 
       // Sort call sheets by status order (most recent first)
@@ -48,7 +48,7 @@ function ProjectList({ projects, className, cols = 4, view }) {
 
 
   // Get the filtered and sorted call sheets based on the selected view
-  const filteredProjects = view === "View All" ? projects : projects.filter(project => project.projectStage === view);
+  const filteredProjects = view === "View All" ? projects : projects.filter(project => project.project_stage === view);
   const sortedProjects = sortProjects(filteredProjects);
 
 
@@ -60,31 +60,31 @@ function ProjectList({ projects, className, cols = 4, view }) {
         let textColor = '';
         if (project.projectStage === 'Estimate') {
           projectColor = estimateColor;
-        } else if (project.projectStage === 'Creative Development') {
+        } else if (project.project_stage === 'Creative Development') {
           projectColor = creativeDevelopmentColor;
-        } else if (project.projectStage === 'Pre-Production') {
+        } else if (project.project_stage === 'Pre-Production') {
           projectColor = preProductionColor;
-        } else if (project.projectStage === 'Production') {
+        } else if (project.project_stage === 'Production') {
           projectColor = productionColor;
-        } else if (project.projectStage === 'Post-Production') {
+        } else if (project.project_stage === 'Post-Production') {
           projectColor = postProductionColor;
-        } else if (project.projectStage === 'Completed') {
+        } else if (project.project_stage === 'Completed') {
           projectColor = completedColor;
         }  
 
         return (
           
           <ActiveCard
-            status={project.projectStage}
+            status={project.project_stage}
             cardType="project"
             href={
-              project.projectStage === 'Estimate'
+              project.project_stage === 'Estimate'
                 ? route('projects.estimate', { id: project.id })
                 : route('projects.edit', { id: project.id })
             }
             key={project.id}
-            cardTitle={project.projectName}
-            projectType={project.projectType}
+            cardTitle={project.project_name}
+            projectType={project.project_type}
             progressValue={75}
             headerColor={projectColor}
           />

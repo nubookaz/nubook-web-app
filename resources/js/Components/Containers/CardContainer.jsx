@@ -37,7 +37,7 @@ function CardContainer({ children, textColor, header, showButtonIcon, openPage, 
             {header && (
                 <div className="card-header flex justify-between items-center">
                     <div className="flex items-center">
-                        {header && <h4 className={`secondary-color container-header text-[1.2rem] font-semibold ${textColor}`}>{header}</h4>}
+                        {header && <h4 className={`secondary-color container-header text-[1rem] font-semibold ${textColor}`}>{header}</h4>}
                     </div>
                     {showButtonIcon && (
                         <div>

@@ -1,24 +1,61 @@
-// CallSheetForm.jsx
-
 import React from 'react';
-import CallSheetDetailsForm from '@/Pages/Projects/CallSheets/Forms/CallSheetDetailsForm';
+import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
 
-const CallSheetForm = ({
-  callSheetData,
-  setCallSheetTitle,
-  setCallSheetDate,
-  checkFormStatus,
-}) => {
+import Input from '@/Components/Forms/Input';
+
+export default function CallSheetForm ({
+
+  data,
+  onUpdateCallSheetInfo,
+  emptyFields,
+  setEmptyFields,
+
+})  {
+
+
+  const handleChange = (field, value) => {
+    onUpdateCallSheetInfo(field, value);
+    if (emptyFields[field]) {
+         setEmptyFields((prevEmptyFields) => ({
+            ...prevEmptyFields,
+            [field]: false
+        }));
+    }
+  };
+
+
   return (
-    <div>
-      <CallSheetDetailsForm
-        callSheetData={callSheetData}
-        setCallSheetTitle={setCallSheetTitle}
-        setCallSheetDate={setCallSheetDate}
-        checkFormStatus={checkFormStatus}
-      />
-    </div>
-  );
-};
 
-export default CallSheetForm;
+
+    <div className={formGroupClass}>
+        <Input
+          required
+          openToolTip={emptyFields['call_sheet_name'] || false}
+          label="Call Sheet Name"
+          type="text"
+          name="call_sheet_name"
+          value={data.call_sheet_name === '' ? undefined : data.call_sheet_name} 
+          placeholder="Day 1 - Scenes 1,4,5 @ Ark"
+          onChange={(e, newCallSheetName) => {
+            handleChange('call_sheet_name', newCallSheetName);
+        }}        >
+        </Input>
+
+        <Input
+          required
+          openToolTip={emptyFields['call_sheet_date'] || false}
+          label="Call Sheet Date"
+          type="date"
+          name="call_sheet_date"
+          value={data.call_sheet_date === '' ? undefined : data.call_sheet_date} 
+          placeholder="February 14th, 1964"
+          onChange={(e) => handleChange('call_sheet_date', e.target.value)}
+        >
+        </Input>
+    </div>
+
+
+  );
+}
+
+ 

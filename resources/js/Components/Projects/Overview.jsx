@@ -10,15 +10,16 @@ export default function Overview({
     projects,
     isPortrait,
     onClick,
+    multiCircularProgressSize,
 }) {
     const { props } = usePage();
 
-    const estimateProjects = props.projects.filter(project => project.projectStage === 'Estimate');
-    const creativeDevelopmentProjects = props.projects.filter(project => project.projectStage === 'Creative Development');
-    const preProductionProjects = props.projects.filter(project => project.projectStage === 'Pre-Production');
-    const productionProjects = props.projects.filter(project => project.projectStage === 'Production');
-    const postProductionProjects = props.projects.filter(project => project.projectStage === 'Post-Production');
-    const completedProjects = props.projects.filter(project => project.projectStage === 'Completed');
+    const estimateProjects = props.projects.filter(project => project.project_stage === 'Estimate');
+    const creativeDevelopmentProjects = props.projects.filter(project => project.project_stage === 'Creative Development');
+    const preProductionProjects = props.projects.filter(project => project.project_stage === 'Pre-Production');
+    const productionProjects = props.projects.filter(project => project.project_stage === 'Production');
+    const postProductionProjects = props.projects.filter(project => project.project_stage === 'Post-Production');
+    const completedProjects = props.projects.filter(project => project.project_stage === 'Completed');
 
     const buttonText = "Start a New Project"; // Provide the button text
 
@@ -35,6 +36,7 @@ export default function Overview({
                     productionProjects={productionProjects}
                     postProductionProjects={postProductionProjects}
                     completedProjects={completedProjects}
+                    multiCircularProgressSize={multiCircularProgressSize}                    
                 />
             </div>
             <div className={`flex flex-col flex-wrap gap-4 m-auto ${isPortrait ? 'w-full' : 'w-1/2'}`}>

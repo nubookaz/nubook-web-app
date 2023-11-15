@@ -2,9 +2,9 @@ import { usePage } from '@inertiajs/react';
 import React, { useState } from 'react';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import PortalLayout from '@/Components/Layouts/PortalLayout';
+import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
-import ProjectForm from '@/Pages/Projects/Projects/NewProjectForm';
+import ProjectForm from '@/Pages/Projects/NewProjectForm';
 import ProjectList from '@/Components/Projects/ProjectList';
 
 import Select from '@mui/joy/Select';

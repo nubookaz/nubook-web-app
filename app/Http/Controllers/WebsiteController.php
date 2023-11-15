@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BetaEmail;
 
 
 class WebsiteController extends Controller
@@ -21,6 +27,69 @@ class WebsiteController extends Controller
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
         ]);
+    }
+
+    public function betaStore(Request $request) 
+    {
+        $userValidator = Validator::make($request->all()['data'], [
+            'first_name' => 'required|string|max:255',
+            'middle_initial' => 'nullable|string|max:1',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'company_name' => 'nullable|string|max:255',
+            'number_of_employees' => 'required|string',
+            'referral' => 'required|string',
+        ]);
+    
+
+        // Check if validation fails
+        if ($userValidator->fails()) {
+            return response()->json(['error' => $userValidator->errors()], 400);
+        }
+
+        $temporaryPassword = Str::random(10);
+
+        $data = $request->input('data');
+        $userData = [
+            'first_name' => $data['first_name'],
+            'middle_initial' => $data['middle_initial'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => Hash::make($temporaryPassword),
+            'is_temporary' => true,
+        ];
+
+        // dd($request);
+
+        $userData['subscription_type'] = 'beta';
+
+
+        $user = User::create($userData);
+
+
+        $companyInfo = $request->only([
+            'company_name',
+            'number_of_employees',
+            'referral',
+        ]);
+
+        $companyInfo = [
+            'company_name' => $data['company_name'],
+            'number_of_employees' => $data['number_of_employees'],
+            'referral' => $data['referral'], 
+        ];
+
+        // Update or create the production company information for the user
+        $user->productionCompany()->updateOrCreate(
+            ['user_id' => $user->id],
+            $companyInfo
+        );
+
+        Mail::to($user->email)->send(new BetaEmail($user, $temporaryPassword));
+
+
+        return response()->json(['message' => 'Form submitted successfully']);
+
     }
 
     /**

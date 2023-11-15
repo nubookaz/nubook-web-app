@@ -10,7 +10,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 export default function HeaderNavigation({onClick}) {
 
     return (
-        <div className="flex flex-col text-center justify-between xl:text-left xl:flex-row">
+        <div className="flex flex-col text-center justify-between w-full 2xl:justify-center xl:max-w-[60%] 2xl:max-w-[45%] xl:text-left xl:flex-row">
             {/* <div id="navicon" className='block text-left xl:hidden'>
                 <FontAwesomeIcon className='text-2xl text-white cursor-pointer' onClick={onClick} icon={faBars} />
             </div> */}

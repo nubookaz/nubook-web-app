@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from './TextInput'; // Import the TextInput component
+import TextInput from './TextInput - OLD'; // Import the TextInput component
 
 export default function PersonalInput({ icon, iconClass, ...props }) {
     return (

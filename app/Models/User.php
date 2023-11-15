@@ -19,19 +19,20 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'first_name',
-        'middle_initial', // Add first name field
-        'last_name',  // Add last name field
-        'profile_photo', // Add profile photo field
+        'middle_initial', 
+        'last_name', 
+        'profile_photo', 
         'email',
         'password',
+        'is_temporary',
         'subscription_type',
         'verification_code',
-        'email_verified_at', // Add email_verified_at field
-        'email_verified',    // Add email_verified field
-        'code_verified',     // Add code_verified field
-        'personal_info_completed', // Add personal_info_completed field
-        'company_info_completed',  // Add company_info_completed field
-        'registration_complete',   // Add registration_complete field
+        'email_verified_at', 
+        'email_verified',  
+        'code_verified',    
+        'personal_info_completed',  
+        'company_info_completed',  
+        'registration_complete', 
     ];
 
     /**

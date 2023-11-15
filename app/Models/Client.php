@@ -9,7 +9,14 @@ class Client extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['first_name', 'last_name', 'job_title', 'email', 'phone_id', 'address_id'];
+    protected $fillable = [
+        'first_name', 
+        'last_name', 
+        'job_title', 
+        'email_address', 
+        'phone_id', 
+        'address_id'
+    ];
 
     // Define the relationship with the PhoneNumbers table
     public function phoneNumber()
@@ -34,6 +41,6 @@ class Client extends Model
 
     public function companies()
     {
-        return $this->belongsToMany(Company::class, 'client_company');
+        return $this->belongsToMany(Company::class, 'company_client');
     }
 }

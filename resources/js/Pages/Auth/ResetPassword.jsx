@@ -3,10 +3,11 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/Forms/InputError';
 import InputLabel from '@/Components/Forms/InputLabel';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
-import TextInput from '@/Components/Forms/TextInput';
+import TextInput from '@/Components/Forms/TextInput - OLD';
 import { Head, useForm } from '@inertiajs/react';
 
 export default function ResetPassword({ token, email }) {
+    
     const { data, setData, post, processing, errors, reset } = useForm({
         token: token,
         email: email,

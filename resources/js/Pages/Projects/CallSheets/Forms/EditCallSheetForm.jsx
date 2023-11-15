@@ -91,18 +91,7 @@ function EditCallSheetForm(props) {
     }
   };
 
-  const renderButton = () => (
-    <SecondaryButton onClick={handleSubmit}>Update Call Sheet</SecondaryButton>
-  );
-
-  const renderBackButton = () => (
-    <CircularButton
-      icon={faXmark}
-      size="small"
-      onClick={handleCloseButtonClick}
-    />
-  );
-
+ 
   return (
     <RightPanel
       isRightPanelOpen={isRightPanelOpen}
@@ -118,17 +107,28 @@ function EditCallSheetForm(props) {
       }
       panel_footer={
         <div className="flex flex-row gap-4">
-          {renderBackButton()}
-          {renderButton()}
+          <SecondaryButton onClick={handleSubmit}>Update Call Sheet</SecondaryButton>
+          <CircularButton
+            icon={faXmark}
+            size="small"
+            onClick={handleCloseButtonClick}
+          />
         </div>
       }
     >
+
+
+
       <CallSheetForm
         callSheetData={callSheetData}
         setCallSheetTitle={setCallSheetTitle}
         setCallSheetDate={setCallSheetDate}
         checkFormStatus={checkFormStatus}
       />
+
+
+
+      
     </RightPanel>
   );
 }

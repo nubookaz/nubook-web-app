@@ -12,7 +12,15 @@ import Switch, { switchClasses } from '@mui/joy/Switch';
 
 
 
-function CallSheetDetailsForm({ callSheetData, setCallSheetTitle, setCallSheetDate, checkFormStatus }) {
+function CallSheetDetailsForm({ 
+    
+    callSheetData, 
+    setCallSheetTitle, 
+    setCallSheetDate, 
+    checkFormStatus 
+
+}) {
+
     const { callSheetTitle, callSheetDate } = callSheetData;
     const [checked, setChecked] = React.useState(false);
 
@@ -25,16 +33,16 @@ function CallSheetDetailsForm({ callSheetData, setCallSheetTitle, setCallSheetDa
     <div >
         <div className="mb-6 form-group">
             <div className='w-full input-group mb-2'>        
-                 <input
-              placeholder="Call Sheet Title"
-              defaultValue={callSheetTitle}
+                <input
+                    placeholder="Call Sheet Title"
+                    defaultValue={callSheetTitle}
 
-              onChange={(e) => {
-                const newCallSheetTitle = e.target.value;
-                setCallSheetTitle(newCallSheetTitle);
-              }}
-              
-            />
+                    onChange={(e) => {
+                        const newCallSheetTitle = e.target.value;
+                        setCallSheetTitle(newCallSheetTitle);
+                }}
+                
+                />
             </div>
             <div className='w-full input-group'>
            <input

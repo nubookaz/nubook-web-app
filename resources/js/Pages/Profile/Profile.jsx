@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-import Banner from '@/Components/Layouts/Banner';
+import Banner from '@/Layouts/Partials/Banner';
 
 export default function Profile() {
         return (

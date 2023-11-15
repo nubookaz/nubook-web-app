@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Client;
 use App\Models\Company;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -14,32 +15,17 @@ trait ProjectTrait
 
     public function createProject(Request $request)
     {
-        // Access the JSON data directly
+        $projectData = $request->json('projectData');
 
-        if ($request->has('projectData')) {
-            // Extract the projectData from the request
-            $projectData = $request->json('projectData');
-            
-            // Now, $projectData contains the JSON data as an array
-            // You can work with $projectData here
-        } else {
-            // Handle the case where projectData is not present in the request
-            $projectData = $request->all();
-        }
-
-        // Validate the incoming data within the projectData section
-        $validatedData = Validator::make($projectData, [
-            'projectName' => 'required|string',
-            'projectDescription' => 'nullable|string',
-            'projectBudget' => 'nullable|numeric',
-            'projectType' => 'nullable|string',
-            'categoryType' => 'nullable|string',
-            'projectStage' => 'nullable|string',
-            'projectDays' => 'nullable|integer',
-            'projectMonths' => 'nullable|integer',
-            'projectYears' => 'nullable|integer',
+        $projectValidator = Validator::make($projectData, [
+            'project_name' => 'required|string',
+            'project_description' => 'nullable|string',
+            'project_budget' => 'nullable|numeric',
+            'project_type' => 'required|string',
+            'category_type' => 'required|string',
+            'project_stage' => 'required|string',
         ])->validate();
-
+        
         // Assuming you have the user's ID available, replace $userId with the actual user ID
         $userId = auth()->user()->id; 
 
@@ -57,24 +43,41 @@ trait ProjectTrait
 
 
     public function createCompany(Request $request)
-    {        // Access the JSON data directly
-        $companyData = $request->json('companyData');
+    { 
+        // Access the JSON data directly
+        $clientData = $request->json('clientData');
 
         // Validate the incoming JSON data
-        $validatedData = Validator::make($companyData, [
-            'companyName' => 'required|string|max:255',
-            'einNumber' => 'nullable|string|max:255', // Optional EIN field
+        $clientValidator = Validator::make($clientData, [
+            'first_name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'middle_initial' => 'nullable|string|max:255',
+            'job_title' => 'nullable|string|max:255', 
+            'email_address' => 'nullable|string|max:255',
+            'tel' => 'nullable|max:255', 
+            'company_name' => 'nullable|string|max:255', 
         ])->validate();
 
-        $userId = Auth::id();
+        $clientInfo = [
+            'first_name' => $clientData['first_name'],
+            'last_name' => $clientData['last_name'],
+            'middle_initial' => $clientData['middle_initial'],
+            'job_title' => $clientData['job_title'],
+            'email_address' => $clientData['email_address'],
+        ];
 
-        // Create a new company instance and fill it with validated data
-        $company = Company::create([
-            'name' => $validatedData['companyName'],
-            'ein' => $validatedData['einNumber'],
-            'user_id' => $userId,
-        ]);
+        $companyInfo = [
+            'name' => $clientData['company_name'],
+        ];
 
-        return $company;
+        $user = auth()->user(); 
+
+        $client = Client::create($clientInfo);
+        $company = Company::create($companyInfo);
+
+        $client->companies()->attach($company->id, ['client_id' => $client->id]);
+        $user->clients()->attach($client->id);
+
+        return $client;
     }
 }

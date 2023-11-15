@@ -9,15 +9,42 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
 
-
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerificationEmail;
 
 class VerificationController extends Controller
 {
+
+    public function updatePassword(Request $request) 
+    {
+        $request->validate([
+            'data.password' => ['required', Password::defaults(), 'confirmed'],
+        ]);
+    
+        $user = $request->user();
+        $verificationCode = Str::uuid();
+
+        $user->update([
+            'verification_code' => $verificationCode,
+        ]);
+
+        $user->update([
+            'password' => Hash::make($request->input('data.password')),
+            'is_temporary' => false,
+        ]);
+
+        Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
+
+        return response()->json(['success' => true]);
+    }
+
+
     public function verifyCode(Request $request)
     {
-        // dd($request);
         $request->validate([
             'verificationCode' => 'required|string',
         ]);

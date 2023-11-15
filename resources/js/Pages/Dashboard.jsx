@@ -1,6 +1,7 @@
+import { useAuth } from '@/Components/Contexts/AuthContext';
+
 import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
-import { useAuth } from '@/Components/Contexts/AuthContext';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
@@ -27,7 +28,8 @@ export default function Dashboard({auth}) {
     // Fetch user data on component mount
     fetchUserData();
   }, []);
-  
+
+ 
 
 
   const { props } = usePage();
@@ -42,19 +44,25 @@ export default function Dashboard({auth}) {
   };
 
   useEffect(() => {
-    if (!auth.email_verified) {
+    if (user && user.is_temporary) {
+      setCurrentStep('changePassword');
+      setIsModalOpen(true);
+    } else if (user && !user.email_verified) {
       setCurrentStep('verification');
       setIsModalOpen(true);
-    } else if (!auth.personal_info_completed ) {
+    } else if (user && !user.personal_info_completed) {
       setCurrentStep('personalInfo');
       setIsModalOpen(true);
-    } else if (!auth.company_info_completed){
+    } else if (user && !user.company_info_completed) {
       setCurrentStep('companyInfo');
       setIsModalOpen(true);
-    } else if (auth.registration_complete){
+    } else if (user && !user.registration_complete) {
       setIsModalOpen(false);
     }
-  }, [auth]);
+  }, [user]);
+
+
+  const verification = user && (user.is_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
 
   const bannerProps = {
     showGreeting: true, // Customize these props based on your conditions
@@ -62,8 +70,6 @@ export default function Dashboard({auth}) {
     size: 'banner-photo',
     // Add any other props you need for this specific page's banner
   };
-
-  const verification = !auth.email_verified || !auth.personal_info_completed || !auth.company_info_completed;
 
 
   return (
@@ -84,23 +90,13 @@ export default function Dashboard({auth}) {
         portalBody: (
           <div className="h-full w-full">
 
-            { verification ? (
-                
-                <div className='flex flex-row w-full mt-10 gap-6'>
-                    <Skeleton variant="rectangular" sx={{ height: "900px" }}/>
-                    <Skeleton variant="rectangular" sx={{ height: "900px" }}/>     
-                    <Skeleton variant="rectangular" sx={{ height: "900px" }}/>
-                    <Skeleton variant="rectangular" sx={{ height: "900px" }}/>
-                </div>
-
-              ) : (
-
                 <div className='flex flex-row h-full w-full justify-between gap-6'>
                     <CardContainer header="Project Overview" className='!w-1/2'>
                       <Overview
                          projects={projects}
                          isPortrait={true}
                          onClick={openProjectFormPanel}
+                         multiCircularProgressSize="w-[250px] h-[250px]"
                       />
                     </CardContainer>
                     <CardContainer header="Social Activities" className='!w-1/2 disabled-feature'></CardContainer>
@@ -122,9 +118,6 @@ export default function Dashboard({auth}) {
                       </div>
                     </div>
                 </div> 
-
-              )}
-
 
  
           </div>

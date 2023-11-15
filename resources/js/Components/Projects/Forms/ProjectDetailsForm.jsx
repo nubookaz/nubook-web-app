@@ -1,40 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
+import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
 
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Textarea from '@mui/joy/Textarea';
+import Tooltip from '@mui/joy/Tooltip';
 
-import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
 
-function ProjectDetailsForm({
+
+
+
+
+
+
+
+
+
+export default function ProjectDetailsForm({
      
+    data,
     onUpdateProjectInfo,
     customClasses,
-    requiredProjectData,
+    emptyFields,
+    setEmptyFields,
 
 }) {
 
+ 
+
+
+
+
+    
     const customClass = `${customClasses}`;
-
-    const { data, setData } = useForm({
-        project_name: '',
-        project_budget: '',
-        project_type: '',
-        category_type: '',
-        project_stage: '',
-        project_description: '',
-    });
-
-     const handleChange = (field, value) => {
-        setData(field, value);
-
-        onUpdateProjectInfo({
-            ...data,
-            [field]: value,
-        });
-
+  
+    const handleChange = (field, value) => {
+        onUpdateProjectInfo(field, value);
+        if (emptyFields[field]) {
+             setEmptyFields((prevEmptyFields) => ({
+                ...prevEmptyFields,
+                [field]: false
+            }));
+        }
     };
+
 
      return (
 
@@ -45,84 +55,90 @@ function ProjectDetailsForm({
                 <div className={twoColInputGroupClass}>
                     <div className={inputGroupClass}>
                         <label htmlFor="project_type" value="project_type" className='text-gray-400 text-sm'> Project Type * </label>
-                        <Select
-                            placeholder="Project Type"
-                            value={data.project_type === '' ? undefined : data.project_type} 
-                            className="w-full"
-                            name="project_type"
-                            required={requiredProjectData.includes('project_type')}
-                            onChange={(e, newProjectType) => {
-                                handleChange('project_type', newProjectType);
-                            }}
-                        >
-                            <Option value="Commercial">Commercial</Option>
-                            <Option value="Independent">Independent</Option>
-                            <Option value="Studio-Backed">Hollywood</Option>
-                            <Option value="Network TV" disabled>Network TV -- Coming Soon!</Option>
-                        </Select>
+                        <Tooltip arrow title="Project Type is Required" open={emptyFields['project_type'] || false} color="danger" placement="top" variant="outlined" >
+                            <Select
+                                placeholder="Project Type"
+                                value={data.project_type === '' ? undefined : data.project_type} 
+                                className="w-full"
+                                name="project_type"
+                                required 
+                                onChange={(e, newProjectType) => {
+                                    handleChange('project_type', newProjectType);
+                                }}
+                            >
+                                <Option value="Commercial">Commercial</Option>
+                                <Option value="Independent">Independent</Option>
+                                <Option value="Studio-Backed">Hollywood</Option>
+                                <Option value="Network TV" disabled>Network TV -- Coming Soon!</Option>
+                            </Select>
+                        </Tooltip>
                     </div>
                     <div className={inputGroupClass}>
                         <label htmlFor="category_type" value="category_type" className='text-gray-400 text-sm'> Category Type * </label>
-                        <Select 
-                            placeholder="Category Type" 
-                            name="category_type"
-                            value={data.category_type === '' ? undefined : data.category_type} 
-                            className='w-full'
-                            required={requiredProjectData.includes('category_type')}
-                            onChange={(e, newCategoryType) => {
-                                handleChange('category_type', newCategoryType);
-                            }}
-                        >
-                            {data.project_type === 'Commercial' && (
-                                <>
-                                    <Option value="Marketing & Promotion">Marketing & Promotion</Option>
-                                    <Option value="Corporate Communication">Corporate Communication</Option>
-                                    <Option value="Product & Service Showcase">Product & Service Showcase</Option>
-                                    <Option value="Event Coverage & Highlights">Event Coverage & Highlights</Option>
-                                    <Option value="Customer Stories & Engagement">Customer Stories & Engagement</Option>
-                                    <Option value="Educational & Expert Content">Educational & Expert Content</Option>
-                                    <Option value="Behind-the-Scenes & Documentary">Behind-the-Scenes & Documentary</Option>
-                                    <Option value="Interactive & Animation">Interactive & Animation</Option>
-                                </>
-                            )}
+                        <Tooltip arrow title="Category Type is Required" open={emptyFields['category_type'] || false} color="danger" placement="top" variant="outlined" >
+                            <Select 
+                                placeholder="Category Type" 
+                                name="category_type"
+                                value={data.category_type === '' ? undefined : data.category_type} 
+                                className='w-full'
+                                required
+                                onChange={(e, newCategoryType) => {
+                                    handleChange('category_type', newCategoryType);
+                                }}
+                            >
+                                {data.project_type === 'Commercial' && (
+                                    <>
+                                        <Option value="Marketing & Promotion">Marketing & Promotion</Option>
+                                        <Option value="Corporate Communication">Corporate Communication</Option>
+                                        <Option value="Product & Service Showcase">Product & Service Showcase</Option>
+                                        <Option value="Event Coverage & Highlights">Event Coverage & Highlights</Option>
+                                        <Option value="Customer Stories & Engagement">Customer Stories & Engagement</Option>
+                                        <Option value="Educational & Expert Content">Educational & Expert Content</Option>
+                                        <Option value="Behind-the-Scenes & Documentary">Behind-the-Scenes & Documentary</Option>
+                                        <Option value="Interactive & Animation">Interactive & Animation</Option>
+                                    </>
+                                )}
 
-                            {(data.project_type === 'Independent' || data.project_type === 'Studio-Backed') && (
-                                <>
-                                    <Option value="Feature Film">Feature Film</Option>
-                                    <Option value="Short Film">Short Film</Option>
-                                    <Option value="Documentary">Documentary</Option>
-                                    <Option value="Web Series">Web Series</Option>
-                                    <Option value="Music Video">Music Video</Option>
-                                    <Option value="Animation">Animation</Option>
-                                    <Option value="Experimental Film">Experimental Film</Option>
-                                    <Option value="Student Film">Student Film</Option>
-                                    <Option value="Travel & Adventure">Travel & Adventure</Option>
-                                </>
-                            )}
-                        </Select>
+                                {(data.project_type === 'Independent' || data.project_type === 'Studio-Backed') && (
+                                    <>
+                                        <Option value="Feature Film">Feature Film</Option>
+                                        <Option value="Short Film">Short Film</Option>
+                                        <Option value="Documentary">Documentary</Option>
+                                        <Option value="Web Series">Web Series</Option>
+                                        <Option value="Music Video">Music Video</Option>
+                                        <Option value="Animation">Animation</Option>
+                                        <Option value="Experimental Film">Experimental Film</Option>
+                                        <Option value="Student Film">Student Film</Option>
+                                        <Option value="Travel & Adventure">Travel & Adventure</Option>
+                                    </>
+                                )}
+                            </Select>
+                        </Tooltip> 
                     </div>
                 </div>
 
                 <div className={inputGroupClass}>
                     <label htmlFor="project_stage" value="project_stage" className='text-gray-400 text-sm'> Project Stage * </label>
-                    <Select
-                        placeholder="Project Stage"
-                        name="project_stage"
-                        value={data.project_stage === '' ? undefined : data.project_stage} 
-                        className="w-full"
-                        required={requiredProjectData.includes('project_stage')}
-                        onChange={(e, newProjectStage) => {
-                            handleChange('project_stage', newProjectStage);
-                        }}
-                    >
-                        <Option value="Estimate" disabled>Estimate -- Coming Soon!</Option>
-                        <Option value="Creative Development">Creative Development</Option>
-                        <Option value="Pre-Production">Pre-Production</Option>
-                        <Option value="Production">Production</Option>
-                        <Option value="Post-Production">Post-Production</Option>
-                        <Option value="Distribution">Distribution</Option>
-                        <Option value="Completed">Completed</Option>
-                    </Select>
+                    <Tooltip arrow title="Project Stage is Required" open={emptyFields['project_stage'] || false} color="danger" placement="top" variant="outlined" >
+                        <Select
+                            placeholder="Project Stage"
+                            name="project_stage"
+                            value={data.project_stage === '' ? undefined : data.project_stage} 
+                            className="w-full"
+                            required
+                            onChange={(e, newProjectStage) => {
+                                handleChange('project_stage', newProjectStage);
+                            }}
+                        >
+                            <Option value="Estimate" disabled>Estimate -- Coming Soon!</Option>
+                            <Option value="Creative Development">Creative Development</Option>
+                            <Option value="Pre-Production">Pre-Production</Option>
+                            <Option value="Production">Production</Option>
+                            <Option value="Post-Production">Post-Production</Option>
+                            <Option value="Distribution">Distribution</Option>
+                            <Option value="Completed">Completed</Option>
+                        </Select>
+                    </Tooltip> 
                 </div>
                 
                 <div className={`mt-6 ${formGroupClass}`}>
@@ -135,17 +151,19 @@ function ProjectDetailsForm({
 
                     <div className={inputGroupClass}>
                         <label htmlFor="project_name" value="project_name" className='text-gray-400 text-sm'> Project Name * </label>
-                        <input
-                            type="text"
-                            name="project_name"
-                            placeholder="Indiana Jones and Raiders of the Lost Ark" 
-                            value={data.project_name} 
-                            required={requiredProjectData.includes('project_name')}
-                            onChange={(e) => {
-                                const newProjectName = e.target.value;
-                                handleChange('project_name', newProjectName);
-                            }}
-                        />
+                        <Tooltip arrow title="Project Name is Required" open={emptyFields['project_name'] || false} color="danger" placement="top" variant="outlined" >
+                            <input
+                                type="text"
+                                name="project_name"
+                                placeholder="Indiana Jones and Raiders of the Lost Ark" 
+                                value={data.project_name} 
+                                required
+                                onChange={(e) => {
+                                    const newProjectName = e.target.value;
+                                    handleChange('project_name', newProjectName);
+                                }}
+                            />
+                        </Tooltip> 
                     </div>
 
                     <div className={inputGroupClass}>
@@ -182,55 +200,9 @@ function ProjectDetailsForm({
 
 
 
-
-
-
-
-
-            {/* <div className="mt-8 form-group">
-                <h3 className='font-semibold primary-color'>Initial filming estimate</h3>
-                <p className='text-lg secondary-color'>How long will it take you to film it? Provide your initial filming estimate; this will assist in generating detailed reports and automating production.</p>
-                <div className='flex flex-row w-full gap-2 mt-6'>
-                    <input 
-                        type="text"
-                        placeholder="Project Days" 
-                        value={props.projectDays}
-                        onChange={(e) => {
-                            const newProjectDays = e.target.value;
-                             props.setProjectDays(newProjectDays); // Update parent component's state
-                            const isFormFilled = props.checkFormStatus();
-                        }}
-                    />
-
-                    <input 
-                        type="text"
-                        placeholder="Project Months" 
-                        value={props.projectMonths}
-                        onChange={(e) => {
-                            const newProjectMonths = e.target.value;
-                             props.setProjectMonths(newProjectMonths); // Update parent component's state
-                            const isFormFilled = props.checkFormStatus();
-                        }}
-                    />
-
-                    <input 
-                        type="text"
-                        placeholder="Project Years" 
-                        value={props.projectYears}
-                        onChange={(e) => {
-                            const newProjectYears = e.target.value;
-                             props.setProjectYears(newProjectYears); // Update parent component's state
-                            const isFormFilled = props.checkFormStatus();
-                        }}
-                    />
-
-                </div>
-            </div> */}
-
         </div>
         
     );
 
 }
 
-export default ProjectDetailsForm;

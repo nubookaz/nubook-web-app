@@ -8,7 +8,7 @@ import React from 'react';
 
 
 
-function SecondaryButton({ children, onClick, href, icon, className, text }) {
+function SecondaryButton({ children, onClick, href, icon, className, text, buttonType }) {
 
 
 
@@ -26,7 +26,8 @@ function SecondaryButton({ children, onClick, href, icon, className, text }) {
         return (
             <button
                 className={`default-btn secondary-button button-transition ${className}`}
-                    onClick={onClick}
+                onClick={onClick}
+                type={buttonType}
                 >
                 {children}
             </button>

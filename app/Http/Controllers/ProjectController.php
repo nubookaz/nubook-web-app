@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Client;
 use App\Models\Company;
 use App\Http\Traits\ProjectTrait;
 use Illuminate\Support\Facades\Auth;
@@ -43,17 +44,51 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {       
         // Validate the incoming data
         $project = $this->createProject($request);
+    
+        // Check if the client data is provided
+        $clientData = $request->json('clientData');
+        // Check if existing client data is provided
+        $existingClientData = $request->json('existingClient');
+    
+        // Check if either $clientData or $existingClientData is not empty
+        if (!$this->isDataEmpty($clientData) || !$this->isDataEmpty($existingClientData)) {
+            // Check if the existing client already exists
+            $existingClient = null;
+            if (!empty($existingClientData['id'])) {
+                $client = Client::where('id', $existingClientData['id'])->first();
+            } else {
+                $client = $this->createCompany($request);
+            }
+            
+            // If the existing client exists, use it; otherwise, create a new client
+            // $client = $existingClient ?? $this->createCompany($request);
+    
+            // dd($client);
 
-        // // Simulate a success response with an alert message
+
+            // Associate the client with the project
+            $project->clients()->attach($client->id);
+        }
+    
+        // Simulate a success response with an alert message
         $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.edit';
-
+    
         // Render the view using Inertia.js and pass project data
         return redirect()->route($viewName, ['id' => $project->id]);
-    
     }
+    
+    // Helper function to check if all values in an array are null
+    private function isDataEmpty($data)
+    {
+        return count(array_filter($data, function ($value) {
+            return !is_null($value);
+        })) === 0;
+    }
+    
+
 
     public function edit($id)
     {

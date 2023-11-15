@@ -1,3 +1,5 @@
+import { useAuth } from '@/Components/Contexts/AuthContext';
+
 import React, { useEffect, useState } from 'react';
 import { router } from '@inertiajs/react';
 
@@ -52,10 +54,25 @@ const img = {
 
 
 export default function ProfilePicture({ onClick, className, isUploadable }) {
+
+  const { user, fetchUserData } = useAuth();
+
+  useEffect(() => {
+    // Fetch user data on component mount
+    fetchUserData();
+  }, []);
+
+
+
+
   const [userProfileImage, setUserProfileImage] = useState(null);  
   const [isLoading, setIsLoading] = useState(true);  
   const [lastUpdateTimestamp, setLastUpdateTimestamp] = useState(0);
   const [totalImages, setTotalImages] = useState(12);  
+
+
+
+
 
 
   useEffect(() => {
@@ -75,6 +92,11 @@ export default function ProfilePicture({ onClick, className, isUploadable }) {
       });
 
   }, []);
+  
+  // const baseURL = 'http://' + window.location.hostname + '/';
+
+  // console.log("image", baseURL + 'user' + user.id + '/' + 'avatars/' + user.profile_image);
+  // console.log("asset", asset());
 
 
   useEffect(() => {
@@ -166,6 +188,16 @@ export default function ProfilePicture({ onClick, className, isUploadable }) {
   const rootProps = isUploadable ? getRootProps() : {};
   
 
+  useEffect(() => {
+    // Continue with the rest of your component logic using 'user'
+    if (user === null) {
+      // User data is still being fetched, show a loading state or return null
+      console.log("Loading...");
+    } else {
+
+      // ... rest of your component code ...
+    }
+  }, [user]);
 
 
   return (

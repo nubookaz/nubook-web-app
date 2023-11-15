@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from '@inertiajs/react';
 import React from 'react';
 
-function CircularButton({ active = false, activeClass = '', className = '', icon, size, href, onClick, text }) {
+function CircularButton({ active = false, type = 'button', activeClass = '', className = '', icon, size, href, onClick, text }) {
   // Define a mapping of size to CSS class
   const sizeClass = {
     small: 'circular-button-small',
@@ -30,7 +30,7 @@ function CircularButton({ active = false, activeClass = '', className = '', icon
   } else {
     // Render a button if href is not provided
     return (
-      <button onClick={handleClick} className={buttonClass}>
+      <button type={type} onClick={handleClick} className={buttonClass}>
         {icon && <FontAwesomeIcon icon={icon} />}
         {text && <span className="button-text">{text}</span>}
       </button>

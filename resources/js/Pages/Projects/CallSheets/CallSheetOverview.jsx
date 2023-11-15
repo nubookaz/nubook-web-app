@@ -3,7 +3,7 @@ import { usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import NewCallSheetForm from '@/Pages/Projects/CallSheets/Forms/NewCallSheetForm';
 import CallSheetList from '@/Pages/Projects/CallSheets/Partials/CallSheetList';
-import PortalLayout from '@/Components/Layouts/PortalLayout';
+import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 

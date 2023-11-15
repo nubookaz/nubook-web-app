@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { usePage } from '@inertiajs/react';
+import { useAuth } from '@/Components/Contexts/AuthContext';
+
+import React, { useState, useEffect } from 'react';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import ProjectForm from '@/Pages/Projects/Projects/NewProjectForm';
+import ProjectForm from '@/Pages/Projects/NewProjectForm';
 import ProjectList from '@/Components/Projects/ProjectList';
-import PortalLayout from '@/Components/Layouts/PortalLayout';
+import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import CardContainer from '@/Components/Containers/CardContainer';
 
 import EmptyContent from '@/Components/Layouts/EmptyContent';
@@ -15,8 +16,33 @@ import TertiaryButton from '@/Components/Buttons/TertiaryButton';
 
 
 function ProjectsOverview({ auth }) {
-    const { props } = usePage();
-    const projects = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
+    const { user, fetchUserData } = useAuth();
+
+    useEffect(() => {
+      // Fetch user data on component mount
+      fetchUserData();
+    }, []);
+
+    useEffect(() => {
+      // Continue with the rest of your component logic using 'user'
+      if (user === null) {
+        // User data is still being fetched, show a loading state or return null
+        console.log('loading...');
+      } else {
+
+        // ... rest of your component code ...
+      }
+    }, [user]);
+
+
+
+
+
+
+
+  
+
+    const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
     const [currentStep, setCurrentStep] = useState(1);
     const [isProjectFormPanel, setProjectFormPanel] = useState(false);
 
@@ -40,8 +66,7 @@ function ProjectsOverview({ auth }) {
     const emptyContentSvg = "../../images/svg_images/undraw_clients.svg"; // Provide the SVG path
 
     const limitedProjects = projects.slice(0, 8);
-
-
+    const projectsWithClients = projects.filter(project => project.clients && project.clients.length > 0);
     return (
 
       <AuthenticatedLayout bannerProps={bannerProps}>
@@ -82,6 +107,7 @@ function ProjectsOverview({ auth }) {
                             <Overview
                                 projects={projects}
                                 isPortrait={false}
+                                multiCircularProgressSize="w-[220px] h-[220px]"
                             />
                           </CardContainer>
 
@@ -93,11 +119,34 @@ function ProjectsOverview({ auth }) {
                             </CardContainer>
                           </div>
                           <div className='flex flex-row gap-6 h-[65%] w-full'>
-                            <CardContainer header="Clients" className='!w-[30%]'>
+                            <CardContainer header="Clients" className='!w-[35%]'>
                             {hasClients ? (
-                                <div>
-                                  Clients!
-                                </div>
+                              <table className="table-auto">
+                                <thead>
+                                  <tr className='text-left tertiary-color'>
+                                    <th>Name</th>
+                                    <th>Project</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {projectsWithClients.map(project => (
+                                    <tr key={project.id} className='primary-color text-sm'>
+                                      <td>
+                                        {project.clients && project.clients.length > 0 && (
+                                          project.clients.map(client => (
+                                            <div key={client.id} className='font-bold'>
+                                              {client.first_name} {client.last_name}
+                                            </div>
+                                          ))
+                                        )}
+                                      </td>
+                                      <td>{project.project_name}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                              
+                              
                             ): (
                                 <EmptyContent
                                   customSvgPath={emptyContentSvg}

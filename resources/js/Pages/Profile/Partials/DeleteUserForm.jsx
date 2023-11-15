@@ -4,7 +4,7 @@ import InputError from '@/Components/Forms/InputError';
 import InputLabel from '@/Components/Forms/InputLabel';
 import Modal from '@/Components/Modals/Modal';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import TextInput from '@/Components/Forms/TextInput';
+import TextInput from '@/Components/Forms/TextInput - OLD';
 import { useForm } from '@inertiajs/react';
 
 export default function DeleteUserForm({ className = '' }) {

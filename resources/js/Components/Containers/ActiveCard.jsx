@@ -20,7 +20,7 @@ const ActiveCard = ({ cardType, className, headerColor, textColor, menuItems, ha
         {cardType === 'project' && (
           <div>
             <span className={`primary-color text-sm font-bold ${textColor}`}>Project Type</span>
-            <p className={`secondary-color text-xl ${textColor}`}>{projectType}</p>
+            <p className={`secondary-color text- ${textColor}`}>{projectType}</p>
           </div>
         )}
 

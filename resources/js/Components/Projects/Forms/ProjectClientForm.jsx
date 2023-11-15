@@ -1,54 +1,63 @@
 import React, { useState } from 'react';
+import { useForm } from '@inertiajs/react';
+import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
 
-import Checkbox from '@mui/joy/Checkbox';
-import CompanyEIN from '@/Components/Profile/CompanyEIN';
 import AutoCompleteList from '@/Components/Clients/AutoCompleteList';
 import UserName from '@/Components/Profile/Partials/UserName';
 
-import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
 
 
-function ProjectClientForm(props) {
+
+
+
+
+function ProjectClientForm({ 
+    
+    onUpdateCompanyInfo, 
+    user, 
+    setExistingClient,
+
+}) {
   
     const [newOption, setNewOption] = useState(null);
 
-    const handleNewOptionAdded = (newOptionValue) => {
-      // Handle the new option as needed, e.g., store it in state
-      setNewOption(newOptionValue);
-    }
+    const { data, setData } = useForm({
+        first_name: '',
+        last_name: '',
+        middle_initial: '',
+        job_title: '',
+        email_address: '',
+        tel: '',
+    });
 
-    // Function to handle changes to the EIN input value
-    const handleEINChange = (formattedEIN) => {
-      setEinNumber(formattedEIN);
-      // Call your checkFormStatus or any other logic here as needed
-      checkFormStatus();
+    const handleChange = (field, value) => {
+        setData((prevData) => ({
+          ...prevData,
+          [field]: value,
+        }));
+      
+        onUpdateCompanyInfo((prevData) => ({
+          ...prevData,
+          [field]: value,
+          company_name: newOption,
+        }));
     };
 
-    
-    const {
-        auth,
-        clientFirstName,
-        setClientFirstName,
-        clientMiddleInitial,
-        setClientMiddleInitial,
-        clientLastName,
-        setClientLastName,
-        clientJobTitle,
-        setClientJobTitle,
-        clientEmailAddress,
-        setClientEmailAddress,
-        clientPhoneNumber,
-        setClientPhoneNumber,
-    } = props;
+    const handleNewOptionAdded = (newOptionValue) => {
+        setNewOption(newOptionValue); 
+        onUpdateCompanyInfo((prevData) => ({
+            ...prevData,
+            company_name: newOptionValue,
+        }));
 
-      
-    console.log(auth);
+    };
 
 
+ 
     return (
         <div className='new-project-form'>
             <div className='mb-8 form-group'>
-                 <AutoCompleteList auth={auth} onNewOptionAdded={setNewOption}  />
+                <AutoCompleteList user={user} onNewOptionAdded={handleNewOptionAdded} setExistingClient={setExistingClient} />
             </div>
 
             {newOption && (      
@@ -57,18 +66,14 @@ function ProjectClientForm(props) {
                     <h3 className='mb-4 font-semibold primary-color'>Client Contact</h3>
                     <div className='flex flex-row gap-2'>
 
-                        <div className={inputGroupClass}>
+                        <div className={`grow ${inputGroupClass}`}>
                             <label htmlFor="first_name" value="first_name" className='text-gray-400 text-sm'> First Name </label>
                             <input
                                 type="text"
                                 placeholder="First Name"
                                 name="first_name"
-                                value={clientFirstName}
-                                onChange={(e) => {
-                                    const newClientFirstName = e.target.value;
-                                    setClientFirstName(newClientFirstName);
-                                    const isFormFilled = checkFormStatus();
-                                }}
+                                value={data.first_name} 
+                                onChange={(e) => handleChange('first_name', e.target.value)}
                             />
                         </div>
                         <div className={inputGroupClass}>
@@ -77,65 +82,58 @@ function ProjectClientForm(props) {
                                 type="text"
                                 placeholder="Middle Initial"
                                 name="middle_initial"
-                                value={clientMiddleInitial}
-                                onChange={(e) => {
-                                    const newClientMiddleInitial = e.target.value;
-                                    setClientMiddleInitial(newClientMiddleInitial);
-                                    const isFormFilled = checkFormStatus();
-                                }}
+                                value={data.middle_initial} 
+                                onChange={(e) => handleChange('middle_initial', e.target.value)}
                             />
                         </div>
                         <div className={inputGroupClass}>
-                            <label htmlFor="middle_initial" value="middle_initial" className='text-gray-400 text-sm'> Middle Initial </label>
+                            <label htmlFor="last_name" value="last_name" className='text-gray-400 text-sm'> Last Name </label>
                             <input
                                 type="text"
                                 sx={{ mb: 2 }}
                                 placeholder="Last Name"
-                                value={clientLastName}
-                                onChange={(e) => {
-                                    const newClientLastName = e.target.value;
-                                    setClientLastName(newClientLastName);
-                                    const isFormFilled = checkFormStatus();
-                                }}
+                                name="last_name"
+                                value={data.last_name} 
+                                onChange={(e) => handleChange('last_name', e.target.value)}
                             />
                         </div>
 
                     </div>
 
+                    <div className={inputGroupClass}>
+                        <label htmlFor="job_title" value="job_title" className='text-gray-400 text-sm'> Last Name </label>
+                        <input
+                            type="text"
+                            placeholder="Job Title"
+                            name="job_title"
+                            value={data.job_title} 
+                            onChange={(e) => handleChange('job_title', e.target.value)}
+                        />
+                    </div>
 
 
-                    <input
-                        type="text"
-                        placeholder="Job Title"
-                        value={clientJobTitle}
-                        onChange={(e) => {
-                            const newClientJobTitle = e.target.value;
-                            setClientJobTitle(newClientJobTitle);
-                            const isFormFilled = checkFormStatus();
-                        }}
-                    />
+                    <div className={inputGroupClass}>
+                        <label htmlFor="email_address" value="email_address" className='text-gray-400 text-sm'> Email Address </label>
+                        <input
+                            type="email"
+                            sx={{ mb: 2 }}
+                            placeholder="Email Address"
+                            name="email_address"
+                            value={data.email_address} 
+                            onChange={(e) => handleChange('email_address', e.target.value)}
+                        />
+                    </div>
 
-                    <input
-                        type="text"
-                        sx={{ mb: 2 }}
-                        placeholder="Email Address"
-                        value={clientEmailAddress}
-                        onChange={(e) => {
-                            const newClientEmailAddress = e.target.value;
-                            setClientEmailAddress(newClientEmailAddress);
-                            const isFormFilled = checkFormStatus();
-                        }}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Phone Number"
-                        value={clientPhoneNumber}
-                        onChange={(e) => {
-                            const newClientPhoneNumber = e.target.value;
-                            setClientPhoneNumber(newClientPhoneNumber);
-                            const isFormFilled = checkFormStatus();
-                        }}
-                    />
+                    <div className={inputGroupClass}>
+                        <label htmlFor="tel" value="tel" className='text-gray-400 text-sm'> Phone Number </label>
+                        <input
+                            type="tel"
+                            placeholder="Phone Number"
+                            name="tel"
+                            value={data.tel} 
+                            onChange={(e) => handleChange('tel', e.target.value)}
+                        />
+                    </div>
                 </div>
 
             )}

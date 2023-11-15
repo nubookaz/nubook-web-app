@@ -30,17 +30,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-    public function show()
-    {
-        // Pass any necessary data to the client, in this case, we pass the user info
-        // return Inertia::render('Login', [
-        //     'auth' => [
-        //         'user' => auth()->user(), // You can also customize this to include only necessary user fields
-        //     ],
-        // ]);
-    }
-
     public function login(Request $request)
     {
         // Perform login

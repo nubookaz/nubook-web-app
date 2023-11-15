@@ -12,13 +12,13 @@ import CompanyInfo from '@/Components/Profile/CompanyInfo';
 
 function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
   const { user, fetchUserData } = useAuth();
-  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     // Fetch user data on component mount
     fetchUserData();
   }, []);
 
+  const [userData, setUserData] = useState(null);
 
 
   const [processing, setProcessing] = useState(false);
@@ -31,21 +31,23 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
         first_name: user.first_name || '',
         last_name: user.last_name || '',
         middle_initial: user.middle_initial || '',
-        tel: user.phone.tel || '',
-        street_address: user.address.street_address || '',
-        city: user.address.city || '',
-        state: user.address.state || '',
-        zip_code: user.address.zip_code || '',
+        tel: user.phone ? user.phone.tel || '' : '',
+        street_address: user.address ? user.address.street_address || '' : '',
+        city: user.address ? user.address.city || '' : '',
+        state: user.address ? user.address.state || '' : '',
+        zip_code: user.address ? user.address.zip_code || '' : '',
       });
+  
       setCompanyInfo({
-        company_name: user.production_company.company_name || '',
-        ein_number: user.production_company.ein_number || '',
-        job_title: user.production_company.job_title || '',
-        number_of_employees: user.production_company.number_of_employees || '',
-        referral: user.production_company.referral || '',
+        company_name: user.production_company ? user.production_company.company_name || '' : '',
+        ein_number: user.production_company ? user.production_company.ein_number || '' : '',
+        job_title: user.production_company ? user.production_company.job_title || '' : '',
+        number_of_employees: user.production_company ? user.production_company.number_of_employees || '' : '',
+        referral: user.production_company ? user.production_company.referral || '' : '',
       });
     }
   }, [user, userData]);
+  
 
   const [personalInfo, setPersonalInfo] = useState({
     first_name: '',
@@ -68,12 +70,10 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
 
 
 
-
-
-
-
   const submit = async (e) => {
     e.preventDefault();
+    setProcessing(true);
+
     try {
         // Use the state directly from the callback
         await axios.patch(route('profile.update'), {
@@ -86,13 +86,14 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
         // Additional logic after successful submission
     } catch (error) {
         // Handle errors if needed
+        console.log(error);
+
     } finally {
         // Set processing back to false regardless of success or failure
         setProcessing(false);
     }
 };
  
-// console.log(personalInfo);
 
   return (
     <div >

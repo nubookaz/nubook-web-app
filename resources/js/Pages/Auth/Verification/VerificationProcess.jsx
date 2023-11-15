@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
+import {  useForm } from '@inertiajs/react';
+import React from 'react';
 
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import PersonalInfo from '@/Components/Profile/PersonalInfo';
 import CompanyInfo from '@/Components/Profile/CompanyInfo';
+import Skeleton from '@mui/joy/Skeleton';
 
 export default function VerificationProcess({ 
     currentStep, 
@@ -11,9 +14,24 @@ export default function VerificationProcess({
     setIsModalOpen,
  }) {
 
-    
+    const { data, setData, post, processing, errors, reset } = useForm({
+        password: '',
+        password_confirmation: '',
+    });
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+      };
+      
+    const handlePasswordConfirmationChange = (e) => {
+        setPasswordConfirmation(e.target.value);
+    };
+      
     const [verificationCode, setVerificationCode] = useState('');
+
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = React.useState(false);
+
     const [personalInfo, setPersonalInfo] = useState({
         first_name: '',
         last_name: '',
@@ -32,7 +50,6 @@ export default function VerificationProcess({
         number_of_employees: '',
         referral: '',
     });
-    console.log(companyInfo);
 
     const VerificationStep = () => (
         <div>
@@ -57,20 +74,48 @@ export default function VerificationProcess({
     };
     
     const handleResponse = (response, successCallback) => {
-        if (response && response.data) {
-            if (response.data.success) {
-                setError('');
-                successCallback();
-            } else if (response.data.error) {
-                handleError(new Error(response.data.error), response.data.error);
+        try {
+            if (response && response.data) {
+                if (response.data.success) {
+                    setError('');
+                    successCallback();
+                } else if (response.data.error) {
+                    handleError(new Error(response.data.error), response.data.error);
+                } else {
+                    throw new Error('Unexpected response structure');
+                }
             } else {
-                handleError(new Error('Unexpected response structure'), 'Unexpected response structure');
+                throw new Error('Unexpected response structure');
             }
-        } else {
-            handleError(new Error('Unexpected response structure'), 'Unexpected response structure');
+        } catch (error) {
+            handleError(error, 'Unexpected response structure');
         }
     };
     
+    
+    const savePassword = async () => {
+        setIsLoading(true);
+
+        try {
+            const response = await axios.post(route('verification.updatePassword'), {
+                data: data,
+            });
+            handleResponse(response, () => {
+                if (response.data.success) {
+                    setCurrentStep('verification');
+                }
+s
+            });
+        } catch (error) {
+            handleError(error, 'Error during verification', {
+                401: 'Unauthorized: Please log in.',
+                403: 'Forbidden: You do not have permission to perform this action.',
+                422: 'Validation error: Please check your input.',
+                500: 'Internal Server Error: Something went wrong on the server.',
+            });        
+        }
+    };
+
     const verifyCode = async () => {
         try {
             const response = await axios.post(route('verification.verifyCode'), {
@@ -119,9 +164,69 @@ export default function VerificationProcess({
         }
     };
 
+    console.log(data);
     return (
         <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
 
+                {currentStep === 'changePassword' && 
+                    <div className='flex flex-row gap-8 h-full'>
+                        <div className='w-1/2 h-full flex flex-col justify-center'>
+                            <img className="mx-auto max-w-[15rem]" src="./images/svg_images/undraw_password.svg" alt="" />
+                        </div>
+                        <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
+                            <h2>Create a Password</h2>
+                            <p>
+                            Welcome to our platform! For your account security, we kindly request you to create a unique and strong password. Please proceed to set up your password to ensure a secure and personalized experience on our platform. Thank you for choosing us!                           
+                            </p>
+                            <div className="flex flex-col gap-4">
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="password" value="password" className='text-gray-400 text-sm'> Password * </label>
+                                    {isLoading ? (
+                                        <Skeleton variant="rectangular" sx={{ height: "48px" }}/>
+                                    ):(
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="xxxxxxxxx"
+                                        autoComplete="new-password"
+                                        value={data.password}
+                                        onChange={(e) => setData('password', e.target.value)}
+                                        required
+                                    />
+                                    )}
+
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="password_confirmation" value="password_confirmation" className='text-gray-400 text-sm'> Confirm Password * </label>
+                                    {isLoading ? (
+                                        <Skeleton variant="rectangular" sx={{ height: "48px" }}/>
+                                    ):(
+                                    <input
+                                        id="password_confirmation"
+                                        type="password"
+                                        name="password_confirmation"
+                                        placeholder="xxxxxxxxx"
+                                        autoComplete="new-password"
+                                        value={data.password_confirmation}
+                                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                                        required
+                                    />
+                                    )}
+
+                                </div>
+                                {error && <div style={{ color: 'red' }}>{error}</div>}
+                            </div>
+                            {isLoading ? (
+                             <Skeleton variant="rectangular" sx={{ height: "30px", borderRadius: '50px' }}/>
+                            ):(
+                            <SecondaryButton onClick={savePassword}>Update Password</SecondaryButton>
+                            )}
+
+                        </div>
+                    </div>
+                }
                 {currentStep === 'verification' && 
                     <div className='flex flex-row gap-8 h-full'>
                         <div className='w-1/2 h-full flex flex-col justify-center'>
@@ -132,6 +237,8 @@ export default function VerificationProcess({
                             <p>
                                 To ensure the security of your account, please check your email inbox for a verification code. To complete the verification process, paste the code in the provided field. Thank you for confirming your email address and enhancing your account's security.
                             </p>
+
+
                             <VerificationStep />
                             <SecondaryButton onClick={verifyCode}>Verify Code</SecondaryButton>
                         </div>
