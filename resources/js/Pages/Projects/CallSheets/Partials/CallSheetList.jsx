@@ -1,7 +1,7 @@
 import React from 'react';
 import ActiveCard from '@/Components/Containers/ActiveCard';
 
-function CallSheetList({ project, callSheets, view }) {
+export default function CallSheetList({ project, callSheets, view }) {
   // Define a function to sort call sheets based on the desired order
   const sortCallSheets = (callSheets) => {
     // Define the desired status order
@@ -43,8 +43,8 @@ function CallSheetList({ project, callSheets, view }) {
           cardType="callSheet"
           href={route('projects.callSheets.edit', { id: project.id, callSheetId: callSheet.id })}
           key={callSheet.id}
-          cardTitle={callSheet.callSheetTitle}
-          shootDate={callSheet.callSheetDate}
+          cardTitle={callSheet.call_sheet_name}
+          shootDate={callSheet.call_sheet_date}
           progressBar={true}
         />
       ))}
@@ -52,4 +52,3 @@ function CallSheetList({ project, callSheets, view }) {
   );
 }
 
-export default CallSheetList;

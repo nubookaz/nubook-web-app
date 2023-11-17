@@ -13,14 +13,9 @@ class CreateProjectsTable extends Migration
             $table->string('project_name'); // Use 'project_name' based on your variable
             $table->text('project_description')->nullable(); // Use 'project_description' based on your variable
             $table->decimal('project_budget', 10, 2)->nullable(); // Use 'project_budget' based on your variable
-            $table->string('project_image')->nullable();
             $table->string('project_type'); // Use 'project_type' based on your variable
             $table->string('category_type'); // Use 'category_type' based on your variable
-            $table->string('project_stage'); // Use 'project_stage' based on your variable
-            $table->unsignedInteger('project_days')->nullable(); // Use 'project_days' based on your variable
-            $table->unsignedInteger('project_months')->nullable(); // Use 'project_months' based on your variable
-            $table->unsignedInteger('project_years')->nullable(); // Use 'project_years' based on your variable
-        
+            $table->string('project_stage'); // Use 'project_stage' based on your variable        
             $table->timestamps();
             
             // Define the foreign key relationship with the users table

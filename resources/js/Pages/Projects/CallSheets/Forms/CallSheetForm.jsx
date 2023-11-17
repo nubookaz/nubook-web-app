@@ -34,11 +34,10 @@ export default function CallSheetForm ({
           label="Call Sheet Name"
           type="text"
           name="call_sheet_name"
-          value={data.call_sheet_name === '' ? undefined : data.call_sheet_name} 
+          value={data.call_sheet_name}
           placeholder="Day 1 - Scenes 1,4,5 @ Ark"
-          onChange={(e, newCallSheetName) => {
-            handleChange('call_sheet_name', newCallSheetName);
-        }}        >
+          onChange={(e) => handleChange('call_sheet_name', e.target.value)}  
+        >
         </Input>
 
         <Input
@@ -47,7 +46,7 @@ export default function CallSheetForm ({
           label="Call Sheet Date"
           type="date"
           name="call_sheet_date"
-          value={data.call_sheet_date === '' ? undefined : data.call_sheet_date} 
+          value={data.call_sheet_date}
           placeholder="February 14th, 1964"
           onChange={(e) => handleChange('call_sheet_date', e.target.value)}
         >

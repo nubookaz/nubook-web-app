@@ -1,4 +1,9 @@
 table tr th,
-table tr td  {
-    padding: .5rem 1rem;
+table tr td:first-child  {
+    padding-right: 1rem;
+}
+
+table tr {
+    padding-bottom: 1rem;
+    display: block;
 }

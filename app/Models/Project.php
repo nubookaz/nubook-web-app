@@ -35,10 +35,6 @@ class Project extends Model
     {
         return $this->hasMany(CallSheet::class);
     }
-
-    public function clients()
-    {
-        return $this->belongsToMany(Client::class, 'client_project');
-    }
+ 
 
 }

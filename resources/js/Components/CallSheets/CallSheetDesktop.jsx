@@ -18,7 +18,6 @@ const CallSheetDesktop = () => {
   const locationsList = ["Location 1", "Location 2", "Location 3"];
   const scheduleList = ["8:00 AM - 10:00 AM: Scene 1", "10:30 AM - 12:30 PM: Scene 2"];
   const talentList = ["Actor 1", "Actor 2", "Actor 3"];
-  const clientsList = ["Client 1", "Client 2"];
   const crewList = ["Crew Member 1", "Crew Member 2", "Crew Member 3"];
 
   return (
@@ -80,9 +79,7 @@ const CallSheetDesktop = () => {
       <div className="clients">
         <h3>Clients</h3>
         <ul>
-          {clientsList.map((client, index) => (
-            <li key={index}>{client}</li>
-          ))}
+
         </ul>
       </div>
       <div className="crew">

@@ -10,8 +10,6 @@ import ImageContainer from '@/Components/Containers/ImageContainer';
 import Modal from '@/Components/Modals/Modal';
 import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 import Overview from '@/Components/Projects/Overview';
-
-import Skeleton from '@mui/joy/Skeleton';
 import Budget from '@/Components/Projects/Budget';
 
 
@@ -21,7 +19,7 @@ import Budget from '@/Components/Projects/Budget';
 
 
 
-export default function Dashboard({auth}) {
+export default function Dashboard() {
   const { user, fetchUserData } = useAuth();
 
   useEffect(() => {
@@ -29,11 +27,30 @@ export default function Dashboard({auth}) {
     fetchUserData();
   }, []);
 
- 
+  useEffect(() => {
+    // Continue with the rest of your component logic using 'user'
+    if (user === null) {
+      // User data is still being fetched, show a loading state or return null
+      console.log('loading...');
+    } else {
+
+      // ... rest of your component code ...
+    }
+  }, [user]);
 
 
-  const { props } = usePage();
-  const projects = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
+
+
+
+
+
+
+
+
+
+
+
+  const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState('');
@@ -73,56 +90,58 @@ export default function Dashboard({auth}) {
 
 
   return (
-    <AuthenticatedLayout bannerProps={bannerProps} verification={verification}>
-      {{
-        surface: (
-          <div className="relative z-50 w-full h-full">
-            <Modal show={isModalOpen} dialogPanelClass="!max-w-[70rem]">
-              <VerificationProcess 
-                currentStep={currentStep}
-                setCurrentStep={setCurrentStep}
-                setIsModalOpen={setIsModalOpen}
-                />
-            </Modal>
-          </div>
-        ),
 
-        portalBody: (
-          <div className="h-full w-full">
+      <AuthenticatedLayout bannerProps={bannerProps} verification={verification}>
+          {{
+            surface: (
+              <div className="relative z-50 w-full h-full">
+                <Modal show={isModalOpen} dialogPanelClass="!max-w-[70rem]">
+                  <VerificationProcess 
+                    currentStep={currentStep}
+                    setCurrentStep={setCurrentStep}
+                    setIsModalOpen={setIsModalOpen}
+                    />
+                </Modal>
+              </div>
+            ),
 
-                <div className='flex flex-row h-full w-full justify-between gap-6'>
-                    <CardContainer header="Project Overview" className='!w-1/2'>
-                      <Overview
-                         projects={projects}
-                         isPortrait={true}
-                         onClick={openProjectFormPanel}
-                         multiCircularProgressSize="w-[250px] h-[250px]"
-                      />
-                    </CardContainer>
-                    <CardContainer header="Social Activities" className='!w-1/2 disabled-feature'></CardContainer>
-                    <div className='flex flex-col gap-6 h-full w-full'>
-                      <CardContainer header="Budget Overview" className='h-1/2'>
-                        <Budget
-                          projects={projects}
-                        />
-                      </CardContainer>
-                      <div className='flex flex-row gap-6 h-1/2'>
-                        <CardContainer header="Job Overview" className="disabled-feature"></CardContainer>
-                        <ImageContainer     
-                          overlay={true}      
-                          className="promo-ad"                            
-                          backgroundImage="./images/cartoon_images/female_professional_filmmaker.png"
-                        >
-                          <h2 className='text-white text-[2rem]'>Hollywood Filmmaker</h2>
-                        </ImageContainer>
-                      </div>
-                    </div>
-                </div> 
+            portalBody: (
+              <div className="h-full w-full">
 
- 
-          </div>
-        ),
-      }}
-    </AuthenticatedLayout>
+                    <div className='flex flex-row h-full w-full justify-between gap-6'>
+                        <CardContainer header="Project Overview" className='!w-1/2'>
+                          <Overview
+                            projects={projects}
+                            isPortrait={true}
+                            onClick={openProjectFormPanel}
+                            multiCircularProgressSize="w-[250px] h-[250px]"
+                          />
+                        </CardContainer>
+                        <CardContainer header="Social Activities" className='!w-1/2 disabled-feature'></CardContainer>
+                        <div className='flex flex-col gap-6 h-full w-full'>
+                          <CardContainer header="Budget Overview" className='h-1/2'>
+                            <Budget
+                              projects={projects}
+                            />
+                          </CardContainer>
+                          <div className='flex flex-row gap-6 h-1/2'>
+                            <CardContainer header="Job Overview" className="disabled-feature"></CardContainer>
+                            <ImageContainer     
+                              overlay={true}      
+                              className="promo-ad"                            
+                              backgroundImage="./images/cartoon_images/female_professional_filmmaker.png"
+                            >
+                              <h2 className='text-white text-[2rem]'>Hollywood Filmmaker</h2>
+                            </ImageContainer>
+                          </div>
+                        </div>
+                    </div> 
+
+    
+              </div>
+            ),
+          }}
+      </AuthenticatedLayout>
+   
   );
 }

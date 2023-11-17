@@ -25,6 +25,7 @@
 .secondary-button {
     padding: 4px 36px;
     font-size: .90rem;
+    max-height: 3rem;
     color: var(--primary-green-color); /* Text color using CSS variable */
     background-color: var(--secondary-green-color); /* Background color using CSS variable */
 }
@@ -137,7 +138,7 @@
     background-color: var(--tertiary-color);
     color: var(--primary-color) !important;
     padding: 16px;
-    border-radius: var(--rounded-corners);
+    border-radius: var(--button-corners);
 }
 
 .dashboard-navlinks .active-link {

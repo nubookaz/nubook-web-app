@@ -31,7 +31,7 @@ class CallSheetController extends Controller
         $callSheets = $projects->callSheets; // Assuming you have defined the relationship correctly in your Project model
 
 
-        return Inertia::render('Projects/CallSheets/CallSheetOverview', [
+        return Inertia::render('Projects/CallSheets/CallSheets', [
             'projects' => $projects,
             'callSheets' => $callSheets,
         ]);
@@ -72,25 +72,23 @@ class CallSheetController extends Controller
     {
         // Retrieve the project by its ID
         $project = Project::find($id);
-        $user = User::find($project->user_id);
-        $userCompany = $user->productionCompany;
+        // dd(Auth::user());
+        // $user = Auth::user();
+        // $userCompany = $user->productionCompany;
 
         // Retrieve the call sheet by its ID
-        $callSheet = CallSheet::findOrFail($callSheetId);
-        // Controller
-        //  dd($callSheet->locations()->with('parkingLocation', 'hospitalLocation'));
+        $callSheet = CallSheet::with(['project', 'locations'])->findOrFail($callSheetId);
 
-        $locations = CallSheet::findOrFail($callSheetId)->locations()->with('parkingLocation', 'hospitalLocation')->get();
+  
 
-            // Retrieve associated locations for the call sheet
-        //  $locations = $callSheet->locations; // Assuming $callSheet is an instance of CallSheet
+        // $locations = CallSheet::findOrFail($callSheetId)->locations()->with('parkingLocation', 'hospitalLocation')->get();
 
-        // Render the project edit page using Inertia.js
+      
         return Inertia::render('Projects/CallSheets/CallSheetDetails', [
-            'userCompany' => $userCompany,
+            // 'userCompany' => $userCompany,
             'project' => $project, // Pass the project data
             'callSheet' => $callSheet, // Pass the call sheet data to the edit page
-            'locations' => $locations, // Pass the associated locations data to the edit page
+            // 'locations' => $locations, // Pass the associated locations data to the edit page
         ]);
     }
         

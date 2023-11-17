@@ -14,21 +14,20 @@ trait CallSheetTrait
 
     public function createCallSheet(Request $request, $projectId) // Add $projectId as a parameter
     {
-
-        // dd( $request);
-        // Validate the incoming data
+ 
         $validatedData = $request->validate([
-            'callSheetTitle' => 'required|string|max:255', // Customize validation rules as needed
-            'callSheetDate' => 'required|date', // Add validation for the date field
-            // Add validation rules for other fields as needed
+            'call_sheet_name' => 'required|string|max:255', 
+            'call_sheet_date' => 'required|date', 
         ]);
     
-        // Create a new call sheet using the validated data and associate it with the project
-        $callSheet = new CallSheet($validatedData);
-        $callSheet->project_id = $projectId; // Assuming there's a 'project_id' column in your CallSheet model
+ 
+        $callSheet = new CallSheet;
+        $callSheet->fill($validatedData);
+        $callSheet->project_id = $projectId;
         $callSheet->save();
     
-        return $callSheet; // Optionally, you can return the created call sheet if needed
+        return $callSheet; 
+        
     }
 
 }

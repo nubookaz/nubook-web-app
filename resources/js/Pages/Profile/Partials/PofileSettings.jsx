@@ -10,6 +10,12 @@ import PersonalInfo from '@/Components/Profile/PersonalInfo';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 import CompanyInfo from '@/Components/Profile/CompanyInfo';
 
+
+
+
+
+
+
 function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
   const { user, fetchUserData } = useAuth();
 
@@ -119,7 +125,7 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
                 <CompanyInfo onUpdateCompanyInfo={setCompanyInfo} existingData={companyInfo} />
               </div>
               
-                <PrimaryButton className="float-right" disabled={processing}>Save Profile Settings</PrimaryButton>
+                <PrimaryButton className="h-full" disabled={processing}>Save Profile Settings</PrimaryButton>
             </form>
         </div>
     </div>

@@ -11,8 +11,8 @@ import {
 
 
 
-function ProjectList({ projects, className, cols = 4, view }) {
-  const containerClasses = `grid grid-cols-${cols} grid-rows-2 gap-6 h-full ${className}`;
+function ProjectList({ cardHeight, projects, className, cols = 4, rows = '', view, maxProjects = 16 }) {
+  const containerClasses = `grid grid-cols-${cols} !grid-rows-${rows} gap-6 h-full grid-flow-row auto-rows-auto ${className}`;
 
 
   const sortProjects = (projects) => {
@@ -51,14 +51,15 @@ function ProjectList({ projects, className, cols = 4, view }) {
   const filteredProjects = view === "View All" ? projects : projects.filter(project => project.project_stage === view);
   const sortedProjects = sortProjects(filteredProjects);
 
+  const limitedProjects = sortedProjects.slice(0, maxProjects);
 
   return (
     <div className={containerClasses}>
       
-      {sortedProjects.map(project => {
+      {limitedProjects.map(project => {
         let projectColor = '';
         let textColor = '';
-        if (project.projectStage === 'Estimate') {
+        if (project.project_stage === 'Estimate') {
           projectColor = estimateColor;
         } else if (project.project_stage === 'Creative Development') {
           projectColor = creativeDevelopmentColor;
@@ -75,6 +76,8 @@ function ProjectList({ projects, className, cols = 4, view }) {
         return (
           
           <ActiveCard
+            indicator={true}
+            cardHeight={cardHeight}
             status={project.project_stage}
             cardType="project"
             href={

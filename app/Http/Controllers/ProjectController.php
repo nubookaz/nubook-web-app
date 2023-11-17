@@ -22,10 +22,10 @@ class ProjectController extends Controller
     public function index()
     {
         // Retrieve the user's projects
-        $projects = Project::where('user_id', auth()->id())->with('productionCompany', 'clients')->get();
-        $user = Auth::user()->load('clients');
+        $projects = Project::where('user_id', auth()->id())->with('productionCompany')->get();
+        $user = Auth::user();
  
-         return Inertia::render('Projects/ProjectsOverview', [
+         return Inertia::render('Projects', [
             'auth' => $user,
             'projects' => $projects,
         ]);    
@@ -47,33 +47,7 @@ class ProjectController extends Controller
     {       
         // Validate the incoming data
         $project = $this->createProject($request);
-    
-        // Check if the client data is provided
-        $clientData = $request->json('clientData');
-        // Check if existing client data is provided
-        $existingClientData = $request->json('existingClient');
-    
-        // Check if either $clientData or $existingClientData is not empty
-        if (!$this->isDataEmpty($clientData) || !$this->isDataEmpty($existingClientData)) {
-            // Check if the existing client already exists
-            $existingClient = null;
-            if (!empty($existingClientData['id'])) {
-                $client = Client::where('id', $existingClientData['id'])->first();
-            } else {
-                $client = $this->createCompany($request);
-            }
-            
-            // If the existing client exists, use it; otherwise, create a new client
-            // $client = $existingClient ?? $this->createCompany($request);
-    
-            // dd($client);
 
-
-            // Associate the client with the project
-            $project->clients()->attach($client->id);
-        }
-    
-        // Simulate a success response with an alert message
         $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.edit';
     
         // Render the view using Inertia.js and pass project data

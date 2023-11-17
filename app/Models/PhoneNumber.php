@@ -16,10 +16,5 @@ class PhoneNumber extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    // Define the relationship with the Clients table
-    public function client()
-    {
-        return $this->belongsTo(Client::class);
-    }
+ 
 }

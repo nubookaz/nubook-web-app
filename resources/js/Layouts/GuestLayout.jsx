@@ -35,7 +35,7 @@ export default function Guest({ children, auth }) {
                                 </p>
                         </ImageContainer>
 
-                        <CardContainer className="form-container !gap-2 justify-between">
+                        <CardContainer className="form-container !gap-2 justify-between flex flex-col">
                             <ApplicationName />
                             <p className="secondary-color text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum.</p>
 

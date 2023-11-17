@@ -25,8 +25,8 @@ export default function Overview({
 
     return (
 
-    <div className='h-full'>
-        <div className={`flex gap-4 w-full h-full text-center ${isPortrait ? 'flex-col justify-between' : 'flex-row'}`}>
+    <div className='h-full flex w-full'>
+        <div className={`flex w-full h-full text-center ${isPortrait ? 'flex-col justify-between' : 'flex-row'}`}>
             <div className={`  ${isPortrait ? 'mx-auto mt-[3rem]' : 'my-auto w-1/2'}`}>
                 <MultiCircularProgress 
                     projects={projects}
@@ -39,38 +39,53 @@ export default function Overview({
                     multiCircularProgressSize={multiCircularProgressSize}                    
                 />
             </div>
-            <div className={`flex flex-col flex-wrap gap-4 m-auto ${isPortrait ? 'w-full' : 'w-1/2'}`}>
-                <div className={`grid grid-cols-2 gap-4 w-full ${isPortrait ? 'mb-4' : ''}`}>
-                    <div>
-                        <span className='text-2xl'>{estimateProjects.length}</span>
-                        <h4 className='mt-4'>Estimate</h4>
+            <div className={` ${isPortrait ? 'w-full h-full my-[2rem]' : 'w-1/2'  } `}>
+                <div className={`grid grid-row-3 h-full border-slate-50 ${isPortrait ? 'w-full border--2 ' : 'border-l-2 '}`}>
+                    <div className='grid grid-cols-2 w-full border-slate-50  border-b-2'>
+                        <div className='flex bg-[#fcfcfc] border-r-2 border-slate-50'>
+                            <div className='m-auto'>
+                                <span className='text-2xl font-bold'>{estimateProjects.length}</span>
+                                <p className='mt-2 text-sm'>Estimate</p>
+                            </div>
+                        </div>
+                        <div className='flex bg-[#fcfcfc]'>
+                            <div className='m-auto'>
+                                <span className='text-2xl font-bold'>{creativeDevelopmentProjects.length}</span>
+                                <p className='mt-2 text-sm'>Creative Development</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <span className='text-2xl'>{creativeDevelopmentProjects.length}</span>
-                        <h4 className='mt-4'>Creative Development</h4>
+                    <div className='grid grid-cols-2 w-full border-slate-50  border-b-2'>
+                        <div className='flex  bg-[#fcfcfc] border-r-2 border-slate-50'>
+                            <div className='m-auto'>
+                                <span className='text-2xl font-bold'>{preProductionProjects.length}</span>
+                                <p className='mt-2 text-sm'>Pre-Production</p>
+                            </div>
+                        </div>
+                        <div className='flex bg-[#fcfcfc]'>
+                            <div className='m-auto'>
+                                <span className='text-2xl font-bold'>{productionProjects.length}</span>
+                                <p className='mt-2 text-sm'>Production</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className={`grid grid-cols-2 gap-4 w-full ${isPortrait ? 'mb-4' : ''}`}>
-                    <div>
-                        <span className='text-2xl'>{preProductionProjects.length}</span>
-                        <h4 className='mt-4'>Pre-Production</h4>
-                    </div>
-                    <div>
-                        <span className='text-2xl'>{productionProjects.length}</span>
-                        <h4 className='mt-4'>Production</h4>
-                    </div>
-                </div>
-                <div className={`grid grid-cols-2 gap-4 w-full ${isPortrait ? 'mb-4' : ''}`}>
-                    <div>
-                        <span className='text-2xl'>{postProductionProjects.length}</span>
-                        <h4 className='mt-4'>Post-Production</h4>
-                    </div>
-                    <div>
-                        <span className='text-2xl'>{completedProjects.length}</span>
-                        <h4 className='mt-4'>Completed</h4>
+                    <div className='grid grid-cols-2 w-full border-slate-50  border-b-2'>
+                        <div className='flex bg-[#fcfcfc] border-r-2 border-slate-50'>
+                            <div className='m-auto'>
+                                <span className='text-2xl font-bold'>{postProductionProjects.length}</span>
+                                <p className='mt-2 text-sm'>Post-Production</p>
+                            </div>
+                        </div>
+                        <div className='flex bg-[#fcfcfc]'>
+                            <div className='m-auto'>
+                                <span className='text-2xl font-bold'>{completedProjects.length}</span>
+                                <p className='mt-2 text-sm'>Completed</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            
            
             {isPortrait && (
                 <div className='justify-end mb-8 w-3/4 mx-auto'>

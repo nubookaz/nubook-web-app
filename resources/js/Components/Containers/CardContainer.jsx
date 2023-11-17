@@ -10,7 +10,7 @@ import Dropdown from '@mui/joy/Dropdown';
 
 
 
-function CardContainer({ children, textColor, header, showButtonIcon, openPage, openToolkit, className, size, menuItems }) {
+function CardContainer({ children, textColor, indicator, header, absoluteHeader, headerColor, showButtonIcon, openPage, openToolkit, className, size, menuItems }) {
 
     const getSizeClass = () => {
         switch (size) {
@@ -25,7 +25,8 @@ function CardContainer({ children, textColor, header, showButtonIcon, openPage, 
         }
     };
  
-    const containerClasses = `container-base card-container flex flex-col gap-4 ${getSizeClass()} ${className} ${textColor}`;
+    const cardHeaderClasses = `${absoluteHeader ? 'absolute float-left p-6' : 'flex flex-row gap-2 justify-between'}`;
+    const containerClasses = `container-base card-container ${getSizeClass()} ${className} ${textColor} ${absoluteHeader ? 'relative overflow-hidden' : 'flex flex-col justify-between grow gap-2 p-6'}`;
 
     // Set default prop values
     CardContainer.defaultProps = {
@@ -35,12 +36,15 @@ function CardContainer({ children, textColor, header, showButtonIcon, openPage, 
     return (
         <div className={containerClasses}>
             {header && (
-                <div className="card-header flex justify-between items-center">
-                    <div className="flex items-center">
-                        {header && <h4 className={`secondary-color container-header text-[1rem] font-semibold ${textColor}`}>{header}</h4>}
-                    </div>
+                <div className={cardHeaderClasses}>
+                    {header && 
+                        <div className={`${absoluteHeader ? 'relative' : 'flex flex-row gap-2'}`}>
+                            {indicator && <span className='rounded-full w-[1rem] h-[1rem] block' style={{ backgroundColor: headerColor }}></span>}
+                            <h4 className={`secondary-color text-[1rem] font-semibold ${textColor}  `} style={{ color: headerColor }}>{header}</h4>                    
+                        </div>
+                    }
                     {showButtonIcon && (
-                        <div>
+                        <div className={`${absoluteHeader ? 'absolute' : ' '}`}>
                             <Dropdown>
                                 <MenuButton variant="plain" className={`secondary-color ${textColor}`}>
                                     <FontAwesomeIcon icon={faEllipsisVertical} />

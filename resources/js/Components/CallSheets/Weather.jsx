@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faCaretUp, faCaretDown, faSun } from '@fortawesome/free-solid-svg-icons';
 
-const Weather = ({ apiKey, street_address, zip_code, date, country }) => {
+const Weather = ({ street_address, zip_code, date, country }) => {
+
+
   const [weatherData, setWeatherData] = useState(null);
   const [locationData, setLocationData] = useState(null);
   const [loadingWeather, setLoadingWeather] = useState(true);
   const [error, setError] = useState(null);
-  const apiKeyGeo = 'AIzaSyBNC8qqe2LUc7uvF41Q84DjTrsEvgEIu-c';
+  const apiKeyGeo = 'AIzaSyDKDDy79SZdsmJ9wY7YjOGP5U3YPNioSdU';
+  const apiKey = '2fddf0abeecb6640ae37fdf8735cb722';
 
+  if (!street_address && !zip_code) {
+    return <div className='grid place-content-center my-auto h-full'>No Weather Information Available. Please provide a location with a street address or zip code.</div>;
+  }
+
+  
   useEffect(() => {
     const fetchLocationData = async () => {
       try {
@@ -16,10 +25,16 @@ const Weather = ({ apiKey, street_address, zip_code, date, country }) => {
             street_address
           )},${encodeURIComponent(zip_code)},${encodeURIComponent(country)}&key=${apiKeyGeo}`
         );
+
+
         const data = await response.json();
 
         if (data.results.length > 0) {
           setLocationData(data.results[0].geometry.location);
+        } else {
+          setLocationData(null);
+          console.log('locationData:', data);
+
         }
       } catch (error) {
         console.error('Error fetching location data:', error);
@@ -30,8 +45,11 @@ const Weather = ({ apiKey, street_address, zip_code, date, country }) => {
     fetchLocationData();
   }, [apiKey, street_address, zip_code, country]);
 
+
+
   useEffect(() => {
     const fetchWeatherData = async () => {
+
       try {
         // Ensure locationData is available before making the API call
         if (locationData) {
@@ -50,26 +68,27 @@ const Weather = ({ apiKey, street_address, zip_code, date, country }) => {
 
           const response = await fetch(endpoint);
           const data = await response.json();
-          console.log('Weather Data:', data);
+ 
           setWeatherData(data);
-        }
+        }  
       } catch (error) {
         console.error('Error fetching weather data:', error);
         setError('Error fetching weather data');
       } finally {
         setLoadingWeather(false);
       }
+
     };
 
-    // Ensure locationData is available before fetching weather data
-    if (locationData !== null) {
+  if (locationData !== null) {
       fetchWeatherData();
-    }
+    } 
   }, [apiKey, locationData, date]);
 
+
   if (loadingWeather) {
-    return <div>Loading...</div>;
-  }
+    return <div className='grid place-content-center my-auto h-full'>Loading...</div>;
+  } 
 
   if (error) {
     return <div>Error fetching weather data</div>;
@@ -85,23 +104,29 @@ const Weather = ({ apiKey, street_address, zip_code, date, country }) => {
   const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
   const temperatureF = celsiusToFahrenheit(main.temp);
 
+
+
+
   return (
-    <div>
-      <p>Temperature: {temperatureF.toFixed(2)}°F</p>
-      <p>High: {main.temp_max.toFixed(2)}°C</p>
-      <p>Low: {main.temp_min.toFixed(2)}°C</p>
-      <p>Sunset: {new Date(sys.sunset * 1000).toLocaleTimeString()}</p>
-      <p>Sunrise: {new Date(sys.sunrise * 1000).toLocaleTimeString()}</p>
+    <div className='flex flex-row gap-8 justify-between'>
+      <div className='m-auto'>
+        <FontAwesomeIcon className="text-[5rem] text-yellow-400" icon={faSun} />
+      </div>
+      <div className='flex flex-col gap-2'>
+        <p className='font-bold'>
+            High: <span className='font-normal'>{temperatureF}°F</span>
+        </p>
+        <p className='font-bold'>
+            Low: <span className='font-normal'>{temperatureF}°F</span>
+        </p>
+        <p className='flex flex-row gap-2'><FontAwesomeIcon className="my-auto" icon={faCaretUp} /> Sunset: {new Date(sys.sunset * 1000).toLocaleTimeString()}</p>
+        <p className='flex flex-row gap-2'><FontAwesomeIcon className="my-auto" icon={faCaretDown} /> Sunrise: {new Date(sys.sunrise * 1000).toLocaleTimeString()}</p>
+      </div>
+
     </div>
   );
 };
 
-Weather.propTypes = {
-  apiKey: PropTypes.string.isRequired,
-  street_address: PropTypes.string.isRequired,
-  zip_code: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  country: PropTypes.string,
-};
 
+ 
 export default Weather;

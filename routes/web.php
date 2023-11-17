@@ -70,14 +70,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
-        $user = Auth::user()->load('clients'); 
+        $user = Auth::user(); 
         $projects = $user->projects;
-        return Inertia::render('Dashboard', ['auth' => $user, 'projects' => $projects ]);
+        return Inertia::render('Dashboard', ['projects' => $projects ]);
     })->name('dashboard');
 
-
-
-    
     Route::prefix('projects')->group(function () {
         // Your existing project-related routes here
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');

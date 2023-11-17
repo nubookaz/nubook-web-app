@@ -39,7 +39,7 @@
     width: 1.4rem;
     height: 1.4rem;
     transition: var(--transition-speed);
-    border-radius: var(--rounded-corners);
+    border-radius: var(--button-corners);
 }
 
 .nav-links a svg:hover {

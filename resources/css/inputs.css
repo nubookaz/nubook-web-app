@@ -10,7 +10,7 @@ input[type="tel"],
 input[type="password"],
 input[type="date"],
 select {
-    border-radius: var(--rounded-corners) !important;
+    border-radius: var(--input-corners) !important;
     padding: .65rem .85rem !important;
     background-color: var(--light-color) !important;
     border: 1px solid var(--tertiary-color) !important;
@@ -55,7 +55,7 @@ textarea:active {
 .MuiSelect-root,
 .MuiTextarea-root,
 .MuiAutocomplete-root {
-    border-radius: var(--rounded-corners) !important;
+    border-radius: var(--input-corners) !important;
     padding: .65rem .85rem !important;
     background-color: var(--light-color) !important;
     border: 1px solid var(--tertiary-color) !important;
@@ -71,7 +71,7 @@ textarea:active {
 }
 
 .css-rmmrnf-JoyAutocomplete-root input {
-    border-radius: var(--rounded-corners) !important;
+    border-radius: var(--input-corners) !important;
     padding: .75rem .25rem !important;
     background-color: var(--light-color) !important;
     border: none !important;

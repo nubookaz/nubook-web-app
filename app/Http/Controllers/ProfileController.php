@@ -26,8 +26,6 @@ class ProfileController extends Controller
         // Replace this logic with your actual user data retrieval logic
         $user = auth()->user()->load(
             'projects', 
-            'projects.clients.companies',
-            'clients.companies', 
             'phone', 
             'address', 
             'productionCompany'

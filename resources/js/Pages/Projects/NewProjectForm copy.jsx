@@ -22,6 +22,7 @@ export default function NewProjectForm({ ...props }) {
     const { user, fetchUserData } = useAuth();
 
     useEffect(() => {
+      // Fetch user data on component mount
       fetchUserData();
     }, []);
 
@@ -32,6 +33,8 @@ export default function NewProjectForm({ ...props }) {
 
 
     const { isRightPanelOpen, toggleRightPanel } = props;
+
+    // const [currentStep, setCurrentStep] = useState(1);  
     
     const [projectData, setProjectData] = useState({
       project_name: '',
@@ -41,6 +44,26 @@ export default function NewProjectForm({ ...props }) {
       project_stage: '',
       project_description: '',
     });
+
+    // const [clientData, setClientData] = useState({
+    //   first_name: '',
+    //   last_name: '',
+    //   middle_initial: '',
+    //   job_title: '',
+    //   email_address: '',
+    //   tel: '',
+    //   company_name: '',
+    // });
+
+    // const [existingClient, setExistingClient] = useState({
+    //   first_name: '',
+    //   last_name: '',
+    //   middle_initial: '',
+    //   job_title: '',
+    //   email_address: '',
+    //   tel: '',
+    //   company_name: '',
+    // });
 
 
   const clearFormData = () => {
@@ -54,6 +77,27 @@ export default function NewProjectForm({ ...props }) {
       project_description: '',
     });
   
+    // // Clear out the clientData state
+    // setClientData({
+    //   first_name: '',
+    //   last_name: '',
+    //   middle_initial: '',
+    //   job_title: '',
+    //   email_address: '',
+    //   tel: '',
+    //   company_name: '',
+    // });
+  
+    // // Clear out the existingClient state
+    // setExistingClient({
+    //   first_name: '',
+    //   last_name: '',
+    //   middle_initial: '',
+    //   job_title: '',
+    //   email_address: '',
+    //   tel: '',
+    //   company_name: '',
+    // });
   };
   
   const handleCloseButtonClick = () => {
@@ -70,6 +114,7 @@ export default function NewProjectForm({ ...props }) {
     if (currentStep === 1) {
       const requiredFields = ['project_name', 'project_type', 'category_type', 'project_stage'];
   
+      // Create an object mapping each required field to a boolean indicating if it's empty
       const newEmptyFields = requiredFields.reduce((fields, fieldName) => {
         fields[fieldName] = !projectData[fieldName];
         return fields;
@@ -87,14 +132,25 @@ export default function NewProjectForm({ ...props }) {
   };
   
 
+  // const handleBackButtonClick = () => {
+  //   if (currentStep === 3) {
+  //       setCurrentStep(2); // Move back to step 2 from step 3
+  //   } else if (currentStep === 2) {
+  //       setCurrentStep(1); // Move back to step 1 from step 2
+  //   } 
+  // };
+
   const submit = async (e) => {
       e.preventDefault();
       setProcessing(true);
 
+      if (currentStep === 2) {
         try {
           // Use the state directly from the callback
-          await router.post(route('projects.create'), {
+          await axios.post(route('projects.create'), {
             projectData: projectData,
+            // clientData: clientData,
+            // existingClient: existingClient,
           });
 
           clearFormData();
@@ -104,8 +160,10 @@ export default function NewProjectForm({ ...props }) {
             console.log(error);
     
         } finally {
+            // Set processing back to false regardless of success or failure
             setProcessing(false);
         }
+      }
   
   };
 
@@ -133,12 +191,19 @@ export default function NewProjectForm({ ...props }) {
 
         panel_header={
           <div className='header'>
-
+            {/* {currentStep === 1 ? ( */}
                   <div>
                     <h2 className='mb-2'>Launch Your Project</h2>
                     <p className="p-base">Embark on creativity! Fill in the details below to give life to your next masterpiece, be it a film, commercial, or TV project. Whether it's a thrilling adventure or a heartwarming tale, this is the first step to making your cinematic dreams a reality.</p>                
                   </div>
-
+            {/* ) : currentStep === 2 ? (
+              <div>
+                  <h2 className='mb-2'>Associate a Client</h2>
+                  <p className="p-base">
+                    Consider linking this project with a client for streamlined organization. Whether fostering a new collaboration or connecting with an existing client, enhance communication and tailor your services to their specific needs, ensuring a seamless creative partnership.
+                  </p>
+              </div>
+            ) : null} */}
           </div>
         }
         
@@ -147,13 +212,19 @@ export default function NewProjectForm({ ...props }) {
         panel_footer={
           <div className='flex flex-row gap-4'>
 
+            {/* {currentStep === 1 ? ( */}
                   <div className='flex flex-row gap-4'>
                       <div className="circular-button circular-button-small cursor-pointer" onClick={handleCloseButtonClick}>
                           <FontAwesomeIcon icon={faXmark} />
                       </div>
-                 
+                      {/* <div className='default-btn cursor-pointer !py-[9px] place-content-center secondary-button button-transition my-auto' onClick={handleNextButtonClick} >Next Step</div> */}
+                  {/* </div> */}
+              {/* ) : currentStep === 2 ? ( */}
+                {/* <div className='flex flex-row gap-4'> */}
+                      {/* <CircularButton icon={faArrowLeft} size="small" onClick={handleBackButtonClick} /> */}
                       <SecondaryButton buttonType="submit" onSubmit={submit} disabled={processing}>Create Project</SecondaryButton>
                   </div>
+              {/* // ) : null}  */}
 
           </div>
 
@@ -161,6 +232,8 @@ export default function NewProjectForm({ ...props }) {
         >
 
 
+        {/* Children */}
+          {currentStep === 1 ? (
               <div className='step-1'>
                 <ProjectDetailsForm
                     data={projectData}
@@ -169,6 +242,15 @@ export default function NewProjectForm({ ...props }) {
                     setEmptyFields={setEmptyFields}
                 />
               </div>       
+          ) : currentStep === 2 ? (
+              <div>
+                <ProjectClientForm
+                    onUpdateCompanyInfo={setClientData}
+                    setExistingClient={setExistingClient}
+                    user={user}
+                />              
+              </div>
+          ) : null} 
 
             
       </RightPanel>

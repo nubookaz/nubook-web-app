@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import InputError from '@/Components/Forms/InputError';
 import InputLabel from '@/Components/Forms/InputLabel';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
-import TextInput from '@/Components/Forms/TextInput - OLD';
+import TextInput from '@/Components/Forms/TextInput';
 import { useForm } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 

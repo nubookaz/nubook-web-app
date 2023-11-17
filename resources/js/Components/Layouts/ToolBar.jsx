@@ -19,7 +19,7 @@ function Toolbar({ title, actionButtons, onButtonClick, children, cta_text, seco
     <div className="toolbar-container flex flex-col">
 
 
-      <div className="toolbar-content flex flex-row gap-8 w-full justify-between items-center mb-6">
+      <div className="toolbar-content flex flex-row gap-8 w-full justify-between items-center">
 
 
         {/* Column 1: Left Arrow Icon */}
@@ -52,7 +52,7 @@ function Toolbar({ title, actionButtons, onButtonClick, children, cta_text, seco
 
 
         {/* Column 5: Call to Action Button */}
-        <div className="toolbar-column-4 shrink-0 flex flex-row gap-6 justify-end ml-[10rem]">
+        <div className="toolbar-column-4 shrink-0 flex flex-row gap-6 justify-end ml-[10rem] h-full">
         {secondary_cta_text ? (
             <SecondaryButton className="w-[17rem]" onClick={handleSecondaryButtonClick}>
               {secondary_cta_text}

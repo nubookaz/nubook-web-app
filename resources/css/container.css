@@ -1,9 +1,14 @@
   .container-base {
     background-color: #ffffff; /* White background */
     border-radius: var(--rounded-corners);
-    padding: 20px;
     width: 100%;
+    display: flex;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
+  }
+
+  .enclosure {
+    border-radius: var(--rounded-corners);
+    padding: 2rem;
   }
   
   .form-container {

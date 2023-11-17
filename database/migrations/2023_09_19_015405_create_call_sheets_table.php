@@ -12,8 +12,8 @@ class CreateCallSheetsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('project_id');
             $table->string('status')->default('Draft');
-            $table->string('callSheetTitle');
-            $table->date('callSheetDate'); 
+            $table->string('call_sheet_name');
+            $table->date('call_sheet_date'); 
             $table->text('bulletin')->nullable(); 
 
              $table->timestamps();

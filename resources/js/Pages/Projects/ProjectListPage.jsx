@@ -68,7 +68,7 @@ export default function ProjectListPage({ auth }) {
                                 <Select
                                     defaultValue="View All"
                                     value={projectView}
-                                    className="!w-[20rem]"
+                                    className="!min-w-[15rem]"
                                     required
                                     onChange={(e, newValue) => {
                                     console.log('Select Value', newValue);
@@ -87,7 +87,7 @@ export default function ProjectListPage({ auth }) {
 
 
                             content: (
-                                <ProjectList projects={projects} view={projectView} cols="5"/>
+                                <ProjectList cardHeight='max-h-[15rem]' projects={projects} view={projectView} cols="4" rows="4"/>
                             )
                         }}
     

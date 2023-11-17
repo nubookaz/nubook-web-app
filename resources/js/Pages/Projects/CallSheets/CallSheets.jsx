@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import NewCallSheetForm from '@/Pages/Projects/CallSheets/Forms/NewCallSheetForm';
+import CallSheetPanel from '@/Pages/Projects/CallSheets/Forms/CallSheetPanel';
 import CallSheetList from '@/Pages/Projects/CallSheets/Partials/CallSheetList';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import Select from '@mui/joy/Select';
@@ -11,7 +11,7 @@ import Option from '@mui/joy/Option';
 
 
 
-function CallSheetOverview({ auth, showBanner }) {
+export default function CallSheets({ auth, showBanner }) {
     const { props } = usePage();
     const project = props.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
     const callSheet = props.callSheets || []; // Use an empty array as a fallback if 'projects' prop is undefined
@@ -43,7 +43,7 @@ function CallSheetOverview({ auth, showBanner }) {
           <div className="relative z-50 w-full h-full">
 
 
-              <NewCallSheetForm
+              <CallSheetPanel
                 isRightPanelOpen={isRightPanelOpen}
                 toggleRightPanel={toggleRightPanel}
                 projectId={project.id}
@@ -64,6 +64,7 @@ function CallSheetOverview({ auth, showBanner }) {
                   buttonText={buttonText}
                   customSvgPath={customSvgPath}
                   toggleRightPanel={toggleRightPanel} // You can optionally pass this function
+                  pageType="Call Sheets"
                 >
                   {{
                     middle: (
@@ -101,9 +102,4 @@ function CallSheetOverview({ auth, showBanner }) {
     
 }
 
-
-
-
-
-
-export default CallSheetOverview;
+ 

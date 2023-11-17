@@ -15,7 +15,7 @@ function PortalLayout({  hasData, toolbarTitle, pageType, toolbarCTAText, button
         )}
         </div>
         {hasData && Object.keys(hasData).length > 0 ? (
-          <div className='h-full w-full  flex flex-col'>
+          <div className='h-full w-full gap-6 flex flex-col'>
             {toolbarTitle && ( 
               <Toolbar
                 title={toolbarTitle}
