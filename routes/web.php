@@ -83,6 +83,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');
         Route::patch('/{id}', [ProjectController::class, 'update'])->name('projects.update');
+
+        Route::get('/{id}/settings', [ProjectController::class, 'showSettings'])->name('project.settings');
     
         // New routes for the "Call Sheets" page
         Route::prefix('{id}/call-sheets')->group(function () {

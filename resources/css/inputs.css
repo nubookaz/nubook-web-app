@@ -79,3 +79,10 @@ textarea:active {
     width: 100%;
     color: var(--primary-color) !important;
 }
+
+
+.disabled-dropdown {
+    background-color: #f0f0f0 !important;
+    color: #a9a9a9 !important;
+    cursor: not-allowed !important;
+}

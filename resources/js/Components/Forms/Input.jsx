@@ -14,6 +14,7 @@ export default function Input({
     onChange,
     autoComplete,
     openToolTip,
+    min,
 
 }) {
 
@@ -40,6 +41,7 @@ export default function Input({
                 <input
                     type={type}
                     name={name}
+                    min={min}
                     placeholder={placeholder}
                     value={value} 
                     required={required}

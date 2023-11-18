@@ -30,7 +30,7 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
 
     // Set default prop values
     CardContainer.defaultProps = {
-        menuItems: [], // Provide an empty array as a default value
+        menuItems: [],  
     };
         
     return (
@@ -49,7 +49,7 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
                                 <MenuButton variant="plain" className={`secondary-color ${textColor}`}>
                                     <FontAwesomeIcon icon={faEllipsisVertical} />
                                 </MenuButton>
-                                <Menu placement="top-start">
+                                <Menu placement="top">
                                     {Array.isArray(menuItems) &&
                                         menuItems.map((item, index) => (
                                         <MenuItem key={index} onClick={item.onClick}>

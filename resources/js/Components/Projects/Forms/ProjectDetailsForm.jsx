@@ -80,8 +80,9 @@ export default function ProjectDetailsForm({
                                 placeholder="Category Type" 
                                 name="category_type"
                                 value={data.category_type === '' ? undefined : data.category_type} 
-                                className='w-full'
+                                className={`w-full ${!data.project_type ? 'disabled-dropdown' : ''}`}
                                 required
+                                disabled={!data.project_type}
                                 onChange={(e, newCategoryType) => {
                                     handleChange('category_type', newCategoryType);
                                 }}
@@ -124,8 +125,9 @@ export default function ProjectDetailsForm({
                             placeholder="Project Stage"
                             name="project_stage"
                             value={data.project_stage === '' ? undefined : data.project_stage} 
-                            className="w-full"
+                            className={`w-full ${!data.category_type ? 'disabled-dropdown' : ''}`}
                             required
+                            disabled={!data.category_type}
                             onChange={(e, newProjectStage) => {
                                 handleChange('project_stage', newProjectStage);
                             }}

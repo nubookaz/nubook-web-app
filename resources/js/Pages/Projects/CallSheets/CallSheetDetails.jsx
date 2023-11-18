@@ -1,6 +1,5 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
 
-
 import React, { useEffect, useState } from 'react';
 import { router } from '@inertiajs/react'; 
 import { usePage } from '@inertiajs/react';
@@ -9,19 +8,13 @@ import CardContainer from '@/Components/Containers/CardContainer';
 import Snackbar from '@mui/joy/Snackbar';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
-
-
-
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 
 import Bulletin from '../../../Components/CallSheets/Bulletin';
-import ProductionDate from '../../../Components/CallSheets/ProductionDate';
+import ProductionDetails from '../../../Components/CallSheets/ProductionDetails';
 import ProductionCompany from '../../../Components/CallSheets/ProductionCompany';
 
-
-
-
-
+import RightPanel from '@/Components/Layouts/RightPanel';
 
 
 
@@ -42,38 +35,52 @@ export default function CallSheetDetails() {
 
 
   
-    const { project, callSheet } = usePage().props;
+  const { project, callSheet } = usePage().props;
 
-    const bannerProps = {
-      showGreeting: true, // Customize these props based on your conditions
-      size: 'page-banner',
-    };
+  const bannerProps = {
+    showGreeting: true, // Customize these props based on your conditions
+    size: 'page-banner',
+  };
 
-    const hasData = callSheet;
-    const toolbarTitle = callSheet.call_sheet_name; // Provide a title for the toolbar
-    const toolbarCTAText = "Send Call Sheet"; // Provide the button text
-    const buttonText = "Create a New Call Sheet"; // Provide the button text
-    const customSvgPath = "../../images/svg_images/undraw_call_sheets_1.svg"; // Provide the SVG path
-    const backButtonHref = route('projects.callSheets.index', { id: project.id }); 
+  const hasData = callSheet;
+  const toolbarTitle = callSheet.call_sheet_name; // Provide a title for the toolbar
+  const toolbarCTAText = "Send Call Sheet"; // Provide the button text
+  const buttonText = "Create a New Call Sheet"; // Provide the button text
+  const customSvgPath = "../../images/svg_images/undraw_call_sheets_1.svg"; // Provide the SVG path
+  const backButtonHref = route('projects.callSheets.index', { id: project.id }); 
 
 
-    const [savedCallSheetSettings, setSavedCallSheetSettings] = useState(false);
-    const [callSheetStatus, setCallSheetStatus] = useState(callSheet.status || 'Draft');
+
+
+
+
+
+
+
+  const [savedCallSheetSettings, setSavedCallSheetSettings] = useState(false);
+  const [isProjectFormPanel, setProjectFormPanel] = useState(false);
+
+
+
+
+
+
+  const [callSheetStatus, setCallSheetStatus] = useState(callSheet.status || 'Draft');
+  const [bulletinText, setBulletinText] = useState('');
+
+
+
+
+  const handleBulletinTextChange = (text) => {
+      setBulletinText(text);
+      // You can perform additional actions here if necessary
+  };    
+
+  const handleEditProductionDetails = () => {
+    setProjectFormPanel(true);
+  };
+
  
-    const [bulletinText, setBulletinText] = useState('');
-
-    const handleBulletinTextChange = (text) => {
-        setBulletinText(text);
-        // You can perform additional actions here if necessary
-    };    
- 
-  
- 
-
-
-
-
-
 
 
   return (
@@ -82,6 +89,7 @@ export default function CallSheetDetails() {
     <AuthenticatedLayout project={project} bannerProps={bannerProps}>
     {{
             surface: <div className="relative z-50 w-full h-full">
+
 
                         <Snackbar
                             color="success"
@@ -92,6 +100,28 @@ export default function CallSheetDetails() {
                         >
                             Saved! Call Sheet Details Saved!
                         </Snackbar>
+
+
+                        <RightPanel
+                            isRightPanelOpen={isProjectFormPanel}
+                            toggleRightPanel={setProjectFormPanel}
+                            panel_header={
+                              <div className="header">
+                                <div>
+                                  <h2>Edit call sheet Details</h2>
+                                  <p className="p-base">Modify details below for the call sheet</p>
+                                </div>
+                              </div>
+                            }
+                            panel_footer={
+                              <div className="flex flex-row gap-4">
+ 
+                              </div>
+                            }
+                          >
+
+
+                        </RightPanel>
  
 
                      </div>,
@@ -114,7 +144,7 @@ export default function CallSheetDetails() {
                                         <div className='flex flex-row gap-4 w-full h-full'>
                                             <div className='col-1 w-full flex flex-col left-col-content gap-4'>
                                               <ProductionCompany user={user} data={callSheet} />
-                                              <ProductionDate data={callSheet} />
+                                              <ProductionDetails data={callSheet} onEditProductionDetails={handleEditProductionDetails}/>
                                               <div className="h-full flex flex-col" header="Location Details">
                                                 {/* {locations?.length > 0 ? (
                                                   // Render this div when a location exists

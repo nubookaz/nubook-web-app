@@ -25,7 +25,6 @@ class User extends Authenticatable
         'email',
         'password',
         'is_temporary',
-        'subscription_type',
         'verification_code',
         'email_verified_at', 
         'email_verified',  
@@ -55,7 +54,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
     public function phone()
     {
         return $this->hasOne(PhoneNumber::class);

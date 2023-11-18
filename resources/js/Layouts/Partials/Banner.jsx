@@ -7,7 +7,7 @@ import { faListCheck, faProjectDiagram, faMoneyCheckDollar, faComments, faBriefc
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import ProfilePicture from '@/Components/Profile/ProfilePicture'; 
 import PageButton from '@/Components/Buttons/PageButton';
-import ProjectNavigation from '@/Components/Projects/ProjectNavigation';
+import ProjectNavigation from '@/Components/Navigations/ProjectNavigation';
 import { imageUrl } from '@/Components/Scripts/BannerImage';
 import { formattedDate } from '@/Components/Scripts/Date';
  
@@ -109,10 +109,6 @@ function Banner({  project, backgroundImage, size, showGreeting, showProfilePhot
                     </div>
                 </div>
                 )}
-
-              {(size === 'small-banner-buttons' ) && (
-                  <ProjectNavigation project={project}/>
-              )}
 
               {(size === 'chapter-banner' ) && (
                   <div className="banner-footer">

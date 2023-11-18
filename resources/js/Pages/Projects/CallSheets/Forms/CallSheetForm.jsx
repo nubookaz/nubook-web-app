@@ -9,6 +9,7 @@ export default function CallSheetForm ({
   onUpdateCallSheetInfo,
   emptyFields,
   setEmptyFields,
+  minDate,
 
 })  {
 
@@ -46,6 +47,7 @@ export default function CallSheetForm ({
           label="Call Sheet Date"
           type="date"
           name="call_sheet_date"
+          min={minDate}
           value={data.call_sheet_date}
           placeholder="February 14th, 1964"
           onChange={(e) => handleChange('call_sheet_date', e.target.value)}

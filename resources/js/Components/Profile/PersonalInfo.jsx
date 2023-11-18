@@ -56,9 +56,11 @@ export default function PersonalInfo({
             <div className='flex flex-row gap-2 w-full'>
                 <Input 
                     required={true}
+                    title="First Name"
                     label="First Name"
                     type="text"
                     name="first_name"
+                    placeholder="Daniel"
                     value={data.first_name}
                     autoComplete="given-name"
                     onChange={(e) => handleChange('first_name', e.target.value)}

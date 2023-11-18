@@ -68,7 +68,6 @@ export default function ProjectListPage({ auth }) {
                                 <Select
                                     defaultValue="View All"
                                     value={projectView}
-                                    className="!min-w-[15rem]"
                                     required
                                     onChange={(e, newValue) => {
                                     console.log('Select Value', newValue);

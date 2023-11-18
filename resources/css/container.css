@@ -9,6 +9,7 @@
   .enclosure {
     border-radius: var(--rounded-corners);
     padding: 2rem;
+    width: 100%;
   }
   
   .form-container {

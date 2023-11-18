@@ -175,7 +175,7 @@ const quotes = [
 
 
 
-function MovieQuotes() {
+export default function MovieQuotes() {
 
   const [quote, setQuote] = useState(quotes[0]);
 
@@ -196,5 +196,3 @@ function MovieQuotes() {
   );
 
 }
-
-export default MovieQuotes;

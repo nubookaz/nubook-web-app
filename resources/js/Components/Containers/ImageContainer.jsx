@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome
 
-function ImageContainer({ children, header, className, backgroundImage, isPoster, overlay, icon }) {
+function ImageContainer({ children, header, className, backgroundImage, isPoster, overlay, overlayOpacity, icon }) {
     const containerStyles = backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {};
 
     // Define the class for the <h3> based on the value of isPoster
@@ -15,7 +15,7 @@ function ImageContainer({ children, header, className, backgroundImage, isPoster
     return (
         <div loading="eager" rel="preload" className={containerClassName} style={{ ...containerStyles, ...overlayContainerStyles }}>
             {overlay && (
-                <div className="image-overlay">
+                <div className={`image-overlay !bg-black/${overlayOpacity}`}>
                     {header && (
                         <h3 className={headerClass}>
                             {icon && <FontAwesomeIcon icon={icon} className="icon mr-2" />} {/* Render the FontAwesome icon if provided */}

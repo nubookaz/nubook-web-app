@@ -27,7 +27,7 @@ function PortalLayout({  hasData, toolbarTitle, pageType, toolbarCTAText, button
               >
 
                 {{
-                    dropdown: <div className='flex justify-end'>{children.middle}</div>
+                    dropdown: <div className='flex justify-end min-w-[15rem]'>{children.middle}</div>
                 }}
 
               </Toolbar>

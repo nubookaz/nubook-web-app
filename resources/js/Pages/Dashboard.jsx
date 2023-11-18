@@ -27,16 +27,16 @@ export default function Dashboard() {
     fetchUserData();
   }, []);
 
-  useEffect(() => {
-    // Continue with the rest of your component logic using 'user'
-    if (user === null) {
-      // User data is still being fetched, show a loading state or return null
-      console.log('loading...');
-    } else {
+  // useEffect(() => {
+  //   // Continue with the rest of your component logic using 'user'
+  //   if (user === null) {
+  //     // User data is still being fetched, show a loading state or return null
+  //     console.log('loading...');
+  //   } else {
 
-      // ... rest of your component code ...
-    }
-  }, [user]);
+  //     // ... rest of your component code ...
+  //   }
+  // }, [user]);
 
 
 
@@ -51,36 +51,15 @@ export default function Dashboard() {
 
 
   const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState('');
+ 
   const [isProjectFormPanel, setProjectFormPanel] = useState(false);
 
   const openProjectFormPanel = () => {
     setProjectFormPanel(!isProjectFormPanel);
   };
+ 
 
-  useEffect(() => {
-    if (user && user.is_temporary) {
-      setCurrentStep('changePassword');
-      setIsModalOpen(true);
-    } else if (user && !user.email_verified) {
-      setCurrentStep('verification');
-      setIsModalOpen(true);
-    } else if (user && !user.personal_info_completed) {
-      setCurrentStep('personalInfo');
-      setIsModalOpen(true);
-    } else if (user && !user.company_info_completed) {
-      setCurrentStep('companyInfo');
-      setIsModalOpen(true);
-    } else if (user && !user.registration_complete) {
-      setIsModalOpen(false);
-    }
-  }, [user]);
-
-
-  const verification = user && (user.is_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
-
+ 
   const bannerProps = {
     showGreeting: true, // Customize these props based on your conditions
     showProfilePhoto: true,
@@ -91,19 +70,9 @@ export default function Dashboard() {
 
   return (
 
-      <AuthenticatedLayout bannerProps={bannerProps} verification={verification}>
+      <AuthenticatedLayout bannerProps={bannerProps} >
           {{
-            surface: (
-              <div className="relative z-50 w-full h-full">
-                <Modal show={isModalOpen} dialogPanelClass="!max-w-[70rem]">
-                  <VerificationProcess 
-                    currentStep={currentStep}
-                    setCurrentStep={setCurrentStep}
-                    setIsModalOpen={setIsModalOpen}
-                    />
-                </Modal>
-              </div>
-            ),
+ 
 
             portalBody: (
               <div className="h-full w-full">
@@ -128,7 +97,8 @@ export default function Dashboard() {
                             <CardContainer header="Job Overview" className="disabled-feature"></CardContainer>
                             <ImageContainer     
                               overlay={true}      
-                              className="promo-ad"                            
+                              className="promo-ad"     
+                              overlayOpacity='50'                       
                               backgroundImage="./images/cartoon_images/female_professional_filmmaker.png"
                             >
                               <h2 className='text-white text-[2rem]'>Hollywood Filmmaker</h2>

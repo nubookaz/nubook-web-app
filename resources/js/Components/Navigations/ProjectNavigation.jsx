@@ -69,7 +69,7 @@ function ProjectNavigation({ project }) {
             <PageButton className="disabled" icon={faFolderTree} size="small" />
           </li>
           <li>
-            <PageButton onClick={handleSettingsClick} icon={faSliders} size="small" />
+            <PageButton href={route('project.settings', { id: project.id })} active={route().current('project.settings')} activeClass="active-link" onClick={handleSettingsClick} icon={faSliders} size="small" />
           </li>
         </ul>
       </div>

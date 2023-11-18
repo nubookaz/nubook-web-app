@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationEmail;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -57,6 +59,10 @@ class RegisteredUserController extends Controller
             'email_verified_at' => null,
             'email_verified' => false,
         ]);
+
+        $adminRoleId = DB::table('roles')->where('name', 'admin')->first()->id;
+        
+        $user->roles()->attach($adminRoleId);    
  
         event(new Registered($user));
         Auth::login($user);

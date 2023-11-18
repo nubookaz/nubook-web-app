@@ -43,6 +43,36 @@ class ProjectController extends Controller
     
     }
 
+
+    public function showSettings($id)
+    {
+        
+        // Retrieve the project by its ID
+        $project = Project::find($id);
+    
+        // Check if the project exists
+        if (!$project) {
+            abort(404, 'Project not found');
+        }
+    
+        // Render the project edit page using Inertia.js
+        return Inertia::render('Projects/SubPages/ProjectSettings', [
+            'project' => $project, // Pass the project data to the edit page
+        ]);
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function store(Request $request)
     {       
         // Validate the incoming data

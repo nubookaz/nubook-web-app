@@ -23,6 +23,9 @@ export default function CallSheetPanel(props) {
   const [emptyFields, setEmptyFields] = useState({});
   const [processing, setProcessing] = useState(false);
 
+  const today = new Date().toISOString().split('T')[0];
+
+
   const [callSheetData, setCallSheetData] = useState({
     call_sheet_name: '',
     call_sheet_date: '',
@@ -36,64 +39,6 @@ export default function CallSheetPanel(props) {
     });
   
   };
-  
- 
-  console.log(props);
-  // const validateFormContent = () => {
-  //   const isTitleValid = callSheetTitle.trim() !== '';
-  //   const isDateValid = callSheetDate !== '';
-
-  //   return isTitleValid && isDateValid;
-  // };
-
-  // const handleCloseButtonClick = () => {
-  //   const isFormComplete = checkFormStatus();
-
-  //   if (isFormComplete) {
-  //     const result = window.confirm('Are you sure you want to proceed?');
-
-  //     if (result) {
-  //       setCallSheetTitle('');
-  //       setCallSheetDate('');
-  //       toggleRightPanel(!isRightPanelOpen);
-  //     }
-  //   } else {
-  //     toggleRightPanel(false);
-  //   }
-  // };
-
-  // const checkFormStatus = () => {
-  //   return callSheetTitle.trim() !== '' || callSheetDate.trim() !== '';
-  // };
-
-  // const createCallSheet = async () => {
-  //   const projectId = props.projectId;
-
-  //   try {
-  //     const callSheetResponse = await router.post(
-  //       route('projects.callSheets.create', { id: projectId }),
-  //       callSheetData
-  //     );
-
-  //     console.log('Response Call Sheet', callSheetResponse);
-  //     toggleRightPanel(!isRightPanelOpen);
-  //   } catch (error) {
-  //     console.error('Error creating Call Sheet:', error);
-  //   }
-  // };
-
-  // const handleSubmit = async () => {
-  //   const isFormValidated = validateFormContent();
-
-  //   if (isFormValidated) {
-  //     console.log('Form is valid!');
-  //     await createCallSheet();
-  //   } else {
-  //     console.error('Please fill out all required fields.');
-  //   }
-  // };
-
- 
 
 
   const handleUpdateFormData = (field, value) => {
@@ -114,8 +59,6 @@ export default function CallSheetPanel(props) {
     e.preventDefault();
     setProcessing(true);
     const projectId = props.projectId;
-
-    console.log("submit", callSheetData);
 
       try {
 
@@ -178,6 +121,7 @@ export default function CallSheetPanel(props) {
           onUpdateCallSheetInfo={handleUpdateFormData}
           emptyFields={emptyFields}
           setEmptyFields={setEmptyFields}
+          minDate={today}
       />
 
 
