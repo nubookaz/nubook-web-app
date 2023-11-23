@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
-import ProjectForm from '@/Pages/Projects/NewProjectForm';
+import ProjectForm from '@/Pages/Projects/ProjectForm';
 import ProjectList from '@/Components/Projects/ProjectList';
 
 import Select from '@mui/joy/Select';
@@ -59,7 +59,7 @@ export default function ProjectListPage({ auth }) {
                         pageType={pageType}
                         toolbarCTAText={toolbarCTAText}
                         backButtonHref={backButtonHref}
-                        toggleRightPanel={openProjectFormPanel}
+                        toggleDrawerPanel={openProjectFormPanel}
                         >
                         {{
 

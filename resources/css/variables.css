@@ -12,6 +12,5 @@
     --input-corners: .5rem;
     --button-corners: .5rem;
     --overlay-color: rgba(0, 0, 0, 0.6); /* Adjust the color and opacity as needed */
-    --right-panel-width: 40rem;
-    --right-panel-direction: -1; /* 1 for positive, -1 for negative */
+ 
 }

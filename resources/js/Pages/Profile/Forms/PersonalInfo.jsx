@@ -1,17 +1,18 @@
 import { useForm } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
-import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
-
-import UserName from '@/Components/Profile/Partials/UserName';
 import Input from '@/Components/Forms/Input';
 
 export default function PersonalInfo({ 
     
-    onUpdatePersonalInfo, 
-    existingData 
+    onUpdateInfo, 
+    existingData,
+    emptyFields,
+    setEmptyFields,
 
 }) {
+
+    const [selectedState, setSelectedState] = useState('');
     
     const [data, setData] = useState({
         first_name: '',
@@ -35,12 +36,11 @@ export default function PersonalInfo({
           ...prevData,
           [field]: value,
         }));
-        onUpdatePersonalInfo({
+        onUpdateInfo({
             ...data,
             [field]: value,
         });
-      };
-
+    };
  
     const formatPhoneNumber = (value) => {
         const cleanedValue = value.replace(/\D/g, '');
@@ -48,11 +48,12 @@ export default function PersonalInfo({
         return formattedValue;
     };
 
+    console.log(data);
+ 
     return (
 
         <div className='flex flex-col gap-4 grow'>
-            {/* <UserName onUpdateUserInfo={setData} existingData={data}/> */}
-            
+             
             <div className='flex flex-row gap-2 w-full'>
                 <Input 
                     required={true}
@@ -134,7 +135,8 @@ export default function PersonalInfo({
                         />
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <label htmlFor="state" value="state" className='text-gray-400 text-sm'> State </label>
+
+                    <label htmlFor="state" value="state" className='text-gray-400 text-sm'> State </label>
                         <input
                             type="text"
                             id="state"
@@ -165,3 +167,59 @@ export default function PersonalInfo({
     );
 
 }
+
+
+const stateOptions = [
+    { value: 'AL', label: 'Alabama' },
+    { value: 'AK', label: 'Alaska' },
+    { value: 'AZ', label: 'Arizona' },
+    { value: 'AR', label: 'Arkansas' },
+    { value: 'CA', label: 'California' },
+    { value: 'CO', label: 'Colorado' },
+    { value: 'CT', label: 'Connecticut' },
+    { value: 'DE', label: 'Delaware' },
+    { value: 'FL', label: 'Florida' },
+    { value: 'GA', label: 'Georgia' },
+    { value: 'HI', label: 'Hawaii' },
+    { value: 'ID', label: 'Idaho' },
+    { value: 'IL', label: 'Illinois' },
+    { value: 'IN', label: 'Indiana' },
+    { value: 'IA', label: 'Iowa' },
+    { value: 'KS', label: 'Kansas' },
+    { value: 'KY', label: 'Kentucky' },
+    { value: 'LA', label: 'Louisiana' },
+    { value: 'ME', label: 'Maine' },
+    { value: 'MD', label: 'Maryland' },
+    { value: 'MA', label: 'Massachusetts' },
+    { value: 'MI', label: 'Michigan' },
+    { value: 'MN', label: 'Minnesota' },
+    { value: 'MS', label: 'Mississippi' },
+    { value: 'MO', label: 'Missouri' },
+    { value: 'MT', label: 'Montana' },
+    { value: 'NE', label: 'Nebraska' },
+    { value: 'NV', label: 'Nevada' },
+    { value: 'NH', label: 'New Hampshire' },
+    { value: 'NJ', label: 'New Jersey' },
+    { value: 'NM', label: 'New Mexico' },
+    { value: 'NY', label: 'New York' },
+    { value: 'NC', label: 'North Carolina' },
+    { value: 'ND', label: 'North Dakota' },
+    { value: 'OH', label: 'Ohio' },
+    { value: 'OK', label: 'Oklahoma' },
+    { value: 'OR', label: 'Oregon' },
+    { value: 'PA', label: 'Pennsylvania' },
+    { value: 'RI', label: 'Rhode Island' },
+    { value: 'SC', label: 'South Carolina' },
+    { value: 'SD', label: 'South Dakota' },
+    { value: 'TN', label: 'Tennessee' },
+    { value: 'TX', label: 'Texas' },
+    { value: 'UT', label: 'Utah' },
+    { value: 'VT', label: 'Vermont' },
+    { value: 'VA', label: 'Virginia' },
+    { value: 'WA', label: 'Washington' },
+    { value: 'WV', label: 'West Virginia' },
+    { value: 'WI', label: 'Wisconsin' },
+    { value: 'WY', label: 'Wyoming' }
+  ];
+  
+  

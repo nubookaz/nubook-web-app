@@ -8,7 +8,7 @@ export default function ProductionCompany({ user, data }){
         return <div>No production company data available</div>;
     }
 
-    const { street_address } = user.address;
+    // const { street_address } = user.street_address;
     const { company_name } = user.production_company;
 
     return(

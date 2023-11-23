@@ -24,6 +24,7 @@ class User extends Authenticatable
         'profile_photo', 
         'email',
         'password',
+        'location_id',
         'is_temporary',
         'verification_code',
         'email_verified_at', 
@@ -69,9 +70,9 @@ class User extends Authenticatable
         return $this->hasOne(PhoneNumber::class);
     }
 
-    public function address()
+    public function location()
     {
-        return $this->hasOne(Address::class);
+        return $this->belongsTo(Location::class);
     }
 
     public function productionCompany()

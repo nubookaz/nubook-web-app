@@ -27,7 +27,7 @@ class ProfileController extends Controller
         $user = auth()->user()->load(
             'projects', 
             'phone', 
-            'address', 
+            'location', 
             'productionCompany'
         );
 
@@ -39,7 +39,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        $user = Auth::user()->load(['phone', 'address', 'productionCompany']);
+        $user = Auth::user()->load(['phone', 'location', 'productionCompany']);
 
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,

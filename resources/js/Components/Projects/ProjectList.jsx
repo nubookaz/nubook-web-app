@@ -53,6 +53,7 @@ function ProjectList({ cardHeight, projects, className, cols = 4, rows = '', vie
 
   const limitedProjects = sortedProjects.slice(0, maxProjects);
 
+
   return (
     <div className={containerClasses}>
       
@@ -76,6 +77,7 @@ function ProjectList({ cardHeight, projects, className, cols = 4, rows = '', vie
         return (
           
           <ActiveCard
+            data={projects}
             indicator={true}
             cardHeight={cardHeight}
             status={project.project_stage}

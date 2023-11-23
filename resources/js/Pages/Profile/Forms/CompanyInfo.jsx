@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 
 
-export default function CompanyInfo({ onUpdateCompanyInfo, existingData }) {
+export default function CompanyInfo({ onUpdateInfo, existingData }) {
 
     const { data, setData } = useForm({
         company_name: '',
@@ -25,7 +25,7 @@ export default function CompanyInfo({ onUpdateCompanyInfo, existingData }) {
     const handleChange = (field, value) => {
         setData(field, value);
 
-         onUpdateCompanyInfo({
+        onUpdateInfo({
             ...data,
             [field]: value,
         });

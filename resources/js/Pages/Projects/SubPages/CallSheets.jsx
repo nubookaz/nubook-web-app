@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import CallSheetPanel from '@/Pages/Projects/CallSheets/Forms/CallSheetPanel';
+import CallSheetDrawer from '@/Pages/Projects/CallSheets/Forms/CallSheetDrawer';
 import CallSheetList from '@/Pages/Projects/CallSheets/Partials/CallSheetList';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import Select from '@mui/joy/Select';
@@ -22,11 +22,11 @@ export default function CallSheets({ auth, showBanner }) {
       size: 'page-banner',
     };
 
-    const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
+    const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
 
 
-    const toggleRightPanel = () => {
-      setIsRightPanelOpen(!isRightPanelOpen);
+    const toggleDrawerPanel = () => {
+      setDrawerPanelOpen(!isDrawerPanelOpen);
     };
 
     const hasData = callSheet;
@@ -43,13 +43,12 @@ export default function CallSheets({ auth, showBanner }) {
           <div className="relative z-50 w-full h-full">
 
 
-              <CallSheetPanel
-                isRightPanelOpen={isRightPanelOpen}
-                toggleRightPanel={toggleRightPanel}
-                projectId={project.id}
+              <CallSheetDrawer
+                isDrawerPanelOpen={isDrawerPanelOpen}
+                toggleDrawerPanel={toggleDrawerPanel}
+                data={project}
               />
-
-
+ 
           </div>
         ),
         
@@ -63,7 +62,7 @@ export default function CallSheets({ auth, showBanner }) {
                   toolbarCTAText={toolbarCTAText}
                   buttonText={buttonText}
                   customSvgPath={customSvgPath}
-                  toggleRightPanel={toggleRightPanel} // You can optionally pass this function
+                  toggleDrawerPanel={toggleDrawerPanel} // You can optionally pass this function
                   pageType="Call Sheets"
                 >
                   {{

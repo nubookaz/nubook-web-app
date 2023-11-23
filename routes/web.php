@@ -40,15 +40,23 @@ Route::middleware(['guest'])->group(function () {
     
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
-    Route::get('/login', [LoginController::class, 'show'])->name('show.login');
+    // Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('show.login');
+ 
 });
 
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::middleware(['auth', 'verified'])->get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
-    
+    // Data Fetching
+    Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
+
+
+
+
+
+
+
     Route::post('/verification/update-password', [VerificationController::class, 'updatePassword'])->name('verification.updatePassword');
     Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
     Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
@@ -88,10 +96,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
         // New routes for the "Call Sheets" page
         Route::prefix('{id}/call-sheets')->group(function () {
+
             Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
-            Route::post('/', [CallSheetController::class, 'store'])->name('projects.callSheets.create');
-            Route::get('{callSheetId}/edit', [CallSheetController::class, 'edit'])->name('projects.callSheets.edit');
-            Route::patch('/{callSheetId}', [CallSheetController::class, 'update'])->name('projects.callSheets.update');
+            Route::post('/', [CallSheetController::class, 'storeCallSheetDetails'])->name('projects.callSheets.create');
+          
+            Route::put('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('callSheets.update.details');
+            Route::get('{callSheetId}/details', [CallSheetController::class, 'editDetailsPage'])->name('callSheets.edit.page');
+            Route::post('/{callSheetId}/save-weather', [CallSheetController::class, 'saveWeatherData'])->name('save.weather');
 
             Route::prefix('{callSheetId}/locations')->group(function () {
                 // Create a location

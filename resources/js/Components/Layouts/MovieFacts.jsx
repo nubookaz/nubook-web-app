@@ -139,7 +139,7 @@ const facts = [
 
 export default function MovieFacts() {
 
-  const [fact, setFact] = useState(fact[0]);
+  const [fact, setFact] = useState(facts[0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -151,9 +151,9 @@ export default function MovieFacts() {
   }, []);
 
   return (
-    <div className="movie-fact flex flex-col h-full gap-4">
-      <p className='text-white text-sm mb-2 h-[80%]'>"{fact.fact}"</p>
-      <p className='text-white text-sm h-[20%]'>- {fact.movie}</p>
+    <div className="movie-fact flex flex-col w-full gap-4">
+      <p className='text-white text-lg font-semibold'>"{fact.fact}"</p>
+      <p className='text-white text-md'>- {fact.movie}</p>
     </div>
   );
 

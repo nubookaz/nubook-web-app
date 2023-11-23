@@ -6,7 +6,7 @@ import CardContainer from '@/Components/Containers/CardContainer';
 
 import SettingsNav from '@/Components/Navigations/SettingsNav';
 
-import ProfileSettings from './Partials/PofileSettings';
+import ProfileSettings from './SubPages/PofileSettings';
 import ProjectSettings from './Partials/ProjectSettings';
 import SocialSettings from './Partials/SocialSettings';
 import BudgetSettings from './Partials/BudgetSettings';

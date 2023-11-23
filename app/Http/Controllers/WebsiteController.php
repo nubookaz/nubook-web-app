@@ -59,8 +59,7 @@ class WebsiteController extends Controller
             'is_temporary' => true,
         ];
 
-        // dd($request);
-
+ 
         $userData['subscription_type'] = 'beta';
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Location;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
@@ -72,7 +73,7 @@ class VerificationController extends Controller
     
     public function storePersonalInfo(Request $request)
     {
-        // dd($request);
+
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -107,13 +108,22 @@ class VerificationController extends Controller
     
         $user->phone()->updateOrCreate([], ['tel' => $request->input('tel')]);
     
-        $user->address()->updateOrCreate([], [
-            'street_address' => $request->input('street_address'),
-            'city' => $request->input('city'),
-            'state' => $request->input('state'),
-            'zip_code' => $request->input('zip_code'),
-        ]);
+        // Check if any location data is provided
+        if ($request->hasAny(['street_address', 'city', 'state', 'zip_code'])) {
+            $locationData = [
+                'street_address' => $request->input('street_address'),
+                'city' => $request->input('city'),
+                'state' => $request->input('state'),
+                'zip_code' => $request->input('zip_code'),
+            ];
+
+            $location = Location::firstOrCreate($locationData);
  
+            $user->location()->associate($location);
+            $user->save();
+
+        }
+        
         return response()->json(['success' => true]);
     }
 

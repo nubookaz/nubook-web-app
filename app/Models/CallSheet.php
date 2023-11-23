@@ -14,6 +14,7 @@ class CallSheet extends Model
         'status', 
         'call_sheet_name', 
         'call_sheet_date', 
+        'weather',
         'bulletin'];
 
     public function project()
@@ -21,9 +22,9 @@ class CallSheet extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function locations()
+    public function filmLocation()
     {
-        return $this->belongsToMany(Location::class, 'call_sheet_locations');
+        return $this->belongsTo(FilmLocation::class, 'film_locations_id');
     }
 
 }

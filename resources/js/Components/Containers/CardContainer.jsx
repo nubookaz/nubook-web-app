@@ -25,8 +25,8 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
         }
     };
  
-    const cardHeaderClasses = `${absoluteHeader ? 'absolute float-left p-6' : 'flex flex-row gap-2 justify-between'}`;
-    const containerClasses = `container-base card-container ${getSizeClass()} ${className} ${textColor} ${absoluteHeader ? 'relative overflow-hidden' : 'flex flex-col justify-between grow gap-2 p-6'}`;
+    const cardHeaderClasses = `${absoluteHeader ? 'absolute float-left p-6' : 'flex flex-row gap-2 justify-between relative'}`;
+    const containerClasses = `container-base card-container relative ${getSizeClass()} ${className} ${textColor} ${absoluteHeader ? 'relative overflow-hidden' : 'flex flex-col justify-between grow gap-2 p-6'}`;
 
     // Set default prop values
     CardContainer.defaultProps = {
@@ -44,9 +44,9 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
                         </div>
                     }
                     {showButtonIcon && (
-                        <div className={`${absoluteHeader ? 'absolute' : ' '}`}>
+                        <div className={`${absoluteHeader ? 'absolute' : 'relative'}`}>
                             <Dropdown>
-                                <MenuButton variant="plain" className={`secondary-color ${textColor}`}>
+                                <MenuButton variant="plain" className={`secondary-color !absolute !float-right !top-[-15px] !right-0 ${textColor}`}>
                                     <FontAwesomeIcon icon={faEllipsisVertical} />
                                 </MenuButton>
                                 <Menu placement="top">

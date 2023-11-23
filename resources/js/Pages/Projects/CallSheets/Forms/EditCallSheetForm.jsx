@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
-import RightPanel from '@/Components/Layouts/RightPanel';
-import CallSheetForm from '@/Pages/Projects/CallSheets/Forms/CallSheetForm';
+import RightPanel from '@/Components/Layouts/DrawerPanel';
+import Details from '@/Pages/Projects/CallSheets/Forms/Details';
 import CircularButton from '@/Components/Buttons/CircularButton';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -119,7 +119,7 @@ function EditCallSheetForm(props) {
 
 
 
-      <CallSheetForm
+      <Details
         callSheetData={callSheetData}
         setCallSheetTitle={setCallSheetTitle}
         setCallSheetDate={setCallSheetDate}

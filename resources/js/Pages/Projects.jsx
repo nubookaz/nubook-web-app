@@ -3,7 +3,7 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useState, useEffect } from 'react';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import ProjectForm from '@/Pages/Projects/NewProjectForm';
+import ProjectForm from '@/Pages/Projects/ProjectForm';
 import ProjectList from '@/Components/Projects/ProjectList';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import CardContainer from '@/Components/Containers/CardContainer';
@@ -48,15 +48,19 @@ export default function Projects({ auth }) {
 
     const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
     const [currentStep, setCurrentStep] = useState(1);
-    const [isProjectFormPanel, setProjectFormPanel] = useState(false);
+    const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
 
     const bannerProps = {
       showGreeting: true, // Customize these props based on your conditions
     };
 
-    const openProjectFormPanel = () => {
-      setProjectFormPanel(!isProjectFormPanel);
+    const toggleDrawerPanel = () => {
+      setDrawerPanelOpen(!isDrawerPanelOpen);
     };
+
+
+
+    
 
  
     const hasData = projects;
@@ -86,8 +90,8 @@ export default function Projects({ auth }) {
                   auth={auth}
                   currentStep={currentStep}
                   setCurrentStep={setCurrentStep}
-                  isRightPanelOpen={isProjectFormPanel}
-                  toggleRightPanel={openProjectFormPanel}
+                  isDrawerPanelOpen={isDrawerPanelOpen}
+                  toggleDrawerPanel={setDrawerPanelOpen}
                 />
             </div>
 
@@ -103,7 +107,7 @@ export default function Projects({ auth }) {
                     toolbarCTAText={toolbarCTAText}
                     buttonText={buttonText}
                     customSvgPath={customSvgPath}
-                    toggleRightPanel={openProjectFormPanel}
+                    toggleDrawerPanel={toggleDrawerPanel}
                     >
                   {{
 
@@ -141,6 +145,8 @@ export default function Projects({ auth }) {
                           </div>
                         </div>
                       )
+
+
                     }}
   
                 </PortalLayout>

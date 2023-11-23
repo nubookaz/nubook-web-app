@@ -56,7 +56,7 @@ class ProjectController extends Controller
         }
     
         // Render the project edit page using Inertia.js
-        return Inertia::render('Projects/SubPages/ProjectSettings', [
+        return Inertia::render('Projects/SubPages/Settings', [
             'project' => $project, // Pass the project data to the edit page
         ]);
     

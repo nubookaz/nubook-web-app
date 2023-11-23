@@ -6,7 +6,7 @@ import MainLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/Locati
 import ParkingLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/ParkingLocationForm';
 import HospitalLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/HospitalLocationForm';
 
-import RightPanel from '@/Components/Layouts/RightPanel';
+import RightPanel from '@/Components/Layouts/DrawerPanel';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CircularButton from '@/Components/Buttons/CircularButton';
 

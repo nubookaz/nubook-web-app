@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
-import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
+import { formClass, formGroupClass, inputGroupClass, multiColInputClass } from '@/Components/Scripts/Form';
 
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -52,7 +52,7 @@ export default function ProjectDetailsForm({
 
             <div className={formGroupClass}>
 
-                <div className={twoColInputGroupClass}>
+                <div className={multiColInputClass}>
                     <div className={inputGroupClass}>
                         <label htmlFor="project_type" value="project_type" className='text-gray-400 text-sm'> Project Type * </label>
                         <Tooltip arrow title="Project Type is Required" open={emptyFields['project_type'] || false} color="danger" placement="top" variant="outlined" >

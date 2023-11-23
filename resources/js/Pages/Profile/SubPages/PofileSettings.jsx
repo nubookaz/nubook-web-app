@@ -6,9 +6,9 @@ import { router } from '@inertiajs/react';
 
 import { imageUrl } from '@/Components/Scripts/BannerImage';
 import ProfilePicture from '@/Components/Profile/ProfilePicture';
-import PersonalInfo from '@/Components/Profile/PersonalInfo';
+import PersonalInfo from '@/Pages/Profile/Forms/PersonalInfo';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
-import CompanyInfo from '@/Components/Profile/CompanyInfo';
+import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
 
 
 
@@ -26,7 +26,6 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
 
   const [userData, setUserData] = useState(null);
 
-
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
@@ -38,10 +37,10 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
         last_name: user.last_name || '',
         middle_initial: user.middle_initial || '',
         tel: user.phone ? user.phone.tel || '' : '',
-        street_address: user.address ? user.address.street_address || '' : '',
-        city: user.address ? user.address.city || '' : '',
-        state: user.address ? user.address.state || '' : '',
-        zip_code: user.address ? user.address.zip_code || '' : '',
+        street_address: user.location ? user.location.street_address || '' : '',
+        city: user.location ? user.location.city || '' : '',
+        state: user.location ? user.location.state || '' : '',
+        zip_code: user.location ? user.location.zip_code || '' : '',
       });
   
       setCompanyInfo({
@@ -100,6 +99,7 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
     }
 };
  
+ 
 
   return (
     <div >
@@ -118,11 +118,11 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
             <form onSubmit={submit} className='w-full flex grow flex-col gap-8 ' >
               <div className=''>
                 <h3 className='mb-4'>Personal Profile</h3>
-                <PersonalInfo onUpdatePersonalInfo={setPersonalInfo} onChange={(e) => handleChange('tel', e.target.value)} existingData={personalInfo} />
+                <PersonalInfo onUpdateInfo={setPersonalInfo} onChange={(e) => handleChange('tel', e.target.value)} existingData={personalInfo} />
               </div>
               <div className=''>
                 <h3 className='mb-4'>Company Profile</h3>
-                <CompanyInfo onUpdateCompanyInfo={setCompanyInfo} existingData={companyInfo} />
+                <CompanyInfo onUpdateInfo={setCompanyInfo} existingData={companyInfo} />
               </div>
               
                 <PrimaryButton className="h-full" disabled={processing}>Save Profile Settings</PrimaryButton>

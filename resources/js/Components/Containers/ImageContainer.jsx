@@ -26,7 +26,7 @@ function ImageContainer({ children, header, className, backgroundImage, isPoster
                 </div>
             )}
             {!overlay && (
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center w-full">
                     {header && (
                         <h3 className={headerClass}>
                             {icon && <FontAwesomeIcon icon={icon} className="icon mr-2" />} {/* Render the FontAwesome icon if provided */}

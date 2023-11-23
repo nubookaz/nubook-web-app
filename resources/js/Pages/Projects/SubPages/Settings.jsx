@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
   
-import CardContainer from '@/Components/Containers/CardContainer';
-
-export default function ProjectSettings({ project }) {
+ 
+export default function Settings({ project }) {
 
   const bannerProps = {
     showGreeting: true,

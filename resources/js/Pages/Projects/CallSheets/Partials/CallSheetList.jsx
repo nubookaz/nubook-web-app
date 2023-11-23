@@ -39,9 +39,10 @@ export default function CallSheetList({ project, callSheets, view }) {
     <div className="grid grid-cols-4 gap-4 flex-wrap">
       {sortedCallSheets.map(callSheet => (
         <ActiveCard
+          data={callSheets}
           status={callSheet.status}
           cardType="callSheet"
-          href={route('projects.callSheets.edit', { id: project.id, callSheetId: callSheet.id })}
+          href={route('callSheets.edit.page', { id: project.id, callSheetId: callSheet.id })}
           key={callSheet.id}
           cardTitle={callSheet.call_sheet_name}
           shootDate={callSheet.call_sheet_date}

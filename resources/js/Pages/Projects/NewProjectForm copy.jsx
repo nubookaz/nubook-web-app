@@ -3,13 +3,13 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
-import RightPanel from '@/Components/Layouts/RightPanel';
+import RightPanel from '@/Components/Layouts/DrawerPanel';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CircularButton from '@/Components/Buttons/CircularButton';
 import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
 
-import ProjectDetailsForm from '@/Components/Projects/Forms/ProjectDetailsForm';
-import ProjectClientForm from '@/Components/Projects/Forms/ProjectClientForm';
+import ProjectDetailsForm from '@/Pages/Projects/Forms/ProjectDetailsForm';
+import ProjectClientForm from '@/Pages/Projects/Forms/ProjectClientForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 

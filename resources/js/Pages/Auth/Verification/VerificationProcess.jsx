@@ -4,8 +4,8 @@ import {  useForm } from '@inertiajs/react';
 import React from 'react';
 
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import PersonalInfo from '@/Components/Profile/PersonalInfo';
-import CompanyInfo from '@/Components/Profile/CompanyInfo';
+import PersonalInfo from '@/Pages/Profile/Forms/PersonalInfo';
+import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
 import Skeleton from '@mui/joy/Skeleton';
 
 export default function VerificationProcess({ 
@@ -13,6 +13,8 @@ export default function VerificationProcess({
     setCurrentStep, 
     setIsModalOpen,
  }) {
+
+    const [emptyFields, setEmptyFields] = useState({});
 
     const { data, setData, post, processing, errors, reset } = useForm({
         password: '',
@@ -164,8 +166,9 @@ s
         }
     };
 
-    console.log(data);
-    return (
+    console.log(personalInfo);
+
+     return (
         <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
 
                 {currentStep === 'changePassword' && 
@@ -254,7 +257,7 @@ s
                             <p>
                                 Please complete the personal information form by providing your first and last name, phone number, and address. Your details are important for us to enhance your experience and ensure accurate communication. Thank you for providing this information.                            
                             </p>
-                            <PersonalInfo onUpdatePersonalInfo={setPersonalInfo} />
+                            <PersonalInfo onUpdateInfo={setPersonalInfo} />
                             <SecondaryButton onClick={savePersonalInfo}>Next</SecondaryButton>
                         </div>
                     </div>
@@ -273,7 +276,7 @@ s
                                 * If you enter a Company Name then the EIN Number and Job Title will be required
                             </span>
                             <div className='my-6'>
-                                <CompanyInfo onUpdateCompanyInfo={setCompanyInfo} />
+                                <CompanyInfo onUpdateInfo={setCompanyInfo} />
                             </div>
                             
                             <SecondaryButton onClick={saveCompanyInfo}>Complete Registration</SecondaryButton>

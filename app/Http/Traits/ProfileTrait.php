@@ -3,6 +3,7 @@
 namespace App\Http\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Location;  
 
 trait ProfileTrait
 
@@ -44,36 +45,56 @@ trait ProfileTrait
             return response()->json(['error' => $companyValidator->errors()], 422);
         }
         
+         
         $user->update([
             'first_name' => $personalInfo['first_name'],
             'last_name' => $personalInfo['last_name'],
             'middle_initial' => $personalInfo['middle_initial'],
         ]);
-        
-        $user->phone()->updateOrCreate([], ['tel' => $personalInfo['tel']]);
 
-        $user->address()->updateOrCreate(
-            ['user_id' => $user->id],
-            [
-                'street_address' => $personalInfo['street_address'],
-                'city' => $personalInfo['city'],
-                'state' => $personalInfo['state'],
-                'zip_code' => $personalInfo['zip_code'],
-            ]
-        );
-    
+        $user->phone()->updateOrCreate([], ['tel' => $personalInfo['tel'] ?? null]);
+
+        // Check if all necessary location fields are provided
+        if (isset($personalInfo['street_address'], $personalInfo['city'], $personalInfo['state'], $personalInfo['zip_code'])) {
+            // Find the user's current location
+            $existingLocation = $user->location;
+
+            // Check if an existing location exists
+            if ($existingLocation) {
+                // Update the existing location with the provided data
+                $existingLocation->update([
+                    'street_address' => $personalInfo['street_address'],
+                    'city' => $personalInfo['city'],
+                    'state' => $personalInfo['state'],
+                    'zip_code' => $personalInfo['zip_code'],
+                ]);
+            } else {
+                // If no existing location, create a new one
+                $location = Location::create([
+                    'street_address' => $personalInfo['street_address'],
+                    'city' => $personalInfo['city'],
+                    'state' => $personalInfo['state'],
+                    'zip_code' => $personalInfo['zip_code'],
+                ]);
+
+                // Associate the new location with the user
+                $user->location()->associate($location);
+                $user->save();
+            }
+        }
+ 
         $user->productionCompany()->updateOrCreate(
             ['user_id' => $user->id],
             [
-                'company_name' => $companyInfo['company_name'],
-                'ein_number' => $companyInfo['ein_number'],
-                'job_title' => $companyInfo['job_title'],
-                'number_of_employees' => $companyInfo['number_of_employees'],
-                'referral' => $companyInfo['referral'],
+                'company_name' => $companyInfo['company_name'] ?? null,
+                'ein_number' => $companyInfo['ein_number'] ?? null,
+                'job_title' => $companyInfo['job_title'] ?? null,
+                'number_of_employees' => $companyInfo['number_of_employees'] ?? null,
+                'referral' => $companyInfo['referral'] ?? null,
             ]
         );
-    
-        return true; // Indicate success
+
+        return response()->json(['success' => true, 'user' => $user->fresh()]);
     }
     
 

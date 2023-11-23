@@ -13,12 +13,7 @@ return new class extends Migration
     {
         Schema::create('hospital_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('street_address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('zip_code');
-            $table->string('country');
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ import Toolbar from '@/Components/Layouts/Toolbar';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import PageButton from '@/Components/Buttons/PageButton';
 
-function PortalLayout({  hasData, toolbarTitle, pageType, toolbarCTAText, buttonText, customSvgPath, toggleRightPanel, children, backButtonHref, actionButtons, secondary_cta_text, handleSecondaryButtonClick }) {
+function PortalLayout({  callSheetData, hasData, toolbarTitle, pageType, toolbarCTAText, buttonText, customSvgPath, toggleDrawerPanel, children, backButtonHref, actionButtons, secondary_cta_text, handleSecondaryButtonClick }) {
 
     return (
       <div className="w-full h-full relative">
@@ -15,15 +15,16 @@ function PortalLayout({  hasData, toolbarTitle, pageType, toolbarCTAText, button
         )}
         </div>
         {hasData && Object.keys(hasData).length > 0 ? (
-          <div className='h-full w-full gap-6 flex flex-col'>
+          <div className='h-full w-full gap-4 flex flex-col'>
             {toolbarTitle && ( 
               <Toolbar
                 title={toolbarTitle}
                 cta_text={toolbarCTAText}
                 actionButtons={actionButtons}      
                 secondary_cta_text={secondary_cta_text}
-                onButtonClick={toggleRightPanel}       
+                onButtonClick={toggleDrawerPanel}       
                 handleSecondaryButtonClick={handleSecondaryButtonClick}
+                callSheetTitle={callSheetData}
               >
 
                 {{
@@ -38,7 +39,7 @@ function PortalLayout({  hasData, toolbarTitle, pageType, toolbarCTAText, button
           <EmptyContent
             customSvgPath={customSvgPath}
             buttonText={buttonText}
-            onButtonClick={toggleRightPanel}
+            onButtonClick={toggleDrawerPanel}
           >
             <h2 className="mb-4">No {pageType} Available</h2>
             <p className="mb-4 p-base">

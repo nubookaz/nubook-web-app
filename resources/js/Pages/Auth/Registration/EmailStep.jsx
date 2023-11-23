@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-import Input from '@mui/joy/Input';
-import FormControl from '@mui/joy/FormControl';
+ import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Stack from '@mui/joy/Stack';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import LinearProgress from '@mui/joy/LinearProgress';
 
 
+import { formGroupClass, inputGroupClass } from '@/Components/Scripts/Form';
 
 
 
 
-export default function EmailStep({ formData, setFormData, errorText }) {
+export default function EmailStep({ formData, setFormData, errors }) {
     const { email, password, password_confirmation } = formData;
     const [emailValue, setEmailValue] = useState(email);
     const [passwordValue, setPasswordValue] = useState(password);
@@ -85,9 +85,9 @@ export default function EmailStep({ formData, setFormData, errorText }) {
     return (
         <div className='flex flex-col gap-2'>
 
-            <Stack spacing={0.5} sx={{ '--hue': Math.min(emailValue.length * 10, 120) }}>
+            <div className={formGroupClass} spacing={0.5} sx={{ '--hue': Math.min(emailValue.length * 10, 120) }}>
 
-                <FormControl error={shouldShowEmailHelperText()} className="!mb-2 flex flex-col gap-2">
+                <FormControl error={shouldShowEmailHelperText()} className="flex flex-col gap-2">
                     <label htmlFor="email" value="email" className='text-gray-400 text-sm'> Email Address * </label>
                     <input
                         id="email"
@@ -105,7 +105,7 @@ export default function EmailStep({ formData, setFormData, errorText }) {
                 </FormControl>
 
 
-                <FormControl error={shouldShowPasswordHelperText()} className="!mb-1 flex flex-col gap-2">
+                <FormControl error={shouldShowPasswordHelperText()} className="flex flex-col ">
                     <label htmlFor="password" value="password" className='text-gray-400 text-sm'> Password * </label>
                     <input
                         id="password"
@@ -120,7 +120,6 @@ export default function EmailStep({ formData, setFormData, errorText }) {
                     />
                         <LinearProgress
                             determinate
-                            className="!mt-1"
                             size="sm"
                             value={Math.min((passwordValue.length / minLength) * 100, 100)}
                             sx={{
@@ -131,7 +130,7 @@ export default function EmailStep({ formData, setFormData, errorText }) {
                 </FormControl>
 
 
-                <FormControl error={shouldShowPasswordConfirmationHelperText()} className="flex flex-col gap-2">
+                <FormControl error={shouldShowPasswordConfirmationHelperText()} className="flex flex-col">
                     <label htmlFor="password_confirmation" value="password_confirmation" className='text-gray-400 text-sm'> Confirm Password * </label>
                     <input
                         id="password_confirmation"
@@ -145,8 +144,7 @@ export default function EmailStep({ formData, setFormData, errorText }) {
                         onBlur={() => setShowPasswordConfirmationHelperText(true)}
                     />
                         <LinearProgress
-                            determinate
-                            className="!mt-1"
+                            determinate 
                             size="sm"
                             value={Math.min((passwordConfirmationValue.length / minLength) * 100, 100)}
                             sx={{
@@ -156,29 +154,33 @@ export default function EmailStep({ formData, setFormData, errorText }) {
                         />
 
                 </FormControl>
-            </Stack>
+            </div>
 
 
 
-            <div className='errors h-[8rem] flex flex-col gap-2 mt-2 mb-6'>
-                {errorText && <div style={{ color: 'red' }}>{errorText}</div>}
+            <div className='flex flex-col gap-2'>
+                {/* {errorText && <div className="errors text-red-600 p-4 bg-red-50 rounded-xl " style={{ color: 'red' }}>{errorText}</div>} */}
+
+                {errors.email && (
+                    <div className="errors text-red-600 text-center p-4 bg-red-50 rounded-xl " style={{ color: 'red' }}>{errors.email}</div>
+                )}
 
                 {shouldShowEmailHelperText() && (
                     <FormHelperText className="!text-red-600">
-                            <InfoOutlined /> Opps! Please enter a valid email.
+                        <InfoOutlined /> Opps! Please enter a valid email.
                     </FormHelperText>
                 )}
 
                 {shouldShowPasswordHelperText() && (
                     <FormHelperText className="!text-red-600">
-                            <InfoOutlined /> Oops! Password must be at least {minLength} characters.
+                        <InfoOutlined /> Oops! Password must be at least {minLength} characters.
                     </FormHelperText>
                 )}
 
 
                 {shouldShowPasswordConfirmationHelperText() && (
                     <FormHelperText className="!text-red-600">
-                            <InfoOutlined /> Oops! Password confirmation must match the password and be at least {minLength} characters.
+                        <InfoOutlined /> Oops! Password confirmation must match the password and be at least {minLength} characters.
                     </FormHelperText>
                 )}
 

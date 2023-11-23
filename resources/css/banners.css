@@ -4,7 +4,7 @@
   background-size: cover;
   background-position: center;
   justify-content: space-between;
-  padding: 25px 35px 25px 7rem;
+  padding: 15px 15px 15px 5.6rem;
   color: #fff; /* Text color for header and date */
 }
 
@@ -41,11 +41,11 @@
 }
 
 .chapter-banner-height {
-  height: 55rem; /* Adjust the height as needed */
+  height: 40rem; /* Adjust the height as needed */
 }
 
 .page-banner-height {
-  height: 13rem;
+  height: 10.5rem;
 }
 
 .small-banner-buttons-height {

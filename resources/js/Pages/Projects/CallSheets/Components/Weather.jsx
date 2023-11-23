@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { router } from '@inertiajs/react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { faCaretDown, faCaretUp, faSun } from '@fortawesome/free-solid-svg-icons';
 
 
 
 
-const Weather = ({  street_address, zip_code, date, country }) => {
+const Weather = ({  data, newData, street_address, zip_code, date, country }) => {
 
   const [weatherData, setWeatherData] = useState(null);
+ 
   const [locationData, setLocationData] = useState(null);
   const [loadingWeather, setLoadingWeather] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +19,12 @@ const Weather = ({  street_address, zip_code, date, country }) => {
 
   const currentDate = new Date(); // Declare currentDate here
 
- 
+
+
+  if (!street_address && !zip_code) {
+    return <div className="flex justify-center items-center text-center w-full h-full">No weather data available. Please enter a valid address or zip code</div>;
+  }
+
   useEffect(() => {
     const fetchLocationData = async () => {
       try {
@@ -25,9 +33,9 @@ const Weather = ({  street_address, zip_code, date, country }) => {
             street_address
           )},${encodeURIComponent(zip_code)},${encodeURIComponent(country)}&key=${apiKeyGeo}`
         );
-        const data = await response.json();
-         if (data.results.length > 0) {
-          setLocationData(data.results[0].geometry.location);
+        const geoCodeData = await response.json();
+        if (geoCodeData.results.length > 0) {
+          setLocationData(geoCodeData.results[0].geometry.location);
         }
       } catch (error) {
         console.error('Error fetching location data:', error);
@@ -36,72 +44,126 @@ const Weather = ({  street_address, zip_code, date, country }) => {
     };
 
     fetchLocationData();
-  }, [apiKey, street_address, zip_code, country]);
+  }, [street_address, zip_code, country]);
 
-
-
-
+ 
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      try {
-        // Ensure locationData is available before making the API call
-        if (locationData) {
-          let endpoint;
- 
-          const currentDate = new Date();
-          const targetDate = new Date(date);
+      setLoadingWeather(true);
 
-          if (targetDate > currentDate) {
-            // Check if the date is 8 days or more in the future
-            const timeDifference = (targetDate - currentDate) / (1000 * 60 * 60 * 24);
-            const timestamp = Math.floor(targetDate.getTime() / 1000);
- 
-            if (timeDifference >= 5) {
-              // Convert the date to a UNIX timestamp (in seconds)
-              // endpoint = `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${locationData.lat}&lon=${locationData.lng}&dt=${timestamp}&appid=${apiKey}`;
-              endpoint = `https://api.openweathermap.org/data/3.0/onecall/day_summary?lat=${locationData.lat}&lon=${locationData.lng}&date=${date}&appid=${apiKey}`;
-            } else {
-                 // Fetch current weather data if the target date is less than 8 days in the future
-              endpoint = `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${locationData.lat}&lon=${locationData.lng}&dt=${timestamp}&appid=${apiKey}`;
-            }
-          } else {
-              // If the target date is in the past, fetch current weather data
-            endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${locationData.lat}&lon=${locationData.lng}&units=metric&appid=${apiKey}`;
-
-          }
-
-          const response = await fetch(endpoint);
-          const data = await response.json();
-          setWeatherData(data);
+      if(!newData){
+        if (data && data.weather && typeof data.weather === 'string') {
+          handleJSONWeatherData(data);
+        } else if (locationData) {
+          handleFetchWeatherData(locationData, date, apiKey);
         }
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-        setError('Error fetching weather data');
-      } finally {
-        setLoadingWeather(false);
+      } else {
+        handleFetchWeatherData(locationData, date, apiKey);
       }
     };
 
-    // Ensure locationData is available before fetching weather data
-    if (locationData !== null) {
-      fetchWeatherData();
+    fetchWeatherData();
+  }, [locationData]);
+
+
+
+  const handleJSONWeatherData = (data) => {
+    try {
+      // Parse the JSON string to an object
+      const weatherObject = JSON.parse(data.weather);
+      setWeatherData(weatherObject);
+    } catch (error) {
+      console.error('Error parsing weather data:', error);
+      setError('Error parsing weather data');
+    } finally {
+      setLoadingWeather(false);
     }
-  }, [apiKey, locationData, date]);
+  };
+  
+
+  const handleFetchWeatherData = async (locationData, date, apiKey) => {
+    try {
+      let endpoint;
+   
+      const currentDate = new Date();
+      const targetDate = new Date(date);
+  
+      if (targetDate > currentDate) {
+        // Check if the date is 8 days or more in the future
+        const timeDifference = (targetDate - currentDate) / (1000 * 60 * 60 * 24);
+        const timestamp = Math.floor(targetDate.getTime() / 1000);
+  
+        if (timeDifference >= 5) {
+          // Convert the date to a UNIX timestamp (in seconds)
+          // endpoint = `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${locationData.lat}&lon=${locationData.lng}&dt=${timestamp}&appid=${apiKey}`;
+          endpoint = `https://api.openweathermap.org/data/3.0/onecall/day_summary?lat=${locationData.lat}&lon=${locationData.lng}&date=${date}&appid=${apiKey}`;
+        } else {
+          // Fetch current weather data if the target date is less than 8 days in the future
+          endpoint = `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${locationData.lat}&lon=${locationData.lng}&dt=${timestamp}&appid=${apiKey}`;
+        }
+      } else {
+        // If the target date is in the past, fetch current weather data
+        endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${locationData.lat}&lon=${locationData.lng}&units=metric&appid=${apiKey}`;
+      }
+  
+      const response = await fetch(endpoint);
+      const responseData = await response.json();
+      setWeatherData(responseData);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      setError('Error fetching weather data');
+    } finally {
+      setLoadingWeather(false);
+    }
+  };
+  
+  
+
+  useEffect(() => {
+    const postData = async () => {
+      if (weatherData) {
+        try {
+          const routeUrl = route('save.weather', { id: data.project_id, callSheetId: data.id });
+          const response = await axios.post(routeUrl, {
+              weatherData,
+          });
+
+          if (response.data.success) {
+           }
+        } catch (error) {
+          console.error('Error posting weather data:', error);
+        }
+      }
+    };
+
+    postData();
+  }, [weatherData]);
+
 
  
+  useEffect(() => {
+    // Simulate loading for 2 seconds, replace this with your actual fetch logic
+    const timer = setTimeout(() => {
+      setLoadingWeather(false);
+    }, 2000);
+
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
+
+
 
  
   if (loadingWeather) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center text-center w-full h-full">Loading...</div>;
   }
   
   if (error) {
-    return <div>Error fetching weather data</div>;
+    return <div className="flex justify-center items-center text-center w-full h-full">Error fetching weather data</div>;
   }
   
   if (!weatherData) {
-    return <div>No weather data available</div>;
+    return <div className="flex justify-center items-center text-center w-full h-full">No weather data available. Please enter a valid address or zip code</div>;
   }
   
   let temperatureC, temperatureF, maxTempC, maxTempF, minTempC, minTempF, sunsetTime, sunriseTime, message;
@@ -198,22 +260,22 @@ const Weather = ({  street_address, zip_code, date, country }) => {
   
 
   return (
-    <div className='flex flex-row gap-6 w-full'>
+    <div className='flex flex-row gap-6 w-full h-full'>
       <div className='text-[4rem] text-center my-auto w-[40%]'>
-          <FontAwesomeIcon icon={faSun} className="primary-green-color my-auto" />
+          <FontAwesomeIcon icon={faSun} className="text-yellow-400 my-auto" />
       </div>
-      <div className='w-[60%]'>
+      <div className='w-[60%] h-full'>
           <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>
           <p className='font-bold'>High: <span className='font-normal'>{maxTempF ? maxTempF.toFixed(2) + "°F" : "N/A"}</span></p>
           <p className='font-bold'>Low: <span className='font-normal'>{minTempF ? minTempF.toFixed(2) + "°F" : "N/A"}</span></p>
           <div className='flex flex-row gap-2'>
-            <FontAwesomeIcon icon={faCaretUp} className="text-lg primary-green-color my-auto" />
+            <FontAwesomeIcon icon={faCaretUp} className="text-lg text-yellow-600 my-auto" />
             <p className='font-bold'>
               Sunrise: <span className='font-normal'>{sunriseTime}</span>
             </p>
           </div>
           <div className='flex flex-row gap-2'>
-            <FontAwesomeIcon icon={faCaretDown} className="text-lg primary-green-color my-auto" />
+            <FontAwesomeIcon icon={faCaretDown} className="text-lg text-yellow-600 my-auto" />
             <p className='font-bold'>
               Sunset: <span className='font-normal'>{sunsetTime}</span>
             </p>

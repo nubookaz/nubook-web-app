@@ -1,7 +1,7 @@
 import CardContainer from '@/Components/Containers/CardContainer';
 import ImageContainer from '@/Components/Containers/ImageContainer';
 import ApplicationName from "@/Components/Branding/ApplicationName";
-
+import MovieFacts from '@/Components/Layouts/MovieFacts';
 
 export default function Guest({ children, auth }) {
 
@@ -20,19 +20,16 @@ export default function Guest({ children, auth }) {
                 <div className="overlay">
                     <div className='floating-form flex flex-row justify-center items-center h-full'>
 
-                        <ImageContainer isPoster={true} className="my-auto">
-                                <h2 className="mb-4">
+                        <ImageContainer isPoster={true}>
+                            <div className='flex flex-col gap-4 h-full w-full'>
+                                <h2 className="">
                                     Did you know?
                                 </h2>
-                                <ImageContainer isPoster={false} className="mb-4 !h-[28rem]" backgroundImage="/images/background_images/bg_image_2.jpg">
+                                <ImageContainer isPoster={false} className="h-full grow" backgroundImage="/images/background_images/bg_image_2.jpg">
                                     {/* Your content here */}
                                 </ImageContainer>
-                                <h3>
-                                    TARS, the AI machine in Interstellar, is real.
-                                </h3>
-                                <p className="p-base mt-2">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos beatae fugiat doloribus, provident aperiam, atque qui optio illum earum vel quasi molestiae est veniam mollitia fuga et, ipsum dicta sunt!
-                                </p>
+                                <MovieFacts></MovieFacts>
+                            </div>
                         </ImageContainer>
 
                         <CardContainer className="form-container !gap-2 justify-between flex flex-col">
@@ -43,7 +40,7 @@ export default function Guest({ children, auth }) {
 
                             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
                             
-                            <div className='mt-6 min-h-[23rem]'>
+                            <div className='grow'>
                                  {children.form}
                             </div>
 

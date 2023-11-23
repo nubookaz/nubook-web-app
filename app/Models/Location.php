@@ -2,38 +2,39 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'name',
-        'street_address',
-        'city',
-        'state',
-        'zip_code',
-        'country',
-        'parking_location_id',
-        'hospital_location_id',
+        'street_address', 
+        'city', 
+        'state', 
+        'zip_code'
     ];
-
-
-    public function callSheets()
+ 
+    public function users()
     {
-        return $this->belongsToMany(CallSheet::class, 'call_sheet_locations');
+        return $this->belongsToMany(User::class); 
     }
-    
+
+    public function callSheet()
+    {
+        return $this->hasOne(CallSheet::class); 
+    }
+
+    public function filmLocation()
+    {
+        return $this->hasMany(FilmLocation::class);
+    }
+
     public function parkingLocation()
     {
-        return $this->belongsTo(ParkingLocation::class, 'parking_location_id');
+        return $this->hasOne(ParkingLocation::class);
     }
-    
+
     public function hospitalLocation()
     {
-        return $this->belongsTo(HospitalLocation::class, 'hospital_location_id');
+        return $this->hasOne(HospitalLocation::class);
     }
-    
 }

@@ -3,11 +3,11 @@ import CircularProgress from '@mui/joy/CircularProgress';
 import CardContainer from '@/Components/Containers/CardContainer';
 import { Link } from '@inertiajs/react';
 
-const ActiveCard = ({ cardHeight, cardType, className, indicator, absoluteHeader, headerColor, textColor, menuItems, handleButtonClick, status, showButtonIcon, cardTitle, shootDate, projectType, progressValue, progressBar, RSVPs, href }) => {
+const ActiveCard = ({ data, cardHeight, cardType, className, indicator, absoluteHeader, headerColor, textColor, menuItems, handleButtonClick, status, showButtonIcon, cardTitle, shootDate, projectType, progressValue, progressBar, RSVPs, href }) => {
 
   const cardContent = (
     <div className='flex flex-col justify-between h-full '>
-      <h2 className='text-[1.2rem] flex grow drop-shadow-md min-h-[4rem]'>{cardTitle}</h2>
+      <h2 className={`text-[1.2rem] flex grow drop-shadow-md min-h-[4rem] ${data.length <= 4 ? 'text-[1.75rem]' : '' }`}>{cardTitle}</h2>
       <div>
 
         {cardType === 'callSheet' && (

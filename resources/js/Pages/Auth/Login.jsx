@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import Checkbox from '@/Components/Forms/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
-import Input from '@mui/joy/Input';
 
-import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import { Link, useForm } from '@inertiajs/react';
 
-import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
+import { formGroupClass, inputGroupClass } from '@/Components/Scripts/Form';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 
 
@@ -88,6 +86,10 @@ export default function Login({ status, canResetPassword }) {
                             </div>
                         )}
                     </div>
+
+                    {errors.email && (
+                        <div className='text-red-600 text-center p-4 bg-red-50 rounded-xl mt-6'>{errors.email}</div>
+                    )}
                 </div>
             ),
             footer: (

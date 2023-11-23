@@ -5,7 +5,7 @@ import { faXmark, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import MainLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/LocationForm';
 
-import RightPanel from '@/Components/Layouts/RightPanel';
+import RightPanel from '@/Components/Layouts/DrawerPanel';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CircularButton from '@/Components/Buttons/CircularButton';
 import DangerButton from '@/Components/Buttons/DangerButton';

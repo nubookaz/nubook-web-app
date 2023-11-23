@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import Font
 import { router } from '@inertiajs/react'; // Import the router object
 import {  faInfo, faPeopleGroup, faEye, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
-import Bulletin from '../../../Components/CallSheets/Bulletin';
+import Bulletin from './Components/Bulletin';
 
 
 
@@ -22,7 +22,7 @@ import PageButton from '@/Components/Buttons/PageButton';
 import NewLocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/NewLocationForm';
 import LocationDetails from '@/Pages/Projects/CallSheets/Locations/LocationDetails';
 import EditCallSheetForm from '@/Pages/Projects/CallSheets/Forms/EditCallSheetForm';
-import Weather from '@/Components/CallSheets/Weather';
+import Weather from '@/Pages/Projects/CallSheets/Components/Weather';
 
 
 import LocationEdit from '@/Pages/Projects/CallSheets/Locations/Partials/LocationEdit';

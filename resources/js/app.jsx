@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { AuthProvider } from '@/Components/Contexts/AuthContext';
-
+ 
 
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -18,8 +18,8 @@ createInertiaApp({
 
         root.render(
             <AuthProvider>
-                <App {...props} />
-            </AuthProvider>
+                     <App {...props} />
+             </AuthProvider>
         );
 
     },

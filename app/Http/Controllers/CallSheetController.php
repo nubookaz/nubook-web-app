@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\CallSheet; 
 use App\Models\Location;  
+use App\Models\FilmLocation;  
 use App\Models\User;  
+
+
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Traits\CallSheetTrait;
@@ -18,6 +21,25 @@ class CallSheetController extends Controller
 {
 
     use CallSheetTrait;
+
+    public function fetchCallSheetData($id, $callSheetId)
+    {
+        try {
+            // Fetch the specific call sheet data by ID
+            $callSheet = CallSheet::with('filmLocation.location')->findOrFail($callSheetId);
+            // dd($callSheet);
+            // You can also add any additional logic here if needed
+    
+            return response()->json($callSheet);
+        } catch (\Exception $e) {
+            // Handle errors, e.g., call sheet not found
+            return response()->json(['error' => 'Call sheet not found'], 404);
+        }
+    }
+    
+
+
+
 
     /**
      * Display a listing of the resource.
@@ -31,29 +53,65 @@ class CallSheetController extends Controller
         $callSheets = $projects->callSheets; // Assuming you have defined the relationship correctly in your Project model
 
 
-        return Inertia::render('Projects/CallSheets/CallSheets', [
+        return Inertia::render('Projects/SubPages/CallSheets', [
             'projects' => $projects,
             'callSheets' => $callSheets,
         ]);
     }
-    
-    
-
-    public function store(Request $request, $projectId)
+ 
+    public function saveWeatherData(Request $request, $id, $callSheetId)
     {
-        // Retrieve the project data based on $projectId
-        $project = Project::find($projectId);
-
-        // Call createCallSheet method with the project ID
-        $callSheet = $this->createCallSheet($request, $projectId);
+        // Validate the request data
+        $validatedData = $request->validate([
+            'weatherData' => 'required', // Ensure that weatherData is provided
+        ]);
     
-        // Redirect to the call sheet edit page with the project ID and call sheet ID
-        return redirect()->route('projects.callSheets.edit', [
+        $callSheet = CallSheet::find($callSheetId);
+        if (!$callSheet) {
+            return response()->json(['error' => 'Call Sheet not found'], 404);
+        }
+    
+        // Directly use the validated data
+        $callSheet->weather = $validatedData['weatherData'];
+
+        $callSheet->weather_updated_at = now(); 
+        
+        if ($callSheet->save()) {
+            return response()->json(['success' => 'Weather data saved successfully']);
+        } else {
+            return response()->json(['error' => 'Failed to save weather data'], 500);
+        }
+    }
+    
+    public function storeCallSheetDetails(Request $request, $projectId)
+    {
+        $callSheetData = $request['callSheetData'];
+        $callSheetAddress = $request['callSheetAddress'];
+        $filmLocation = null;
+
+        if (!empty(array_filter($callSheetAddress, function($value) { return $value !== null; }))) {
+            // Create or find the Location
+            $location = $this->createOrUpdateLocation($callSheetAddress);
+    
+            // Create or find the FilmLocation and associate it with the Location
+            $filmLocation = FilmLocation::firstOrCreate(['location_id' => $location->id]);
+            
+            $callSheet = $this->createCallSheet($callSheetData, $projectId, $filmLocation->id);
+            
+
+        } else {
+
+            $callSheet = $this->createCallSheet($callSheetData, $projectId, null);
+
+        }
+ 
+        return redirect()->route('callSheets.edit.page', [
             'id' => $projectId,
-            'callSheetId' => $callSheet->id, // Pass the ID of the newly created call sheet
-            'projects' => $project,
+            'callSheetId' => $callSheet->id,
         ]);
     }
+    
+    
     
     /**
      * Display the specified resource.
@@ -68,7 +126,10 @@ class CallSheetController extends Controller
      */
 
 
-    public function edit($id, $callSheetId)
+
+
+
+    public function editDetailsPage($id, $callSheetId)
     {
         // Retrieve the project by its ID
         $project = Project::find($id);
@@ -77,9 +138,10 @@ class CallSheetController extends Controller
         // $userCompany = $user->productionCompany;
 
         // Retrieve the call sheet by its ID
-        $callSheet = CallSheet::with(['project', 'locations'])->findOrFail($callSheetId);
+        $callSheet = CallSheet::with(['project', 'filmLocation.location'])->findOrFail($callSheetId);
 
-  
+        $filmLocationAddress = $callSheet->filmLocation ? $callSheet->filmLocation->location->address : null;
+
 
         // $locations = CallSheet::findOrFail($callSheetId)->locations()->with('parkingLocation', 'hospitalLocation')->get();
 
@@ -88,37 +150,117 @@ class CallSheetController extends Controller
             // 'userCompany' => $userCompany,
             'project' => $project, // Pass the project data
             'callSheet' => $callSheet, // Pass the call sheet data to the edit page
-            // 'locations' => $locations, // Pass the associated locations data to the edit page
+            'location' => $filmLocationAddress, // Pass the associated locations data to the edit page
         ]);
     }
+
+
+
+
+
         
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id, $callSheetId)
+    public function updateCallSheetDetails(Request $request, $id, $callSheetId)
     {
-        // Find the CallSheet by ID
-        $callSheet = CallSheet::findOrFail($callSheetId);
-        $project = Project::find($id);
 
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'status' => 'nullable',
-            'bulletin' => 'nullable|string|max:400',
-            'callSheetTitle' => 'nullable|string|max:255',
-            'callSheetDate' => 'nullable|date',
-        ]);
+        $callSheetData = $request['callSheetData'];
+        $callSheetAddress = $request['callSheetAddress'];
 
-        // Remove null values from the validated data
-        $validatedData = array_filter($validatedData, function ($value) {
-            return $value !== null;
-        });
+        // Find the CallSheet based on $callSheetId
+        $callSheet = CallSheet::find($callSheetId);
+    
+        if ($callSheet) {
+            // Get the associated FilmLocation
+            $filmLocation = $callSheet->filmLocation;
+    
+            if ($filmLocation) {
+                // Update the existing FilmLocation with the new data
 
-        // Update the CallSheet with validated data
-        $callSheet->update($validatedData);
 
-        return redirect()->route('projects.callSheets.edit', ['id' => $id, 'callSheetId' => $callSheetId]);
+                $filmLocation->location->update([
+                    'street_address' => $callSheetAddress['street_address'],
+                    'city' => $callSheetAddress['city'],
+                    'state' => $callSheetAddress['state'],
+                    'zip_code' => $callSheetAddress['zip_code'],
+                    // Update other location fields as needed
+                ]);
+    
+                // Update the CallSheet name and date
+                $callSheet->update([
+                    'call_sheet_name' => $callSheetData['call_sheet_name'],
+                    'call_sheet_date' => $callSheetData['call_sheet_date'],
+                ]);
+            } else {
+
+
+                // If no FilmLocation exists, create a new one and associate it with the CallSheet
+                $location = Location::create([
+                    'street_address' => $callSheetAddress['street_address'],
+                    'city' => $callSheetAddress['city'],
+                    'state' => $callSheetAddress['state'],
+                    'zip_code' => $callSheetAddress['zip_code'],
+                    // Set other location fields as needed
+                ]);
+                // Create a new FilmLocation and associate it with the Location
+                $filmLocation = new FilmLocation();
+                $filmLocation->location_id = $location->id;
+           
+                $filmLocation->save();
+                $callSheet->film_locations_id = $filmLocation->id;
+
+                // Update the CallSheet name and date
+                $callSheet->update([
+                    'call_sheet_name' => $callSheetData['call_sheet_name'],
+                    'call_sheet_date' => $callSheetData['call_sheet_date'],
+                ]);
+            }
+
+ 
+            // Return the updated data as JSON
+            return response()->json([
+                'callSheet' => $callSheet->toArray(),
+            ]);
+        } else {
+            // Handle the case where the CallSheet with the given ID doesn't exist
+            // You may want to add error handling here
+            return response()->json([
+                'error' => 'CallSheet not found',
+            ], 404); // Return a 404 status code for not found
+        }
     }
+    
+
+
+
+
+
+
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(Request $request, $id, $callSheetId)
+    // {
+    //     // Find the CallSheet by ID
+    //     $callSheet = CallSheet::findOrFail($callSheetId);
+    //     $project = Project::find($id);
+
+    //     // Validate the incoming request data
+    //     $validatedData = $request->validate([
+    //         'status' => 'nullable',
+    //         'bulletin' => 'nullable|string|max:400',
+    //         'callSheetTitle' => 'nullable|string|max:255',
+    //         'callSheetDate' => 'nullable|date',
+    //     ]);
+
+    //     // Remove null values from the validated data
+    //     $validatedData = array_filter($validatedData, function ($value) {
+    //         return $value !== null;
+    //     });
+
+    //     // Update the CallSheet with validated data
+    //     $callSheet->update($validatedData);
+
+    //     return redirect()->route('projects.callSheets.edit', ['id' => $id, 'callSheetId' => $callSheetId]);
+    // }
 
 
     

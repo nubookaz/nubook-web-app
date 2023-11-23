@@ -21,8 +21,7 @@ import Skeleton from '@mui/joy/Skeleton';
 
 export default function Register() {
     
-    const [errorText, setErrorText] = useState('');
-    const [skeleton, setSkeleton] = useState(false);
+     const [skeleton, setSkeleton] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
@@ -38,10 +37,22 @@ export default function Register() {
  
     const submit = (e) => {
         e.preventDefault();
-        setSkeleton(true);
-        post(route('register'));
+        post(route('register'), {
+            // This callback is called before the form submission starts
+            onStart: () => setSkeleton(true),
+    
+            // This callback is called when the form submission is complete
+            onFinish: () => setSkeleton(false),
+        });
     };
  
+
+
+
+
+
+
+
     return (
         <GuestLayout>
             {{
@@ -57,8 +68,8 @@ export default function Register() {
                         ):(
                             <EmailStep
                                 formData={data}
-                                setFormData={setData}
-                                errorText={errorText}
+                                setFormData={setData} 
+                                errors={errors}
                             />
                         )}
 

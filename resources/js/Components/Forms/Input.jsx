@@ -1,4 +1,6 @@
-import { formClass, formGroupClass, inputGroupClass, twoColInputGroupClass } from '@/Components/Scripts/Form';
+import { inputGroupClass } from '@/Components/Scripts/Form';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import Tooltip from '@mui/joy/Tooltip';
 
 
@@ -7,22 +9,18 @@ export default function Input({
     title,
     required = false,
     label,
-    type,
+    type = 'text',
     name = '',
     value,
-    placeholder,
+    placeholder = 'This is an empty input',
     onChange,
     autoComplete,
     openToolTip,
     min,
+    inputType = 'input',
+    options,
 
 }) {
-
-
-
-
-
- 
 
     
     return (
@@ -38,16 +36,27 @@ export default function Input({
                 placement="top" 
                 variant="outlined"
             >
-                <input
-                    type={type}
-                    name={name}
-                    min={min}
-                    placeholder={placeholder}
-                    value={value} 
-                    required={required}
-                    onChange={onChange}
-                    autoComplete={autoComplete}
-                />
+                {inputType == 'dropdown' ? (
+                    <Select name={name} value={value} onChange={onChange }autoComplete={autoComplete} placeholder={placeholder}>
+                         {options.map((option, index) => (
+                          <Option key={index} value={option.value}>
+                            {option.label}
+                          </Option>
+                        ))}
+                    </Select>
+                ):(
+                    <input
+                        type={type}
+                        name={name}
+                        min={min}
+                        placeholder={placeholder}
+                        value={value} 
+                        required={required}
+                        onChange={onChange}
+                        autoComplete={autoComplete}
+                    />
+                )}
+               
             </Tooltip>
 
         </div>

@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parking_locations', function (Blueprint $table) {
+        Schema::create('film_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('street_address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('zip_code');
-            $table->string('country');
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parking_locations');
+        Schema::dropIfExists('film_locations');
     }
 };
