@@ -2,7 +2,7 @@ import React, { useState } from 'react'; // Import useState from react
 import NavLink from '@/Components/Navigations/NavLink';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquarePollHorizontal, faComments, faMoneyCheckDollar, faBriefcase, faMagnifyingGlass, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
+import { faSquarePollHorizontal, faMagnifyingGlass, faProjectDiagram, faBars } from '@fortawesome/free-solid-svg-icons';
 import ApplicationLogo from '@/Components/Branding/ApplicationLogo';
 import ResponsiveNavLink from '@/Components/Navigations/ResponsiveNavLink';
 
@@ -26,7 +26,12 @@ function Sidebar({ toggleSearch, isOpen }) {
     };
 
     return (
-        <div className="sidebar shadow-md"
+
+        <>
+          <div className='fixed top-5 left-5'>
+            <FontAwesomeIcon className="text-3xl top-2" icon={faBars}></FontAwesomeIcon>
+          </div>
+          <div className="sidebar"
             onMouseLeave={() => {
             // Delay in milliseconds (e.g., 1000ms = 1 second)
             const delay = 800;
@@ -53,7 +58,7 @@ function Sidebar({ toggleSearch, isOpen }) {
                             <NavLink href={route('dashboard')} active={route().current('dashboard')} activeClass="active-link" icon={faSquarePollHorizontal} />
                         </li>
                         <li>
-                            <NavLink href={route('projects.index')} active={route().current('projects.*')} activeClass="active-link" icon={faProjectDiagram}/>
+                            <NavLink href={route('projects.index')} active={route().current('projects.*') || route().current('projects.*.call-sheets') } activeClass="active-link" icon={faProjectDiagram}/>
                         </li>
                         {/* <li>
                             <NavLink href="/social" icon={faComments}/>
@@ -86,6 +91,8 @@ function Sidebar({ toggleSearch, isOpen }) {
 
             </div>
         </div>
+        </>
+      
     );
 }
 

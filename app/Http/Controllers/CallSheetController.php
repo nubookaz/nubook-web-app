@@ -21,26 +21,7 @@ class CallSheetController extends Controller
 {
 
     use CallSheetTrait;
-
-    public function fetchCallSheetData($id, $callSheetId)
-    {
-        try {
-            // Fetch the specific call sheet data by ID
-            $callSheet = CallSheet::with('filmLocation.location')->findOrFail($callSheetId);
-            // dd($callSheet);
-            // You can also add any additional logic here if needed
-    
-            return response()->json($callSheet);
-        } catch (\Exception $e) {
-            // Handle errors, e.g., call sheet not found
-            return response()->json(['error' => 'Call sheet not found'], 404);
-        }
-    }
-    
-
-
-
-
+   
     /**
      * Display a listing of the resource.
      */
@@ -87,6 +68,7 @@ class CallSheetController extends Controller
     {
         $callSheetData = $request['callSheetData'];
         $callSheetAddress = $request['callSheetAddress'];
+        // dd($request->all());
         $filmLocation = null;
 
         if (!empty(array_filter($callSheetAddress, function($value) { return $value !== null; }))) {
@@ -95,75 +77,43 @@ class CallSheetController extends Controller
     
             // Create or find the FilmLocation and associate it with the Location
             $filmLocation = FilmLocation::firstOrCreate(['location_id' => $location->id]);
-            
+            // dd($filmLocation);
+
             $callSheet = $this->createCallSheet($callSheetData, $projectId, $filmLocation->id);
             
 
         } else {
 
-            $callSheet = $this->createCallSheet($callSheetData, $projectId, null);
+            $callSheet = $this->createCallSheet($callSheetData, $projectId);
 
         }
  
-        return redirect()->route('callSheets.edit.page', [
+        return redirect()->route('projects.callSheets.edit.page', [
             'id' => $projectId,
             'callSheetId' => $callSheet->id,
         ]);
     }
-    
-    
-    
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-
-
-
-
 
     public function editDetailsPage($id, $callSheetId)
     {
         // Retrieve the project by its ID
         $project = Project::find($id);
-        // dd(Auth::user());
-        // $user = Auth::user();
-        // $userCompany = $user->productionCompany;
-
+    
         // Retrieve the call sheet by its ID
-        $callSheet = CallSheet::with(['project', 'filmLocation.location'])->findOrFail($callSheetId);
-
-        $filmLocationAddress = $callSheet->filmLocation ? $callSheet->filmLocation->location->address : null;
-
-
-        // $locations = CallSheet::findOrFail($callSheetId)->locations()->with('parkingLocation', 'hospitalLocation')->get();
-
+        $callSheet = CallSheet::with(['project', 'filmLocation.location', 'parkingLocation.location', 'hospitalLocation.location'])->findOrFail($callSheetId);
       
         return Inertia::render('Projects/CallSheets/CallSheetDetails', [
             // 'userCompany' => $userCompany,
             'project' => $project, // Pass the project data
             'callSheet' => $callSheet, // Pass the call sheet data to the edit page
-            'location' => $filmLocationAddress, // Pass the associated locations data to the edit page
-        ]);
+         ]);
     }
-
-
-
-
-
         
     public function updateCallSheetDetails(Request $request, $id, $callSheetId)
     {
-
         $callSheetData = $request['callSheetData'];
         $callSheetAddress = $request['callSheetAddress'];
+
 
         // Find the CallSheet based on $callSheetId
         $callSheet = CallSheet::find($callSheetId);
@@ -176,14 +126,22 @@ class CallSheetController extends Controller
                 // Update the existing FilmLocation with the new data
 
 
+                $validated = $request->validate([
+                    'callSheetAddress.latitude' => 'nullable|numeric|between:-90,90',
+                    'callSheetAddress.longitude' => 'nullable|numeric|between:-180,180',
+                ]);
+        
+                // dd($callSheetAddress['latitude']);
+
                 $filmLocation->location->update([
                     'street_address' => $callSheetAddress['street_address'],
                     'city' => $callSheetAddress['city'],
                     'state' => $callSheetAddress['state'],
                     'zip_code' => $callSheetAddress['zip_code'],
-                    // Update other location fields as needed
+                    'latitude' => (float) $callSheetAddress['latitude'],
+                    'longitude' => (float) $callSheetAddress['longitude'],                
                 ]);
-    
+
                 // Update the CallSheet name and date
                 $callSheet->update([
                     'call_sheet_name' => $callSheetData['call_sheet_name'],
@@ -198,8 +156,10 @@ class CallSheetController extends Controller
                     'city' => $callSheetAddress['city'],
                     'state' => $callSheetAddress['state'],
                     'zip_code' => $callSheetAddress['zip_code'],
-                    // Set other location fields as needed
+                    'latitude' => $callSheetAddress['latitude'],
+                    'longitude' => $callSheetAddress['longitude'],      
                 ]);
+                
                 // Create a new FilmLocation and associate it with the Location
                 $filmLocation = new FilmLocation();
                 $filmLocation->location_id = $location->id;

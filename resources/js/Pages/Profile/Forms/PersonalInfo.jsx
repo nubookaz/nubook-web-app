@@ -1,5 +1,6 @@
 import { useForm } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
+import { fetchGeocodeData } from '@/Components/UtilityFunctions/Geocoding';
 
 import Input from '@/Components/Forms/Input';
 
@@ -13,7 +14,8 @@ export default function PersonalInfo({
 }) {
 
     const [selectedState, setSelectedState] = useState('');
-    
+    const [geoLocationData, setGeoLocationData] = useState(null);
+
     const [data, setData] = useState({
         first_name: '',
         last_name: '',
@@ -23,7 +25,45 @@ export default function PersonalInfo({
         city: '',
         state: '',
         zip_code: '',
+        latitude: '',
+        longitude: '',
     });
+ 
+
+    useEffect(() => {
+        // Define the function inside useEffect
+        const handleGeocode = async () => {
+          try {
+            if (data.street_address && data.zip_code) {
+              const geoData = await fetchGeocodeData(data.street_address, data.zip_code);
+            
+              if (geoData) {
+                setGeoLocationData(geoData);
+
+                const updatedData = {
+                    ...data,
+                    latitude: geoData.lat,
+                    longitude: geoData.lng
+                  };
+        
+                  setData(updatedData);
+        
+                  onUpdateInfo(updatedData);
+              }
+
+            }
+          } catch (err) {
+            // setError(err.message);
+            setGeoLocationData(null);
+          }
+        };
+    
+        // Call the function
+        handleGeocode();
+    
+    }, [data.street_address, data.zip_code]);
+    
+ 
 
     useEffect(() => {
         if (existingData) {
@@ -48,8 +88,7 @@ export default function PersonalInfo({
         return formattedValue;
     };
 
-    console.log(data);
- 
+  
     return (
 
         <div className='flex flex-col gap-4 grow'>
@@ -64,35 +103,37 @@ export default function PersonalInfo({
                     placeholder="Daniel"
                     value={data.first_name}
                     autoComplete="given-name"
+                    parentClass="grow"
+                    openToolTip={false}
                     onChange={(e) => handleChange('first_name', e.target.value)}
                 />
-                <div className='flex flex-col gap-2'>
-                    <label htmlFor="middle_initial" value="middle_initial" className='text-gray-400 text-sm'> M.I. </label>
-                    <input
-                        type="text"
-                        id="middle_initial"
-                        className='max-w-[2.5rem]'
-                        name="middle_initial"
-                        placeholder="D"
-                        value={data.middle_initial}
-                        autoComplete="additional-name"
-                        maxLength={1} 
-                        onChange={(e) => handleChange('middle_initial', e.target.value)}
-                    />
-                    </div>
-                <div className='flex flex-col gap-2 grow'>
-                    <label htmlFor="last_name" value="last_name" className='text-gray-400 text-sm'> Last Name * </label>
-                    <input
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        placeholder="Lewis"
-                        value={data.last_name}
-                        autoComplete="family-name"
-                        onChange={(e) => handleChange('last_name', e.target.value)}
-                        required
-                    />   
-                </div>
+                {/* <div className='flex flex-col gap-2'> */}
+                <Input 
+                    required={false}
+                    title="M.I."
+                    label="M.I."
+                    type="text"
+                    name="first_name"
+                    placeholder="D.W"
+                    value={data.middle_initial}
+                    autoComplete="additional-name"
+                    parentClass="!w-1/2"
+                    openToolTip={false}
+                    onChange={(e) => handleChange('first_name', e.target.value)}
+                />
+                <Input 
+                    required={true}
+                    title="Last Name"
+                    label="Last Name"
+                    type="text"
+                    name="last_name"
+                    placeholder="Lewis"
+                    value={data.last_name}
+                    autoComplete="family-name"
+                    parentClass="grow"
+                    openToolTip={false}
+                    onChange={(e) => handleChange('last_name', e.target.value)}
+                />
             </div>
 
             <div className='flex flex-col gap-2 w-full '>

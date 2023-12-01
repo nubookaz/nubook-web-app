@@ -9,7 +9,17 @@ class ParkingLocation extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'location_id',
+        'hospital_instructions'
+    ];
+
     
+    public function callSheet()
+    {
+        return $this->hasMany(CallSheet::class); 
+    }
+
     public function location()
     {
         return $this->belongsTo(Location::class);

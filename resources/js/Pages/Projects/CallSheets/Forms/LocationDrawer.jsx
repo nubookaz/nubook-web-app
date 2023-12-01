@@ -6,6 +6,8 @@ import DrawerPanel from '@/Components/Layouts/DrawerPanel';
 import CircularButton from '@/Components/Buttons/CircularButton';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import Textarea from '@mui/joy/Textarea';
+import { inputGroupClass, formGroupClass } from '@/Components/Scripts/Form';
 
  
 import Address from '@/Components/Forms/Address';
@@ -21,7 +23,7 @@ export default function CallSheetPanel({data, mode = 'create', ...props}) {
 
  
 
-
+ console.log(data);
 
 
 
@@ -30,8 +32,6 @@ export default function CallSheetPanel({data, mode = 'create', ...props}) {
   const [processing, setProcessing] = useState(false);
 
   const today = new Date().toISOString().split('T')[0];
-
- 
 
   const [callSheetAddress, setCallSheetAddress] = useState({
     street_address: '',
@@ -97,21 +97,15 @@ export default function CallSheetPanel({data, mode = 'create', ...props}) {
     const projectId = props.projectId;
 
     try {
-      if (mode === 'create') {
         // Create a new call sheet
         const callSheetResponse = await router.post(
-          route('projects.callSheets.create', { id: data.id }),
-          { callSheetData, callSheetAddress }
-        );
+          route('callSheets.location.store', { 
+            id: data.project_id,
+            callSheetId: data.id,
+          }));
         clearFormData();
-      } else if (mode === 'edit' && data) {
-        // Update an existing call sheet
-        const callSheetResponse = await router.put(
-          route('projects.callSheets.update', { id: data.project_id, callSheetId: data.id }),
-          { callSheetData, callSheetAddress }
-        );
-      }
-      toggleDrawerPanel(false);
+
+        toggleDrawerPanel(false);
 
       } catch (error) {
           // Handle errors if needed
@@ -123,6 +117,16 @@ export default function CallSheetPanel({data, mode = 'create', ...props}) {
       }
 
 };
+
+
+
+
+
+
+
+
+
+
 
 
   return (
@@ -147,17 +151,59 @@ export default function CallSheetPanel({data, mode = 'create', ...props}) {
         <div className='flex flex-col gap-6'>
  
 
-          <div className='flex flex-col gap-6 '>
+          <div className='flex flex-col gap-4 '>
             <div className='flex flex-col gap-2'>
-              <h3>Complete Location Address</h3>
-              <p className="p-base">Ensuring an accurate location address is crucial for a smooth production day. Please provide a detailed address, including street, city, state, and ZIP code. This information will help your team arrive at the right place with ease and make your filmmaking day run like clockwork.</p>
+              <h3>Parking Location Address</h3>
+              <p className="p-base">
+                To guarantee a hassle-free parking experience on the day of production, it’s essential to provide the full address of the parking location. Kindly include the street name, city, state, and ZIP code. Precise parking details will help the crew and cast park swiftly and close to the set.
+              </p>
             </div>
+            <div className={formGroupClass}>
+              <div className={inputGroupClass}>
+                <label htmlFor="parking_instructions" className='text-gray-400 text-sm'>Parking Instructions</label>
+                <Textarea 
+                  name="parking_instructions"
+                  minRows={2} 
+                  placeholder="Add parking instructions here...." 
+                />
+              </div>
+            </div>
+
             <Address
               data={callSheetAddress}
               onUpdateInfo={handleUpdateFormData}
               emptyFields={emptyFields}
               setEmptyFields={setEmptyFields}
             />
+            
+          </div>
+
+
+          <div className='flex flex-col gap-4 '>
+            <div className='flex flex-col gap-2'>
+              <h3>Hospital Location Address</h3>
+              <p className="p-base">
+                For quick access in case of an emergency, a complete address of the nearest hospital is necessary. Please specify the hospital's street, city, state, and ZIP code. Having this information readily available ensures the safety of everyone on set and allows for immediate action if needed.
+              </p>
+            </div>
+            <div className={formGroupClass}>
+              <div className={inputGroupClass}>
+                <label htmlFor="hospital_instructions" className='text-gray-400 text-sm'>Hospital Instructions</label>
+                <Textarea 
+                  name="hospital_instructions"
+                  minRows={2} 
+                  placeholder="Add hospital instructions here...." 
+                />
+              </div>
+            </div>
+ 
+            <Address
+              data={callSheetAddress}
+              onUpdateInfo={handleUpdateFormData}
+              emptyFields={emptyFields}
+              setEmptyFields={setEmptyFields}
+            />
+            
           </div>
 
 

@@ -83,17 +83,23 @@ trait ProfileTrait
             }
         }
  
-        $user->productionCompany()->updateOrCreate(
-            ['user_id' => $user->id],
-            [
-                'company_name' => $companyInfo['company_name'] ?? null,
-                'ein_number' => $companyInfo['ein_number'] ?? null,
-                'job_title' => $companyInfo['job_title'] ?? null,
-                'number_of_employees' => $companyInfo['number_of_employees'] ?? null,
-                'referral' => $companyInfo['referral'] ?? null,
-            ]
-        );
-
+        if (!empty($companyInfo['company_name'])) {
+            $company = ProductionCompany::create([
+                'company_name' => $companyInfo['company_name'],
+                'ein_number' => $companyInfo['ein_number'],
+                'job_title' => $companyInfo['job_title'],
+                'number_of_employees' => $companyInfo['number_of_employees'],
+                'referral' => $companyInfo['referral'],
+            ]);
+    
+            // Link the new company with the user
+            $user->productionCompanies()->attach($company->id);
+    
+            // Optionally set the new company as the primary company
+            $user->primary_production_company_id = $company->id;
+            $user->save();
+        }
+    
         return response()->json(['success' => true, 'user' => $user->fresh()]);
     }
     

@@ -1,3 +1,5 @@
+import { useAuth } from '@/Components/Contexts/AuthContext';
+
 import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 import {  useForm } from '@inertiajs/react';
@@ -8,13 +10,32 @@ import PersonalInfo from '@/Pages/Profile/Forms/PersonalInfo';
 import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
 import Skeleton from '@mui/joy/Skeleton';
 
+import VerificationStep from './Partials/VerificationStep';
+
 export default function VerificationProcess({ 
+
     currentStep, 
     setCurrentStep, 
     setIsModalOpen,
+
  }) {
+    const { user, fetchUserData } = useAuth();
+    useEffect(() => {
+        // Fetch user data on component mount
+        fetchUserData();
+      }, []);
+    
+
+
+
+
 
     const [emptyFields, setEmptyFields] = useState({});
+
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = React.useState(false);
+
+
 
     const { data, setData, post, processing, errors, reset } = useForm({
         password: '',
@@ -29,11 +50,6 @@ export default function VerificationProcess({
         setPasswordConfirmation(e.target.value);
     };
       
-    const [verificationCode, setVerificationCode] = useState('');
-
-    const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
-
     const [personalInfo, setPersonalInfo] = useState({
         first_name: '',
         last_name: '',
@@ -43,6 +59,8 @@ export default function VerificationProcess({
         city: '',
         state: '',
         zip_code: '',
+        latitude: '',
+        longitude: '',
     });
 
     const [companyInfo, setCompanyInfo] = useState({
@@ -53,20 +71,19 @@ export default function VerificationProcess({
         referral: '',
     });
 
-    const VerificationStep = () => (
-        <div>
-            <input
-                type="text"
-                id="verification_code"
-                name="code"
-                placeholder="One Time Code"
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-                required
-            />
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-        </div>
-    );
+
+
+
+ 
+
+
+
+
+
+
+
+
+
 
     const handleError = (error, message) => {
         const errorMessage = error.message || message;
@@ -106,7 +123,6 @@ export default function VerificationProcess({
                 if (response.data.success) {
                     setCurrentStep('verification');
                 }
-s
             });
         } catch (error) {
             handleError(error, 'Error during verification', {
@@ -118,32 +134,17 @@ s
         }
     };
 
-    const verifyCode = async () => {
-        try {
-            const response = await axios.post(route('verification.verifyCode'), {
-                verificationCode: verificationCode,
-            }, {
-                headers: {
-                    'Accept': 'application.json',
-                },
-            });
+
+
+
     
-            handleResponse(response, () => {
-                if (response.data.success) {
-                    setCurrentStep('personalInfo');
-                }
-                // You can handle other cases or conditions here
-            });
-        } catch (error) {
-            handleError(error, 'Error during verification');
-        }
-    };
+    
     
     const savePersonalInfo = async () => {
         try {
             const response = await axios.post(route('verification.personal.store'), personalInfo);
             handleResponse(response, () => {
-                // Handle success case
+                console.log("response",response);
                 setCurrentStep('companyInfo');
             });
         } catch (error) {
@@ -154,7 +155,7 @@ s
     
     const saveCompanyInfo = async () => {
         try {
-            const response = await axios.post(route('verification.company.store'), companyInfo);
+            const response = await axios.post(route('verification.production.company.store'), companyInfo);
     
             handleResponse(response, () => {
                 setCurrentStep('completed'); // Update the step locally
@@ -166,7 +167,7 @@ s
         }
     };
 
-    console.log(personalInfo);
+    console.log("verify", personalInfo);
 
      return (
         <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
@@ -231,21 +232,9 @@ s
                     </div>
                 }
                 {currentStep === 'verification' && 
-                    <div className='flex flex-row gap-8 h-full'>
-                        <div className='w-1/2 h-full flex flex-col justify-center'>
-                            <img className="mx-auto max-w-[15rem]" src="./images/svg_images/undraw_mailbox.svg" alt="" />
-                        </div>
-                        <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
-                            <h2>Verify Your Email</h2>
-                            <p>
-                                To ensure the security of your account, please check your email inbox for a verification code. To complete the verification process, paste the code in the provided field. Thank you for confirming your email address and enhancing your account's security.
-                            </p>
 
+                    <VerificationStep user={user} fetchUserData={fetchUserData} error={error} handleError={handleError} handleResponse={handleResponse} setError={setError} setCurrentStep={setCurrentStep} />
 
-                            <VerificationStep />
-                            <SecondaryButton onClick={verifyCode}>Verify Code</SecondaryButton>
-                        </div>
-                    </div>
                 }
                 {currentStep === 'personalInfo' && 
                     <div className='flex flex-row gap-8 h-full'>

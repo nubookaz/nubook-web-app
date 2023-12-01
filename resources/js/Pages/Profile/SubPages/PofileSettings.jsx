@@ -25,7 +25,7 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
   }, []);
 
   const [userData, setUserData] = useState(null);
-
+  const [emptyFields, setEmptyFields] = useState({});
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
@@ -111,21 +111,21 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
             <ProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] ml-6 absolute top-[1.5rem]"/>
         </div>
         {/* Form */}
-        <div className='py-6 px-8 w-full flex flex-row gap-6 grow justify-end'>
+        <div className='py-6 px-8 w-full flex flex-row gap-6 grow justify-end h-full'>
             <div className='w-[30%] flex grow'>
                 
             </div>
             <form onSubmit={submit} className='w-full flex grow flex-col gap-8 ' >
-              <div className=''>
+              <div>
                 <h3 className='mb-4'>Personal Profile</h3>
                 <PersonalInfo onUpdateInfo={setPersonalInfo} onChange={(e) => handleChange('tel', e.target.value)} existingData={personalInfo} />
               </div>
-              <div className=''>
+              <div>
                 <h3 className='mb-4'>Company Profile</h3>
                 <CompanyInfo onUpdateInfo={setCompanyInfo} existingData={companyInfo} />
               </div>
               
-                <PrimaryButton className="h-full" disabled={processing}>Save Profile Settings</PrimaryButton>
+                <PrimaryButton disabled={processing}>Save Profile Settings</PrimaryButton>
             </form>
         </div>
     </div>

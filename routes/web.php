@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CompanyController; 
 use App\Http\Controllers\CallSheetController; 
-use App\Http\Controllers\LocationsController; 
+use App\Http\Controllers\LocationController; 
 
 use App\Http\Controllers\AssociationController; 
 
@@ -50,17 +50,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
-
-
-
+ 
 
 
 
 
     Route::post('/verification/update-password', [VerificationController::class, 'updatePassword'])->name('verification.updatePassword');
     Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
+    Route::post('/verification/resend-code', [VerificationController::class, 'resendCode'])->name('verification.resendCode');
     Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
-    Route::post('/verification/company-info', [VerificationController::class, 'storeCompanyInfo'])->name('verification.company.store');
+    Route::post('/verification/company-info', [VerificationController::class, 'storeProductionCompanyInfo'])->name('verification.production.company.store');
     
     // Account Settings
     Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');
@@ -100,30 +99,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
             Route::post('/', [CallSheetController::class, 'storeCallSheetDetails'])->name('projects.callSheets.create');
           
-            Route::put('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('callSheets.update.details');
-            Route::get('{callSheetId}/details', [CallSheetController::class, 'editDetailsPage'])->name('callSheets.edit.page');
+            Route::put('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update.details');
+            Route::get('{callSheetId}/details', [CallSheetController::class, 'editDetailsPage'])->name('projects.callSheets.edit.page');
             Route::post('/{callSheetId}/save-weather', [CallSheetController::class, 'saveWeatherData'])->name('save.weather');
 
             Route::prefix('{callSheetId}/locations')->group(function () {
-                // Create a location
-                Route::get('create', [LocationsController::class, 'create'])->name('locations.create');
-                Route::post('/', [LocationsController::class, 'store'])->name('locations.store');
-    
-                // Edit a location
-                Route::get('{locationId}/edit', [LocationsController::class, 'edit'])->name('locations.edit');
-    
+                Route::post('/', [LocationController::class, 'storeCallSheetLocations'])->name('callSheets.location.store');
                 // Update a location
-                Route::patch('{locationId}', [LocationsController::class, 'update'])->name('locations.update');
+                Route::patch('{locationId}', [LocationController::class, 'updateCallSheetLocations'])->name('callSheets.locatios.update');
+
     
-                // Soft delete a location
-                Route::delete('{locationId}/soft-delete', [LocationsController::class, 'softDelete'])->name('locations.softDelete');
-    
-                // Destroy a location
-                Route::delete('{locationId}/destroy', [LocationsController::class, 'destroy'])->name('locations.destroy');
-    
-                // Other routes for parking locations
-                // Route::post('parking-locations', [LocationsController::class, 'storeParkingLocation'])->name('locations.storeParkingLocation');
-                // Route::patch('parking-locations/{locationId}', [LocationsController::class, 'updateParkingLocation'])->name('locations.updateParkingLocation');
             });
 
         });

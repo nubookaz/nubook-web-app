@@ -42,7 +42,7 @@ export default function CallSheetList({ project, callSheets, view }) {
           data={callSheets}
           status={callSheet.status}
           cardType="callSheet"
-          href={route('callSheets.edit.page', { id: project.id, callSheetId: callSheet.id })}
+          href={route('projects.callSheets.edit.page', { id: project.id, callSheetId: callSheet.id })}
           key={callSheet.id}
           cardTitle={callSheet.call_sheet_name}
           shootDate={callSheet.call_sheet_date}

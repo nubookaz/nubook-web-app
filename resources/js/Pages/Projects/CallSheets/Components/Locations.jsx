@@ -19,14 +19,15 @@ export default function Locations({
     const [locationData, setLocationData] = useState(null);
 
     useEffect(() => {
-        // Initialize locationData based on data if available
         if (data.film_location && data.film_location.location) {
             setLocationData({
                 street_address: data.film_location.location.street_address || '',
                 zip_code: data.film_location.location.zip_code || '',
+                latitude: data.film_location.location.latitude || '',
+                longitude: data.film_location.location.longitude || '',
             });
         } else {
-            setLocationData(null); // Set locationData to null if data is not available
+            setLocationData(null); 
         }
     }, [data]);
 
@@ -46,6 +47,9 @@ export default function Locations({
             showButtonIcon={data.film_location && data.film_location.location}
             menuItems={LocationMenu()}
         >
+
+
+
             {locationData !== null ? (
                 // Render this content when locationData is available
                 <div className="justify-start rounded-xl h-full overflow-hidden grow">
@@ -67,9 +71,15 @@ export default function Locations({
                     You have not added a hospital address.
                 </div>
             </div>
+
+
+
         </CardContainer>
 
     );
+
+
+
 
 
 }

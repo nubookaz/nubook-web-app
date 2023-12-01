@@ -26,7 +26,7 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
     };
  
     const cardHeaderClasses = `${absoluteHeader ? 'absolute float-left p-6' : 'flex flex-row gap-2 justify-between relative'}`;
-    const containerClasses = `container-base card-container relative ${getSizeClass()} ${className} ${textColor} ${absoluteHeader ? 'relative overflow-hidden' : 'flex flex-col justify-between grow gap-2 p-6'}`;
+    const containerClasses = `container-base card-container relative ${getSizeClass()} ${className} ${textColor} ${absoluteHeader ? 'relative overflow-hidden' : 'flex flex-col justify-between grow gap-2 p-4'}`;
 
     // Set default prop values
     CardContainer.defaultProps = {

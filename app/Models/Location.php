@@ -10,7 +10,9 @@ class Location extends Model
         'street_address', 
         'city', 
         'state', 
-        'zip_code'
+        'zip_code',
+        'latitude',
+        'longitude',
     ];
  
     public function users()
@@ -30,11 +32,11 @@ class Location extends Model
 
     public function parkingLocation()
     {
-        return $this->hasOne(ParkingLocation::class);
+        return $this->hasMany(ParkingLocation::class);
     }
 
     public function hospitalLocation()
     {
-        return $this->hasOne(HospitalLocation::class);
+        return $this->hasMany(HospitalLocation::class);
     }
 }

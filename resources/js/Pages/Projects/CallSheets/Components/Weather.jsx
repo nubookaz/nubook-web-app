@@ -7,65 +7,46 @@ import { faCaretDown, faCaretUp, faSun } from '@fortawesome/free-solid-svg-icons
 
 
 
-const Weather = ({  data, newData, street_address, zip_code, date, country }) => {
+const Weather = ({  data, newData, street_address, zip_code, date, country, latitude, longitude }) => {
 
   const [weatherData, setWeatherData] = useState(null);
  
-  const [locationData, setLocationData] = useState(null);
   const [loadingWeather, setLoadingWeather] = useState(true);
   const [error, setError] = useState(null);
-  const apiKeyGeo = 'AIzaSyDKDDy79SZdsmJ9wY7YjOGP5U3YPNioSdU';
-  const apiKey = '2fddf0abeecb6640ae37fdf8735cb722';
+  const apiKey = window.OpenWeatherApi;
 
   const currentDate = new Date(); // Declare currentDate here
 
 
+  // console.log("weatherData 1", weatherData); 
+  // console.log("latitude longitude", latitude, longitude ); 
+  // console.log("street_address", street_address); 
+  // console.log("date", date); 
 
-  if (!street_address && !zip_code) {
-    return <div className="flex justify-center items-center text-center w-full h-full">No weather data available. Please enter a valid address or zip code</div>;
-  }
-
-  useEffect(() => {
-    const fetchLocationData = async () => {
-      try {
-        const response = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-            street_address
-          )},${encodeURIComponent(zip_code)},${encodeURIComponent(country)}&key=${apiKeyGeo}`
-        );
-        const geoCodeData = await response.json();
-        if (geoCodeData.results.length > 0) {
-          setLocationData(geoCodeData.results[0].geometry.location);
-        }
-      } catch (error) {
-        console.error('Error fetching location data:', error);
-        setError('Error fetching location data');
-      }
-    };
-
-    fetchLocationData();
-  }, [street_address, zip_code, country]);
-
+  // console.log("data.weather", data.weather); 
  
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       setLoadingWeather(true);
-
-      if(!newData){
+  
+      // Function to check if a value is neither null nor empty
+      const isValidCoordinate = (value) => value != null && value !== '';
+  
+      if (!newData) {
         if (data && data.weather && typeof data.weather === 'string') {
           handleJSONWeatherData(data);
-        } else if (locationData) {
-          handleFetchWeatherData(locationData, date, apiKey);
+        } else if (isValidCoordinate(latitude) && isValidCoordinate(longitude)) {
+          handleFetchWeatherData(latitude, longitude, date, apiKey);
         }
       } else {
-        handleFetchWeatherData(locationData, date, apiKey);
+        handleFetchWeatherData(latitude, longitude, date, apiKey);
       }
     };
-
+  
     fetchWeatherData();
-  }, [locationData]);
-
+  }, [latitude, longitude, newData, data, date, apiKey]); // Update dependencies
+  
 
 
   const handleJSONWeatherData = (data) => {
@@ -82,7 +63,7 @@ const Weather = ({  data, newData, street_address, zip_code, date, country }) =>
   };
   
 
-  const handleFetchWeatherData = async (locationData, date, apiKey) => {
+  const handleFetchWeatherData = async (latitude, longitude, date, apiKey) => {
     try {
       let endpoint;
    
@@ -96,15 +77,14 @@ const Weather = ({  data, newData, street_address, zip_code, date, country }) =>
   
         if (timeDifference >= 5) {
           // Convert the date to a UNIX timestamp (in seconds)
-          // endpoint = `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${locationData.lat}&lon=${locationData.lng}&dt=${timestamp}&appid=${apiKey}`;
-          endpoint = `https://api.openweathermap.org/data/3.0/onecall/day_summary?lat=${locationData.lat}&lon=${locationData.lng}&date=${date}&appid=${apiKey}`;
+          endpoint = `https://api.openweathermap.org/data/3.0/onecall/day_summary?lat=${latitude}&lon=${longitude}&date=${date}&appid=${apiKey}`;
         } else {
           // Fetch current weather data if the target date is less than 8 days in the future
-          endpoint = `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${locationData.lat}&lon=${locationData.lng}&dt=${timestamp}&appid=${apiKey}`;
+          endpoint = `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${latitude}&lon=${longitude}&dt=${timestamp}&appid=${apiKey}`;
         }
       } else {
         // If the target date is in the past, fetch current weather data
-        endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${locationData.lat}&lon=${locationData.lng}&units=metric&appid=${apiKey}`;
+        endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
       }
   
       const response = await fetch(endpoint);
@@ -152,6 +132,9 @@ const Weather = ({  data, newData, street_address, zip_code, date, country }) =>
   }, []);
 
 
+  if (!latitude && !longitude) {
+    return <div className="flex justify-center items-center text-center w-full h-full">No weather data available. Please enter a valid address or zip code</div>;
+  }
 
  
   if (loadingWeather) {

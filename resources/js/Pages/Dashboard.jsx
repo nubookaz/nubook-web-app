@@ -26,29 +26,13 @@ export default function Dashboard() {
     // Fetch user data on component mount
     fetchUserData();
   }, []);
-
-  // useEffect(() => {
-  //   // Continue with the rest of your component logic using 'user'
-  //   if (user === null) {
-  //     // User data is still being fetched, show a loading state or return null
-  //     console.log('loading...');
-  //   } else {
-
-  //     // ... rest of your component code ...
-  //   }
-  // }, [user]);
+ 
 
 
 
 
 
-
-
-
-
-
-
-
+  
 
   const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
  

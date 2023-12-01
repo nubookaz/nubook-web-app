@@ -10,19 +10,26 @@ import Modal from '@/Components/Modals/Modal';
 import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 
 
+
+
+
+
 export default function AuthenticatedLayout({ bannerProps, children, project }) {
   const { user, fetchUserData } = useAuth();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState('');
-
-
-
-
   useEffect(() => {
     // Fetch user data on component mount
     fetchUserData();
   }, []);
 
+
+
+
+
+
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentStep, setCurrentStep] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSearch = () => {
@@ -32,7 +39,6 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
   const closeSearch = () => {
     setIsOpen(false);
   };
-
 
   useEffect(() => {
     if (user && user.is_temporary) {
@@ -52,9 +58,15 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
     }
   }, [user]);
  
-
-
   const verification = user && (user.is_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
+
+
+
+
+
+
+
+
 
 
     return (
@@ -89,23 +101,16 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
 
                 <div>
                     <div id="surface-layer" className="absolute z-50 w-full">
-                            
                         <TransparentSearchBar isOpen={isOpen} onClose={closeSearch} />
-
                             {children.surface}
-
                         <Sidebar toggleSearch={toggleSearch} isOpen={isOpen} closeSearch={closeSearch} />
-
                     </div>
 
                     <main className="flex flex-col w-full h-screen overflow-hidden">
-                            
                         <Banner auth={user} project={project} {...bannerProps} />
-
                         <div className="portal-body w-full h-full pt-6 pb-8 pl-[12.5rem] pr-[7rem]">
                             {children.portalBody}
                         </div>
-
                     </main>
                 </div>
                     
@@ -114,4 +119,10 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
         </div>
 
     );
+
+
+
+
+
+
 }

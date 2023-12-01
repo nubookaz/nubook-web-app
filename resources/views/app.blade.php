@@ -6,6 +6,9 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
+        <script>window.GoogleMapApi = "{{ config('services.google_maps.api_key') }}"; </script>
+        <script>window.OpenWeatherApi = "{{ config('services.open_weather.api_key') }}"; </script>
+
         <!-- Scripts -->
         @routes
         @viteReactRefresh

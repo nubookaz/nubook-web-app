@@ -25,8 +25,10 @@ class User extends Authenticatable
         'email',
         'password',
         'location_id',
-        'is_temporary',
+        'primary_production_company_id',
+        'is_password_temporary',
         'verification_code',
+        'code_expires_at',
         'email_verified_at', 
         'email_verified',  
         'code_verified',    
@@ -75,9 +77,19 @@ class User extends Authenticatable
         return $this->belongsTo(Location::class);
     }
 
-    public function productionCompany()
+    public function productionCompanies()
     {
-        return $this->hasOne(ProductionCompany::class, 'user_id');
+        return $this->belongsToMany(ProductionCompany::class, 'user_production_company');
+    }
+
+    public function primaryProductionCompany()
+    {
+        return $this->belongsTo(ProductionCompany::class, 'primary_production_company_id');
+    }
+
+    public function callSheets()
+    {
+        return $this->hasMany(CallSheet::class);
     }
 
     public function projects()

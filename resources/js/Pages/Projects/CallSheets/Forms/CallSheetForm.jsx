@@ -7,8 +7,9 @@ import CircularButton from '@/Components/Buttons/CircularButton';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import Details from '@/Pages/Projects/CallSheets/Forms/Details';
+import Details from '@/Pages/Projects/CallSheets/Forms/Partials/Details';
 import Address from '@/Components/Forms/Address';
+import { fetchGeocodeData } from '@/Components/UtilityFunctions/Geocoding';
 
 
 export default function CallSheetDrawer({ data, newData, mode = 'create', ...props }) {
@@ -20,6 +21,10 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
   }, []);
 
  
+
+
+
+
 
   const { isDrawerPanelOpen, toggleDrawerPanel } = props;
   const [emptyFields, setEmptyFields] = useState({});
@@ -40,6 +45,33 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
     zip_code: '',
   });
 
+  const [geoData, setGeoData] = useState({
+    latitude: '',
+    longitude: '',
+  });
+
+
+  const handleGeocode = async (streetAddress, zipCode) => {
+    if (streetAddress && zipCode) {
+      try {
+        const geoData = await fetchGeocodeData(streetAddress, zipCode);
+        if (geoData) {
+          return { latitude: geoData.lat, longitude: geoData.lng };
+        } else {
+          throw new Error('No geodata found');
+        }
+      } catch (err) {
+        console.error('Error fetching geocode:', err);
+        throw err;
+      }
+    } else {
+      throw new Error('Invalid address or zip code');
+    }
+  };
+  
+
+ 
+
   useEffect(() => {
     if (mode === 'edit' && data) {
       // In edit mode, use the data from the prop
@@ -54,6 +86,8 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
         city: location ? location.city || '' : '',
         state: location ? location.state || '' : '',
         zip_code: location ? location.zip_code || '' : '',
+        latitude: location ? location.latitude || '' : '',
+        longitude: location ? location.longitude || '' : '',
       });
     } else {
       // In create mode, initialize with empty objects
@@ -67,6 +101,8 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
         city: '',
         state: '',
         zip_code: '',
+        latitude: '',
+        longitude: '',
       });
     }
   }, [mode, data, today]);
@@ -85,9 +121,14 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
       city: '',
       state: '',
       zip_code: '',
+      latitude: '',
+      longitude: '',
     });
   
   };
+
+
+
 
 
   const handleUpdateFormData = (field, value) => {
@@ -109,38 +150,67 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
  
 
   const handleCloseButtonClick = () => {
-      clearFormData();
-      console.log("close");
+
+    if (mode === 'edit') {
       toggleDrawerPanel(false);
+    } else {
+      clearFormData();
+      toggleDrawerPanel(false);
+    }
   };
 
-
+ 
   const handleSubmit = async (e) => {
 
     e.preventDefault();
     setProcessing(true);
-    const projectId = props.projectId;
 
     try {
+      const newGeoData = await handleGeocode(callSheetAddress.street_address, callSheetAddress.zip_code);
+      setGeoData(newGeoData);
+  
+      const updatedCallSheetAddress = {
+        ...callSheetAddress,
+        ...newGeoData
+      };
+ 
+      const projectId = props.projectId;
+
       let callSheetResponse;
 
       if (mode === 'create') {
+
+         
         callSheetResponse = await router.post(
           route('projects.callSheets.create', { id: data.id }),
           { 
             callSheetData: callSheetData, 
-            callSheetAddress: callSheetAddress, 
+            callSheetAddress: updatedCallSheetAddress, 
           }
         );
+
+        if (callSheetResponse.status === 200 || callSheetResponse.status === 201) {
+          // Handle successful creation
+          console.log('Call Sheet created successfully:', callSheetResponse.data);
+          // Optionally update state or redirect user
+          // ...
+        } else {
+          // Handle non-successful responses
+          console.error('Error creating call sheet:', callSheetResponse.statusText);
+          // Optionally update UI to show error message
+          // ...
+        }
+  
         clearFormData();
 
        } else if (mode === 'edit' && data) {
         // Update an existing call sheet
+ 
         callSheetResponse = await axios.put(
-          route('callSheets.update.details', { id: data.project_id, callSheetId: data.id }),
+          route('projects.callSheets.update.details', { id: data.project_id, callSheetId: data.id }),
           { 
             callSheetData: callSheetData, 
-            callSheetAddress: callSheetAddress, 
+            callSheetAddress: updatedCallSheetAddress, 
           }
         );
  
@@ -148,6 +218,8 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
           // Check if the response status is OK (200)
           if (callSheetResponse.status === 200) {
             const responseData = callSheetResponse.data;
+            console.log("responseData", responseData);
+
             newData(responseData.callSheet);
           } else {
             // Handle other response status codes (e.g., errors) if needed
@@ -173,6 +245,13 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
           setProcessing(false);
       }
   };
+
+ 
+
+
+
+
+
 
 
   return (
@@ -224,7 +303,7 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
         </div>
       ),
       footer:(
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-4 h-full">
           <CircularButton
             icon={faXmark}
             size="small"

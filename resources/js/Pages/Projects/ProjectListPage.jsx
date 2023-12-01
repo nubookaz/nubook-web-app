@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
-import ProjectForm from '@/Pages/Projects/ProjectForm';
+import ProjectForm from '@/Pages/Projects/Forms/ProjectForm';
 import ProjectList from '@/Components/Projects/ProjectList';
 
 import Select from '@mui/joy/Select';

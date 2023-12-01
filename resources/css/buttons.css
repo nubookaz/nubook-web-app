@@ -1,31 +1,34 @@
 /* buttons.css */
 
 .default-btn {
-    border-radius: 999px; /* Pill shape */
+    border-radius: 5px; /* Pill shape */
     font-weight: 600;
     display: block;
+    padding: 8px 40px;
 }
 
 /* Primary button styles */
 .primary-button {
-    padding: 8px 36px;
     font-size: 1rem;
-    color: var(--secondary-green-color); /* Text color using CSS variable */
-    background-color: var(--primary-green-color); /* Background color using CSS variable */
+    color: #fff; /* Text color using CSS variable */
+    background-color: var(--primary-green-color); 
+    box-shadow: 0px 5px 10px var(--primary-green-color);
+    transition: .3s;
 }
 
 .primary-button:hover,
 .primary-button:focus,
 .primary-button:active {
-    background-color: var(--secondary-green-color); /* Hover background color using CSS variable */
-    color: var(--primary-green-color); /* Hover text color using CSS variable */
+    background-color: #3a7457; /* Hover background color using CSS variable */
+    color: var(--secondary-green-color); /* Hover text color using CSS variable */
     outline: none;
+    box-shadow: 0px 5px 10px #3a7457;
 }
 
 .secondary-button {
-    padding: 4px 36px;
     font-size: .90rem;
     max-height: 3rem;
+    height: 100%;
     color: var(--primary-green-color); /* Text color using CSS variable */
     background-color: var(--secondary-green-color); /* Background color using CSS variable */
 }
@@ -44,12 +47,12 @@
 
 .page-button {
     background-color: #fff; /* White background */
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 4px; /* Rounded corners */
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--tertiary-color); /* Icon color */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
+    /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
     transition: color 0.3s, outline 0.3s; /* Transition properties for color and outline */
     border: 2px solid transparent; /* Transparent outline initially */
 }
@@ -186,4 +189,8 @@
     margin: 0 auto;
     color: var(--primary-green-color);
     background-color: var(--secondary-green-color);
+}
+
+.css-rwetz3-JoyMenuButton-root:hover {
+    background-color: transparent;
 }

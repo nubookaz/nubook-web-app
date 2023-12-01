@@ -44,17 +44,17 @@ export default function AutoCompleteList({ user, onNewOptionAdded, setExistingCl
         
         placeholder="Create or choose an existing client"
         filterOptions={(options, params) => {
-        const filtered = filter(options, params);
+          const filtered = filter(options, params);
 
-        const { inputValue } = params;
-          // Suggest the creation of a new value
-        const isExisting = options.some((option) => inputValue === option.title);
-          if (inputValue !== '' && !isExisting) {
-            filtered.push({
-              inputValue,
-              title: `Add "${inputValue}"`,
-            });
-          }
+          const { inputValue } = params;
+            // Suggest the creation of a new value
+          const isExisting = options.some((option) => inputValue === option.title);
+            if (inputValue !== '' && !isExisting) {
+              filtered.push({
+                inputValue,
+                title: `Add "${inputValue}"`,
+              });
+            }
 
           return filtered;
         }}

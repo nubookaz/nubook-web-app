@@ -22,8 +22,12 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('location_id')->nullable()->constrained('locations')->onDelete('cascade');
 
-            $table->boolean('is_temporary')->default(false);
+            $table->foreignId('primary_production_company_id')->nullable()->constrained('production_companies')->onDelete('set null');
+
+            $table->boolean('is_password_temporary')->default(false);
             $table->string('verification_code')->nullable();
+            $table->timestamp('code_expires_at')->nullable();
+
             $table->boolean('email_verified')->default(false); // Track email verification step
             $table->boolean('code_verified')->default(false); // Track code verification step
             $table->boolean('personal_info_completed')->default(false); // Track personal info completion step

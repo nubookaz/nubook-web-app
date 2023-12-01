@@ -6,7 +6,8 @@ import CardContainer from '@/Components/Containers/CardContainer';
 function ProjectEditPage({ auth, project }) {
 
   const bannerProps = {
-    showGreeting: true,
+    showGreeting: false,
+    showProjectName: false,
     size: 'chapter-banner',
   };
 

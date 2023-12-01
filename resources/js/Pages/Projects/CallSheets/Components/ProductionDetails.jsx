@@ -10,6 +10,9 @@ import Weather from '@/Pages/Projects/CallSheets/Components/Weather';
 
 export default function ProductionDetails({ data, newData, onEditProductionDetails }){
     
+
+
+    
     function formatDateWithDay(dateString) {
         const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
@@ -23,7 +26,10 @@ export default function ProductionDetails({ data, newData, onEditProductionDetai
     const state = newLocationData.film_location?.location?.state || '';
     const zip_code = newLocationData.film_location?.location?.zip_code || '';
     const country = newLocationData.film_location?.location?.country || '';
- 
+    const latitude = newLocationData.film_location?.location?.latitude || '';
+    const longitude = newLocationData.film_location?.location?.longitude || '';
+
+
     const productionMenu = () => [
         { 
             label: 'Edit Production Details', 
@@ -37,7 +43,7 @@ export default function ProductionDetails({ data, newData, onEditProductionDetai
             <div className="flex flex-col gap-4">
                 <div className="text-2xl primary-color flex text-center flex-row gap-4 font-semibold">
                     <FontAwesomeIcon icon={faCalendarDays} className="primary-green-color my-auto w-[2rem]" />
-                    <p className='primary-color text-left text-2xl'>{formatDateWithDay(data.call_sheet_date)}</p>
+                    <p className='primary-color text-left text-2xl'>{formatDateWithDay(date)}</p>
                 </div>
                 <div className='text-2xl primary-color text-center flex flex-row gap-4 font-semibold'>
                     <FontAwesomeIcon icon={faLocationDot} className="primary-green-color my-auto w-[2rem]" />
@@ -48,7 +54,7 @@ export default function ProductionDetails({ data, newData, onEditProductionDetai
                     )}
                 </div>
                 <div className='bg-slate-50 p-2 rounded-2xl secondary-color h-full min-h-[9rem] w-full'>
-                    <Weather data={data} newData={newData} street_address={street_address} zip_code={zip_code} date={date} country={country} />
+                    <Weather data={data} newData={newData} street_address={street_address} zip_code={zip_code} date={date} country={country} latitude={latitude} longitude={longitude}/>
                 </div>
             </div>
         </CardContainer>

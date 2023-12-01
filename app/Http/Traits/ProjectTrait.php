@@ -20,12 +20,14 @@ trait ProjectTrait
 
 
         $projectValidator = Validator::make($projectData, [
-            'project_name' => 'required|string',
-            'project_description' => 'nullable|string',
-            'project_budget' => 'nullable|numeric',
             'project_type' => 'required|string',
             'category_type' => 'required|string',
             'project_stage' => 'required|string',
+            'project_name' => 'required|string',
+            'project_status' => 'required|string',
+            'service_types' => 'required|array',
+            'project_description' => 'nullable|string',
+            'project_budget' => 'nullable|numeric',
         ])->validate();
         
 

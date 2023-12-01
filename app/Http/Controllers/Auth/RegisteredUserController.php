@@ -47,15 +47,17 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-    
+
         $verificationCode = Str::uuid();
-    
+        $expiresAt = now()->addMinutes(3)->toIso8601String();
+
         $user = User::create([
             'first_name' => 'Placeholder',
             'last_name' => 'User',
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'verification_code' => $verificationCode,
+            'code_expires_at' => $expiresAt, 
             'email_verified_at' => null,
             'email_verified' => false,
         ]);
@@ -63,14 +65,14 @@ class RegisteredUserController extends Controller
         $adminRoleId = DB::table('roles')->where('name', 'admin')->first()->id;
         
         $user->roles()->attach($adminRoleId);    
- 
+
         event(new Registered($user));
         Auth::login($user);
 
-    
         Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
- 
+
         return redirect(RouteServiceProvider::HOME);   
     }
+
     
 }

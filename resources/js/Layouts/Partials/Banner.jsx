@@ -13,7 +13,7 @@ import { formattedDate } from '@/Components/Scripts/Date';
  
 import MovieQuotes from '@/Components/Layouts/MovieQuotes';
 
-function Banner({  project, backgroundImage, size, showGreeting, showProfilePhoto }) {
+function Banner({  project, backgroundImage, size, showGreeting, showProfilePhoto, showProjectName = false }) {
   const { user, fetchUserData } = useAuth();
 
   useEffect(() => {
@@ -47,8 +47,7 @@ function Banner({  project, backgroundImage, size, showGreeting, showProfilePhot
       }
   };
  
- 
-  // Get the time of day greeting
+   // Get the time of day greeting
   const timeOfDayGreeting = getTimeOfDayGreeting();
     
   let contentStyle = {};
@@ -65,6 +64,14 @@ function Banner({  project, backgroundImage, size, showGreeting, showProfilePhot
                     <div className="greeting">
                          <h1>
                           {timeOfDayGreeting} {user.first_name} {user.middle_initial ? (user.middle_initial) : ''} {user.last_name}
+                        </h1>
+                    </div>
+                )}
+
+                {showProjectName && (
+                    <div className="greeting">
+                         <h1 className='text-4xl'>
+                          {project.project_name}
                         </h1>
                     </div>
                 )}

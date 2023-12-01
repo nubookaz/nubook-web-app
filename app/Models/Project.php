@@ -13,12 +13,16 @@ class Project extends Model
         'project_image',
         'project_type',
         'category_type',
+        'project_status',
+        'service_types',
         'project_stage',
-        'project_days',
-        'project_months',
-        'project_years',
         'user_id',
     ];
+
+    protected $casts = [
+        'service_types' => 'array',
+    ];
+    
     
     
     public function user()

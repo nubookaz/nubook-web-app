@@ -22,8 +22,15 @@ class ProductionCompany extends Model
         return $this->belongsToMany(Project::class, 'company_project', 'company_id', 'project_id');
     }
 
-    public function user()
+    // Many-to-Many relationship with User
+    public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsToMany(User::class, 'user_production_company');
+    }
+
+    // One-to-Many relationship with CallSheet
+    public function callSheets()
+    {
+        return $this->hasMany(CallSheet::class);
     }
 }

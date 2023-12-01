@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    //
+    public function storeCallSheetLocations(Request $request)
+    {
+        dd($request);
+    }
 }

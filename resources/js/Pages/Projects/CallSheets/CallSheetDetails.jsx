@@ -18,7 +18,7 @@ import ProductionDetails from './Components/ProductionDetails';
 import ProductionCompany from './Components/ProductionCompany';
 import Locations from './Components/Locations';
 
-import CallSheetDrawer from '@/Pages/Projects/CallSheets/Forms/CallSheetDrawer';
+import CallSheetForm from '@/Pages/Projects/CallSheets/Forms/CallSheetForm';
 import LocationDrawer from '@/Pages/Projects/CallSheets/Forms/LocationDrawer';
 
 
@@ -85,8 +85,6 @@ export default function CallSheetDetails() {
     };
 
 
-  
-
   return (
 
  
@@ -105,7 +103,7 @@ export default function CallSheetDetails() {
                         Saved! Call Sheet Details Saved!
                     </Snackbar>
 
-                    <CallSheetDrawer
+                    <CallSheetForm
                         isDrawerPanelOpen={isEditProductionDetailsOpen}
                         toggleDrawerPanel={toggleEditProductionDetailsDrawer}
                         data={callSheet}
@@ -139,9 +137,9 @@ export default function CallSheetDetails() {
                                         content: (
                                             <div className='flex flex-row gap-4 w-full h-full'>
                                                 <div className='col-1 w-full flex flex-col left-col-content gap-4'>
-                                                <ProductionCompany user={user} data={callSheet} />
-                                                <ProductionDetails data={callSheet} newData={newData} onEditProductionDetails={handleEditProductionDetails}/>
-                                                <Locations data={callSheet} newData={newData} onEditLocation={handleEditLocation}/>
+                                                    <ProductionCompany user={user} data={callSheet} />
+                                                    <ProductionDetails data={callSheet} newData={newData} onEditProductionDetails={handleEditProductionDetails}/>
+                                                    <Locations data={callSheet} newData={newData} onEditLocation={handleEditLocation}/>
                                                 </div>
                                                 <div className='col-2 w-[155rem]  enter-col-content flex flex-col gap-4 h-full'>
                                                     <Bulletin data={callSheet} onBulletinTextChange={handleBulletinTextChange} />
@@ -156,31 +154,20 @@ export default function CallSheetDetails() {
                                                         </CardContainer>
                                                     </div>
                                                     <CardContainer className="h-full flex flex-col" header="Recipients">
-                                                        {/* <div className='rsvp-overview'>
-                                                                <LinearProgress determinate value={75} color="success" variant="soft"/>
-                                                                <div className='recipient-overview flex flex-row gap-6 mt-8'>
-                                                                    <PageButton icon={faPeopleGroup} size="small"></PageButton>Clients
-                                                                    <PageButton icon={faPeopleGroup} size="small"></PageButton>Crew
-                                                                    <PageButton icon={faPeopleGroup} size="small"></PageButton>Talent
-                                                                </div>
-                                                        </div>
-                                                        <div className='empty-location text-center m-auto'>
-                                                            <p className='secondary-color text-lg w-2/3 mx-auto mb-4'>You have not added a recipient yet. Click here to add a recipient for your production</p>
-                                                            <SecondaryButton className="mx-auto">Add a recipient</SecondaryButton>
-                                                        </div> */}
+                                                        
                                                     </CardContainer>
                                                 </div>
                                                 <div className='col-3 w-full right-col-content flex flex-col gap-4 h-full'>
                                                     <div className='flex flex-col gap-4 h-full'>
-                                                        <CardContainer className="h-full flex flex-col" header="Production Schedule">
-                                                            <div className='empty-location text-center m-auto'>
-                                                                <p className='secondary-color text-lg w-2/3 mx-auto mb-4'>You have not entered a production schedule yet. Click here to add a schedule for your production</p>
+                                                        <CardContainer className="h-full" header="Production Schedule">
+                                                            <div className='text-center m-auto flex flex-col gap-4'>
+                                                                <p className='secondary-color text-lg w-2/3 mx-auto'>You have not entered a production schedule yet. Click here to add a schedule for your production</p>
                                                                 <SecondaryButton className="mx-auto">Add a production schedule</SecondaryButton>
                                                             </div>
                                                         </CardContainer>
-                                                        <CardContainer className="h-full flex flex-col max-h-[14rem] " header="Atmosphere">
-                                                                <div className='empty-location text-center m-auto'>
-                                                                    <p className='secondary-color text-lg w-2/3 mx-auto mb-4'>You have not entered a atmosphere yet. Click here to add a atmosphere for your production</p>
+                                                        <CardContainer className="h-full" header="Atmosphere">
+                                                                <div className='flex flex-col text-center m-auto gap-4'>
+                                                                    <p className='secondary-color text-lg w-2/3 mx-auto'>You have not entered a atmosphere yet. Click here to add a atmosphere for your production</p>
                                                                     <SecondaryButton className="mx-auto">Add an atmosphere</SecondaryButton>
                                                                 </div>
                                                         </CardContainer>

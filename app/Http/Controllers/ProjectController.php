@@ -63,26 +63,19 @@ class ProjectController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
+    
     public function store(Request $request)
     {       
         // Validate the incoming data
         $project = $this->createProject($request);
 
         $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.edit';
-    
-        // Render the view using Inertia.js and pass project data
-        return redirect()->route($viewName, ['id' => $project->id]);
+        
+        return Inertia::location(route($viewName, ['id' => $project->id]));
+
     }
+    
+
     
     // Helper function to check if all values in an array are null
     private function isDataEmpty($data)

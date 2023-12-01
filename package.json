@@ -41,6 +41,7 @@
         "google-map-react": "^2.2.1",
         "react-circular-progressbar": "^2.1.0",
         "react-dropzone": "^14.2.3",
+        "react-router-dom": "^6.20.0",
         "styled-components": "^5.3.11"
     }
 }

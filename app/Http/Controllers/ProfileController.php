@@ -28,7 +28,7 @@ class ProfileController extends Controller
             'projects', 
             'phone', 
             'location', 
-            'productionCompany'
+            'productionCompanies'
         );
 
         return response()->json($user);

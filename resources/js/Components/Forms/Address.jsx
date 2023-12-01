@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useState, useEffect } from 'react';
 import { formGroupClass, multiColInputClass } from '@/Components/Scripts/Form';
 
 import Input from '@/Components/Forms/Input';
@@ -14,22 +14,27 @@ export default function Address ({
 
   const [selectedState, setSelectedState] = useState('');
  
+  
   const handleChange = (field, value) => {
     onUpdateInfo(field, value);
+
     if (emptyFields[field]) {
-         setEmptyFields((prevEmptyFields) => ({
+        setEmptyFields((prevEmptyFields) => ({
             ...prevEmptyFields,
             [field]: false
         }));
     }
-  };
+
+};
+
 
   const handleStateChange = (event, newValue) => {
     setSelectedState(newValue);
     onUpdateInfo('state', newValue);
   };
+
   
- 
+
   return (
 
 

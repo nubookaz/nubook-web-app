@@ -56,7 +56,7 @@ class WebsiteController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($temporaryPassword),
-            'is_temporary' => true,
+            'is_password_temporary' => true,
         ];
 
  

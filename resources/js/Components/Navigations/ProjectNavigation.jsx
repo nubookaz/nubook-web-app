@@ -14,7 +14,8 @@ function ProjectNavigation({ project }) {
     <div className="flex flex-row w-full">
       <div className="left-content w-full">
         <h1 className='w-full'>{project.project_name}</h1>
-        <p className='light-color text-xl font-base'>{project.project_type} :: {project.category_type}</p>
+        <p className='light-color text-md font-base'>{project.project_type} :: {project.category_type}</p>
+        <p>{project.project_description}</p>
       </div>
       <div className="right-content justify-end w-full pr-[2rem]">
         <ul className="dashboard-navlinks text-center flex gap-6">

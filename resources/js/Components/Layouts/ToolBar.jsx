@@ -9,7 +9,7 @@ import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 
 
 
-function Toolbar({ title, callSheetTitle, actionButtons, onButtonClick, children, cta_text, secondary_cta_text, handleSecondaryButtonClick }) {
+function Toolbar({ title, callSheetTitle, actionButtons, onPrimaryButtonClick, children, cta_text, secondary_cta_text, handleSecondaryButtonClick }) {
 
  
   return (
@@ -42,7 +42,7 @@ function Toolbar({ title, callSheetTitle, actionButtons, onButtonClick, children
                   </SecondaryButton>
                 ) : null}
 
-              <PrimaryButton className="w-[17rem]" onClick={onButtonClick}>{cta_text}</PrimaryButton>
+              <PrimaryButton className="w-[17rem]" onClick={onPrimaryButtonClick}>{cta_text}</PrimaryButton>
             </div>
 
         </div>

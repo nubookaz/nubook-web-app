@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import EmptyContent from '@/Components/Layouts/EmptyContent'; // Import your EmptyContent component
+import EmptyContent from '@/Components/Layouts/EmptyContent';  
 import Toolbar from '@/Components/Layouts/Toolbar';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import PageButton from '@/Components/Buttons/PageButton';
 
-function PortalLayout({  callSheetData, hasData, toolbarTitle, pageType, toolbarCTAText, buttonText, customSvgPath, toggleDrawerPanel, children, backButtonHref, actionButtons, secondary_cta_text, handleSecondaryButtonClick }) {
+function PortalLayout({  callSheetData, hasData, toolbarTitle, pageType, onEmptyButtonClick, toolbarCTAText, buttonText, customSvgPath, onPrimaryToolbarButtonClick, children, backButtonHref, actionButtons, secondary_cta_text, handleSecondaryButtonClick }) {
 
     return (
       <div className="w-full h-full relative">
@@ -22,7 +22,7 @@ function PortalLayout({  callSheetData, hasData, toolbarTitle, pageType, toolbar
                 cta_text={toolbarCTAText}
                 actionButtons={actionButtons}      
                 secondary_cta_text={secondary_cta_text}
-                onButtonClick={toggleDrawerPanel}       
+                onPrimaryButtonClick={onPrimaryToolbarButtonClick}       
                 handleSecondaryButtonClick={handleSecondaryButtonClick}
                 callSheetTitle={callSheetData}
               >
@@ -39,7 +39,7 @@ function PortalLayout({  callSheetData, hasData, toolbarTitle, pageType, toolbar
           <EmptyContent
             customSvgPath={customSvgPath}
             buttonText={buttonText}
-            onButtonClick={toggleDrawerPanel}
+            onButtonClick={onEmptyButtonClick}
           >
             <h2 className="mb-4">No {pageType} Available</h2>
             <p className="mb-4 p-base">

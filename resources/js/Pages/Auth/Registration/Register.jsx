@@ -34,6 +34,13 @@ export default function Register() {
             reset('password', 'password_confirmation');
         };
     }, []);
+
+
+
+
+
+
+    
  
     const submit = (e) => {
         e.preventDefault();

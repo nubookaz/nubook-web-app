@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import CallSheetDrawer from '@/Pages/Projects/CallSheets/Forms/CallSheetDrawer';
+import CallSheetForm from '@/Pages/Projects/CallSheets/Forms/CallSheetForm';
 import CallSheetList from '@/Pages/Projects/CallSheets/Partials/CallSheetList';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import Select from '@mui/joy/Select';
@@ -18,7 +18,7 @@ export default function CallSheets({ auth, showBanner }) {
     const [callSheetView, setCallSheetView] = useState("View All");
 
     const bannerProps = {
-      showGreeting: true, // Customize these props based on your conditions
+      showGreeting: false, // Customize these props based on your conditions
       size: 'page-banner',
     };
 
@@ -43,7 +43,7 @@ export default function CallSheets({ auth, showBanner }) {
           <div className="relative z-50 w-full h-full">
 
 
-              <CallSheetDrawer
+              <CallSheetForm
                 isDrawerPanelOpen={isDrawerPanelOpen}
                 toggleDrawerPanel={toggleDrawerPanel}
                 data={project}
@@ -62,7 +62,8 @@ export default function CallSheets({ auth, showBanner }) {
                   toolbarCTAText={toolbarCTAText}
                   buttonText={buttonText}
                   customSvgPath={customSvgPath}
-                  toggleDrawerPanel={toggleDrawerPanel} // You can optionally pass this function
+                  onPrimaryToolbarButtonClick={toggleDrawerPanel} // You can optionally pass this function
+                  onEmptyButtonClick={toggleDrawerPanel}
                   pageType="Call Sheets"
                 >
                   {{

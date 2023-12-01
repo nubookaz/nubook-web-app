@@ -9,13 +9,17 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            
             $table->unsignedBigInteger('user_id');
-            $table->string('project_name'); // Use 'project_name' based on your variable
-            $table->text('project_description')->nullable(); // Use 'project_description' based on your variable
-            $table->decimal('project_budget', 10, 2)->nullable(); // Use 'project_budget' based on your variable
-            $table->string('project_type'); // Use 'project_type' based on your variable
-            $table->string('category_type'); // Use 'category_type' based on your variable
-            $table->string('project_stage'); // Use 'project_stage' based on your variable        
+            $table->string('project_name');
+            $table->string('category_type');  
+            $table->string('project_type');
+            $table->string('project_status'); 
+            $table->json('service_types'); 
+            $table->string('project_stage'); 
+            $table->text('project_description')->nullable();
+            $table->decimal('project_budget', 10, 2)->nullable();
+
             $table->timestamps();
             
             // Define the foreign key relationship with the users table

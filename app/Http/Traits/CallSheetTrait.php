@@ -17,11 +17,12 @@ trait CallSheetTrait
 
     public function createCallSheet(array $data, $projectId, $filmLocationsId)
     {
+        // dd($data, $filmLocationsId);
         // Create a new call sheet
         $callSheet = new CallSheet;
         $callSheet->fill($data);
         $callSheet->project_id = $projectId;
-        $callSheet->film_locations_id = $filmLocationsId;
+        $callSheet->film_location_id = $filmLocationsId;
         $callSheet->save();
     
         return $callSheet;
@@ -36,12 +37,13 @@ trait CallSheetTrait
         // Update the call sheet with new data
         $callSheet->fill($data);
         $callSheet->project_id = $projectId;
-        $callSheet->film_locations_id = $filmLocationsId;
+        $callSheet->film_location_id = $filmLocationsId;
         $callSheet->save();
 
         return $callSheet;
     }
  
+    
     public function createOrUpdateLocation(array $data)
     {
         // Validate the data
@@ -50,6 +52,8 @@ trait CallSheetTrait
             'city' => 'string|max:255',
             'state' => 'string|max:255',
             'zip_code' => 'string|max:255',
+            'latitude' => 'nullable|numeric|between:-90,90',
+            'longitude' => 'nullable|numeric|between:-180,180',
         ])->validate();
     
         // Find an existing location based on the provided data
@@ -58,6 +62,8 @@ trait CallSheetTrait
             'city' => $validatedData['city'],
             'state' => $validatedData['state'],
             'zip_code' => $validatedData['zip_code'],
+            'latitude' => $validatedData['latitude'],
+            'longitude' => $validatedData['longitude'],
         ])->first();
     
         if (!$location) {

@@ -3,19 +3,30 @@ import CardContainer from '@/Components/Containers/CardContainer';
 
 export default function ProductionCompany({ user, data }){
 
+    const getPrimaryProductionCompanyName = (user) => {
+        if (!user || !user.production_companies || !user.primary_production_company_id) {
+            return null; // or some default value like 'Not available'
+        }
     
-    if (!user || !user.production_company) {
-        return <div>No production company data available</div>;
-    }
-
-    // const { street_address } = user.street_address;
-    const { company_name } = user.production_company;
-
-    return(
+        const primaryCompany = user.production_companies.find(company => 
+            company.id === user.primary_production_company_id
+        );
+    
+        return primaryCompany ? primaryCompany.company_name : null; // or a default value
+    };
+    
+    const primaryCompanyName = getPrimaryProductionCompanyName(user);
+    
+    
+     return(
 
         <CardContainer className="" header="Production Company"  >
-            <h2>{company_name}</h2>
-            {/* <p>{street_address}</p> */}
+   
+            {primaryCompanyName ? (
+                <h2>{primaryCompanyName}</h2>
+            ) : (
+                <div>Assign a Production Company</div>
+            )}
         </CardContainer>
 
     );
