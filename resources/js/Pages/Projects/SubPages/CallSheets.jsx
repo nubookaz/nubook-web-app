@@ -18,9 +18,10 @@ export default function CallSheets({ auth, showBanner }) {
     const [callSheetView, setCallSheetView] = useState("View All");
 
     const bannerProps = {
-      showGreeting: false, // Customize these props based on your conditions
+      showTopBar: false, 
+      showRightContent: false,
       size: 'page-banner',
-    };
+  };
 
     const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
 

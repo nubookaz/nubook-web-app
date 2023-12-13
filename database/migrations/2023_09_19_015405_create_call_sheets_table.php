@@ -13,9 +13,9 @@ class CreateCallSheetsTable extends Migration
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->foreignId('production_company_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('film_location_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('parking_location_id')->nullable()->constrained('locations')->onDelete('cascade');
-            $table->foreignId('hospital_location_id')->nullable()->constrained('locations')->onDelete('cascade');
+            $table->foreignId('film_location_id')->nullable()->constrained('film_locations')->onDelete('cascade');
+            $table->foreignId('parking_location_id')->nullable()->constrained('parking_locations')->onDelete('cascade');
+            $table->foreignId('hospital_location_id')->nullable()->constrained('hospital_locations')->onDelete('cascade');
         
 
             $table->string('status')->default('Draft');

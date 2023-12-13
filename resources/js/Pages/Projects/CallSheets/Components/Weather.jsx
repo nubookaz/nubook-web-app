@@ -7,25 +7,19 @@ import { faCaretDown, faCaretUp, faSun } from '@fortawesome/free-solid-svg-icons
 
 
 
-const Weather = ({  data, newData, street_address, zip_code, date, country, latitude, longitude }) => {
+const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
 
+  let { latitude, longitude } = locationData || {};
+ 
   const [weatherData, setWeatherData] = useState(null);
  
   const [loadingWeather, setLoadingWeather] = useState(true);
   const [error, setError] = useState(null);
   const apiKey = window.OpenWeatherApi;
 
-  const currentDate = new Date(); // Declare currentDate here
+  const currentDate = new Date(); 
 
-
-  // console.log("weatherData 1", weatherData); 
-  // console.log("latitude longitude", latitude, longitude ); 
-  // console.log("street_address", street_address); 
-  // console.log("date", date); 
-
-  // console.log("data.weather", data.weather); 
  
-
   useEffect(() => {
     const fetchWeatherData = async () => {
       setLoadingWeather(true);
@@ -33,19 +27,16 @@ const Weather = ({  data, newData, street_address, zip_code, date, country, lati
       // Function to check if a value is neither null nor empty
       const isValidCoordinate = (value) => value != null && value !== '';
   
-      if (!newData) {
-        if (data && data.weather && typeof data.weather === 'string') {
+         if (data && data.weather && typeof data.weather === 'string') {
           handleJSONWeatherData(data);
         } else if (isValidCoordinate(latitude) && isValidCoordinate(longitude)) {
           handleFetchWeatherData(latitude, longitude, date, apiKey);
         }
-      } else {
-        handleFetchWeatherData(latitude, longitude, date, apiKey);
-      }
+ 
     };
   
     fetchWeatherData();
-  }, [latitude, longitude, newData, data, date, apiKey]); // Update dependencies
+  }, [latitude, longitude, data, date, apiKey]); // Update dependencies
   
 
 
@@ -133,20 +124,20 @@ const Weather = ({  data, newData, street_address, zip_code, date, country, lati
 
 
   if (!latitude && !longitude) {
-    return <div className="flex justify-center items-center text-center w-full h-full">No weather data available. Please enter a valid address or zip code</div>;
+    return <div className="flex justify-center items-center text-center w-full h-full p-6">No weather data available. Please enter a valid address or zip code</div>;
   }
 
  
   if (loadingWeather) {
-    return <div className="flex justify-center items-center text-center w-full h-full">Loading...</div>;
+    return <div className="flex justify-center items-center text-center w-full h-full p-6">Loading...</div>;
   }
   
   if (error) {
-    return <div className="flex justify-center items-center text-center w-full h-full">Error fetching weather data</div>;
+    return <div className="flex justify-center items-center text-center w-full h-full p-6">Error fetching weather data</div>;
   }
   
   if (!weatherData) {
-    return <div className="flex justify-center items-center text-center w-full h-full">No weather data available. Please enter a valid address or zip code</div>;
+    return <div className="flex justify-center items-center text-center w-full h-full p-6">No weather data available. Please enter a valid address or zip code</div>;
   }
   
   let temperatureC, temperatureF, maxTempC, maxTempF, minTempC, minTempF, sunsetTime, sunriseTime, message;
@@ -243,31 +234,64 @@ const Weather = ({  data, newData, street_address, zip_code, date, country, lati
   
 
   return (
-    <div className='flex flex-row gap-6 w-full h-full'>
-      <div className='text-[4rem] text-center my-auto w-[40%]'>
-          <FontAwesomeIcon icon={faSun} className="text-yellow-400 my-auto" />
-      </div>
-      <div className='w-[60%] h-full'>
-          <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>
-          <p className='font-bold'>High: <span className='font-normal'>{maxTempF ? maxTempF.toFixed(2) + "°F" : "N/A"}</span></p>
-          <p className='font-bold'>Low: <span className='font-normal'>{minTempF ? minTempF.toFixed(2) + "°F" : "N/A"}</span></p>
-          <div className='flex flex-row gap-2'>
-            <FontAwesomeIcon icon={faCaretUp} className="text-lg text-yellow-600 my-auto" />
-            <p className='font-bold'>
-              Sunrise: <span className='font-normal'>{sunriseTime}</span>
-            </p>
-          </div>
-          <div className='flex flex-row gap-2'>
-            <FontAwesomeIcon icon={faCaretDown} className="text-lg text-yellow-600 my-auto" />
-            <p className='font-bold'>
-              Sunset: <span className='font-normal'>{sunsetTime}</span>
-            </p>
+
+    <>
+       {layoutStyle === 'portrait' ? (
+          <div className='flex flex-col gap-4'>
+            <div className='flex flex-row gap-6 w-full h-full'>
+              <div className='text-[4rem] text-center my-auto'>
+                  <FontAwesomeIcon icon={faSun} className="text-yellow-400 text-[4rem]" />
+              </div>
+              <div className='h-full flex text-left flex-col my-auto'>
+                  <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>
+                  <p className='font-bold'>High: <span className='font-normal'>{maxTempF ? maxTempF.toFixed(2) + "°F" : "N/A"}</span></p>
+                  <p className='font-bold'>Low: <span className='font-normal'>{minTempF ? minTempF.toFixed(2) + "°F" : "N/A"}</span></p>              
+              </div>
+            </div>
+            <div className='flex flex-col  w-full'>
+                <div className='flex flex-row gap-2 justify-center'>
+                  <FontAwesomeIcon icon={faCaretUp} className="text-lg text-yellow-600 my-auto" />
+                  <p className='font-bold'>
+                    Sunrise: <span className='font-normal'>{sunriseTime}</span>
+                  </p>
+                </div>
+                <div className='flex flex-row gap-2 justify-center'>
+                  <FontAwesomeIcon icon={faCaretDown} className="text-lg text-yellow-600 my-auto" />
+                  <p className='font-bold'>
+                    Sunset: <span className='font-normal'>{sunsetTime}</span>
+                  </p>
+                </div>
+            </div>
           </div>
          
-      </div>
-     
-      {/* <p>{message}</p> */}
-    </div>
+        ):(
+          <div className='flex flex-row gap-6 w-full h-full'>
+            <div className='text-[4rem] text-center my-auto w-[40%]'>
+                <FontAwesomeIcon icon={faSun} className="text-yellow-400 my-auto" />
+            </div>
+            <div className='w-[60%] h-full'>
+                <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>
+                <p className='font-bold'>High: <span className='font-normal'>{maxTempF ? maxTempF.toFixed(2) + "°F" : "N/A"}</span></p>
+                <p className='font-bold'>Low: <span className='font-normal'>{minTempF ? minTempF.toFixed(2) + "°F" : "N/A"}</span></p>
+                <div className='flex flex-row gap-2'>
+                  <FontAwesomeIcon icon={faCaretUp} className="text-lg text-yellow-600 my-auto" />
+                  <p className='font-bold'>
+                    Sunrise: <span className='font-normal'>{sunriseTime}</span>
+                  </p>
+                </div>
+                <div className='flex flex-row gap-2'>
+                  <FontAwesomeIcon icon={faCaretDown} className="text-lg text-yellow-600 my-auto" />
+                  <p className='font-bold'>
+                    Sunset: <span className='font-normal'>{sunsetTime}</span>
+                  </p>
+                </div>
+              
+            </div>
+          </div>
+        )}
+        
+    </>
+   
   );
   
 

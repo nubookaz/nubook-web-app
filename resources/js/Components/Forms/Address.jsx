@@ -11,36 +11,36 @@ export default function Address ({
   setEmptyFields,
  
 })  {
+ 
+
 
   const [selectedState, setSelectedState] = useState('');
- 
-  
+
   const handleChange = (field, value) => {
     onUpdateInfo(field, value);
 
-    if (emptyFields[field]) {
-        setEmptyFields((prevEmptyFields) => ({
-            ...prevEmptyFields,
-            [field]: false
-        }));
-    }
+    // if (emptyFields[field]) {
+    //     setEmptyFields((prevEmptyFields) => ({
+    //         ...prevEmptyFields,
+    //         [field]: false
+    //     }));
+    // }
 
-};
-
+  };  
 
   const handleStateChange = (event, newValue) => {
     setSelectedState(newValue);
     onUpdateInfo('state', newValue);
+    
   };
 
-  
 
   return (
 
 
         <div className={formGroupClass}>
             <Input
-              openToolTip={emptyFields['street_address'] || false}
+              openToolTip={false}
               label="Street Address"
               type="text"
               name="street_address"
@@ -52,7 +52,7 @@ export default function Address ({
 
             <div className={multiColInputClass}>
                 <Input
-                  openToolTip={emptyFields['city'] || false}
+                  openToolTip={false}
                   label="City"
                   type="text"
                   name="city"
@@ -64,7 +64,7 @@ export default function Address ({
 
                 <Input
                   inputType='dropdown'
-                  openToolTip={emptyFields['state'] || false}
+                  openToolTip={false}
                   label="State"
                   type="text"
                   name="state"
@@ -76,7 +76,7 @@ export default function Address ({
                 </Input>
 
                 <Input
-                  openToolTip={emptyFields['zip_code'] || false}
+                  openToolTip={false}
                   label="Zip Code"
                   type="text"
                   name="zip_code"

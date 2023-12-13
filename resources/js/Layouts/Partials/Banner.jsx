@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { faListCheck, faProjectDiagram, faMoneyCheckDollar, faComments, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import ProfilePicture from '@/Components/Profile/ProfilePicture'; 
+import ProfilePicture from '@/Pages/Profile/Partials/ProfilePicture'; 
 import PageButton from '@/Components/Buttons/PageButton';
 import ProjectNavigation from '@/Components/Navigations/ProjectNavigation';
 import { imageUrl } from '@/Components/Scripts/BannerImage';
@@ -13,7 +13,7 @@ import { formattedDate } from '@/Components/Scripts/Date';
  
 import MovieQuotes from '@/Components/Layouts/MovieQuotes';
 
-function Banner({  project, backgroundImage, size, showGreeting, showProfilePhoto, showProjectName = false }) {
+function Banner({  project, backgroundImage, size, showGreeting, showTopBar = true, showProfilePhoto, showRightContent = true, showProjectName = false }) {
   const { user, fetchUserData } = useAuth();
 
   useEffect(() => {
@@ -57,7 +57,8 @@ function Banner({  project, backgroundImage, size, showGreeting, showProfilePhot
            <div className="overlay"></div>
     
           <div className="banner-content flex flex-col h-full" style={contentStyle}>
-            <div className='top-bar flex flex-row justify-between w-full'>
+            {showTopBar && (
+              <div className='top-bar flex flex-row justify-between w-full'>
               <div className="flex left-content justify-start">
 
                 {showGreeting && (
@@ -78,12 +79,18 @@ function Banner({  project, backgroundImage, size, showGreeting, showProfilePhot
 
                 </div>
 
-                <div className="right-content">
+                {showRightContent && (
+                  <div className="right-content">
 
-                  <p className='text-lg font-semibold text-white'>{formattedDate}</p>
+                    <p className='text-lg font-semibold text-white'>{formattedDate}</p>
                     <SecondaryButton href={route('profile.edit') + '#subscription-settings'}>Your Subscription</SecondaryButton>
-                </div>
+                  </div>
+                )}
+
             </div>
+
+            )}
+            
 
               {(size === 'banner-photo') && showProfilePhoto && (
                 <div className="banner-footer flex flex-row justify-between gap-8 -mb-[5rem] mt-4">

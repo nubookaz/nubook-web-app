@@ -19,7 +19,7 @@ function Toolbar({ title, callSheetTitle, actionButtons, onPrimaryButtonClick, c
         <div id="toolbar-content" className="flex flex-row w-full h-full gap-4 justify-between ">
 
             <div className="justify-start grow flex flex-row justify-start justify-between items-center">
-              <h1 className='primary-color'>{callSheetTitle ? callSheetTitle.call_sheet_name : title}</h1>
+              <h1 className='primary-color font-bold'>Call Sheet: <span className='font-semibold text-slate-400'>{callSheetTitle ? callSheetTitle.call_sheet_name : title}</span></h1>
             </div>
 
             <div className="">
@@ -37,12 +37,12 @@ function Toolbar({ title, callSheetTitle, actionButtons, onPrimaryButtonClick, c
 
             <div className="shrink-0 flex flex-row gap-6 justify-end h-full">
               {secondary_cta_text ? (
-                  <SecondaryButton className="w-[17rem]" onClick={handleSecondaryButtonClick}>
+                  <SecondaryButton className="w-[8rem]" onClick={handleSecondaryButtonClick}>
                     {secondary_cta_text}
                   </SecondaryButton>
                 ) : null}
 
-              <PrimaryButton className="w-[17rem]" onClick={onPrimaryButtonClick}>{cta_text}</PrimaryButton>
+              <PrimaryButton className="w-[14rem]" onClick={onPrimaryButtonClick}>{cta_text}</PrimaryButton>
             </div>
 
         </div>

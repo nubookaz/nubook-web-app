@@ -25,12 +25,14 @@ class ProfileController extends Controller
     {
         // Replace this logic with your actual user data retrieval logic
         $user = auth()->user()->load(
-            'projects', 
+            'projects.callSheets', 
             'phone', 
-            'location', 
+            'location.filmLocation', 
+            'location.parkingLocation', 
+            'location.hospitalLocation', 
+            'primaryProductionCompany',
             'productionCompanies'
         );
-
         return response()->json($user);
     }
 
@@ -39,7 +41,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        $user = Auth::user()->load(['phone', 'location', 'productionCompany']);
+        $user = Auth::user()->load(['phone', 'location', 'primaryProductionCompany']);
 
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,

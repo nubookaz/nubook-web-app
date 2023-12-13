@@ -5,10 +5,11 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
 import ProjectForm from '@/Pages/Projects/Forms/ProjectForm';
-import ProjectList from '@/Components/Projects/ProjectList';
+import ProjectList from '@/Pages/Projects/Components/ProjectList';
 
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import Modal from '@/Components/Modals/Modal';
 
 
 
@@ -18,6 +19,14 @@ export default function ProjectListPage({ auth }) {
     const [currentStep, setCurrentStep] = useState(1);
     const [isProjectFormPanel, setProjectFormPanel] = useState(false);
     const [projectView, setProjectView] = useState("View All");
+    const [closeModal, setCloseModal] = useState(false);
+
+
+    const openModal = () => {
+        setCloseModal(true);
+      };
+
+
 
     const bannerProps = {
         showGreeting: true, // Customize these props based on your conditions
@@ -40,13 +49,20 @@ export default function ProjectListPage({ auth }) {
             surface: (
 
                 <div className="relative z-50 w-full h-full">
-                    <ProjectForm
+
+                    <Modal
+                    show={closeModal}
+                    maxWidth='100%'
+                    dialogPanelClass='h-full'
+                    onClose={setCloseModal}
+                    >
+                
+                        <ProjectForm
                         auth={auth}
-                        currentStep={currentStep}
-                        setCurrentStep={setCurrentStep}
-                        isRightPanelOpen={isProjectFormPanel}
-                        toggleRightPanel={openProjectFormPanel}
-                    />
+                        />         
+                        
+                    </Modal>
+
                 </div>
 
             ),
@@ -59,7 +75,7 @@ export default function ProjectListPage({ auth }) {
                         pageType={pageType}
                         toolbarCTAText={toolbarCTAText}
                         backButtonHref={backButtonHref}
-                        toggleDrawerPanel={openProjectFormPanel}
+                        onPrimaryToolbarButtonClick={openModal}
                         >
                         {{
 

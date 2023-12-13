@@ -51,24 +51,6 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
   });
 
 
-  const handleGeocode = async (streetAddress, zipCode) => {
-    if (streetAddress && zipCode) {
-      try {
-        const geoData = await fetchGeocodeData(streetAddress, zipCode);
-        if (geoData) {
-          return { latitude: geoData.lat, longitude: geoData.lng };
-        } else {
-          throw new Error('No geodata found');
-        }
-      } catch (err) {
-        console.error('Error fetching geocode:', err);
-        throw err;
-      }
-    } else {
-      throw new Error('Invalid address or zip code');
-    }
-  };
-  
 
  
 
@@ -85,10 +67,14 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
         street_address: location ? location.street_address || '' : '',
         city: location ? location.city || '' : '',
         state: location ? location.state || '' : '',
-        zip_code: location ? location.zip_code || '' : '',
+        zip_code: location ? location.zip_code || '' : '', 
+      });
+
+      setGeoData({ 
         latitude: location ? location.latitude || '' : '',
         longitude: location ? location.longitude || '' : '',
       });
+
     } else {
       // In create mode, initialize with empty objects
       setCallSheetData({
@@ -100,7 +86,10 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
         street_address: '',
         city: '',
         state: '',
-        zip_code: '',
+        zip_code: '', 
+      });
+
+      setGeoData({ 
         latitude: '',
         longitude: '',
       });
@@ -120,11 +109,14 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
       street_address: '',
       city: '',
       state: '',
-      zip_code: '',
+      zip_code: '', 
+    });
+  
+    setGeoData({ 
       latitude: '',
       longitude: '',
     });
-  
+
   };
 
 
@@ -140,6 +132,10 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
       }));
     } else {
       setCallSheetAddress(prevData => ({
+        ...prevData,
+        [field]: value
+      }));
+      setGeoData(prevData => ({
         ...prevData,
         [field]: value
       }));
@@ -159,7 +155,26 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
     }
   };
 
- 
+
+  
+
+  const handleGeocode = async (streetAddress, zipCode) => {
+    if (streetAddress && zipCode) {
+      try {
+        const geoData = await fetchGeocodeData(streetAddress, zipCode);
+        return geoData ? { latitude: geoData.lat, longitude: geoData.lng } : null;
+      } catch (err) {
+        console.error('Error fetching geocode:', err);
+        return null; // Return null instead of throwing an error
+      }
+    } else {
+      // Return null if address or zip code is not provided
+      return null;
+    }
+  };
+  
+
+
   const handleSubmit = async (e) => {
 
     e.preventDefault();
@@ -180,7 +195,7 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
 
       if (mode === 'create') {
 
-         
+ 
         callSheetResponse = await router.post(
           route('projects.callSheets.create', { id: data.id }),
           { 
@@ -204,7 +219,6 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
         clearFormData();
 
        } else if (mode === 'edit' && data) {
-        // Update an existing call sheet
  
         callSheetResponse = await axios.put(
           route('projects.callSheets.update.details', { id: data.project_id, callSheetId: data.id }),
@@ -248,11 +262,7 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
 
  
 
-
-
-
-
-
+ 
 
   return (
     <DrawerPanel

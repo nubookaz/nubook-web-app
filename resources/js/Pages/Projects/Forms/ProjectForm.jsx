@@ -3,7 +3,7 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons'; 
+import { faChevronLeft, faCalculator, faRocket } from '@fortawesome/free-solid-svg-icons'; 
 
 import { formClass, formGroupClass, inputGroupClass, multiColInputClass } from '@/Components/Scripts/Form';
 import Select from '@mui/joy/Select';
@@ -27,7 +27,8 @@ export default function ProjectForm({ customClasses }) {
 
     const [processing, setProcessing] = useState(false);
     const [emptyFields, setEmptyFields] = useState({});
-
+    const [currentStep, setCurrentStep] = useState(1);
+    const [div, showDiv] = useState(false);
 
     const serviceTypes = [
       { title: 'The Shawshank Redemption', year: 1972},
@@ -42,20 +43,16 @@ export default function ProjectForm({ customClasses }) {
   
   const customClass = `${customClasses}`;
 
-
-
-
-    const [projectData, setProjectData] = useState({
-      project_name: '',
-      category_type: '',
-      project_type: '',
-      project_status: '',
-      service_types: [],
-      project_stage: '',
-      project_description: '',
-      project_budget: '',
-    });
-
+  const [projectData, setProjectData] = useState({
+    project_name: '',
+    category_type: '',
+    project_type: '',
+    project_status: '',
+    service_types: [],
+    project_stage: '',
+    project_description: '',
+    project_budget: '',
+  });
 
   const clearFormData = () => {
     // Clear out the projectData state
@@ -71,14 +68,13 @@ export default function ProjectForm({ customClasses }) {
     });
   
   };
-  
-  const handleCloseButtonClick = () => {
-    // Call the reusable function to clear form data
+ 
+  const handleBackButtonClick = () => {
+ 
     clearFormData();
-    setEmptyFields(false);
-
-    // Close the panel when the form is not complete
-    toggleDrawerPanel(false);
+    setEmptyFields(true);
+    showDiv(false);
+ 
   };
   
  
@@ -133,14 +129,18 @@ export default function ProjectForm({ customClasses }) {
 };
 
  
-
     return (
+
+        <div className='flex flex-col gap-10 max-w-[50rem] justify-center h-full w-full mx-auto'>
+                   
+        {div ? (
+                 
 
 
             <form onSubmit={submit} className={[formClass, customClass]}>
 
                 <div className={formGroupClass}>
-    
+
                     <div className={multiColInputClass}>
                         <div className={inputGroupClass}>
                             <label htmlFor="project_type" value="project_type" className='text-gray-400 text-sm'> Project Type * </label>
@@ -189,7 +189,7 @@ export default function ProjectForm({ customClasses }) {
                                             <Option value="Interactive & Animation">Interactive & Animation</Option>
                                         </>
                                     )}
-    
+
                                     {(projectData.project_type === 'Independent' || projectData.project_type === 'Studio-Backed') && (
                                         <>
                                             <Option value="Feature Film">Feature Film</Option>
@@ -223,7 +223,7 @@ export default function ProjectForm({ customClasses }) {
                             </Tooltip> 
                         </div>
                     </div>
-    
+
                     <div className={multiColInputClass}>
                         <div className={inputGroupClass}>
                             <label htmlFor="project_stage" value="project_stage" className='text-gray-400 text-sm'> Project Stage * </label>
@@ -249,7 +249,7 @@ export default function ProjectForm({ customClasses }) {
                                 </Select>
                             </Tooltip> 
                         </div>
-    
+
                         <div className={inputGroupClass}>
                             <label htmlFor="project_status" value="project_status" className='text-gray-400 text-sm'> Project Status * </label>
                             <Tooltip arrow title="Project Status is Required" open={emptyFields['project_status'] || false} color="danger" placement="top" variant="outlined" >
@@ -278,7 +278,7 @@ export default function ProjectForm({ customClasses }) {
                             </Tooltip> 
                         </div>
                     </div>
-    
+
                     <Input
                         openToolTip={false}
                         inputType="autoComplete"
@@ -295,10 +295,10 @@ export default function ProjectForm({ customClasses }) {
                         getOptionLabel={(option) => option.title}
                         isOptionEqualToValue={(option, value) => option.title === value.title}
                         onChange={(event, newServiceType) => {
-                               handleChange('service_types', newServiceType);
+                            handleChange('service_types', newServiceType);
                         }}
                     ></Input>
-    
+
                     <div className={`mt-6 ${formGroupClass}`}>
                         <div>
                             <h3 className='mb-2'>Project Details</h3>
@@ -306,7 +306,7 @@ export default function ProjectForm({ customClasses }) {
                                 Create your adventure: Choose a memorable name, describe your epic story, and share your budget to realize your cinematic vision.
                             </p>
                         </div>
-    
+
                         <div className={inputGroupClass}>
                             <label htmlFor="project_name" value="project_name" className='text-gray-400 text-sm'> Project Name * </label>
                             <Tooltip arrow title="Project Name is Required" open={emptyFields['project_name'] || false} color="danger" placement="top" variant="outlined" >
@@ -323,7 +323,7 @@ export default function ProjectForm({ customClasses }) {
                                 />
                             </Tooltip> 
                         </div>
-    
+
                         <div className={inputGroupClass}>
                             <label htmlFor="project_description" value="project_description" className='text-gray-400 text-sm'> Project Description </label>
                             <Textarea 
@@ -337,7 +337,7 @@ export default function ProjectForm({ customClasses }) {
                                 }}
                             />
                         </div>
-    
+
                         <div className={inputGroupClass}>
                             <label htmlFor="project_budget" value="project_budget" className='text-gray-400 text-sm'> Project Budget </label>
                             <input
@@ -351,20 +351,48 @@ export default function ProjectForm({ customClasses }) {
                                 }}
                             />
                         </div>
-    
+
                     </div>
-                
+
                 </div>
-    
+
                 <div className='flex flex-row gap-4 h-full'>
-                  <div className="circular-button circular-button-small cursor-pointer" onClick={handleCloseButtonClick}>
-                      <FontAwesomeIcon icon={faXmark} />
-                  </div>
-            
-                  <SecondaryButton buttonType="submit" onSubmit={submit} disabled={processing}>Create Project</SecondaryButton>
-              </div>
-    
+                <div className="circular-button circular-button-small cursor-pointer" onClick={handleBackButtonClick}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                </div>
+
+                <SecondaryButton buttonType="submit" onSubmit={submit} disabled={processing}>Create Project</SecondaryButton>
+                </div>
+
             </form>
+
+
+         ) : (
+          <>
+
+            <div className='text-center'>
+              <h2>Choose an option below</h2>
+              <p>To get started, we invite you to choose between creating an estimate or initiating a project. Whether you're looking to plan your next client project or embark on a passion project close to your heart, making this choice will set you on the right path towards your goal. Select the option that aligns with your current needs, and we'll guide you through the process step by step.</p>
+            </div>
+            <div className='flex flex-row gap-8 justify-center'>
+                <div className='disable border-2 border-slate-50 duration-700 cursor-pointer hover:border-white hover:shadow-2xl rounded-md text-center w-[9rem] h-[9rem] justify-center flex flex-col gap-2 p-4'>
+                <FontAwesomeIcon className='text-2xl primary-color' icon={faCalculator}></FontAwesomeIcon>
+                <p className='text-sm'>Start with an Estimate</p>
+                </div>
+                <div onClick={showDiv} className='border-2 border-slate-50 duration-700 hover:border-white hover:shadow-2xl cursor-pointer rounded-md text-center w-[9rem] h-[9rem] justify-center flex flex-col gap-2 p-4'>
+                    <FontAwesomeIcon className='text-2xl primary-color' icon={faRocket}></FontAwesomeIcon>
+                    <p className='text-sm'>Create a Project</p>
+                </div>
+            </div>
+
+          </>
+          
+        )}
+
+
+    </div>
+
+            
 
     );
 }

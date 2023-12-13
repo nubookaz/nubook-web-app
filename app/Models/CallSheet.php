@@ -16,7 +16,7 @@ class CallSheet extends Model
         'call_sheet_date', 
         'weather',
         'bulletin',
-        'film_locations_id',
+        'film_location_id',
         'parking_location_id',
         'hospital_location_id',
         'production_company_id',

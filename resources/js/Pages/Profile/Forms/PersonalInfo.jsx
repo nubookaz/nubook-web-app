@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import { fetchGeocodeData } from '@/Components/UtilityFunctions/Geocoding';
+import Address from '@/Components/Forms/Address';
 
 import Input from '@/Components/Forms/Input';
 
@@ -16,71 +17,113 @@ export default function PersonalInfo({
     const [selectedState, setSelectedState] = useState('');
     const [geoLocationData, setGeoLocationData] = useState(null);
 
-    const [data, setData] = useState({
+    const [personalData, setPersonalData] = useState({
         first_name: '',
         last_name: '',
         middle_initial: '',
         tel: '',
+    });
+ 
+    const [addressData, setAddressData] = useState({
         street_address: '',
         city: '',
         state: '',
         zip_code: '',
+    });
+
+    const [geocodeData, setGeocodeData] = useState({
         latitude: '',
         longitude: '',
     });
- 
 
     useEffect(() => {
-        // Define the function inside useEffect
         const handleGeocode = async () => {
-          try {
-            if (data.street_address && data.zip_code) {
-              const geoData = await fetchGeocodeData(data.street_address, data.zip_code);
-            
-              if (geoData) {
-                setGeoLocationData(geoData);
-
-                const updatedData = {
-                    ...data,
-                    latitude: geoData.lat,
-                    longitude: geoData.lng
-                  };
-        
-                  setData(updatedData);
-        
-                  onUpdateInfo(updatedData);
-              }
-
+            try {
+                if (addressData.street_address && addressData.zip_code) {
+                    const geoData = await fetchGeocodeData(addressData.street_address, addressData.zip_code);
+                    
+                    if (geoData) {
+                        setGeocodeData({
+                            latitude: geoData.lat,
+                            longitude: geoData.lng
+                        });
+    
+                        // If needed, call onUpdateInfo here with the updated geocode data
+                        onUpdateInfo({
+                            ...personalData,
+                            ...addressData,
+                            ...geocodeData
+                        });
+                    }
+                }
+            } catch (err) {
+                // setError(err.message);
+                setGeocodeData({ latitude: '', longitude: '' });
             }
-          } catch (err) {
-            // setError(err.message);
-            setGeoLocationData(null);
-          }
         };
     
-        // Call the function
         handleGeocode();
     
-    }, [data.street_address, data.zip_code]);
+    }, [addressData.street_address, addressData.zip_code]);
     
- 
-
     useEffect(() => {
         if (existingData) {
-            setData(existingData);
+            setPersonalData({
+                first_name: existingData.first_name || '',
+                last_name: existingData.last_name || '',
+                middle_initial: existingData.middle_initial || '',
+                tel: existingData.tel || '',
+            });
+            setAddressData({
+                street_address: existingData.street_address || '',
+                city: existingData.city || '',
+                state: existingData.state || '',
+                zip_code: existingData.zip_code || '',
+            });
+            setGeocodeData({
+                latitude: existingData.latitude || '',
+                longitude: existingData.longitude || '',
+            });
         }
     }, [existingData]);
-
+    
+    
     const handleChange = (field, value) => {
-        setData((prevData) => ({
-          ...prevData,
-          [field]: value,
-        }));
+        if (field in personalData) {
+            setPersonalData(prevPersonalData => ({
+                ...prevPersonalData,
+                [field]: value,
+            }));
+        } else if (field in addressData) {
+            setAddressData(prevAddressData => ({
+                ...prevAddressData,
+                [field]: value,
+            }));
+        } else if (field in geocodeData) {
+            setGeocodeData(prevGeocodeData => ({
+                ...prevGeocodeData,
+                [field]: value,
+            }));
+        }
+ 
+
+        // If needed, update onUpdateInfo call to include geocodeData
         onUpdateInfo({
-            ...data,
+            ...personalData,
+            ...addressData,
+            ...geocodeData,
             [field]: value,
         });
     };
+    
+    const handleUpdateAddressData = (field, value) => {
+ 
+        setAddressData(prevAddressData => ({
+            ...prevAddressData,
+            [field]: value,
+        }));
+    };
+    
  
     const formatPhoneNumber = (value) => {
         const cleanedValue = value.replace(/\D/g, '');
@@ -88,9 +131,9 @@ export default function PersonalInfo({
         return formattedValue;
     };
 
-  
-    return (
 
+
+    return (
         <div className='flex flex-col gap-4 grow'>
              
             <div className='flex flex-row gap-2 w-full'>
@@ -101,25 +144,24 @@ export default function PersonalInfo({
                     type="text"
                     name="first_name"
                     placeholder="Daniel"
-                    value={data.first_name}
+                    value={personalData.first_name}
                     autoComplete="given-name"
                     parentClass="grow"
                     openToolTip={false}
                     onChange={(e) => handleChange('first_name', e.target.value)}
                 />
-                {/* <div className='flex flex-col gap-2'> */}
                 <Input 
                     required={false}
                     title="M.I."
                     label="M.I."
                     type="text"
-                    name="first_name"
+                    name="middle_initial"
                     placeholder="D.W"
-                    value={data.middle_initial}
+                    value={personalData.middle_initial}
                     autoComplete="additional-name"
                     parentClass="!w-1/2"
                     openToolTip={false}
-                    onChange={(e) => handleChange('first_name', e.target.value)}
+                    onChange={(e) => handleChange('middle_initial', e.target.value)}
                 />
                 <Input 
                     required={true}
@@ -128,14 +170,14 @@ export default function PersonalInfo({
                     type="text"
                     name="last_name"
                     placeholder="Lewis"
-                    value={data.last_name}
+                    value={personalData.last_name}
                     autoComplete="family-name"
                     parentClass="grow"
                     openToolTip={false}
                     onChange={(e) => handleChange('last_name', e.target.value)}
                 />
             </div>
-
+    
             <div className='flex flex-col gap-2 w-full '>
                 <label htmlFor="tel" value="tel" className='text-gray-400 text-sm'> Phone Number </label>
                 <input
@@ -143,13 +185,13 @@ export default function PersonalInfo({
                     id="tel"
                     name="tel"
                     placeholder="(123) 456-7890"
-                    value={data.tel ? formatPhoneNumber(data.tel) : ''}
+                    value={personalData.tel ? formatPhoneNumber(personalData.tel) : ''}
                     autoComplete="tel"
                     onChange={(e) => handleChange('tel', e.target.value)}
                 /> 
             </div>
-        
-            <div className='flex flex-col gap-4 w-full'>
+
+            {/* <div className='flex flex-col gap-4 w-full'>
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="street_address" value="street_address" className='text-gray-400 text-sm'> Street Address </label>
                     <input
@@ -157,7 +199,7 @@ export default function PersonalInfo({
                         id="street_address"
                         name="street_address"
                         placeholder="1234 Chuckleberry Lane"
-                        value={data.street_address}
+                        value={addressData.street_address}
                         autoComplete="street-address"
                         onChange={(e) => handleChange('street_address', e.target.value)}
                     />
@@ -170,24 +212,24 @@ export default function PersonalInfo({
                             id="city"
                             name="city"
                             placeholder="Giggletown"
-                            value={data.city}
+                            value={addressData.city}
                             autoComplete="address-level2"
                             onChange={(e) => handleChange('city', e.target.value)}
                         />
                     </div>
-                    <div className='flex flex-col gap-2'>
+                    <Input
+                        inputType='dropdown'
+                        openToolTip={emptyFields['state'] || false}
+                        label="State"
+                        type="text"
+                        name="state"
+                        placeholder="Select a State"
+                        value={data.state}
+                        options={stateOptions}
+                        onChange={handleStateChange}
+                        >
+                    </Input>
 
-                    <label htmlFor="state" value="state" className='text-gray-400 text-sm'> State </label>
-                        <input
-                            type="text"
-                            id="state"
-                            name="state"
-                            placeholder="Whimsicalandia"
-                            value={data.state}
-                            autoComplete="address-level1"
-                            onChange={(e) => handleChange('state', e.target.value)}
-                        />
-                    </div>
                     <div className='flex flex-col gap-2 grow'>
                         <label htmlFor="zip_code" value="zip_code" className='text-gray-400 text-sm'> Zip Code </label>
                         <input
@@ -195,17 +237,24 @@ export default function PersonalInfo({
                             id="zip_code"
                             name="zip_code"
                             placeholder="65904"
-                            value={data.zip_code}
+                            value={addressData.zip_code}
                             autoComplete="postal-code"
                             onChange={(e) => handleChange('zip_code', e.target.value)}
                         />
                     </div>
                 </div>
                
-            </div>                
-        </div> 
+            </div>        */}
 
+            <Address
+                data={addressData}
+                onUpdateInfo={handleUpdateAddressData}
+                emptyFields={emptyFields}
+                setEmptyFields={setEmptyFields}
+            />
+        </div> 
     );
+    
 
 }
 

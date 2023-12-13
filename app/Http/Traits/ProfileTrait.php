@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Location;  
+use App\Models\ProductionCompany;  
 
 trait ProfileTrait
 

@@ -6,7 +6,7 @@ import { faSquarePollHorizontal, faMagnifyingGlass, faProjectDiagram, faBars } f
 import ApplicationLogo from '@/Components/Branding/ApplicationLogo';
 import ResponsiveNavLink from '@/Components/Navigations/ResponsiveNavLink';
 
-import ProfilePicture from '@/Components/Profile/ProfilePicture';
+import ProfilePicture from '@/Pages/Profile/Partials/ProfilePicture';
 
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';

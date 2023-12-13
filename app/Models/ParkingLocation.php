@@ -11,10 +11,9 @@ class ParkingLocation extends Model
 
     protected $fillable = [
         'location_id',
-        'hospital_instructions'
+        'parking_instructions',
     ];
 
-    
     public function callSheet()
     {
         return $this->hasMany(CallSheet::class); 

@@ -39,11 +39,10 @@ export default function Bulletin({ data, onBulletinTextChange }) {
                 maxRows={6}
                 defaultValue={data.bulletin}
                 placeholder="Type anything…" 
-                maxLength={maxLength} // Set the maximum character length
+                maxLength={maxLength} 
                 onKeyDown={(event) => {
                     if (event.key === 'Enter') {
-                        event.preventDefault(); // Prevent the default behavior of Enter key
-                        // Optionally, you can perform some other action here
+                        event.preventDefault(); 
                     }
                 }}
                 onChange={(event) => {

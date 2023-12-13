@@ -27,11 +27,13 @@ class CallSheetController extends Controller
      */
     public function index($id)
     {
-        // dd($id);
-        // Retrieve the project based on the project ID from the route parameter
+         // Retrieve the project based on the project ID from the route parameter
         $projects = Project::findOrFail($id);
 
-        $callSheets = $projects->callSheets; // Assuming you have defined the relationship correctly in your Project model
+        $callSheets = $projects->callSheets->load(
+            'filmLocation',
+            'parkingLocation',
+        ); 
 
 
         return Inertia::render('Projects/SubPages/CallSheets', [
@@ -68,31 +70,32 @@ class CallSheetController extends Controller
     {
         $callSheetData = $request['callSheetData'];
         $callSheetAddress = $request['callSheetAddress'];
-        // dd($request->all());
-        $filmLocation = null;
 
-        if (!empty(array_filter($callSheetAddress, function($value) { return $value !== null; }))) {
+        // Initialize $filmLocationId as null in case the address is not provided
+        $filmLocationId = null;
+
+        // Check if callSheetAddress is provided and not just empty fields
+        if (!empty(array_filter($callSheetAddress))) {
             // Create or find the Location
             $location = $this->createOrUpdateLocation($callSheetAddress);
-    
+            
             // Create or find the FilmLocation and associate it with the Location
             $filmLocation = FilmLocation::firstOrCreate(['location_id' => $location->id]);
-            // dd($filmLocation);
-
-            $callSheet = $this->createCallSheet($callSheetData, $projectId, $filmLocation->id);
             
-
-        } else {
-
-            $callSheet = $this->createCallSheet($callSheetData, $projectId);
-
+            // Set the filmLocationId to be used as the third argument
+            $filmLocationId = $filmLocation->id;
         }
- 
+
+        // Create the CallSheet with or without the film location id
+        $callSheet = $this->createCallSheet($callSheetData, $projectId, $filmLocationId);
+
+        // Redirect to the edit page
         return redirect()->route('projects.callSheets.edit.page', [
             'id' => $projectId,
             'callSheetId' => $callSheet->id,
         ]);
     }
+
 
     public function editDetailsPage($id, $callSheetId)
     {
@@ -100,7 +103,7 @@ class CallSheetController extends Controller
         $project = Project::find($id);
     
         // Retrieve the call sheet by its ID
-        $callSheet = CallSheet::with(['project', 'filmLocation.location', 'parkingLocation.location', 'hospitalLocation.location'])->findOrFail($callSheetId);
+        $callSheet = CallSheet::with(['project', 'filmLocation.location', 'parkingLocation.location', 'hospitalLocation.location', 'project.user.primaryProductionCompany'])->findOrFail($callSheetId);
       
         return Inertia::render('Projects/CallSheets/CallSheetDetails', [
             // 'userCompany' => $userCompany,
@@ -113,7 +116,6 @@ class CallSheetController extends Controller
     {
         $callSheetData = $request['callSheetData'];
         $callSheetAddress = $request['callSheetAddress'];
-
 
         // Find the CallSheet based on $callSheetId
         $callSheet = CallSheet::find($callSheetId);
@@ -147,6 +149,7 @@ class CallSheetController extends Controller
                     'call_sheet_name' => $callSheetData['call_sheet_name'],
                     'call_sheet_date' => $callSheetData['call_sheet_date'],
                 ]);
+
             } else {
 
 
@@ -165,7 +168,8 @@ class CallSheetController extends Controller
                 $filmLocation->location_id = $location->id;
            
                 $filmLocation->save();
-                $callSheet->film_locations_id = $filmLocation->id;
+                $callSheet->film_location_id = $filmLocation->id;
+                $locationId = $callSheet->film_location_id;
 
                 // Update the CallSheet name and date
                 $callSheet->update([
@@ -173,8 +177,13 @@ class CallSheetController extends Controller
                     'call_sheet_date' => $callSheetData['call_sheet_date'],
                 ]);
             }
+            
+            $locationData = Location::find($filmLocation->location_id);
 
- 
+            // Attach location data to the callSheet object
+            $callSheet->locationData = $locationData;
+            $callSheet = CallSheet::with(['project', 'filmLocation.location', 'parkingLocation.location', 'hospitalLocation.location'])->findOrFail($callSheetId);
+
             // Return the updated data as JSON
             return response()->json([
                 'callSheet' => $callSheet->toArray(),

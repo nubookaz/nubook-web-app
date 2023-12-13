@@ -1,12 +1,16 @@
-body {
+body{
     background-color: var(--warm-color);
-    /* background-color: #000; */
-
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+body,
+.MuiDrawer-root {
     font-family: "SF Pro Rounded", sans-serif;
 }
+
+ 
 
 .disabled-feature {
     opacity: 0.5;

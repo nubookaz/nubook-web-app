@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
 import { imageUrl } from '@/Components/Scripts/BannerImage';
-import ProfilePicture from '@/Components/Profile/ProfilePicture';
+import ProfilePicture from '@/Pages/Profile/Partials/ProfilePicture';
 import PersonalInfo from '@/Pages/Profile/Forms/PersonalInfo';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
@@ -24,35 +24,13 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
     fetchUserData();
   }, []);
 
-  const [userData, setUserData] = useState(null);
+
+
+
+
+
   const [emptyFields, setEmptyFields] = useState({});
   const [processing, setProcessing] = useState(false);
-
-  useEffect(() => {
-    if (user && JSON.stringify(user) !== JSON.stringify(userData)) {
-      setUserData(user);
-  
-      setPersonalInfo({
-        first_name: user.first_name || '',
-        last_name: user.last_name || '',
-        middle_initial: user.middle_initial || '',
-        tel: user.phone ? user.phone.tel || '' : '',
-        street_address: user.location ? user.location.street_address || '' : '',
-        city: user.location ? user.location.city || '' : '',
-        state: user.location ? user.location.state || '' : '',
-        zip_code: user.location ? user.location.zip_code || '' : '',
-      });
-  
-      setCompanyInfo({
-        company_name: user.production_company ? user.production_company.company_name || '' : '',
-        ein_number: user.production_company ? user.production_company.ein_number || '' : '',
-        job_title: user.production_company ? user.production_company.job_title || '' : '',
-        number_of_employees: user.production_company ? user.production_company.number_of_employees || '' : '',
-        referral: user.production_company ? user.production_company.referral || '' : '',
-      });
-    }
-  }, [user, userData]);
-  
 
   const [personalInfo, setPersonalInfo] = useState({
     first_name: '',
@@ -74,6 +52,30 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
   });
 
 
+  useEffect(() => {
+    if (user) {
+      setPersonalInfo({
+        first_name: user.first_name || '',
+        last_name: user.last_name || '',
+        middle_initial: user.middle_initial || '',
+        tel: user.phone ? user.phone.tel || '' : '',
+        street_address: user.location ? user.location.street_address || '' : '',
+        city: user.location ? user.location.city || '' : '',
+        state: user.location ? user.location.state || '' : '',
+        zip_code: user.location ? user.location.zip_code || '' : '',
+      });
+  
+      setCompanyInfo({
+        company_name: user.primary_production_company ? user.primary_production_company.company_name || '' : '',
+        ein_number: user.primary_production_company ? user.primary_production_company.ein_number || '' : '',
+        job_title: user.primary_production_company ? user.primary_production_company.job_title || '' : '',
+        number_of_employees: user.primary_production_company ? user.primary_production_company.number_of_employees || '' : '',
+        referral: user.primary_production_company ? user.primary_production_company.referral || '' : '',
+      });
+    }
+  }, [user]);
+
+ 
 
   const submit = async (e) => {
     e.preventDefault();
@@ -97,8 +99,8 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
         // Set processing back to false regardless of success or failure
         setProcessing(false);
     }
-};
- 
+    
+  };
  
 
   return (
@@ -118,7 +120,7 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
             <form onSubmit={submit} className='w-full flex grow flex-col gap-8 ' >
               <div>
                 <h3 className='mb-4'>Personal Profile</h3>
-                <PersonalInfo onUpdateInfo={setPersonalInfo} onChange={(e) => handleChange('tel', e.target.value)} existingData={personalInfo} />
+                <PersonalInfo onUpdateInfo={setPersonalInfo} existingData={personalInfo} />
               </div>
               <div>
                 <h3 className='mb-4'>Company Profile</h3>

@@ -167,7 +167,8 @@ export default function VerificationProcess({
         }
     };
 
-    console.log("verify", personalInfo);
+ 
+    console.log("personalInfo", personalInfo);
 
      return (
         <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
@@ -246,7 +247,7 @@ export default function VerificationProcess({
                             <p>
                                 Please complete the personal information form by providing your first and last name, phone number, and address. Your details are important for us to enhance your experience and ensure accurate communication. Thank you for providing this information.                            
                             </p>
-                            <PersonalInfo onUpdateInfo={setPersonalInfo} />
+                            <PersonalInfo onUpdateInfo={setPersonalInfo} existingData={personalInfo}/>
                             <SecondaryButton onClick={savePersonalInfo}>Next</SecondaryButton>
                         </div>
                     </div>

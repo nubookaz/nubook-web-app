@@ -17,41 +17,40 @@ export default function Guest({ children, auth }) {
 
         <div className="min-h-screen">
            <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: 'url("/images/background_images/guest_image_1.jpg")' }}>
-                <div className="overlay">
-                    <div className='floating-form flex flex-row justify-center items-center h-full'>
+                <div className="absolute h-full w-full z-40 bg-black/50"></div>
 
-                        <ImageContainer isPoster={true}>
-                            <div className='flex flex-col gap-4 h-full w-full'>
-                                <h2 className="">
-                                    Did you know?
-                                </h2>
-                                <ImageContainer isPoster={false} className="h-full grow" backgroundImage="/images/background_images/bg_image_2.jpg">
-                                    {/* Your content here */}
-                                </ImageContainer>
-                                <MovieFacts></MovieFacts>
-                            </div>
-                        </ImageContainer>
+                <div className='absolute floating-form flex flex-row justify-center items-center h-full z-50 w-full m-auto'>
 
-                        <CardContainer className="form-container !gap-2 justify-between flex flex-col">
-                            <ApplicationName />
-                            <p className="secondary-color text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, aliquam tenetur consequuntur earum dignissimos corporis voluptates tempore perferendis laborum.</p>
+                    <ImageContainer isPoster={true}>
+                        <div className='flex flex-col gap-4 h-full w-full'>
+                            <h2 className="">
+                                Did you know?
+                            </h2>
+                            <ImageContainer isPoster={false} className="h-full grow" backgroundImage="/images/background_images/bg_image_2.jpg">
+                                {/* Your content here */}
+                            </ImageContainer>
+                            <MovieFacts></MovieFacts>
+                        </div>
+                    </ImageContainer>
 
-                            <h1 className="primary-color mb-4 text-4xl">Welcome! Sign up for an account.</h1>
+                    <CardContainer className="form-container !gap-2 justify-between flex flex-col">
+                        <ApplicationName />
+ 
+                        <h1 className="primary-color mb-4 text-4xl">Welcome! Sign up for an account.</h1>
 
-                            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-                            
-                            <div className='grow'>
-                                 {children.form}
-                            </div>
+                        {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                        
+                        <div className='grow h-full'>
+                                {children.form}
+                        </div>
 
-                            
-                            <div className='justify-end'>
-                                {children.footer}
-                            </div>
+                        
+                        <div className='justify-end'>
+                            {children.footer}
+                        </div>
 
-                        </CardContainer>
+                    </CardContainer>
 
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 
-export const estimateColor = 'rgb(148 163 184)';
-export const creativeDevelopmentColor = 'rgb(147 51 234)';
-export const preProductionColor = 'rgb(217 119 6)';
-export const productionColor = 'rgb(250 204 21)';
-export const postProductionColor = 'rgb(2 132 199)';
-export const completedColor = 'rgb(22 163 74)';
+export const estimateColor = '#94A3B8';
+export const creativeDevelopmentColor = '#9333EA';
+export const preProductionColor = '#D97706';
+export const productionColor = '#FACC15';
+export const postProductionColor = '#0284C7';
+export const completedColor = '#16A34A';

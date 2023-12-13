@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const GoogleMap = ({ newData, locationData  }) => {
 
 
 
+const GoogleMap = ({  locationData, parkingLocationData, hospitalLocationData, style  }) => {
+
+  
   const googleMapRef = useRef(null);
   let googleMap;
 
@@ -12,65 +14,111 @@ const GoogleMap = ({ newData, locationData  }) => {
   const [error, setError] = useState(null);
   const [geoLocationData, setGeoLocationData] = useState(null);
 
-  let { street_address, zip_code } = locationData;
- 
-  useEffect(() => {
-      if (locationData) {
-          const { latitude, longitude } = locationData;
-          if (latitude && longitude) {
-              setGeoLocationData({ lat: latitude, lng: longitude });
-          }
-      }
-  }, [locationData]);
+  let { street_address, zip_code, latitude, longitude } = locationData || {};
 
-  // Check if newData and its nested properties exist and are not empty
-  if (newData && newData.film_location && newData.film_location.location) {
-      if (newData.film_location.location.street_address) {
-          street_address = newData.film_location.location.street_address;
+
+
+  useEffect(() => {
+    // Check if latitude and longitude are available in locationData
+    if (latitude && longitude) {
+      setGeoLocationData({ lat: latitude, lng: longitude });
+    }
+  }, [latitude, longitude]);
+
+
+
+
+  if (locationData && locationData.film_location && locationData.film_location.location) {
+      if (locationData.film_location.location.street_address) {
+          street_address = locationData.film_location.location.street_address;
       }
-      if (newData.film_location.location.zip_code) {
-          zip_code = newData.film_location.location.zip_code;
+      if (locationData.film_location.location.zip_code) {
+          zip_code = locationData.film_location.location.zip_code;
       }
   }
-
-  const newStreetAddress = newData?.film_location?.location?.street_address || '';
-  const newZipCode = newData?.film_location?.location?.zip_code || '';
-
-
-   // Check if locationData is empty
+ 
   if (!locationData || !locationData.street_address || !locationData.zip_code) {
     // Render a div if locationData is empty
     return (
-      <div>
+      <div className='p-6'>
         Location data is not available. Please add a location to view the map.
       </div>
     );
   }
-
- 
 
   useEffect(() => {
     const initializeMap = () => {
       // Convert lat and lng from string to float
       const latitude = parseFloat(geoLocationData.lat);
       const longitude = parseFloat(geoLocationData.lng);
-  
-      // Check if the latitude and longitude are valid numbers
+
       if (!isNaN(latitude) && !isNaN(longitude)) {
           googleMap = new window.google.maps.Map(googleMapRef.current, {
               center: { lat: latitude, lng: longitude },
-              zoom: 15,
+              zoom: 14,
               streetViewControl: false,
               mapTypeControl: false,
               zoomControl: false,
               fullscreenControl: true,
           });
   
+          const mainLocationMarkerIcon = {
+            url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png', 
+            labelOrigin: new window.google.maps.Point(20, -20),
+          };
+
+ 
           new window.google.maps.Marker({
               position: { lat: latitude, lng: longitude },
               map: googleMap,
+              icon: mainLocationMarkerIcon,
+              label: {
+                text: 'Filming Location', 
+                color: '#C70E20',  
+                fontWeight: 'bold',
+                fontSize: '14px',
+              }
           });
-      } else {
+
+          if (parkingLocationData && !isNaN(parkingLocationData.latitude) && !isNaN(parkingLocationData.longitude)) {
+            const additionalLocation1 = { lat: parseFloat(parkingLocationData.latitude), lng: parseFloat(parkingLocationData.longitude) };
+            const parkingMarkerIcon = {
+              url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', 
+              labelOrigin: new window.google.maps.Point(20, -20),
+            };
+            new window.google.maps.Marker({
+              position: additionalLocation1,
+              map: googleMap,
+              icon: parkingMarkerIcon,
+              label: {
+                text: 'Parking Location', 
+                color: '#C70E20',  
+                fontWeight: 'bold',
+                fontSize: '14px',
+              }
+            });
+          }
+
+          if (hospitalLocationData && !isNaN(hospitalLocationData.latitude) && !isNaN(hospitalLocationData.longitude)) {
+            const additionalLocation2 = { lat: parseFloat(hospitalLocationData.latitude), lng: parseFloat(hospitalLocationData.longitude) };
+            const hospitalMarkerIcon = {
+              url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png', 
+              labelOrigin: new window.google.maps.Point(20, -20),
+            };
+            new window.google.maps.Marker({
+              position: additionalLocation2,
+              map: googleMap,
+              icon: hospitalMarkerIcon,
+              label: {
+                text: 'Hospital Location', 
+                color: '#C70E20',  
+                fontWeight: 'bold',
+                fontSize: '14px',
+              }         
+            });
+          }
+
+       } else {
           console.error('Invalid geolocation data:', geoLocationData);
       }
   };
@@ -101,15 +149,15 @@ const GoogleMap = ({ newData, locationData  }) => {
   
 
   if (error) {
-    return <div className='flex justify-center w-full h-full items-center bg-slate-50 text-slate-400'>{error}</div>;
+    return <div className='flex justify-center w-full h-full items-center bg-slate-50 text-slate-400 p-6'>{error}</div>;
   }
 
   if (!geoLocationData) {
-    return <div className='flex justify-center w-full h-full items-center bg-slate-50 text-slate-400'>Loading Location Data...</div>;
+    return <div className='flex justify-center w-full h-full items-center bg-slate-50 text-slate-400 p-6'>Loading Location Data...</div>;
   }
 
 
-  return <div ref={googleMapRef} style={{ width: '400px', height: '100%' }} />;
+  return <div ref={googleMapRef} style={style} />;
 };
 
 export default GoogleMap;

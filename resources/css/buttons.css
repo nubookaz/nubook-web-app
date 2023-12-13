@@ -4,7 +4,7 @@
     border-radius: 5px; /* Pill shape */
     font-weight: 600;
     display: block;
-    padding: 8px 40px;
+    padding: 8px 25px;
 }
 
 /* Primary button styles */
@@ -12,7 +12,7 @@
     font-size: 1rem;
     color: #fff; /* Text color using CSS variable */
     background-color: var(--primary-green-color); 
-    box-shadow: 0px 5px 10px var(--primary-green-color);
+    box-shadow: 0px 4px 0px var(--primary-dark-green-color);
     transition: .3s;
 }
 
@@ -22,7 +22,7 @@
     background-color: #3a7457; /* Hover background color using CSS variable */
     color: var(--secondary-green-color); /* Hover text color using CSS variable */
     outline: none;
-    box-shadow: 0px 5px 10px #3a7457;
+    box-shadow: 0px 4px 0px var(--primary-green-color);
 }
 
 .secondary-button {

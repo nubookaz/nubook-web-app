@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
  
 import Drawer from '@mui/joy/Drawer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function DrawerPanel({ anchor = "right", isDrawerPanelOpen, isForm, onSubmitForm, formAction, toggleDrawerPanel, children }) {
+export default function DrawerPanel({ sxCustom, showCloseButton = false, anchor = "right", isForm = false, size = 'md',onSubmitForm, formAction, isDrawerPanelOpen, toggleDrawerPanel, children }) {
  
 
 
@@ -17,9 +19,19 @@ export default function DrawerPanel({ anchor = "right", isDrawerPanelOpen, isFor
 
 
   return (
-    <Drawer open={isDrawerPanelOpen} anchor={anchor} onClose={toggleDrawer(false)} className="relative">
+    <Drawer 
+      open={isDrawerPanelOpen} 
+      anchor={anchor} 
+      onClose={toggleDrawer(false)}
+      size={size}
+      className="relative"
+      sx={sxCustom}
+    >
+
       <div className='p-8 h-full'>
- 
+          {showCloseButton ? (
+            <FontAwesomeIcon onClick={toggleDrawer(false)} className='cursor-pointer text-3xl text-red-500 absolute right-8' icon={faCircleXmark}></FontAwesomeIcon>
+          ) : null}
 
           {isForm ? (
 
@@ -30,32 +42,37 @@ export default function DrawerPanel({ anchor = "right", isDrawerPanelOpen, isFor
               </div>
 
               {/* Body */}
-              <div className="drawer-body grow">
+              <div className="drawer-body overflow-scroll h-full justify-start p-1">
                 {children.body}
               </div>
 
               {/* Footer */}
-              <div className="drawer-footer justify-end">
-                {children.footer}
-              </div> 
+              {children.footer ? (
+                <div className="drawer-footer justify-end">
+                  {children.footer}
+                </div> 
+              ) : null}
+
             </form>
 
           ):(
             <div className="flex flex-col h-full gap-6 justify-between">
               {/* Header */}
-              <div className="mb-8 text-center drawer-header">
+              <div className="text-center drawer-header">
                 {children.header}
               </div>
 
               {/* Body */}
-              <div className="drawer-body">
+              <div className="drawer-body overflow-scroll h-full justify-start p-1">
                 {children.body}
               </div>
 
               {/* Footer */}
-              <div className="drawer-footer">
-                {children.footer}
-              </div> 
+              {children.footer ? (
+                  <div className="drawer-footer">
+                    {children.footer}
+                  </div> 
+              ) : null}
             </div>
           )}
 

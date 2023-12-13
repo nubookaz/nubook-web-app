@@ -1,7 +1,7 @@
 // CardComponent.jsx
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faGrip } from '@fortawesome/free-solid-svg-icons';
 
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
@@ -10,7 +10,7 @@ import Dropdown from '@mui/joy/Dropdown';
 
 
 
-function CardContainer({ children, textColor, indicator, header, absoluteHeader, headerColor, showButtonIcon, openPage, openToolkit, className, size, menuItems }) {
+function CardContainer({ children, textColor, indicator, header, absoluteHeader, headerColor, showButtonIcon = false, showMenuButtonIcon = false, openPage, openToolkit, className, size, menuItems, onClickButton, containerStyle}) {
 
     const getSizeClass = () => {
         switch (size) {
@@ -34,7 +34,7 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
     };
         
     return (
-        <div className={containerClasses}>
+        <div className={containerClasses} style={containerStyle}>
             {header && (
                 <div className={cardHeaderClasses}>
                     {header && 
@@ -43,11 +43,12 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
                             <h4 className={`secondary-color text-[1rem] font-semibold ${textColor}  `} style={{ color: headerColor }}>{header}</h4>                    
                         </div>
                     }
-                    {showButtonIcon && (
+                    
+                    {showMenuButtonIcon && (
                         <div className={`${absoluteHeader ? 'absolute' : 'relative'}`}>
                             <Dropdown>
                                 <MenuButton variant="plain" className={`secondary-color !absolute !float-right !top-[-15px] !right-0 ${textColor}`}>
-                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                    <FontAwesomeIcon icon={faGrip} />
                                 </MenuButton>
                                 <Menu placement="top">
                                     {Array.isArray(menuItems) &&
@@ -58,6 +59,14 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
                                     ))}
                                 </Menu>
                             </Dropdown>
+                        </div>
+                    )}
+
+                    {showButtonIcon && (
+                        <div className={`${absoluteHeader ? 'absolute' : 'relative'}`}>
+                            <div variant="plain" onClick={onClickButton} className={`tertiary-color !absolute !float-right !top-[-6px] !right-[2px] cursor-pointer ${textColor}`}>
+                                <FontAwesomeIcon icon={faGrip} />
+                            </div>
                         </div>
                     )}
                 </div>

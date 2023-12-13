@@ -6,6 +6,7 @@
     --warm-color: #f6f4f1;
     --brown-color: #957b7b;
     --primary-green-color: #68b58e;
+    --primary-dark-green-color: #3b9768;
     --secondary-green-color: #E2F3EA;
     --weather-blue-color: #3FC6FD;
     --dark-color: #2A2A2E;
@@ -15,5 +16,4 @@
     --button-corners: .5rem;
     --text-buttons: 5rem;
     --overlay-color: rgba(0, 0, 0, 0.6); /* Adjust the color and opacity as needed */
- 
 }

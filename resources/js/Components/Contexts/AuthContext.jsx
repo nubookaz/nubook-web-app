@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Listen for the custom update event
     window.addEventListener('updateUserData', handleUpdate);
-
+ 
     return () => {
       // Cleanup: Remove the event listener when the component unmounts
       window.removeEventListener('updateUserData', handleUpdate);

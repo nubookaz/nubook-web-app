@@ -16,6 +16,8 @@ export default function CompanyInfo({ onUpdateInfo, existingData }) {
         referral: '',
     });
 
+
+
     useEffect(() => {
         if (existingData) {
             setData(existingData);
