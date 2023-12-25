@@ -283,18 +283,17 @@ export default function CallSheetPanel({data, newData, ...props}) {
                     if (event.target.value.length <= maxHospitalLength) {
                       setHospitalInstructions(event.target.value);
                     }
-                }}   
-                // onChange={(e) => setParkingInstructions(e.target.value)}
-                onKeyDown={(event) => {
-                    if (event.key === 'Enter') {
-                        event.preventDefault(); 
-                    }
-                }}
-                endDecorator={
-                    <Typography level="body-xs" sx={{ ml: 'auto' }}>
-                        {hospitalInstructions.length} / {maxHospitalLength} character(s) ({remainingHospitalCharacters} remaining)
-                    </Typography>
-                }
+                  }}   
+                  onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                          event.preventDefault(); 
+                      }
+                  }}
+                  endDecorator={
+                      <Typography level="body-xs" sx={{ ml: 'auto' }}>
+                          {hospitalInstructions.length} / {maxHospitalLength} character(s) ({remainingHospitalCharacters} remaining)
+                      </Typography>
+                  }
                 />
               </div>
             </div>

@@ -11,6 +11,8 @@ import CardContainer from '@/Components/Containers/CardContainer';
 import Overview from '@/Components/Projects/Overview';
 import Budget from '@/Components/Projects/Budget';
 import TertiaryButton from '@/Components/Buttons/TertiaryButton';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'; 
+
 import Modal from '@/Components/Modals/Modal';
    
 export default function Projects({ auth }) {
@@ -93,6 +95,7 @@ export default function Projects({ auth }) {
                   maxWidth='100%'
                   dialogPanelClass='h-full'
                   onClose={setCloseModal}
+                  showCloseButton='true'
                 >
                
                     <ProjectForm
@@ -145,7 +148,7 @@ export default function Projects({ auth }) {
                                 <div className='flex flex-row justify-between'>
                                   <h2>Projects</h2>
                                   {limitedProjects.length >= 4 ? (
-                                    <TertiaryButton href={route('projects.list')}>View All Projects</TertiaryButton>
+                                    <TertiaryButton icon={faCaretRight} href={route('projects.list')}>View All Projects</TertiaryButton>
                                   ) : null}
                                 </div>
                                 <ProjectList projects={limitedProjects} view="View All" cols="4" rows="1"/>

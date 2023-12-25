@@ -1,3 +1,5 @@
+import { useAuth } from '@/Components/Contexts/AuthContext';
+
 import React, { useState, useEffect } from 'react';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import { router } from '@inertiajs/react';
@@ -9,18 +11,25 @@ import Skeleton from '@mui/joy/Skeleton';
 
 export default function VerificationStep({
 
-    user,
     error,
     setCurrentStep,
     handleError,
     handleResponse,
-    fetchUserData,
 
 }){
+
+    const { user, fetchUserData } = useAuth();
+    useEffect(() => {
+        // Fetch user data on component mount
+        fetchUserData();
+      }, []);
+    
+
 
     const [verificationCode, setVerificationCode] = useState('');
 
     const [timer, setTimer] = useState(null);
+    const [showTimer, setShowTimer] = useState(false);
     const [isTimerExpired, setIsTimerExpired] = useState(false);
     const [lastResendTime, setLastResendTime] = useState(null);
 
@@ -77,17 +86,30 @@ export default function VerificationStep({
 
 
 
-
     useEffect(() => {
+        if (!user || !user.code_expires_at) {
+            return;
+        }
+
+         
+        setShowTimer(true);
+
+        const expirationTime = new Date(user.code_expires_at + 'Z').getTime();
+        const currentTime = Date.now();
+    
+        if (currentTime >= expirationTime) {
+            setIsTimerExpired(true);
+            return;
+        }
+    
         setIsTimerExpired(false);
-
+        setTimer({});
+        setShowTimer(true);
         const interval = setInterval(() => {
-            const currentTime = Date.now();
-            const expirationTime = new Date(user.code_expires_at + 'Z').getTime();
-            const difference = expirationTime - currentTime;
- 
-
-             if (difference > 0) {
+            const newCurrentTime = Date.now();
+            const difference = expirationTime - newCurrentTime;
+    
+            if (difference > 0) {
                 setTimer({
                     minutes: Math.floor((difference / 1000 / 60) % 60),
                     seconds: Math.floor((difference / 1000) % 60),
@@ -99,11 +121,9 @@ export default function VerificationStep({
         }, 1000);
     
         return () => clearInterval(interval);
-    }, [user, lastResendTime]);
+    }, [user.code_expires_at]);
     
-
-
-
+ 
 
     return (
 
@@ -135,9 +155,9 @@ export default function VerificationStep({
                                 required
                             />
                             {error && <div style={{ color: 'red' }}>{error}</div>}
-                            {timer && (
+                            {showTimer ? (
                                 <div className='text-center secondary-color mb-4'>Time Remaining to Verify: {timer.minutes}:{timer.seconds < 10 ? `0${timer.seconds}` : timer.seconds}</div>
-                            )}
+                            ):null}
                             <SecondaryButton onClick={verifyCode}>Verify Code</SecondaryButton>
                         </>
                     )}

@@ -64,8 +64,8 @@ function CardContainer({ children, textColor, indicator, header, absoluteHeader,
 
                     {showButtonIcon && (
                         <div className={`${absoluteHeader ? 'absolute' : 'relative'}`}>
-                            <div variant="plain" onClick={onClickButton} className={`tertiary-color !absolute !float-right !top-[-6px] !right-[2px] cursor-pointer ${textColor}`}>
-                                <FontAwesomeIcon icon={faGrip} />
+                            <div variant="plain" onClick={onClickButton} className={`!absolute !float-right !top-[-6px] !right-[2px] cursor-pointer ${textColor}`}>
+                                <FontAwesomeIcon className="tertiary-color hover:text-slate-400 duration-300" icon={faGrip} />
                             </div>
                         </div>
                     )}

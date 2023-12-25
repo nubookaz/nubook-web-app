@@ -35,13 +35,18 @@
         "@mdi/react": "^1.6.1",
         "@mui/icons-material": "^5.14.12",
         "@mui/joy": "^5.0.0-beta.5",
-        "@mui/material": "^5.14.12",
+        "@mui/material": "^5.15.0",
         "@mui/styled-engine-sc": "^5.14.8",
+        "@mui/x-date-pickers": "^6.18.5",
         "@react-google-maps/api": "^2.19.2",
+        "dayjs": "^1.11.10",
         "google-map-react": "^2.2.1",
+        "react-beautiful-dnd": "^13.1.1",
         "react-circular-progressbar": "^2.1.0",
         "react-dropzone": "^14.2.3",
         "react-router-dom": "^6.20.0",
-        "styled-components": "^5.3.11"
+        "react-time-picker": "^6.6.0",
+        "styled-components": "^5.3.11",
+        "uuid": "^9.0.1"
     }
 }

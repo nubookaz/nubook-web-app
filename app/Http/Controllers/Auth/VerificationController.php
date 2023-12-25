@@ -33,6 +33,7 @@ class VerificationController extends Controller
     
         $user = $request->user();
         $verificationCode = Str::uuid();
+        $expiresAt = now()->addMinutes(3)->toIso8601String();
 
         $user->update([
             'verification_code' => $verificationCode,
@@ -44,6 +45,10 @@ class VerificationController extends Controller
         ]);
 
         Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
+
+        $user->update([
+            'code_expires_at' => $expiresAt, 
+        ]);
 
         return response()->json(['success' => true]);
     }

@@ -5,7 +5,7 @@ import PageButton from '@/Components/Buttons/PageButton';
 import { faDesktop, faMobileScreen, faEnvelope, faMessage, faCircleInfo, faMapLocation, faCalendarDays, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
 
 import DrawerPanel from '@/Components/Layouts/DrawerPanel';
-import CallSheetDesktopPreview from '@/Pages/Projects/CallSheets/Components/CallSheetDesktopPreview';
+import CallSheetDesktopPreview from '@/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview';
 import CallSheetText from '@/Components/CallSheets/CallSheetText';
 import EmailTemplate from '@/Components/Emails/EmailTemplate';
 import CardContainer from '@/Components/Containers/CardContainer';

@@ -1,50 +1,46 @@
-.schedule-container .col{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+.schedule-container select,
+.schedule-container select:focus,
+.schedule-container select:active,
+.schedule-container select:focus-visible {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    appearance: none !important; /* Standard property for all browsers */
+    -webkit-appearance: none; /* For Chrome, Safari, and newer Edge */
+    -moz-appearance: none; /* For Firefox */
+    text-indent: 1px;
+    text-overflow: ''; /* Make sure this value is appropriate */
+}
+ 
+.schedule-container .MuiTextarea-root {
+    border: 0px !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
-.schedule-container .col select {
-   appearance: none;
-   border: 0;
-   outline: none;
-   padding: 0rem 1.2rem;
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   text-indent: 1px;
-   text-overflow: '';
+.schedule-container textarea::placeholder {
+    color: #fff !important;
+    font-size: .75rem !important;
 }
 
-.schedule-container .col select::-ms-expand {
-    display: none;
-}
-
-.schedule-container .col select:focus,
-.schedule-container .col select:active {
-   border: 0;
-   outline: none;
-   padding: 0rem 1.2rem;
-}
 
 .int-day-combination.scene-style,
-.int-day-combination.scene-style .col select {
-    background-color: #fff !important;
-    color: var(--primary-color);
+.int-day-combination.scene-style select {
+     color: var(--primary-color);
 }
 
 .int-night-combination.scene-style,
-.int-night-combination.scene-style .col select  {
+.int-night-combination.scene-style select  {
     background-color: #51B2DB !important;
 }
 
 .ext-day-combination.scene-style,
-.ext-day-combination.scene-style .col select  {
+.ext-day-combination.scene-style select  {
     background-color: #FFF291 !important;
     color: var(--primary-color);
 }
 
 .ext-night-combination.scene-style,
-.ext-night-combination.scene-style .col select  {
+.ext-night-combination.scene-style select  {
     background-color: #3BAD74 !important;
 }

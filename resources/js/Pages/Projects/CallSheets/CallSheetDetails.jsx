@@ -11,18 +11,21 @@ import CardContainer from '@/Components/Containers/CardContainer';
 import Snackbar from '@mui/joy/Snackbar';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
-import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import CallSheetPreview from '@/Pages/Projects/CallSheets/CallSheetPreview';
 
 import Bulletin from './Components/Bulletin';
 import ProductionDetails from './Components/ProductionDetails';
+import GeneralCallTime from './Components/GeneralCallTime';
 import ProductionCompany from './Components/ProductionCompany';
 import Locations from './Components/Locations';
 
 import CallSheetForm from '@/Pages/Projects/CallSheets/Forms/CallSheetForm';
 import LocationDrawer from '@/Pages/Projects/CallSheets/Forms/LocationDrawer';
+import CallSheetProductionSchedule from '@/Pages/Projects/CallSheets/CallSheetProductionSchedule';
 
 import { faInfo, faPeopleGroup, faEye } from '@fortawesome/free-solid-svg-icons';
+import WeatherContainer from './Components/WeatherContainer';
+import ProductionSchedule from './Components/ProductionSchedule';
  
 
 
@@ -61,29 +64,39 @@ export default function CallSheetDetails() {
     const [bulletinText, setBulletinText] = useState('');
 
     const [isPreviewDrawerOpen, togglePreviewDrawer] = useState(false);
+    const [isProductionScheduleDrawerOpen, toggleProductionScheduleDrawer] = useState(false);
 
-
-
-
-
+ 
     
-
     const handleOnSavedClick = () => {
-        setSavedCallSheetSettings(true);
+        const callSheetId = 'your-call-sheet-id'; // Replace with the actual callSheetId
     
-        // Set a timeout to reset the state after 1000 milliseconds (1 second)
-        setTimeout(() => {
-            setSavedCallSheetSettings(false);
+        // Construct the URL for the request
+        const url = route('projects.callSheets.update.bulletin', { id: project.id, callSheetId: callSheet.id });
+    
+        axios.put(url, { 
+            bulletin: bulletinText
+        })
+        .then(response => {
+             setSavedCallSheetSettings(true);
+        
+            // Reset the state after 3 seconds
+            setTimeout(() => {
+                setSavedCallSheetSettings(false);
+            }, 3000);
+        })
+        .catch(error => {
+            console.error('Error saving bulletin:', error);
+        });
+    };
 
-        }, 3000);
-      };
-    
-      // Optional: If you want to reset the state when the component unmounts
-      useEffect(() => {
+
+    // Optional: If you want to reset the state when the component unmounts
+    useEffect(() => {
         return () => {
-          clearTimeout(); // Clear the timeout to avoid state updates on unmounted components
+            clearTimeout(); // Clear the timeout to avoid state updates on unmounted components
         };
-      }, []);
+    }, []);
 
     const bannerProps = {
         showTopBar: false, 
@@ -124,8 +137,9 @@ export default function CallSheetDetails() {
         togglePreviewDrawer(true);
     };
 
-
-
+    const handleProductionScheduleDrawer = () => {
+        toggleProductionScheduleDrawer(true);
+    };
     
     const handleBulletinTextChange = (text) => {
         setBulletinText(text);
@@ -142,7 +156,7 @@ export default function CallSheetDetails() {
  
 
 
- 
+
 
   return (
 
@@ -183,6 +197,12 @@ export default function CallSheetDetails() {
                         toggleDrawerPanel={togglePreviewDrawer}
                     />
 
+                    <CallSheetProductionSchedule 
+                        data={callSheet} 
+                        isDrawerPanelOpen={isProductionScheduleDrawerOpen} 
+                        toggleDrawerPanel={toggleProductionScheduleDrawer}
+                    />
+
                 </div>,
                 portalBody: (
                         <div className="w-full h-full">
@@ -207,18 +227,20 @@ export default function CallSheetDetails() {
                                                     <Locations data={callSheet} newData={newData} onEditLocation={handleEditLocation}/>
                                                 </div>
                                                 <div className='col-2 w-[155rem]  enter-col-content flex flex-col gap-4 h-full'>
-                                                    <ProductionCompany user={user} data={callSheet} />
+                                                    <div className='flex flex-row gap-4'>
+                                                        <ProductionCompany user={user} data={callSheet} />
+                                                        <GeneralCallTime data={callSheet} newData={newData} onEditProductionDetails={handleEditProductionDetails}/>
+                                                    </div>
                                                     <Bulletin data={callSheet} onBulletinTextChange={handleBulletinTextChange} />
                                                     <div className='flex flex-row gap-4'>
                                                         <CardContainer className="" header="Producer">
-                                                            {/* <h2>Levi Elizaga</h2>
-                                                            <span className='text-red-400'>Unconfirmed</span> */}
                                                             <p className='text-center h-full w-full flex items-start text-sm'>No Producer has been assigned to this Project</p>
                                                         </CardContainer>
                                                         <CardContainer header="Director">
-                                                            {/* <h2>Levi Elizaga</h2>
-                                                            <span className='text-red-400'>Unconfirmed</span> */}
                                                             <p className='text-center h-full w-full flex items-start text-sm'>No Director has been assigned to this Project</p>
+                                                        </CardContainer>
+                                                        <CardContainer header="Assistant Director">
+                                                            <p className='text-center h-full w-full flex items-start text-sm'>No Asssistant Director has been assigned to this Project</p>
                                                         </CardContainer>
                                                     </div>
                                                     <CardContainer className="h-full flex flex-col" header="Recipients">
@@ -227,18 +249,8 @@ export default function CallSheetDetails() {
                                                 </div>
                                                 <div className='col-3 w-full right-col-content flex flex-col gap-4 h-full'>
                                                     <div className='flex flex-col gap-4 h-full'>
-                                                        <CardContainer className="h-full" header="Production Schedule">
-                                                            <div className='text-center m-auto flex flex-col gap-4'>
-                                                                <p className='secondary-color text-lg w-2/3 mx-auto'>You have not entered a production schedule yet. Click here to add a schedule for your production</p>
-                                                                <SecondaryButton className="mx-auto">Add a production schedule</SecondaryButton>
-                                                            </div>
-                                                        </CardContainer>
-                                                        <CardContainer className="h-full" header="Atmosphere">
-                                                                <div className='flex flex-col text-center m-auto gap-4'>
-                                                                    <p className='secondary-color text-lg w-2/3 mx-auto'>You have not entered a atmosphere yet. Click here to add a atmosphere for your production</p>
-                                                                    <SecondaryButton className="mx-auto">Add an atmosphere</SecondaryButton>
-                                                                </div>
-                                                        </CardContainer>
+                                                        <WeatherContainer data={callSheet} newData={newData} />
+                                                        <ProductionSchedule data={callSheet} onClick={handleProductionScheduleDrawer}/>
                                                     </div>
             
                                                 </div>

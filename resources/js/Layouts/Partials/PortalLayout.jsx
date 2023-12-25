@@ -28,7 +28,7 @@ function PortalLayout({  callSheetData, hasData, toolbarTitle, pageType, onEmpty
               >
 
                 {{
-                    dropdown: <div className='flex justify-end min-w-[15rem]'>{children.middle}</div>
+                    dropdown: <div className='flex justify-end min-w-[15rem] h-full'>{children.middle}</div>
                 }}
 
               </Toolbar>

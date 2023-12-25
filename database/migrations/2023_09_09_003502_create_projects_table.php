@@ -14,9 +14,9 @@ class CreateProjectsTable extends Migration
             $table->string('project_name');
             $table->string('category_type');  
             $table->string('project_type');
-            $table->string('project_status'); 
-            $table->json('service_types'); 
             $table->string('project_stage'); 
+            $table->string('project_status'); 
+            $table->json('service_types')->nullable();
             $table->text('project_description')->nullable();
             $table->decimal('project_budget', 10, 2)->nullable();
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BetaEmail;
+use App\Models\ProductionCompany;
 
 
 class WebsiteController extends Controller
@@ -50,6 +51,7 @@ class WebsiteController extends Controller
         $temporaryPassword = Str::random(10);
 
         $data = $request->input('data');
+
         $userData = [
             'first_name' => $data['first_name'],
             'middle_initial' => $data['middle_initial'],
@@ -65,24 +67,19 @@ class WebsiteController extends Controller
 
         $user = User::create($userData);
 
-
-        $companyInfo = $request->only([
-            'company_name',
-            'number_of_employees',
-            'referral',
-        ]);
-
-        $companyInfo = [
+ 
+        $company = ProductionCompany::create([
             'company_name' => $data['company_name'],
             'number_of_employees' => $data['number_of_employees'],
             'referral' => $data['referral'], 
-        ];
+        ]);
 
-        // Update or create the production company information for the user
-        $user->productionCompany()->updateOrCreate(
-            ['user_id' => $user->id],
-            $companyInfo
-        );
+        $user->productionCompanies()->attach($company->id);
+
+        // Set the new company as the primary company
+        $user->primary_production_company_id = $company->id;
+        $user->save();
+
 
         Mail::to($user->email)->send(new BetaEmail($user, $temporaryPassword));
 

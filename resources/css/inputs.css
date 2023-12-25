@@ -9,6 +9,8 @@ input[type="email"],
 input[type="tel"],
 input[type="password"],
 input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
 select {
     border-radius: var(--input-corners);
     padding: .65rem .85rem;
@@ -18,6 +20,7 @@ select {
     width: 100%;
     color: var(--primary-color);
     font-size: .85rem;
+    -webkit-appearance: none;
 }
  
 input::placeholder,
@@ -59,13 +62,13 @@ textarea:active {
 .MuiTextarea-root,
 .MuiAutocomplete-root {
     border-radius: var(--input-corners) !important;
-    padding: .65rem .85rem !important;
+    padding: .65rem .85rem;
     background-color: var(--light-color) !important;
     border: 1px solid var(--tertiary-color) !important;
     outline: none !important;
     width: 100% !important;
-    color: var(--primary-color) !important;
-    font-size: .85rem !important;
+    color: var(--primary-color);
+    font-size: .85rem;
     height: 100%;
 }
 

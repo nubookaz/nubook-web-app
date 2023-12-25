@@ -35,7 +35,7 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
 
   const [callSheetData, setCallSheetData] = useState({
     call_sheet_name: '',
-    call_sheet_date: '',
+    call_sheet_date_time: '',
   });
 
   const [callSheetAddress, setCallSheetAddress] = useState({
@@ -59,8 +59,8 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
       // In edit mode, use the data from the prop
       setCallSheetData({
         call_sheet_name: data.call_sheet_name || '',
-        call_sheet_date: data.call_sheet_date || '',
-      });
+        call_sheet_date_time: data.call_sheet_date_time || '',
+       });
       const location = data.film_location && data.film_location.location;
 
       setCallSheetAddress({
@@ -79,8 +79,8 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
       // In create mode, initialize with empty objects
       setCallSheetData({
         call_sheet_name: '',
-        call_sheet_date: '', // Initialize with today's date or your preferred default
-      });
+        call_sheet_date_time: '',  
+       });
   
       setCallSheetAddress({
         street_address: '',
@@ -102,8 +102,8 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
     // Clear out the projectData state
     setCallSheetData({
       call_sheet_name: '',
-      call_sheet_date: '',
-    });
+      call_sheet_date_time: '',
+     });
 
     setCallSheetAddress({
       street_address: '',
@@ -125,7 +125,7 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
 
   const handleUpdateFormData = (field, value) => {
 
-    if (field === 'call_sheet_name' || field === 'call_sheet_date') {
+    if (field === 'call_sheet_name' || field === 'call_sheet_date_time') {
       setCallSheetData(prevData => ({
         ...prevData,
         [field]: value
@@ -232,8 +232,7 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
           // Check if the response status is OK (200)
           if (callSheetResponse.status === 200) {
             const responseData = callSheetResponse.data;
-            console.log("responseData", responseData);
-
+ 
             newData(responseData.callSheet);
           } else {
             // Handle other response status codes (e.g., errors) if needed
@@ -263,7 +262,6 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
  
 
  
-
   return (
     <DrawerPanel
       isDrawerPanelOpen={isDrawerPanelOpen}

@@ -41,7 +41,7 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
   };
 
   useEffect(() => {
-    if (user && user.is_temporary) {
+    if (user && user.is_password_temporary) {
       setCurrentStep('changePassword');
       setIsModalOpen(true);
     } else if (user && !user.email_verified) {
@@ -58,7 +58,7 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
     }
   }, [user]);
  
-  const verification = user && (user.is_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
+  const verification = user && (user.is_password_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
 
 
 

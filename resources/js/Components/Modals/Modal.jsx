@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function Modal({ children, className, dialogPanelClass, show = false, maxWidth = '2xl', closeable = true, onClose = () => {} }) {
+export default function Modal({ children, className, dialogPanelClass, show = false, maxWidth = '2xl', closeable = true, showCloseButton = false, onClose = () => {} }) {
     const close = () => {
         if (closeable) {
             onClose();
@@ -52,7 +52,9 @@ export default function Modal({ children, className, dialogPanelClass, show = fa
                     <Dialog.Panel
                         className={`p-8 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto relative ${maxWidthClass} ${dialogPanelClass}`}
                     >
-                        <FontAwesomeIcon onClick={close} className='cursor-pointer text-3xl text-red-500 absolute right-8' icon={faCircleXmark}></FontAwesomeIcon>
+                        {showCloseButton ? (
+                            <FontAwesomeIcon onClick={close} className='cursor-pointer text-3xl text-red-500 absolute right-8' icon={faCircleXmark}></FontAwesomeIcon>
+                        ):null}
                         {children}
                     </Dialog.Panel>
                 </Transition.Child>

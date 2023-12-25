@@ -13,8 +13,8 @@ import Typography from '@mui/joy/Typography';
 
 export default function Bulletin({ data, onBulletinTextChange }) {
 
-    const [text, setText] = React.useState('');
-    const maxLength = 400; 
+    const [text, setText] = useState(data.bulletin || '');
+    const maxLength = 300; 
     const remainingCharacters = maxLength - text.length;
 
 
@@ -30,14 +30,14 @@ export default function Bulletin({ data, onBulletinTextChange }) {
 
     return (
 
-        <CardContainer className="h-[20rem]" header="Bulletin">
+        <CardContainer header="Bulletin">
             <Textarea 
-                name="Soft" 
+                name="bulletin" 
                 size="sm" 
                 variant="soft" 
-                minRows={5.5} 
-                maxRows={6}
-                defaultValue={data.bulletin}
+                minRows={4} 
+                maxRows={4}
+                value={text}
                 placeholder="Type anything…" 
                 maxLength={maxLength} 
                 onKeyDown={(event) => {

@@ -31,14 +31,8 @@ export default function ProjectForm({ customClasses }) {
     const [div, showDiv] = useState(false);
 
     const serviceTypes = [
-      { title: 'The Shawshank Redemption', year: 1972},
-      { title: 'The Godfather', year: 1972 },
-      { title: 'The Godfather: Part II', year: 1974 },
-      { title: 'The Dark Knight', year: 2008 },
-      { title: '12 Angry Men', year: 1957 },
-      { title: "Schindler's List", year: 1993 },
-      { title: 'Pulp Fiction', year: 1994 },
-      { title: 'Casablanca', year: 1942 },        
+      { service: 'Video Editing', cost: '$1999' },
+      { service: 'Video Production', cost: '$1972 '},     
   ];
   
   const customClass = `${customClasses}`;
@@ -158,7 +152,7 @@ export default function ProjectForm({ customClasses }) {
                                     <Option value="Corporate">Corporate</Option>
                                     <Option value="Commercial">Commercial</Option>
                                     <Option value="Independent">Independent</Option>
-                                    <Option value="Studio-Backed">Hollywood</Option>
+                                    <Option value="Hollywood">Hollywood</Option>
                                     <Option value="Network TV" disabled>Network TV -- Coming Soon!</Option>
                                 </Select>
                             </Tooltip>
@@ -190,7 +184,7 @@ export default function ProjectForm({ customClasses }) {
                                         </>
                                     )}
 
-                                    {(projectData.project_type === 'Independent' || projectData.project_type === 'Studio-Backed') && (
+                                    {projectData.project_type === 'Independent' && (
                                         <>
                                             <Option value="Feature Film">Feature Film</Option>
                                             <Option value="Short Film">Short Film</Option>
@@ -203,6 +197,20 @@ export default function ProjectForm({ customClasses }) {
                                             <Option value="Travel & Adventure">Travel & Adventure</Option>
                                         </>
                                     )}
+
+                                    {projectData.project_type === 'Hollywood' && (
+                                        <>
+                                            <Option value="Feature Film">Feature Film</Option>
+                                            <Option value="Short Film">Short Film</Option>
+                                            <Option value="Documentary">Documentary</Option>
+                                            <Option value="Web Series">Web Series</Option>
+                                            <Option value="Music Video">Music Video</Option>
+                                            <Option value="Animation">Animation</Option>
+                                            <Option value="Experimental Film">Experimental Film</Option>
+                                            <Option value="Travel & Adventure">Travel & Adventure</Option>
+                                        </>
+                                    )}
+
                                     {projectData.project_type === 'Corporate' && (
                                         <>
                                             <Option value="Corporate Overview">Corporate Overview</Option>
@@ -278,27 +286,30 @@ export default function ProjectForm({ customClasses }) {
                             </Tooltip> 
                         </div>
                     </div>
+                    {(projectData.project_type === 'Corporate' || projectData.project_type === 'Commercial') && (
 
-                    <Input
-                        openToolTip={false}
-                        inputType="autoComplete"
-                        multiple={true}
-                        limitTags={6}
-                        label="Service Type"
-                        type="text"
-                        name="service_types"
-                        placeholder="Service Type" 
-                        value={projectData.service_types || []}
-                        selectOnFocus
-                        autoCompleteOptions={serviceTypes}
-                        inputClass={`w-full ${!projectData.project_status ? 'disabled-dropdown' : ''}`}
-                        getOptionLabel={(option) => option.title}
-                        isOptionEqualToValue={(option, value) => option.title === value.title}
-                        onChange={(event, newServiceType) => {
-                            handleChange('service_types', newServiceType);
-                        }}
-                    ></Input>
+                        <Input
+                            required
+                            openToolTip={false}
+                            inputType="autoComplete"
+                            multiple={true}
+                            limitTags={6}
+                            label="Service Type"
+                            type="text"
+                            name="service_types"
+                            placeholder="Service Type" 
+                            value={projectData.service_types || []}
+                            selectOnFocus
+                            autoCompleteOptions={serviceTypes}
+                            inputClass={`w-full ${!projectData.project_status ? 'disabled-dropdown' : ''}`}
+                            getOptionLabel={(option) => option.service + '  -  ' + option.cost}
+                            isOptionEqualToValue={(option, value) => option.service === value.service}
+                            onChange={(event, newServiceType) => {
+                                handleChange('service_types', newServiceType);
+                            }}
+                        ></Input>
 
+                    )}
                     <div className={`mt-6 ${formGroupClass}`}>
                         <div>
                             <h3 className='mb-2'>Project Details</h3>
@@ -375,9 +386,9 @@ export default function ProjectForm({ customClasses }) {
               <p>To get started, we invite you to choose between creating an estimate or initiating a project. Whether you're looking to plan your next client project or embark on a passion project close to your heart, making this choice will set you on the right path towards your goal. Select the option that aligns with your current needs, and we'll guide you through the process step by step.</p>
             </div>
             <div className='flex flex-row gap-8 justify-center'>
-                <div className='disable border-2 border-slate-50 duration-700 cursor-pointer hover:border-white hover:shadow-2xl rounded-md text-center w-[9rem] h-[9rem] justify-center flex flex-col gap-2 p-4'>
-                <FontAwesomeIcon className='text-2xl primary-color' icon={faCalculator}></FontAwesomeIcon>
-                <p className='text-sm'>Start with an Estimate</p>
+                <div className='disabled-feature border-2 border-slate-50 duration-700 cursor-pointer hover:border-white hover:shadow-2xl rounded-md text-center w-[9rem] h-[9rem] justify-center flex flex-col gap-2 p-4'>
+                    <FontAwesomeIcon className='text-2xl primary-color' icon={faCalculator}></FontAwesomeIcon>
+                    <p className='text-sm'>Start with an Estimate</p>
                 </div>
                 <div onClick={showDiv} className='border-2 border-slate-50 duration-700 hover:border-white hover:shadow-2xl cursor-pointer rounded-md text-center w-[9rem] h-[9rem] justify-center flex flex-col gap-2 p-4'>
                     <FontAwesomeIcon className='text-2xl primary-color' icon={faRocket}></FontAwesomeIcon>

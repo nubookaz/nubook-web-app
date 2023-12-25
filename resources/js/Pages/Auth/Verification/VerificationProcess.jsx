@@ -110,7 +110,7 @@ export default function VerificationProcess({
             handleError(error, 'Unexpected response structure');
         }
     };
-    
+
     
     const savePassword = async () => {
         setIsLoading(true);
@@ -122,6 +122,8 @@ export default function VerificationProcess({
             handleResponse(response, () => {
                 if (response.data.success) {
                     setCurrentStep('verification');
+                    console.log("response",response.data);
+                    fetchUserData();
                 }
             });
         } catch (error) {
@@ -167,8 +169,6 @@ export default function VerificationProcess({
         }
     };
 
- 
-    console.log("personalInfo", personalInfo);
 
      return (
         <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
@@ -224,7 +224,7 @@ export default function VerificationProcess({
                                 {error && <div style={{ color: 'red' }}>{error}</div>}
                             </div>
                             {isLoading ? (
-                             <Skeleton variant="rectangular" sx={{ height: "30px", borderRadius: '50px' }}/>
+                             <Skeleton variant="rectangular" sx={{ height: "30px", borderRadius: '10px' }}/>
                             ):(
                             <SecondaryButton onClick={savePassword}>Update Password</SecondaryButton>
                             )}
@@ -234,7 +234,7 @@ export default function VerificationProcess({
                 }
                 {currentStep === 'verification' && 
 
-                    <VerificationStep user={user} fetchUserData={fetchUserData} error={error} handleError={handleError} handleResponse={handleResponse} setError={setError} setCurrentStep={setCurrentStep} />
+                    <VerificationStep error={error} handleError={handleError} handleResponse={handleResponse} setError={setError} setCurrentStep={setCurrentStep} />
 
                 }
                 {currentStep === 'personalInfo' && 

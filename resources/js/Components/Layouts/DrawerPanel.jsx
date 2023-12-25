@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function DrawerPanel({ sxCustom, showCloseButton = false, anchor = "right", isForm = false, size = 'md',onSubmitForm, formAction, isDrawerPanelOpen, toggleDrawerPanel, children }) {
+export default function DrawerPanel({ containerClass, sxCustom, showCloseButton = false, anchor = "right", isForm = false, size = 'md',onSubmitForm, formAction, isDrawerPanelOpen, toggleDrawerPanel, children }) {
  
 
 
@@ -28,7 +28,7 @@ export default function DrawerPanel({ sxCustom, showCloseButton = false, anchor 
       sx={sxCustom}
     >
 
-      <div className='p-8 h-full'>
+      <div className={` ${containerClass} p-8 h-full`}>
           {showCloseButton ? (
             <FontAwesomeIcon onClick={toggleDrawer(false)} className='cursor-pointer text-3xl text-red-500 absolute right-8' icon={faCircleXmark}></FontAwesomeIcon>
           ) : null}
@@ -63,7 +63,7 @@ export default function DrawerPanel({ sxCustom, showCloseButton = false, anchor 
               </div>
 
               {/* Body */}
-              <div className="drawer-body overflow-scroll h-full justify-start p-1">
+              <div className="drawer-body  h-full justify-start p-1">
                 {children.body}
               </div>
 

@@ -25,7 +25,7 @@ trait ProjectTrait
             'project_stage' => 'required|string',
             'project_name' => 'required|string',
             'project_status' => 'required|string',
-            'service_types' => 'required|array',
+            'service_types' => 'array',
             'project_description' => 'nullable|string',
             'project_budget' => 'nullable|numeric',
         ])->validate();

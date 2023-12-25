@@ -13,7 +13,7 @@ class CallSheet extends Model
         'project_id', 
         'status', 
         'call_sheet_name', 
-        'call_sheet_date', 
+        'call_sheet_date_time', 
         'weather',
         'bulletin',
         'film_location_id',
@@ -22,6 +22,12 @@ class CallSheet extends Model
         'production_company_id',
     ];
 
+    protected $casts = [
+        'schedule' => 'array',
+    ];
+
+    
+    
     // Belongs to User
     public function user()
     {

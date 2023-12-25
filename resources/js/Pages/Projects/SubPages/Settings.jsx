@@ -5,9 +5,10 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 export default function Settings({ project }) {
 
   const bannerProps = {
-    showGreeting: true,
+    showTopBar: false, 
+    showRightContent: false,
     size: 'page-banner',
-  };
+};
 
  
   return (

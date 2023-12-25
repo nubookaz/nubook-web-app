@@ -10,7 +10,9 @@ import { faCaretDown, faCaretUp, faSun } from '@fortawesome/free-solid-svg-icons
 const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
 
   let { latitude, longitude } = locationData || {};
- 
+
+
+
   const [weatherData, setWeatherData] = useState(null);
  
   const [loadingWeather, setLoadingWeather] = useState(true);
@@ -111,7 +113,7 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
     postData();
   }, [weatherData]);
 
-
+ 
  
   useEffect(() => {
     // Simulate loading for 2 seconds, replace this with your actual fetch logic
@@ -151,8 +153,82 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
 
 
 
-  if (weatherData.main) {
-    const { main, sys, dt } = weatherData;
+
+
+    // Mapping OpenWeatherMap's condition codes to local SVG filenames
+  const weatherCodeToLocalSvg = {
+    200: "drizzle.svg", // thunderstorm with light rain
+    201: "thunderstorms-rain.svg", // thunderstorm with rain
+    202: "thunderstorms-rain.svg", // thunderstorm with heavy rain
+    210: "light-thunderstorm.svg", // light thunderstorm
+    211: "thunderstorms.svg", // thunderstorm
+    212: "thunderstorms.svg", // heavy thunderstorm
+    221: "thunderstorms.svg", // ragged thunderstorm
+    230: "drizzle.svg", // thunderstorm with light drizzle
+    231: "drizzle.svg", // thunderstorm with drizzle
+    232: "drizzle.svg", // thunderstorm with heavy drizzle
+
+      // Group 3xx: Drizzle
+    300: "drizzle.svg",
+    301: "drizzle.svg",
+    302: "drizzle.svg",
+    310: "drizzle.svg",
+    311: "drizzle.svg",
+    312: "drizzle.svg",
+    313: "drizzle.svg",
+    314: "drizzle.svg",
+    321: "drizzle.svg",
+    
+    // Group 5xx: Rain
+    500: "partly-cloudy-day-rain.svg",
+    501: "partly-cloudy-day-rain.svg",
+    502: "partly-cloudy-day-rain.svg",
+    503: "partly-cloudy-day-rain.svg",
+    504: "partly-cloudy-day-rain.svg",
+    511: "partly-cloudy-day-rain.svg",
+    520: "partly-cloudy-day-rain.svg",
+    521: "partly-cloudy-day-rain.svg",
+    522: "partly-cloudy-day-rain.svg",
+    531: "partly-cloudy-day-rain.svg",
+
+      // Group 6xx: Snow
+    600: "snow.svg",
+    601: "snow.svg",
+    602: "snow.svg",
+    611: "sleet.svg",
+    612: "sleet.svg",
+    613: "sleet.svg",
+    615: "sleet.svg",
+    616: "sleet.svg",
+    620: "sleet.svg",
+    621: "sleet.svg",
+    622: "sleet.svg",
+ 
+    // Group 7xx: Atmosphere
+    701: "mist.svg",
+    711: "smoke.svg",
+    721: "haze.svg",
+    731: "dust-wind.svg",
+    741: "fog.svg",
+    751: "sand.svg",
+    761: "dust-wind.svg",
+    762: "dust-wind.svg",
+    771: "dust-wind.svg",
+    781: "tornado.svg",
+  
+    800: "clear-day.svg",  
+    801: 'partly-cloudy-day.svg',
+    802: 'partly-cloudy-day.svg',
+    803: 'partly-cloudy-day.svg',
+    804: 'partly-cloudy-day.svg',
+
+  };
+
+  let weatherIconFilename = "not-available.svg";
+  let weatherIconPath = "not-available.svg";
+
+  if (weatherData.main && weatherData.weather && weatherData.weather.length > 0) {
+    const { main, sys, dt, weather } = weatherData;
     // Convert Celsius to Fahrenheit
     if (main && main.temp) {
       temperatureC = main.temp;
@@ -180,8 +256,12 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
       message = "Date is more than 8 days in the future or in the past.";
     }
 
+    
+    const weatherCode = weather[0].id;
+    weatherIconFilename = weatherCodeToLocalSvg[weatherCode] || "not-available.svg";
+    weatherIconPath = `/images/animated_weather_svg_icons/${weatherIconFilename}`;
 
-
+ 
   } else if (weatherData.temperature) {
     const { temperature, date } = weatherData;
     // Use afternoon temperature as default
@@ -231,7 +311,6 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
     message = "Date is based on the 'data' object.";
 }
     
-  
 
   return (
 
@@ -240,8 +319,8 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
           <div className='flex flex-col gap-4'>
             <div className='flex flex-row gap-6 w-full h-full'>
               <div className='text-[4rem] text-center my-auto'>
-                  <FontAwesomeIcon icon={faSun} className="text-yellow-400 text-[4rem]" />
-              </div>
+                  <img className="w-full max-w-[8rem] mx-auto" src={weatherIconPath} />
+               </div>
               <div className='h-full flex text-left flex-col my-auto'>
                   <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>
                   <p className='font-bold'>High: <span className='font-normal'>{maxTempF ? maxTempF.toFixed(2) + "°F" : "N/A"}</span></p>
@@ -250,13 +329,13 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
             </div>
             <div className='flex flex-col  w-full'>
                 <div className='flex flex-row gap-2 justify-center'>
-                  <FontAwesomeIcon icon={faCaretUp} className="text-lg text-yellow-600 my-auto" />
+                  <img className="w-full max-w-[2rem] my-auto" src="/images/animated_weather_svg_icons/sunrise.svg" />
                   <p className='font-bold'>
                     Sunrise: <span className='font-normal'>{sunriseTime}</span>
                   </p>
                 </div>
                 <div className='flex flex-row gap-2 justify-center'>
-                  <FontAwesomeIcon icon={faCaretDown} className="text-lg text-yellow-600 my-auto" />
+                  <img className="w-full max-w-[2rem] my-auto" src="/images/animated_weather_svg_icons/sunset.svg" />
                   <p className='font-bold'>
                     Sunset: <span className='font-normal'>{sunsetTime}</span>
                   </p>
@@ -267,22 +346,28 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
         ):(
           <div className='flex flex-row gap-6 w-full h-full'>
             <div className='text-[4rem] text-center my-auto w-[40%]'>
-                <FontAwesomeIcon icon={faSun} className="text-yellow-400 my-auto" />
-            </div>
+            <img className="w-full max-w-[8rem] mx-auto" src={weatherIconPath} />
+             </div>
             <div className='w-[60%] h-full'>
                 <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>
                 <p className='font-bold'>High: <span className='font-normal'>{maxTempF ? maxTempF.toFixed(2) + "°F" : "N/A"}</span></p>
                 <p className='font-bold'>Low: <span className='font-normal'>{minTempF ? minTempF.toFixed(2) + "°F" : "N/A"}</span></p>
                 <div className='flex flex-row gap-2'>
-                  <FontAwesomeIcon icon={faCaretUp} className="text-lg text-yellow-600 my-auto" />
-                  <p className='font-bold'>
-                    Sunrise: <span className='font-normal'>{sunriseTime}</span>
+                  <img className="w-full max-w-[2rem] my-auto" src="/images/animated_weather_svg_icons/sunrise.svg" />
+                  <p className='font-bold my-auto'>
+                    Sunrise:
+                    <span className='font-normal'>
+                      {sunriseTime.slice(0, -6) + sunriseTime.slice(-3)}
+                    </span>                  
                   </p>
                 </div>
                 <div className='flex flex-row gap-2'>
-                  <FontAwesomeIcon icon={faCaretDown} className="text-lg text-yellow-600 my-auto" />
-                  <p className='font-bold'>
-                    Sunset: <span className='font-normal'>{sunsetTime}</span>
+                  <img className="w-full max-w-[2rem] my-auto" src="/images/animated_weather_svg_icons/sunset.svg" />
+                  <p className='font-bold my-auto'>
+                    Sunset: 
+                    <span className='font-normal'>
+                     {sunsetTime.slice(0, -6) + sunsetTime.slice(-3)}
+                    </span>                  
                   </p>
                 </div>
               

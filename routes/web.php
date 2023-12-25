@@ -100,16 +100,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/', [CallSheetController::class, 'storeCallSheetDetails'])->name('projects.callSheets.create');
           
             Route::put('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update.details');
+            Route::put('/{callSheetId}/bulletin', [CallSheetController::class, 'saveBulletin'])->name('projects.callSheets.update.bulletin');
             Route::get('{callSheetId}/details', [CallSheetController::class, 'editDetailsPage'])->name('projects.callSheets.edit.page');
-            Route::post('/{callSheetId}/save-weather', [CallSheetController::class, 'saveWeatherData'])->name('save.weather');
+            Route::post('/{callSheetId}/weather', [CallSheetController::class, 'saveWeatherData'])->name('save.weather');
+
+            Route::prefix('/{callSheetId}/schedule')->group(function () {
+                Route::post('/', [CallSheetController::class, 'storeCallSheetSchedule'])->name('callSheets.schedule.store');
+                Route::get('/', [CallSheetController::class, 'getCallSheetSchedule'])->name('callSheets.schedule.get');
+                Route::put('/schedule', [CallSheetController::class, 'updateCallSheetSchedule'])->name('callSheets.schedule.update');
+
+            });
+            
 
             Route::prefix('{callSheetId}/locations')->group(function () {
                 Route::post('/', [LocationController::class, 'storeCallSheetLocations'])->name('callSheets.location.store');
                 // Update a location
-                Route::patch('{locationId}', [LocationController::class, 'updateCallSheetLocations'])->name('callSheets.locatios.update');
-
-    
+                Route::patch('{locationId}', [LocationController::class, 'updateCallSheetLocations'])->name('callSheets.locations.update');
             });
+
 
         });
 

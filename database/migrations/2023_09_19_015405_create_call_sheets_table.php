@@ -16,11 +16,11 @@ class CreateCallSheetsTable extends Migration
             $table->foreignId('film_location_id')->nullable()->constrained('film_locations')->onDelete('cascade');
             $table->foreignId('parking_location_id')->nullable()->constrained('parking_locations')->onDelete('cascade');
             $table->foreignId('hospital_location_id')->nullable()->constrained('hospital_locations')->onDelete('cascade');
-        
+            $table->json('schedule')->nullable();
 
             $table->string('status')->default('Draft');
             $table->string('call_sheet_name');
-            $table->date('call_sheet_date'); 
+            $table->string('call_sheet_date_time'); 
             $table->text('bulletin')->nullable(); 
             $table->json('weather')->nullable();
             $table->timestamp('weather_updated_at')->nullable();
