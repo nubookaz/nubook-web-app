@@ -14,6 +14,7 @@ use App\Http\Controllers\CallSheetController;
 use App\Http\Controllers\LocationController; 
 
 use App\Http\Controllers\AssociationController; 
+use App\Http\Controllers\ChatGPTController;
 
 use Inertia\Inertia;
 
@@ -51,8 +52,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
  
-
-
+    Route::post('/chat', [ChatGPTController::class, 'chat'])->name('chat.gpt');
+ 
 
 
     Route::post('/verification/update-password', [VerificationController::class, 'updatePassword'])->name('verification.updatePassword');
@@ -90,9 +91,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');
         Route::patch('/{id}', [ProjectController::class, 'update'])->name('projects.update');
-
-        Route::get('/{id}/settings', [ProjectController::class, 'showSettings'])->name('project.settings');
     
+        Route::post('/movie_poster', [ChatGPTController::class, 'createMoviePoster'])->name('chat.gpt.movie.poster');
+
         // New routes for the "Call Sheets" page
         Route::prefix('{id}/call-sheets')->group(function () {
 

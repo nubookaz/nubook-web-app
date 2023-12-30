@@ -20,6 +20,11 @@ class CreateProjectsTable extends Migration
             $table->text('project_description')->nullable();
             $table->decimal('project_budget', 10, 2)->nullable();
 
+            $table->string('project_image')->nullable();
+            $table->string('viewer_rating')->nullable();
+            $table->string('release_year')->nullable();
+            $table->string('genres')->nullable();
+
             $table->timestamps();
             
             // Define the foreign key relationship with the users table

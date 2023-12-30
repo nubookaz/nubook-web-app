@@ -4,6 +4,7 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
 import EmailStep from '@/Pages/Auth/Registration/EmailStep';
+import PrivacyPolicy from '@/Pages/Auth/Legal/PrivacyPolicy';
 
 import Skeleton from '@mui/joy/Skeleton';
 
@@ -21,7 +22,13 @@ import Skeleton from '@mui/joy/Skeleton';
 
 export default function Register() {
     
-     const [skeleton, setSkeleton] = useState(false);
+    const [skeleton, setSkeleton] = useState(false);
+    const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
+
+    const toggleDrawerPanel = () => {
+        setDrawerPanelOpen(!isDrawerPanelOpen);
+    };
+
 
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
@@ -44,6 +51,7 @@ export default function Register() {
  
     const submit = (e) => {
         e.preventDefault();
+        
         post(route('register'), {
             // This callback is called before the form submission starts
             onStart: () => setSkeleton(true),
@@ -63,24 +71,28 @@ export default function Register() {
     return (
         <GuestLayout>
             {{
+                surface: (
+                    <div className="relative z-50 w-full h-full">
+
+
+                        <PrivacyPolicy
+                            isDrawerPanelOpen={isDrawerPanelOpen}
+                            toggleDrawerPanel={toggleDrawerPanel}
+                        />
+       
+                    </div>
+                ),
                 form: (
                     <div>
 
-                        {skeleton ? (
-                            <div >
-                                <Skeleton variant="rectangular" sx={{ height: "50px", marginBottom: '.5rem' }}/>
-                                <Skeleton variant="rectangular" sx={{ height: "50px", marginBottom: '1rem' }}/>
-                                <Skeleton variant="rectangular" sx={{ height: "50px", marginBottom: '2rem' }}/>
-                            </div>
-                        ):(
-                            <EmailStep
-                                formData={data}
-                                setFormData={setData} 
-                                errors={errors}
-                            />
-                        )}
-
-
+                        <EmailStep
+                            formData={data}
+                            setFormData={setData} 
+                            errors={errors}
+                            linkPrivacyPolicy={toggleDrawerPanel}
+                            skeleton={skeleton}
+                        />
+ 
                     </div>
                 ),
                 footer: (
@@ -88,8 +100,8 @@ export default function Register() {
 
                         {skeleton ? (
                             <div>
-                                <Skeleton variant="rectangular" sx={{ borderRadius: '50px', height: "30px", width: '130px', marginTop: '1rem' }}/>
-                                <Skeleton variant="text" level="body-sm" sx={{ width: '120px', marginTop: '1rem'}}/>
+                                <Skeleton variant="rectangular" sx={{ height: "38px", width: '106px', marginTop: '1rem' }}/>
+                                <Skeleton variant="text" level="body-sm" sx={{ width: '118px', marginTop: '1.2rem'}}/>
                             </div>
                         ):(
                             <div>

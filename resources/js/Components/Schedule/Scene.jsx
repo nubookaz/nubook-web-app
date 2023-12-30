@@ -177,21 +177,21 @@ export default function Scene({
                 />
 
                 <select 
-                    className={`${lightColorClass} grow-0 flex content-center h-full text-xs max-w-[5rem] border-0`} 
+                    className={`grow-0 flex content-center h-full text-xs max-w-[6rem] border-0`} 
                     value={sceneData.setting} 
                     onChange={(e) => handleChange('setting', e.target.value)}
                 >
-                    <option value="N/A">-</option>
+                    <option className='!text-white' value="" disabled hidden>INT/EXT</option>
                     <option value="INT">INT</option>
                     <option value="EXT">EXT</option>
                 </select>
 
                 <select 
-                    className={`${lightColorClass} grow-0 flex content-center h-full text-xs max-w-[6rem] border-0`} 
+                    className={`${lightColorClass} grow-0 flex content-center h-full text-xs max-w-[7rem] border-0`} 
                     value={sceneData.timeslot} 
                     onChange={(e) => handleChange('timeslot', e.target.value)}
                 >
-                    <option value="N/A" default>-</option>
+                    <option className='!text-slate-50' value="" disabled hidden>Time of Day</option>
                     <option value="DAY">DAY</option>
                     <option value="NIGHT">NIGHT</option>
                     <option value="EVENING">EVENING</option>

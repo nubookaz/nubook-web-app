@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('consent')->default(false);
+
             $table->foreignId('location_id')->nullable()->constrained('locations')->onDelete('cascade');
+            $table->string('ip_address', 45)->nullable();
 
             $table->foreignId('primary_production_company_id')->nullable()->constrained('production_companies')->onDelete('set null');
 

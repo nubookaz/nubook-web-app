@@ -18,7 +18,7 @@ export default function Modal({ children, className, dialogPanelClass, show = fa
         '2xl': 'sm:max-w-2xl',
     }[maxWidth];
 
-    const containerClass = `fixed inset-0 flex overflow-y-auto p-6  items-center z-50 transform transition-all ${className}`;
+    const containerClass = `fixed inset-0 flex overflow-y-auto p-6 items-center z-50 transform transition-all ${className}`;
 
      return (
         <Transition show={show} as={Fragment} leave="duration-200">
@@ -37,7 +37,7 @@ export default function Modal({ children, className, dialogPanelClass, show = fa
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="absolute inset-0 bg-gray-500/75" />
+                    <div className="absolute inset-0 bg-gray-500/50" />
                 </Transition.Child>
 
                 <Transition.Child
@@ -53,7 +53,7 @@ export default function Modal({ children, className, dialogPanelClass, show = fa
                         className={`p-8 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto relative ${maxWidthClass} ${dialogPanelClass}`}
                     >
                         {showCloseButton ? (
-                            <FontAwesomeIcon onClick={close} className='cursor-pointer text-3xl text-red-500 absolute right-8' icon={faCircleXmark}></FontAwesomeIcon>
+                            <FontAwesomeIcon onClick={close} className='cursor-pointer text-3xl text-red-500 absolute right-8 z-50' icon={faCircleXmark}></FontAwesomeIcon>
                         ):null}
                         {children}
                     </Dialog.Panel>

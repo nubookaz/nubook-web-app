@@ -63,7 +63,7 @@ export default function DrawerPanel({ containerClass, sxCustom, showCloseButton 
               </div>
 
               {/* Body */}
-              <div className="drawer-body  h-full justify-start p-1">
+              <div className="drawer-body overflow-scroll h-full justify-start p-1">
                 {children.body}
               </div>
 

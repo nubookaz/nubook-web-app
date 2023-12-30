@@ -27,8 +27,7 @@ export default function Projects({ auth }) {
       // Continue with the rest of your component logic using 'user'
       if (user === null) {
         // User data is still being fetched, show a loading state or return null
-        console.log('loading...');
-      } else {
+       } else {
 
         // ... rest of your component code ...
       }
@@ -93,10 +92,10 @@ export default function Projects({ auth }) {
                 <Modal
                   show={closeModal}
                   maxWidth='100%'
-                  dialogPanelClass='h-full'
+                  dialogPanelClass='h-full !bg-[#f6f4f1]'
                   onClose={setCloseModal}
                   showCloseButton='true'
-                >
+                 >
                
                     <ProjectForm
                       auth={auth}

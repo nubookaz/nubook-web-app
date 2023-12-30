@@ -17,6 +17,10 @@ class Project extends Model
         'service_types',
         'project_stage',
         'user_id',
+
+        'viewer_rating',
+        'release_year',
+        'genres',
     ];
 
     protected $casts = [

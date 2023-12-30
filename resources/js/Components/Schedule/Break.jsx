@@ -116,7 +116,7 @@ export default function Break({
             <input
               maxLength={128}
               placeholder="Notes...."
-              className='grow text-slate-500 text-xs border-0 bg-transparent !placeholder::text-white'
+              className='grow text-slate-500 text-xs border-0 bg-transparent placeholder:text-white'
             />
           </div>
 

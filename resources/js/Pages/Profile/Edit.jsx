@@ -16,6 +16,7 @@ import AccountSettings from './Partials/AccountSettings';
 import ImageContainer from '@/Components/Containers/ImageContainer';
 
 import Snackbar from '@mui/joy/Snackbar';
+import PrivacyPolicy from '@/Pages/Auth/Legal/PrivacyPolicy';
 
 
 
@@ -28,7 +29,13 @@ export default function Edit({ auth }) {
 
     const [activeContent, setActiveContent] = useState('profile-settings');
     const [savedProfileSettings, setSavedProfileSettings] = useState(false);
-    
+    const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
+
+    const toggleDrawerPanel = () => {
+        setDrawerPanelOpen(!isDrawerPanelOpen);
+    };
+
+
     const handleOnSavedClick = () => {
         setSavedProfileSettings(true);
     
@@ -85,6 +92,12 @@ export default function Edit({ auth }) {
                         >
                             Saved! Profile Settings Saved!
                         </Snackbar>
+
+                        <PrivacyPolicy
+                            isDrawerPanelOpen={isDrawerPanelOpen}
+                            toggleDrawerPanel={toggleDrawerPanel}
+                        />
+
                     </div>
                 ),
                 portalBody: (
@@ -140,7 +153,6 @@ export default function Edit({ auth }) {
                                     <h2 className='text-white text-[3rem]'>Hollywood Filmmaker</h2>
                                 </ImageContainer>
 
-                                <h3 className='text-lg font-medium secondary-color'>Payment Settings</h3>
                                 <ImageContainer 
                                     overlay={true} 
                                     className="payment-info !h-[16rem]" 
@@ -156,6 +168,10 @@ export default function Edit({ auth }) {
                                         </div>
                                     </div>
                                 </ImageContainer>
+
+                                <div className='text-center'>
+                                    <p className='font-sm'>Read our <button onClick={toggleDrawerPanel} className='hover:text-slate-600 hover:font-bold hover:underline'>privacy policy</button></p>
+                                </div>
                             </div>
                         </div>
                     </div>

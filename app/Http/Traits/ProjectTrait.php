@@ -15,6 +15,7 @@ trait ProjectTrait
 
     public function createProject(Request $request)
     {
+        dd($request);
         
         $projectData = $request->json('projectData');
 

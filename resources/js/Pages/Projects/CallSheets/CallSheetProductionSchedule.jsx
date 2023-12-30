@@ -219,30 +219,6 @@ export default function CallSheetProductionSchedule({
 
 
  
- <div className="flex flex-row w-full gap-4 justify-between px-[1.5rem] bg-slate-500">
-
-    <div><FontAwesomeIcon className='opacity-1' icon={faBars} /></div>
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end'>Scene #</div>
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end'>INT/EXT</div>
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end'>Time Slot</div>
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end w-full max-w-[9rem] justify-center'>Scene Location</div>
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end w-full max-w-[40%]'>Scene Description</div> 
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end w-full max-w-[12rem] justify-center'>Scene Location</div>
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end w-full max-w-[9rem] justify-center'>Start Time</div> 
-
-    <div className='border-2 text-center text-xs font-bold text-slate-400 flex items-end'>Duration</div> 
-
-    <div><FontAwesomeIcon className='opacity-1' icon={faTrashCan} /></div>
-
-</div>
-
 
 
                                     <DragDropContext onDragEnd={onDragEnd}>

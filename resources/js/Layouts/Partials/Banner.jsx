@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import { faListCheck, faProjectDiagram, faMoneyCheckDollar, faComments, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import ProfilePicture from '@/Pages/Profile/Partials/ProfilePicture'; 
-import PageButton from '@/Components/Buttons/PageButton';
+import UploadableProfilePicture from '@/Pages/Profile/Partials/UploadableProfilePicture'; 
+import IconButton from '@/Components/Buttons/IconButton';
 import ProjectNavigation from '@/Components/Navigations/ProjectNavigation';
 import { imageUrl } from '@/Components/Scripts/BannerImage';
 import { formattedDate } from '@/Components/Scripts/Date';
@@ -72,7 +72,7 @@ function Banner({  project, backgroundImage, size, showGreeting, showTopBar = tr
                 {showProjectName && (
                     <div className="greeting">
                          <h1 className='text-4xl'>
-                          {project.project_name}
+                          {project_name}
                         </h1>
                     </div>
                 )}
@@ -96,7 +96,7 @@ function Banner({  project, backgroundImage, size, showGreeting, showTopBar = tr
                 <div className="banner-footer flex flex-row justify-between gap-8 -mb-[5rem] mt-4">
                     <div className="flex flex-row left-content">
                       <div className='w-[10rem] h-[10rem] min-w-[10rem]'>
-                        <ProfilePicture alt="User Profile" width={200} height={200} isUploadable={true} />
+                        <UploadableProfilePicture alt="User Profile" width={200} height={200} className="border-red-500" isUploadable={true} />
                       </div>
                       
                       <div className="max-w-[35rem] mantra-text">
@@ -106,19 +106,19 @@ function Banner({  project, backgroundImage, size, showGreeting, showTopBar = tr
                     </div>
                     <div className="flex justify-end pt-[5rem] pr-[7rem]">
                       <div className="flex flex-row gap-12 text-center">
-                          <PageButton className="disabled" icon={faListCheck} size="medium"> Tasks </PageButton>
-                          <PageButton href={route('projects.index')} active={route().current('projects.index')}  activeClass="active-link" icon={faProjectDiagram} size="medium">
+                          <IconButton className="disabled bg-white" icon={faListCheck} size="medium"> Tasks </IconButton>
+                          <IconButton className='bg-white' href={route('projects.index')} active={route().current('projects.index')}  activeClass="active-link" icon={faProjectDiagram} size="medium">
                             Projects
-                          </PageButton>
-                          <PageButton className="disabled" icon={faComments} to="/settings" size="medium" >
+                          </IconButton>
+                          <IconButton className="disabled bg-white" icon={faComments} to="/settings" size="medium" >
                             Social
-                          </PageButton>
-                          <PageButton className="disabled" icon={faMoneyCheckDollar} to="/settings" size="medium" >
+                          </IconButton>
+                          <IconButton className="disabled bg-white" icon={faMoneyCheckDollar} to="/settings" size="medium" >
                             Budget
-                          </PageButton>
-                          <PageButton className="disabled" icon={faBriefcase} to="/settings" size="medium" >
+                          </IconButton>
+                          <IconButton className="disabled bg-white" icon={faBriefcase} to="/settings" size="medium" >
                             Jobs
-                          </PageButton>
+                          </IconButton>
                       </div>
                     </div>
                 </div>

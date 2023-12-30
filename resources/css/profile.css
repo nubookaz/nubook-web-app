@@ -7,17 +7,6 @@
   height: var(--Avatar-size, 12rem);
 }
 
-.avatar {
-  border-radius: 50%;
-  /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15); */
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  border: solid 6px var(--brown-color);
-}
-
 .avatar-overlay {
   border-radius: 50%;
   width: 100%;

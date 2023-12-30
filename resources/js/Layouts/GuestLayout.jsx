@@ -16,6 +16,9 @@ export default function Guest({ children, auth }) {
         
 
         <div className="min-h-screen">
+           <div className='absolute z-50'>
+                {children.surface}
+           </div>
            <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: 'url("/images/background_images/guest_image_1.jpg")' }}>
                 <div className="absolute h-full w-full z-40 bg-black/50"></div>
 

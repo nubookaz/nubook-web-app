@@ -55,10 +55,24 @@ function Sidebar({ toggleSearch, isOpen }) {
                             </button>
                         </li>
                         <li>
-                            <NavLink href={route('dashboard')} active={route().current('dashboard')} activeClass="active-link" icon={faSquarePollHorizontal} />
+                            <NavLink 
+                                href={route('dashboard')} 
+                                active={route().current('dashboard')} 
+                                activeClass="active-link" 
+                                icon={faSquarePollHorizontal} 
+                            />
                         </li>
                         <li>
-                            <NavLink href={route('projects.index')} active={route().current('projects.*') || route().current('projects.*.call-sheets') } activeClass="active-link" icon={faProjectDiagram}/>
+                            <NavLink 
+                                href={route('projects.index')} 
+                                active={
+                                    route().current('projects.*') || 
+                                    route().current('projects.*.call-sheets') ||
+                                    route().current('projects.*.settings') 
+                                } 
+                                activeClass="active-link" 
+                                icon={faProjectDiagram}
+                            />
                         </li>
                         {/* <li>
                             <NavLink href="/social" icon={faComments}/>
@@ -76,7 +90,7 @@ function Sidebar({ toggleSearch, isOpen }) {
 
                 <Dropdown>
                     <MenuButton className="!bg-transparent w-full !p-0 !border-0">
-                        <ProfilePicture alt="User's Profile" className="!h-[3rem]" onClick={toggleTooltip} />
+                        <ProfilePicture alt="User's Profile" className="!h-[3rem] !w-[3rem] rounded-full border-2 border-solid border-red-500" onClick={toggleTooltip} />
                     </MenuButton>
 
                     <Menu className='!ml-[1rem] !mb-2'>

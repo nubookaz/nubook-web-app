@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Company; // Replace with your Company model
+use App\Models\Company; 
 use Inertia\Inertia;
 use App\Http\Traits\ProjectTrait;
 

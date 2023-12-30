@@ -1,6 +1,6 @@
 // SettingsNav.jsx
 import React from 'react';
-import PageButton from '@/Components/Buttons/PageButton';
+import PageButton from '@/Components/Buttons/IconButton';
 
 function SettingsNav({ activeContent, handleButtonClick }) {
   return (

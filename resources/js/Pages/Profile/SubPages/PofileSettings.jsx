@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
 import { imageUrl } from '@/Components/Scripts/BannerImage';
-import ProfilePicture from '@/Pages/Profile/Partials/ProfilePicture';
+import UploadableProfilePicture from '@/Pages/Profile/Partials/UploadableProfilePicture';
 import PersonalInfo from '@/Pages/Profile/Forms/PersonalInfo';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
@@ -110,7 +110,7 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
                 {/* <h3 className='absolute top-[1rem] left-[1rem] text-white z-10'>Profile Settings</h3> */}
                 <div className='absolute bg-black h-full w-full opacity-[.5] p-[1rem] z-0'></div>
             </div>
-            <ProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] ml-6 absolute top-[1.5rem]"/>
+            <UploadableProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] ml-6 absolute top-[1.5rem] border-red-500"/>
         </div>
         {/* Form */}
         <div className='py-6 px-8 w-full flex flex-row gap-6 grow justify-end h-full'>

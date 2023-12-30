@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faProjectDiagram, faInfo, faFeatherPointed, faClapperboard, faBarsStaggered, faPaperPlane, faAddressCard, faHandHoldingDollar, faPhotoFilm, faFolderTree, faBriefcase, faSliders } from '@fortawesome/free-solid-svg-icons';
-import PageButton from '@/Components/Buttons/PageButton'; 
+import PageButton from '@/Components/Buttons/IconButton'; 
 import Tooltip from '@mui/joy/Tooltip';
 
 function ProjectNavigation({ project }) {
@@ -15,7 +15,6 @@ function ProjectNavigation({ project }) {
       <div className="left-content w-full">
         <h1 className='w-full'>{project.project_name}</h1>
         <p className='light-color text-md font-base'>{project.project_type} :: {project.category_type}</p>
-        <p>{project.project_description}</p>
       </div>
       <div className="right-content justify-end w-full pr-[2rem]">
         <ul className="dashboard-navlinks text-center flex gap-6">
@@ -68,9 +67,6 @@ function ProjectNavigation({ project }) {
           </li>
           <li>
             <PageButton className="disabled" icon={faFolderTree} size="small" />
-          </li>
-          <li>
-            <PageButton href={route('project.settings', { id: project.id })} active={route().current('project.settings')} activeClass="active-link" onClick={handleSettingsClick} icon={faSliders} size="small" />
           </li>
         </ul>
       </div>

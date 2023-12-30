@@ -13,9 +13,9 @@ input[type="time"],
 input[type="datetime-local"],
 select {
     border-radius: var(--input-corners);
-    padding: .65rem .85rem;
+    padding: .85rem .85rem;
     background-color: var(--light-color);
-    border: 1px solid var(--tertiary-color);
+    border: none;
     outline: none;
     width: 100%;
     color: var(--primary-color);
@@ -25,7 +25,8 @@ select {
  
 input::placeholder,
 select option:disabled,
-textarea::placeholder {
+textarea::placeholder,
+.MuiTextarea-root::placeholder {
     font-size: .85rem !important;
     color: rgb(0,0,0,.2) !important;
 }
@@ -62,14 +63,15 @@ textarea:active {
 .MuiTextarea-root,
 .MuiAutocomplete-root {
     border-radius: var(--input-corners) !important;
-    padding: .65rem .85rem;
+    padding: .85rem .85rem !important;
     background-color: var(--light-color) !important;
-    border: 1px solid var(--tertiary-color) !important;
+    border: none !important;
     outline: none !important;
     width: 100% !important;
     color: var(--primary-color);
     font-size: .85rem;
     height: 100%;
+    box-shadow: none !important;
 }
 
 .css-rmmrnf-JoyAutocomplete-root{
@@ -90,4 +92,6 @@ textarea:active {
     background-color: #f0f0f0 !important;
     color: #a9a9a9 !important;
     cursor: not-allowed !important;
+    pointer-events: none !important;
 }
+

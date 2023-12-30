@@ -27,6 +27,7 @@ class User extends Authenticatable
         'location_id',
         'primary_production_company_id',
         'is_password_temporary',
+        'consent',
         'verification_code',
         'code_expires_at',
         'email_verified_at', 
@@ -35,6 +36,7 @@ class User extends Authenticatable
         'personal_info_completed',  
         'company_info_completed',  
         'registration_complete', 
+        'ip_address'
     ];
 
     /**

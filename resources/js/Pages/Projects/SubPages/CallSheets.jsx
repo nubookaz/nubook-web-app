@@ -21,7 +21,7 @@ export default function CallSheets({ auth, showBanner }) {
       showTopBar: false, 
       showRightContent: false,
       size: 'page-banner',
-  };
+    };
 
     const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
 

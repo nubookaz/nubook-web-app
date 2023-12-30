@@ -12,7 +12,7 @@
     --dark-color: #2A2A2E;
     --transition-speed: 0.3s; 
     --rounded-corners: .5rem;
-    --input-corners: .5rem;
+    --input-corners: .3rem;
     --button-corners: .5rem;
     --text-buttons: 5rem;
     --overlay-color: rgba(0, 0, 0, 0.6); /* Adjust the color and opacity as needed */

@@ -46,24 +46,21 @@
 }
 
 .page-button {
-    background-color: #fff; /* White background */
     border-radius: 4px; /* Rounded corners */
-    display: flex;
     justify-content: center;
     align-items: center;
     color: var(--tertiary-color); /* Icon color */
-    /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
     transition: color 0.3s, outline 0.3s; /* Transition properties for color and outline */
     border: 2px solid transparent; /* Transparent outline initially */
 }
 
 .page-button-small {
-    width: 45px; /* Adjust the width as needed */
+    /* width: 45px;  */
     height: 45px; /* Adjust the height as needed */
 }
 
 .page-button-medium {
-    width: 55px; /* Adjust the width as needed */
+    width: 55px; 
     height: 55px; /* Adjust the height as needed */
     font-size: 1.5rem;
 }
