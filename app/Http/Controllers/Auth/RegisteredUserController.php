@@ -43,7 +43,6 @@ class RegisteredUserController extends Controller
             'password.confirmed' => 'Password confirmation does not match.',
             'consent.required' => 'Please make sure to agree to the privacy policy and data collection.',
             'consent.boolean' => 'Invalid consent value.',
-
         ];
 
         $request->validate([
@@ -57,7 +56,6 @@ class RegisteredUserController extends Controller
         $expiresAt = now()->addMinutes(3)->toIso8601String();
 
         // Capture the user's IP address
-        $userIpAddress = $request->ip();
 
         $user = User::create([
             'first_name' => 'Placeholder',
@@ -69,7 +67,6 @@ class RegisteredUserController extends Controller
             'email_verified_at' => null,
             'email_verified' => false,
             'consent' => $request->boolean('consent'),
-            'ip_address' => $userIpAddress,
         ]);
 
         $adminRoleId = DB::table('roles')->where('name', 'admin')->first()->id;

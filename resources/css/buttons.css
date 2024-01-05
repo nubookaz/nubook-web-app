@@ -54,10 +54,7 @@
     border: 2px solid transparent; /* Transparent outline initially */
 }
 
-.page-button-small {
-    /* width: 45px;  */
-    height: 45px; /* Adjust the height as needed */
-}
+ 
 
 .page-button-medium {
     width: 55px; 

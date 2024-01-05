@@ -20,13 +20,13 @@ function IconButton({
 
     // Define a mapping of size to CSS class
     const sizeClass = {
-      small: 'page-button-small',
+      small: 'w-[45px] h-[45px]',
       medium: 'page-button-medium',
       large: 'page-button-large',
     };
 
     // Determine the class based on the size prop
-    const buttonClass = `page-button ${sizeClass[size] || ''} ${active ? activeClass : ''} ${className}`;
+    const buttonClass = `page-button text-center ${sizeClass[size] || ''} ${active ? activeClass : 'bg-white'} ${className}`;
 
     const renderIcon = icon && <FontAwesomeIcon className='items-center' icon={icon} />;
 

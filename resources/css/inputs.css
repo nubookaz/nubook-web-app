@@ -11,10 +11,11 @@ input[type="password"],
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
+input[type="number"],
 select {
     border-radius: var(--input-corners);
     padding: .85rem .85rem;
-    background-color: var(--light-color);
+    background-color: rgb(241 245 249);
     border: none;
     outline: none;
     width: 100%;
@@ -64,7 +65,7 @@ textarea:active {
 .MuiAutocomplete-root {
     border-radius: var(--input-corners) !important;
     padding: .85rem .85rem !important;
-    background-color: var(--light-color) !important;
+    background-color: rgb(241 245 249);
     border: none !important;
     outline: none !important;
     width: 100% !important;

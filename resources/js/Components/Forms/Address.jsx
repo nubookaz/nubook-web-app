@@ -2,6 +2,11 @@ import React, {  useState, useEffect } from 'react';
 import { formGroupClass, multiColInputClass } from '@/Components/Scripts/Form';
 
 import Input from '@/Components/Forms/Input';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import Tooltip from '@mui/joy/Tooltip';
+
+
 
 export default function Address ({
 
@@ -11,20 +16,18 @@ export default function Address ({
   setEmptyFields,
  
 })  {
- 
-
 
   const [selectedState, setSelectedState] = useState('');
+ 
+  useEffect(() => {
+    // This effect ensures that the selected state is updated
+    // whenever the data prop changes
+    setSelectedState(data.state || '');
+  }, [data.state]);
 
+  
   const handleChange = (field, value) => {
     onUpdateInfo(field, value);
-
-    // if (emptyFields[field]) {
-    //     setEmptyFields((prevEmptyFields) => ({
-    //         ...prevEmptyFields,
-    //         [field]: false
-    //     }));
-    // }
 
   };  
 
@@ -34,6 +37,7 @@ export default function Address ({
     
   };
 
+  
 
   return (
 
@@ -62,18 +66,28 @@ export default function Address ({
                   >
                 </Input>
 
-                <Input
-                  inputType='dropdown'
-                  openToolTip={false}
-                  label="State"
-                  type="text"
-                  name="state"
-                  placeholder="Select a State"
-                  value={data.state}
-                  options={stateOptions}
-                  onChange={handleStateChange}
-                  >
-                </Input>
+
+
+                <div className='flex flex-col gap-2 w-full'>
+                    <label htmlFor="state" className='text-gray-400 text-sm'> State * </label>
+                    <Tooltip arrow sx={{ fontSize: '.75rem' }} title="State is Required" open={emptyFields['state'] || false} color="danger" placement="top" variant="outlined">
+                      <Select
+                          inputType='dropdown'
+                          name="state"
+                          placeholder="Select a State"
+                          value={selectedState}
+                          onChange={handleStateChange}
+                          autocomplete=''
+                      >
+
+                          {stateOptions.map((option, index) => (
+                              <Option key={index} value={option.value}>
+                                  {option.label}
+                              </Option>
+                          ))}
+                      </Select>
+                    </Tooltip>
+                </div>
 
                 <Input
                   openToolTip={false}

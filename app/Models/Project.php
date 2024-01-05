@@ -7,24 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
+        'user_id',
+        'project_type',
         'project_name',
         'project_description',
         'project_budget',
-        'project_image',
-        'project_type',
-        'category_type',
-        'project_status',
-        'service_types',
         'project_stage',
-        'user_id',
-
-        'viewer_rating',
-        'release_year',
-        'genres',
+        'project_status',
+        'video_type',
+        'video_production',  
     ];
 
+
     protected $casts = [
-        'service_types' => 'array',
+        'video_production' => 'array',
     ];
     
     

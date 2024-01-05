@@ -4,32 +4,17 @@ import DrawerPanel from '@/Components/Layouts/DrawerPanel';
 
 export default function PrivacyPolicy({
 
-    ...props
-
+ 
 }){
 
-    const { isDrawerPanelOpen, toggleDrawerPanel } = props;
-
+ 
  
 
     return (
 
-        <DrawerPanel
-            isDrawerPanelOpen={isDrawerPanelOpen}
-            toggleDrawerPanel={toggleDrawerPanel}
-            anchor='bottom'
-            size='lg'
-            showCloseButton='true'
-            sxCustom={[
-                {
-                    '--Drawer-verticalSize': 'clamp(500px, 98%, 100%)',
-                }
-            ]}
-        >
-            {{
-                body:(
-
-                    <div className='flex flex-col gap-4 w-full max-w-[60rem] mx-auto'>
+ 
+            <div className='w-full h-full overflow-scroll'>
+                    <div className='flex flex-col gap-4 w-full max-w-[60rem] h-full mx-auto'>
                         <div className='text-center flex flex-col gap-2'>
                             <h1>Privacy Policy for Nubook</h1>
                             <p className='text-sm'>Last Updated: December 26th, 2023</p>
@@ -150,11 +135,9 @@ export default function PrivacyPolicy({
                             <p className='text-md'>For any questions or concerns about this privacy policy, please contact us at: info@nubook.io</p>
                         </div>
                     </div>
-            
-                ),
-            }}
-
-        </DrawerPanel>
+            </div>
+                    
+ 
 
     );
 

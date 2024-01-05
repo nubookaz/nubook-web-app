@@ -3,7 +3,7 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'; 
+import {  faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons'; 
 
 import ProjectSelector from './Partials/ProjectSelector'; // Import CategorySelector
 import ProjectStepper from './Partials/ProjectStepper'; // Import ProjectStepper
@@ -22,43 +22,72 @@ export default function ProjectForm({ customClasses }) {
 
 
     const [currentStep, setCurrentStep] = useState(0);
-    const [selectedProject, setSelectedProject] = useState(null);
-    const [selectedVideoType, setSelectedVideoType] = useState(null);
     const [emptyFields, setEmptyFields] = useState({});
+    const totalSteps = 4; 
+    const [isCustomImage, setIsCustomImage] = useState(false);
+    const [uploadedImage, setUploadedImage] = useState(null);
+    const [isImageAIGenerated, setImageIsAIGenerated] = useState(false);
+    const [posterSize, setPosterSize] = useState({ width: 0, height: 0 });
 
-
-
-    const [videoStepTwoData, setVideoStepTwoData] = useState({});
-
-    // Callback function to update state
-    const handleVideoDataChange = (updatedData) => {
-        setVideoStepTwoData(updatedData);
+    const handlePosterSizeChange = (size) => {
+        setPosterSize(size);
     };
+    
+    console.log(posterSize);
 
+    const [videoStepOneData, setVideoStepOneData] = useState({});
+    const [videoStepTwoData, setVideoStepTwoData] = useState({
+        project_name: '',
+        project_description: '',
+        primary_genre: '',
+        secondary_genre: '',
+        viewer_rating: '',
+        movie_poster: '',
+    });
+    const [videoStepThreeData, setVideoStepThreeData] = useState({
+        project_stage: '',
+        project_status: '',
+        filming_days: '',
+        project_budget: '',
+    });
+    const [videoStepFourData, setVideoStepFourData] = useState({});
 
+    const [projectData, setProjectData] = useState({
+        project_type: '',
+        video_type: '',
+    });
 
-
-
-
-
-
-
-
-
-
+ 
+    const handleVideoStepTwoDataChange = (newData) => {
+        setVideoStepTwoData(newData); // Updates the videoStepTwoData state
+    };
+    
+    const handleVideoStepThreeDataChange = (newData) => {
+        setVideoStepThreeData(newData); // Updates the videoStepThreeData state
+    };
+    
     const handleProjectType = (project) => {
         if (project.active) {
-            setSelectedProject(project.name);
+            // Update projectData with the selected project type
+            setProjectData(prevData => ({
+                ...prevData,
+                project_type: project.name
+            }));
             setCurrentStep(1); // Move to the next step
         }
     };
-
+    
     const handleVideoType = (videoType) => {
         if (videoType.active) {
-            setSelectedVideoType(videoType.name);
+            // Update projectData with the selected video type
+            setProjectData(prevData => ({
+                ...prevData,
+                video_type: videoType.name
+            }));
             setCurrentStep(2); // Move to the next step
         }
     };
+    
 
     const handleBackClick = () => {
         if (currentStep > 0) {
@@ -69,104 +98,123 @@ export default function ProjectForm({ customClasses }) {
     
 
     const handleNextClick = () => {
-        const totalSteps = 5; // Example total steps
     
-        // Check for Step 1 completion
-        if (currentStep === 2 && !projectData.project_name.trim()) {
+        if (currentStep === 1 && projectData.project_type === 'Video Production' && !projectData.video_type) {
+            // Check if video_type is selected for Video Production projects
+            setEmptyFields({ ...emptyFields, video_type: true });
+            return; // Prevent moving to the next step if video type is not selected
+        }
+        
+        if (currentStep === 2 && !videoStepTwoData.project_name.trim()) {
             setEmptyFields({ ...emptyFields, project_name: true });
             return; // Prevent moving to the next step
         }
     
         // Check for Step 2 completion
         if (currentStep === 3) {
-            let errors = {};
-    
-            // Check if project_type, category_type, and project_stage are filled
-            if (!projectData.project_type) errors.project_type = true;
-            if (!projectData.category_type) errors.category_type = true;
-            if (!projectData.project_stage) errors.project_stage = true;
-            if (!projectData.project_status) errors.project_status = true;
-
-            // Check for service_types only if project_type is 'Corporate' or 'Commercial'
-            if ((projectData.project_type === 'Corporate' || projectData.project_type === 'Commercial') && (!projectData.service_types || projectData.service_types.length === 0)) {
-                errors.service_types = true;
+            let newEmptyFields = { ...emptyFields };
+        
+            // Existing check for project_stage
+            if (!projectData.project_stage) {
+                newEmptyFields.project_stage = true;
             }
         
-            if (Object.keys(errors).length > 0) {
-                setEmptyFields({ ...emptyFields, ...errors });
-                return;
+            // Additional condition for another field, e.g., project_budget
+            if (!projectData.project_status) {
+                newEmptyFields.project_status = true;
+            }
+        
+            setEmptyFields(newEmptyFields);
+        
+            // Check if there are any true values in newEmptyFields, indicating missing data
+            if (Object.values(newEmptyFields).some(value => value === true)) {
+                return; // Prevent moving to the next step if any required field is empty
             }
         }
-    
+        
         if (currentStep < totalSteps - 1) {
             setCurrentStep(prevStep => prevStep + 1);
         }
     };
     
 
-    const [projectData, setProjectData] = useState({
-        project_name: '',
-        category_type: '',
-        project_type: '',
-        project_status: '',
-        service_types: [],
-        project_stage: '',
-        project_description: '',
-        project_budget: '',
-    });
+ 
 
-    const handleUpdateFormData = (field, value) => {
-        setProjectData(prevData => ({
-        ...prevData,
-        [field]: value
-        }));
-    };
 
-    const handleChange = (field, value) => {
-        console.log(field, value);
-        if (Array.isArray(value)) {
-            // Handle the array-type input update
-            handleUpdateFormData(field, value);
-        } else {
-          handleUpdateFormData(field, value);
-        }
-
-        if (field === 'service_types') {
-            setProjectData(prevData => ({
-                ...prevData,
-                [field]: Array.isArray(value) ? value : []
-            }));
-        } 
     
-        // Existing logic to handle empty fields
-        if (emptyFields[field]) {
-            setEmptyFields(prevEmptyFields => ({
-                ...prevEmptyFields,
-                [field]: false
-            }));
-        }
-    };
+    
 
     const stepInfo = [
         { step: 1, header: 'Choose a Project Type', description: 'Choose a project type below' },
-        { step: 2, header: selectedProject, description: 'What type of project are you working on?' },
-        { step: 3, header: selectedVideoType, description: 'Provide some information about your project below. You must fill out all fields if you want to create an AI generated poster.' },
-        { step: 4, header: selectedVideoType, description: 'Lets add additional details for your project' },
+        { step: 2, header: projectData.project_type, description: 'What type of project are you working on?' },
+        { step: 3, header: projectData.video_type, description: 'Provide some information about your project below. You must fill out all fields if you want to create an AI generated poster.' },
+        { step: 4, header: projectData.video_type, description: 'Lets add additional details for your project' },
     ]
 
-  
+
+    const handleSaveProject = async () => {
+        const formData = new FormData();
+        
+        // Append all other data to formData
+        Object.entries({ 
+            ...projectData, 
+            ...videoStepOneData, 
+            ...videoStepTwoData, 
+            ...videoStepThreeData, 
+            ...videoStepFourData 
+        }).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+    
+        // Append the 'isImageAIGenerated' flag
+        formData.append('isImageAIGenerated', isImageAIGenerated);
+    
+        // Append the image file if it exists
+        if (uploadedImage) {
+            formData.append('uploadedImage', uploadedImage);
+        }
+    
+        // Append poster size information
+        if (posterSize) {
+            formData.append('posterWidth', posterSize.width);
+            formData.append('posterHeight', posterSize.height);
+        }
+        
+        try {
+            const response = await axios.post(route('projects.create'), formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            if (response.data?.url) {
+                // Redirect to the provided URL
+                window.location.href = response.data.url;
+            }
+         } catch (error) {
+            console.error('Error saving project:', error);
+        }
+    };
+    
+    
+
+ 
+ 
     return (
 
         <div className='w-full h-full py-[4rem] px-[8rem]'>
 
             <div className='w-full max-w-[56rem] mx-auto'>
-                <ProjectStepper currentStep={currentStep} />
+                <ProjectStepper 
+                    currentStep={currentStep} 
+                    activeProject={projectData.project_type} 
+                 />
             </div>
 
-            <div className='my-auto h-full w-full px-[16rem] py-[3rem]'>
+            <div className='my-auto mx-auto h-full w-full max-w-[85rem] py-[3rem]'>
 
 
-                    <div className="mb- h-full">
+                    <div className="h-full">
 
                         <div className='flex flex-col gap-2 h-full'>
                 
@@ -177,44 +225,52 @@ export default function ProjectForm({ customClasses }) {
                                 </div>
                             )}
 
-                            <div className='flex flex-row gap-4 justify-center mt-[4rem] mb-[6rem] h-full max-h-[32rem]'>
+                            <div className='flex flex-row gap-4 justify-center mt-[2rem] mb-[6rem] h-full max-h-[34rem]'>
 
-                                <div className='w-full '>
+                                <div className='w-full h-full'>
 
                                     {currentStep === 0 && (
                                         <div className='px-[10rem]'>
-                                            <ProjectSelector onProjectClick={handleProjectType} activeProject={selectedProject} />
+                                            <ProjectSelector onProjectClick={handleProjectType} activeProject={projectData.project_type} />
                                         </div>
                                      )}
 
-                                    {currentStep === 1 && selectedProject === 'Video Production' && (
+                                    {currentStep === 1 && projectData.project_type === 'Video Production' && (
                                         <div className='px-[6rem]'>
                                             <VideoStepOne
                                                 onVideoTypeClick={handleVideoType}
-                                                activeVideoType={selectedVideoType}
+                                                showError={emptyFields.video_type} 
+                                                activeVideoType={projectData.video_type}
                                             />
                                         </div>
                                     )}
 
-                                    {currentStep === 2 && selectedProject === 'Video Production' && (
-                                        <div className='px-[10rem]'>
+                                    {currentStep === 2 && projectData.project_type === 'Video Production' && (
+                                        <div className='px-[6rem]'>
                                             <VideoStepTwo 
-                                                projectData={projectData} 
-                                                onDataChange={handleVideoDataChange} 
+                                                data={videoStepTwoData} 
+                                                onDataChange={handleVideoStepTwoDataChange}                                         
                                                 emptyFields={emptyFields} 
+                                                setEmptyFields={setEmptyFields}
+                                                isCustomImage={isCustomImage}
+                                                setIsCustomImage={setIsCustomImage}      
+                                                setUploadedImage={setUploadedImage}
+                                                setImageIsAIGenerated={setImageIsAIGenerated}
+                                                onPosterSizeChange={handlePosterSizeChange}
                                             />
                                         </div>
                                     )}
 
-                                    {currentStep === 3 && selectedProject === 'Video Production' && (
-                                        <div className='px-[10rem]'>
+                                    {currentStep === 3 && projectData.project_type === 'Video Production' && (
+                                        <div className='px-[6rem]'>
                                             <VideoStepThree
-                                                projectData={projectData} 
-                                                handleChange={handleChange} 
-                                                emptyFields={emptyFields} 
+                                                data={videoStepThreeData}
+                                                onDataChange={handleVideoStepThreeDataChange}
+                                                emptyFields={emptyFields}
                                             />
                                         </div>
                                     )}
+
 
                                 </div>
 
@@ -224,7 +280,7 @@ export default function ProjectForm({ customClasses }) {
                             <div className='flex flex-row justify-evenly'>
                                     {currentStep > 0 && (
                                         <PageButton 
-                                            className="!my-auto bg-transparent duration-500 ease-in-out	hover:bg-emerald-100" 
+                                            className="!my-auto !bg-transparent duration-500 ease-in-out py-2 hover:bg-emerald-100" 
                                             size="small" 
                                             icon={faArrowLeft} 
                                             inText='Back'
@@ -233,15 +289,26 @@ export default function ProjectForm({ customClasses }) {
                                          </PageButton>
                                     )}
 
-                                    {currentStep > 0 && currentStep < 5 - 1 && (
+                                    { (currentStep === 0 && projectData.project_type) || (currentStep > 0 && currentStep < totalSteps - 1) ? (
                                         <PageButton 
                                             iconPosition='right' 
-                                            className="!my-auto bg-transparent duration-500 ease-in-out	hover:bg-emerald-100" 
+                                            className="!my-auto !bg-transparent duration-500 ease-in-out py-2 hover:bg-emerald-100" 
                                             size="small" 
                                             icon={faArrowRight} 
                                             inText='Next'
                                             onClick={handleNextClick}
                                         >                     
+                                        </PageButton>
+                                    ) : null }
+
+                                    {currentStep === totalSteps - 1 && (
+                                        <PageButton 
+                                            className="!my-auto duration-500 ease-in-out py-2 hover:bg-emerald-100" 
+                                            size="small" 
+                                            icon={faCheck} 
+                                            inText='Submit'
+                                            onClick={handleSaveProject}
+                                        >
                                         </PageButton>
                                     )}
                             </div>

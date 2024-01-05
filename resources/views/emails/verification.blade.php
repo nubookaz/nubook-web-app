@@ -12,6 +12,11 @@
             font-family: Arial, sans-serif;
         }
 
+        p {
+           line-height: 1.5rem; 
+          color: rgb(100 116 139);
+        }
+      
         .email-container {
             max-width: 600px;
             margin: 20px auto;
@@ -25,25 +30,57 @@
             margin-bottom: 10px;
             font-size: 18px;
             font-weight: bold;
-            color: #333;
-        }
+            color: rgb(16 185 129);
+            text-align: center;
+         }
 
         .email-body {
             margin-top: 20px;
             color: #555;
         }
+      
+      .email-footer {
+        background-color: rgb(203 213 225);
+        padding: 20px 0px;
+        margin-top: 40px;
+      }
+      
+      .email-footer a {
+        color: rgb(148 163 184);
+        font-size: .80rem;
+      }
+      
+        .salutation { 
+           color: rgb(71 85 105);
+          font-size: 24px;
+        }
+      
+        .verification-code {
+          margin: 30px auto;
+          padding: 20px;
+          background-color: rgb(241 245 249);
+          max-width: 30rem;
+          border-radius: 10px;
+          color: rgb(16 185 129);
+          text-align: center;
+        }
+      
     </style>
 </head>
 <body>
     <div class="company-name">Nubook</div>
-    <div class="email-container">
-        <div class="email-body">
-            <p>Hello,</p>
-            <p>Thank you for registering. To verify your email, please use the following one-time code:</p>
-            <p><strong>{{ $verificationCode }}</strong></p>
-
-            <p>If you didn't register, you can ignore this email.</p>
-        </div>
+    <div class='email-container'>
+      <div class="email-body">
+          <strong class='salutation'>Hey there!</strong>
+          <p>Welcome aboard the filmmaking journey! 🎬 Thanks for signing up. </br> To confirm your email, simply enter the magic code below:</p>
+          <p class="verification-code"><strong>{{ $verificationCode }}</strong></p>
+        <p>And if you didn't mean to join us, </br>just disregard this message like an unused script idea.</p>
+          <p>Let's roll! 🎥</p>
+      </div>
+      <div class='email-footer'>
+        <a href='http://localhost/#privacy-policy'>Read our Privacy Policy</a>
+      </div>
     </div>
+
 </body>
 </html>

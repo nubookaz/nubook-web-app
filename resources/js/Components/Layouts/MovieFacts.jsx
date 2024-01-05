@@ -152,8 +152,8 @@ export default function MovieFacts() {
 
   return (
     <div className="movie-fact flex flex-col w-full gap-4">
-      <p className='text-white text-lg font-semibold'>"{fact.fact}"</p>
-      <p className='text-white text-md'>- {fact.movie}</p>
+      <p className='text-white text-md font-semibold'>"{fact.fact}"</p>
+      <p className='text-white text-sm'>- {fact.movie}</p>
     </div>
   );
 

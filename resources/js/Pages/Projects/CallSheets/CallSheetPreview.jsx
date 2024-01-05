@@ -42,11 +42,12 @@ export default function CallSheetPreview({data, ...props}) {
             anchor='bottom'
             size='lg'
             showCloseButton='true'
-            sxCustom={[
-                {
-                    '--Drawer-verticalSize': 'clamp(500px, 98%, 100%)',
-                }
-            ]}
+            sxCustom={{
+                '--Drawer-verticalSize': 'clamp(500px, 98%, 100%)',
+                '& .MuiDrawer-content': { // Targeting a child div with a specific class
+                 },
+                // Add other general styles for DrawerPanel here
+            }}
         >
             {{
                 header:(

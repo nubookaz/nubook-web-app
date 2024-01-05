@@ -41,14 +41,6 @@ export default function VerificationProcess({
         password: '',
         password_confirmation: '',
     });
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-      };
-      
-    const handlePasswordConfirmationChange = (e) => {
-        setPasswordConfirmation(e.target.value);
-    };
       
     const [personalInfo, setPersonalInfo] = useState({
         first_name: '',
@@ -143,6 +135,23 @@ export default function VerificationProcess({
     
     
     const savePersonalInfo = async () => {
+        const newEmptyFields = {
+            first_name: !personalInfo.first_name,
+            last_name: !personalInfo.last_name,
+            // Add other required fields here with similar checks
+        };
+    
+        // Update the empty fields state
+        setEmptyFields(newEmptyFields);
+    
+        // Check if any of the required fields are empty
+        const hasEmptyFields = Object.values(newEmptyFields).some(value => value);
+    
+        if (hasEmptyFields) {
+            // Do not proceed if there are empty fields
+            return;
+        }
+
         try {
             const response = await axios.post(route('verification.personal.store'), personalInfo);
             handleResponse(response, () => {
@@ -156,6 +165,7 @@ export default function VerificationProcess({
     
     
     const saveCompanyInfo = async () => {
+
         try {
             const response = await axios.post(route('verification.production.company.store'), companyInfo);
     
@@ -169,7 +179,7 @@ export default function VerificationProcess({
         }
     };
 
-
+ 
      return (
         <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
 
@@ -247,7 +257,7 @@ export default function VerificationProcess({
                             <p>
                                 Please complete the personal information form by providing your first and last name, phone number, and address. Your details are important for us to enhance your experience and ensure accurate communication. Thank you for providing this information.                            
                             </p>
-                            <PersonalInfo onUpdateInfo={setPersonalInfo} existingData={personalInfo}/>
+                            <PersonalInfo onUpdateInfo={setPersonalInfo} emptyFields={emptyFields} setEmptyFields={setEmptyFields}/>
                             <SecondaryButton onClick={savePersonalInfo}>Next</SecondaryButton>
                         </div>
                     </div>

@@ -9,26 +9,19 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            
             $table->unsignedBigInteger('user_id');
-            $table->string('project_name');
-            $table->string('category_type');  
             $table->string('project_type');
-            $table->string('project_stage'); 
-            $table->string('project_status'); 
-            $table->json('service_types')->nullable();
+            $table->string('video_type');
+            $table->string('project_name');
             $table->text('project_description')->nullable();
-            $table->decimal('project_budget', 10, 2)->nullable();
+            $table->decimal('project_budget', 12, 2)->nullable();
 
-            $table->string('project_image')->nullable();
-            $table->string('viewer_rating')->nullable();
-            $table->string('release_year')->nullable();
-            $table->string('genres')->nullable();
+            $table->string('project_stage')->nullable();
+            $table->string('project_status')->nullable();
+
+            $table->json('video_production')->nullable(); // JSON column for video production details
 
             $table->timestamps();
-            
-            // Define the foreign key relationship with the users table
-            $table->foreign('user_id')->references('id')->on('users');
         });
         
     }

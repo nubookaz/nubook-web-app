@@ -11,6 +11,7 @@ import {
 
 
 function MultiCircularProgress({ 
+
   projects,
   estimateProjects,
   creativeDevelopmentProjects,
@@ -19,6 +20,7 @@ function MultiCircularProgress({
   postProductionProjects,
   completedProjects,
   multiCircularProgressSize,
+  
  }) {
 
   const totalProject = projects.length;

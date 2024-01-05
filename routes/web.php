@@ -41,8 +41,7 @@ Route::middleware(['guest'])->group(function () {
     
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
-    // Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('show.login');
- 
+  
 });
 
 
@@ -53,7 +52,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
  
     Route::post('/chat', [ChatGPTController::class, 'chat'])->name('chat.gpt');
- 
+    Route::get('/ai-content-info', [ChatGPTController::class, 'getAIGeneratedContentInfo'])->name('ai-content.info');
+    Route::get('/fetch-image', [ChatGPTController::class, 'fetchImage']);
+
+    
 
 
     Route::post('/verification/update-password', [VerificationController::class, 'updatePassword'])->name('verification.updatePassword');

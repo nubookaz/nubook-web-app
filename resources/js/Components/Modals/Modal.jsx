@@ -3,20 +3,20 @@ import { Dialog, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function Modal({ children, className, dialogPanelClass, show = false, maxWidth = '2xl', closeable = true, showCloseButton = false, onClose = () => {} }) {
+export default function Modal({ children, className, dialogPanelClass, childrenClassName, show = false, maxWidth = '2xl', closeable = true, showCloseButton = false, onClose = () => {} }) {
     const close = () => {
         if (closeable) {
             onClose();
         }
     };
 
-    const maxWidthClass = {
-        sm: 'sm:max-w-sm',
-        md: 'sm:max-w-md',
-        lg: 'sm:max-w-lg',
-        xl: 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl',
-    }[maxWidth];
+    // const maxWidthClass = {
+    //     sm: 'sm:max-w-sm',
+    //     md: 'sm:max-w-md',
+    //     lg: 'sm:max-w-lg',
+    //     xl: 'sm:max-w-xl',
+    //     '2xl': 'sm:max-w-2xl',
+    // }[maxWidth];
 
     const containerClass = `fixed inset-0 flex overflow-y-auto p-6 items-center z-50 transform transition-all ${className}`;
 
@@ -50,12 +50,14 @@ export default function Modal({ children, className, dialogPanelClass, show = fa
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                     <Dialog.Panel
-                        className={`p-8 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto relative ${maxWidthClass} ${dialogPanelClass}`}
+                        className={`p-8 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto relative ${dialogPanelClass}`}
                     >
                         {showCloseButton ? (
                             <FontAwesomeIcon onClick={close} className='cursor-pointer text-3xl text-red-500 absolute right-8 z-50' icon={faCircleXmark}></FontAwesomeIcon>
                         ):null}
-                        {children}
+                        <div className={`${childrenClassName} overflow-scroll h-full`}>
+                            {children}
+                        </div>
                     </Dialog.Panel>
                 </Transition.Child>
             </Dialog>

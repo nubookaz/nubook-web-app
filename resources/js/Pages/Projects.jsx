@@ -48,11 +48,11 @@ export default function Projects({ auth }) {
 
     const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
     const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
-    const [closeModal, setCloseModal] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
  
 
     const openModal = () => {
-      setCloseModal(true);
+      setIsModalOpen(true);
     };
 
 
@@ -74,7 +74,7 @@ export default function Projects({ auth }) {
 
     const emptyContentSvg = "../../images/svg_images/undraw_clients.svg"; // Provide the SVG path
 
-    const limitedProjects = projects.slice(0, 4);
+    const limitedProjects = projects.slice(0, 5);
  
  
  
@@ -90,10 +90,10 @@ export default function Projects({ auth }) {
             <div className="relative z-50 w-full h-full">
 
                 <Modal
-                  show={closeModal}
+                  show={isModalOpen}
                   maxWidth='100%'
-                  dialogPanelClass='h-full !bg-[#f6f4f1]'
-                  onClose={setCloseModal}
+                  dialogPanelClass='h-full'
+                  onClose={setIsModalOpen}
                   showCloseButton='true'
                  >
                
@@ -125,7 +125,7 @@ export default function Projects({ auth }) {
 
                       content: (
                         <div className='flex flex-col gap-6 h-full max-h-[1080px]'>
-                          <div className='flex flex-row gap-6 h-[35%]'>
+                          <div className='flex flex-row gap-6 h-[30%]'>
                             
                             <CardContainer absoluteHeader={true} header="Summary" className='!w-1/2 text-center'>
                               <Overview
@@ -146,11 +146,11 @@ export default function Projects({ auth }) {
                               <div className='flex flex-col h-full justify-between gap-6'>
                                 <div className='flex flex-row justify-between'>
                                   <h2>Projects</h2>
-                                  {limitedProjects.length >= 4 ? (
+                                  {limitedProjects.length >= 5 ? (
                                     <TertiaryButton icon={faCaretRight} href={route('projects.list')}>View All Projects</TertiaryButton>
                                   ) : null}
                                 </div>
-                                <ProjectList projects={limitedProjects} view="View All" cols="4" rows="1"/>
+                                <ProjectList projects={limitedProjects} view="View All"/>
                               </div>
                             </div>
                           </div>

@@ -268,6 +268,11 @@ export default function CallSheetDrawer({ data, newData, mode = 'create', ...pro
       toggleDrawerPanel={toggleDrawerPanel}
       isForm={true}
       onSubmitForm={handleSubmit}
+      sxCustom={{
+        '& .MuiDrawer-content': { // Targeting a child div with a specific class
+         },
+        // Add other general styles for DrawerPanel here
+      }}
     >
 
     {{

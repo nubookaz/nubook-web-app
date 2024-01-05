@@ -6,7 +6,11 @@
     background: #000;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+  }
+
+  .card .overlay {
+    opacity: 0;
   }
 
   .card .edit-icon {
@@ -45,9 +49,14 @@
     opacity: 1;
     transition: .3s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
   }
 
+  .card:hover .overlay {
+    opacity: 1;
+    transition: .3s;
+    backdrop-filter: blur(4px);
+  }
+ 
   .poster {
     position: relative;
     top: 0;

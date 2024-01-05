@@ -102,13 +102,13 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
     
   };
  
+  console.log(user);
 
   return (
     <div >
         <div className='relative mb-1'>
             <div className="w-full h-[8rem] relative" style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                {/* <h3 className='absolute top-[1rem] left-[1rem] text-white z-10'>Profile Settings</h3> */}
-                <div className='absolute bg-black h-full w-full opacity-[.5] p-[1rem] z-0'></div>
+                 <div className='absolute bg-black h-full w-full opacity-[.5] p-[1rem] z-0'></div>
             </div>
             <UploadableProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] ml-6 absolute top-[1.5rem] border-red-500"/>
         </div>
@@ -120,7 +120,7 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
             <form onSubmit={submit} className='w-full flex grow flex-col gap-8 ' >
               <div>
                 <h3 className='mb-4'>Personal Profile</h3>
-                <PersonalInfo onUpdateInfo={setPersonalInfo} existingData={personalInfo} />
+                 <PersonalInfo onUpdateInfo={setPersonalInfo} data={personalInfo} emptyFields={emptyFields} setEmptyFields={setEmptyFields}/>
               </div>
               <div>
                 <h3 className='mb-4'>Company Profile</h3>

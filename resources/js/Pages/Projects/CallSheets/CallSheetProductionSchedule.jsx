@@ -184,12 +184,14 @@ export default function CallSheetProductionSchedule({
             size='lg'
             showCloseButton='true'
             containerClass='overflow-hidden'
-            sxCustom={[
-                {
-                    '--Drawer-verticalSize': 'clamp(500px, 98%, 100%)',
-                    'z-index': '200',
-                }
-            ]}
+            sxCustom={{
+                '--Drawer-verticalSize': 'clamp(500px, 98%, 100%)',
+                'z-index': '200',
+                '& .MuiDrawer-content': { // Targeting a child div with a specific class
+ 
+                },
+                // Add other general styles for DrawerPanel here
+            }}
         >
             {{
                 header: (

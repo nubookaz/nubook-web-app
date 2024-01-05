@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationEmail;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
 
 
 
@@ -118,11 +119,10 @@ class VerificationController extends Controller
         ]);
     }
     
-    
+
 
     public function storePersonalInfo(Request $request)
     {
-
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -135,19 +135,21 @@ class VerificationController extends Controller
             'latitude' => 'nullable|numeric|between:-90,90',
             'longitude' => 'nullable|numeric|between:-180,180',
         ]);
-    
+
         $userId = $request->user()->id;
-    
+
         if (!$userId) {
             return response()->json(['error' => 'User information missing'], 400);
         }
-    
+
         $user = User::find($userId);
-    
+
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
-    
+
+        $userIpAddress = $request->ip();
+
         // Update user with personal information
         $user->update([
             'first_name' => $request->input('first_name'),
@@ -155,32 +157,75 @@ class VerificationController extends Controller
             'middle_initial' => $request->input('middle_initial'),
             'personal_info_completed' => true,
             'code_verified' => true, 
+            'ip_address' => $userIpAddress,
         ]);
-    
+
         $user->phone()->updateOrCreate([], ['tel' => $request->input('tel')]);
 
-        // dd($request);
-    
-        // Check if any location data is provided
-        if ($request->hasAny(['street_address', 'city', 'state', 'zip_code', 'latitude', 'longitude'])) {
+        $apiKey = env('GOOGLE_MAP_API_KEY');
+
+        // Check if geocode data is provided
+        if ($request->has('latitude') && $request->has('longitude')) {
+            $latitude = $request->input('latitude');
+            $longitude = $request->input('longitude');    
+
+            $client = new Client();
+            $response = $client->get("https://maps.googleapis.com/maps/api/timezone/json", [
+                'query' => [
+                    'location' => "{$latitude},{$longitude}",
+                    'timestamp' => time(), 
+                    'key' => $apiKey,
+                ],
+            ]);
+
+            $data = json_decode($response->getBody());
+            $timezoneId = $data->timeZoneId;
+            $user->update(['timezone' => $timezoneId]);
+        } else {
+            // Use IP address to determine timezone
+            $timezoneId = $this->getTimezoneFromIpAddress($userIpAddress);
+            if ($timezoneId) {
+                $user->update(['timezone' => $timezoneId]);
+            }
+        }
+
+        if ($request->hasAny(['street_address', 'city', 'state', 'zip_code'])) {
             $locationData = [
                 'street_address' => $request->input('street_address'),
                 'city' => $request->input('city'),
                 'state' => $request->input('state'),
                 'zip_code' => $request->input('zip_code'),
-                'latitude' => $request->input('latitude'),
-                'longitude' => $request->input('longitude'),
             ];
 
             $location = Location::firstOrCreate($locationData);
- 
             $user->location()->associate($location);
             $user->save();
-
         }
         
         return response()->json(['success' => true]);
     }
+
+    private function getTimezoneFromIpAddress($ipAddress)
+    {
+        // Implementation to get timezone from IP address
+        // Use an IP Geolocation API for actual implementation
+        // The following is a placeholder
+
+        try {
+            $apiKey = env('GOOGLE_MAP_API_KEY');
+            $client = new Client();
+            $response = $client->get("https://api.ipgeolocation.io/timezone", [
+                'query' => ['apiKey' => $apiKey, 'ip' => $ipAddress],
+            ]);
+
+            $data = json_decode($response->getBody());
+            return $data->timezone ?? null;
+        } catch (\Exception $e) {
+            // Log error or handle exception
+            return null;
+        }
+    }
+
 
     public function storeProductionCompanyInfo(Request $request)
     {

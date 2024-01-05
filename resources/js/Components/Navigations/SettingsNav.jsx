@@ -1,10 +1,19 @@
 // SettingsNav.jsx
 import React from 'react';
-import PageButton from '@/Components/Buttons/IconButton';
+import PageButton from '@/Components/Buttons/PageButton';
 
-function SettingsNav({ activeContent, handleButtonClick }) {
+
+
+
+export default function SettingsNav({ activeContent, handleButtonClick }) {
+
+
+
   return (
-    <div className="settings-nav flex flex-col gap-6">
+
+
+        <div className="settings-nav flex flex-col gap-6">
+
             <PageButton
                 onClick={() => handleButtonClick('profile-settings')}
                 className={`py-4 px-10 !justify-start ${activeContent === 'profile-settings' ? 'active-link' : ''}`}
@@ -42,7 +51,7 @@ function SettingsNav({ activeContent, handleButtonClick }) {
 
             <PageButton
                 onClick={() => handleButtonClick('subscription-settings')}
-                className={`py-4 px-10 !justify-start ${activeContent === 'subscription-settings' ? 'active-link' : ''}`}
+                className={`py-4 px-10 !justify-start ${activeContent === 'subscription-settings' ? 'active-link' : 'disabled'}`}
                 inText="Subscription Settings"
             >
             </PageButton>
@@ -53,8 +62,10 @@ function SettingsNav({ activeContent, handleButtonClick }) {
                 inText="Account Settings"
             >
             </PageButton>
-    </div>
+
+        </div>
+
+
   );
 }
-
-export default SettingsNav;
+ 

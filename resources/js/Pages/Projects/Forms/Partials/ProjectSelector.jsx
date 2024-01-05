@@ -13,6 +13,7 @@ const ProjectSelector = ({ onProjectClick, activeProject }) => {
         { name: 'TV Production', icon: faTv, active: false },
     ];
 
+    const isActiveType = (project) => activeProject === project.name;
 
 
 
@@ -21,7 +22,10 @@ const ProjectSelector = ({ onProjectClick, activeProject }) => {
             {projects.map((project, index) => (
                 <div key={index} className="flex flex-col items-center">
                     <div 
-                        className={`w-[10rem] h-[10rem] p-4 border bg-white border-slate-100 rounded-md flex items-center justify-center flex-col ${project.active ? 'cursor-pointer hover:shadow-2xl hover:bg-primary-green-color transition-all duration-300' : 'opacity-50'}`}
+                        className={`w-[10rem] h-[10rem] p-4 border bg-white border-slate-100 rounded-md flex items-center justify-center flex-col 
+                            ${project.active ? 'cursor-pointer hover:shadow-2xl hover:bg-primary-green-color transition-all duration-300' : 'opacity-50'}
+                            ${isActiveType(project) ? '!bg-emerald-50 shadow-2xl !border-emerald-400 border-2 shadow-emerald-200 text-emerald-500' : ''}
+                        `}
                         onClick={() => onProjectClick(project)}
                     >
                         <FontAwesomeIcon className='text-2xl' icon={project.icon} />

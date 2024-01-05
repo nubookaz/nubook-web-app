@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'timezone',
         'first_name',
         'middle_initial', 
         'last_name', 
@@ -99,6 +100,9 @@ class User extends Authenticatable
         return $this->hasMany(Project::class);
     }
     
-    
+    public function aiContentGenerations()
+    {
+        return $this->hasMany(AIContentGeneration::class);
+    }
     
 }

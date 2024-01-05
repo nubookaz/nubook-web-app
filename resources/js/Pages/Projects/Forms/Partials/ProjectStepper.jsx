@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
@@ -12,20 +12,18 @@ import {  faGamepad, faInfoCircle, faSitemap, faCheck, faMagnifyingGlass  } from
 
 const ProjectStepper = ({ 
 
-    currentStep
-
+    currentStep,
+    activeProject
+ 
 }) => {
 
     const steps = [
-        { icon: faSitemap, label: 'Step 1' },
-        { icon: faInfoCircle, label: 'Step 2' },
-        { icon: faMagnifyingGlass, label: 'Step 3' },
+        { icon: faSitemap, label: 'Project Type' },
+        { icon: faInfoCircle, label: activeProject + ' Type' },
+        { icon: faMagnifyingGlass, label: 'Project Details' },
         { icon: faGamepad, label: 'Step 4' },
-        { icon: faGamepad, label: 'Step 5' },
-        // Add more steps as needed
-    ];
-
-
+     ];
+ 
     return (
         <div className='w-full max-w-[56rem] mx-auto'>
             <Stepper

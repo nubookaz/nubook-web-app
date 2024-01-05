@@ -5,6 +5,7 @@ import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
 import EmailStep from '@/Pages/Auth/Registration/EmailStep';
 import PrivacyPolicy from '@/Pages/Auth/Legal/PrivacyPolicy';
+import Modal from '@/Components/Modals/Modal';
 
 import Skeleton from '@mui/joy/Skeleton';
 
@@ -23,12 +24,11 @@ import Skeleton from '@mui/joy/Skeleton';
 export default function Register() {
     
     const [skeleton, setSkeleton] = useState(false);
-    const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
+    const [privacyPolicyModal, setPrivacyPolicyModal] = useState(false);
 
-    const toggleDrawerPanel = () => {
-        setDrawerPanelOpen(!isDrawerPanelOpen);
+    const handlePrivacyPolicyModal = () => {
+        setPrivacyPolicyModal(true);
     };
-
 
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
@@ -72,15 +72,23 @@ export default function Register() {
         <GuestLayout>
             {{
                 surface: (
-                    <div className="relative z-50 w-full h-full">
+                    <>
 
 
-                        <PrivacyPolicy
-                            isDrawerPanelOpen={isDrawerPanelOpen}
-                            toggleDrawerPanel={toggleDrawerPanel}
-                        />
+                        <Modal
+                            show={privacyPolicyModal}
+                            maxWidth='100%'
+                            dialogPanelClass='h-full !bg-[#f6f4f1]'
+                            childrenClassName='p-[4rem]'
+                            onClose={setPrivacyPolicyModal}
+                            showCloseButton='true'
+                        >
+                    
+                            <PrivacyPolicy />
+                            
+                        </Modal>    
        
-                    </div>
+                    </>
                 ),
                 form: (
                     <div>
@@ -89,8 +97,9 @@ export default function Register() {
                             formData={data}
                             setFormData={setData} 
                             errors={errors}
-                            linkPrivacyPolicy={toggleDrawerPanel}
+                            linkPrivacyPolicy={handlePrivacyPolicyModal}
                             skeleton={skeleton}
+                            privacyPolicyHref='#privacy-policy'
                         />
  
                     </div>

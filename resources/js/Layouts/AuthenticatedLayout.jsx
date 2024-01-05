@@ -85,7 +85,7 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
                               currentStep={currentStep}
                               setCurrentStep={setCurrentStep}
                               setIsModalOpen={setIsModalOpen}
-                              />
+                            />
                           </Modal>
                        <Loading />
                     </div>

@@ -18,6 +18,7 @@ import ImageContainer from '@/Components/Containers/ImageContainer';
 import Snackbar from '@mui/joy/Snackbar';
 import PrivacyPolicy from '@/Pages/Auth/Legal/PrivacyPolicy';
 
+import Modal from '@/Components/Modals/Modal';
 
 
 
@@ -30,9 +31,10 @@ export default function Edit({ auth }) {
     const [activeContent, setActiveContent] = useState('profile-settings');
     const [savedProfileSettings, setSavedProfileSettings] = useState(false);
     const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const toggleDrawerPanel = () => {
-        setDrawerPanelOpen(!isDrawerPanelOpen);
+    const togglePrivacyPolicyModal = () => {
+        setIsModalOpen(true);
     };
 
 
@@ -93,21 +95,28 @@ export default function Edit({ auth }) {
                             Saved! Profile Settings Saved!
                         </Snackbar>
 
-                        <PrivacyPolicy
-                            isDrawerPanelOpen={isDrawerPanelOpen}
-                            toggleDrawerPanel={toggleDrawerPanel}
-                        />
+                        <Modal
+                            show={isModalOpen}
+                            maxWidth='100%'
+                            dialogPanelClass='h-full !bg-[#f6f4f1]'
+                            childrenClassName='p-[4rem]'
+                            onClose={setIsModalOpen}
+                            showCloseButton='true'
+                        >
+                    
+                            <PrivacyPolicy />
+                            
+                        </Modal>
 
                     </div>
                 ),
                 portalBody: (
                     <div className="h-full w-full flex gap-4 mx-auto max-w-[95rem]">
-                        {/* Left Column */}
+ 
                         <div className="w-full max-w-[15rem]">
                             <SettingsNav className="mt-4" activeContent={activeContent} handleButtonClick={handleButtonClick} />
                         </div>
 
-                        {/* Middle Column (Wider) */}
                         <div className="w-full max-w-[60rem]">
                             <div className="app-settings h-full">
                                 {activeContent === 'profile-settings' && (
@@ -140,7 +149,6 @@ export default function Edit({ auth }) {
                             </div>
                         </div>
 
-                        {/* Right Column (Second Widest) */}
                         <div className="w-full max-w-[25rem]">
                             <div className="settings-info flex flex-col gap-4">
                                 <ImageContainer
@@ -170,10 +178,11 @@ export default function Edit({ auth }) {
                                 </ImageContainer>
 
                                 <div className='text-center'>
-                                    <p className='font-sm'>Read our <button onClick={toggleDrawerPanel} className='hover:text-slate-600 hover:font-bold hover:underline'>privacy policy</button></p>
+                                    <p className='font-sm'>Read our <button onClick={togglePrivacyPolicyModal} className='hover:text-slate-600 hover:font-bold hover:underline'>privacy policy</button></p>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
 
                 ),

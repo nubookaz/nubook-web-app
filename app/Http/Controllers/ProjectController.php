@@ -43,21 +43,17 @@ class ProjectController extends Controller
     
     }
 
-    
     public function store(Request $request)
     {       
-        dd($request);
-
-        // Validate the incoming data
+         // Validate the incoming data
         $project = $this->createProject($request);
-
-        $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.edit';
+ 
+        $viewName = $project->project_stage === "Estimate" ? 'projects.estimate' : 'projects.edit';
         
-        return Inertia::location(route($viewName, ['id' => $project->id]));
-
+        return response()->json([
+            'url' => route($viewName, ['id' => $project->id])
+        ]);
     }
-    
-
     
     // Helper function to check if all values in an array are null
     private function isDataEmpty($data)
@@ -67,8 +63,6 @@ class ProjectController extends Controller
         })) === 0;
     }
     
-
-
     public function edit($id)
     {
         // Retrieve the project by its ID

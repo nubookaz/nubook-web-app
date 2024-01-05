@@ -62,15 +62,15 @@ export default function Dashboard() {
               <div className="h-full w-full">
 
                     <div className='flex flex-row h-full w-full justify-between gap-6'>
-                        <CardContainer header="Project Overview" className='!w-1/2'>
+                        <CardContainer header="Project Overview" className='!w-[50rem]'>
                           <Overview
                             projects={projects}
                             isPortrait={true}
                             onClick={openProjectFormPanel}
-                            multiCircularProgressSize="w-[250px] h-[250px]"
+                            multiCircularProgressSize="w-[220px] h-[220px]"
                           />
                         </CardContainer>
-                        <CardContainer header="Social Activities" className='!w-1/2 disabled-feature'></CardContainer>
+                        <CardContainer header="Social Activities" className='!w-[50rem] disabled-feature'></CardContainer>
                         <div className='flex flex-col gap-6 h-full w-full'>
                           <CardContainer header="Budget Overview" className='h-1/2'>
                             <Budget
@@ -78,10 +78,10 @@ export default function Dashboard() {
                             />
                           </CardContainer>
                           <div className='flex flex-row gap-6 h-1/2'>
-                            <CardContainer header="Job Overview" className="disabled-feature"></CardContainer>
+                            <CardContainer header="Job Overview" className="disabled-feature w-full"></CardContainer>
                             <ImageContainer     
                               overlay={true}      
-                              className="promo-ad"     
+                              className="promo-ad w-full"     
                               overlayOpacity='50'                       
                               backgroundImage="./images/cartoon_images/female_professional_filmmaker.png"
                             >

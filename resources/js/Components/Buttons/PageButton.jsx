@@ -28,7 +28,7 @@ function PageButton({
     };
 
     // Determine the class based on the size prop
-    const buttonClass = `page-button px-[1rem] ${sizeClass[size] || ''} ${active ? activeClass : ''} ${className}`;
+    const buttonClass = `page-button px-[1rem] bg-white ${sizeClass[size] || ''} ${active ? activeClass : ''} ${className}`;
 
     const renderIcon = icon && <FontAwesomeIcon className={iconPosition === 'left' ? 'mr-4' : 'ml-4'} icon={icon} />;
     const renderText = inText && <span className="button-text my-auto">{inText}</span>;

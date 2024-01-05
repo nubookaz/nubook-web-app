@@ -16,7 +16,7 @@ import Skeleton from '@mui/joy/Skeleton';
 
 
 
-export default function EmailStep({ formData, setFormData, errors, linkPrivacyPolicy, skeleton }) {
+export default function EmailStep({ formData, setFormData, errors, linkPrivacyPolicy, privacyPolicyHref, skeleton }) {
     const { email, password, password_confirmation, consent } = formData;
     const [emailValue, setEmailValue] = useState(email);
     const [passwordValue, setPasswordValue] = useState(password);
@@ -224,7 +224,7 @@ export default function EmailStep({ formData, setFormData, errors, linkPrivacyPo
                             />
                             <FormHelperText>
                                 <span className='font-bold primary-color mt-1'>
-                                    Read our <button onClick={linkPrivacyPolicy}>privacy policy</button>.
+                                    Read our <a className='cursor-pointer' href={privacyPolicyHref} onClick={linkPrivacyPolicy}>privacy policy</a>.
                                 </span>
                             </FormHelperText>
                         </>
