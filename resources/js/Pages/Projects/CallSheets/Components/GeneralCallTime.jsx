@@ -1,18 +1,24 @@
+import { useCallSheet } from '@/Components/Contexts/CallSheetContext';
+import { useModal } from '@/Components/Contexts/ModalContext';
+
 import React, { useState, useEffect } from 'react';
 
 import CardContainer from '@/Components/Containers/CardContainer';
-  
- 
 
 export default function GeneralCallTime({ 
-
-    data, 
-    newData, 
-    onEditProductionDetails
-
- }){
     
-     
+    callSheet, 
+    className 
+
+}) {
+    const { currentCallSheet } = useCallSheet();
+    const { toggleModal } = useModal();
+    const handleGeneralCallTimeClick = () => {
+        toggleModal({type: 'generalCallTime', data: callTime});  
+    };
+
+    const [callTime, setCallTime] = useState('');
+
     function formatTime(dateString) {
         const date = new Date(dateString);
         let hours = date.getHours();
@@ -25,37 +31,31 @@ export default function GeneralCallTime({
         const formattedMinutes = minutes.toString().padStart(2, '0');
       
         return `${formattedHours}:${formattedMinutes} ${ampm}`;
-      }
-      
-
-
-      const [callTime, setCallTime] = useState(null);
-
+    }
+    
     useEffect(() => {
         let timeValue = '';
-      
-        if (newData && newData.call_sheet_date_time) {
-          timeValue = formatTime(newData.call_sheet_date_time);
-        } else if (data && data.call_sheet_date_time) {
-          timeValue = formatTime(data.call_sheet_date_time);
+
+        // Determine which call sheet data to use
+        const sheetToUse = currentCallSheet?.id === callSheet.id ? currentCallSheet : callSheet;
+
+        if (sheetToUse?.call_sheet_date_time) {
+            timeValue = formatTime(sheetToUse.call_sheet_date_time);
         }
-        
-        setCallTime(timeValue); // Set the formatted time
-    }, [data, newData]);
+
+        setCallTime(timeValue);
+    }, [callSheet, currentCallSheet]);
+
+    console.log(currentCallSheet);
 
     
-  
-    return(
-
-        <CardContainer className="" header="General Call Time" showButtonIcon={true} onClickButton={onEditProductionDetails} >
+    return (
+        <CardContainer className={`${className}`} header="General Call Time" onClick={handleGeneralCallTimeClick}>
             <div className="flex flex-col gap-4">
                 {callTime && (
-                  <h2>{callTime}</h2>
+                    <h2 className='text-4xl text-slate-500'>{callTime}</h2>
                 )}
             </div>
         </CardContainer>
-
     );
-
 }
-

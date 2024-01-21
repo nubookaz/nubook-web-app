@@ -1,6 +1,6 @@
 import { useForm } from '@inertiajs/react';
 
-import CompanyEIN from '@/Components/Profile/CompanyEIN';
+import CompanyEIN from '@/Components/Forms/CompanyEIN';
 
 import { useEffect } from 'react';
 

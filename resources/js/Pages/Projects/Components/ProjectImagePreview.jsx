@@ -1,4 +1,5 @@
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
+import ImageContainer from '@/Components/Containers/ImageContainer';
 import React, { useState, useEffect } from 'react';
  
 
@@ -8,14 +9,13 @@ export default function ProjectImagePreview({
 
 }){
     
-
-    const image = data?.url;
+    const image = data?.url || data;
     const fileSize = data?.size;
     const dimensions = data?.dimensions;
 
 
     function formatFileSize(bytes, decimals = 2) {
-        if (bytes === 0) return '0 Bytes';
+        if (!bytes) return 'N/A';
     
         const k = 1024;
         const dm = decimals < 0 ? 0 : decimals;
@@ -27,21 +27,17 @@ export default function ProjectImagePreview({
     }
 
 
-
     return (
-        <div className='my-[3rem]'>
-            <div className='h-[40rem] w-full max-w-[27rem] mb-2 rounded-lg mx-auto' 
-                style={{ 
-                    backgroundImage: `url(${image})`, 
-                    backgroundPosition: 'center center',
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                }}
-            >
+        <div className='h-full w-full mt-[5rem]'>
+            <ImageContainer 
+                className='h-[54rem] w-[35rem] mb-2 rounded-lg mx-auto' 
+                backgroundImage={image}
+                backgroundSize='contain'
+                overlayOpacity='0'
+            ></ImageContainer>
                 
-            </div>
             <div className='flex flex-row gap-4 justify-center'>
-                <p><span className='font-bold'>Dimensions: </span>{dimensions}</p>
+                <p><span className='font-bold'>Dimensions: </span>{dimensions || 'N/A'}</p>
                 <p><span className='font-bold'>File Size: </span>{formatFileSize(fileSize)}</p>
             </div>
             <a href={image} download className='block duration-500 bg-emerald-200 hover:bg-emerald-500 text-emerald-700 hover:text-white py-2 rounded-md max-w-[12rem] text-center my-[1rem] mx-auto'>

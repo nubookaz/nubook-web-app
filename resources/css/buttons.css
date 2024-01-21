@@ -1,44 +1,11 @@
 /* buttons.css */
 
 .default-btn {
-    border-radius: 5px; /* Pill shape */
     font-weight: 600;
     display: block;
     padding: 8px 25px;
 }
-
-/* Primary button styles */
-.primary-button {
-    font-size: 1rem;
-    color: #fff; /* Text color using CSS variable */
-    background-color: var(--primary-green-color); 
-    box-shadow: 0px 4px 0px var(--primary-dark-green-color);
-    transition: .3s;
-}
-
-.primary-button:hover,
-.primary-button:focus,
-.primary-button:active {
-    background-color: #3a7457; /* Hover background color using CSS variable */
-    color: var(--secondary-green-color); /* Hover text color using CSS variable */
-    outline: none;
-    box-shadow: 0px 4px 0px var(--primary-green-color);
-}
-
-.secondary-button {
-    font-size: .90rem;
-    max-height: 3rem;
-    height: 100%;
-    color: var(--primary-green-color); /* Text color using CSS variable */
-    background-color: var(--secondary-green-color); /* Background color using CSS variable */
-}
-
-.secondary-button:hover {
-    background-color: var(--primary-green-color); /* Hover background color using CSS variable */
-    color: var(--secondary-green-color); /* Hover text color using CSS variable */
-    outline: none;
-}
-
+ 
 .tertiary-button {
     padding: 4px 10px;
     font-size: .90rem;
@@ -129,13 +96,6 @@
 .active-button .circular-button {
     color: #fff; /* Change icon color on hover */
     background-color: var(--primary-color); /* Background color on click */
-}
-
-.search-btn svg {
-    background-color: var(--tertiary-color);
-    color: var(--primary-color) !important;
-    padding: 16px;
-    border-radius: var(--button-corners);
 }
 
 .dashboard-navlinks .active-link {

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('parking_locations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('location_id')->nullable()->constrained()->onDelete('cascade');
-            $table->text('parking_instructions')->nullable();
+            $table->text('parking_name')->nullable();
+            $table->text('information')->nullable();
             $table->timestamps();
         });
     }

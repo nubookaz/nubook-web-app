@@ -12,7 +12,7 @@ export default function AddButton({ onAddSchedule, containerClass }) {
 
 
     return (
-        <div className={`bg-[#FBFCFE] w-full ${containerClass}`}>
+        <div className={`bg-white w-full ${containerClass}`}>
             <div className="flex flex-row gap-14 mx-auto justify-center space-x-2">
                 <button 
                     className="py-2 px-4 rounded-md group hover:bg-slate-100" 

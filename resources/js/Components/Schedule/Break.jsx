@@ -28,8 +28,7 @@ export default function Break({
 
 }) {
 
-
-    const [combinedClass, setCombinedClass] = useState('');
+     const [combinedClass, setCombinedClass] = useState('');
 
     const [breakData, setBreakData] = useState({
       type: '',
@@ -54,13 +53,18 @@ export default function Break({
         durationMinute: scheduleBreakData?.durationMinute || '',
       });
     }, [scheduleBreakData]);
+ 
 
     useEffect(() => {
-      // Only set default duration if it's a new break (no existing data)
-      if (!breakData || (!breakData.durationHour && !breakData.durationMinute)) {
-        setDefaultDuration(breakData.type);
+      // Destructure the necessary properties from breakData
+      const { durationHour, durationMinute, type } = breakData;
+  
+      // Only set default duration if it's a new break (no existing duration data)
+      if (!durationHour && !durationMinute) {
+          setDefaultDuration(type);
       }
-    }, [breakData]); // Dependency on data
+  }, [breakData.durationHour, breakData.durationMinute, breakData.type]); // Depend on specific properties
+
   
     const setDefaultDuration = (breakType) => {
       const duration = defaultDurations[breakType] || { hour: '', minute: '' };
@@ -84,8 +88,6 @@ export default function Break({
       setBreakData(updatedTimeParts);
 
       onUpdateInfo(updatedTimeParts);
-
-      setBreakData((prevData) => ({ ...prevData, [part]: value }));
 
       // If changing the break type, and there's no duration set, apply default
       if (part === 'type' && (!breakData.durationHour && !breakData.durationMinute)) {

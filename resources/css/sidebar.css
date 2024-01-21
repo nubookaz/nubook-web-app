@@ -1,14 +1,6 @@
 .sidebar {
-    width: 4.5rem; /* 1rem = 16px, so 4.5rem = 72px */
-    background-color: #fff; /* Sidebar background color */
-    position: fixed;
-    height: 100%;
-    top: 0;
-    left: 0;
     overflow-x: hidden;
-    transition: 0.5s;
     display: none;
-    flex-direction: column;
     padding: 2rem .75rem 1.5rem;
 }
 
@@ -16,40 +8,11 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Center children horizontally */
-    margin: auto 0;
-}
-
-.nav-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center links horizontally */
-}
-
-.nav-links li {
-    margin-bottom: 1rem; /* Add margin between links, adjust as needed */
 }
 
 .nav-links a svg {
     font-size: 1.3rem;
-    color: var(--tertiary-color);
-    padding: 1rem;
-    width: 1.4rem;
-    height: 1.4rem;
-    transition: var(--transition-speed);
     border-radius: var(--button-corners);
-}
-
-.nav-links a svg:hover {
-    box-shadow: 0px 1px 4px rgba(0,0,0,0.15);
-    background-color: var(--light-color);
-    color: var(--secondary-color);
-}
-
-.nav-links .active-link {
-    color: var(--primary-color);
 }
 
 .css-sbbi8o-JoyMenuButton-root {

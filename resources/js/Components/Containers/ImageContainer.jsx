@@ -1,62 +1,42 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
-function ImageContainer({ children, header, className, backgroundImage, isPoster, overlay, overlayOpacity, overlayClass, icon, enableHoverScale }) {
-    const [isHovered, setIsHovered] = useState(false);
+function ImageContainer({ 
+    
+    children, 
+    className, 
+    backgroundImage,
+    overlayOpacity = '50', 
+    opacityColor,
+    onClick,
+    backgroundSize = 'cover',
+    enableHover = false,
+    childrenClass,
 
-    const containerStyles = backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {};
-    const hoverStyles = enableHoverScale && isHovered ? { transform: 'scale(1.2)', transition: 'transform 0.3s' } : {};
+}) {
 
-    const handleMouseEnter = () => {
-        if (enableHoverScale) {
-            setIsHovered(true);
-        }
-    };
+    const containerStyles = backgroundImage 
+    ? { 
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: `${backgroundSize}`, 
+    } : {};
+    const staticClassNames = "overflow-hidden relative  rounded-lg ";
+    const dynamicClassNames = className ? className : "";
+    const combinedClassNames = staticClassNames + ' ' + dynamicClassNames;
 
-    const handleMouseLeave = () => {
-        if (enableHoverScale) {
-            setIsHovered(false);
-        }
-    };
 
-    const containerClass = enableHoverScale ? 'hover-scale-container' : ''; // Add a custom class for overflow: hidden
-
-    const headerClass = isPoster ? 'secondary-color container-header' : 'light-color container-header';
-    const overlayContainerStyles = overlay ? { padding: 0 } : {};
-    const containerClassName = `container-base image-container h-full ease-in-out ${containerClass}`;
+    const containerClassName = `container-base image-container h-full ease-in-out ${enableHover ? 'duration-500 hover:scale-[105%]' : '' }`;
+    const opacity = `w-full h-full z-10 absolute opacity-${overlayOpacity} ${opacityColor ? opacityColor : 'bg-black'}`;
 
     return (
-        <div className={`overflow-hidden rounded-lg ${className}`}>
+        <div onClick={onClick} className={combinedClassNames}>
              <div
                 loading="eager"
                 rel="preload"
                 className={containerClassName}
-                style={{ ...containerStyles, ...overlayContainerStyles, ...hoverStyles }}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                {overlay && (
-                    <div className={`image-overlay !bg-black/${overlayOpacity} ${overlayClass}`}>
-                        {header && (
-                            <h3 className={headerClass}>
-                                {icon && <FontAwesomeIcon icon={icon} className="icon mr-2" />}
-                                {header}
-                            </h3>
-                        )}
-                        {children}
-                    </div>
-                )}
-                {!overlay && (
-                    <div className="flex flex-col items-center w-full">
-                        {header && (
-                            <h3 className={headerClass}>
-                                {icon && <FontAwesomeIcon icon={icon} className="icon mr-2" />}
-                                {header}
-                            </h3>
-                        )}
-                        {children}
-                    </div>
-                )}
+                style={{ ...containerStyles }}           
+             >
+                <div className={opacity}></div>
+                <div className={` ${childrenClass} z-50 relative`}>{children}</div>
             </div>
         </div>
     );

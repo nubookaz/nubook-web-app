@@ -8,32 +8,32 @@ import React from 'react';
 
 
 
-function SecondaryButton({ children, onClick, href, icon, className, text, buttonType }) {
+function SecondaryButton({ 
+  
+  children, 
+  onClick,  
+  className, 
 
+}) {
 
+  function containsTextClass(className) {
+      const textClassPattern = /\btext-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
+      return textClassPattern.test(className);
+  }
 
+  const finalTextClassName = containsTextClass(className) ? className : `text-slate-300 ${className}`;
 
-    if (href) {
-        // Render a link if href is provided
-        return (
-          <Link href={href} className={`default-btn secondary-button button-transition !py-2 ${className}`}>
-            {icon && <FontAwesomeIcon icon={icon} />}
-            {children}
-          </Link>
-        );
-      } else {
-        // Render a button if href is not provided
-        return (
-            <button
-                className={`default-btn secondary-button button-transition ${className}`}
-                onClick={onClick}
-                type={buttonType}
-                >
-                {children}
-            </button>
-        );
-      }
+  return (
 
+      <button
+          className={`${finalTextClassName} default-btn rounded-lg cursor-pointer duration-500 hover:text-slate-500 transition-all bg-slate-100 hover:bg-slate-200`}
+          onClick={onClick}
+          >
+          {children}
+      </button>
+
+  );
+ 
 }
 
 export default SecondaryButton;

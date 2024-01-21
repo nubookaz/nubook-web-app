@@ -3,7 +3,7 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useEffect, useState } from 'react';
 import { router } from '@inertiajs/react';
 
- 
+import { Link } from '@inertiajs/react';
 
 
 
@@ -11,7 +11,13 @@ import { router } from '@inertiajs/react';
 
 
 
-export default function ProfilePicture({ className }) {
+
+export default function ProfilePicture({ 
+  
+  className,
+  href
+
+}) {
 
   const { user, fetchUserData } = useAuth();
 
@@ -20,12 +26,7 @@ export default function ProfilePicture({ className }) {
     fetchUserData();
   }, []);
 
-
-
- 
-
-
-  const [userProfileImage, setUserProfileImage] = useState(null);  
+  const totalImages = 10;
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -54,18 +55,19 @@ export default function ProfilePicture({ className }) {
 
   return (
  
-      <div
-        className={`${className}`}
-        style={{
-          backgroundImage: `url(${userProfileImageUrl})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'white',
-        }}
+      <Link
+          href={href}
+          className={`${className} rounded-full border-2 border-solid border-rose-400`}
+          style={{
+              backgroundImage: `url(${userProfileImageUrl})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: 'white',
+          }}
       >
 
-      </div>
+      </Link>
  
   );
   

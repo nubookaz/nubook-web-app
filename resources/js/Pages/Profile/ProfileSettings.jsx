@@ -1,5 +1,9 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
 import React from 'react';
+import PortalLayout from '@/Layouts/Partials/PortalLayout';
+
+
+
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
@@ -16,13 +20,13 @@ import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
 
 
 
-function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
-  const { user, fetchUserData } = useAuth();
+function ProfileSettings({ 
+  
+   onSave 
 
-  useEffect(() => {
-    // Fetch user data on component mount
-    fetchUserData();
-  }, []);
+}) {
+  const { user } = useAuth();
+
 
 
 
@@ -102,35 +106,42 @@ function ProfileSettings({ mustVerifyEmail, status, auth, onSave }) {
     
   };
  
-  console.log(user);
+ 
 
   return (
-    <div >
-        <div className='relative mb-1'>
-            <div className="w-full h-[8rem] relative" style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                 <div className='absolute bg-black h-full w-full opacity-[.5] p-[1rem] z-0'></div>
-            </div>
-            <UploadableProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] ml-6 absolute top-[1.5rem] border-red-500"/>
-        </div>
-        {/* Form */}
-        <div className='py-6 px-8 w-full flex flex-row gap-6 grow justify-end h-full'>
-            <div className='w-[30%] flex grow'>
+      <PortalLayout 
+          breadcrumbs={[
+              { label: 'Profile Settings', url: '' },
+          ]}
+      >
+                  
+          {{
+              body:(
+                <>
+                    <div className='py-6 px-8 w-full flex flex-row gap-6 grow justify-center h-full'>
+                      <UploadableProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] border-red-500"/>
+
+                      {/* <form onSubmit={submit} className='w-full flex grow flex-col gap-8 ' >
+                        <div>
+                          <h3 className='mb-4'>Personal Profile</h3>
+                          <PersonalInfo onUpdateInfo={setPersonalInfo} data={personalInfo} emptyFields={emptyFields} setEmptyFields={setEmptyFields}/>
+                        </div>
+                        <div>
+                          <h3 className='mb-4'>Company Profile</h3>
+                          <CompanyInfo onUpdateInfo={setCompanyInfo} existingData={companyInfo} />
+                        </div>
+                        
+                          <PrimaryButton disabled={processing}>Save Profile Settings</PrimaryButton>
+                      </form> */}
+                   </div>
+
+                </>
                 
-            </div>
-            <form onSubmit={submit} className='w-full flex grow flex-col gap-8 ' >
-              <div>
-                <h3 className='mb-4'>Personal Profile</h3>
-                 <PersonalInfo onUpdateInfo={setPersonalInfo} data={personalInfo} emptyFields={emptyFields} setEmptyFields={setEmptyFields}/>
-              </div>
-              <div>
-                <h3 className='mb-4'>Company Profile</h3>
-                <CompanyInfo onUpdateInfo={setCompanyInfo} existingData={companyInfo} />
-              </div>
-              
-                <PrimaryButton disabled={processing}>Save Profile Settings</PrimaryButton>
-            </form>
-        </div>
-    </div>
+              ),
+          }}
+
+      </PortalLayout>
+
   );
 }
 

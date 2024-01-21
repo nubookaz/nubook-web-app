@@ -7,8 +7,7 @@ import Tooltip from '@mui/joy/Tooltip';
 function ProjectNavigation({ project }) {
  
 
-  console.log(project);
-  return (
+   return (
     <div className="flex flex-row w-full">
       <div className="left-content w-full">
         <h1 className='w-full'>{project.project_name}</h1>
@@ -29,7 +28,7 @@ function ProjectNavigation({ project }) {
                   variant="plain"
                 >
                   <div>
-                    <IconButton href={route('projects.edit', { id: project.id })} active={route().current('projects.edit')}  activeClass="active-link" icon={faInfo} size="small" />
+                    <IconButton href={route('projects.details', { id: project.id })} active={route().current('projects.details')}  activeClass="active-link" icon={faInfo} size="small" />
                   </div>
               </Tooltip>
 

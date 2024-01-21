@@ -1,87 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { debounce } from 'lodash';
+
+
+
+import SecondaryButton from '@/Components/Buttons/SecondaryButton';
+import PrimaryButton from '@/Components/Buttons/PrimaryButton';
+import GoogleMap from '../../Components/GoogleMap';
+import Accordion from './Partials/Accordion';
 
 
 
 
 
+const LocationForm = ({
 
-const LocationForm = ({ location, onLocationChange }) => {
-  const defaultLocation = {
-    name: '',
-    street_address: '',
-    city: '',
-    state: '',
-    zip_code: '',
-    country: '',
+  onClose,
+
+}) => {
+
+  const [fadeIn, setFadeIn] = useState(false);
+  useEffect(() => {
+      setFadeIn(true); 
+ 
+  }, []);
+
+  const [accordionData, setAccordionData] = useState({
+    location: {},
+    parking: {},
+    hospital: {}
+  });
+  const [accordionInfo, setAccordionInfo] = useState({
+    location: '',
+    parking: '',
+    hospital: ''
+  });
+
+  const debouncedSetAccordionData = useCallback(
+    debounce((newData) => setAccordionData(newData), 800),
+    []
+  );
+
+  const handleAccordionDataChange = (newAccordionData) => {
+    debouncedSetAccordionData(newAccordionData);
   };
 
-  const currentLocation = location || defaultLocation;
+  const handleAccordionInfoChange = (newAccordionInfo) => {
+    setAccordionInfo(newAccordionInfo);
+  };
 
+  const locationNameRef = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Submit logic here with combinedData
+ 
+    // onClose(); // Uncomment if you want to close the form on submit
+  };
+
+ console.log('LocationForm', accordionData);
   return (
-    <div>
-      <div className='w-full mb-2 input-group'>
-        <input
-          type="text"
-          name="name"
-          defaultValue={currentLocation.name}
-          onChange={onLocationChange}
-          placeholder="Name"
-          autoComplete="off"
-        />
+
+    <div className='flex flex-row w-[80rem] h-[55rem]'>
+      <div className='h-full w-full max-w-[30rem]'>
+        <GoogleMap locationData={accordionData} />
       </div>
-      <div className='w-full mb-2 input-group'>
-        <input
-          type="text"
-          name="street_address"
-          defaultValue={currentLocation.street_address}
-          onChange={onLocationChange}
-          placeholder="Street Address"
-          autoComplete="off"
+      <div className={`fade-in w-full flex flex-col gap-4 justify-between p-10 ${fadeIn ? 'opacity-1' : 'opacity-0'}`}>
+        <div className='flex flex-col'>
+          <h2 className='text-2xl text-slate-500'>Location Details</h2>
+          <p className='text-slate-400'>Add filming location details here</p>
+        </div>
+ 
+        <Accordion 
+            ref={locationNameRef}
+            onAccordionDataChange={handleAccordionDataChange}
+            onAccordionInfoChange={handleAccordionInfoChange}
         />
-      </div>
-      <div className='flex flex-row gap-2 mb-2 input-group'>
-        <div className='w-full'>
-          <input
-            type="text"
-            name="city"
-            defaultValue={currentLocation.city}
-            onChange={onLocationChange}
-            placeholder="City"
-            autoComplete="off"
-          />
+
+        <div className='flex flex-row mx-auto gap-6 w-full max-w-[25rem]'>
+          <SecondaryButton onClick={onClose} className='w-full h-full p-0'>Cancel</SecondaryButton>
+          <PrimaryButton handle={handleSubmit} className='w-full h-full  p-0'>Add Location</PrimaryButton>
         </div>
-        <div className='w-[9rem]'>
-          <input
-            type="text"
-            name="state"
-            defaultValue={currentLocation.state}
-            onChange={onLocationChange}
-            placeholder="State"
-            autoComplete="off"
-          />
-        </div>
-        <div className='w-[10rem]'>
-          <input
-            type="text"
-            name="zip_code"
-            defaultValue={currentLocation.zip_code}
-            onChange={onLocationChange}
-            placeholder="ZIP Code"
-            autoComplete="off"
-          />
-        </div>
-      </div>
-      <div className='w-full mb-2 input-group'>
-        <input
-          type="text"
-          name="country"
-          defaultValue={currentLocation.country}
-          onChange={onLocationChange}
-          placeholder="Country"
-          autoComplete="off"
-        />
+
       </div>
     </div>
+
   );
 };
 

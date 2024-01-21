@@ -7,6 +7,25 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [currentProject, setCurrentProject] = useState(null);
+  const [currentProductionSchedule, setCurrentProductionSchedule] = useState(null);
+ 
+ 
+
+
+
+
+  const updateCurrentProject = (newProjectData) => {
+    setCurrentProject(newProjectData);
+  };
+  const updateCurrentProductionSchedule = (newProjectData) => {
+    setCurrentProductionSchedule(newProjectData);
+  };
+
+
+
+
+
 
   const fetchUserData = async () => {
     try {
@@ -17,10 +36,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+
   const handleUpdate = () => {
     // Trigger a fetch when the update event occurs
     fetchUserData();
   };
+
+
+
 
   useEffect(() => {
     // Listen for the custom update event
@@ -32,9 +56,24 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
+
+
+
+
+
+
   return (
-    <AuthContext.Provider value={{ user, fetchUserData }}>
+    <AuthContext.Provider value={{ 
+        user, 
+        fetchUserData,
+        currentProject, 
+        updateCurrentProject,
+        currentProductionSchedule,
+        updateCurrentProductionSchedule,
+    }}>
+
       {children}
+
     </AuthContext.Provider>
   );
 };

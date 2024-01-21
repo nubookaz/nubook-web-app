@@ -14,160 +14,51 @@ import TertiaryButton from '@/Components/Buttons/TertiaryButton';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'; 
 
 import Modal from '@/Components/Modals/Modal';
+import WeekCalendar from '@/Components/Calendars/WeekCalendar';
    
 export default function Projects({ auth }) {
-    const { user, fetchUserData } = useAuth();
-
-    useEffect(() => {
-      // Fetch user data on component mount
-      fetchUserData();
-    }, []);
-
-    useEffect(() => {
-      // Continue with the rest of your component logic using 'user'
-      if (user === null) {
-        // User data is still being fetched, show a loading state or return null
-       } else {
-
-        // ... rest of your component code ...
-      }
-    }, [user]);
+    const { user, newProject } = useAuth();
 
 
-
-
-
-
-
-
-
-
-
-
-  
 
     const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
-    const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
- 
-
-    const openModal = () => {
-      setIsModalOpen(true);
-    };
-
-
-    const bannerProps = {
-      showGreeting: true, // Customize these props based on your conditions
-    };
-
-
-
     
-
- 
-    const hasData = projects;
-    const toolbarTitle = "Project Overview"; // Provide a title for the toolbar
-    const pageType = "Projects"; // Provide a title for the toolbar
-    const toolbarCTAText = "Start A New Project"; // Provide the button text
-    const buttonText = "Start a New Project"; // Provide the button text
-    const customSvgPath = "../../images/svg_images/undraw_projects_1.svg"; // Provide the SVG path
-
-    const emptyContentSvg = "../../images/svg_images/undraw_clients.svg"; // Provide the SVG path
-
-    const limitedProjects = projects.slice(0, 5);
- 
- 
- 
- 
- 
+    const mostRecentProject = projects
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+        .slice(0, 1); 
  
     return (
+      
+        <PortalLayout 
+            breadcrumbs={[
+              { label: 'Projects Overview', url: '' },
+            ]}
+        >
+            {{
+                body:(
+                  <div className='flex flex-col gap-4 w-full h-full'>
 
-      <AuthenticatedLayout bannerProps={bannerProps}>
-        {{
-          surface: (
+                      <div className='flex flex-row gap-4 w-full h-full'>
 
-            <div className="relative z-50 w-full h-full">
+                          <CardContainer header="Recent Updated Project" className='h-full w-full max-w-[21rem]'>
+                              <ProjectList projects={mostRecentProject} showNewProject={false} view="View All" className='w-full !grid-cols-1 !grid-rows-1'/>
+                          </CardContainer>
 
-                <Modal
-                  show={isModalOpen}
-                  maxWidth='100%'
-                  dialogPanelClass='h-full'
-                  onClose={setIsModalOpen}
-                  showCloseButton='true'
-                 >
-               
-                    <ProjectForm
-                      auth={auth}
-                    />         
-                     
-                </Modal>
+                          <CardContainer header="Project Calendar" className='h-full w-full'>
+                              <WeekCalendar />
+                          </CardContainer>
 
-            </div>
+                      </div>
 
-          ),
+                      <CardContainer header="" className='h-full w-full'>
+                      </CardContainer>
 
-          portalBody: (
-            <div className="w-full h-full">
-
-                <PortalLayout
-                    hasData={hasData}
-                    toolbarTitle={toolbarTitle}
-                    pageType={pageType}
-                    toolbarCTAText={toolbarCTAText}
-                    buttonText={buttonText}
-                    customSvgPath={customSvgPath}
-                    onEmptyButtonClick={openModal}
-                    onPrimaryToolbarButtonClick={openModal}
-                    >
-                  {{
-
-
-                      content: (
-                        <div className='flex flex-col gap-6 h-full max-h-[1080px]'>
-                          <div className='flex flex-row gap-6 h-[30%]'>
-                            
-                            <CardContainer absoluteHeader={true} header="Summary" className='!w-1/2 text-center'>
-                              <Overview
-                                  projects={projects}
-                                  isPortrait={false}
-                                  multiCircularProgressSize="w-[220px] h-[220px]"
-                              />
-                            </CardContainer>
-
-                            <CardContainer header="Budget" className='!w-1/2'>
-                              <Budget 
-                                projects={projects}
-                              />
-                            </CardContainer>
-                          </div>
-                          <div className='flex flex-row gap-6 h-[65%] w-full'>
-                            <div className='enclosure bg-[blanchedalmond] '>
-                              <div className='flex flex-col h-full justify-between gap-6'>
-                                <div className='flex flex-row justify-between'>
-                                  <h2>Projects</h2>
-                                  {limitedProjects.length >= 5 ? (
-                                    <TertiaryButton icon={faCaretRight} href={route('projects.list')}>View All Projects</TertiaryButton>
-                                  ) : null}
-                                </div>
-                                <ProjectList projects={limitedProjects} view="View All"/>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )
-
-
-                    }}
-  
-                </PortalLayout>
-
-            
-            </div>
-          ),
-        }}
-      </AuthenticatedLayout>
-
+                  </div>
+                ),
+            }}
+ 
+        </PortalLayout>
+ 
     );
 }
  

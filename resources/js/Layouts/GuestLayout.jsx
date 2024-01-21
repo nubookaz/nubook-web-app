@@ -1,9 +1,26 @@
+import React, { useState, useEffect } from 'react';
+
 import CardContainer from '@/Components/Containers/CardContainer';
 import ImageContainer from '@/Components/Containers/ImageContainer';
 import ApplicationName from "@/Components/Branding/ApplicationName";
-import MovieFacts from '@/Components/Layouts/MovieFacts';
 
-export default function Guest({ children, auth }) {
+export default function Guest({ 
+    
+    children, 
+    greeting,
+    status
+
+}) {
+    const [fadeIn, setFadeIn] = useState(false);
+    const [fadeInDelay, setFadeInDelay] = useState(false);
+  
+
+    useEffect(() => {
+        setFadeIn(true); 
+        setFadeInDelay(true);  
+    }, []);
+
+
 
 
 
@@ -16,49 +33,36 @@ export default function Guest({ children, auth }) {
            <div className='absolute z-50'>
                 {children.surface}
            </div>
-           <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: 'url("/images/background_images/guest_image_1.jpg")' }}>
-                <div className="absolute h-full w-full z-40 bg-black/50"></div>
+           <div className={`fade-in ${fadeIn ? 'opacity-1' : 'opacity-0'} absolute inset-0 bg-cover bg-center z-0`} style={{ backgroundImage: 'url("/images/background_images/guest_image_1.jpg")' }}>
 
-                <div className='absolute floating-form flex flex-row justify-center items-center h-full z-50 w-full m-auto'>
+                <div className="absolute h-full w-full z-40 bg-black/75 backdrop-blur-sm "></div>
 
-                    <CardContainer className='!bg-black max-w-[32rem] py-8 pl-6 pr-14 -mr-8'>
-                        <div className='flex flex-col gap-4 h-full w-full text-center'>
-                            <h2 className="text-white">
-                                Did you know?
-                            </h2>
-                            <ImageContainer isPoster={false} className="w-full h-[30rem] max-w-[20rem] justify-center mx-auto" backgroundImage="/images/background_images/bg_image_2.jpg">
-                                {/* Your content here */}
+                <div className={`fade-in-delay ${fadeInDelay ? 'opacity-1' : 'opacity-0'} shadow-xl relative z-50 flex justify-center items-center m-auto  h-full w-full`}>
+
+                        <div className=' h-full rounded-xl overflow-hidden max-h-[50rem] w-full max-w-[85rem] flex flex-row'>
+                            <ImageContainer 
+                                backgroundImage='/images/background_images/bg_image_4.jpg'
+                                overlayOpacity='50'
+                                childrenClass='flex flex-row w-full items-center p-[6rem] justify-end'
+                                className='h-full w-full rounded-none'
+                            >
+                                <h2 className='text-[6rem] drop-shadow-lg--md text-white text-right font-extralight'>{greeting}</h2>
                             </ImageContainer>
-                            <MovieFacts></MovieFacts>
+                            <CardContainer className='flex flex-col gap-8 p-[2rem] h-full rounded-none w-full max-w-[30rem]'>
+
+                                <ApplicationName className='text-left'/>
+
+                                {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+
+                                {children.body}
+    
+                            </CardContainer>
                         </div>
-                    </CardContainer>
-
-                    <CardContainer className="form-container !gap-2 justify-between flex flex-col">
-                        <ApplicationName />
- 
-                        <h1 className="primary-color mb-4 text-4xl">Welcome! Sign up for an account.</h1>
-
-                        {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-                        
-                        <div className='grow h-full'>
-                                {children.form}
-                        </div>
-
-                        
-                        <div className='justify-end'>
-                            {children.footer}
-                        </div>
-
-                    </CardContainer>
+                       
 
                 </div>
             </div>
         </div>
-
-
-
-
-
 
 
     );

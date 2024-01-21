@@ -97,6 +97,27 @@ class CallSheetController extends Controller
     }
 
 
+    public function updateCallSheetDetails(Request $request)
+    {
+        $data = $request->validate([
+            'id' => 'required|exists:call_sheets,id',
+            'call_sheet_name' => 'required|string',
+            'call_sheet_date_time' => 'required|date'
+        ]);
+
+        $callSheet = CallSheet::find($data['id']);
+        if ($callSheet) {
+            $callSheet->update([
+                'call_sheet_name' => $data['call_sheet_name'],
+                'call_sheet_date_time' => $data['call_sheet_date_time']
+            ]);
+            return response()->json(['message' => 'Call sheet updated successfully.', 'callSheet' => $callSheet]);
+        }
+
+        return response()->json(['message' => 'Call sheet not found.'], 404);
+    }
+
+
     public function editDetailsPage($id, $callSheetId)
     {
         // Retrieve the project by its ID
@@ -112,120 +133,170 @@ class CallSheetController extends Controller
          ]);
     }
         
-    public function updateCallSheetDetails(Request $request, $id, $callSheetId)
-    {
-        $callSheetData = $request['callSheetData'];
-        $callSheetAddress = $request['callSheetAddress'];
+    // public function updateCallSheetDetails(Request $request, $id, $callSheetId)
+    // {
+    //     $callSheetData = $request['callSheetData'];
+    //     $callSheetAddress = $request['callSheetAddress'];
 
  
-        // Find the CallSheet based on $callSheetId
-        $callSheet = CallSheet::find($callSheetId);
+    //     // Find the CallSheet based on $callSheetId
+    //     $callSheet = CallSheet::find($callSheetId);
     
-        if ($callSheet) {
-            // Get the associated FilmLocation
-            $filmLocation = $callSheet->filmLocation;
+    //     if ($callSheet) {
+    //         // Get the associated FilmLocation
+    //         $filmLocation = $callSheet->filmLocation;
     
-            if ($filmLocation) {
-                // Update the existing FilmLocation with the new data
+    //         if ($filmLocation) {
+    //             // Update the existing FilmLocation with the new data
 
 
-                $validated = $request->validate([
-                    'callSheetAddress.latitude' => 'nullable|numeric|between:-90,90',
-                    'callSheetAddress.longitude' => 'nullable|numeric|between:-180,180',
-                ]);
+    //             $validated = $request->validate([
+    //                 'callSheetAddress.latitude' => 'nullable|numeric|between:-90,90',
+    //                 'callSheetAddress.longitude' => 'nullable|numeric|between:-180,180',
+    //             ]);
         
-                // dd($callSheetAddress['latitude']);
+    //             // dd($callSheetAddress['latitude']);
 
-                $filmLocation->location->update([
-                    'street_address' => $callSheetAddress['street_address'],
-                    'city' => $callSheetAddress['city'],
-                    'state' => $callSheetAddress['state'],
-                    'zip_code' => $callSheetAddress['zip_code'],
-                    'latitude' => array_key_exists('latitude', $callSheetAddress) ? (float) $callSheetAddress['latitude'] : null,
-                    'longitude' => array_key_exists('longitude', $callSheetAddress) ? (float) $callSheetAddress['longitude'] : null,                
-                ]);
+    //             $filmLocation->location->update([
+    //                 'street_address' => $callSheetAddress['street_address'],
+    //                 'city' => $callSheetAddress['city'],
+    //                 'state' => $callSheetAddress['state'],
+    //                 'zip_code' => $callSheetAddress['zip_code'],
+    //                 'latitude' => array_key_exists('latitude', $callSheetAddress) ? (float) $callSheetAddress['latitude'] : null,
+    //                 'longitude' => array_key_exists('longitude', $callSheetAddress) ? (float) $callSheetAddress['longitude'] : null,                
+    //             ]);
 
-                // Update the CallSheet name and date
-                $callSheet->update([
-                    'call_sheet_name' => $callSheetData['call_sheet_name'],
-                    'call_sheet_date_time' => $callSheetData['call_sheet_date_time'],
-                ]);
+    //             // Update the CallSheet name and date
+    //             $callSheet->update([
+    //                 'call_sheet_name' => $callSheetData['call_sheet_name'],
+    //                 'call_sheet_date_time' => $callSheetData['call_sheet_date_time'],
+    //             ]);
 
-            } else {
+    //         } else {
 
-                $locationData = [
-                    'street_address' => $callSheetAddress['street_address'],
-                    'city' => $callSheetAddress['city'],
-                    'state' => $callSheetAddress['state'],
-                    'zip_code' => $callSheetAddress['zip_code'],
-                ];
+    //             $locationData = [
+    //                 'street_address' => $callSheetAddress['street_address'],
+    //                 'city' => $callSheetAddress['city'],
+    //                 'state' => $callSheetAddress['state'],
+    //                 'zip_code' => $callSheetAddress['zip_code'],
+    //             ];
     
-                if (array_key_exists('latitude', $callSheetAddress)) {
-                    $locationData['latitude'] = $callSheetAddress['latitude'];
-                }
+    //             if (array_key_exists('latitude', $callSheetAddress)) {
+    //                 $locationData['latitude'] = $callSheetAddress['latitude'];
+    //             }
     
-                if (array_key_exists('longitude', $callSheetAddress)) {
-                    $locationData['longitude'] = $callSheetAddress['longitude'];
-                }
+    //             if (array_key_exists('longitude', $callSheetAddress)) {
+    //                 $locationData['longitude'] = $callSheetAddress['longitude'];
+    //             }
     
-                $location = Location::create($locationData);
+    //             $location = Location::create($locationData);
 
-                // Create a new FilmLocation and associate it with the Location
-                $filmLocation = new FilmLocation();
-                $filmLocation->location_id = $location->id;
+    //             // Create a new FilmLocation and associate it with the Location
+    //             $filmLocation = new FilmLocation();
+    //             $filmLocation->location_id = $location->id;
            
-                $filmLocation->save();
-                $callSheet->film_location_id = $filmLocation->id;
-                $locationId = $callSheet->film_location_id;
+    //             $filmLocation->save();
+    //             $callSheet->film_location_id = $filmLocation->id;
+    //             $locationId = $callSheet->film_location_id;
 
-                // Update the CallSheet name and date
-                $callSheet->update([
-                    'call_sheet_name' => $callSheetData['call_sheet_name'],
-                    'call_sheet_date_time' => $callSheetData['call_sheet_date_time'],
-                ]);
-            }
+    //             // Update the CallSheet name and date
+    //             $callSheet->update([
+    //                 'call_sheet_name' => $callSheetData['call_sheet_name'],
+    //                 'call_sheet_date_time' => $callSheetData['call_sheet_date_time'],
+    //             ]);
+    //         }
             
-            $locationData = Location::find($filmLocation->location_id);
+    //         $locationData = Location::find($filmLocation->location_id);
 
-            // Attach location data to the callSheet object
-            $callSheet->locationData = $locationData;
-            $callSheet = CallSheet::with(['project', 'filmLocation.location', 'parkingLocation.location', 'hospitalLocation.location'])->findOrFail($callSheetId);
+    //         // Attach location data to the callSheet object
+    //         $callSheet->locationData = $locationData;
+    //         $callSheet = CallSheet::with(['project', 'filmLocation.location', 'parkingLocation.location', 'hospitalLocation.location'])->findOrFail($callSheetId);
 
-            // Return the updated data as JSON
-            return response()->json([
-                'callSheet' => $callSheet->toArray(),
+    //         // Return the updated data as JSON
+    //         return response()->json([
+    //             'callSheet' => $callSheet->toArray(),
+    //         ]);
+    //     } else {
+    //         // Handle the case where the CallSheet with the given ID doesn't exist
+    //         // You may want to add error handling here
+    //         return response()->json([
+    //             'error' => 'CallSheet not found',
+    //         ], 404); // Return a 404 status code for not found
+    //     }
+    // }
+    
+ 
+    public function updateBulletin(Request $request, $id, $callSheetId)
+    {
+        try {
+            $callSheet = CallSheet::findOrFail($callSheetId);
+    
+            // Authorization check
+            // if (Gate::denies('update', $callSheet)) {
+            //     return response()->json(['message' => 'Unauthorized'], 403);
+            // }
+    
+            $validatedData = $request->validate([
+                'bulletin' => 'required|max:365',
             ]);
-        } else {
-            // Handle the case where the CallSheet with the given ID doesn't exist
-            // You may want to add error handling here
-            return response()->json([
-                'error' => 'CallSheet not found',
-            ], 404); // Return a 404 status code for not found
+    
+            // Input sanitization
+            // $validatedData['bulletin'] = sanitize($validatedData['bulletin']);
+    
+            $callSheet->bulletin = $validatedData['bulletin'];
+    
+            if ($callSheet->isDirty('bulletin')) {
+                $callSheet->save();
+            }
+    
+            return response()->json(['message' => 'Bulletin updated successfully']);
+        } catch (\Exception $e) {
+            // Log the exception message
+            // Log::error($e->getMessage());
+    
+            return response()->json(['message' => 'Failed to update bulletin'], 500);
         }
     }
     
- 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function saveBulletin(Request $request, $id, $callSheetId)
+    public function updateGeneralCallTime(Request $request, $id, $callSheetId)
     {
-        // Find the CallSheet by ID
-        $callSheet = CallSheet::findOrFail($callSheetId);
-        $project = Project::find($id);
-
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'bulletin' => 'nullable|string|max:300',
-        ]);
-
-        // Update the CallSheet with validated data
-        $callSheet->update($validatedData);
-
-        // Return a JSON response
-        return response()->json([
-            'message' => 'Bulletin updated successfully',
-        ]);
+        try {
+            $callSheet = CallSheet::where('project_id', $id)->findOrFail($callSheetId);
+    
+            // Authorization check
+            // if (Gate::denies('update', $callSheet)) {
+            //     return response()->json(['message' => 'Unauthorized'], 403);
+            // }
+    
+            $validatedData = $request->validate([
+                'generalCallTime' => 'required|date_format:"g:i A"',
+            ]);
+    
+            // Input sanitization
+            // $validatedData['generalCallTime'] = sanitize($validatedData['generalCallTime']);
+    
+            // Parse the string into a Carbon object
+            $currentDateTime = \Carbon\Carbon::parse($callSheet->call_sheet_date_time);
+    
+            // Format the date part
+            $currentDate = $currentDateTime->format('Y-m-d');
+    
+            // Combine the current date with the new time
+            $newDateTime = $currentDate . ' ' . $validatedData['generalCallTime'];
+    
+            $callSheet->call_sheet_date_time = $newDateTime;
+    
+            if ($callSheet->isDirty('call_sheet_date_time')) {
+                $callSheet->save();
+            }
+    
+            return response()->json(['message' => 'General call time updated successfully']);
+        } catch (\Exception $e) {
+            // Log the exception message
+            // Log::error($e->getMessage());
+    
+            return response()->json(['message' => 'Failed to update general call time'], 500);
+        }
     }
 
     public function storeCallSheetSchedule(Request $request, $projectId, $callSheetId)

@@ -11,7 +11,8 @@ class ParkingLocation extends Model
 
     protected $fillable = [
         'location_id',
-        'parking_instructions',
+        'parking_name',
+        'information',
     ];
 
     public function callSheet()

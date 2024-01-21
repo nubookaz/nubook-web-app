@@ -1,116 +1,10 @@
-import React, {  useState, useEffect } from 'react';
-import { formGroupClass, multiColInputClass } from '@/Components/Scripts/Form';
-
+import React, { useState, useEffect } from 'react';
 import Input from '@/Components/Forms/Input';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Tooltip from '@mui/joy/Tooltip';
+import { fetchGeocodeData } from '@/Components/UtilityFunctions/Geocoding';
 
-
-
-export default function Address ({
-
-  data,
-  onUpdateInfo,
-  emptyFields,
-  setEmptyFields,
- 
-})  {
-
-  const [selectedState, setSelectedState] = useState('');
- 
-  useEffect(() => {
-    // This effect ensures that the selected state is updated
-    // whenever the data prop changes
-    setSelectedState(data.state || '');
-  }, [data.state]);
-
-  
-  const handleChange = (field, value) => {
-    onUpdateInfo(field, value);
-
-  };  
-
-  const handleStateChange = (event, newValue) => {
-    setSelectedState(newValue);
-    onUpdateInfo('state', newValue);
-    
-  };
-
-  
-
-  return (
-
-
-        <div className={formGroupClass}>
-            <Input
-              openToolTip={false}
-              label="Street Address"
-              type="text"
-              name="street_address"
-              value={data.street_address}
-              placeholder="3526 W Goapple St"
-              onChange={(e) => handleChange('street_address', e.target.value)}  
-            >
-            </Input>
-
-            <div className={multiColInputClass}>
-                <Input
-                  openToolTip={false}
-                  label="City"
-                  type="text"
-                  name="city"
-                  value={data.city}
-                  placeholder="San Francisco"
-                  onChange={(e) => handleChange('city', e.target.value)}
-                  >
-                </Input>
-
-
-
-                <div className='flex flex-col gap-2 w-full'>
-                    <label htmlFor="state" className='text-gray-400 text-sm'> State * </label>
-                    <Tooltip arrow sx={{ fontSize: '.75rem' }} title="State is Required" open={emptyFields['state'] || false} color="danger" placement="top" variant="outlined">
-                      <Select
-                          inputType='dropdown'
-                          name="state"
-                          placeholder="Select a State"
-                          value={selectedState}
-                          onChange={handleStateChange}
-                          autocomplete=''
-                      >
-
-                          {stateOptions.map((option, index) => (
-                              <Option key={index} value={option.value}>
-                                  {option.label}
-                              </Option>
-                          ))}
-                      </Select>
-                    </Tooltip>
-                </div>
-
-                <Input
-                  openToolTip={false}
-                  label="Zip Code"
-                  type="text"
-                  name="zip_code"
-                  value={data.zip_code}
-                  placeholder="95026"
-                  onChange={(e) => handleChange('zip_code', e.target.value)}
-                  >
-                </Input>
-            </div>
-
-            
-        </div>
-
- 
-  );
-
-
-}
-
- 
 const stateOptions = [
   { value: 'AL', label: 'Alabama' },
   { value: 'AK', label: 'Alaska' },
@@ -164,3 +58,118 @@ const stateOptions = [
   { value: 'WY', label: 'Wyoming' }
 ];
 
+
+
+export default function Address ({ 
+  
+  data, 
+  onAddressChange,
+
+}) {
+
+  const [address, setAddress] = useState({
+    street_address: '',
+    city: '',
+    state: '',
+    zip_code: '',
+    latitude: null,
+    longitude: null
+  });
+
+  useEffect(() => {
+    setAddress({
+      street_address: data?.street_address || '',
+      city: data?.city || '',
+      state: data?.state || '',
+      zip_code: data?.zip_code || '',
+      latitude: data?.latitude || null,
+      longitude: data?.longitude || null
+    });
+  }, [data]);
+
+  const handleChange = (field, value) => {
+    const newAddress = { ...address, [field]: value };
+    setAddress(newAddress);
+    onAddressChange(newAddress);
+
+    // Check if all address fields are filled before fetching geocode
+    if (newAddress.street_address && newAddress.city && newAddress.state && newAddress.zip_code) {
+      fetchAndUpdateGeocode(newAddress);
+    }
+  };
+
+  const fetchAndUpdateGeocode = async (newAddress) => {
+    const { street_address, city, state, zip_code } = newAddress;
+    try {
+      const geoData = await fetchGeocodeData(street_address, city, state, zip_code);
+      if (geoData) {
+        const updatedAddress = {
+          ...newAddress,
+          latitude: geoData.lat,
+          longitude: geoData.lng
+        };
+        setAddress(updatedAddress);
+        onAddressChange(updatedAddress);
+      }
+    } catch (err) {
+      console.error('Error fetching geocode:', err);
+    }
+  };
+
+  console.log(address);
+
+
+  return (
+    <div className='flex flex-col gap-2'>
+      <Input
+        openToolTip={false}
+        label="Street Address"
+        type="text"
+        name="street_address"
+        value={address.street_address}
+        placeholder="3526 W Goapple St"
+        onChange={(e) => handleChange('street_address', e.target.value)}  
+      />
+
+      <div className='flex flex-row gap-4'>
+        <Input
+          openToolTip={false}
+          label="City"
+          type="text"
+          name="city"
+          value={address.city}
+          placeholder="San Francisco"
+          onChange={(e) => handleChange('city', e.target.value)}
+        />
+
+        <div className='flex flex-col gap-2 w-full'>
+          <label htmlFor="state" className='text-gray-400 text-sm'> State</label>
+            <Select
+              name="state"
+              placeholder="Select a State"
+              value={address.state}
+              onChange={(e, newValue) => handleChange('state', newValue)}
+              autoComplete='state'
+            >
+              {stateOptions.map((option, index) => (
+                <Option key={index} value={option.value}>
+                  {option.label}
+                </Option>
+              ))}
+            </Select>
+         </div>
+
+        <Input
+          openToolTip={false}
+          label="Zip Code"
+          type="text"
+          name="zip_code"
+          value={address.zip_code}
+          placeholder="95026"
+          onChange={(e) => handleChange('zip_code', e.target.value)}
+        />
+      </div>
+    </div>
+  );
+}
+ 

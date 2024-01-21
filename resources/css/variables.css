@@ -16,4 +16,11 @@
     --button-corners: .5rem;
     --text-buttons: 5rem;
     --overlay-color: rgba(0, 0, 0, 0.6); /* Adjust the color and opacity as needed */
+
+
+    --fuschia: #ff0081;
+    --button-bg: $fuschia;
+    --button-text-color: #fff;
+    --baby-blue: #f8faff;
 }
+

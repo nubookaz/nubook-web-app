@@ -5,7 +5,11 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { AuthProvider } from '@/Components/Contexts/AuthContext';
- 
+import { CallSheetProvider } from '@/Components/Contexts/CallSheetContext';
+import { ModalProvider } from '@/Components/Contexts/ModalContext';
+import { SnackProvider } from '@/Components/Contexts/SnackContext';
+import { DarkModeProvider } from '@/Components/Contexts/DarkModeContext';
+
 
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -18,7 +22,15 @@ createInertiaApp({
 
         root.render(
             <AuthProvider>
-                     <App {...props} />
+                <ModalProvider>
+                    <SnackProvider>
+                        <DarkModeProvider>
+                            <CallSheetProvider>
+                                <App {...props} />
+                            </CallSheetProvider>
+                        </DarkModeProvider>
+                    </SnackProvider>
+                 </ModalProvider>
              </AuthProvider>
         );
 

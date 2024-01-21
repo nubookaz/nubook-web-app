@@ -43,7 +43,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user()->load(['phone', 'location', 'primaryProductionCompany']);
 
-        return Inertia::render('Profile/Edit', [
+        return Inertia::render('Profile/SettingsPage', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
             'auth' => $user,

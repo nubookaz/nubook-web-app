@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CompanyController; 
 use App\Http\Controllers\CallSheetController; 
-use App\Http\Controllers\LocationController; 
+use App\Http\Controllers\GoogleController; 
 
 use App\Http\Controllers\AssociationController; 
 use App\Http\Controllers\ChatGPTController;
@@ -35,10 +35,9 @@ use Inertia\Inertia;
 
 Route::middleware(['guest'])->group(function () {
 
-     Route::get('/', [WebsiteController::class, 'index'])->name('website.home');
-     Route::post('/beta-register', [WebsiteController::class, 'betaStore'])->name('website.beta.register');
+    Route::get('/', [WebsiteController::class, 'index'])->name('website.home');
+    Route::post('/beta-register', [WebsiteController::class, 'betaStore'])->name('website.beta.register');
 
-    
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('registration.create');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
   
@@ -46,7 +45,14 @@ Route::middleware(['guest'])->group(function () {
 
 
 
+
+
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
+
+
+
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
@@ -54,18 +60,30 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/chat', [ChatGPTController::class, 'chat'])->name('chat.gpt');
     Route::get('/ai-content-info', [ChatGPTController::class, 'getAIGeneratedContentInfo'])->name('ai-content.info');
     Route::get('/fetch-image', [ChatGPTController::class, 'fetchImage']);
+    Route::post('/movie_poster', [ChatGPTController::class, 'createMoviePoster'])->name('chat.gpt.movie.poster');
 
-    
+    // Google Map Api 
+    Route::get('/nearby-hospitals', [GoogleController::class, 'getNearbyHospitals']);
 
 
+
+
+
+    // Verification 
     Route::post('/verification/update-password', [VerificationController::class, 'updatePassword'])->name('verification.updatePassword');
     Route::post('/verification/verify', [VerificationController::class, 'verifyCode'])->name('verification.verifyCode');
     Route::post('/verification/resend-code', [VerificationController::class, 'resendCode'])->name('verification.resendCode');
     Route::post('/verification/personal-info', [VerificationController::class, 'storePersonalInfo'])->name('verification.personal.store');
     Route::post('/verification/company-info', [VerificationController::class, 'storeProductionCompanyInfo'])->name('verification.production.company.store');
     
+
+
+
     // Account Settings
-    Route::get('/account-settings', fn () => Inertia::render('AccountSettings'))->name('account-settings');
+    Route::get('/profile-settings', fn () => Inertia::render('Profile/ProfileSettings'))->name('profile.settings');
+
+
+
 
     // Profile
     Route::prefix('profile')->group(function () {
@@ -78,6 +96,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     });
 
+
+
+
     // Dashboard
     Route::get('/dashboard', function () {
         $user = Auth::user(); 
@@ -85,16 +106,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard', ['projects' => $projects ]);
     })->name('dashboard');
 
+
+
+
     Route::prefix('projects')->group(function () {
         // Your existing project-related routes here
+
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
         Route::get('/all-projects', [ProjectController::class, 'showList'])->name('projects.list');
         Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
-        Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+
+        Route::get('/{id}/details', [ProjectController::class, 'edit'])->name('projects.details');
+        Route::post('/{id}/favorite', [ProjectController::class, 'saveFavorite'])->name('projects.favorite');
+
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');
-        Route::patch('/{id}', [ProjectController::class, 'update'])->name('projects.update');
-    
-        Route::post('/movie_poster', [ChatGPTController::class, 'createMoviePoster'])->name('chat.gpt.movie.poster');
+        Route::post('/{id}', [ProjectController::class, 'update'])->name('projects.update');
+        
+        Route::post('/{id}/poster', [ProjectController::class, 'savePoster'])->name('projects.save.poster');
+        Route::delete('/delete-project/{id}', [ProjectController::class, 'softDelete'])->name('projects.delete');
+
+
+
 
         // New routes for the "Call Sheets" page
         Route::prefix('{id}/call-sheets')->group(function () {
@@ -102,27 +134,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
             Route::post('/', [CallSheetController::class, 'storeCallSheetDetails'])->name('projects.callSheets.create');
           
-            Route::put('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update.details');
-            Route::put('/{callSheetId}/bulletin', [CallSheetController::class, 'saveBulletin'])->name('projects.callSheets.update.bulletin');
+            Route::post('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update.details');
+            Route::put('/{callSheetId}/bulletin', [CallSheetController::class, 'updateBulletin'])->name('projects.callSheets.update.bulletin');
             Route::get('{callSheetId}/details', [CallSheetController::class, 'editDetailsPage'])->name('projects.callSheets.edit.page');
             Route::post('/{callSheetId}/weather', [CallSheetController::class, 'saveWeatherData'])->name('save.weather');
+            Route::put('/{callSheetId}/general-call-time', [CallSheetController::class, 'updateGeneralCallTime'])->name('projects.callSheets.update.generalCallTime');
 
             Route::prefix('/{callSheetId}/schedule')->group(function () {
                 Route::post('/', [CallSheetController::class, 'storeCallSheetSchedule'])->name('callSheets.schedule.store');
                 Route::get('/', [CallSheetController::class, 'getCallSheetSchedule'])->name('callSheets.schedule.get');
                 Route::put('/schedule', [CallSheetController::class, 'updateCallSheetSchedule'])->name('callSheets.schedule.update');
-
             });
             
-
-            Route::prefix('{callSheetId}/locations')->group(function () {
-                Route::post('/', [LocationController::class, 'storeCallSheetLocations'])->name('callSheets.location.store');
-                // Update a location
-                Route::patch('{locationId}', [LocationController::class, 'updateCallSheetLocations'])->name('callSheets.locations.update');
-            });
-
-
         });
+
+
+
+
 
         // Routes related to associations within the project group
         Route::prefix('associations')->group(function () {
@@ -132,6 +160,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         
     });
     
+
+
+
     Route::prefix('companies')->group(function () {
         Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
         Route::post('/create', [CompanyController::class, 'store'])->name('companies.create');

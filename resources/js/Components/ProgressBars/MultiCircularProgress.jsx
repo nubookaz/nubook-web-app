@@ -13,6 +13,7 @@ import {
 function MultiCircularProgress({ 
 
   projects,
+  padding,
   estimateProjects,
   creativeDevelopmentProjects,
   preProductionProjects,
@@ -46,7 +47,7 @@ function MultiCircularProgress({
       ${productionColor} calc(var(--p1) + var(--p2) + var(--p3) + 0%) calc(var(--p1) + var(--p2) + var(--p3) + var(--p4)),
       ${postProductionColor} calc(var(--p1) + var(--p2) + var(--p3) + var(--p4)) calc(var(--p1) + var(--p2) + var(--p3) + var(--p4) + var(--p5)),
       ${completedColor} calc(var(--p1) + var(--p2) + var(--p3) + var(--p4) + var(--p5)) calc(var(--p1) + var(--p2) + var(--p3) + var(--p4) + var(--p5) + var(--p6))
-  )`;
+  ) `;
 
 
   const p1Condition = totalProject === 0 ? '100%' : percentages[0];
@@ -61,7 +62,7 @@ function MultiCircularProgress({
       <div>
         <div className={`bar ${multiCircularProgressSize} flex flex-col`}
           style={{ 
-           "padding": "20px",
+           "padding": padding,
            "--p1": p1Condition, // Use the conditional value for --p1
            "--p2": p2Condition,
            "--p3": p3Condition,

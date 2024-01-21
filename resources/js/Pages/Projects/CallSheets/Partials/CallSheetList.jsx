@@ -1,7 +1,14 @@
 import React from 'react';
  import { Link } from '@inertiajs/react';
 
-export default function CallSheetList({ project, callSheets, view }) {
+export default function CallSheetList({ 
+  
+  project, 
+  callSheets, 
+  view 
+
+}) {
+
   // Define a function to sort call sheets based on the desired order
   const sortCallSheets = (callSheets) => {
     // Define the desired status order
@@ -70,13 +77,12 @@ export default function CallSheetList({ project, callSheets, view }) {
   }
   
   
-  console.log(sortedCallSheets);
-
+ 
   return (
-    <div className="grid grid-cols-4 gap-4 flex-wrap">
+    <div className="grid grid-cols-6 grid-rows-3 gap-10 flex-wrap h-full px-6">
       {sortedCallSheets.map(callSheet => (
 
-        <Link key={callSheet.id} className="letter" href={route('projects.callSheets.edit.page', { id: project.id, callSheetId: callSheet.id })}>
+        <Link key={callSheet.id} className="letter mx-3 w-full" href={route('projects.callSheets.edit.page', { id: project.id, callSheetId: callSheet.id })}>
           <div>
             <span className='font-normal text-xs bg-slate-50 px-4 py-1 flex text-center rounded mb-2 w-fit'>{callSheet.status}</span>
             <h2 className='font-normal text-xl'>{callSheet.call_sheet_name}</h2>
@@ -90,6 +96,9 @@ export default function CallSheetList({ project, callSheets, view }) {
         </Link>
 
       ))}
+        <div className='border-2 border-dashed border-slate-300 duration-500 bg-white hover:border-dashed hover:border-slate-400 cursor-pointer px-[4rem] text-center text-xl text-slate-300 rounded-lg h-full w-full flex justify-center items-center m-auto hover:bg-slate-300 hover:text-slate-500'>
+              Click here to create a new call sheet!
+        </div>
     </div>
   );
 }

@@ -17,22 +17,12 @@ import EmptyContent from '@/Components/Layouts/EmptyContent';
 
 export default function CallSheetProductionSchedule({
 
-    data, 
+    callSheet, 
     ...props
 
 }){
-    const { user, fetchUserData } = useAuth();
-    useEffect(() => {
-      // Fetch user data on component mount
-      fetchUserData();
-   
-    }, []);
+    const { updateCurrentProductionSchedule } = useAuth();
 
-
-
-
- 
-    const { isDrawerPanelOpen, toggleDrawerPanel } = props;
 
     const [schedules, setSchedules] = useState([]);
     const [scheduleData, setScheduleData] = useState([]);
@@ -53,8 +43,10 @@ export default function CallSheetProductionSchedule({
         const saveScheduleData = async () => {
             try {
                 const scheduleJson = JSON.stringify(scheduleData);
-                const routeUrl = route('callSheets.schedule.store', { id: data.project.id, callSheetId: data.id });
+                const routeUrl = route('callSheets.schedule.store', { id: callSheet.project.id, callSheetId: callSheet.id });
                 const response = await axios.post(routeUrl, { schedule: scheduleJson });
+                updateCurrentProductionSchedule(response.data.callSheet);
+
                 console.log('response', response);
             } catch (error) {
                 console.error('Error saving schedule:', error);
@@ -70,7 +62,7 @@ export default function CallSheetProductionSchedule({
     useEffect(() => {
         const fetchScheduleData = async () => {
             // Construct the URL using the 'route' method
-            const url = route('callSheets.schedule.get', { id: data.project_id, callSheetId: data.id });
+            const url = route('callSheets.schedule.get', { id: callSheet.project_id, callSheetId: callSheet.id });
     
             axios.get(url)
                 .then(response => {
@@ -84,7 +76,7 @@ export default function CallSheetProductionSchedule({
         };
     
         fetchScheduleData();
-    }, [data]); // Re-run the effect if project.id or callSheet.id changes
+    }, [callSheet]); // Re-run the effect if project.id or callSheet.id changes
     
 
 
@@ -177,52 +169,22 @@ export default function CallSheetProductionSchedule({
     
 
     return (
-        <DrawerPanel
-            isDrawerPanelOpen={isDrawerPanelOpen}
-            toggleDrawerPanel={toggleDrawerPanel}
-            anchor='bottom'
-            size='lg'
-            showCloseButton='true'
-            containerClass='overflow-hidden'
-            sxCustom={{
-                '--Drawer-verticalSize': 'clamp(500px, 98%, 100%)',
-                'z-index': '200',
-                '& .MuiDrawer-content': { // Targeting a child div with a specific class
+        <div className='w-full h-full relatve flex flex-col'>
  
-                },
-                // Add other general styles for DrawerPanel here
-            }}
-        >
-            {{
-                header: (
-                    <div>
-                        <h3>Call Sheet: {data.call_sheet_name}</h3>
-                        <p>Production Schedule</p>
-                    </div>
-                ),
-                body: (
-                    <div className='flex flex-col gap-4 h-full'>
+
+ 
+                    <div className='relatve flex flex-col gap-4 h-full'>
                             {schedules.length > 0 ? (
                                 <>
+
+                                    <div className='w-full flex flex-col gap-2 items-center justify-center'>
+                                        <h3 className='text-2xl font-bold text-slate-500'>Call Sheet: {callSheet.call_sheet_name}</h3>
+                                        <p className='text-lg'>Production Schedule</p>
+                                    </div>
+                                    
                                     <AddButton onAddSchedule={handleAddSchedule} />
 
-                                    {/* <div className='text-xs flex flex-row w-full justify-between'>
-                                        <div></div>
-                                        <div>Scene #</div>
-                                        <div>INT/EXT</div>
-                                        <div>Time Slot</div>
-                                        <div>Scene Location</div>
-                                        <div className='grow max-w-[54rem]'>Scene Description</div>
-                                        <div>Shoot Location</div>
-                                        <div>Start Time</div>
-                                        <div>Duration</div>
-                                        <div></div>
-                                    </div> */}
-
-
  
-
-
                                     <DragDropContext onDragEnd={onDragEnd}>
                                         <Droppable droppableId="schedules">
                                             {(provided) => (
@@ -244,7 +206,7 @@ export default function CallSheetProductionSchedule({
                                                                     style={provided.draggableProps.style}
                                                                 >
                                                                     <ScheduleContainer
-                                                                        data={data}
+                                                                        data={callSheet}
                                                                         dragHandleProps={provided.dragHandleProps}
                                                                         type={schedule.type}
                                                                         onDelete={() => handleDeleteSchedule(schedule.id)}
@@ -263,7 +225,7 @@ export default function CallSheetProductionSchedule({
                                     </DragDropContext>
 
                                     {schedules.length > 0 && (
-                                        <AddButton onAddSchedule={handleAddSchedule} containerClass='fixed left-0 bottom-0 py-4' />
+                                        <AddButton onAddSchedule={handleAddSchedule} containerClass='relatve left-0 bottom-0 py-4' />
                                     )}
                                 </>
                             ) : (
@@ -274,17 +236,16 @@ export default function CallSheetProductionSchedule({
                                     containerClasses=''
                                     svgWidth='!w-[30rem]'
                                 >
-                                    <h3 className='mb-4 text-xl'>Add a Production Schedule</h3>
-                                    <p className='mb-8 text-sm'>
+                                    <h3 className='mb-4 text-xl text-slate-300'>Add a Production Schedule</h3>
+                                    <p className='mb-8 text-sm w-[40rem]'>
                                         Streamline your shoot with our Film Production Scheduler. Drag and drop scenes, breaks, and moves to efficiently plan your day on set, ensuring a smooth and well-organized production.
                                     </p>
                                 </EmptyContent>
                             )
                         }
                     </div>
-                )
-            }}
-        </DrawerPanel>
+ 
+        </div>
     );
     
 }

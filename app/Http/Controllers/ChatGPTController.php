@@ -8,14 +8,12 @@ use GuzzleHttp\Client;
 use App\Models\AIContentGeneration;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use App\Http\Traits\ProjectTrait;
-
+ 
 
 class ChatGPTController extends Controller
 {
 
-    use ProjectTrait;
-
+ 
     public function getAIGeneratedContentInfo(Request $request)
     {
         $userId = auth()->user()->id;
@@ -72,6 +70,12 @@ class ChatGPTController extends Controller
         $imageUrl = $request->query('url');
         Log::info("Fetching image: " . $imageUrl);
     
+        // Check if the URL is valid
+        if (empty($imageUrl)) {
+            Log::error("Error fetching image: URL is empty or undefined");
+            return response()->json(['error' => 'URL is empty or undefined'], 400);
+        }
+    
         try {
             // Make the HTTP request to fetch the image
             $response = Http::get($imageUrl);
@@ -101,6 +105,8 @@ class ChatGPTController extends Controller
     
     public function createMoviePoster(Request $request) 
     {
+        // dd($request->all());
+
         $client = new Client();
         $userId = auth()->user()->id; 
 
@@ -110,15 +116,19 @@ class ChatGPTController extends Controller
         $secondaryGenre = $request->input('secondary_genre');
         $movieRating = $request->input('movie_rating');
         $projectDescription = $request->input('project_description');
+
+
     
         // Construct a prompt for generating a movie poster
-        $prompt = "Create an image of a movie poster for '$projectName', a $primaryGenre and $secondaryGenre film. The poster should reflect themes like $projectDescription. Rating: $movieRating.";
+        $prompt = "Create an image for '$projectName', with this info: $primaryGenre, $secondaryGenre, $projectDescription, $movieRating.";
     
         // Adjust the prompt length to meet the character limit
         $maxPromptLength = 1000;
         if (strlen($prompt) > $maxPromptLength) {
             $prompt = substr($prompt, 0, $maxPromptLength);
         }
+
+
     
         $apiKey = env('OPENAI_API_KEY');
         $url = 'https://api.openai.com/v1/images/generations';
@@ -134,14 +144,15 @@ class ChatGPTController extends Controller
             'n' => 1,
             'size' => "1024x1792" 
         ];
-    
         try {
             $response = $client->post($url, [
                 'headers' => $headers, 
                 'json' => $body,
             ]);
 
-            $this->handleAIGeneratedContent($userId, $isImageAIGenerated = true);
+             \Log::info("OpenAI API Response: " . $response->getBody());
+
+            // $this->handleAIGeneratedContent($userId, $isImageAIGenerated = true);
     
             return $response->getBody();
         } catch (\GuzzleHttp\Exception\GuzzleException $e) {
@@ -150,6 +161,31 @@ class ChatGPTController extends Controller
         }
     }
     
+
+    public function handleAIGeneratedContent($userId, $isImageAIGenerated, $contentType = 'image', $dailyLimit = 10) {
+        
+        if ($isImageAIGenerated) {
+            $today = now()->toDateString();
+    
+ 
+            $limitRecord = AIContentGeneration::firstOrCreate(
+                [
+                    'user_id' => $userId,
+                    'date' => $today,
+                    'content_type' => $contentType
+                ],
+                ['generation_count' => 0]
+            );
+    
+            if ($limitRecord->generation_count >= $dailyLimit) {
+                // Handle the situation when the limit is reached
+                // This could be throwing an exception or returning a specific response
+                throw new \Exception("Daily limit for AI content generation reached.");
+            }
+    
+            $limitRecord->increment('generation_count');
+        }
+    }
     
     
 }

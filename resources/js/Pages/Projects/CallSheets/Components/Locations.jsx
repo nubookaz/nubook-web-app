@@ -1,3 +1,5 @@
+import { useModal } from '@/Components/Contexts/ModalContext';
+
 import React, { useState, useEffect } from 'react';
 
 import CardContainer from '@/Components/Containers/CardContainer';
@@ -12,9 +14,12 @@ export default function Locations({
 
     data,
     newData,
-    onEditLocation,
-
+ 
 }){
+    const { toggleDrawer } = useModal();
+    const handleLogout = () => {
+        toggleDrawer('locationDetails');  
+    };
 
 
 
@@ -119,108 +124,108 @@ export default function Locations({
      return(
 
         <CardContainer
-            className="h-full flex flex-col gap-4"
+            className='h-full grow'
             header="Location Details"
-            showButtonIcon={locationData}
-            onClickButton={onEditLocation}
+            onClick={handleLogout}
         >
 
-            {locationData !== null ? (
-                // Render this content when locationData is available
-                <div className="justify-start rounded-xl h-full overflow-hidden grow">
-                    <GoogleMap locationData={locationData} parkingLocationData={parkingLocationData} hospitalLocationData={hospitalLocationData} style={{ width: '100%', height: '100%' }} />
-                </div>
-            ) : (
-                // Render this content when locationData is null
-                <div className="justify-start justify-center rounded-xl h-full overflow-hidden grow flex flex-col gap-4 text-center bg-slate-50 text-slate-400 p-6">
-                    <FontAwesomeIcon className='text-3xl' icon={faMapLocationDot}></FontAwesomeIcon>
-                    Location data is not available. Please add a location to view the map.
-                </div>
-            )}
+            <div className='flex flex-col gap-4 h-full'>
+                {locationData !== null ? (
+                    // Render this content when locationData is available
+                    <div className="justify-start rounded-xl h-full overflow-hidden">
+                        <GoogleMap locationData={locationData} parkingLocationData={parkingLocationData} hospitalLocationData={hospitalLocationData} style={{ width: '100%', height: '100%' }} />
+                    </div>
+                ) : (
+                    // Render this content when locationData is null
+                    <div className="justify-start justify-center rounded-xl h-full overflow-hidden flex flex-col gap-4 text-center bg-slate-50 text-slate-400 p-6">
+                        <FontAwesomeIcon className='text-3xl' icon={faMapLocationDot}></FontAwesomeIcon>
+                        Location data is not available. Please add a location to view the map.
+                    </div>
+                )}
 
-            <div className="grow flex flex-col gap-4">
-                <div className="bg-slate-50 rounded-xl py-4 px-6 text-center text-slate-400">
-                    {!parkingLocationData ? (
-                        <p className='text-sm'>You have not added any parking instructions.</p>
-                    ) : (
-                        
-                        <div className='flex  flex-col gap-4'>
-                            <div className='flex flex-col gap-2'>
-                                <h4 className='text-left'>Parking Address</h4>
-                                <div className='text-left flex flex-row gap-4'>
-                                    <FontAwesomeIcon className='text-3xl text-sky-600 flex justify-center text-center my-auto' icon={faSquareParking}></FontAwesomeIcon>
-                                    
-                                    {parkingLocationData.street_address || parkingLocationData.city || parkingLocationData.state || parkingLocationData.zip_code ? (
-
-                                        <div>
-                                            <p>{parkingLocationData.street_address}</p>
-                                            <p>{parkingLocationData.city} {parkingLocationData.state}, {parkingLocationData.zip_code}</p>
-                                        </div>
-
-                                    ) : (
-                                        <div className='text-slate-50 p-5 pl-2 w-full rounded-md'>
-                                            <p className='text-slate-300'>Parking Address</p>
-                                        </div>
-                                    )}
-
-                                </div>
-                            </div>
-
-                            {parkingLocationData.parking_instructions ? (
-                                <div className='flex flex-col text-left gap-2'>
-                                    <h4>Parking Instructions</h4>
-                                    <p className='text-sm'>"{parkingLocationData.parking_instructions}"</p>
-                                </div>
-                            ) : (
-                                <div className='bg-slate-100 w-full py-8 rounded-md'>
-                                    <p className='text-slate-300'>Parking Instructions</p>
-                                </div>
-                            )}                
-                        </div>
-                    )}
-                </div>
-
-                <div className="bg-slate-50 rounded-xl py-4 px-6 text-center text-slate-400">
-                    {!hospitalLocationData ? (
-                            <p className='text-sm'>You have not added any hospital instructions.</p>
+                <div className="h-full flex flex-col gap-4">
+                    <div className="bg-slate-50 h-full rounded-xl py-4 px-6 text-center text-slate-400">
+                        {!parkingLocationData ? (
+                            <p className='text-sm'>You have not added any parking instructions.</p>
                         ) : (
-                        <div className='flex  flex-col gap-4'>                          
-                            <div className='flex flex-col gap-2'>
-                                <h4 className='text-left'>Hospital Address</h4>
-                                <div className='text-left flex flex-row gap-4'>
-                                    <FontAwesomeIcon className='text-3xl text-red-600 flex justify-center text-center my-auto' icon={faSquareH}></FontAwesomeIcon>
-                                    {hospitalLocationData.street_address || hospitalLocationData.city || hospitalLocationData.state || hospitalLocationData.zip_code ? (
+                            
+                            <div className='flex  flex-col gap-4'>
+                                <div className='flex flex-col gap-2'>
+                                    <h4 className='text-left'>Parking Address</h4>
+                                    <div className='text-left flex flex-row gap-4'>
+                                        <FontAwesomeIcon className='text-3xl text-sky-600 flex justify-center text-center my-auto' icon={faSquareParking}></FontAwesomeIcon>
+                                        
+                                        {parkingLocationData.street_address || parkingLocationData.city || parkingLocationData.state || parkingLocationData.zip_code ? (
 
-                                        <div>
-                                            <p>{hospitalLocationData.street_address}</p>
-                                            <p>{hospitalLocationData.city} {hospitalLocationData.state}, {hospitalLocationData.zip_code}</p>
-                                        </div>
+                                            <div>
+                                                <p>{parkingLocationData.street_address}</p>
+                                                <p>{parkingLocationData.city} {parkingLocationData.state}, {parkingLocationData.zip_code}</p>
+                                            </div>
 
-                                    ) : (
-                                        <div className='w-full p-5 pl-2 rounded-md'>
-                                            <p className='text-slate-300'>Hospital Address</p>
-                                        </div>
-                                    )}
+                                        ) : (
+                                            <div className='text-slate-50 p-5 pl-2 w-full rounded-md'>
+                                                <p className='text-slate-300'>Parking Address</p>
+                                            </div>
+                                        )}
 
+                                    </div>
                                 </div>
+
+                                {parkingLocationData.parking_instructions ? (
+                                    <div className='flex flex-col text-left gap-2'>
+                                        <h4>Parking Instructions</h4>
+                                        <p className='text-sm'>"{parkingLocationData.parking_instructions}"</p>
+                                    </div>
+                                ) : (
+                                    <div className='bg-slate-100 w-full py-8 rounded-md'>
+                                        <p className='text-slate-300'>Parking Instructions</p>
+                                    </div>
+                                )}                
                             </div>
-                            {hospitalLocationData.hospital_instructions ? (
-                                <div className='flex flex-col text-left gap-2'>
-                                    <h4>Hospital Instructions</h4>
-                                    <p className='text-sm'>"{hospitalLocationData.hospital_instructions}"</p>
-                                </div>
+                        )}
+                    </div>
+
+                    <div className="bg-slate-50 h-full rounded-xl py-4 px-6 text-center text-slate-400">
+                        {!hospitalLocationData ? (
+                                <p className='text-sm'>You have not added any hospital instructions.</p>
                             ) : (
-                                <div className='bg-slate-100 w-full py-8 rounded-md'>
-                                    <p className='text-slate-300'>Hospital Instructions</p>
+                            <div className='flex  flex-col gap-4'>                          
+                                <div className='flex flex-col gap-2'>
+                                    <h4 className='text-left'>Hospital Address</h4>
+                                    <div className='text-left flex flex-row gap-4'>
+                                        <FontAwesomeIcon className='text-3xl text-red-600 flex justify-center text-center my-auto' icon={faSquareH}></FontAwesomeIcon>
+                                        {hospitalLocationData.street_address || hospitalLocationData.city || hospitalLocationData.state || hospitalLocationData.zip_code ? (
+
+                                            <div>
+                                                <p>{hospitalLocationData.street_address}</p>
+                                                <p>{hospitalLocationData.city} {hospitalLocationData.state}, {hospitalLocationData.zip_code}</p>
+                                            </div>
+
+                                        ) : (
+                                            <div className='w-full p-5 pl-2 rounded-md'>
+                                                <p className='text-slate-300'>Hospital Address</p>
+                                            </div>
+                                        )}
+
+                                    </div>
                                 </div>
-                            )}
-                        </div>
-                    )}
+                                {hospitalLocationData.hospital_instructions ? (
+                                    <div className='flex flex-col text-left gap-2'>
+                                        <h4>Hospital Instructions</h4>
+                                        <p className='text-sm'>"{hospitalLocationData.hospital_instructions}"</p>
+                                    </div>
+                                ) : (
+                                    <div className='bg-slate-100 w-full py-8 rounded-md'>
+                                        <p className='text-slate-300'>Hospital Instructions</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
                 </div>
 
             </div>
-
-
 
         </CardContainer>
 

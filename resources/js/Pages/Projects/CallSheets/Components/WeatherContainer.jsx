@@ -12,7 +12,8 @@ export default function WeatherContainer({
 
     data, 
     newData, 
- 
+    className,
+
  }){
     
 
@@ -52,8 +53,8 @@ export default function WeatherContainer({
   
     return(
 
-        <CardContainer className="" header="Weather Details" >
-            <div className='bg-slate-50 p-2 rounded-2xl secondary-color h-full min-h-[9rem] w-full'>
+        <CardContainer className={`${className}`} header="Weather Details" >
+            <div className='bg-orange-50 p-4 rounded-2xl secondary-color h-full min-h-[9rem] w-full'>
                 <Weather locationData={locationData} data={data} date={date} />
             </div>
         </CardContainer>

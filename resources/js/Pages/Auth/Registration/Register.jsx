@@ -66,31 +66,15 @@ export default function Register() {
 
 
 
+    const greeting = ['Speed Up', <br key="linebreak"/>, 'Production!'];
 
 
     return (
-        <GuestLayout>
-            {{
-                surface: (
-                    <>
-
-
-                        <Modal
-                            show={privacyPolicyModal}
-                            maxWidth='100%'
-                            dialogPanelClass='h-full !bg-[#f6f4f1]'
-                            childrenClassName='p-[4rem]'
-                            onClose={setPrivacyPolicyModal}
-                            showCloseButton='true'
-                        >
-                    
-                            <PrivacyPolicy />
-                            
-                        </Modal>    
-       
-                    </>
-                ),
-                form: (
+        <GuestLayout
+        greeting={greeting}
+        >
+        {{
+            body: (
                     <div>
 
                         <EmailStep
@@ -102,11 +86,7 @@ export default function Register() {
                             privacyPolicyHref='#privacy-policy'
                         />
  
-                    </div>
-                ),
-                footer: (
-                    <div>
-
+                
                         {skeleton ? (
                             <div>
                                 <Skeleton variant="rectangular" sx={{ height: "38px", width: '106px', marginTop: '1rem' }}/>
@@ -122,8 +102,6 @@ export default function Register() {
                                 </Link>
                             </div>
                         )}
-
-
                        
                     </div>
                 ),

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('film_locations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
+            $table->text('location_name')->nullable();
             $table->timestamps();
         });
     }

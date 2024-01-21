@@ -2,9 +2,7 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useEffect, useState } from 'react';
 
 import Sidebar from '@/Layouts/Partials/Sidebar';
-import TransparentSearchBar from '@/Components/Modals/TransparentSearchBar';
-import Banner from '@/Layouts/Partials/Banner';
-import Loading from '@/Components/Layouts/Loading';
+import Loading from '@/Layouts/Partials/Loading';
 
 import Modal from '@/Components/Modals/Modal';
 import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
@@ -14,7 +12,13 @@ import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 
 
 
-export default function AuthenticatedLayout({ bannerProps, children, project }) {
+export default function AuthenticatedLayout({ 
+  
+  children, 
+  project
+
+}) {
+
   const { user, fetchUserData } = useAuth();
   useEffect(() => {
     // Fetch user data on component mount
@@ -30,15 +34,7 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleSearch = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeSearch = () => {
-    setIsOpen(false);
-  };
+ 
 
   useEffect(() => {
     if (user && user.is_password_temporary) {
@@ -58,15 +54,10 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
     }
   }, [user]);
  
-  const verification = user && (user.is_password_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
+  // const verification = user && (user.is_password_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
 
-
-
-
-
-
-
-
+  const verification = true;
+ 
 
 
     return (
@@ -74,24 +65,24 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
         <div className="min-h-screen tertiary-color relative">
 
             {user === null || verification ? (
-              
+            
               <>
               
                   {verification ? (
 
-                    <div id="surface-layer" className="absolute z-50 w-full">
-                          <Modal show={isModalOpen} dialogPanelClass="!max-w-[70rem]">
-                            <VerificationProcess 
-                              currentStep={currentStep}
-                              setCurrentStep={setCurrentStep}
-                              setIsModalOpen={setIsModalOpen}
-                            />
-                          </Modal>
-                       <Loading />
-                    </div>
+                      <div className="absolute z-50 w-full">
+                            <Modal show={isModalOpen} dialogPanelClass="!max-w-[70rem]">
+                              <VerificationProcess 
+                                currentStep={currentStep}
+                                setCurrentStep={setCurrentStep}
+                                setIsModalOpen={setIsModalOpen}
+                              />
+                            </Modal>
+                            <Loading />
+                      </div>
 
                   ):(
-                    <Loading />
+                      <Loading />
                   )}
 
               </>
@@ -99,19 +90,16 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
 
             ):(
 
-                <div>
-                    <div id="surface-layer" className="absolute z-50 w-full">
-                        <TransparentSearchBar isOpen={isOpen} onClose={closeSearch} />
-                            {children.surface}
-                        <Sidebar toggleSearch={toggleSearch} isOpen={isOpen} closeSearch={closeSearch} />
+                <div className='bg-slate-100'>
+
+                    <div className="absolute z-50 w-full">
+                         <Sidebar project={project}/>
                     </div>
 
                     <main className="flex flex-col w-full h-screen overflow-hidden">
-                        <Banner auth={user} project={project} {...bannerProps} />
-                        <div className="portal-body w-full h-full pt-6 pb-8 pl-[12.5rem] pr-[7rem]">
-                            {children.portalBody}
-                        </div>
+                          {children.portal}
                     </main>
+
                 </div>
                     
             )} 
@@ -119,10 +107,6 @@ export default function AuthenticatedLayout({ bannerProps, children, project }) 
         </div>
 
     );
-
-
-
-
 
 
 }

@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from '@inertiajs/react';
 import React from 'react';
 
 
@@ -7,30 +5,23 @@ import React from 'react';
 
 
 
-function PrimaryButton({ children, onClick, className, href, icon }) {
+function PrimaryButton({ 
+  
+  children, 
+  onClick, 
+  className
 
-    const classes = `default-btn primary-button button-transition ${className}`;
- 
+}) { 
 
-    if (href) {
-        // Render a link if href is provided
-        return (
-          <Link href={href} className={`default-btn secondary-button button-transition cursor-pointer !py-2 ${className}`}>
-            {icon && <FontAwesomeIcon icon={icon} />}
-            {children}
-          </Link>
-        );
-      } else {
-        // Render a button if href is not provided
-        return (
-            <button
-                className={`default-btn primary-button button-transition ${className}`}
-                    onClick={onClick}
-                >
-                {children}
-            </button>
-        );
-      }
+
+      return (
+          <button
+              className={`default-btn rounded-lg cursor-pointer duration-500 transition-all bg-emerald-500 text-emerald-50 ${className}`}
+              onClick={onClick}
+          >   
+              {children}
+          </button>
+      );
 
 }
 

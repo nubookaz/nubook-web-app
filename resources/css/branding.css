@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
 }
+
 .logo-icon {
     height: 2rem;
 }

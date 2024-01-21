@@ -1,7 +1,7 @@
 import CardContainer from '@/Components/Containers/CardContainer';
 
 
-export default function ProductionCompany({ user, data }){
+export default function ProductionCompany({ user, className }){
 
     const getPrimaryProductionCompanyName = (user) => {
         if (!user || !user.production_companies || !user.primary_production_company_id) {
@@ -20,13 +20,14 @@ export default function ProductionCompany({ user, data }){
     
      return(
 
-        <CardContainer className="" header="Production Company"  >
+        <CardContainer className={`${className}`} header="Production Company"  >
    
             {primaryCompanyName ? (
-                <h2>{primaryCompanyName}</h2>
+                <h2 className='text-4xl text-slate-500'>{primaryCompanyName}</h2>
             ) : (
                 <div>Assign a Production Company</div>
             )}
+
         </CardContainer>
 
     );

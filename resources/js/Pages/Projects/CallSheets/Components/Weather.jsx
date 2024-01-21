@@ -7,11 +7,16 @@ import { faCaretDown, faCaretUp, faSun } from '@fortawesome/free-solid-svg-icons
 
 
 
-const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
+const Weather = ({ 
+  
+  date, 
+  data, 
+  locationData,  
+  layoutStyle = 'landscape' 
+
+}) => {
 
   let { latitude, longitude } = locationData || {};
-
-
 
   const [weatherData, setWeatherData] = useState(null);
  
@@ -97,13 +102,13 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
     const postData = async () => {
       if (weatherData) {
         try {
-          const routeUrl = route('save.weather', { id: data.project_id, callSheetId: data.id });
-          const response = await axios.post(routeUrl, {
-              weatherData,
-          });
+            const routeUrl = route('save.weather', { id: data.project_id, callSheetId: data.id });
+            const response = await axios.post(routeUrl, {
+                weatherData,
+            });
 
-          if (response.data.success) {
-           }
+            if (response.data.success) {
+            }
         } catch (error) {
           console.error('Error posting weather data:', error);
         }
@@ -116,38 +121,37 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
  
  
   useEffect(() => {
-    // Simulate loading for 2 seconds, replace this with your actual fetch logic
-    const timer = setTimeout(() => {
-      setLoadingWeather(false);
-    }, 2000);
+      const timer = setTimeout(() => {
+        setLoadingWeather(false);
+      }, 2000);
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
+      return () => clearTimeout(timer); 
   }, []);
 
 
   if (!latitude && !longitude) {
-    return <div className="flex justify-center items-center text-center w-full h-full p-6">No weather data available. Please enter a valid address or zip code</div>;
+      return <div className="flex justify-center items-center text-center w-full h-full p-6">No weather data available. Please enter a valid address or zip code</div>;
   }
 
  
   if (loadingWeather) {
-    return <div className="flex justify-center items-center text-center w-full h-full p-6">Loading...</div>;
+      return <div className="flex justify-center items-center text-center w-full h-full p-6">Loading...</div>;
   }
   
   if (error) {
-    return <div className="flex justify-center items-center text-center w-full h-full p-6">Error fetching weather data</div>;
+      return <div className="flex justify-center items-center text-center w-full h-full p-6">Error fetching weather data</div>;
   }
   
   if (!weatherData) {
-    return <div className="flex justify-center items-center text-center w-full h-full p-6">No weather data available. Please enter a valid address or zip code</div>;
+      return <div className="flex justify-center items-center text-center w-full h-full p-6">No weather data available. Please enter a valid address or zip code</div>;
   }
   
   let temperatureC, temperatureF, maxTempC, maxTempF, minTempC, minTempF, sunsetTime, sunriseTime, message;
   const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
   const kelvinToFahrenheit = (kelvin) => {
-    const celsius = kelvin - 273.15;
-    const fahrenheit = (celsius * 9) / 5 + 32;
-    return fahrenheit;
+      const celsius = kelvin - 273.15;
+      const fahrenheit = (celsius * 9) / 5 + 32;
+      return fahrenheit;
   };
 
 
@@ -319,7 +323,7 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
           <div className='flex flex-col gap-4'>
             <div className='flex flex-row gap-6 w-full h-full'>
               <div className='text-[4rem] text-center my-auto'>
-                  <img className="w-full max-w-[8rem] mx-auto" src={weatherIconPath} />
+                  <img className="w-full max-w-[8rem] mx-auto drop-shadow-xl" src={weatherIconPath} />
                </div>
               <div className='h-full flex text-left flex-col my-auto'>
                   <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>
@@ -346,7 +350,7 @@ const Weather = ({ date, data, locationData, layoutStyle = 'landscape' }) => {
         ):(
           <div className='flex flex-row gap-6 w-full h-full'>
             <div className='text-[4rem] text-center my-auto w-[40%]'>
-            <img className="w-full max-w-[8rem] mx-auto" src={weatherIconPath} />
+            <img className="w-full max-w-[8rem] mx-auto drop-shadow-xl" src={weatherIconPath} />
              </div>
             <div className='w-[60%] h-full'>
                 <p className='font-bold'>Temp: <span className='font-normal'>{temperatureF ? temperatureF.toFixed(2) + "°F" : "N/A"}</span></p>

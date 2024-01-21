@@ -207,9 +207,7 @@ export default function PersonalInfo({
 
             <Address
                 data={addressData}
-                onUpdateInfo={handleUpdateAddressData}
-                emptyFields={emptyFields}
-                setEmptyFields={setEmptyFields}
+                onAddressChange={handleUpdateAddressData}
             />
         </div> 
     );

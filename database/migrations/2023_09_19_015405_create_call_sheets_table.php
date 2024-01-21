@@ -24,8 +24,8 @@ class CreateCallSheetsTable extends Migration
             $table->text('bulletin')->nullable(); 
             $table->json('weather')->nullable();
             $table->timestamp('weather_updated_at')->nullable();
-
-             $table->timestamps();
+            $table->softDeletes();
+            $table->timestamps();
 
  
         });

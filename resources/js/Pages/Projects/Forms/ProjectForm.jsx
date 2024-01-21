@@ -32,9 +32,8 @@ export default function ProjectForm({ customClasses }) {
     const handlePosterSizeChange = (size) => {
         setPosterSize(size);
     };
-    
-    console.log(posterSize);
-
+ 
+ 
     const [videoStepOneData, setVideoStepOneData] = useState({});
     const [videoStepTwoData, setVideoStepTwoData] = useState({
         project_name: '',
@@ -153,6 +152,8 @@ export default function ProjectForm({ customClasses }) {
 
 
     const handleSaveProject = async () => {
+
+        console.log('saved!!');
         const formData = new FormData();
         
         // Append all other data to formData
@@ -181,7 +182,7 @@ export default function ProjectForm({ customClasses }) {
         }
         
         try {
-            const response = await axios.post(route('projects.create'), formData, {
+            const response = await router.post(route('projects.create'), formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -225,7 +226,7 @@ export default function ProjectForm({ customClasses }) {
                                 </div>
                             )}
 
-                            <div className='flex flex-row gap-4 justify-center mt-[2rem] mb-[6rem] h-full max-h-[34rem]'>
+                            <div className='flex flex-row gap-4 justify-center my-12 h-full max-h-[34rem]'>
 
                                 <div className='w-full h-full'>
 
@@ -249,6 +250,7 @@ export default function ProjectForm({ customClasses }) {
                                         <div className='px-[6rem]'>
                                             <VideoStepTwo 
                                                 data={videoStepTwoData} 
+                                                projectData={projectData}
                                                 onDataChange={handleVideoStepTwoDataChange}                                         
                                                 emptyFields={emptyFields} 
                                                 setEmptyFields={setEmptyFields}

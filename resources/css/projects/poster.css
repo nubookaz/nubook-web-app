@@ -1,8 +1,6 @@
 
 .card {
     position: relative;
-    max-width: 350px;
-    max-height: 565px;
     background: #000;
     border-radius: 10px;
     overflow: hidden;
@@ -20,13 +18,13 @@
     padding: 4px;
     border: 2px solid #fff;
     border-radius: 50px;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;;
-    transition: .3s;
+    transition: .5s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     background-color: transparent;
     cursor: pointer;
@@ -35,19 +33,19 @@
 
   .edit-icon:hover {
     background-color: #fff;
-    transition: .3s;
+    transition: .5s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .edit-icon:hover .fa-pencil {
     color: var(--primary-green-color);
-    transition: .3s;
+    transition: .5s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .card:hover .edit-icon {
     opacity: 1;
-    transition: .3s;
+    transition: .5s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -83,12 +81,12 @@
   
   .poster img {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: .3s;
+    transition: .6s;
   }
   
   .card:hover .poster img {
@@ -104,7 +102,7 @@
     padding: 1.2em 1.2em 1.5em;
     background: #000a;
     backdrop-filter: blur(16px) saturate(120%);
-    transition: .3s;
+    transition: .6s;
     color: #fff;
     z-index: 2;
   }

@@ -1,22 +1,28 @@
 import React from 'react';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 
-function EmptyContent({ customSvgPath, children, buttonText, onButtonClick, svgWidth, containerClasses }) {
+function EmptyContent({ imageUrl, children, buttonText, onClick, svgClass, className }) {
 
-    const svgPath = customSvgPath || '/undraw_default_1.svg';
+    const svgPath = imageUrl || '/undraw_default_1.svg';
 
 
     return (
-        <div className={`${containerClasses} flex flex-col items-center justify-center h-full max-w-[35rem] mx-auto text-center `}>
+        <div className={`${className} flex flex-col gap-4 items-center justify-center h-full mx-auto text-center `}>
 
-            {children}
-
-            <div className={`my-4 mb-16 w-[22rem] opacity-25 ${svgWidth}`}>
-                <img src={svgPath} alt="Custom Icon" />
+            {children.header}
+            
+            <div className={`my-4 max-w-[15rem] opacity-[.15] w-full ${svgClass}`}>
+                <img className='w-full' src={svgPath} alt="Custom Icon" />
             </div>
-            <SecondaryButton onClick={onButtonClick}>
+
+            <div>
+                {children.description}
+            </div>
+
+            <SecondaryButton onClick={onClick} >
                 {buttonText}
             </SecondaryButton>
+
         </div>
     );
 }

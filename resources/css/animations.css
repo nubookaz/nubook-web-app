@@ -1,3 +1,56 @@
 .button-transition {
     transition: background-color 0.3s, color var(--transition-speed);
 }
+
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+
+
+  @keyframes fadeInDelay {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in-delay {
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.3s; /* Adjust the delay as needed */
+}
+  
+
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translate(-50%, -50%);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5) translate(-50%, -50%);
+  }
+}
+
+ 

@@ -1,9 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
-function ApplicationLogo() {
+function ApplicationLogo({
+
+    className
+
+}) {
     return (
-        <div className="application-logo">
+        <div className={`${className} application-logo`}>
             <FontAwesomeIcon icon={faPaperclip} className="logo-icon" />
         </div>
     );

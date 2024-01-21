@@ -1,5 +1,4 @@
 body{
-    background-color: var(--warm-color);
     display: flex;
     flex-direction: column;
     height: 100vh;

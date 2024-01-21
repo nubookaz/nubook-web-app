@@ -6,7 +6,7 @@ import CardContainer from '@/Components/Containers/CardContainer';
 
 import SettingsNav from '@/Components/Navigations/SettingsNav';
 
-import ProfileSettings from './SubPages/PofileSettings';
+import ProfileSettings from './ProfileSettings';
 import ProjectSettings from './Partials/ProjectSettings';
 import SocialSettings from './Partials/SocialSettings';
 import BudgetSettings from './Partials/BudgetSettings';
@@ -23,14 +23,18 @@ import Modal from '@/Components/Modals/Modal';
 
 
 
+import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
 
 
-export default function Edit({ auth }) {
+export default function SettingsPage({ 
+    
+    auth 
+
+}) {
 
     const [activeContent, setActiveContent] = useState('profile-settings');
     const [savedProfileSettings, setSavedProfileSettings] = useState(false);
-    const [isDrawerPanelOpen, setDrawerPanelOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const togglePrivacyPolicyModal = () => {
@@ -70,49 +74,16 @@ export default function Edit({ auth }) {
       }, []);
       
       
-    const bannerProps = {
-        showGreeting: true, // Customize these props based on your conditions
-      };
-
-      
-    return (
-        <AuthenticatedLayout
-            user={auth.user}
-            bannerProps={bannerProps}
-        >
-            {{
-
-                
-                surface:(
-                    <div className="relative z-50 w-full h-full">
-                        <Snackbar
-                            color="success"
-                            size="lg"
-                            variant="solid"
-                            open={savedProfileSettings}
-                            className="w-full max-w-[30rem]"
-                        >
-                            Saved! Profile Settings Saved!
-                        </Snackbar>
-
-                        <Modal
-                            show={isModalOpen}
-                            maxWidth='100%'
-                            dialogPanelClass='h-full !bg-[#f6f4f1]'
-                            childrenClassName='p-[4rem]'
-                            onClose={setIsModalOpen}
-                            showCloseButton='true'
-                        >
-                    
-                            <PrivacyPolicy />
-                            
-                        </Modal>
-
-                    </div>
-                ),
-                portalBody: (
-                    <div className="h-full w-full flex gap-4 mx-auto max-w-[95rem]">
  
+    return (
+        <PortalLayout 
+            breadcrumbs={[
+                { label: 'Settings', url: '' },
+            ]}
+        >
+                    <div className="h-full w-full flex gap-4 mx-auto max-w-[95rem]">
+                 
+    
                         <div className="w-full max-w-[15rem]">
                             <SettingsNav className="mt-4" activeContent={activeContent} handleButtonClick={handleButtonClick} />
                         </div>
@@ -185,8 +156,6 @@ export default function Edit({ auth }) {
                         
                     </div>
 
-                ),
-            }}
-        </AuthenticatedLayout>
+        </PortalLayout>
     );
 }

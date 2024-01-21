@@ -11,7 +11,8 @@ class HospitalLocation extends Model
 
     protected $fillable = [
         'location_id',
-        'hospital_instructions',
+        'hospital_name',
+        'information',
     ];
 
     

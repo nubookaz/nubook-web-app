@@ -12,6 +12,7 @@ import MoviePoster from './MoviePoster';
 export default function VideoStepTwo({ 
     
     data, 
+    projectData,
     onDataChange,
     emptyFields, 
     setEmptyFields,
@@ -24,8 +25,9 @@ export default function VideoStepTwo({
 }) {
 
     const [localData, setLocalData] = useState({ ...data });
+    const [primaryGenre, setPrimaryGenre] = useState('');
 
- 
+
     const maxCharacters = 730;
     const [text, setText] = useState(localData.project_description.length.toString() || '0');
 
@@ -39,9 +41,33 @@ export default function VideoStepTwo({
 
     const handleDescriptionChange = (e) => {
         const newText = e.target.value.slice(0, maxCharacters);
-        setText(newText.length.toString()); // Convert to string for display
-        handleChange('project_description', newText);
+        setText(newText.length.toString()); // Update character count
+        handleChange('project_description', newText); // Update local project data
     };
+    function handlePaste(e) {
+        // Delay the processing to get the pasted text after the default paste action is completed
+        setTimeout(() => {
+            const currentText = localData.project_description;
+            let pastedText = e.target.value; // This now includes the newly pasted content
+  
+            // If the pasted content exceeds the max character limit, trim it
+            if (pastedText.length > maxCharacters) {
+                pastedText = pastedText.substring(0, maxCharacters);
+            }
+  
+            // Replace new lines with spaces
+            pastedText = pastedText.replace(/\r?\n|\r/g, ' ');
+  
+            // Update the local state
+            setLocalData({
+                ...localData,
+                project_description: pastedText
+            });
+  
+            // Update the remaining character count
+            setText(pastedText.length.toString());
+        }, 0);
+    }
 
     const handleChange = (field, value) => {
         const updatedData = { ...localData, [field]: value };
@@ -52,21 +78,14 @@ export default function VideoStepTwo({
     };
     
 
-    
-
-
-    const checkRequiredFields = () => {
-        const fieldsToCheck = ['project_name', 'primary_genre', 'secondary_genre', 'viewer_rating', 'project_description']; // Add other required fields here
-        const newEmptyFields = {};
-    
-        fieldsToCheck.forEach(field => {
-            if (!localData[field] || localData[field].trim() === '') {
-                newEmptyFields[field] = true;
-            }
-        });
-    
-        setEmptyFields(newEmptyFields); // Update the emptyFields state to show tooltips for empty required fields
+    const handlePrimaryGenreChange = (newPrimaryGenre) => {
+        setPrimaryGenre(newPrimaryGenre);
+        handleChange('primary_genre', newPrimaryGenre);
     };
+
+
+    console.log(emptyFields);
+
     
 
  
@@ -75,7 +94,8 @@ export default function VideoStepTwo({
             <div className='w-full h-full'>
                 <MoviePoster 
                     data={localData} 
-                    onGeneratePoster={checkRequiredFields} 
+                    projectData={projectData}
+                    setEmptyFields={setEmptyFields}
                     onImageChange={(file) => handleChange('movie_poster', file)}
                     isCustomImage={isCustomImage}
                     setIsCustomImage={setIsCustomImage}     
@@ -110,7 +130,7 @@ export default function VideoStepTwo({
                                 className="w-full"
                                 name="primary_genre"
                                 onChange={(e, newPrimaryGenre) => {
-                                    handleChange('primary_genre', newPrimaryGenre);
+                                    handlePrimaryGenreChange(newPrimaryGenre);
                                 }}
                                 
                                 sx={{
@@ -125,23 +145,11 @@ export default function VideoStepTwo({
                                 }}
                             >
                                 <Option value="" disabled default>Choose a Primary Genre</Option>
-                                <Option value="Drama">Drama</Option>
-                                <Option value="Comedy">Comedy</Option>
-                                <Option value="Thriller">Thriller</Option>
-                                <Option value="Romance">Romance</Option>
-                                <Option value="Action">Action</Option>
-                                <Option value="Horror">Horror</Option>
-                                <Option value="Sci-Fi">Sci-Fi</Option>
-                                <Option value="Fantasy">Fantasy</Option>
-                                <Option value="Documentary">Documentary</Option>
-                                <Option value="Adventure">Adventure</Option>
-                                <Option value="Animation">Animation</Option>
-                                <Option value="Mystery">Mystery</Option>
-                                <Option value="Musical">Musical</Option>
-                                <Option value="Historical">Historical</Option>
-                                <Option value="Biographical">Biographical</Option>
-                                {/* Add more genres as needed */}
+                                {['Drama', 'Comedy', 'Thriller', 'Romance', 'Action', 'Horror', 'Sci-Fi', 'Fantasy', 'Documentary', 'Adventure', 'Animation', 'Mystery', 'Musical', 'Historical', 'Biographical'].map(genre => (
+                                    <Option key={genre} value={genre}>{genre}</Option>
+                                ))}                            
                             </Select>
+
                         </Tooltip>
                     </div>
 
@@ -161,22 +169,9 @@ export default function VideoStepTwo({
                                  }}
                             >
                                 <Option value="" disabled default>Choose a Secondary Genre</Option>
-                                <Option value="Drama">Drama</Option>
-                                <Option value="Comedy">Comedy</Option>
-                                <Option value="Thriller">Thriller</Option>
-                                <Option value="Romance">Romance</Option>
-                                <Option value="Action">Action</Option>
-                                <Option value="Horror">Horror</Option>
-                                <Option value="Sci-Fi">Sci-Fi</Option>
-                                <Option value="Fantasy">Fantasy</Option>
-                                <Option value="Documentary">Documentary</Option>
-                                <Option value="Adventure">Adventure</Option>
-                                <Option value="Animation">Animation</Option>
-                                <Option value="Mystery">Mystery</Option>
-                                <Option value="Musical">Musical</Option>
-                                <Option value="Historical">Historical</Option>
-                                <Option value="Biographical">Biographical</Option>
-                                {/* Add more genres as needed */}
+                                {['Drama', 'Comedy', 'Thriller', 'Romance', 'Action', 'Horror', 'Sci-Fi', 'Fantasy', 'Documentary', 'Adventure', 'Animation', 'Mystery', 'Musical', 'Historical', 'Biographical'].map(genre => (
+                                    <Option key={genre} value={genre} disabled={genre === primaryGenre}>{genre}</Option>
+                                ))}
                             </Select>
                         </Tooltip>
                     </div>
@@ -201,17 +196,27 @@ export default function VideoStepTwo({
                         <Textarea 
                             minRows={11.6} 
                             maxRows={11.6}
-                            name="project_description"
-                            placeholder="Epic tale in which an intrepid archaeologist..."
-                            value={localData.project_description}
-                            onChange={handleDescriptionChange}
-                            maxLength={maxCharacters}
-                            endDecorator={
-                                <Typography level="body-xs" sx={{ ml: 'auto' }}>
-                                    {text}/{maxCharacters} Characters Remaining
-                                </Typography>
-                            }
-                            
+                              name="project_description"
+                              placeholder="Epic tale in which an intrepid archaeologist..."
+                              value={localData.project_description}
+                              onChange={handleDescriptionChange}
+                              maxLength={maxCharacters}
+                              className='!text-slate-500 !bg-slate-100'
+                              onPaste={handlePaste}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                }
+                              }}
+                              endDecorator={
+                                  <Typography level="body-xs" sx={{ ml: 'auto' }}>
+                                      {text}/{maxCharacters} Characters Remaining
+                                  </Typography>
+                              }
+                              sx={{
+                                fontSize: '.90rem',
+                              }}
+                              
                         />   
                     </Tooltip>
                 </div>

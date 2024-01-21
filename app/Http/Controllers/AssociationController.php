@@ -30,7 +30,7 @@ class AssociationController extends Controller
         // Attach the company to the project using the relationship
         $project->companies()->attach($company);
     
-        $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.edit';
+        $viewName = $project->projectStage === "Estimate" ? 'projects.estimate' : 'projects.details';
 
         // Redirect based on the project's projectStage
         return redirect()->route($viewName, ['id' => $project->id]);

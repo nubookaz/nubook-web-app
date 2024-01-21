@@ -14,14 +14,11 @@ use Illuminate\Support\Facades\Auth;
 trait ProjectTrait
 
 {
-
-    public function createProject(Request $request)
+    public function createOrUpdateProject(Request $request)
     {
-
-         // Retrieve the consolidated project data from the request
+        // Retrieve the consolidated project data from the request
         $projectData = $request->all();
-
- 
+    
         // Separate video production data from the main project data
         $videoProductionData = [
             'movie_poster' => null,
@@ -29,7 +26,7 @@ trait ProjectTrait
             'primary_genre' => $projectData['primary_genre'] ?? null,
             'secondary_genre' => $projectData['secondary_genre'] ?? null,
             'filming_days' => $projectData['filming_days'] ?? null,
-         ];
+        ];
     
         // Remove video production specific fields from the main project data
         unset(
@@ -49,9 +46,8 @@ trait ProjectTrait
             'project_status' => 'required|string',
             'project_description' => 'nullable|string',
             'project_budget' => 'nullable|numeric',
-         ])->validate();
+        ])->validate();
     
-
         // Validation rules for video production data
         $videoProductionValidator = Validator::make($videoProductionData, [
             'viewer_rating' => 'nullable|string', 
@@ -59,7 +55,7 @@ trait ProjectTrait
             'secondary_genre' => 'nullable|string',  
             'filming_days' => 'nullable|integer',  
         ])->validate();
-
+    
         $videoProductionData['viewer_rating'] = $videoProductionData['viewer_rating'] ?? 'Not Rated';
     
         // Assuming you have the user's ID available
@@ -67,8 +63,24 @@ trait ProjectTrait
     
         // Merge the validated projectData with user_id
         $projectData['user_id'] = $userId;
-
-
+    
+        $project = null;
+        $isUpdating = isset($projectData['id']) && $projectData['id'];
+    
+        // Check if an existing project ID is provided
+        if ($isUpdating) {
+            // Find the existing project
+            $project = Project::find($projectData['id']);
+            if (!$project) {
+                return response()->json(['message' => 'Project not found'], 404);
+            }
+    
+            // Retain existing movie poster if a new one isn't uploaded
+            if (!isset($projectData['uploadedImage']) || !$projectData['uploadedImage']) {
+                $videoProductionData['movie_poster'] = $project->video_production['movie_poster'] ?? null;
+            }
+        }
+    
         // Handle the image upload and save it to the storage folder
         if (isset($projectData['uploadedImage']) && $projectData['uploadedImage']) {
             $uploadedImage = $projectData['uploadedImage'];
@@ -93,42 +105,22 @@ trait ProjectTrait
                 'dimensions' => "{$width}x{$height}"
             ];
         }
-
+    
         // Add the video production data to projectData
         $projectData['video_production'] = $videoProductionData;
     
- 
-        // Create a new project record with the specified fields
-        $project = Project::create($projectData);
+        if ($isUpdating) {
+            // Update the existing project
+            $project->update($projectData);
+        } else {
+            // Create a new project record with the specified fields
+            $project = Project::create($projectData);
+        }
     
-        // Return the created project instance or any other relevant data
+        // Return the created/updated project instance or any other relevant data
         return $project;
     }
 
-    public function handleAIGeneratedContent($userId, $isImageAIGenerated, $contentType = 'image', $dailyLimit = 10) {
-        if ($isImageAIGenerated) {
-            $today = now()->toDateString();
-    
- 
-            $limitRecord = AIContentGeneration::firstOrCreate(
-                [
-                    'user_id' => $userId,
-                    'date' => $today,
-                    'content_type' => $contentType
-                ],
-                ['generation_count' => 0]
-            );
-    
-            if ($limitRecord->generation_count >= $dailyLimit) {
-                // Handle the situation when the limit is reached
-                // This could be throwing an exception or returning a specific response
-                throw new \Exception("Daily limit for AI content generation reached.");
-            }
-    
-            $limitRecord->increment('generation_count');
-        }
-    }
-    
     
     
     

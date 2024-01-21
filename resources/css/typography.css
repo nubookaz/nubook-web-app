@@ -5,18 +5,15 @@ h1 {
 }
 
 h2 {
-    font-size: 1.5rem; /* 42px converted to rems */
-    font-weight: 700;
+     font-weight: 700;
     line-height: 1.2;
-    color: var(--primary-color);
-}
+ }
 
 h3 {
     font-size: 1.2rem; /* 42px converted to rems */
     font-weight: 700;
     line-height: 1.2;
-    color: var(--primary-color);
-}
+ }
 
 h4 {
     font-size: 1rem; /* 42px converted to rems */
