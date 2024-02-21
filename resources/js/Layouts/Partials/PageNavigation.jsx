@@ -22,7 +22,7 @@ const PageNavigation = ({
     const projectId = project?.id; 
 
     const initialSubitemVisibility = {
-        'projects.callSheets.index': activePage.startsWith('projects.callSheets.edit.page')
+        'projects.callSheets.index': activePage.startsWith('projects.callSheets.details.page')
         // Add similar lines for other items with subitems if needed
     };
 
@@ -37,7 +37,7 @@ const PageNavigation = ({
         }
     
         // Additional check for specific cases, like sub-pages of 'Call Sheets'
-        if (route === 'projects.callSheets.index' && activePage.startsWith('projects.callSheets.edit.page')) {
+        if (route === 'projects.callSheets.index' && activePage.startsWith('projects.callSheets.details.page')) {
             return true;
         }
     
@@ -77,7 +77,7 @@ const PageNavigation = ({
             label: 'Call Sheets',
             routeName: 'projects.callSheets.index',
             icon: faPaperPlane,
-            subitems: projectId && activePage.startsWith('projects.callSheets.edit.page') ? [
+            subitems: projectId && activePage.startsWith('projects.callSheets.details.page') ? [
                 {
                     label: 'Subitem 1',
                     routeName: `projects.callSheets.details.${projectId}.subitem1`,
@@ -215,7 +215,7 @@ const PageNavigation = ({
                     <ul className='my-8 flex flex-col gap-6 ml-4'>
                         {renderNavItems(productionBookNavItems)}
                     </ul>
-                    {activePage === 'projects.callSheets.edit.page' && (
+                    {activePage === 'projects.callSheets.details.page' && (
                         <div className='filters flex flex-col gap-4 pr-8 justify-end'>
  
                         </div>

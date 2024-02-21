@@ -29,9 +29,6 @@
     --neutral-color: #fff;
   }
   
- 
- 
-  
   .row {
     margin: 0;
     padding: 0;
@@ -69,21 +66,14 @@
   /* Calendar */
   
   .calendar {
-    /* display: block; */
     position: relative;
     width: 100%;
     height: 100%;
     background: var(--neutral-color);
-    border: 1px solid var(--border-color);
+    /* border: 1px solid var(--border-color); */
   }
   
-  .calendar .header {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 115%;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
+ 
   .calendar .header .icon {
     cursor: pointer;
     transition: 0.15s ease-out;

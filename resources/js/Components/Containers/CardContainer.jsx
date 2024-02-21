@@ -3,53 +3,51 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGrip } from '@fortawesome/free-solid-svg-icons';
  
-
-export default function CardContainer({ 
-    
-    children, 
-    header, 
-    className = '', 
+export default function CardContainer({
+    children,
+    header,
+    className = '',
     onClick,
-
-}) {
-
+  }) {
     function containsBackgroundClass(className) {
-        const bgClassPattern = /\bbg-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
-        return bgClassPattern.test(className);
+      const bgClassPattern = /\bbg-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
+      return bgClassPattern.test(className);
     }
     function containsTextClass(className) {
-        const textClassPattern = /\btext-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
-        return textClassPattern.test(className);
+      const textClassPattern = /\btext-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
+      return textClassPattern.test(className);
     }
- 
+  
     const finalClassName = containsBackgroundClass(className) ? className : `bg-white ${className}`;
     const finalTextClassName = containsTextClass(className) ? className : `text-slate-400 ${className}`;
-
+  
+    // Add styles for the scrolling content
+    const contentStyle = {
+    //   maxHeight: '100%', // Example height, adjust as needed
+      overflowY: 'auto',
+    };
+  
     return (
-
-        <div className={`${finalClassName} flex flex-col p-6 shadow-sm rounded-2xl relative`}>
-
-            <div className='flex flex-row justify-between w-full items-center mb-2'>
-                {header && (
-                    <div className=' '>
-                        <h4 className={`${finalTextClassName} w-full text-sm`}>{header}</h4>
-                    </div>
-                )}
-            
-                {onClick && (
-                    <div variant="plain" className=' '>
-                        <FontAwesomeIcon onClick={onClick}  className={`${finalTextClassName} w-[1.3rem] cursor-pointer hover:text-slate-500 duration-300 text-2xl`} icon={faGrip} />
-                    </div>
-                )}
-            </div>
-
-            {children} 
-                   
+      <div className={`${finalClassName} p-6 shadow-sm rounded-2xl flex flex-col gap-2`}>
+        {(header || onClick) && (
+          <div className="flex flex-row w-full justify-between items-center">
+            {header && (
+              <div>
+                <h4 className={`${finalTextClassName} w-full text-sm`}>{header}</h4>
+              </div>
+            )}
+            {onClick && (
+              <div variant="plain">
+                <FontAwesomeIcon onClick={onClick} className={`${finalTextClassName} w-[1.3rem] cursor-pointer hover:text-slate-500 duration-300 text-2xl`} icon={faGrip} />
+              </div>
+            )}
+          </div>
+        )}
+  
+        <div style={contentStyle} className="flex flex-col h-full">
+          {children}
         </div>
-
+      </div>
     );
-
-
-}
-
- 
+  }
+  

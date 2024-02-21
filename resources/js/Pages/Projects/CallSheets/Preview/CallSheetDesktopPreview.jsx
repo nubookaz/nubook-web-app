@@ -8,10 +8,14 @@ import GoogleMap from '../Components/GoogleMap';
 
 
 
-export default function CallSheetDesktopPreview({data}) {
+export default function CallSheetDesktopPreview({
+  
+  project,
+  callSheet
 
+}) {
 
-
+  console.log(project);
   const [locationData, setLocationData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [callTime, setCallTime] = useState(null);
@@ -31,77 +35,65 @@ export default function CallSheetDesktopPreview({data}) {
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
   }
 
-
   function formatDateWithDay(dateString) {
     const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
     return new Date(dateString).toLocaleDateString(undefined, options);
-}
+  }
 
   useEffect(() => {
     let timeValue = '';
     let locationInfo = null;
     let dateValue = '';
-
-    // Check if data has film_location and it's not empty
-    if (data && data.film_location && data.film_location.location) {
+    if (callSheet && callSheet.film_location && callSheet.film_location.location) {
       locationInfo = {
-        street_address: data.film_location.location.street_address || '',
-        city: data.film_location.location.city || '',
-        state: data.film_location.location.state || '',
-        zip_code: data.film_location.location.zip_code || '',
-        latitude: data.film_location.location.latitude || '',
-        longitude: data.film_location.location.longitude || '',
+        street_address: callSheet.film_location.location.street_address || '',
+        city: callSheet.film_location.location.city || '',
+        state: callSheet.film_location.location.state || '',
+        zip_code: callSheet.film_location.location.zip_code || '',
+        latitude: callSheet.film_location.location.latitude || '',
+        longitude: callSheet.film_location.location.longitude || '',
       };
     } else {
-      // Set to null if data does not have film location info
+      // Set to null if callSheet does not have film location info
       locationInfo = null;
     }
-  
+
     // Set the location data
     setLocationData(locationInfo);
   
-  if (data && data.call_sheet_date_time) {
-      timeValue = formatTime(data.call_sheet_date_time);
+    if (callSheet && callSheet.call_sheet_date_time) {
+      timeValue = formatTime(callSheet.call_sheet_date_time);
+      dateValue = formatDateWithDay(callSheet.call_sheet_date_time.split('T')[0]);
     }
   
-    // Set the formatted time
+    // Set the formatted time and date
     setCallTime(timeValue);
-
-
-
-    if (data && data.call_sheet_date_time) {
-      dateValue = formatDateWithDay(data.call_sheet_date_time.split('T')[0]);
-    }
     setDate(dateValue);
-  }, [data]); // Dependency array includes both data and newData
+  }, [callSheet]); // Dependency array updated to include callSheet
   
- 
- 
-  const locationString = `${locationData?.street_address} ${locationData?.city} ${locationData?.state}, ${locationData?.zip_code}`;
+  const locationString = locationData ? `${locationData.street_address} ${locationData.city} ${locationData.state}, ${locationData.zip_code}` : '';
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(locationString)}`;
   
- 
   function isLocationDataEmpty(locationData) {
-    return locationData && Object.values(locationData).every(value => value === '');
+    return !locationData || Object.values(locationData).every(value => value === '');
   }
 
-  
   const scheduleList = ["8:00 AM - 10:00 AM: Scene 1", "10:30 AM - 12:30 PM: Scene 2"];
   const talentList = ["Actor 1", "Actor 2", "Actor 3"];
   const crewList = ["Crew Member 1", "Crew Member 2", "Crew Member 3"];
 
   return (
-    <CardContainer className="call-sheet">
+    <CardContainer className="bg-white h-full !shadow-sm">
       <div className="call-sheet-columns flex flex-row gap-4">
         <div className="column-left w-[25%]">
           <div className="company-logo text-center flex flex-col justify-center">
             <div className='logo-img bg-slate-100 mx-auto mb-4'></div>
-            <h3 className='font-semibold primary-color'>{data.project.user.primary_production_company.company_name}</h3>
+            <h3 className='font-semibold primary-color'>Company_name</h3>
            </div>
         </div>
         <div className="flex flex-col w-[50%] gap-4">
           <div className='flex flex-col text-center'>
-            <h3 className='text-xl primary-color font-bold'>{data.project.project_name}</h3>
+            <h3 className='text-xl primary-color font-bold'>{project.project_name}</h3>
             <p className='secondary-color text-xl font-semibold'>{date}</p>
             <div className='flex flex-col gap-2 mt-[2rem]'>
               <p className='secondary-color text-[1.2rem] font-semibold'>Your Call Time</p>
@@ -116,15 +108,15 @@ export default function CallSheetDesktopPreview({data}) {
               )}
             </div>
           </div>
-          {data.bulletin ? (
+          {callSheet.bulletin ? (
             <div className='bg-slate-50 w-full rounded-md text-sm text-slate-500 p-4'>
-              {data.bulletin}
+              {callSheet.bulletin}
             </div>
           ):null}
         </div>
         <div className="w-[25%]">
            <div className='py-6 px-4flex flex-col justify-center pl-8 text-center'>
-             <Weather locationData={locationData} data={data} layoutStyle='portrait'/>
+             <Weather locationData={locationData} data={callSheet} layoutStyle='portrait'/>
            </div>
         </div>
       </div>

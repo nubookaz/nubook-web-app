@@ -29,7 +29,6 @@ class ProfileController extends Controller
             'phone', 
             'location.filmLocation', 
             'location.parkingLocation', 
-            'location.hospitalLocation', 
             'primaryProductionCompany',
             'productionCompanies'
         );

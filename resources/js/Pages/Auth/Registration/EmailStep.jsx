@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
  import FormControl from '@mui/joy/FormControl';
  import FormHelperText from '@mui/joy/FormHelperText';
@@ -16,7 +16,7 @@ import Skeleton from '@mui/joy/Skeleton';
 
 
 
-export default function EmailStep({ formData, setFormData, errors, linkPrivacyPolicy, privacyPolicyHref, skeleton }) {
+export default function EmailStep({ showConsentError, formData, setFormData, errors, linkPrivacyPolicy, privacyPolicyHref, skeleton }) {
     const { email, password, password_confirmation, consent } = formData;
     const [emailValue, setEmailValue] = useState(email);
     const [passwordValue, setPasswordValue] = useState(password);
@@ -37,8 +37,11 @@ export default function EmailStep({ formData, setFormData, errors, linkPrivacyPo
     
 
 
-
-
+    useEffect(() => {
+        if (showConsentError) {
+            setShowConsentHelperText(true);
+        }
+    }, [showConsentError]);
 
     // Handle the change event for the password input
     const handlePasswordChange = (event) => {
@@ -215,7 +218,7 @@ export default function EmailStep({ formData, setFormData, errors, linkPrivacyPo
                                     const newConsentValue = event.target.checked;
                                     setConsentValue(newConsentValue); // Update the state
                                     setFormData(prevData => ({ ...prevData, consent: newConsentValue })); // Update formData
-                                    setShowConsentHelperText(true);
+                                    setShowConsentHelperText(!newConsentValue); // Show helper text if unchecked
                                 }}
                                 sx={{
                                     fontSize: '.80rem',
@@ -270,7 +273,7 @@ export default function EmailStep({ formData, setFormData, errors, linkPrivacyPo
 
                 {shouldShowConsentHelperText() && (
                     <FormHelperText className="!text-red-600 !text-xs font-bold">
-                         <InfoOutlined className='mr-2'/>Please agree to the privacy to proceed.
+                        <InfoOutlined className='mr-2'/>Please agree to the privacy policy to proceed.
                     </FormHelperText>
                 )}
 

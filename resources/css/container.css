@@ -54,6 +54,18 @@
 }
 
 
+.dragging-row {
+  /* Example styles to apply during drag */
+  background-color: rgba(245, 245, 245, 0.8); /* slightly transparent background */
+  width: 100%; /* maintain full width */
+}
+
+/* Ensure table cells have a defined width */
+tr.mb-4 td {
+  width: calc(100% / number_of_columns); /* Adjust accordingly */
+}
+
+
 
 
 

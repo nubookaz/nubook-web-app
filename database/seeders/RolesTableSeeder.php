@@ -25,7 +25,7 @@ class RolesTableSeeder extends Seeder
             ['name' => 'Talent'],
             ['name' => 'Crew'],
             ['name' => 'Client'],
-            ['name' => 'Atmosphere'],
+            ['name' => 'Extra'],
         ];
 
         foreach ($roles as $role) {

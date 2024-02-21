@@ -33,13 +33,14 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout
-        greeting={greeting}
+            greeting={greeting}
+            imgUrl = '/images/background_images/bg_image_2.jpg'
         >
         {{
             body: (
                 <div className='flex flex-col gap-4 h-full justify-between'>
                     <div className='flex flex-col gap-8 items-center h-full'>
-                        <div className='w-full h-full flex justify-center items-center flex-col gap-4'>
+                        <div className='w-full h-full flex flex-col gap-4'>
                             <div className={inputGroupClass}>
                                     <label htmlFor="email" value="email" className='text-gray-400 text-sm'> Email Address * </label>
                                     <Input
@@ -94,14 +95,17 @@ export default function Login({ status, canResetPassword }) {
                                         </div>
                                     )}
                             </div>
+
+
+                            {errors.email && (
+                                <div className='text-red-600 text-center p-4 bg-red-50 rounded-xl mt-6'>{errors.email}</div>
+                            )}
+                            
                         </div>
-                        
+                    
                     </div>
 
 
-                        {errors.email && (
-                            <div className='text-red-600 text-center p-4 bg-red-50 rounded-xl mt-6'>{errors.email}</div>
-                        )}
 
                         <div className='flex flex-col gap-4'>
                             <div>

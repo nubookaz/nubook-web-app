@@ -16,7 +16,7 @@ function PrimaryButton({
 
       return (
           <button
-              className={`default-btn rounded-lg cursor-pointer duration-500 transition-all bg-emerald-500 text-emerald-50 ${className}`}
+              className={`default-btn bg-emerald-500 rounded-lg cursor-pointer duration-500 transition-all text-emerald-50 ${className}`}
               onClick={onClick}
           >   
               {children}

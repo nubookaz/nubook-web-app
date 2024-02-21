@@ -3,18 +3,15 @@ import React from 'react';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
 
-
-import { Link, useForm, usePage } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
-import { imageUrl } from '@/Components/Scripts/BannerImage';
 import UploadableProfilePicture from '@/Pages/Profile/Partials/UploadableProfilePicture';
 import PersonalInfo from '@/Pages/Profile/Forms/PersonalInfo';
-import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
 
 
+import CardContainer from '@/Components/containers/CardContainer';
 
 
 
@@ -118,21 +115,29 @@ function ProfileSettings({
           {{
               body:(
                 <>
-                    <div className='py-6 px-8 w-full flex flex-row gap-6 grow justify-center h-full'>
-                      <UploadableProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] border-red-500"/>
+                    <div className='w-full flex flex-row gap-6 h-full'>
+                        <div className='flex flex-col gap-6 w-full h-full'>
+                          <CardContainer header='Profile Settings'>
+                              <div className='flex flex-row gap-10'>
+                                <UploadableProfilePicture isUploadable={true} className="!h-[10rem] !w-[10rem] border-red-500"/>
+                                <PersonalInfo onUpdateInfo={setPersonalInfo} existingData={personalInfo} emptyFields={emptyFields} setEmptyFields={setEmptyFields}/>
+                              </div>
+                          </CardContainer>
+                          <CardContainer header='Account Settings' className='h-full'>
 
-                      {/* <form onSubmit={submit} className='w-full flex grow flex-col gap-8 ' >
-                        <div>
-                          <h3 className='mb-4'>Personal Profile</h3>
-                          <PersonalInfo onUpdateInfo={setPersonalInfo} data={personalInfo} emptyFields={emptyFields} setEmptyFields={setEmptyFields}/>
-                        </div>
-                        <div>
-                          <h3 className='mb-4'>Company Profile</h3>
-                          <CompanyInfo onUpdateInfo={setCompanyInfo} existingData={companyInfo} />
+                          </CardContainer>
                         </div>
                         
-                          <PrimaryButton disabled={processing}>Save Profile Settings</PrimaryButton>
-                      </form> */}
+                        <div className='flex flex-col gap-6 w-full max-w-[40rem] h-full'>
+                          <CardContainer header='Production Company'>
+                            <CompanyInfo onUpdateInfo={setCompanyInfo} existingData={companyInfo} />
+                          </CardContainer>
+                          <CardContainer header='Subscription Info' className='h-full'>
+
+                          </CardContainer>
+                        </div>
+
+    
                    </div>
 
                 </>

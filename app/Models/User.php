@@ -92,13 +92,22 @@ class User extends Authenticatable
 
     public function callSheets()
     {
-        return $this->hasMany(CallSheet::class);
+        return $this->belongsToMany(CallSheet::class, 'call_sheet_user')
+                    ->withPivot('role_id', 'position', 'call_time');
     }
+    
+    // Method to check if the user has a specific role
+    public function hasRole($role)
+    {
+        return in_array($role, $this->roles->pluck('name')->toArray());
+    }
+    
 
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Project::class, 'project_user');
     }
+    
     
     public function aiContentGenerations()
     {

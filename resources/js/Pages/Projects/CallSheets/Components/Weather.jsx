@@ -10,7 +10,7 @@ import { faCaretDown, faCaretUp, faSun } from '@fortawesome/free-solid-svg-icons
 const Weather = ({ 
   
   date, 
-  data, 
+  callSheet, 
   locationData,  
   layoutStyle = 'landscape' 
 
@@ -34,8 +34,8 @@ const Weather = ({
       // Function to check if a value is neither null nor empty
       const isValidCoordinate = (value) => value != null && value !== '';
   
-         if (data && data.weather && typeof data.weather === 'string') {
-          handleJSONWeatherData(data);
+         if (callSheet && callSheet.weather && typeof callSheet.weather === 'string') {
+          handleJSONWeatherData(callSheet);
         } else if (isValidCoordinate(latitude) && isValidCoordinate(longitude)) {
           handleFetchWeatherData(latitude, longitude, date, apiKey);
         }
@@ -43,14 +43,14 @@ const Weather = ({
     };
   
     fetchWeatherData();
-  }, [latitude, longitude, data, date, apiKey]); // Update dependencies
+  }, [latitude, longitude, callSheet, date, apiKey]); // Update dependencies
   
 
 
-  const handleJSONWeatherData = (data) => {
+  const handleJSONWeatherData = (callSheet) => {
     try {
       // Parse the JSON string to an object
-      const weatherObject = JSON.parse(data.weather);
+      const weatherObject = JSON.parse(callSheet.weather);
       setWeatherData(weatherObject);
     } catch (error) {
       console.error('Error parsing weather data:', error);
@@ -102,7 +102,7 @@ const Weather = ({
     const postData = async () => {
       if (weatherData) {
         try {
-            const routeUrl = route('save.weather', { id: data.project_id, callSheetId: data.id });
+            const routeUrl = route('save.weather', { id: callSheet.project_id, callSheetId: callSheet.id });
             const response = await axios.post(routeUrl, {
                 weatherData,
             });
@@ -287,7 +287,6 @@ const Weather = ({
 
 
 
-
   } else if (weatherData.data && weatherData.data.length > 0) {
   const data = weatherData.data[0];
     if (data && data.temp) {
@@ -315,12 +314,12 @@ const Weather = ({
     message = "Date is based on the 'data' object.";
 }
     
-
   return (
 
     <>
        {layoutStyle === 'portrait' ? (
           <div className='flex flex-col gap-4'>
+            {console.log(weatherData.coord.lat + weatherData.coord.long)}
             <div className='flex flex-row gap-6 w-full h-full'>
               <div className='text-[4rem] text-center my-auto'>
                   <img className="w-full max-w-[8rem] mx-auto drop-shadow-xl" src={weatherIconPath} />
@@ -349,6 +348,7 @@ const Weather = ({
          
         ):(
           <div className='flex flex-row gap-6 w-full h-full'>
+            {console.log(weatherData.coord)}
             <div className='text-[4rem] text-center my-auto w-[40%]'>
             <img className="w-full max-w-[8rem] mx-auto drop-shadow-xl" src={weatherIconPath} />
              </div>

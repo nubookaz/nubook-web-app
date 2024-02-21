@@ -21,7 +21,7 @@ import Locations from './Components/Locations';
 
 import CallSheetForm from '@/Pages/Projects/CallSheets/Forms/CallSheetForm';
 import CallSheetLocationForm from '@/Pages/Projects/CallSheets/Forms/CallSheetLocationForm';
-import CallSheetProductionSchedule from '@/Pages/Projects/CallSheets/CallSheetProductionSchedule';
+import CallSheetProductionSchedule from '@/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule';
 
 import { faInfo, faPeopleGroup, faEye } from '@fortawesome/free-solid-svg-icons';
 import WeatherContainer from './Components/WeatherContainer';

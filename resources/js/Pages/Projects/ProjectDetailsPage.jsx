@@ -120,8 +120,7 @@ export default function ProjectDetailsPage({
     return Number(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   };
  
-
-  console.log(project);
+ 
 
   return (
     <PortalLayout 
@@ -188,7 +187,7 @@ export default function ProjectDetailsPage({
                                         <div className='flex flex-row gap-4'>
                                             <div className='flex flex-col gap-2'>
                                                 <span className='text-xs text-slate-400 font-bold'>Movie Rating</span>
-                                                <p className='text-2xl font-bold text-center'>{projectData.viewer_rating}</p>
+                                                <p className='text-2xl font-bold text-center'>{projectData.viewer_rating ? projectData.viewer_rating : 'NR' }</p>
                                             </div>
                                             <div className='flex flex-col gap-2'>
                                                 <span className='text-xs text-slate-400 font-bold'>RMNG Filming Days</span>
@@ -223,7 +222,7 @@ export default function ProjectDetailsPage({
                               </div>
                               
                           </CardContainer>
-                          <CardContainer header='Activity'>
+                          <CardContainer header='Activity' className='h-full'>
 
                           </CardContainer>
                         </div>

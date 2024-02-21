@@ -7,38 +7,25 @@ export const useModal = () => useContext(ModalContext);
 export const ModalProvider = ({ children }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState(null);
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const [drawerContent, setDrawerContent] = useState(null);
-
-    const toggleModal = (data = {}, delay = 300) => {
+     
+    const toggleModal = (data = {}) => {
         if (isModalOpen) {
- 
-            setTimeout(() => {
-                setModalContent(null);
-            }, delay);
-
             setIsModalOpen(false);
-
+            // Consider resetting the content here or based on specific conditions
+            // setModalContent(null);
         } else {
-            // Open immediately
             setIsModalOpen(true);
             setModalContent(data);
         }
     };
+    
 
-    const toggleDrawer = (content = null) => {
-        setIsDrawerOpen(!isDrawerOpen);
-        setDrawerContent(content);
-    };
-
+ 
     return (
         <ModalContext.Provider value={{
             isModalOpen,
             toggleModal,
             modalContent,
-            isDrawerOpen,
-            toggleDrawer,
-            drawerContent,
         }}>
             {children}
         </ModalContext.Provider>

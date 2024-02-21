@@ -1,64 +1,88 @@
 import React from 'react';
 import { useModal } from '@/Components/Contexts/ModalContext';
 import { useSnack } from '@/Components/Contexts/SnackContext';
-
+ 
 import Modal from '@/Components/Modals/Modal';
 import Snackbar from '@mui/joy/Snackbar';
 
 import ProjectForm from '@/Pages/Projects/Forms/ProjectForm';
 import CallSheetForm from '@/Pages/Projects/CallSheets/Forms/CallSheetForm';
 import GeneralCallTimeForm from '@/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm';
-import CallSheetProductionSchedule from '@/Pages/Projects/CallSheets/CallSheetProductionSchedule';
-import CallSheetRecipientList from '@/Pages/Projects/CallSheets/CallSheetRecipientList';
-import CallSheetLocationForm from '@/Pages/Projects/CallSheets/Forms/CallSheetLocationForm';
+import CallSheetProductionSchedule from '@/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule';
+import CallSheetRecipientForm from '@/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm';
 import ProjectImagePreview from '@/Pages/Projects/Components/ProjectImagePreview';
 import LogOutForm from '@/Pages/Auth/LogOutForm';
 import LocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/LocationForm';
 
-export default function Surface({ project, callSheet }) {
+export default function Surface({ user, project, callSheet, roles }) {
     const { isModalOpen, toggleModal, modalContent } = useModal();
     const { isSnackOpen, setIsSnackOpen, snackContent } = useSnack();
+ 
 
     const renderContent = () => {
         switch (modalContent?.type) {
             case 'projectForm':
                 return <ProjectForm />;
-            case 'locationForm':
-                return <LocationForm onClose={handleCloseClick} />;
+            case 'newLocationForm':
+                return <LocationForm project={project} callSheet={callSheet} onClose={handleCloseClick} />;
+            case 'editLocationForm':
+                return <LocationForm project={project} callSheet={modalContent?.data} mode='edit' onClose={handleCloseClick} />;
             case 'projectImage':
-                return <ProjectImagePreview data={modalContent.imageUrl || '/images/movie_posters/coming_soon_poster.jpg'} />;
+                return <ProjectImagePreview data={modalContent?.imageUrl || '/images/movie_posters/coming_soon_poster.jpg'} />;
             case 'generalCallTime':
-                return <GeneralCallTimeForm callSheet={callSheet} data={modalContent.data} />;
-            case 'productionDetails':
-                return <CallSheetForm callSheet={callSheet} onClose={handleCloseClick} />;
+                return <GeneralCallTimeForm callSheet={callSheet} data={modalContent?.data} />;
+            case 'newCallSheetForm':
+                return  <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} formType={modalContent?.data}  onClose={handleCloseClick} /> ;
+            case 'editCallSheetForm':
+                return <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} mode='edit' formType={modalContent?.data} onClose={handleCloseClick} />;   
             case 'productionSchedule':
                 return <CallSheetProductionSchedule callSheet={callSheet} />;
-            case 'locationDetails':
-                return <CallSheetLocationForm callSheet={callSheet} />;
             case 'recipientForm':
-                return <CallSheetRecipientList callSheet={callSheet} />;
+                return <CallSheetRecipientForm roles={roles} project={project} callSheet={callSheet} onClose={handleCloseClick} />;
+            case 'editRecipientForm':
+                return <CallSheetRecipientForm roles={roles} project={project} callSheet={callSheet} recipient={modalContent?.data} onClose={handleCloseClick} />;
             case 'logOut':
                 return <LogOutForm />;
             default:
-                return null; // Or some default content
+                return null;  
         }
     };
-
-    const shouldShowCloseButton = !['logOut', 'generalCallTime'].includes(modalContent?.type);
-
+ 
+    const shouldShowCloseButton = !['logOut'].includes(modalContent?.type);
+    
     const handleCloseClick = () => {
         if (isModalOpen) {
             toggleModal(false);
         }
     };
 
+    const getModalSize = () => {
+        switch (modalContent?.type) {
+            case 'productionSchedule':
+                return { width: 'full', height: 'full' };
+            default:
+                return { width: 'auto', height: 'auto' };
+        }
+    };
  
+    const { width, height } = getModalSize();
+ 
+    const getModalBackgroundColor = () => {
+        switch (modalContent?.type) {
+            case 'productionSchedule':
+                return '!bg-slate-100'; 
+            default:
+                return 'bg-white';  
+        }
+    };
+
     return (
         <>
-            <Modal
-                show={isModalOpen}
-                onClose={toggleModal}
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={handleCloseClick} 
                 showCloseButton={shouldShowCloseButton}
+                className={`w-${width} h-${height} ${getModalBackgroundColor()}`}  
             >
                 {renderContent()}
             </Modal>

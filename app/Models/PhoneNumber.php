@@ -9,7 +9,7 @@ class PhoneNumber extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tel'];
+    protected $fillable = ['user_id', 'tel'];
 
     // Define the relationship with the Users table
     public function user()

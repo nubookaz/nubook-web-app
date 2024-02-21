@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('film_locations', function (Blueprint $table) {
             $table->id();
+            $table->text('name')->nullable();
+            $table->text('information')->nullable();
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
-            $table->text('location_name')->nullable();
+            $table->foreignId('parking_location_id')->nullable()->constrained('parking_locations')->onDelete('set null');
+            $table->foreignId('hospital_location_id')->nullable()->constrained('hospital_locations')->onDelete('set null');
             $table->timestamps();
         });
+        
     }
 
     /**

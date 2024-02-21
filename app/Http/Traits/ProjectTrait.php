@@ -1,41 +1,24 @@
 <?php
-
 namespace App\Http\Traits;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
-use App\Models\Client;
-use App\Models\Company;
-use App\Models\AIContentGeneration;
-
+use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 trait ProjectTrait
-
 {
+
     public function createOrUpdateProject(Request $request)
     {
         // Retrieve the consolidated project data from the request
-        $projectData = $request->all();
+        $projectData = $request->except(['uploadedImage', 'viewer_rating', 'primary_genre', 'secondary_genre', 'filming_days']);
     
-        // Separate video production data from the main project data
-        $videoProductionData = [
-            'movie_poster' => null,
-            'viewer_rating' => $projectData['viewer_rating'] ?? null,
-            'primary_genre' => $projectData['primary_genre'] ?? null,
-            'secondary_genre' => $projectData['secondary_genre'] ?? null,
-            'filming_days' => $projectData['filming_days'] ?? null,
-        ];
-    
-        // Remove video production specific fields from the main project data
-        unset(
-            $projectData['movie_poster'], 
-            $projectData['viewer_rating'], 
-            $projectData['primary_genre'],
-            $projectData['secondary_genre'], 
-            $projectData['filming_days']
-        );
+        // Handle video production data separately
+        $videoProductionData = $this->getVideoProductionDataFromRequest($request);
     
         // Validation rules for project data
         $projectValidator = Validator::make($projectData, [
@@ -48,81 +31,81 @@ trait ProjectTrait
             'project_budget' => 'nullable|numeric',
         ])->validate();
     
-        // Validation rules for video production data
-        $videoProductionValidator = Validator::make($videoProductionData, [
-            'viewer_rating' => 'nullable|string', 
-            'primary_genre' => 'nullable|string',  
-            'secondary_genre' => 'nullable|string',  
-            'filming_days' => 'nullable|integer',  
-        ])->validate();
+        // Create or find the project
+        $project = $this->createOrFindProject($projectData, $videoProductionData);
     
-        $videoProductionData['viewer_rating'] = $videoProductionData['viewer_rating'] ?? 'Not Rated';
+        // If there's an image uploaded, handle the image upload
+        if ($request->hasFile('uploadedImage')) {
+            $videoProductionData['movie_poster'] = $this->handleImageUpload($request, $project);
+        }
     
-        // Assuming you have the user's ID available
-        $userId = auth()->user()->id; 
+        // Add or update the video production data
+        $project->video_production = $videoProductionData;
+        $project->save();
     
-        // Merge the validated projectData with user_id
-        $projectData['user_id'] = $userId;
+        // Fetch the admin role ID
+        $adminRole = Role::where('name', 'admin')->firstOrFail();
     
-        $project = null;
+        // Check if the project is being updated or created
         $isUpdating = isset($projectData['id']) && $projectData['id'];
     
-        // Check if an existing project ID is provided
         if ($isUpdating) {
-            // Find the existing project
-            $project = Project::find($projectData['id']);
-            if (!$project) {
-                return response()->json(['message' => 'Project not found'], 404);
-            }
-    
-            // Retain existing movie poster if a new one isn't uploaded
-            if (!isset($projectData['uploadedImage']) || !$projectData['uploadedImage']) {
-                $videoProductionData['movie_poster'] = $project->video_production['movie_poster'] ?? null;
-            }
-        }
-    
-        // Handle the image upload and save it to the storage folder
-        if (isset($projectData['uploadedImage']) && $projectData['uploadedImage']) {
-            $uploadedImage = $projectData['uploadedImage'];
-    
-            // Store the image in the storage folder
-            $imagePath = $uploadedImage->store('public/user'.$userId.'/projects/images');
-    
-            // Get image URL
-            $imageUrl = asset(str_replace('public/', 'storage/', $imagePath));
-    
-            // Get image file size
-            $fileSize = $uploadedImage->getSize();
-    
-            // Get image dimensions from request
-            $width = $request->input('posterWidth', 0);
-            $height = $request->input('posterHeight', 0);
-    
-            // Assign movie poster details to the video production data array
-            $videoProductionData['movie_poster'] = [
-                'url' => $imageUrl,
-                'size' => $fileSize,
-                'dimensions' => "{$width}x{$height}"
-            ];
-        }
-    
-        // Add the video production data to projectData
-        $projectData['video_production'] = $videoProductionData;
-    
-        if ($isUpdating) {
-            // Update the existing project
-            $project->update($projectData);
+            // If updating, sync without detaching to preserve other relationships
+            $project->users()->syncWithoutDetaching([Auth::id() => ['role_id' => $adminRole->id]]);
         } else {
-            // Create a new project record with the specified fields
-            $project = Project::create($projectData);
+            // If creating, attach the authenticated user as admin
+            $project->users()->attach(Auth::id(), ['role_id' => $adminRole->id]);
         }
     
-        // Return the created/updated project instance or any other relevant data
+        // Return the created/updated project instance
+        return $project;
+    }
+    
+
+    protected function getVideoProductionDataFromRequest(Request $request)
+    {
+        return [
+            'movie_poster' => null,
+            'viewer_rating' => $request->input('viewer_rating'),
+            'primary_genre' => $request->input('primary_genre'),
+            'secondary_genre' => $request->input('secondary_genre'),
+            'filming_days' => $request->input('filming_days'),
+        ];
+    }
+
+    protected function createOrFindProject($projectData, $videoProductionData)
+    {
+        $project = null;
+        $isUpdating = isset($projectData['id']) && $projectData['id'];
+
+        if ($isUpdating) {
+            $project = Project::findOrFail($projectData['id']);
+            $project->fill($projectData);
+        } else {
+            $project = new Project($projectData);
+            $project->save();
+        }
+
         return $project;
     }
 
-    
-    
-    
+    protected function handleImageUpload(Request $request, Project $project)
+    {
+        $uploadedImage = $request->file('uploadedImage');
+        $userId = Auth::id();
+        $imagePath = $uploadedImage->store("public/user{$userId}/projects/images");
+        $imageUrl = Storage::url($imagePath);
 
+        return [
+            'url' => $imageUrl,
+            'size' => $uploadedImage->getSize(),
+            'dimensions' => $this->getImageDimensions($uploadedImage)
+        ];
+    }
+
+    protected function getImageDimensions($image)
+    {
+        list($width, $height) = getimagesize($image);
+        return "{$width}x{$height}";
+    }
 }

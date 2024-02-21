@@ -21,17 +21,8 @@ export default function VideoStepOne({
     const videoType = [
         { name: 'Feature Film', icon: faVideo, active: true },
         { name: 'Short Film', icon: faCamera, active: true },
-        { name: 'Documentary', icon: faTv, active: false },
         { name: 'Music Video', icon: faMusic, active: false },
-        { name: 'Web Series', icon: faBroadcastTower, active: false },
-        { name: 'Animation', icon: faFilm, active: false },
-        { name: 'Corporate Videos', icon: faBusinessTime, active: false },
-        { name: 'Event Videos', icon: faCalendarAlt, active: false },
-        { name: 'Commercial Film', icon: faBullhorn, active: false },
-        { name: 'Experimental Film', icon: faFilm, active: false },
-        { name: 'Student Film', icon: faCamera, active: false },
-        { name: 'Travel & Adventure', icon: faCamera, active: false },
-     ];
+    ];
 
      const isActiveType = (type) => activeVideoType === type.name;
 

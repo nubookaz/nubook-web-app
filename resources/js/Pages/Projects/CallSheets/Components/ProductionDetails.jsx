@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 
 import CardContainer from '@/Components/Containers/CardContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import {  faCalendarDays, faClapperboard, faClock, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import {  faCalendarDays, faClapperboard, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 export default function ProductionDetails({ 
 
@@ -14,10 +14,11 @@ export default function ProductionDetails({
     className,
 
  }){
+
     const { currentCallSheet } = useCallSheet();
     const { toggleModal } = useModal();
     const handleProductionDetailsClick = () => {
-        toggleModal({type: 'productionDetails'});  
+        toggleModal({type: 'editCallSheetForm'});  
     };
     
     const [callSheetName, setCallSheetName] = useState('');
@@ -28,7 +29,7 @@ export default function ProductionDetails({
         const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
-
+ 
     function formatTime(dateString) {
         const date = new Date(dateString);
         let hours = date.getHours();
@@ -64,7 +65,6 @@ export default function ProductionDetails({
 
                 <div className='flex flex-row gap-4 text-center'>
                     <FontAwesomeIcon icon={faClapperboard} className="text-slate-400 text-2xl my-auto w-[2rem]" />
-                    {/* <img className='w-[1.5rem]' src="/images/svg_images/slate.svg" alt="" /> */}
                     <h2 className='text-slate-500 text-left font-semibold text-4xl'>{project.project_name}</h2>
                 </div>
                 <div className="text-xl primary-color flex flex-row gap-4 font-semibold ml-8">

@@ -74,24 +74,12 @@ export default function MoviePoster({
     const [isImageUrl, setIsImageUrl] = useState('');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
+
+
+
+
+    
 
 
 
@@ -99,6 +87,7 @@ export default function MoviePoster({
         setIsModalOpen(true);
         setShowAiGeneratedInfo(true);
     };
+
     const fetchAiContentInfo = async () => {
         try {
             const response = await axios.get(route('ai-content.info')); // Adjust URL as needed
@@ -113,11 +102,7 @@ export default function MoviePoster({
         fetchAiContentInfo();
     }, []);
 
-
-
-
-
-
+ 
 
     const onDrop = useCallback(acceptedFiles => {
         const file = acceptedFiles[0];
@@ -178,13 +163,7 @@ export default function MoviePoster({
 
 
 
-
-
-
-
-
-
-
+ 
 
     useEffect(() => {
         shufflePosters();
@@ -218,13 +197,7 @@ export default function MoviePoster({
 
 
 
-
-
-
-
-
-
-
+ 
 
     const generateAIPoster = async () => {
         const { project_name, primary_genre, secondary_genre, viewer_rating, project_description } = projectDetails;
@@ -419,11 +392,11 @@ export default function MoviePoster({
 
                 {header ? (<h4 className='text-slate-400 text-center text-md font-semibold'>Project Image</h4>):null}
 
-                <p className='text-sm text-center leading-4'>Click 'Generate Poster' to create an AI generated poster based on your project info or upload your own!</p>
+                {/* <p className='text-sm text-center leading-4 mx-auto w-[25rem]'>Click 'Generate Poster' to create an AI generated poster based on your project info or upload your own!</p>
                 <p className='flex flex-row gap-4 text-sm justify-center font-bold text-rose-500'>
                     AI Generated Content: {aiContentInfo.currentCount}/{aiContentInfo.limit}
                     <FontAwesomeIcon onClick={openAiGeneratedInfoModal} className='cursor-pointer w-[1.2rem] h-[1.2rem] justify-center flex' icon={faInfoCircle} />
-                </p>
+                </p> */}
 
                 <input
                     ref={fileInputRef}
@@ -463,7 +436,7 @@ export default function MoviePoster({
                 </div>
         
                 <div className='flex flex-row gap-2 justify-center'>
-                    <SecondaryButton className='text-xs' onClick={handleGeneratePosterClick}>Generate AI Poster</SecondaryButton>
+                    {/* <SecondaryButton className='text-xs' onClick={handleGeneratePosterClick}>Generate AI Poster</SecondaryButton> */}
                     <SecondaryButton className='!bg-slate-200 !text-slate-400 text-xs !hover:bg-slate-500' onClick={onUploadClick}>Upload an Image</SecondaryButton>
                 </div>
             </div>

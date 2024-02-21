@@ -11,7 +11,7 @@ function EmptyContent({ imageUrl, children, buttonText, onClick, svgClass, class
 
             {children.header}
             
-            <div className={`my-4 max-w-[15rem] opacity-[.15] w-full ${svgClass}`}>
+            <div className={`my-4 max-w-[10rem] opacity-[.15] w-full ${svgClass}`}>
                 <img className='w-full' src={svgPath} alt="Custom Icon" />
             </div>
 

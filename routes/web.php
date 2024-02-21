@@ -134,10 +134,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
             Route::post('/', [CallSheetController::class, 'storeCallSheetDetails'])->name('projects.callSheets.create');
           
-            Route::post('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update.details');
+            Route::post('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update');
+            Route::get('{callSheetId}/details', [CallSheetController::class, 'editDetailsPage'])->name('projects.callSheets.details.page');
+            Route::post('{callSheetId}/details/locations', [CallSheetController::class, 'storeLocationDetails'])->name('projects.callSheets.save.locations');
+            Route::put('{callSheetId}/details/locations/update', [CallSheetController::class, 'updateLocationDetails'])->name('projects.callSheets.update.locations');
+            Route::delete('{callSheetId}/details/locations/{locationId}/delete', [CallSheetController::class, 'destroyLocationDetails'])
+            ->name('projects.callSheets.delete.location');
+
             Route::put('/{callSheetId}/bulletin', [CallSheetController::class, 'updateBulletin'])->name('projects.callSheets.update.bulletin');
-            Route::get('{callSheetId}/details', [CallSheetController::class, 'editDetailsPage'])->name('projects.callSheets.edit.page');
             Route::post('/{callSheetId}/weather', [CallSheetController::class, 'saveWeatherData'])->name('save.weather');
+            
             Route::put('/{callSheetId}/general-call-time', [CallSheetController::class, 'updateGeneralCallTime'])->name('projects.callSheets.update.generalCallTime');
 
             Route::prefix('/{callSheetId}/schedule')->group(function () {
@@ -145,7 +151,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::get('/', [CallSheetController::class, 'getCallSheetSchedule'])->name('callSheets.schedule.get');
                 Route::put('/schedule', [CallSheetController::class, 'updateCallSheetSchedule'])->name('callSheets.schedule.update');
             });
-            
+
+            Route::post('/{callSheetId}/recipients', [CallSheetController::class, 'saveRecipient'])->name('projects.callSheets.recipient');
+            Route::post('/{callSheetId}/recipients/{recipientId}', [CallSheetController::class, 'updateRecipient'])->name('projects.callSheets.update.recipient');
+            Route::delete('/{callSheetId}/recipients/{recipientId}/delete', [CallSheetController::class, 'deleteRecipientFromCallSheet'])->name('projects.callSheets.delete.recipient');
+
+            Route::delete('/{callSheetId}/softDelete', [CallSheetController::class, 'softDelete'])->name('callsheets.softDelete');
+
         });
 
 

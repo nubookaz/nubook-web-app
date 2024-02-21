@@ -97,29 +97,6 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
     return (
         <WebLayout>
 
-            {/* <Drawer open={open} onClose={toggleNavicon(false)}>
-                <div className='h-full flex flex-col gap-4 p-8'>
-                    <ApplicationName href={route('website.home')} className="block text-center " />
-                    <div className='flex flex-col h-full justify-between'>
-                        <div className="flex flex-col mt-16 gap-16 text-center font-bold">
-                            <p className=" block my-auto">Home</p>
-                            <p className=" block my-auto">Features</p>
-                            <p className=" block my-auto">Pricing</p>
-                        </div>
-                        <div className='flex flex-col gap-10 text-center justify-end'>
-                            <Link
-                                href={route('login')}
-                                className="block my-auto"
-                            >
-                                Log in
-                            </Link>
-                            <PrimaryButton href={route('register')}>Create An Account</PrimaryButton>
-                        </div>
-                    </div>
-                    
-                </div>
-            </Drawer> */}
-
             {{
                 surface: (
 

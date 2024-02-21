@@ -35,13 +35,6 @@ class Location extends Model
         return $this->hasMany(ParkingLocation::class, 'location_id');
     }
 
-    public function hospitalLocation()
-    {
-        return $this->hasMany(HospitalLocation::class, 'location_id');
-    }
-
-
-
     public static function createOrUpdate(array $attributes)
     {
         // Assuming 'street_address', 'city', 'state', 'zip_code' are the unique identifiers for a location

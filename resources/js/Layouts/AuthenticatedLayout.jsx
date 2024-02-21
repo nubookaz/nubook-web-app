@@ -5,6 +5,8 @@ import Sidebar from '@/Layouts/Partials/Sidebar';
 import Loading from '@/Layouts/Partials/Loading';
 
 import Modal from '@/Components/Modals/Modal';
+import ActionDrawer from '@/Components/Drawer/ActionDrawer';
+
 import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 
 
@@ -54,15 +56,15 @@ export default function AuthenticatedLayout({
     }
   }, [user]);
  
-  // const verification = user && (user.is_password_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
+  const verification = user && (user.is_password_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
 
-  const verification = true;
+  // const verification = true;
  
 
 
     return (
 
-        <div className="min-h-screen tertiary-color relative">
+        <div className="min-h-screen tertiary-color relative bg-slate-50">
 
             {user === null || verification ? (
             
@@ -70,8 +72,8 @@ export default function AuthenticatedLayout({
               
                   {verification ? (
 
-                      <div className="absolute z-50 w-full">
-                            <Modal show={isModalOpen} dialogPanelClass="!max-w-[70rem]">
+                      <div className="absolute z-40 w-full">
+                            <Modal isOpen={isModalOpen} className="!max-w-[70rem]">
                               <VerificationProcess 
                                 currentStep={currentStep}
                                 setCurrentStep={setCurrentStep}
@@ -93,7 +95,7 @@ export default function AuthenticatedLayout({
                 <div className='bg-slate-100'>
 
                     <div className="absolute z-50 w-full">
-                         <Sidebar project={project}/>
+                        <Sidebar project={project}/>
                     </div>
 
                     <main className="flex flex-col w-full h-screen overflow-hidden">

@@ -1,70 +1,34 @@
-import { Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import React, { useState } from 'react';
+ 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function Modal({ 
-    
-    children, 
-    className, 
-    dialogPanelClass, 
-    childrenClassName, 
-    show = false, 
-    closeable = true, 
-    showCloseButton = false, 
-    onClose 
+const Modal = ({ isOpen, onClose, children, className, showCloseButton }) => {
 
-}) {
-    
-    const close = () => {
-        if (closeable) {
-            onClose();
-        }
+    const [fadeIn, setFadeIn] = useState(false);
+    const [fadeInDelay, setFadeInDelay] = useState(false);
+
+    const handleOverlayClick = (event) => {
+        // Prevent clicks inside the modal content from closing the modal
+        event.stopPropagation();
+        onClose();
     };
-    
-    const containerClass = `fixed inset-0 flex overflow-y-auto p-6 items-center z-50 transform transition-all backdrop-blur-md ${className}`;
 
-     return (
-        <Transition show={show} as={Fragment} leave="duration-200">
-            <Dialog
-                as="div"
-                id="modal"
-                className={containerClass}
-                onClose={close}
-            >
-                <Transition.Child
-                    as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                >
-                    <div className="absolute inset-0 bg-gray-500/50" />
-                </Transition.Child>
-
-                <Transition.Child
-                    as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
-                    <Dialog.Panel
-                        className={`bg-white rounded-2xl overflow-hidden shadow-xl transform transition-all sm:mx-auto relative ${dialogPanelClass}`}
-                    >
-                        {showCloseButton ? (
-                            <FontAwesomeIcon onClick={close} className='cursor-pointer pb-10 text-3xl text-red-500 absolute right-2 top-2 z-50' icon={faCircleXmark}></FontAwesomeIcon>
-                        ):null}
-                        <div className={`${childrenClassName} overflow-scroll h-full`}>
-                            {children}
-                        </div>
-                    </Dialog.Panel>
-                </Transition.Child>
-            </Dialog>
-        </Transition>
+    return (
+        <div className={` modal p-8 ${isOpen ? 'modal-open' : 'modal-closed'}`}>
+            <div className="modal-overlay overflow-hidden" onClick={handleOverlayClick}></div>
+            <div className={` ${className} modal-content overflow-hidden`} onClick={(e) => e.stopPropagation()}>
+                <div className={showCloseButton ? 'modal-header' : 'hidden'}>
+                    <button className='modal-close-button cursor-pointer z-50' onClick={onClose}>
+                        <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
+                    </button>
+                </div>
+                <div className={`fade-in-delay ${fadeInDelay ? 'opacity-1' : 'opacity-0'} modal-body h-full`}>
+                    {children}
+                </div>
+            </div>
+        </div>
     );
-}
+};
+
+export default Modal;

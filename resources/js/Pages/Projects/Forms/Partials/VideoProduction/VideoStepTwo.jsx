@@ -84,7 +84,7 @@ export default function VideoStepTwo({
     };
 
 
-    console.log(emptyFields);
+ 
 
     
 
@@ -190,32 +190,30 @@ export default function VideoStepTwo({
                     {/* </Tooltip> */}
                 </div>
 
-                <div className='flex flex-col gap-2'>
+                <div className='flex flex-col gap-2 h-full'>
                     <label htmlFor="project_description" value="project_description" className='text-gray-400 text-sm'> Project Description </label>
                     <Tooltip arrow sx={{ fontSize: '.75rem' }} title="Project Description is Required" open={emptyFields['project_description'] || false} color="danger" placement="top" variant="outlined">
                         <Textarea 
-                            minRows={11.6} 
-                            maxRows={11.6}
-                              name="project_description"
-                              placeholder="Epic tale in which an intrepid archaeologist..."
-                              value={localData.project_description}
-                              onChange={handleDescriptionChange}
-                              maxLength={maxCharacters}
-                              className='!text-slate-500 !bg-slate-100'
-                              onPaste={handlePaste}
-                              onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
-                                    e.preventDefault();
-                                }
-                              }}
-                              endDecorator={
-                                  <Typography level="body-xs" sx={{ ml: 'auto' }}>
-                                      {text}/{maxCharacters} Characters Remaining
-                                  </Typography>
-                              }
-                              sx={{
-                                fontSize: '.90rem',
-                              }}
+                            name="project_description"
+                            placeholder="Epic tale in which an intrepid archaeologist..."
+                            value={localData.project_description}
+                            onChange={handleDescriptionChange}
+                            maxLength={maxCharacters}
+                            className='!text-slate-500 !bg-slate-100 h-full'
+                            onPaste={handlePaste}
+                            onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                            }
+                            }}
+                            endDecorator={
+                                <Typography level="body-xs" sx={{ ml: 'auto' }}>
+                                    {text}/{maxCharacters} Characters Remaining
+                                </Typography>
+                            }
+                            sx={{
+                            fontSize: '.90rem',
+                            }}
                               
                         />   
                     </Tooltip>

@@ -15,7 +15,7 @@
   }
   
   .fade-in {
-    animation: fadeIn 0.5s ease forwards;
+    animation: fadeIn 0.4s ease forwards;
   }
   
 
@@ -33,7 +33,7 @@
   
   .fade-in-delay {
     opacity: 0; /* Initially hidden */
-    animation: fadeIn 1s ease forwards;
+    animation: fadeIn .6s ease forwards;
     animation-delay: 0.3s; /* Adjust the delay as needed */
 }
   

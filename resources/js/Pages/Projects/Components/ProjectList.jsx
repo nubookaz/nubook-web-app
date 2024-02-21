@@ -21,6 +21,8 @@ function ProjectList({
   view, 
   maxProjects = 16,
   showNewProject = true,
+  bannerClassName,
+  bannerTextColor
  
 }) {
 
@@ -104,12 +106,12 @@ function ProjectList({
                             <img src={movie_poster?.url || '/images/movie_posters/coming_soon_poster.jpg'} alt="Location Unknown"/>
                         </div>
                         <div className='overlay'></div>
-                        <div className='absolute top-0 w-full flex flex-col text-center shadow-lg bg-white text-slate-400 py-2 uppercase'>
-                               {is_favorite ? (
+                        <div className={` ${bannerClassName} absolute top-0 w-full flex flex-col text-center shadow-lg bg-white py-2 uppercase`}>
+                              {is_favorite ? (
                                   <FontAwesomeIcon className='absolute top-0 left-[1.5rem] h-[4rem] w-[2rem] scale-y-[1.75] text-rose-500' icon={faBookmark} />
                               ) : null}                            
-                              <span className='text-[.70rem]'>{video_type}</span>  
-                              <span className='text-xs font-bold'>{project_stage ? (project_stage) : null}</span>
+                              <span className={` ${bannerTextColor || 'text-slate-400'} text-[.70rem]`}>{video_type}</span>  
+                              <span className={` ${bannerTextColor || 'text-slate-400'} text-xs font-bold`}>{project_stage ? (project_stage) : null}</span>
                         </div>
                         <Link className='edit-icon mt-[3rem]' 
                           href={project_stage === 'Estimate' ? route('projects.estimate', { id: project.id }) : route('projects.details', { id: project.id })}

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons'; 
+import { CSSTransition } from 'react-transition-group';
 
 import ProjectSelector from './Partials/ProjectSelector'; // Import CategorySelector
 import ProjectStepper from './Partials/ProjectStepper'; // Import ProjectStepper
@@ -15,6 +16,14 @@ import VideoStepThree from './Partials/VideoProduction/VideoStepThree';
 
 export default function ProjectForm({ customClasses }) {
     const { user, fetchUserData } = useAuth();
+    const [fadeIn, setFadeIn] = useState(false);
+    const [fadeInDelay, setFadeInDelay] = useState(false);
+ 
+    useEffect(() => {
+        setFadeIn(true); 
+        setFadeInDelay(true);  
+ 
+    }, []);
 
     useEffect(() => {
       fetchUserData();
@@ -43,12 +52,14 @@ export default function ProjectForm({ customClasses }) {
         viewer_rating: '',
         movie_poster: '',
     });
+
     const [videoStepThreeData, setVideoStepThreeData] = useState({
         project_stage: '',
         project_status: '',
         filming_days: '',
         project_budget: '',
     });
+
     const [videoStepFourData, setVideoStepFourData] = useState({});
 
     const [projectData, setProjectData] = useState({
@@ -87,7 +98,6 @@ export default function ProjectForm({ customClasses }) {
         }
     };
     
-
     const handleBackClick = () => {
         if (currentStep > 0) {
             setCurrentStep(prevStep => prevStep - 1);
@@ -95,7 +105,6 @@ export default function ProjectForm({ customClasses }) {
         }
     };
     
-
     const handleNextClick = () => {
     
         if (currentStep === 1 && projectData.project_type === 'Video Production' && !projectData.video_type) {
@@ -153,7 +162,6 @@ export default function ProjectForm({ customClasses }) {
 
     const handleSaveProject = async () => {
 
-        console.log('saved!!');
         const formData = new FormData();
         
         // Append all other data to formData
@@ -182,7 +190,7 @@ export default function ProjectForm({ customClasses }) {
         }
         
         try {
-            const response = await router.post(route('projects.create'), formData, {
+            const response = await axios.post(route('projects.create'), formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -203,41 +211,41 @@ export default function ProjectForm({ customClasses }) {
  
     return (
 
-        <div className='w-full h-full py-[4rem] px-[8rem]'>
+        <div className={`fade-in w-[80rem] py-[4rem] px-[8rem] ${fadeIn ? 'opacity-1' : 'opacity-0'}`}>
 
-            <div className='w-full max-w-[56rem] mx-auto'>
+            <div className={`fade-in w-full max-w-[56rem] mx-auto ${fadeIn ? 'opacity-1' : 'opacity-0'}`}>
                 <ProjectStepper 
                     currentStep={currentStep} 
                     activeProject={projectData.project_type} 
                  />
             </div>
 
-            <div className='my-auto mx-auto h-full w-full max-w-[85rem] py-[3rem]'>
+            <div className='my-auto mx-auto h-full w-full max-w-[85rem] pt-[3rem]'>
 
 
                     <div className="h-full">
 
-                        <div className='flex flex-col gap-2 h-full'>
+                        <div className={`fade-in-delay flex flex-col gap-8 h-full ${fadeInDelay ? 'opacity-1' : 'opacity-0'}`}>
                 
                             {currentStep >= 0 && currentStep < stepInfo.length && (
-                                <div className='flex flex-col'>
+                                <div className='flex flex-col justify-start'>
                                     <h2 className="text-lg font-bold text-center">{stepInfo[currentStep].header}</h2>
                                     <p className='text-center text-sm'>{stepInfo[currentStep].description}</p>
                                 </div>
                             )}
 
-                            <div className='flex flex-row gap-4 justify-center my-12 h-full max-h-[34rem]'>
+                            <div className='flex flex-row gap-4 justify-center h-full py-6 '>
 
-                                <div className='w-full h-full'>
+                                <div className={`fade-in-delay w-full h-full ${fadeInDelay ? 'opacity-1' : 'opacity-0'}`}>
 
                                     {currentStep === 0 && (
-                                        <div className='px-[10rem]'>
+                                        <div className='w-full'>
                                             <ProjectSelector onProjectClick={handleProjectType} activeProject={projectData.project_type} />
                                         </div>
                                      )}
 
                                     {currentStep === 1 && projectData.project_type === 'Video Production' && (
-                                        <div className='px-[6rem]'>
+                                        <div className='w-full'>
                                             <VideoStepOne
                                                 onVideoTypeClick={handleVideoType}
                                                 showError={emptyFields.video_type} 
@@ -247,7 +255,7 @@ export default function ProjectForm({ customClasses }) {
                                     )}
 
                                     {currentStep === 2 && projectData.project_type === 'Video Production' && (
-                                        <div className='px-[6rem]'>
+                                        <div className='w-full'>
                                             <VideoStepTwo 
                                                 data={videoStepTwoData} 
                                                 projectData={projectData}
@@ -264,7 +272,7 @@ export default function ProjectForm({ customClasses }) {
                                     )}
 
                                     {currentStep === 3 && projectData.project_type === 'Video Production' && (
-                                        <div className='px-[6rem]'>
+                                        <div className='w-full'>
                                             <VideoStepThree
                                                 data={videoStepThreeData}
                                                 onDataChange={handleVideoStepThreeDataChange}
@@ -279,7 +287,7 @@ export default function ProjectForm({ customClasses }) {
                                 
                             </div>
 
-                            <div className='flex flex-row justify-evenly'>
+                            <div className='flex flex-row justify-end justify-evenly'>
                                     {currentStep > 0 && (
                                         <PageButton 
                                             className="!my-auto !bg-transparent duration-500 ease-in-out py-2 hover:bg-emerald-100" 

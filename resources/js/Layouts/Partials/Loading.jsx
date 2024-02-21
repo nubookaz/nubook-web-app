@@ -10,9 +10,9 @@ export default function Loading() {
 
     return (
         <>
-            <div id="surface-layer" className="absolute z-50 w-full bg-slate-100">
+            <div id="surface-layer" className="absolute z-50 w-full">
                             
-                <Card variant="outlined" sx={{ height: '100vh', width: '4.5rem' , borderRadius: 0, '--Card-radius': 0  }}>
+                <Card variant="outlined" sx={{ margin: '1.3rem 0rem 0rem 1.5rem', height: '96vh', width: '4.5rem' , borderRadius: '10px'  }}>
                     <div className='flex flex-col gap-4 justify-between h-full'>
                         <Skeleton variant="rectangular" width={40} height={40} /> 
                         <div className='flex flex-col gap-8'>
@@ -51,9 +51,9 @@ export default function Loading() {
     function DashboardSkeleton() {
         return (
             <div className="portal-body w-full h-full pt-6 pb-8 pl-[12.5rem] pr-[7rem]">
-                <div id="dashboard-skeleton" className='flex flex-col w-full mt-10 gap-4'>
+                <div id="dashboard-skeleton" className='flex flex-col w-full h-full gap-4'>
                     <Skeleton variant="rectangular" className='rouned-xl' sx={{ width: "100%", height: '250px' }}/>
-                    <div className='flex flex-row gap-6'>
+                    <div className='flex flex-row gap-6 h-full'>
                         <Skeleton variant="rectangular" sx={{ height: "100%" }}/>     
                         <Skeleton variant="rectangular" sx={{ height: "100%" }}/>
                         <Skeleton variant="rectangular" sx={{ height: "100%" }}/>

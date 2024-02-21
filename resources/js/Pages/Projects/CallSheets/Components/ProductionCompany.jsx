@@ -23,7 +23,7 @@ export default function ProductionCompany({ user, className }){
         <CardContainer className={`${className}`} header="Production Company"  >
    
             {primaryCompanyName ? (
-                <h2 className='text-4xl text-slate-500'>{primaryCompanyName}</h2>
+                <h2 className='text-2xl text-slate-500'>{primaryCompanyName}</h2>
             ) : (
                 <div>Assign a Production Company</div>
             )}

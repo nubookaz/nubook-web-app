@@ -4,8 +4,8 @@ import { useModal } from '@/Components/Contexts/ModalContext';
 import React, { useState, useEffect } from 'react';
 
 import CardContainer from '@/Components/Containers/CardContainer';
-import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import TertiaryButton from '@/Components/Buttons/TertiaryButton';
+import EmptyContent from '@/Components/Layouts/EmptyContent';
 
 
 export default function ProductionSchedule({
@@ -134,10 +134,24 @@ export default function ProductionSchedule({
                     </ul>
                 </>
             ) : (
-                <div className='text-center m-auto flex flex-col gap-4'>
-                    <p className='secondary-color text-lg w-2/3 mx-auto'>You have not entered a production schedule yet. Click here to add a schedule for your production</p>
-                    <SecondaryButton className="mx-auto" onClick={handleProductionScheduleClick}>Add a production schedule</SecondaryButton>
-                </div>
+                // <div className='text-center m-auto flex flex-col gap-4'>
+                //     <p className='secondary-color text-lg w-2/3 mx-auto'>You have not entered a production schedule yet. Click here to add a schedule for your production</p>
+                //     <SecondaryButton className="mx-auto" onClick={handleProductionScheduleClick}>Add a production schedule</SecondaryButton>
+                // </div>
+
+                <EmptyContent
+                    className='saturate-0'
+                    imageUrl='/images/svg_images/schedule.svg'
+                    buttonText='Add a production schedule'
+                    onClick={handleProductionScheduleClick}
+                    svgClass='max-w-[12rem]'
+                >
+                    {{
+                        description: (
+                            <p className='text-slate-300 max-w-[22rem]'>You have not entered a production schedule yet. Add one now!</p>
+                        )
+                    }}
+                </EmptyContent>
             )}
         </CardContainer>
     );

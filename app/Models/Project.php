@@ -30,13 +30,11 @@ class Project extends Model
         'video_production' => 'array',
     ];
     
-    
-    
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class)->withPivot('role_id');
     }
-
+    
     public function productionCompany()
     {
         return $this->belongsToMany(ProductionCompany::class, 'production_company_project', 'project_id', 'company_id');

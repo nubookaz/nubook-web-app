@@ -1,11 +1,7 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
 
 import React, { useState, useEffect } from 'react';
-import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import { router } from '@inertiajs/react';
-
-import Skeleton from '@mui/joy/Skeleton';
-
+import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 
 
 
@@ -141,7 +137,7 @@ export default function VerificationStep({
                     {isTimerExpired ? (
                         <>
                             <p className='text-center w-full p-6 bg-slate-50 flex-none'>Your verification code has expired.</p>
-                            <SecondaryButton className='h-full grow' onClick={onResendCode}>Resend Verification Code</SecondaryButton>
+                            <PrimaryButton className='h-full grow' onClick={onResendCode}>Resend Verification Code</PrimaryButton>
                         </>
                     ) : (
                         <>
@@ -158,7 +154,7 @@ export default function VerificationStep({
                             {showTimer ? (
                                 <div className='text-center secondary-color mb-4'>Time Remaining to Verify: {timer.minutes}:{timer.seconds < 10 ? `0${timer.seconds}` : timer.seconds}</div>
                             ):null}
-                            <SecondaryButton onClick={verifyCode}>Verify Code</SecondaryButton>
+                            <PrimaryButton onClick={verifyCode}>Verify Code</PrimaryButton>
                         </>
                     )}
 

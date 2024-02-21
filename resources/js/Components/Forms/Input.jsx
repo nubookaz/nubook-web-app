@@ -2,6 +2,7 @@ import React, { useState, forwardRef } from 'react';
 import Tooltip from '@mui/joy/Tooltip';
 
 const Input = forwardRef(({
+    
     title,
     required = false,
     label,
@@ -10,9 +11,12 @@ const Input = forwardRef(({
     value,
     placeholder = 'This is an empty input',
     onChange,
+    min,
+    max,
     autoComplete,
-    parentClass,
+    className,
     inputClass,
+
 }, ref) => {
     const [openToolTip, setOpenToolTip] = useState(false);
 
@@ -24,18 +28,21 @@ const Input = forwardRef(({
         }
     };
     
-    const containerClass = `flex flex-col gap-2 w-full ${parentClass}`;
+    const containerClass = `flex flex-col gap-2 w-full ${className}`;
 
     return (
         <div className={containerClass}>
-            <label htmlFor={name} className='text-gray-400 text-sm'>
-                {label} {required && '*'}
-            </label>
+            {label ? (
+                <label htmlFor={name} className='text-gray-400 text-sm'>
+                    {label} {required && '*'}
+                </label>
+            ):null}
+
 
             <Tooltip 
                 arrow 
                 title={`${title} is Required`} 
-                open={openToolTip}
+                open={required ? openToolTip : false}
                 color="danger" 
                 placement="top" 
                 variant="outlined"
@@ -46,9 +53,11 @@ const Input = forwardRef(({
                     className={`bg-white ${inputClass}`}
                     name={name}
                     placeholder={placeholder}
-                    value={value} 
+                    value={value || ''} 
                     required={required}
                     onChange={onChange}
+                    min={min}
+                    max={max}
                     autoComplete={autoComplete}
                     onBlur={handleBlur}
                 />

@@ -76,7 +76,8 @@ export default function UploadableProfilePicture({ onClick, className, isUploada
   const [lastUpdateTimestamp, setLastUpdateTimestamp] = useState(0);
   const [totalImages, setTotalImages] = useState(12);  
   const [files, setFiles] = useState([]);
- 
+  const [uploadError, setUploadError] = useState('');
+
 
   useEffect(() => {
  
@@ -134,17 +135,36 @@ export default function UploadableProfilePicture({ onClick, className, isUploada
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      'image/*': [],
+      'image/jpeg': [],
+      'image/png': [],
+      'image/jpg': [],
+      'image/gif': [],
     },
-    onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
+    onDrop: (acceptedFiles, fileRejections) => {
+      // Filter out unsupported files
+      const supportedFiles = acceptedFiles.filter(file =>
+        ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'].includes(file.type)
+      );
+  
+      if (fileRejections.length > 0) {
+        // Set error message for unsupported file types
+        setUploadError("Unsupported file type. Please upload JPEG, PNG, JPG, or GIF.");
+      } else {
+        setUploadError(''); // Clear any previous error messages
+      }
+  
+      // Update state only with supported files
+      setFiles(supportedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file),
       })));
-      
-      // Automatically save the image when a new file is uploaded
-      handleImageUpload(acceptedFiles[0]);
+  
+      // Proceed with the upload if there are supported files
+      if (supportedFiles.length > 0) {
+        handleImageUpload(supportedFiles[0]);
+      }
     },
   });
+  
 
   const thumbs = files.map(file => (
     <div style={thumb} key={file.name}>
@@ -174,23 +194,26 @@ export default function UploadableProfilePicture({ onClick, className, isUploada
     if (uploadedFile) {
       const formData = new FormData();
       formData.append('profileImage', uploadedFile);
- 
+  
       try {
         // Send the image to the server and update the database
-        const response = await axios.post(route('profile.upload-image'), formData, {
-          method: 'POST',
-          body: formData,
-        });
+        const response = await axios.post(route('profile.upload-image'), formData);
         setUserProfileImage(response.data.imageUrl);
         const event = new CustomEvent('updateUserData');
         window.dispatchEvent(event);
- 
+        setUploadError(''); // Clear any previous error messages
       } catch (error) {
-        console.log(error);
+        if (error.response && error.response.data && error.response.data.message) {
+          // Extracting and setting a more specific error message if available
+          setUploadError(error.response.data.message);
+        } else {
+          // Setting a generic error message if the response doesn't contain the expected error structure
+          setUploadError('Failed to upload image. Please try again.');
+        }
       }
     }
   };
-
+  
   const rootProps = isUploadable ? getRootProps() : {};
   
 
@@ -212,32 +235,30 @@ export default function UploadableProfilePicture({ onClick, className, isUploada
 
 
  
-
   return (
- 
-      <div
-        className={`${className} w-full h-full rounded-full border-4 border-solid ${imageUrls.length > 0 ? 'has-image' : ''} ${isUploadable ? 'uploadable-avatar' : ''}`}
-        {...rootProps}
-        style={{
-          backgroundImage: `url(${profileImageUrl})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'white',
-        }}
-      >
-        {isUploadable ? (
-          <div className='avatar-overlay'>
-            <p className='text-white text-center text-sm font-semibold m-auto w-[75%] hidden'>Drag 'n' drop some files here, or click to select files</p>
-            <div {...getRootProps()} className={`dropzone uploaded-state ${imageUrls.length > 0 ? 'has-image' : ''}`}>
-              <input {...getInputProps()} />
-            </div>
+    <div className={`${className} w-full h-full rounded-full border-4 border-solid ${imageUrls.length > 0 ? 'has-image' : ''} ${isUploadable ? 'uploadable-avatar' : ''}`}
+      {...rootProps}
+      style={{
+        backgroundImage: `url(${profileImageUrl})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: 'white',
+      }}>
+      {isUploadable && (
+        <div className='avatar-overlay'>
+          <p className='text-white text-center text-sm font-semibold m-auto w-[75%] hidden'>Drag 'n' drop some files here, or click to select files</p>
+          <div {...getRootProps()} className={`dropzone uploaded-state ${imageUrls.length > 0 ? 'has-image' : ''}`}>
+            <input {...getInputProps()} />
           </div>
-        ): null }
+        </div>
+      )}
 
-      </div>
- 
+      {uploadError && <div className="text-red-500 text-center text-sm font-bold mt-4">{uploadError}</div>}
+
+    </div>
   );
+  
   
 
 

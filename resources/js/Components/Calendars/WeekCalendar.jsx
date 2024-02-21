@@ -9,14 +9,17 @@ import {
   lastDayOfWeek,
   getWeek,
   addWeeks,
-  subWeeks
+  subWeeks,
+   
 } from "date-fns";
 
 const Calendar = ({ showDetailsHandle }) => {
+
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+ 
   const changeMonthHandle = (btnType) => {
     if (btnType === "prev") {
       setCurrentMonth(subMonths(currentMonth, 1));
@@ -24,7 +27,11 @@ const Calendar = ({ showDetailsHandle }) => {
     if (btnType === "next") {
       setCurrentMonth(addMonths(currentMonth, 1));
     }
+    if (btnType === "today") {
+      setCurrentMonth(new Date());
+    }
   };
+
 
   const changeWeekHandle = (btnType) => {
     //console.log("current week", currentWeek);
@@ -46,24 +53,37 @@ const Calendar = ({ showDetailsHandle }) => {
   };
 
   const renderHeader = () => {
-    const dateFormat = "MMM yyyy";
-    // console.log("selected day", selectedDate);
+    const currentYear = format(currentMonth, "yyyy");
+    const prevMonthYear = format(subMonths(currentMonth, 1), "yyyy");
+    const nextMonthYear = format(addMonths(currentMonth, 1), "yyyy");
+  
+    const prevMonth = prevMonthYear !== currentYear ? format(subMonths(currentMonth, 1), "MMMM yyyy") : format(subMonths(currentMonth, 1), "MMMM");
+    const nextMonth = nextMonthYear !== currentYear ? format(addMonths(currentMonth, 1), "MMMM yyyy") : format(addMonths(currentMonth, 1), "MMMM");
+  
     return (
+      
       <div className="header py-6 flex-row flex w-full justify-between">
-        <div className="justify-start">
-          <div className="cursor-pointer" onClick={() => changeMonthHandle("prev")}>
-            prev month
+
+          <div className="justify-start">
+              <div className="cursor-pointer w-[15rem] text-lg font-semibold" onClick={() => changeMonthHandle("prev")}>
+                  {prevMonth}
+              </div>
           </div>
-        </div>
-        <div className="col-center">
-          <span>{format(currentMonth, dateFormat)}</span>
-        </div>
-        <div className="justify-end">
-          <div className="cursor-pointer" onClick={() => changeMonthHandle("next")}>next month</div>
-        </div>
+          <div className="justify-center w-[20rem] text-center text-xl font-bold">
+              <span>{format(currentMonth, "MMM yyyy")}</span>
+          </div>
+          <div className="justify-end">
+              <div className="cursor-pointer w-[15rem] text-lg font-semibold text-right" onClick={() => changeMonthHandle("next")}>
+                  {nextMonth}
+              </div>
+          </div>
+
       </div>
+
     );
   };
+  
+
   const renderDays = () => {
     const dateFormat = "EEE";
     const days = [];
@@ -77,6 +97,9 @@ const Calendar = ({ showDetailsHandle }) => {
     }
     return <div className="days row ">{days}</div>;
   };
+
+
+
   const renderCells = () => {
     const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
@@ -120,21 +143,35 @@ const Calendar = ({ showDetailsHandle }) => {
     }
     return <div className="body h-full">{rows}</div>;
   };
+
+
+
   const renderFooter = () => {
     return (
-      <div className="flex-row flex justify-between w-full">
-        <div className="  justify-start">
-          <div className="cursor-pointer" onClick={() => changeWeekHandle("prev")}>
-            prev week
-          </div>
+
+        <div className="flex-row flex px-8 py-6 justify-between w-full">
+
+            <div className="justify-start" onClick={() => changeWeekHandle("prev")}>
+                <div className="duration-500 transition-all cursor-pointer text-slate-300 hover:text-slate-500 font-bold">
+                  Prev. Week
+                </div>
+            </div>
+ 
+            <div className="justify-center" onClick={() => changeMonthHandle("today")}>
+                <div className="duration-500 transition-all  cursor-pointer text-slate-300 hover:text-slate-500 font-bold">Today</div>
+            </div>
+
+            <div className="justify-end" onClick={() => changeWeekHandle("next")}>
+                <div className="duration-500 transition-all  cursor-pointer text-slate-300 hover:text-slate-500 font-bold">Next Week</div>
+            </div>
+ 
         </div>
-        <div className="justify-center">{currentWeek}</div>
-        <div className="  justify-end" onClick={() => changeWeekHandle("next")}>
-          <div className="cursor-pointer">next week</div>
-        </div>
-      </div>
+
     );
   };
+
+
+
   return (
     <div className="calendar flex flex-col h-full">
       {renderHeader()}

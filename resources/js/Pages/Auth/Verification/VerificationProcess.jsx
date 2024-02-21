@@ -11,6 +11,7 @@ import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
 import Skeleton from '@mui/joy/Skeleton';
 
 import VerificationStep from './Partials/VerificationStep';
+import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 
 export default function VerificationProcess({ 
 
@@ -30,8 +31,16 @@ export default function VerificationProcess({
 
 
 
-    const [emptyFields, setEmptyFields] = useState({});
-
+    const [emptyFields, setEmptyFields] = useState({
+        first_name: false,
+        last_name: false,
+        phone_number: false,
+        street_address: false,
+        city: false,
+        state: false,
+        zip_code: false,
+    });
+    
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = React.useState(false);
 
@@ -43,16 +52,9 @@ export default function VerificationProcess({
     });
       
     const [personalInfo, setPersonalInfo] = useState({
-        first_name: '',
-        last_name: '',
-        middle_initial: '',
-        tel: '',
-        street_address: '',
-        city: '',
-        state: '',
-        zip_code: '',
-        latitude: '',
-        longitude: '',
+        phoneNumber: '',
+        name: { first_name: '', middle_initial: '', last_name: '' },
+        address: { street_address: '', city: '', state: '', zip_code: '' },
     });
 
     const [companyInfo, setCompanyInfo] = useState({
@@ -63,20 +65,10 @@ export default function VerificationProcess({
         referral: '',
     });
 
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
+    const handlePersonalInfoChange = (newData) => {
+        setPersonalInfo(prevState => ({ ...prevState, ...newData }));
+    };
+    
     const handleError = (error, message) => {
         const errorMessage = error.message || message;
         setError(`Error: ${errorMessage}`);
@@ -103,6 +95,7 @@ export default function VerificationProcess({
         }
     };
 
+ 
     
     const savePassword = async () => {
         setIsLoading(true);
@@ -128,34 +121,39 @@ export default function VerificationProcess({
         }
     };
 
-
-
-
-    
-    
-    
     const savePersonalInfo = async () => {
         const newEmptyFields = {
-            first_name: !personalInfo.first_name,
-            last_name: !personalInfo.last_name,
-            // Add other required fields here with similar checks
+            first_name: !personalInfo.name.first_name,
+            last_name: !personalInfo.name.last_name,
         };
     
-        // Update the empty fields state
         setEmptyFields(newEmptyFields);
     
-        // Check if any of the required fields are empty
         const hasEmptyFields = Object.values(newEmptyFields).some(value => value);
-    
         if (hasEmptyFields) {
-            // Do not proceed if there are empty fields
-            return;
+            return; // Exit if there are empty required fields
         }
-
+    
         try {
-            const response = await axios.post(route('verification.personal.store'), personalInfo);
+            // Adjust the data structure as needed for your API endpoint
+            const formattedData = {
+                firstName: personalInfo.name.first_name,
+                lastName: personalInfo.name.last_name,
+                middleInitial: personalInfo.name.middle_initial, // Included middle initial
+                phoneNumber: personalInfo.phoneNumber,
+                address: {
+                    streetAddress: personalInfo.address.street_address,
+                    city: personalInfo.address.city,
+                    state: personalInfo.address.state,
+                    zipCode: personalInfo.address.zip_code,
+                    latitude: personalInfo.address.latitude,
+                    longitude: personalInfo.address.longitude
+                }
+            };
+    
+            // Post the data to your endpoint
+            const response = await axios.post(route('verification.personal.store'), formattedData);
             handleResponse(response, () => {
-                console.log("response",response);
                 setCurrentStep('companyInfo');
             });
         } catch (error) {
@@ -180,8 +178,9 @@ export default function VerificationProcess({
     };
 
  
+ 
      return (
-        <div className='p-8 w-full !max-w-[70rem] h-[40rem]'>
+        <div className='p-8 w-full !max-w-[80rem] h-[45rem]'>
 
                 {currentStep === 'changePassword' && 
                     <div className='flex flex-row gap-8 h-full'>
@@ -249,26 +248,26 @@ export default function VerificationProcess({
                 }
                 {currentStep === 'personalInfo' && 
                     <div className='flex flex-row gap-8 h-full'>
-                        <div className='w-1/2 h-full flex flex-col justify-center'>
-                            <img className="mx-auto max-w-[25rem]" src="./images/svg_images/undraw_personal_info.svg" alt="" />
+                        <div className='w-[30rem] h-full flex flex-col justify-center'>
+                            <img className="mx-auto max-w-[20rem]" src="/images/svg_images/undraw_personal_info.svg" alt="" />
                         </div>
-                        <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
-                            <h2>Tell us about yourself...</h2>
+                        <div className='w-1/2 py-6 px-6 my-auto h-full justify-center flex flex-col gap-6'>
+                            <h2 className='text-2xl text-slate-500'>Tell us about yourself...</h2>
                             <p>
                                 Please complete the personal information form by providing your first and last name, phone number, and address. Your details are important for us to enhance your experience and ensure accurate communication. Thank you for providing this information.                            
                             </p>
-                            <PersonalInfo onUpdateInfo={setPersonalInfo} emptyFields={emptyFields} setEmptyFields={setEmptyFields}/>
-                            <SecondaryButton onClick={savePersonalInfo}>Next</SecondaryButton>
+                            <PersonalInfo onDataChanged={handlePersonalInfoChange} emptyFields={emptyFields} setEmptyFields={setEmptyFields} />
+                            <PrimaryButton onClick={savePersonalInfo}>Next</PrimaryButton>
                         </div>
                     </div>
                 }
                 {currentStep === 'companyInfo' && 
                     <div className='flex flex-row gap-8 h-full'>
                         <div className='w-1/2 h-full flex flex-col justify-center'>
-                            <img className="mx-auto max-w-[25rem]" src="./images/svg_images/undraw_logo_design.svg" alt="" />
+                            <img className="mx-auto max-w-[20rem]" src="./images/svg_images/undraw_logo_design.svg" alt="" />
                         </div>
                         <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
-                            <h2>Your Company Info</h2>
+                            <h2 className='text-2xl text-slate-500'>Your Company Info</h2>
                             <p>
                                 Please complete the company information form by providing essential details about your organization. Your input helps us better tailor our services to your business needs and provide you with the best support. Thank you for sharing this information with us.
                             </p>
@@ -279,7 +278,7 @@ export default function VerificationProcess({
                                 <CompanyInfo onUpdateInfo={setCompanyInfo} />
                             </div>
                             
-                            <SecondaryButton onClick={saveCompanyInfo}>Complete Registration</SecondaryButton>
+                            <PrimaryButton onClick={saveCompanyInfo}>Complete Registration</PrimaryButton>
                         </div>      
                     </div>
           

@@ -124,16 +124,16 @@ class VerificationController extends Controller
     public function storePersonalInfo(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'middle_initial' => 'nullable|string|max:1',
-            'tel' => 'nullable|string|max:15',
-            'street_address' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
-            'zip_code' => 'nullable|string|max:20',
-            'latitude' => 'nullable|numeric|between:-90,90',
-            'longitude' => 'nullable|numeric|between:-180,180',
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'middleInitial' => 'nullable|string|max:1',
+            'phoneNumber' => 'nullable|string|max:15',
+            'address.streetAddress' => 'nullable|string|max:255',
+            'address.city' => 'nullable|string|max:255',
+            'address.state' => 'nullable|string|max:255',
+            'address.zipCode' => 'nullable|string|max:20',
+            'address.latitude' => 'nullable|numeric|between:-90,90',
+            'address.longitude' => 'nullable|numeric|between:-180,180',
         ]);
 
         $userId = $request->user()->id;
@@ -152,22 +152,22 @@ class VerificationController extends Controller
 
         // Update user with personal information
         $user->update([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'middle_initial' => $request->input('middle_initial'),
+            'first_name' => $request->input('firstName'),
+            'last_name' => $request->input('lastName'),
+            'middle_initial' => $request->input('middleInitial'),
             'personal_info_completed' => true,
             'code_verified' => true, 
             'ip_address' => $userIpAddress,
         ]);
 
-        $user->phone()->updateOrCreate([], ['tel' => $request->input('tel')]);
+        $user->phone()->updateOrCreate([], ['tel' => $request->input('phoneNumber')]);
 
         $apiKey = env('GOOGLE_MAP_API_KEY');
 
         // Check if geocode data is provided
-        if ($request->has('latitude') && $request->has('longitude')) {
-            $latitude = $request->input('latitude');
-            $longitude = $request->input('longitude');    
+        if ($request->has('address.latitude') && $request->has('address.longitude')) {
+            $latitude = $request->input('address.latitude');
+            $longitude = $request->input('address.longitude');    
 
             $client = new Client();
             $response = $client->get("https://maps.googleapis.com/maps/api/timezone/json", [
@@ -189,15 +189,18 @@ class VerificationController extends Controller
             }
         }
 
-        if ($request->hasAny(['street_address', 'city', 'state', 'zip_code'])) {
+        if ($request->has('address')) {
+            $addressData = $request->input('address');
             $locationData = [
-                'street_address' => $request->input('street_address'),
-                'city' => $request->input('city'),
-                'state' => $request->input('state'),
-                'zip_code' => $request->input('zip_code'),
+                'street_address' => $addressData['streetAddress'] ?? null,
+                'city' => $addressData['city'] ?? null,
+                'state' => $addressData['state'] ?? null,
+                'zip_code' => $addressData['zipCode'] ?? null,
+                'latitude' => $addressData['latitude'] ?? null,
+                'longitude' => $addressData['longitude'] ?? null,
             ];
-
-            $location = Location::firstOrCreate($locationData);
+        
+            $location = Location::updateOrCreate($locationData);
             $user->location()->associate($location);
             $user->save();
         }

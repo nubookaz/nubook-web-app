@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CallSheet extends Model
 {
-    use HasFactory,
-    SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'project_id', 
@@ -18,9 +17,6 @@ class CallSheet extends Model
         'call_sheet_date_time', 
         'weather',
         'bulletin',
-        'film_location_id',
-        'parking_location_id',
-        'hospital_location_id',
         'production_company_id',
     ];
 
@@ -28,39 +24,24 @@ class CallSheet extends Model
         'schedule' => 'array',
     ];
 
-    
-    
-    // Belongs to User
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
-    }
+        return $this->belongsToMany(User::class)->withPivot('role_id');
+    }    
 
-    // Belongs to ProductionCompany
     public function productionCompany()
     {
         return $this->belongsTo(ProductionCompany::class);
     }
 
-    // Belongs to Project
     public function project()
     {
         return $this->belongsTo(Project::class);
     }
 
-    public function filmLocation()
+    public function filmLocations()
     {
-        return $this->belongsTo(FilmLocation::class, 'film_location_id');
+        return $this->belongsToMany(FilmLocation::class);
+ 
     }
-
-    public function parkingLocation()
-    {
-        return $this->belongsTo(ParkingLocation::class, 'parking_location_id');
-    }
-
-    public function hospitalLocation()
-    {
-        return $this->belongsTo(HospitalLocation::class, 'hospital_location_id');
-    }
-
 }

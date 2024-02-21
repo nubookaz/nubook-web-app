@@ -21,10 +21,10 @@ class ProjectController extends Controller
 
     public function index()
     {
-        // Retrieve the user's projects
-        $projects = Project::where('user_id', auth()->id())->with('productionCompany')->get();
+        // Retrieve the user's projects 
         $user = Auth::user();
- 
+        $projects = $user->projects()->with('productionCompany')->get();
+    
          return Inertia::render('Projects', [
             'auth' => $user,
             'projects' => $projects,
@@ -34,9 +34,9 @@ class ProjectController extends Controller
 
     public function showList()
     {
-        
-        $projects = Project::where('user_id', auth()->id())->with('productionCompany')->get();
-
+        $user = Auth::user();
+        $projects = $user->projects()->with('productionCompany')->get();
+    
         return Inertia::render('Projects/ProjectListPage', [
             'projects' => $projects,
         ]);    

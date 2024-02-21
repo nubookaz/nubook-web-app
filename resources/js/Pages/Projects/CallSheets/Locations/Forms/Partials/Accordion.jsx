@@ -8,21 +8,25 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Accordion = forwardRef(({ 
     
-onAccordionDataChange
+    callSheet,
+    locationType = 'location',
+    onAccordionDataChange,
+    onAccordionInfoChange,
+    resetSignal
 
 }, 
     ref
     
 ) => {
 
-
- 
-    const [openAccordion, setOpenAccordion] = useState('location');
+    const [openAccordion, setOpenAccordion] = useState(locationType); // Initialize with locationType
     const [accordionData, setAccordionData] = useState({
-        location: {},
-        parking: {},
-        hospital: {}
+        location: { address: {} },
+        parking: { address: {} },
+        hospital: { address: {} }
     });
+    
+    console.log(accordionData);
 
     const [accordionInfo, setAccordionInfo] = useState({
         location: '',
@@ -30,36 +34,49 @@ onAccordionDataChange
         hospital: ''
     });
 
+    useEffect(() => {
+        // Reset local state when resetSignal changes
+        setAccordionData({
+            location: {},
+            parking: {},
+            hospital: {}
+        });
+        setAccordionInfo({
+            location: '',
+            parking: '',
+            hospital: ''
+        });
+      }, [resetSignal]);      
+ 
     const handleUpdate = useCallback((key, data) => {
-        setAccordionData(prevData => ({
-            ...prevData,
-            [key]: data
-        }));
+        setAccordionData(prevData => ({ ...prevData, [key]: data }));
     }, []);
 
     const handleInformationUpdate = useCallback((key, info) => {
-        setAccordionInfo(prevInfo => ({
-            ...prevInfo,
-            [key]: info
-        }));
+        setAccordionInfo(prevInfo => ({ ...prevInfo, [key]: info }));
     }, []);
+    
 
     const handleSelectHospital = (hospital) => {
-        console.log("Selected Hospital: ", hospital);
-        
-        // Assuming hospital object has the required fields
-        const hospitalData = {
-            name: hospital.name,
-            address: {
-                city: '', // You might need to extract city from hospital.vicinity or another field
-                latitude: hospital.geometry.location.lat,
-                longitude: hospital.geometry.location.lng,
-                state: '', // You might need to derive state from another field or API
-                street_address: hospital.vicinity, // Or another appropriate field
-                zip_code: '' // You might need to derive zip code from another field or API
-            },
-            information: '' // Additional information if available
-        };
+         
+        let hospitalData = hospital;
+
+        // For new hospital data, format as needed
+        if (!hospital.address || !hospital.address.place_id) {
+            hospitalData = {
+                name: hospital.name,
+                address: {
+                    place_id: hospital.place_id,
+                    city: '', // To be extracted from hospital data
+                    latitude: hospital.geometry.location.lat,
+                    longitude: hospital.geometry.location.lng,
+                    state: '',  
+                    street_address: hospital.vicinity, // Or another appropriate field
+                    zip_code: '' // To be derived as needed
+                },
+                information: '' // Additional information
+            };
+        }
     
         setAccordionData(prevData => ({
             ...prevData,
@@ -68,6 +85,20 @@ onAccordionDataChange
     };
 
     
+    
+    useEffect(() => {
+        if (callSheet) {
+            setAccordionData(prevData => ({
+                ...prevData,
+                location: callSheet.location ? callSheet.location : { address: {} },
+                parking: callSheet.parking_location ? callSheet.parking_location : { address: {} },
+                hospital: callSheet.hospital_location ? callSheet.hospital_location : { address: {} }
+            }));
+        }
+    }, [callSheet]);
+    
+
+ 
     const toggleAccordion = (accordionName) => {
         setOpenAccordion(prevOpen => prevOpen === accordionName ? null : accordionName);
     };
@@ -81,22 +112,20 @@ onAccordionDataChange
     
 
     useEffect(() => {
-        if (onAccordionDataChange) {
-            onAccordionDataChange(accordionData);
-        }
-    }, [accordionData, onAccordionDataChange]);
+        onAccordionDataChange(accordionData);
+        onAccordionInfoChange(accordionInfo);
+    }, [accordionData, accordionInfo, onAccordionDataChange, onAccordionInfoChange]);
 
-    console.log(accordionData);
- 
-
-    
+     useEffect(() => {
+        setOpenAccordion(locationType);
+    }, [locationType]);
 
     return(
 
         <div className='flex flex-col gap-2'>
             {/* Location Info Accordion */}
             <div className='flex flex-col gap-2'>
-                <button onClick={() => toggleAccordion('location')} className={`${openAccordion === 'location' ? 'bg-slate-200' : ''} bg-slate-100 py-4 px-6 rounded-lg text-slate-500 flex flex-row justify-between items-center`}>
+                <button onClick={() => toggleAccordion('location')} className={`${openAccordion === 'location' ? 'bg-slate-300 font-semibold shadow-sm' : ''} bg-slate-100 py-4 px-6 rounded-lg text-slate-500 flex flex-row justify-between items-center`}>
                     Primary Location Details
                     <FontAwesomeIcon
                         icon={faCaretLeft}
@@ -110,10 +139,14 @@ onAccordionDataChange
 
                 <div style={accordionContentStyle('location')} >
                     <AccordionContent 
-                        title="Location Name" 
+                        callSheet={callSheet}
+                        dataType='location'
+                        title="Location Name"
+                        label='Location'
                         onFormDataChange={(data) => handleUpdate('location', data)} 
                         onInformationChange={(info) => handleInformationUpdate('location', info)}
                         ref={ref} 
+                        resetSignal={resetSignal}
                     />
                 </div>
             </div>
@@ -133,10 +166,15 @@ onAccordionDataChange
                 </button>
                 <div style={accordionContentStyle('parking')}>
                     <AccordionContent 
+                        callSheet={callSheet}
+                        dataType='parking'
                         title="Parking Name"
+                        label='Location'
                         onFormDataChange={(data) => handleUpdate('parking', data)} 
                         onInformationChange={(info) => handleInformationUpdate('parking', info)}
-                        ref={ref} />
+                        ref={ref}
+                        resetSignal={resetSignal}
+                    />
                 </div>
             </div>
 
@@ -154,7 +192,7 @@ onAccordionDataChange
                     />
                 </button>
                 <div style={accordionContentStyle('hospital')}>
-                    <Hospitals locationAddress={accordionData.location?.address} onSelectHospital={handleSelectHospital} />
+                    <Hospitals existingHospitalData={callSheet.hospital_location} locationAddress={accordionData.location?.address} onSelectHospital={handleSelectHospital} />
                 </div>
             </div>
         </div>

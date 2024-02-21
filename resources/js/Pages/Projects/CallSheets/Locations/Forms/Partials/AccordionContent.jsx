@@ -1,23 +1,23 @@
-import React, { useState, useEffect, forwardRef, useCallback } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import Input from '@/Components/Forms/Input';
-import Address from '@/Components/Forms/Address';
- 
-const AccordionContent = forwardRef(({ 
-    
-    title, 
-    onFormDataChange, 
-    onInformationChange, 
-    required 
+import Address from '@/Pages/Profile/Forms/Address';
 
+const AccordionContent = forwardRef(({
+    callSheet,
+    dataType,
+    title,
+    onFormDataChange,
+    onInformationChange,
+    required,
+    label,
+    resetSignal,
 }, ref) => {
-    
-    const [formData, setFormData] = useState({
-        name: '',
-        information: '',
-        address: {}
-    });
-    const [information, setInformation] = useState('');
 
+    
+    
+    const [formData, setFormData] = useState({ name: '', address: {} });
+    const [information, setInformation] = useState('');
+    
     const handleInputChange = (e) => {
         const updatedFormData = { ...formData, name: e.target.value };
         setFormData(updatedFormData);
@@ -36,13 +36,54 @@ const AccordionContent = forwardRef(({
     };
 
     useEffect(() => {
-        // Initialize parent component with initial state of formData and information
-        onFormDataChange && onFormDataChange(formData);
-        onInformationChange && onInformationChange(information);
-    }, []); // This will run only once when the component mounts
+        // Extract general properties
+        let baseData = {
+            name: callSheet?.name || '',
+            information: callSheet?.information || ''
+        };
+    
+        // Enhance baseData based on dataType
+        let locationData = {};
+        switch (dataType) {
+            case 'location':
+                locationData = callSheet?.location || {};
+                break;
+            case 'parking':
+                locationData = callSheet?.parking_location?.location || {};
+                break;
+            case 'hospital':
+                locationData = callSheet?.hospital_location?.location || {};
+                break;
+            default:
+                locationData = {};
+        }
+    
+        // Combine baseData with specific location data
+        const updatedFormData = {
+            ...baseData,
+            address: locationData || {} 
+        };
+    
+        setFormData(updatedFormData);
+        setInformation(baseData.information);
+    
+        // Update the parent component with the new data
+        onFormDataChange && onFormDataChange(updatedFormData);
+        onInformationChange && onInformationChange(baseData.information);
+    }, [callSheet, dataType]);
+    
+    
+
+    useEffect(() => {
+        setFormData({ name: '', address: {} });
+        setInformation('');
+        onFormDataChange && onFormDataChange({ name: '', address: {} });
+        onInformationChange && onInformationChange('');
+    }, [resetSignal]);
+    
 
     const maxChars = 200;
-
+ 
     return (
         <div className='flex flex-col gap-2'>
             <Input
@@ -57,7 +98,7 @@ const AccordionContent = forwardRef(({
             />
             <div>
                 <label htmlFor={`${title.toLowerCase().replace(/\s/g, '_')}_information`} className='text-gray-400 text-sm'>
-                    {`${title} Information`}
+                    {`${label} Information`}
                 </label>
                 <textarea
                     placeholder={`${title} information`}
@@ -65,18 +106,14 @@ const AccordionContent = forwardRef(({
                     value={information}
                     onChange={handleTextareaChange}
                     onKeyDown={(e) => {
-                        // Prevent 'Enter' key from adding new lines
-                        if (e.key === 'Enter') {
-                            e.preventDefault();
-                        }
+                        if (e.key === 'Enter') e.preventDefault();
                     }}
                     maxLength={maxChars}
                     style={{ resize: 'none' }}
-                >
-                </textarea>
+                />
                 <p className='text-right text-xs font-bold'>{maxChars - information.length} characters remaining</p>
             </div>
-            <Address onAddressChange={handleAddressChange} />
+            <Address onAddressChange={handleAddressChange} data={formData.address} />
         </div>
     );
 });

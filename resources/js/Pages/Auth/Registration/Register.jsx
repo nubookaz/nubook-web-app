@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 
 import GuestLayout from '@/Layouts/GuestLayout';
-import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import { Head, Link, useForm } from '@inertiajs/react';
+ import { Link, useForm } from '@inertiajs/react';
 import EmailStep from '@/Pages/Auth/Registration/EmailStep';
-import PrivacyPolicy from '@/Pages/Auth/Legal/PrivacyPolicy';
-import Modal from '@/Components/Modals/Modal';
 
 import Skeleton from '@mui/joy/Skeleton';
+import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 
 
 
@@ -25,6 +23,11 @@ export default function Register() {
     
     const [skeleton, setSkeleton] = useState(false);
     const [privacyPolicyModal, setPrivacyPolicyModal] = useState(false);
+    const [showConsentError, setShowConsentError] = useState(false);
+
+    const triggerConsentHelperText = () => {
+        setShowConsentError(true);
+    };
 
     const handlePrivacyPolicyModal = () => {
         setPrivacyPolicyModal(true);
@@ -51,6 +54,11 @@ export default function Register() {
  
     const submit = (e) => {
         e.preventDefault();
+
+        if (!data.consent) {
+            setShowConsentError(true); 
+            return;
+        }    
         
         post(route('register'), {
             // This callback is called before the form submission starts
@@ -71,21 +79,25 @@ export default function Register() {
 
     return (
         <GuestLayout
-        greeting={greeting}
+            greeting={greeting}
+            imgUrl = '/images/background_images/bg_image_6.jpg'
+            isModalOpen = {privacyPolicyModal}
+            // closeModal
         >
         {{
             body: (
-                    <div>
-
-                        <EmailStep
-                            formData={data}
-                            setFormData={setData} 
-                            errors={errors}
-                            linkPrivacyPolicy={handlePrivacyPolicyModal}
-                            skeleton={skeleton}
-                            privacyPolicyHref='#privacy-policy'
-                        />
- 
+                    <div className='flex flex-col gap-8 justify-between h-full'>
+                        <div className=''>
+                            <EmailStep
+                                formData={data}
+                                setFormData={setData} 
+                                errors={errors}
+                                linkPrivacyPolicy={handlePrivacyPolicyModal}
+                                skeleton={skeleton}
+                                privacyPolicyHref='#privacy-policy'
+                                showConsentError={showConsentError}
+                            />
+                        </div>
                 
                         {skeleton ? (
                             <div>
@@ -94,9 +106,9 @@ export default function Register() {
                             </div>
                         ):(
                             <div>
-                                <SecondaryButton className="block mb-4" onClick={submit} >
+                                <PrimaryButton className="block mb-4" onClick={submit} >
                                     Register
-                                </SecondaryButton>
+                                </PrimaryButton>
                                 <Link href={route('login')} className="text-sm secondary-color">
                                     Already registered?
                                 </Link>

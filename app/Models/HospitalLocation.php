@@ -10,19 +10,17 @@ class HospitalLocation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'location_id',
-        'hospital_name',
+        'place_id',
+        'name',
         'information',
+        'vicinity',
+        'latitude',
+        'longitude',
     ];
 
-    
-    public function callSheet()
+    // Assuming each HospitalLocation is uniquely associated with a FilmLocation
+    public function filmLocation()
     {
-        return $this->hasMany(CallSheet::class); 
-    }
-
-    public function location()
-    {
-        return $this->belongsTo(Location::class);
+        return $this->hasMany(FilmLocation::class, 'hospital_location_id');
     }
 }

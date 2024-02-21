@@ -45,7 +45,7 @@ export default function Dashboard() {
   const timeOfDayGreeting = getTimeOfDayGreeting();
   const greeting = `${timeOfDayGreeting} ${user?.first_name} ${user?.last_name}!`;
 
-
+  console.log(user);
 
    return (
 
@@ -63,6 +63,7 @@ export default function Dashboard() {
                       className='h-[15rem]'
                     >
                     </ImageContainer>
+   
                   </>
                 ),
             }}

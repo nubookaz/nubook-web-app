@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parking_locations', function (Blueprint $table) {
+        Schema::create('hospital_locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->nullable()->constrained()->onDelete('cascade');
-            $table->text('parking_name')->nullable();
+            $table->string('place_id')->nullable();
+            $table->text('name')->nullable();
             $table->text('information')->nullable();
+            $table->string('vicinity')->nullable();
+            $table->decimal('latitude', 10, 7)->nullable();  
+            $table->decimal('longitude', 10, 7)->nullable(); 
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parking_locations');
+        Schema::dropIfExists('hospital_locations');
     }
 };

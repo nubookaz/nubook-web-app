@@ -1,4 +1,3 @@
-import { useAuth } from '@/Components/Contexts/AuthContext';
 import { useModal } from '@/Components/Contexts/ModalContext';
 import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
 

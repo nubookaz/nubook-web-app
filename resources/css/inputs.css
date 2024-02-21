@@ -30,30 +30,22 @@ select option:disabled,
 textarea::placeholder,
 .MuiTextarea-root::placeholder {
     font-size: .85rem !important;
-    color: rgb(0,0,0,.2) !important;
+    color: rgb(0,0,0,.2);
 }
  
 input:focus,
-textarea:focus {
-    outline: none;
-    border: 0px transparent;
-    outline-style: none;
-    box-shadow: none;
-    border-color: transparent;
-}
-
-input:focus,
+input:active,
+textarea:focus,
 textarea:active {
     outline: none;
-    border: 0px;
+    border: 1px solid rgba(0,0,0,.05);
+    background-color: rgba(0,0,0,.02);
     outline-style: none;
     box-shadow: none;
     border-color: transparent;
 }
 
-
-
-
+ 
 
 /* Joy MUI Components */
 .css-1btz9nl-JoyTextarea-root {
@@ -97,3 +89,6 @@ textarea:active {
     pointer-events: none !important;
 }
 
+.react-datepicker-wrapper {
+    width: 100%;
+}

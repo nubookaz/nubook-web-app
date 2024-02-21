@@ -5,12 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import ProfilePicture from '@/Components/Profile/ProfilePicture';
+import ProfilePicture from '@/Pages/Profile/ProfilePicture';
 
 import { Link } from '@inertiajs/react';
-import Modal from '@/Components/Modals/Modal';
-import ProjectForm from '@/Pages/Projects/Forms/ProjectForm';
 import Surface from './Surface';
+import ActionDrawer from '@/Components/Drawer/ActionDrawer';  
 
 
 export default function PortalLayout({  
@@ -19,6 +18,9 @@ export default function PortalLayout({
   breadcrumbs,
   project,
   callSheet,
+  user,
+  roles,
+  actionClass
   
 }) {
 
@@ -31,8 +33,7 @@ export default function PortalLayout({
  
     }, []);
 
-
- 
+  
     const renderBreadcrumbs = () => {
       if (!breadcrumbs || !Array.isArray(breadcrumbs)) {
           return null;
@@ -56,10 +57,10 @@ export default function PortalLayout({
 
     const hasToolbar = children && children.toolbar;
     const hasBody = children && children.body;
+    const hasAction = children && children.action;
 
   
  
-
     return (
 
       <AuthenticatedLayout project={project}>
@@ -69,10 +70,15 @@ export default function PortalLayout({
           portal: (
               <>
                 <div className='absolute z-50'>
-                    <Surface project={project} callSheet={callSheet}/>
+                    <Surface user={user} project={project} callSheet={callSheet} roles={roles}/>
+                    {hasAction && (
+                      <ActionDrawer>
+                          {children.action}
+                      </ActionDrawer>
+                    )}
                 </div>
 
-                <div className="w-full h-full pt-[2rem] pb-8 pl-[7rem] pr-[1.75rem] max-w-[120rem] mx-auto flex flex-col gap-4">
+                <div className="w-full h-full pt-[1.5rem] pb-[1.5rem] pl-[7rem] pr-[1.75rem] max-w-[120rem] mx-auto flex flex-col gap-4">
                     <div id='portal-header' className='w-full flex flex-row justify-between'>
                         <div className={`fade-in h-full my-auto flex items-center ${fadeIn ? 'opacity-1' : 'opacity-0'}`} >
                             {renderBreadcrumbs()}
@@ -82,7 +88,7 @@ export default function PortalLayout({
                             <ProfilePicture href={route('profile.settings')} alt="User's Profile" className="h-[3rem] w-[3rem]" />
                         </div>
                     </div>
-                    <div id='portal-body' className='flex flex-col gap-4 h-full w-full'>
+                    <div id='portal-body' className='flex flex-col gap-4 h-full w-full '>
                         {hasToolbar && (
                           <div className='w-full h-full max-h-[2.5rem] max-w-[80%] mx-auto'>
                             {children.toolbar}
