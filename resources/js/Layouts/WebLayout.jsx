@@ -10,7 +10,7 @@ export default function WebLayout({ children, auth }) {
                 {children.surface}
             </div>
 
-            <div>
+            <div className="bg-white relative w-full">
                 {children.body}
             </div>
 

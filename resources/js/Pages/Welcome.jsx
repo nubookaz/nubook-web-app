@@ -120,28 +120,29 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 ),
                 body: (
                     <>
-                         <ImageContainer
-                        overlay={true}
-                        className="!rounded-none !shadow-none h-[45rem] xl:h-[60rem] w-full"
-                        backgroundImage="/images/set_images/set_image_3.jpg"
-                        >
-                        
-                        <HeaderNavigation onClick={toggleNavicon(true)}/>
+                        <ImageContainer
+                            overlay={true}
+                            className="!rounded-none !shadow-none h-[45rem] xl:h-[60rem] w-full"
+                            backgroundImage="/images/set_images/set_image_3.jpg"
+                            childrenClass='w-full h-full flex flex-col'
+                            >
+                            
+                            <HeaderNavigation onClick={toggleNavicon(true)}/>
+            
+                            <div className="text-center justify-center items-center m-auto w-full max-w-[90rem] p-4 h-full flex flex-col -mt-[8rem]">
+                                <h1 className='text-white font-bold text-[2.5rem] xl:text-[3rem] mb-4'>Welcome to Your Filmmaking Journey</h1>
+                                <p className='text-white font-semibold text-[1.5rem] xl:text-[1.5rem]'>Where creativity meets the lens, and every frame tells a story.  Explore, create, and 
+                                collaborate with a community of passionate filmmakers. From script to screen, we’re 
+                                here to empower your vision. Start your cinematic adventure today.</p>
+                            </div>
+            
+                        </ImageContainer>
         
-                        <div className="center-content text-center m-auto max-w-[90rem] p-4">
-                            <h1 className='text-white font-bold text-[2.5rem] xl:text-[3rem] mb-4'>Welcome to Your Filmmaking Journey</h1>
-                            <p className='text-white font-semibold text-[1.5rem] xl:text-[1.5rem]'>Where creativity meets the lens, and every frame tells a story.  Explore, create, and 
-        collaborate with a community of passionate filmmakers. From script to screen, we’re 
-        here to empower your vision. Start your cinematic adventure today.</p>
-                        </div>
-        
-                    </ImageContainer>
-        
-                    <div className='p-8'>
-                        <img className="w-full 2xl:max-w-[60%] -mt-[6rem] xl:-mt-[16rem] rounded-lg shadow-lg mx-auto" src="./images/app_images/dashboard.jpg" alt="" />
+                    <div className='p-8 absolute z-50'>
+                        <img className="w-full 2xl:max-w-[60%] -mt-[6rem] xl:-mt-[16rem] rounded-lg shadow-lg mx-auto " src="./images/app_images/dashboard.jpg" alt="" />
                     </div>
         
-                    <div id="beta-form" className='p-8 mb-[4rem]'>
+                    <div id="beta-form" className='p-8 pb-[8rem] mt-[30rem]'>
                         <div className='text-center m-auto p-8 mb-8 max-w-[75rem]'>
                             <h3 className='text-[2.5rem] mb-4'>Currently in Development!</h3>
                             <p className='font-semibold text-[1.65rem]'>Exciting News: Our app is very close to being in beta mode! Be among the first to experience it. Sign up below for exclusive access. Invites are limited! Current Beta release is slated for January 2024</p>
