@@ -7,10 +7,15 @@ const minuteOptions = Array.from({ length: 12 }, (_, i) => ({ label: `${i * 5} M
 
 export default function Duration({ duration, handleDurationChange, textColor }) {
     const parseDuration = (durationString) => {
+        // Ensure durationString is a string
+        if (typeof durationString !== 'string') {
+             return { hours: "0", minutes: "0" }; // Return a default value if not a string
+        }
+    
         const parts = durationString.split(' ');
         return { hours: parts[0], minutes: parts[2] }; // Assuming the format "X hours Y minutes"
     };
-
+    
     // Initial parsing of the duration prop
     const { hours, minutes } = duration ? parseDuration(duration) : { hours: "0", minutes: "0" };
 

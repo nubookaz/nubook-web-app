@@ -256,7 +256,7 @@ export default function VerificationProcess({
                             <p>
                                 Please complete the personal information form by providing your first and last name, phone number, and address. Your details are important for us to enhance your experience and ensure accurate communication. Thank you for providing this information.                            
                             </p>
-                            <PersonalInfo onDataChanged={handlePersonalInfoChange} emptyFields={emptyFields} setEmptyFields={setEmptyFields} />
+                            <PersonalInfo onUpdateInfo={handlePersonalInfoChange} emptyFields={emptyFields} setEmptyFields={setEmptyFields} />
                             <PrimaryButton onClick={savePersonalInfo}>Next</PrimaryButton>
                         </div>
                     </div>

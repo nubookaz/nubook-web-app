@@ -46,7 +46,7 @@ const Time = React.memo(({ initialTime, onTimeChange, className, textColor }) =>
                     <option key={hour + 1} value={hour + 1}>{hour + 1}</option>
                 ))}
             </select>
-            <span className={`${textColor ? textColor : 'text-slate-400'} text-2xl mx-[.10rem] my-auto font-bold`}>:</span>
+            <span className={`${textColor ? textColor : 'text-slate-400'} h-[2rem] text-xl mx-[.10rem] my-auto font-bold`}>:</span>
             <select
                 name="minutes"
                 className={`bg-slate-100 ${textColor ? textColor : 'text-slate-400'}  w-[9rem] text-md appearance-none outline-none`}

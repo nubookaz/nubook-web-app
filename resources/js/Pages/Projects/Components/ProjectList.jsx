@@ -65,13 +65,13 @@ function ProjectList({
   };
 
 
+  console.log(projects);
 
   // Get the filtered and sorted call sheets based on the selected view
   const filteredProjects = view === "View All" ? projects : projects.filter(project => project.project_stage === view);
   const sortedProjects = sortProjects(filteredProjects);
 
   const limitedProjects = sortedProjects.slice(0, maxProjects);
-
 
   return (
     <div className={containerClasses}>
@@ -81,6 +81,7 @@ function ProjectList({
             const {project_name, project_stage, project_status, project_description, video_type, project_type, project_budget, is_favorite} = project
             const {filming_days, movie_poster, primary_genre, secondary_genre, viewer_rating} = project.video_production
 
+            console.log(project);
 
               let projectColor = '';
               let textColor = '';

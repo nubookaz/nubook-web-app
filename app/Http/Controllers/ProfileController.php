@@ -13,6 +13,7 @@ use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Http\Traits\ProfileTrait;
+use App\Models\Project;
 
 
 
@@ -34,6 +35,27 @@ class ProfileController extends Controller
         );
         return response()->json($user);
     }
+
+    public function fetchUserProjects()
+    {
+        $user = auth()->user(); // Get the authenticated user
+    
+        if (!$user) {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
+    
+        // Load the user's projects along with related data
+        $projects = $user->projects()->with([
+            'callSheets',
+            'productionSchedules',
+            'users',
+            'productionCompany',
+            // Add any other related models you need
+        ])->get();
+    
+        return response()->json($projects);
+    }
+    
 
     /**
      * Display the user's profile form.

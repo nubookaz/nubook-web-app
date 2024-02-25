@@ -17,11 +17,12 @@ export default function Projects({ auth }) {
     };
 
     const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
-    
+    console.log(projects);
+
     const mostRecentProject = projects
         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
         .slice(0, 1); 
- 
+
     return (
       
         <PortalLayout 

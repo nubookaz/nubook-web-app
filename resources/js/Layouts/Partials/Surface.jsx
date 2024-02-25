@@ -18,7 +18,6 @@ export default function Surface({ user, project, callSheet, roles }) {
     const { isModalOpen, toggleModal, modalContent } = useModal();
     const { isSnackOpen, setIsSnackOpen, snackContent } = useSnack();
  
-
     const renderContent = () => {
         switch (modalContent?.type) {
             case 'projectForm':
@@ -36,7 +35,7 @@ export default function Surface({ user, project, callSheet, roles }) {
             case 'editCallSheetForm':
                 return <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} mode='edit' formType={modalContent?.data} onClose={handleCloseClick} />;   
             case 'productionSchedule':
-                return <CallSheetProductionSchedule callSheet={callSheet} />;
+                return <CallSheetProductionSchedule project={project} callSheet={callSheet} />;
             case 'recipientForm':
                 return <CallSheetRecipientForm roles={roles} project={project} callSheet={callSheet} onClose={handleCloseClick} />;
             case 'editRecipientForm':

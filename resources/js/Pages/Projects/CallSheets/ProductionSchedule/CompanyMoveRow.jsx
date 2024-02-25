@@ -7,46 +7,45 @@ import Time from '@/Pages/Profile/Forms/Time'; // Adjust the import path as nece
 import Duration from './Duration';
 
 const CompanyMoveRow = ({ callSheet, row, updateRowContent, deleteRow }) => {
-    
     const shootLocationOptions = ["Location A", "Location B", "Location C"].map(location => ({ label: location, value: location }));
-    const handleDurationChange = (newValue) => {
-        updateRowContent(row.id, 6, newValue);
+
+    // Correctly handling updates using column keys
+    const handleUpdateRowContent = (columnKey, newValue) => {
+        updateRowContent(row.id, columnKey, newValue);
     };
 
     return (
         <>
             <td><FontAwesomeIcon icon={faBars} /></td>
-            <td colSpan='3' className='text-white font-bold text-center text-md'>
-                Company Move
-            </td>
-            <td >
+            <td colSpan='3' className='w-[35rem] text-white font-bold text-center text-md'>Company Move</td>
+            <td className='w-1/3'>
                 <EditableCell
                     className='!text-left !text-white placeholder:text-white'
                     placeholder='Notes...'
-                    content={row.columns[1]}
-                    onContentChange={(newValue) => updateRowContent(row.id, 1, newValue)}
+                    content={row.columns.description} // Updated to use the correct key
+                    onContentChange={(newValue) => handleUpdateRowContent('description', newValue)}
                 />
             </td>
-            <td>
-              <EditableSelect
-                className='!text-white'
-                value={row.columns[3]}
-                onChange={(newValue) => updateRowContent(colIndex, newValue)}
-                options={shootLocationOptions}
-              />
+            <td className='w-[8rem]'>
+                <EditableSelect
+                    className='!text-white'
+                    value={row.columns.shootLocation} // Updated to use the correct key
+                    onChange={(newValue) => handleUpdateRowContent('shootLocation', newValue)}
+                    options={shootLocationOptions}
+                />
             </td>
-            <td>
+            <td className='w-[12rem]'>
                 <Time
                     textColor='text-white'
-                    initialTime={row.columns[3]}
-                    onTimeChange={(newTime) => updateRowContent(row.id, 3, newTime)}
+                    initialTime={row.columns.startTime} // Updated to use the correct key
+                    onTimeChange={(newTime) => handleUpdateRowContent('startTime', newTime)}
                 />
             </td>
-            <td className='flex flex-row gap-2'>
+            <td className='w-[15rem]'>
                 <Duration
                     textColor='text-white'
-                    duration={row.columns[4]}
-                    handleDurationChange={handleDurationChange}
+                    duration={row.columns.duration} // Updated to use the correct key
+                    handleDurationChange={(newValue) => handleUpdateRowContent('duration', newValue)}
                 />
             </td>
             <td onClick={() => deleteRow(row.id)}><FontAwesomeIcon icon={faTrash} className="cursor-pointer" /></td>

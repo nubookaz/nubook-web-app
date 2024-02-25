@@ -8,8 +8,19 @@ import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import AddButton from './AddButton';
 
-const CallSheetProductionSchedule = ({ callSheet }) => {
-    const [rows, setRows] = useState([]);
+const CallSheetProductionSchedule = ({ project, callSheet }) => {
+
+    const initialRows = project.production_schedules && project.production_schedules.length > 0
+        ? JSON.parse(project.production_schedules[0].schedule).map((row, index) => ({
+            ...row,
+            id: `row-${index}` // Generate a unique ID for each row
+        }))
+    : [];
+
+
+    const [rows, setRows] = useState(initialRows);
+    const [saveTimeoutId, setSaveTimeoutId] = useState(null);
+    const [isSaving, setIsSaving] = useState(false);
 
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
@@ -17,7 +28,7 @@ const CallSheetProductionSchedule = ({ callSheet }) => {
         result.splice(endIndex, 0, removed);
         return result;
     };
-
+ 
     const onDragEnd = (result) => {
         if (!result.destination) {
             return;
@@ -27,38 +38,67 @@ const CallSheetProductionSchedule = ({ callSheet }) => {
     };
 
     const addRow = (type) => {
-        let columns;
+        let newRow;
         switch (type) {
             case 'Scene':
-                columns = ["", "N/A", "N/A", "", "Location A", "08:00 AM", "0 hours 0 minutes"];
+                newRow = {
+                    id: `row-${rows.length + 1}`,
+                    type,
+                    columns: {
+                        sceneNumber: "",
+                        setting: "N/A",
+                        timeOfDay: "N/A",
+                        description: "",
+                        shootLocation: "Location A",
+                        startTime: "08:00 AM",
+                        duration: "0 hours 0 minutes",
+                    },
+                };
                 break;
             case 'Break':
-                columns = ["", "Break", "", "", "", "08:00 AM", "0 hours 0 minutes"];
+                newRow = {
+                    id: `row-${rows.length + 1}`,
+                    type,
+                    columns: {
+                        breakType: "Break", // Assigning a specific type of break (e.g., Lunch, Dinner)
+                        notes: "", // Placeholder for any notes related to the break
+                        startTime: "08:00 AM", // The time when the break starts
+                        duration: "0 hours 0 minutes", // The expected duration of the break
+                    },
+                };
                 break;
             case 'Company Move':
-                columns = ["", "", "", "", "", "08:00 AM", "0 hours 0 minutes"];
+                newRow = {
+                    id: `row-${rows.length + 1}`,
+                    type,
+                    columns: {
+                        description: "", // Description or notes for the company move
+                        shootLocation: "Location A", // The new location to which the company is moving
+                        startTime: "08:00 AM", // The time when the move starts
+                        duration: "0 hours 0 minutes", // The expected duration of the move
+                    },
+                };
                 break;
             default:
-                columns = ["", "", "", "", "", "", ""];
+                newRow = {
+                    id: `row-${rows.length + 1}`,
+                    type,
+                    columns: {},
+                };
                 break;
         }
-    
-        const newRow = {
-            id: `${rows.length + 1}`,
-            type,
-            columns,
-        };
         setRows([...rows, newRow]);
     };
+    
 
     const getRowBackgroundColor = (type) => {
         switch (type) {
             case 'Scene':
-                return 'bg-white'; // white for Scene
+                return '!bg-slate-50'; // white for Scene
             case 'Break':
-                return 'bg-amber-500'; // light blue for Break
+                return '!bg-amber-500'; // light blue for Break
             case 'Company Move':
-                return 'bg-slate-500'; // light green for Company Move
+                return '!bg-slate-500'; // light green for Company Move
             default:
                 return 'bg-white'; // Default background color
         }
@@ -68,18 +108,55 @@ const CallSheetProductionSchedule = ({ callSheet }) => {
         setRows(rows.filter(row => row.id !== rowId));
     };
 
-    const updateRowContent = (rowId, columnIndex, newValue) => {
+    const updateRowContent = (rowId, columnKey, newValue) => {
         setRows(currentRows =>
             currentRows.map(row =>
-                row.id === rowId ? { ...row, columns: row.columns.map((col, idx) => idx === columnIndex ? newValue : col) } : row
+                row.id === rowId ? { ...row, columns: { ...row.columns, [columnKey]: newValue } } : row
             )
         );
     };
+    
+    const scheduleSave = () => {
+        if (saveTimeoutId) clearTimeout(saveTimeoutId);
+        const newSaveTimeoutId = setTimeout(() => {
+            saveRows(); // Call the save function after the delay
+        }, 2000); // Delay in milliseconds (e.g., 2000ms = 2 seconds)
+        setSaveTimeoutId(newSaveTimeoutId);
+    };
+
+    const saveRows = async () => {
+        setIsSaving(true);
+        const scheduleData = rows.map(row => ({
+            type: row.type,
+            columns: row.columns,
+        }));
+    
+        try {
+            const response = await axios.post(route('callSheets.schedule.store', {id: callSheet.project_id, callSheetId: callSheet.id}), {
+                schedule: scheduleData,
+            });
+    
+            console.log('Schedule saved successfully:', response.data);
+        } catch (error) {
+            console.error("Error saving schedule:", error.response || error);
+        } finally {
+            setIsSaving(false);
+        }
+    };
+    
+    useEffect(() => {
+        if (rows.length > 0) {
+            scheduleSave();
+        }
+        // Clean up on unmount
+        return () => {
+            if (saveTimeoutId) clearTimeout(saveTimeoutId);
+        };
+    }, [rows]);
 
     if (rows.length === 0) {
         return (
             <div className="text-xcenter flex flex-col gap-8 justify-center items-center h-full ">
-                
                 <img src="/images/svg_images/undraw_movie_night.svg" alt="No rows" className="max-w-[25%] opacity-[25%] my-5" />
                 <PrimaryButton onClick={() => addRow('Scene')} className="p-2 bg-blue-500 text-white rounded">Add a Scene Now</PrimaryButton>
             </div>
@@ -88,7 +165,7 @@ const CallSheetProductionSchedule = ({ callSheet }) => {
 
     return (
         <div className='w-full h-full px-10 py-10 relative'>
-            <div className='w-full flex flex-col gap-2 items-center justify-center '>
+            <div className='w-full flex flex-col gap-2 items-center justify-center mb-6'>
                 <h3 className='text-xl font-bold text-slate-500'>Call Sheet: {callSheet.call_sheet_name}</h3>
                 <p className='text-lg'>Production Schedule</p>
             </div>
@@ -97,7 +174,7 @@ const CallSheetProductionSchedule = ({ callSheet }) => {
                 <Droppable droppableId="droppable">
                     {(provided) => (
                         <div className='table-scrollable-container'>
-                            <table id='production-schedule' {...provided.droppableProps} ref={provided.innerRef} className="w-full table-fixed">
+                            <table id='production-schedule-form' {...provided.droppableProps} ref={provided.innerRef} className="w-full table-fixed">
                                 <thead className='bg-slate-100'>
                                     <tr>
                                         <th className="w-[4rem]"></th>
@@ -113,25 +190,30 @@ const CallSheetProductionSchedule = ({ callSheet }) => {
                                 </thead>
                                 <tbody>
                                 {rows.map((row, index) => (
-                                    <Draggable key={row.id} draggableId={row.id} index={index}>
-                                        {(provided, snapshot) => (
+                                    <Draggable key={row.id} draggableId={row.id.toString()} index={index}>
+                                        {(provided, snapshot) => {
+                                        const dynamicBackgroundColor = getRowBackgroundColor(row.type);
+                                        return (
                                             <tr
-                                                {...provided.draggableProps}
-                                                ref={provided.innerRef}
-                                                {...provided.dragHandleProps}
-                                                className={`${snapshot.isDragging ? 'dragging-row' : ''} ${getRowBackgroundColor(row.type)}`} // Add the dynamic background color class here
-                                                style={snapshot.isDragging ? {...provided.draggableProps.style, width: "inherit", margin: "0"} : {}}
-
+                                            {...provided.draggableProps}
+                                            ref={provided.innerRef}
+                                            {...provided.dragHandleProps}
+                                            className={`${dynamicBackgroundColor} ${snapshot.isDragging ? 'dragging-row' : ''}`}
+                                            style={{
+                                                ...provided.draggableProps.style,
+                                                backgroundColor: snapshot.isDragging ? dynamicBackgroundColor : '',
+                                            }}
                                             >
-                                                {row.type === 'Scene' ? (
-                                                    <SceneRow row={row} callSheet={callSheet} updateRowContent={updateRowContent} deleteRow={deleteRow} />
-                                                ) : row.type === 'Break' ? (
-                                                    <BreakRow row={row} callSheet={callSheet} updateRowContent={updateRowContent} deleteRow={deleteRow} />
-                                                ) : row.type === 'Company Move' ? (
-                                                    <CompanyMoveRow row={row} callSheet={callSheet} updateRowContent={updateRowContent} deleteRow={deleteRow} />
-                                                ) : null}
+                                            {row.type === 'Scene' ? (
+                                                <SceneRow row={row} callSheet={callSheet} updateRowContent={updateRowContent} deleteRow={deleteRow} />
+                                            ) : row.type === 'Break' ? (
+                                                <BreakRow row={row} callSheet={callSheet} updateRowContent={updateRowContent} deleteRow={deleteRow} />
+                                            ) : row.type === 'Company Move' ? (
+                                                <CompanyMoveRow row={row} callSheet={callSheet} updateRowContent={updateRowContent} deleteRow={deleteRow} />
+                                            ) : null}
                                             </tr>
-                                        )}
+                                        );
+                                        }}
                                     </Draggable>
                                 ))}
                                 {provided.placeholder}
@@ -143,13 +225,16 @@ const CallSheetProductionSchedule = ({ callSheet }) => {
                 </Droppable>
             </DragDropContext>
 
-            <AddButton
-                className={`absolute w-full bottom-0 left-0 py-6 bg-white shadow-[15px_0px_20px_-15px_rgba(0,0,0,0.3)]`}
-                addScene={() => addRow('Scene')}
-                addBreak={() => addRow('Break')}
-                addCompanyMove={() => addRow('Company Move')}
-            />
+            <div className={`flex flex-row px-8 absolute w-full bottom-0 left-0 py-6 bg-white shadow-[15px_0px_20px_-15px_rgba(0,0,0,0.3)]`}>
+                <AddButton
+                    addScene={() => addRow('Scene')}
+                    addBreak={() => addRow('Break')}
+                    addCompanyMove={() => addRow('Company Move')}
+                />
+                <PrimaryButton className={`text-white`}>Done</PrimaryButton>
+            </div>
 
+            
         </div>
     );
 };

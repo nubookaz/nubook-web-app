@@ -1,17 +1,13 @@
-#production-schedule {
+#production-schedule-form {
     border-collapse: separate; 
     border-spacing: 0rem .50rem;  
     margin-top: -9px;
 }
 
-#production-schedule thead tr th {
+#production-schedule-form thead tr th {
     font-size: .75rem;
     color: rgba(0,0,0,.5);
     font-weight: semibold;
-}
-
-#production-schedule tbody {
-    /* overflow: scroll; */
 }
 
 div.table-scrollable-container { 
@@ -28,25 +24,19 @@ div.table-scrollable-container > table > thead {
     height: 1rem;
 } 
 
-#production-schedule tbody tr {
+#production-schedule-form tbody tr {
     box-shadow: 0px 2px 2px rgba(0,0,0,.05);
     border-radius: 10px;
     overflow: hidden;
-    background-color: #fff;
     height: 3rem;
 }
 
-#production-schedule tbody tr:hover {
-    background-color: rgba(0,0,0,.01) !important;
-    transition: .5s ease-in-out;
+#production-schedule-form tbody tr td {
+    padding: 0rem .5rem;
 }
 
-#production-schedule tbody tr td {
-    padding: .65rem .5rem;
-}
-
-#production-schedule tbody tr td select,
-#production-schedule tbody tr td input {
+#production-schedule-form tbody tr td select,
+#production-schedule-form tbody tr td input {
     height: 2.5rem;
     padding: 0rem .5rem;
     background-color: transparent;
@@ -54,14 +44,14 @@ div.table-scrollable-container > table > thead {
     outline: none
 }
 
-#production-schedule tbody tr td:first-child {
+#production-schedule-form tbody tr td:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
 }
 
-#production-schedule tbody tr td:last-child {
+#production-schedule-form tbody tr td:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     padding-right: 1.5rem;
@@ -69,33 +59,28 @@ div.table-scrollable-container > table > thead {
     width: 2rem;
 }
 
-#production-schedule tbody tr td:first-child:hover {
+#production-schedule-form tbody tr td:first-child:hover {
     color: rgba(0,0,0,.5);
     transition: .5s ease-in-out;
 }
 
-#production-schedule tbody tr td:last-child:hover {
+#production-schedule-form tbody tr td:last-child:hover {
     color: red;
     transition: .5s ease-in-out;
 }
 
-#production-schedule /* This will hide the arrow for all select elements */
+#production-schedule-form   
 select {
-  -webkit-appearance: none; /* for Chrome, Safari */
-  -moz-appearance: none;    /* for Firefox */
-  appearance: none;         /* for modern browsers */
-  
-  /* To remove the inner border in Firefox */
+  -webkit-appearance: none;  
+  -moz-appearance: none;  
+  appearance: none;    
   border-style: none;
-  
-  /* Use a background image for custom arrow (optional) */
-  background-image: url('path-to-your-custom-arrow.png');
+  background-image: url('');
   background-repeat: no-repeat;
   background-position: right center;
-  background-size: 12px 12px; /* or whatever size fits your design */
+  background-size: 12px 12px;  
 }
 
-/* To remove the blue background color when select is focused */
 select:focus {
   outline: none;
 }
@@ -105,8 +90,35 @@ select:focus {
     margin-left: 0;
 }
 
-#production-schedule .dragging-row {
-    background-color: #f4f4f4; /* or any color that indicates the dragging state */
+#production-schedule-form .dragging-row {
+    background-color: inherit; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    width: 100%; /* This ensures the width is the same as it is normally */
+    width: 100%;  
+}
+
+#production-schedule-ui {
+    border-collapse: separate; 
+    border-spacing: 0rem .50rem;  
+}
+
+#production-schedule-ui tbody tr td {
+    font-size: .85rem;
+    padding: .75rem 0;
+    color: rgba(0,0,0,.4);
+}
+
+#production-schedule-ui tbody tr td:first-child,
+#production-schedule-ui tbody tr td:last-child {
+    padding: .75rem .50rem;
+    overflow: hidden;
+}
+
+#production-schedule-ui tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#production-schedule-ui tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

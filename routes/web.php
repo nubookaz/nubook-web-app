@@ -56,7 +56,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
- 
+    Route::get('/fetch-project-data', [ProfileController::class, 'fetchUserProjects'])->name('fetch-project-data');
+
     Route::post('/chat', [ChatGPTController::class, 'chat'])->name('chat.gpt');
     Route::get('/ai-content-info', [ChatGPTController::class, 'getAIGeneratedContentInfo'])->name('ai-content.info');
     Route::get('/fetch-image', [ChatGPTController::class, 'fetchImage']);
@@ -150,6 +151,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::post('/', [CallSheetController::class, 'storeCallSheetSchedule'])->name('callSheets.schedule.store');
                 Route::get('/', [CallSheetController::class, 'getCallSheetSchedule'])->name('callSheets.schedule.get');
                 Route::put('/schedule', [CallSheetController::class, 'updateCallSheetSchedule'])->name('callSheets.schedule.update');
+
             });
 
             Route::post('/{callSheetId}/recipients', [CallSheetController::class, 'saveRecipient'])->name('projects.callSheets.recipient');

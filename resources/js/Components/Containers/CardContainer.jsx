@@ -8,6 +8,7 @@ export default function CardContainer({
     header,
     className = '',
     onClick,
+    textClassName,
   }) {
     function containsBackgroundClass(className) {
       const bgClassPattern = /\bbg-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
@@ -19,7 +20,7 @@ export default function CardContainer({
     }
   
     const finalClassName = containsBackgroundClass(className) ? className : `bg-white ${className}`;
-    const finalTextClassName = containsTextClass(className) ? className : `text-slate-400 ${className}`;
+    const finalTextClassName = containsTextClass(textClassName) ? textClassName : `text-slate-400 ${textClassName}`;
   
     // Add styles for the scrolling content
     const contentStyle = {
@@ -28,9 +29,9 @@ export default function CardContainer({
     };
   
     return (
-      <div className={`${finalClassName} p-6 shadow-sm rounded-2xl flex flex-col gap-2`}>
+      <div className={`${finalClassName} p-6 shadow-sm rounded-2xl flex flex-col gap-2 ${header ? '' : 'relative'}`}>
         {(header || onClick) && (
-          <div className="flex flex-row w-full justify-between items-center">
+          <div className={`${header ? 'w-full flex flex-row justify-between items-center' : 'absolute right-6'}`}>
             {header && (
               <div>
                 <h4 className={`${finalTextClassName} w-full text-sm`}>{header}</h4>

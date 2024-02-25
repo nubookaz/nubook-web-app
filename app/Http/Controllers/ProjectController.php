@@ -77,7 +77,7 @@ class ProjectController extends Controller
 
     public function savePoster(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // Validate the incoming request
         $validatedData = $request->validate([
             'image_url' => 'required|url',

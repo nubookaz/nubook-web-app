@@ -11,6 +11,8 @@ import { ModalProvider } from '@/Components/Contexts/ModalContext';
 import { SnackProvider } from '@/Components/Contexts/SnackContext';
 import { DarkModeProvider } from '@/Components/Contexts/DarkModeContext';
 import { DrawerProvider } from '@/Components/Contexts/DrawerContext';
+import { ScheduleProvider } from '@/Components/Contexts/ScheduleContext';
+import { ProjectProvider } from '@/Components/Contexts/ProjectContext';
 
 
 
@@ -24,19 +26,23 @@ createInertiaApp({
 
         root.render(
             <AuthProvider>
-                <ModalProvider>
-                    <SnackProvider>
-                        <DarkModeProvider>
-                            <CallSheetProvider>
-                                <CallSheetLocationProvider>
-                                    <DrawerProvider>
-                                        <App {...props} />
-                                    </DrawerProvider>
-                                </CallSheetLocationProvider>
-                            </CallSheetProvider>
-                        </DarkModeProvider>
-                    </SnackProvider>
-                 </ModalProvider>
+                <ProjectProvider>
+                    <ModalProvider>
+                        <SnackProvider>
+                            <DarkModeProvider>
+                                <CallSheetProvider>
+                                    <CallSheetLocationProvider>
+                                        <DrawerProvider>
+                                            <ScheduleProvider>
+                                                <App {...props} />
+                                            </ScheduleProvider>
+                                        </DrawerProvider>
+                                    </CallSheetLocationProvider>
+                                </CallSheetProvider>
+                            </DarkModeProvider>
+                        </SnackProvider>
+                    </ModalProvider>
+                </ProjectProvider>
              </AuthProvider>
         );
 

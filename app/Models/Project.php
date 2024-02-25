@@ -44,6 +44,11 @@ class Project extends Model
     {
         return $this->hasMany(CallSheet::class);
     }
- 
+    
+    public function productionSchedules()
+    {
+        return $this->hasMany(ProductionSchedule::class);
+    }
+    
 
 }

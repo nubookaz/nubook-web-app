@@ -136,7 +136,7 @@ export default function ProjectDetailsPage({
                 body:(
                     <div className="w-full h-full flex flex-row gap-4">
                         <div className='flex flex-col gap-4 h-full w-full'>
-                            <CardContainer className='w-full h-full max-h-[24rem]' showButtonIcon={true}>
+                            <CardContainer className='w-full h-full max-h-[24rem]' onClick={toggleFavorite}>
                                 <div className='flex flex-row gap-6 w-full h-full'>
                                     <ImageContainer
                                           backgroundImage={projectData.movie_poster.url ? projectData.movie_poster.url : '/images/movie_posters/coming_soon_poster.jpg'}
@@ -198,14 +198,14 @@ export default function ProjectDetailsPage({
                                 </div>
                             </CardContainer>
 
-                            <CardContainer header='Tasks' className='h-full'>
+                            <CardContainer header='Tasks' className='h-full' onClick={toggleFavorite}>
 
                             </CardContainer>
 
                         </div>
                         
                         <div className='flex flex-col h-full w-full max-w-[28rem] gap-4'>
-                          <CardContainer header='Budget' showButtonIcon={true}>
+                          <CardContainer header='Budget' onClick={toggleFavorite}>
                               <div className='flex flex-col text-center py-[3rem]'>
                                   <span className='text-slate-400 font-semibold'>Project Budget</span>
                                   <span className='text-[2rem] text-emerald-500 font-bold'>${formatCurrency(projectData.project_budget)}</span>

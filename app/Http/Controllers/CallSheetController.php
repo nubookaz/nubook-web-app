@@ -13,6 +13,7 @@ use App\Models\HospitalLocation;
 use App\Models\PhoneNumber;
 use App\Models\User;  
 use App\Models\Role;  
+use App\Models\ProductionSchedule;  
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -148,14 +149,17 @@ class CallSheetController extends Controller
 
     public function editDetailsPage($id, $callSheetId)
     {
-        $project = Project::with(['users' => function ($query) {
-            $query->with(['roles', 'phone']);
-        }])->find($id);
+        $project = Project::with([
+            'users' => function ($query) {
+                $query->with(['roles', 'phone']);
+            },
+            'productionSchedules' // Load the ProductionSchedules relationship
+        ])->find($id);
     
         $callSheet = CallSheet::with(['users' => function($query) {
             $query->with(['phone'])->withPivot('role_id', 'position', 'call_time');
         }])->find($callSheetId);
-    
+        // dd($project);
         // Fetch roles once to avoid repeated queries
         $roles = Role::all()->keyBy('id');
     
@@ -413,28 +417,28 @@ class CallSheetController extends Controller
         }
     }
 
-    public function storeCallSheetSchedule(Request $request, $projectId, $callSheetId)
-    {
-        // Find the CallSheet based on $callSheetId
-        $callSheet = CallSheet::find($callSheetId);
+    // public function storeCallSheetSchedule(Request $request, $projectId, $callSheetId)
+    // {
+    //     // Find the CallSheet based on $callSheetId
+    //     $callSheet = CallSheet::find($callSheetId);
     
-        if ($callSheet) {
-            // Decode the JSON data from the request
-            $scheduleData = json_decode($request->input('schedule'), true);
+    //     if ($callSheet) {
+    //         // Decode the JSON data from the request
+    //         $scheduleData = json_decode($request->input('schedule'), true);
     
-            // Update the 'schedule' column in your CallSheet model
-            $callSheet->schedule = $scheduleData;
-            $callSheet->save();
+    //         // Update the 'schedule' column in your CallSheet model
+    //         $callSheet->schedule = $scheduleData;
+    //         $callSheet->save();
     
-            return response()->json([
-                'success' => 'Schedule updated successfully.',
-                'callSheet' => $callSheet
-            ]);
+    //         return response()->json([
+    //             'success' => 'Schedule updated successfully.',
+    //             'callSheet' => $callSheet
+    //         ]);
             
-        } else {
-            return response()->json(['error' => 'CallSheet not found'], 404);
-        }
-    }
+    //     } else {
+    //         return response()->json(['error' => 'CallSheet not found'], 404);
+    //     }
+    // }
     
     public function storeLocationDetails(Request $request, $id, $callSheetId)
     {
@@ -664,55 +668,85 @@ class CallSheetController extends Controller
     
     
 
-    public function getCallSheetSchedule($id, $callSheetId)
-    {
-        // Find the call sheet by ID
-        $callSheet = CallSheet::find($callSheetId);
+    // public function getCallSheetSchedule($id, $callSheetId)
+    // {
+    //     // Find the call sheet by ID
+    //     $callSheet = CallSheet::find($callSheetId);
 
-        if (!$callSheet) {
-            return response()->json(['message' => 'Call Sheet not found'], 404);
-        }
+    //     if (!$callSheet) {
+    //         return response()->json(['message' => 'Call Sheet not found'], 404);
+    //     }
 
-        // Assuming the schedule data is stored as JSON in a 'schedule' column
-        $scheduleData = $callSheet->schedule;
+    //     // Assuming the schedule data is stored as JSON in a 'schedule' column
+    //     $scheduleData = $callSheet->schedule;
 
-        // If the schedule data is not empty, return it
-        if (!empty($scheduleData)) {
-            return response()->json($scheduleData);
-        }
+    //     // If the schedule data is not empty, return it
+    //     if (!empty($scheduleData)) {
+    //         return response()->json($scheduleData);
+    //     }
 
-        // If the schedule data is empty, you can decide how to handle this.
-        // For example, return an empty array or a default value.
-        return response()->json([]);
-    }
+    //     // If the schedule data is empty, you can decide how to handle this.
+    //     // For example, return an empty array or a default value.
+    //     return response()->json([]);
+    // }
 
-    public function updateCallSheetSchedule(Request $request, $id, $callSheetId)
-    {
-        $callSheet = CallSheet::find($callSheetId);
+    // public function updateCallSheetSchedule(Request $request, $id, $callSheetId)
+    // {
+    //     $callSheet = CallSheet::find($callSheetId);
 
-        if (!$callSheet) {
-            return response()->json(['message' => 'Call Sheet not found'], 404);
-        }
+    //     if (!$callSheet) {
+    //         return response()->json(['message' => 'Call Sheet not found'], 404);
+    //     }
 
-        // Validate the incoming data if necessary
-        $validatedData = $request->validate([
-            'schedule' => 'required|json',
-        ]);
+    //     // Validate the incoming data if necessary
+    //     $validatedData = $request->validate([
+    //         'schedule' => 'required|json',
+    //     ]);
 
-        // Update the schedule data
-        $callSheet->schedule = json_decode($request->schedule, true);
-        $callSheet->save();
+    //     // Update the schedule data
+    //     $callSheet->schedule = json_decode($request->schedule, true);
+    //     $callSheet->save();
 
-        return response()->json(['message' => 'Schedule updated successfully']);
-    }
+    //     return response()->json(['message' => 'Schedule updated successfully']);
+    // }
 
     
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function storeCallSheetSchedule(Request $request, $projectId, $callSheetId)
     {
-        //
+        $validatedData = $request->validate([
+            'schedule' => 'required|array', // Validate the schedule as an array
+            'callSheetId' => 'nullable|exists:call_sheets,id', // Optional call sheet ID
+        ]);
+    
+        // Assuming you have a unique way to identify a schedule, such as a schedule ID within the data.
+        // Adjust this part based on your actual requirements.
+        $uniqueScheduleIdentifier = $request->input('scheduleId'); // Example placeholder
+    
+        // Update or create the production schedule
+        $productionSchedule = ProductionSchedule::updateOrCreate(
+            [
+                'project_id' => $projectId,
+                // Add more criteria here if necessary to uniquely identify the schedule
+                // For example: 'id' => $uniqueScheduleIdentifier,
+            ],
+            [
+                'schedule' => json_encode($validatedData['schedule']), // Encode the array as JSON
+            ]
+        );
+    
+        // If a callSheetId is provided, ensure it is linked to the updated/created production schedule
+        if (!empty($validatedData['callSheetId'])) {
+            $callSheet = CallSheet::find($validatedData['callSheetId']);
+            $callSheet->production_schedule_id = $productionSchedule->id;
+            $callSheet->save();
+        }
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Production schedule saved successfully.',
+            'productionScheduleId' => $productionSchedule->id,
+        ]);
     }
+    
+    
 }

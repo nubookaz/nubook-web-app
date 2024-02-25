@@ -22,7 +22,8 @@ import CallSheetActionDetails from './ActionDrawer/CallSheetActionDetails';
 export default function CallSheetDetails() {
     const { user } = useAuth();
     const { project, callSheet, roles } = usePage().props;
- 
+
+    console.log(project);
    return (
  
         <PortalLayout
@@ -56,7 +57,7 @@ export default function CallSheetDetails() {
                         </div>
                         <div className='w-full flex flex-col gap-4 h-full'>
                             <WeatherContainer project={project} callSheet={callSheet} className='w-full bg-orange-200 text-white'/>
-                            <ProductionSchedule data={callSheet} className='h-full' />
+                            <ProductionSchedule project={project} callSheet={callSheet} className='h-full' />
                         </div>
                     </div>
                 ),
