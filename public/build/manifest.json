@@ -1,469 +1,1000 @@
 {
-  "_ActiveCard-ad2f1504.js": {
-    "file": "assets/ActiveCard-ad2f1504.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_CardContainer-3fff5ae6.js",
-      "_useSlot-e00659a1.js",
-      "_emotion-react.browser.esm-5cf38407.js"
-    ]
-  },
-  "_AuthenticatedLayout-4f11e684.js": {
-    "file": "assets/AuthenticatedLayout-4f11e684.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js"
-    ]
-  },
-  "_CardContainer-3fff5ae6.js": {
-    "file": "assets/CardContainer-3fff5ae6.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js"
-    ]
-  },
-  "_CircularButton-5433ef48.js": {
-    "file": "assets/CircularButton-5433ef48.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index.es-3e6cee57.js"
-    ]
-  },
-  "_GuestLayout-7285c431.js": {
-    "file": "assets/GuestLayout-7285c431.js",
+  "_ApplicationName-e8d4d2b6.js": {
+    "file": "assets/ApplicationName-e8d4d2b6.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_ImageContainer-5604b706.js": {
-    "file": "assets/ImageContainer-5604b706.js",
+  "_AuthenticatedLayout-5c330e09.js": {
+    "file": "assets/AuthenticatedLayout-5c330e09.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-3e6cee57.js"
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx"
     ]
   },
-  "_Input-271e9293.js": {
-    "file": "assets/Input-271e9293.js",
+  "_Autocomplete-6b3fde81.js": {
+    "file": "assets/Autocomplete-6b3fde81.js",
     "imports": [
-      "_useSlot-e00659a1.js",
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_createSvgIcon-55254c0b.js",
+      "_variantColorInheritance-c1408343.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Input-5644a10b.js",
+      "_ListItemButton-477eeb75.js",
+      "_FormControlContext-3200095e.js",
+      "_isMuiElement-573e6873.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_Chip-1c999ce1.js",
+      "_Popper-e61842d4.js",
+      "_colorInversionUtils-4d37075b.js"
+    ]
+  },
+  "_Avatar-2a2b2d13.js": {
+    "file": "assets/Avatar-2a2b2d13.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_createSvgIcon-55254c0b.js"
+    ]
+  },
+  "_BannerImage-2d65b704.js": {
+    "file": "assets/BannerImage-2d65b704.js"
+  },
+  "_Box-5ac5becb.js": {
+    "file": "assets/Box-5ac5becb.js",
+    "imports": [
+      "_useSlot-a85726b4.js",
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_extendSxProp-d164df09.js"
+    ]
+  },
+  "_Card-526e725c.js": {
+    "file": "assets/Card-526e725c.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js"
+    ]
+  },
+  "_CardContainer-85b3eca7.js": {
+    "file": "assets/CardContainer-85b3eca7.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js"
+    ]
+  },
+  "_Checkbox-a60a1855.js": {
+    "file": "assets/Checkbox-a60a1855.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Typography-b234be5c.js",
+      "_FormControlContext-3200095e.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useSwitch-b2bda0e8.js"
+    ]
+  },
+  "_Chip-1c999ce1.js": {
+    "file": "assets/Chip-1c999ce1.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_variantColorInheritance-c1408343.js",
+      "_styleUtils-8a36875c.js",
+      "_useIsFocusVisible-a86ea076.js"
+    ]
+  },
+  "_CircularProgress-5764a8a7.js": {
+    "file": "assets/CircularProgress-5764a8a7.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_EmptyContent-4e9f737f.js": {
+    "file": "assets/EmptyContent-4e9f737f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_SecondaryButton-70a47f80.js"
+    ]
+  },
+  "_Form-792c5f5e.js": {
+    "file": "assets/Form-792c5f5e.js"
+  },
+  "_FormControl-ce05194c.js": {
+    "file": "assets/FormControl-ce05194c.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_FormControlContext-3200095e.js",
+      "_useIsFocusVisible-a86ea076.js"
+    ]
+  },
+  "_FormControlContext-3200095e.js": {
+    "file": "assets/FormControlContext-3200095e.js",
+    "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_InputError-41571d02.js": {
-    "file": "assets/InputError-41571d02.js",
+  "_GuestLayout-49f0690a.js": {
+    "file": "assets/GuestLayout-49f0690a.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_CardContainer-85b3eca7.js",
+      "_ImageContainer-9a333d0e.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Modal-f577344b.js"
+    ]
+  },
+  "_IconButton-e240f944.js": {
+    "file": "assets/IconButton-e240f944.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js"
+    ]
+  },
+  "_ImageContainer-9a333d0e.js": {
+    "file": "assets/ImageContainer-9a333d0e.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_InputLabel-0be8bbfb.js": {
-    "file": "assets/InputLabel-0be8bbfb.js",
+  "_Input-5644a10b.js": {
+    "file": "assets/Input-5644a10b.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_useForwardedInput-a4d3e062.js",
+      "_colorInversionUtils-4d37075b.js"
+    ]
+  },
+  "_Input-f63195bf.js": {
+    "file": "assets/Input-f63195bf.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Tooltip-6de05098.js"
+    ]
+  },
+  "_InputError-2b99d88b.js": {
+    "file": "assets/InputError-2b99d88b.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_ListItemButton-9e7b24bd.js": {
-    "file": "assets/ListItemButton-9e7b24bd.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_useSlot-e00659a1.js"
-    ]
-  },
-  "_Modal-6310a6e6.js": {
-    "file": "assets/Modal-6310a6e6.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_transition-83843011.js"
-    ]
-  },
-  "_Option-68e62e81.js": {
-    "file": "assets/Option-68e62e81.js",
-    "imports": [
-      "_useSlot-e00659a1.js",
-      "resources/js/app.jsx",
-      "_ListItemButton-9e7b24bd.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_Input-271e9293.js",
-      "_Tooltip-37a15d1f.js"
-    ]
-  },
-  "_PortalLayout-8556d041.js": {
-    "file": "assets/PortalLayout-8556d041.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_SecondaryButton-1ee136e4.js",
-      "_CircularButton-5433ef48.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_index-f033c28d.js",
-      "_ProjectNavigation-c8d4cccd.js"
-    ]
-  },
-  "_PrimaryButton-1ff472a9.js": {
-    "file": "assets/PrimaryButton-1ff472a9.js",
+  "_InputLabel-6b127c07.js": {
+    "file": "assets/InputLabel-6b127c07.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_ProjectNavigation-c8d4cccd.js": {
-    "file": "assets/ProjectNavigation-c8d4cccd.js",
+  "_ListItemButton-477eeb75.js": {
+    "file": "assets/ListItemButton-477eeb75.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_variantColorInheritance-c1408343.js"
+    ]
+  },
+  "_Modal-f577344b.js": {
+    "file": "assets/Modal-f577344b.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_Tooltip-37a15d1f.js"
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js"
+    ]
+  },
+  "_Option-c6a342bc.js": {
+    "file": "assets/Option-c6a342bc.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_styleUtils-8a36875c.js",
+      "_FormControlContext-3200095e.js",
+      "_variantColorInheritance-c1408343.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
+    ]
+  },
+  "_Popper-e61842d4.js": {
+    "file": "assets/Popper-e61842d4.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_useEnhancedEffect-346992f7.js"
+    ]
+  },
+  "_PortalLayout-412bf038.js": {
+    "file": "assets/PortalLayout-412bf038.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_Modal-f577344b.js",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js"
+    ]
+  },
+  "_PrimaryButton-7fd1b638.js": {
+    "file": "assets/PrimaryButton-7fd1b638.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_ProjectForm-3e4e56c7.js": {
+    "file": "assets/ProjectForm-3e4e56c7.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx"
     ],
     "isDynamicEntry": true
   },
-  "_RightPanel-0eceaab0.js": {
-    "file": "assets/RightPanel-0eceaab0.js",
+  "_SecondaryButton-70a47f80.js": {
+    "file": "assets/SecondaryButton-70a47f80.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-3e6cee57.js"
+      "_index.es-6f9cfa5f.js"
     ]
   },
-  "_SecondaryButton-1ee136e4.js": {
-    "file": "assets/SecondaryButton-1ee136e4.js",
+  "_Select-ac02434c.js": {
+    "file": "assets/Select-ac02434c.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Tooltip-6de05098.js"
+    ]
+  },
+  "_Skeleton-35f5ec8d.js": {
+    "file": "assets/Skeleton-35f5ec8d.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_TextInput-a49b2898.js": {
+    "file": "assets/TextInput-a49b2898.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js"
+    ]
+  },
+  "_Textarea-05168225.js": {
+    "file": "assets/Textarea-05168225.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_useForwardedInput-a4d3e062.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_debounce-517eeb3c.js"
+    ]
+  },
+  "_Tooltip-6de05098.js": {
+    "file": "assets/Tooltip-6de05098.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_Popper-e61842d4.js"
+    ]
+  },
+  "_Typography-b234be5c.js": {
+    "file": "assets/Typography-b234be5c.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_extendSxProp-d164df09.js",
+      "_isMuiElement-573e6873.js"
+    ]
+  },
+  "_colorInversionUtils-4d37075b.js": {
+    "file": "assets/colorInversionUtils-4d37075b.js",
+    "imports": [
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_createChainedFunction-0bab83cf.js": {
+    "file": "assets/createChainedFunction-0bab83cf.js"
+  },
+  "_createSvgIcon-55254c0b.js": {
+    "file": "assets/createSvgIcon-55254c0b.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_createSvgIcon-dfa65f32.js": {
+    "file": "assets/createSvgIcon-dfa65f32.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_extendSxProp-d164df09.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_isMuiElement-573e6873.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js"
+    ]
+  },
+  "_debounce-517eeb3c.js": {
+    "file": "assets/debounce-517eeb3c.js"
+  },
+  "_extendSxProp-d164df09.js": {
+    "file": "assets/extendSxProp-d164df09.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_formLabelClasses-654454ad.js": {
+    "file": "assets/formLabelClasses-654454ad.js",
+    "imports": [
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_index-1074990b.js": {
+    "file": "assets/index-1074990b.js"
+  },
+  "_index-8557a519.js": {
+    "file": "assets/index-8557a519.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-d5199ec3.js"
+    ]
+  },
+  "_index-d5199ec3.js": {
+    "file": "assets/index-d5199ec3.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_SlideUpModal-c595e618.js": {
-    "file": "assets/SlideUpModal-c595e618.js",
-    "imports": [
-      "_useSlot-e00659a1.js",
-      "resources/js/app.jsx",
-      "_ListItemButton-9e7b24bd.js",
-      "_emotion-react.browser.esm-5cf38407.js",
-      "_index-f033c28d.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_CardContainer-3fff5ae6.js",
-      "_index.es-3e6cee57.js",
-      "_CircularButton-5433ef48.js"
-    ]
+  "_index.es-6370c44d.js": {
+    "file": "assets/index.es-6370c44d.js"
   },
-  "_TextInput-acde6cf5.js": {
-    "file": "assets/TextInput-acde6cf5.js",
+  "_index.es-6f9cfa5f.js": {
+    "file": "assets/index.es-6f9cfa5f.js",
     "imports": [
-      "resources/js/app.jsx",
-      "_index.es-3e6cee57.js"
-    ]
-  },
-  "_Textarea-e1ab5a14.js": {
-    "file": "assets/Textarea-e1ab5a14.js",
-    "imports": [
-      "_useSlot-e00659a1.js",
-      "resources/js/app.jsx",
-      "_Input-271e9293.js",
-      "_Tooltip-37a15d1f.js"
-    ]
-  },
-  "_Tooltip-37a15d1f.js": {
-    "file": "assets/Tooltip-37a15d1f.js",
-    "imports": [
-      "_useSlot-e00659a1.js",
+      "_index-d5199ec3.js",
       "resources/js/app.jsx"
     ]
   },
-  "_Typography-a41e099d.js": {
-    "file": "assets/Typography-a41e099d.js",
-    "imports": [
-      "_useSlot-e00659a1.js",
-      "resources/js/app.jsx",
-      "_isMuiElement-8221bc9b.js"
-    ]
-  },
-  "_createSvgIcon-cb2127eb.js": {
-    "file": "assets/createSvgIcon-cb2127eb.js",
-    "imports": [
-      "_useSlot-e00659a1.js",
-      "resources/js/app.jsx"
-    ]
-  },
-  "_emotion-react.browser.esm-5cf38407.js": {
-    "file": "assets/emotion-react.browser.esm-5cf38407.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_useSlot-e00659a1.js"
-    ]
-  },
-  "_index-f033c28d.js": {
-    "file": "assets/index-f033c28d.js"
-  },
-  "_index.es-3e6cee57.js": {
-    "file": "assets/index.es-3e6cee57.js",
+  "_isMuiElement-573e6873.js": {
+    "file": "assets/isMuiElement-573e6873.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_isMuiElement-8221bc9b.js": {
-    "file": "assets/isMuiElement-8221bc9b.js",
+  "_lodash-46568a0d.js": {
+    "file": "assets/lodash-46568a0d.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_transition-83843011.js": {
-    "file": "assets/transition-83843011.js",
+  "_ownerWindow-09f9bd5f.js": {
+    "file": "assets/ownerWindow-09f9bd5f.js",
+    "imports": [
+      "_useEnhancedEffect-346992f7.js"
+    ]
+  },
+  "_styleUtils-8a36875c.js": {
+    "file": "assets/styleUtils-8a36875c.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js"
+    ]
+  },
+  "_toPropertyKey-a23e7eac.js": {
+    "file": "assets/toPropertyKey-a23e7eac.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_useSlot-e00659a1.js": {
-    "file": "assets/useSlot-e00659a1.js",
+  "_transition-501b5c46.js": {
+    "file": "assets/transition-501b5c46.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_useSwitch-f1ae9baa.js": {
-    "file": "assets/useSwitch-f1ae9baa.js",
+  "_useEnhancedEffect-346992f7.js": {
+    "file": "assets/useEnhancedEffect-346992f7.js",
     "imports": [
-      "_useSlot-e00659a1.js",
+      "resources/js/app.jsx"
+    ]
+  },
+  "_useEventCallback-9096ac69.js": {
+    "file": "assets/useEventCallback-9096ac69.js",
+    "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-37a15d1f.js"
+      "_useEnhancedEffect-346992f7.js"
+    ]
+  },
+  "_useForwardedInput-a4d3e062.js": {
+    "file": "assets/useForwardedInput-a4d3e062.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_FormControlContext-3200095e.js",
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_useIsFocusVisible-a86ea076.js": {
+    "file": "assets/useIsFocusVisible-a86ea076.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_useSlot-a85726b4.js": {
+    "file": "assets/useSlot-a85726b4.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx"
+    ]
+  },
+  "_useSwitch-b2bda0e8.js": {
+    "file": "assets/useSwitch-b2bda0e8.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useSlot-a85726b4.js"
+    ]
+  },
+  "_variantColorInheritance-c1408343.js": {
+    "file": "assets/variantColorInheritance-c1408343.js",
+    "imports": [
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/app.jsx",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js"
     ]
   },
   "resources/js/Pages/Auth/ConfirmPassword.jsx": {
-    "file": "assets/ConfirmPassword-c5af7857.js",
+    "file": "assets/ConfirmPassword-42a4134b.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-7285c431.js",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_TextInput-acde6cf5.js",
-      "_index.es-3e6cee57.js"
+      "_GuestLayout-49f0690a.js",
+      "_InputError-2b99d88b.js",
+      "_InputLabel-6b127c07.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_TextInput-a49b2898.js",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_ImageContainer-9a333d0e.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Modal-f577344b.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ConfirmPassword.jsx"
   },
   "resources/js/Pages/Auth/ForgotPassword.jsx": {
-    "file": "assets/ForgotPassword-bf3f10cf.js",
+    "file": "assets/ForgotPassword-418cc585.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-7285c431.js",
-      "_InputError-41571d02.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_TextInput-acde6cf5.js",
-      "_index.es-3e6cee57.js"
+      "_GuestLayout-49f0690a.js",
+      "_InputError-2b99d88b.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_TextInput-a49b2898.js",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_ImageContainer-9a333d0e.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Modal-f577344b.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ForgotPassword.jsx"
   },
-  "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-1fb77e9b.js",
+  "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx": {
+    "file": "assets/PrivacyPolicy-5dd70ea0.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-7285c431.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_CardContainer-3fff5ae6.js",
-      "_ImageContainer-5604b706.js",
-      "_Input-271e9293.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js"
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx"
+  },
+  "resources/js/Pages/Auth/LogOutForm.jsx": {
+    "file": "assets/LogOutForm-2b450e55.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Auth/LogOutForm.jsx"
+  },
+  "resources/js/Pages/Auth/Login.jsx": {
+    "file": "assets/Login-71bcffe4.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-49f0690a.js",
+      "_Form-792c5f5e.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_Input-f63195bf.js",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_ImageContainer-9a333d0e.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Modal-f577344b.js",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Login.jsx"
   },
-  "resources/js/Pages/Auth/Register copy.jsx": {
-    "file": "assets/Register copy-82d1acdb.js",
+  "resources/js/Pages/Auth/Registration/EmailStep.jsx": {
+    "file": "assets/EmailStep-1e679bf1.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-7285c431.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_CardContainer-3fff5ae6.js",
-      "_ImageContainer-5604b706.js",
-      "_index-f033c28d.js",
-      "_Tooltip-37a15d1f.js",
-      "_Input-271e9293.js",
-      "_index.es-3e6cee57.js",
-      "_useSlot-e00659a1.js"
+      "_createSvgIcon-dfa65f32.js",
+      "_FormControl-ce05194c.js",
+      "_Skeleton-35f5ec8d.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_Typography-b234be5c.js",
+      "_Checkbox-a60a1855.js",
+      "_FormControlContext-3200095e.js",
+      "_formLabelClasses-654454ad.js",
+      "_extendSxProp-d164df09.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_isMuiElement-573e6873.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_createSvgIcon-55254c0b.js",
+      "_useSwitch-b2bda0e8.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Auth/Register copy.jsx"
+    "src": "resources/js/Pages/Auth/Registration/EmailStep.jsx"
   },
-  "resources/js/Pages/Auth/Register.jsx": {
-    "file": "assets/Register-cd2ce482.js",
+  "resources/js/Pages/Auth/Registration/Footer.jsx": {
+    "file": "assets/Footer-999d0325.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-7285c431.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_CardContainer-3fff5ae6.js",
-      "_ImageContainer-5604b706.js",
-      "_Input-271e9293.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js"
+      "_SecondaryButton-70a47f80.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Auth/Register.jsx"
+    "src": "resources/js/Pages/Auth/Registration/Footer.jsx"
+  },
+  "resources/js/Pages/Auth/Registration/Register.jsx": {
+    "file": "assets/Register-9fc56abd.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-49f0690a.js",
+      "resources/js/Pages/Auth/Registration/EmailStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_Skeleton-35f5ec8d.js",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_ImageContainer-9a333d0e.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Modal-f577344b.js",
+      "_createSvgIcon-dfa65f32.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_extendSxProp-d164df09.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_isMuiElement-573e6873.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_FormControl-ce05194c.js",
+      "_FormControlContext-3200095e.js",
+      "_styleUtils-8a36875c.js",
+      "_Typography-b234be5c.js",
+      "_Checkbox-a60a1855.js",
+      "_createSvgIcon-55254c0b.js",
+      "_useSwitch-b2bda0e8.js",
+      "_formLabelClasses-654454ad.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Auth/Registration/Register.jsx"
   },
   "resources/js/Pages/Auth/ResetPassword.jsx": {
-    "file": "assets/ResetPassword-8d86d06e.js",
+    "file": "assets/ResetPassword-3c4061c3.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-7285c431.js",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_TextInput-acde6cf5.js",
-      "_index.es-3e6cee57.js"
+      "_GuestLayout-49f0690a.js",
+      "_InputError-2b99d88b.js",
+      "_InputLabel-6b127c07.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_TextInput-a49b2898.js",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_ImageContainer-9a333d0e.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Modal-f577344b.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ResetPassword.jsx"
   },
-  "resources/js/Pages/Auth/VerifyEmail.jsx": {
-    "file": "assets/VerifyEmail-61ecadd5.js",
+  "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx": {
+    "file": "assets/VerificationStep-0fa84667.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-7285c431.js",
-      "_PrimaryButton-1ff472a9.js"
+      "_PrimaryButton-7fd1b638.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx"
+  },
+  "resources/js/Pages/Auth/Verification/VerificationProcess.jsx": {
+    "file": "assets/VerificationProcess-0cec860e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_Skeleton-35f5ec8d.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Auth/Verification/VerificationProcess.jsx"
+  },
+  "resources/js/Pages/Auth/VerifyEmail.jsx": {
+    "file": "assets/VerifyEmail-bd96b284.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-49f0690a.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_ImageContainer-9a333d0e.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Modal-f577344b.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/VerifyEmail.jsx"
   },
-  "resources/js/Pages/Dashboard copy.jsx": {
-    "file": "assets/Dashboard copy-9c039c2b.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_CardContainer-3fff5ae6.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_CircularButton-5433ef48.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_SlideUpModal-c595e618.js",
-      "_Modal-6310a6e6.js",
-      "_TextInput-acde6cf5.js",
-      "_useSlot-e00659a1.js",
-      "_ListItemButton-9e7b24bd.js",
-      "_isMuiElement-8221bc9b.js",
-      "_Tooltip-37a15d1f.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_emotion-react.browser.esm-5cf38407.js",
-      "_transition-83843011.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Dashboard copy.jsx"
-  },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-ea443172.js",
+    "file": "assets/Dashboard-8f361070.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_CardContainer-3fff5ae6.js",
-      "_ImageContainer-5604b706.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_Tooltip-37a15d1f.js"
+      "_ImageContainer-9a333d0e.js",
+      "_index.es-6f9cfa5f.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "_PortalLayout-412bf038.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Dashboard.jsx"
   },
   "resources/js/Pages/Profile/AccountSettings.jsx": {
-    "file": "assets/AccountSettings-1d0e3cf9.js",
+    "file": "assets/AccountSettings-f54772ab.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_Tooltip-37a15d1f.js"
+      "_AuthenticatedLayout-5c330e09.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/AccountSettings.jsx"
   },
-  "resources/js/Pages/Profile/Edit copy.jsx": {
-    "file": "assets/Edit copy-24ce16fd.js",
+  "resources/js/Pages/Profile/Forms/Address.jsx": {
+    "file": "assets/Address-9a2ab9e4.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
-      "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
-      "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_Tooltip-37a15d1f.js",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_Modal-6310a6e6.js",
-      "_transition-83843011.js",
-      "_TextInput-acde6cf5.js",
-      "_PrimaryButton-1ff472a9.js"
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Profile/Edit copy.jsx"
+    "src": "resources/js/Pages/Profile/Forms/Address.jsx"
   },
-  "resources/js/Pages/Profile/Edit.jsx": {
-    "file": "assets/Edit-6c53ff51.js",
+  "resources/js/Pages/Profile/Forms/CompanyInfo.jsx": {
+    "file": "assets/CompanyInfo-dbe97dc0.js",
     "imports": [
-      "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_CardContainer-3fff5ae6.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "resources/js/Pages/Profile/Partials/PofileSettings.jsx",
-      "resources/js/Pages/Profile/Partials/ProjectSettings.jsx",
-      "resources/js/Pages/Profile/Partials/SocialSettings.jsx",
-      "resources/js/Pages/Profile/Partials/BudgetSettings.jsx",
-      "resources/js/Pages/Profile/Partials/JobSettings.jsx",
-      "resources/js/Pages/Profile/Partials/AccountSettings.jsx",
-      "_ImageContainer-5604b706.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_Tooltip-37a15d1f.js",
-      "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_TextInput-acde6cf5.js",
-      "_transition-83843011.js",
-      "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
-      "_Modal-6310a6e6.js",
-      "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx"
+      "resources/js/app.jsx"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Profile/Edit.jsx"
+    "src": "resources/js/Pages/Profile/Forms/CompanyInfo.jsx"
+  },
+  "resources/js/Pages/Profile/Forms/Email.jsx": {
+    "file": "assets/Email-76d91ed6.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Forms/Email.jsx"
+  },
+  "resources/js/Pages/Profile/Forms/PersonalInfo.jsx": {
+    "file": "assets/PersonalInfo-34ecd222.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Forms/PersonalInfo.jsx"
+  },
+  "resources/js/Pages/Profile/Forms/Phone.jsx": {
+    "file": "assets/Phone-25a8577d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Forms/Phone.jsx"
+  },
+  "resources/js/Pages/Profile/Forms/Time.jsx": {
+    "file": "assets/Time-41d0d5cf.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Forms/Time.jsx"
+  },
+  "resources/js/Pages/Profile/Forms/UpdateProfileInformationForm.jsx": {
+    "file": "assets/UpdateProfileInformationForm-a2e4116f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_InputError-2b99d88b.js",
+      "_InputLabel-6b127c07.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_TextInput-a49b2898.js",
+      "_transition-501b5c46.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Forms/UpdateProfileInformationForm.jsx"
+  },
+  "resources/js/Pages/Profile/Forms/UserName.jsx": {
+    "file": "assets/UserName-76c3168f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Forms/UserName.jsx"
   },
   "resources/js/Pages/Profile/Partials/AccountSettings.jsx": {
-    "file": "assets/AccountSettings-98c4cf50.js",
+    "file": "assets/AccountSettings-e2a6ac64.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
       "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_Modal-6310a6e6.js",
-      "_transition-83843011.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_TextInput-acde6cf5.js",
-      "_index.es-3e6cee57.js",
-      "_PrimaryButton-1ff472a9.js"
+      "_InputError-2b99d88b.js",
+      "_InputLabel-6b127c07.js",
+      "_Modal-f577344b.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_SecondaryButton-70a47f80.js",
+      "_TextInput-a49b2898.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_transition-501b5c46.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/AccountSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/BudgetSettings.jsx": {
-    "file": "assets/BudgetSettings-e6b11c0e.js",
+    "file": "assets/BudgetSettings-53cadab5.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -471,46 +1002,31 @@
     "src": "resources/js/Pages/Profile/Partials/BudgetSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx": {
-    "file": "assets/DeleteUserForm-c4a02d1b.js",
+    "file": "assets/DeleteUserForm-a02c2ba9.js",
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_Modal-6310a6e6.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_TextInput-acde6cf5.js",
-      "_transition-83843011.js",
-      "_index.es-3e6cee57.js"
+      "_InputError-2b99d88b.js",
+      "_InputLabel-6b127c07.js",
+      "_Modal-f577344b.js",
+      "_SecondaryButton-70a47f80.js",
+      "_TextInput-a49b2898.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx"
   },
   "resources/js/Pages/Profile/Partials/JobSettings.jsx": {
-    "file": "assets/JobSettings-fac6ada5.js",
+    "file": "assets/JobSettings-fb5dcaf3.js",
     "imports": [
       "resources/js/app.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/JobSettings.jsx"
   },
-  "resources/js/Pages/Profile/Partials/PofileSettings.jsx": {
-    "file": "assets/PofileSettings-c112f4b8.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_TextInput-acde6cf5.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_transition-83843011.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Profile/Partials/PofileSettings.jsx"
-  },
   "resources/js/Pages/Profile/Partials/ProjectSettings.jsx": {
-    "file": "assets/ProjectSettings-2d96d75c.js",
+    "file": "assets/ProjectSettings-36a57b77.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -518,385 +1034,1957 @@
     "src": "resources/js/Pages/Profile/Partials/ProjectSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/SocialSettings.jsx": {
-    "file": "assets/SocialSettings-30751e56.js",
+    "file": "assets/SocialSettings-5d0ccaec.js",
     "imports": [
       "resources/js/app.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/SocialSettings.jsx"
   },
+  "resources/js/Pages/Profile/Partials/SubscriptionSettings.jsx": {
+    "file": "assets/SubscriptionSettings-b051c739.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Partials/SubscriptionSettings.jsx"
+  },
   "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx": {
-    "file": "assets/UpdatePasswordForm-bb5fbcae.js",
+    "file": "assets/UpdatePasswordForm-c7b46196.js",
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_TextInput-acde6cf5.js",
-      "_transition-83843011.js",
-      "_index.es-3e6cee57.js"
+      "_InputError-2b99d88b.js",
+      "_InputLabel-6b127c07.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_TextInput-a49b2898.js",
+      "_transition-501b5c46.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx"
   },
-  "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx": {
-    "file": "assets/UpdateProfileInformationForm-b4d06f4f.js",
+  "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx": {
+    "file": "assets/UploadableProfilePicture-16fda6c6.js",
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-41571d02.js",
-      "_InputLabel-0be8bbfb.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_TextInput-acde6cf5.js",
-      "_index-f033c28d.js",
-      "_transition-83843011.js",
-      "_index.es-3e6cee57.js"
+      "_index-8557a519.js",
+      "_index-d5199ec3.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx"
+    "src": "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx"
   },
   "resources/js/Pages/Profile/Profile.jsx": {
-    "file": "assets/Profile-b68756d0.js",
+    "file": "assets/Profile-39a4822f.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_Tooltip-37a15d1f.js"
+      "_AuthenticatedLayout-5c330e09.js",
+      "_index-1074990b.js",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
+      "_IconButton-e240f944.js",
+      "_index.es-6f9cfa5f.js",
+      "_Tooltip-6de05098.js",
+      "_BannerImage-2d65b704.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_index-d5199ec3.js",
+      "_index-8557a519.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Profile.jsx"
   },
-  "resources/js/Pages/Projects/CallSheets/CallSheetDetails.jsx": {
-    "file": "assets/CallSheetDetails-40e78e62.js",
+  "resources/js/Pages/Profile/ProfilePicture.jsx": {
+    "file": "assets/ProfilePicture-c04d1aab.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/ProfilePicture.jsx"
+  },
+  "resources/js/Pages/Profile/ProfileSettings copy.jsx": {
+    "file": "assets/ProfileSettings copy-78abd60b.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-37a15d1f.js",
-      "_Input-271e9293.js",
-      "_useSlot-e00659a1.js",
-      "_useSwitch-f1ae9baa.js"
+      "_BannerImage-2d65b704.js",
+      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "_index-8557a519.js",
+      "_index-d5199ec3.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/ProfileSettings copy.jsx"
+  },
+  "resources/js/Pages/Profile/ProfileSettings.jsx": {
+    "file": "assets/ProfileSettings-9a3ff5b8.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_PortalLayout-412bf038.js",
+      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/ProfileSettings.jsx"
+  },
+  "resources/js/Pages/Profile/SettingsPage copy.jsx": {
+    "file": "assets/SettingsPage copy-e7c9da4d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "_index.es-6370c44d.js",
+      "_CardContainer-85b3eca7.js",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Profile/ProfileSettings.jsx",
+      "resources/js/Pages/Profile/Partials/ProjectSettings.jsx",
+      "resources/js/Pages/Profile/Partials/SocialSettings.jsx",
+      "resources/js/Pages/Profile/Partials/BudgetSettings.jsx",
+      "resources/js/Pages/Profile/Partials/JobSettings.jsx",
+      "resources/js/Pages/Profile/Partials/SubscriptionSettings.jsx",
+      "resources/js/Pages/Profile/Partials/AccountSettings.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "_PortalLayout-412bf038.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js",
+      "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
+      "_InputError-2b99d88b.js",
+      "_InputLabel-6b127c07.js",
+      "_TextInput-a49b2898.js",
+      "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
+      "_transition-501b5c46.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/SettingsPage copy.jsx"
+  },
+  "resources/js/Pages/Profile/SettingsPage.jsx": {
+    "file": "assets/SettingsPage-aa47ad2b.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "_index.es-6370c44d.js",
+      "_PortalLayout-412bf038.js",
+      "_TextInput-a49b2898.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/SettingsPage.jsx"
+  },
+  "resources/js/Pages/Projects.jsx": {
+    "file": "assets/Projects-6c335e30.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Projects/Components/ProjectList.jsx",
+      "_PortalLayout-412bf038.js",
+      "_CardContainer-85b3eca7.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_index-1074990b.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Card-526e725c.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ActionDrawer/CallSheetActionDetails.jsx": {
+    "file": "assets/CallSheetActionDetails-6dcdcbbb.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx",
+      "_index-d5199ec3.js",
+      "_IconButton-e240f944.js",
+      "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx",
+      "_CardContainer-85b3eca7.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "_ApplicationName-e8d4d2b6.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ActionDrawer/CallSheetActionDetails.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/CallSheetDetails.jsx": {
+    "file": "assets/CallSheetDetails-ce4e5a4d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_PortalLayout-412bf038.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Bulletin.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/ProductionDetails.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/GeneralCallTime.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/ProductionCompany.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/RecipientList.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/LocationDetails.jsx",
+      "resources/js/Pages/Projects/CallSheets/ActionDrawer/CallSheetActionDetails.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js",
+      "_CardContainer-85b3eca7.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "_EmptyContent-4e9f737f.js",
+      "_Avatar-2a2b2d13.js",
+      "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx",
+      "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx",
+      "_ApplicationName-e8d4d2b6.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/CallSheetDetails.jsx"
   },
-  "resources/js/Pages/Projects/CallSheets/CallSheetEdit.jsx": {
-    "file": "assets/CallSheetEdit-41f3e59a.js",
+  "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx": {
+    "file": "assets/CallSheetPreview-f45f2260.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_CardContainer-3fff5ae6.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_SlideUpModal-c595e618.js",
-      "_PortalLayout-8556d041.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "resources/js/Pages/Projects/CallSheets/Locations/NewLocationForm.jsx",
-      "_Option-68e62e81.js",
-      "_Textarea-e1ab5a14.js",
-      "_Typography-a41e099d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_ListItemButton-9e7b24bd.js",
-      "_emotion-react.browser.esm-5cf38407.js",
-      "_CircularButton-5433ef48.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_Tooltip-37a15d1f.js",
-      "_RightPanel-0eceaab0.js",
-      "_Input-271e9293.js",
-      "_isMuiElement-8221bc9b.js"
+      "_IconButton-e240f944.js",
+      "_index-1074990b.js",
+      "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_ApplicationName-e8d4d2b6.js",
+      "_CardContainer-85b3eca7.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "_index-d5199ec3.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/CallSheets/CallSheetEdit.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx"
   },
-  "resources/js/Pages/Projects/CallSheets/CallSheetList.jsx": {
-    "file": "assets/CallSheetList-0b24b082.js",
+  "resources/js/Pages/Projects/CallSheets/CallSheetRecipientList.jsx": {
+    "file": "assets/CallSheetRecipientList-bc55b240.js",
     "imports": [
       "resources/js/app.jsx",
-      "_ActiveCard-ad2f1504.js",
-      "_CardContainer-3fff5ae6.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_emotion-react.browser.esm-5cf38407.js"
+      "_Checkbox-a60a1855.js",
+      "_Avatar-2a2b2d13.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "_isMuiElement-573e6873.js",
+      "_FormControlContext-3200095e.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useSwitch-b2bda0e8.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/CallSheets/CallSheetList.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/CallSheetRecipientList.jsx"
   },
-  "resources/js/Pages/Projects/CallSheets/CallSheetOverview.jsx": {
-    "file": "assets/CallSheetOverview-6e0ed3f9.js",
+  "resources/js/Pages/Projects/CallSheets/Components/Bulletin.jsx": {
+    "file": "assets/Bulletin-5718e234.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_index.es-3e6cee57.js",
-      "resources/js/Pages/Projects/CallSheets/NewCallSheetForm.jsx",
-      "resources/js/Pages/Projects/CallSheets/CallSheetList.jsx",
-      "_PortalLayout-8556d041.js",
-      "_Option-68e62e81.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_Tooltip-37a15d1f.js",
-      "_RightPanel-0eceaab0.js",
-      "_CircularButton-5433ef48.js",
-      "resources/js/Pages/Projects/CallSheets/CallSheetDetails.jsx",
-      "_Input-271e9293.js",
-      "_useSwitch-f1ae9baa.js",
-      "_ActiveCard-ad2f1504.js",
-      "_CardContainer-3fff5ae6.js",
-      "_emotion-react.browser.esm-5cf38407.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_ListItemButton-9e7b24bd.js"
+      "_lodash-46568a0d.js",
+      "_CardContainer-85b3eca7.js",
+      "_Textarea-05168225.js",
+      "_Typography-b234be5c.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useForwardedInput-a4d3e062.js",
+      "_FormControlContext-3200095e.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_debounce-517eeb3c.js",
+      "_extendSxProp-d164df09.js",
+      "_isMuiElement-573e6873.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/CallSheets/CallSheetOverview.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/Bulletin.jsx"
   },
-  "resources/js/Pages/Projects/CallSheets/Locations/NewLocationForm.jsx": {
-    "file": "assets/NewLocationForm-02b6d06d.js",
+  "resources/js/Pages/Projects/CallSheets/Components/CallSheetList.jsx": {
+    "file": "assets/CallSheetList-67d00b70.js",
     "imports": [
       "resources/js/app.jsx",
-      "_RightPanel-0eceaab0.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_CircularButton-5433ef48.js",
-      "_index-f033c28d.js",
-      "_Tooltip-37a15d1f.js",
-      "_Input-271e9293.js",
-      "_index.es-3e6cee57.js",
-      "_useSlot-e00659a1.js"
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/CallSheets/Locations/NewLocationForm.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/CallSheetList.jsx"
   },
-  "resources/js/Pages/Projects/CallSheets/NewCallSheetForm.jsx": {
-    "file": "assets/NewCallSheetForm-66783629.js",
+  "resources/js/Pages/Projects/CallSheets/Components/GeneralCallTime.jsx": {
+    "file": "assets/GeneralCallTime-b591f12e.js",
     "imports": [
       "resources/js/app.jsx",
-      "_RightPanel-0eceaab0.js",
-      "_CircularButton-5433ef48.js",
-      "_SecondaryButton-1ee136e4.js",
-      "resources/js/Pages/Projects/CallSheets/CallSheetDetails.jsx",
-      "_index-f033c28d.js",
-      "_index.es-3e6cee57.js",
-      "_Tooltip-37a15d1f.js",
-      "_useSlot-e00659a1.js",
-      "_Input-271e9293.js",
-      "_useSwitch-f1ae9baa.js"
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/CallSheets/NewCallSheetForm.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/GeneralCallTime.jsx"
   },
-  "resources/js/Pages/Projects/NewProjectForm.jsx": {
-    "file": "assets/NewProjectForm-b4b499f0.js",
+  "resources/js/Pages/Projects/CallSheets/Components/GoogleMap.jsx": {
+    "file": "assets/GoogleMap-b5213249.js",
     "imports": [
-      "resources/js/app.jsx",
-      "_RightPanel-0eceaab0.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_CircularButton-5433ef48.js",
-      "_index-f033c28d.js",
-      "resources/js/Pages/Projects/Partials/ProjectDetailsForm.jsx",
-      "resources/js/Pages/Projects/Partials/ProjectClientForm.jsx",
-      "_index.es-3e6cee57.js",
-      "_Tooltip-37a15d1f.js",
-      "_useSlot-e00659a1.js",
-      "_Option-68e62e81.js",
-      "_ListItemButton-9e7b24bd.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_Input-271e9293.js",
-      "_Textarea-e1ab5a14.js",
-      "_Typography-a41e099d.js",
-      "_isMuiElement-8221bc9b.js",
-      "_useSwitch-f1ae9baa.js"
+      "resources/js/app.jsx"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/NewProjectForm.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/GoogleMap.jsx"
   },
-  "resources/js/Pages/Projects/Partials/ProjectClientForm.jsx": {
-    "file": "assets/ProjectClientForm-e1d24684.js",
+  "resources/js/Pages/Projects/CallSheets/Components/ProductionCompany.jsx": {
+    "file": "assets/ProductionCompany-1c5771c0.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Input-271e9293.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_Typography-a41e099d.js",
-      "_Tooltip-37a15d1f.js",
-      "_useSwitch-f1ae9baa.js",
-      "_isMuiElement-8221bc9b.js"
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Partials/ProjectClientForm.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionCompany.jsx"
   },
-  "resources/js/Pages/Projects/Partials/ProjectDetailsForm.jsx": {
-    "file": "assets/ProjectDetailsForm-dc303351.js",
+  "resources/js/Pages/Projects/CallSheets/Components/ProductionDetails.jsx": {
+    "file": "assets/ProductionDetails-3f93d486.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-37a15d1f.js",
-      "_Option-68e62e81.js",
-      "_Input-271e9293.js",
-      "_Textarea-e1ab5a14.js",
-      "_useSlot-e00659a1.js",
-      "_ListItemButton-9e7b24bd.js",
-      "_createSvgIcon-cb2127eb.js"
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Partials/ProjectDetailsForm.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionDetails.jsx"
   },
-  "resources/js/Pages/Projects/Partials/ProjectList.jsx": {
-    "file": "assets/ProjectList-328030bf.js",
+  "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule copy.jsx": {
+    "file": "assets/ProductionSchedule copy-3c49ebd4.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-3e6cee57.js",
-      "_ActiveCard-ad2f1504.js",
-      "_CardContainer-3fff5ae6.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_emotion-react.browser.esm-5cf38407.js"
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_EmptyContent-4e9f737f.js",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js",
+      "_SecondaryButton-70a47f80.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Partials/ProjectList.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule copy.jsx"
   },
-  "resources/js/Pages/Projects/ProjectEdit.jsx": {
-    "file": "assets/ProjectEdit-53450fe9.js",
+  "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule.jsx": {
+    "file": "assets/ProductionSchedule-15d50a92.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_Tooltip-37a15d1f.js"
+      "_CardContainer-85b3eca7.js",
+      "_EmptyContent-4e9f737f.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_SecondaryButton-70a47f80.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/ProjectEdit.jsx"
+    "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Components/RecipientList.jsx": {
+    "file": "assets/RecipientList-c8d9fa13.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_CardContainer-85b3eca7.js",
+      "_EmptyContent-4e9f737f.js",
+      "_Avatar-2a2b2d13.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_SecondaryButton-70a47f80.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_createSvgIcon-55254c0b.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Components/RecipientList.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Components/Weather copy.jsx": {
+    "file": "assets/Weather copy-f3e82623.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Components/Weather copy.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx": {
+    "file": "assets/Weather-d5e07cd7.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer copy.jsx": {
+    "file": "assets/WeatherContainer copy-24d50daf.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer copy.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer.jsx": {
+    "file": "assets/WeatherContainer-d44c5e61.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_CardContainer-85b3eca7.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.css": {
+    "file": "assets/CallSheetForm-498675b8.css",
+    "src": "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.css"
+  },
+  "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx": {
+    "css": [
+      "assets/CallSheetForm-498675b8.css"
+    ],
+    "file": "assets/CallSheetForm-50df9519.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_SecondaryButton-70a47f80.js",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx": {
+    "file": "assets/CallSheetRecipientForm-f1f0461b.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_SecondaryButton-70a47f80.js",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx": {
+    "file": "assets/GeneralCallTimeForm-fead2db1.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx": {
+    "file": "assets/LocationForm-76bd8284.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_lodash-46568a0d.js",
+      "_SecondaryButton-70a47f80.js",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "_IconButton-e240f944.js",
+      "_index-1074990b.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "_Input-f63195bf.js",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx": {
+    "file": "assets/Accordion-d9d53a31.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_Input-f63195bf.js",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx": {
+    "file": "assets/AccordionContent-809c9c43.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Input-f63195bf.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx": {
+    "file": "assets/Hospitals-f58e28ef.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Locations/LocationDetails.jsx": {
+    "file": "assets/LocationDetails-731be05f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-d5199ec3.js",
+      "_CardContainer-85b3eca7.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_EmptyContent-4e9f737f.js",
+      "_SecondaryButton-70a47f80.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Locations/LocationDetails.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview copy.jsx": {
+    "file": "assets/CallSheetDesktopPreview copy-b89a09de.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_CardContainer-85b3eca7.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview copy.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx": {
+    "file": "assets/CallSheetDesktopPreview-f85aee52.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_CardContainer-85b3eca7.js",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx": {
+    "file": "assets/AddButton-204bfed1.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_SecondaryButton-70a47f80.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx": {
+    "file": "assets/BreakRow-e651bab0.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx": {
+    "file": "assets/CallSheetProductionSchedule-051fe2da.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_toPropertyKey-a23e7eac.js",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_index.es-6f9cfa5f.js",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "_index-1074990b.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "_index-d5199ec3.js",
+      "_SecondaryButton-70a47f80.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx": {
+    "file": "assets/CompanyMoveRow-c64f8ea0.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx": {
+    "file": "assets/Duration-6b844811.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EOD.jsx": {
+    "file": "assets/EOD-c4c58b3b.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EOD.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx": {
+    "file": "assets/EditableCell-d73227b4.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx": {
+    "file": "assets/EditableSelect-b1b3adb2.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx"
+  },
+  "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx": {
+    "file": "assets/SceneRow-fd8b417d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx"
+  },
+  "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx": {
+    "file": "assets/ProjectImagePreview-17de09c6.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_ImageContainer-9a333d0e.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx"
+  },
+  "resources/js/Pages/Projects/Components/ProjectList.jsx": {
+    "file": "assets/ProjectList-a6a96c79.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-1074990b.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Components/ProjectList.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx": {
+    "file": "assets/ProjectSelector-3675d423.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx": {
+    "file": "assets/ProjectStepper-9fb63089.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_Typography-b234be5c.js",
+      "_index-d5199ec3.js",
+      "_extendSxProp-d164df09.js",
+      "_isMuiElement-573e6873.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/ServiceTypeSelector.jsx": {
+    "file": "assets/ServiceTypeSelector-98f162e0.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_FormControl-ce05194c.js",
+      "_Autocomplete-6b3fde81.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useEventCallback-9096ac69.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_Popper-e61842d4.js",
+      "_Card-526e725c.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_isMuiElement-573e6873.js",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "_formLabelClasses-654454ad.js",
+      "_FormControlContext-3200095e.js",
+      "_Input-5644a10b.js",
+      "_variantColorInheritance-c1408343.js",
+      "_CircularProgress-5764a8a7.js",
+      "_createSvgIcon-55254c0b.js",
+      "_ListItemButton-477eeb75.js",
+      "_styleUtils-8a36875c.js",
+      "_Chip-1c999ce1.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_useForwardedInput-a4d3e062.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/ServiceTypeSelector.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster copy.jsx": {
+    "file": "assets/MoviePoster copy-9f45edc6.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_Box-5ac5becb.js",
+      "_CircularProgress-5764a8a7.js",
+      "_index-d5199ec3.js",
+      "_ImageContainer-9a333d0e.js",
+      "_useSlot-a85726b4.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_extendSxProp-d164df09.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster copy.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx": {
+    "file": "assets/MoviePoster-850c398e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-8557a519.js",
+      "_SecondaryButton-70a47f80.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_Modal-f577344b.js",
+      "_Box-5ac5becb.js",
+      "_CircularProgress-5764a8a7.js",
+      "_index-d5199ec3.js",
+      "_useSlot-a85726b4.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_extendSxProp-d164df09.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx": {
+    "file": "assets/VideoStepOne-5658bfee.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_index-d5199ec3.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx": {
+    "file": "assets/VideoStepThree-e80c09ab.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Tooltip-6de05098.js",
+      "_Option-c6a342bc.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "_ListItemButton-477eeb75.js",
+      "_styleUtils-8a36875c.js",
+      "_variantColorInheritance-c1408343.js",
+      "_createSvgIcon-55254c0b.js",
+      "_FormControlContext-3200095e.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx": {
+    "file": "assets/VideoStepTwo-4f139bfb.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_Tooltip-6de05098.js",
+      "_Option-c6a342bc.js",
+      "_Textarea-05168225.js",
+      "_Typography-b234be5c.js",
+      "_createSvgIcon-dfa65f32.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_extendSxProp-d164df09.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_isMuiElement-573e6873.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_styleUtils-8a36875c.js",
+      "_useSwitch-b2bda0e8.js",
+      "_index-8557a519.js",
+      "_index-d5199ec3.js",
+      "_SecondaryButton-70a47f80.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_Modal-f577344b.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Popper-e61842d4.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_useForwardedInput-a4d3e062.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx": {
+    "file": "assets/ViewerRating-f11e6357.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_Box-5ac5becb.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_Chip-1c999ce1.js",
+      "_Typography-b234be5c.js",
+      "_useSwitch-b2bda0e8.js",
+      "_extendSxProp-d164df09.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_isMuiElement-573e6873.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useEventCallback-9096ac69.js",
+      "_styleUtils-8a36875c.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/ProjectClientForm.jsx": {
+    "file": "assets/ProjectClientForm-2db688fc.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Form-792c5f5e.js",
+      "_createSvgIcon-dfa65f32.js",
+      "_FormControl-ce05194c.js",
+      "_Autocomplete-6b3fde81.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_extendSxProp-d164df09.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_isMuiElement-573e6873.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_FormControlContext-3200095e.js",
+      "_createSvgIcon-55254c0b.js",
+      "_variantColorInheritance-c1408343.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Input-5644a10b.js",
+      "_useForwardedInput-a4d3e062.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_ListItemButton-477eeb75.js",
+      "_styleUtils-8a36875c.js",
+      "_Chip-1c999ce1.js",
+      "_Popper-e61842d4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/ProjectClientForm.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/ProjectEditForm.jsx": {
+    "file": "assets/ProjectEditForm-5e253e28.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_Tooltip-6de05098.js",
+      "_Option-c6a342bc.js",
+      "_Textarea-05168225.js",
+      "_Typography-b234be5c.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_createSvgIcon-dfa65f32.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_extendSxProp-d164df09.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_isMuiElement-573e6873.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_styleUtils-8a36875c.js",
+      "_useSwitch-b2bda0e8.js",
+      "_Popper-e61842d4.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_useForwardedInput-a4d3e062.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/ProjectEditForm.jsx"
+  },
+  "resources/js/Pages/Projects/ProjectDetailsPage.jsx": {
+    "file": "assets/ProjectDetailsPage-cdb6437c.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_CardContainer-85b3eca7.js",
+      "_PortalLayout-412bf038.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_Modal-f577344b.js",
+      "_ImageContainer-9a333d0e.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_index-d5199ec3.js",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/ProjectDetailsPage.jsx"
   },
   "resources/js/Pages/Projects/ProjectEstimate.jsx": {
-    "file": "assets/ProjectEstimate-3f01532c.js",
+    "file": "assets/ProjectEstimate-8669d62f.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "_PortalLayout-8556d041.js",
-      "_Tooltip-37a15d1f.js",
-      "_Input-271e9293.js",
-      "_Option-68e62e81.js",
-      "_Textarea-e1ab5a14.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_CircularButton-5433ef48.js",
-      "_PrimaryButton-1ff472a9.js",
-      "_ListItemButton-9e7b24bd.js"
+      "_AuthenticatedLayout-5c330e09.js",
+      "_PortalLayout-412bf038.js",
+      "_Tooltip-6de05098.js",
+      "_Input-5644a10b.js",
+      "_Option-c6a342bc.js",
+      "_Textarea-05168225.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/ProjectEstimate.jsx"
   },
-  "resources/js/Pages/Projects/ProjectsOverview.jsx": {
-    "file": "assets/ProjectsOverview-14628bd6.js",
+  "resources/js/Pages/Projects/ProjectListPage.jsx": {
+    "file": "assets/ProjectListPage-78a6d5e9.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-4f11e684.js",
-      "resources/js/Pages/Projects/NewProjectForm.jsx",
-      "resources/js/Pages/Projects/Partials/ProjectList.jsx",
-      "_PortalLayout-8556d041.js",
-      "_index.es-3e6cee57.js",
-      "_index-f033c28d.js",
-      "_useSlot-e00659a1.js",
-      "_createSvgIcon-cb2127eb.js",
-      "_SecondaryButton-1ee136e4.js",
-      "_ProjectNavigation-c8d4cccd.js",
-      "_Tooltip-37a15d1f.js",
-      "_RightPanel-0eceaab0.js",
-      "_CircularButton-5433ef48.js",
-      "resources/js/Pages/Projects/Partials/ProjectDetailsForm.jsx",
-      "_Option-68e62e81.js",
-      "_ListItemButton-9e7b24bd.js",
-      "_Input-271e9293.js",
-      "_Textarea-e1ab5a14.js",
-      "resources/js/Pages/Projects/Partials/ProjectClientForm.jsx",
-      "_Typography-a41e099d.js",
-      "_isMuiElement-8221bc9b.js",
-      "_useSwitch-f1ae9baa.js",
-      "_ActiveCard-ad2f1504.js",
-      "_CardContainer-3fff5ae6.js",
-      "_emotion-react.browser.esm-5cf38407.js",
-      "_PrimaryButton-1ff472a9.js"
+      "_index.es-6f9cfa5f.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "_PortalLayout-412bf038.js",
+      "resources/js/Pages/Projects/Components/ProjectList.jsx",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/ProjectsOverview.jsx"
+    "src": "resources/js/Pages/Projects/ProjectListPage.jsx"
   },
-  "resources/js/Pages/Projects/Skeletons/SkeletonOverview.jsx": {
-    "file": "assets/SkeletonOverview-3eb9f080.js",
+  "resources/js/Pages/Projects/SubPages/CallSheets.jsx": {
+    "file": "assets/CallSheets-723fa7e7.js",
     "imports": [
-      "resources/js/app.jsx"
+      "resources/js/app.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/CallSheetList.jsx",
+      "_PortalLayout-412bf038.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-d5199ec3.js",
+      "_index-1074990b.js",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_Tooltip-6de05098.js",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_Typography-b234be5c.js",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_Textarea-05168225.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Skeletons/SkeletonOverview.jsx"
+    "src": "resources/js/Pages/Projects/SubPages/CallSheets.jsx"
+  },
+  "resources/js/Pages/Projects/SubPages/ProjectEditPage copy.jsx": {
+    "file": "assets/ProjectEditPage copy-6679d32c.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-5c330e09.js",
+      "_CardContainer-85b3eca7.js",
+      "_PortalLayout-412bf038.js",
+      "_index.es-6f9cfa5f.js",
+      "_Modal-f577344b.js",
+      "_Tooltip-6de05098.js",
+      "_Textarea-05168225.js",
+      "_Typography-b234be5c.js",
+      "_index-1074990b.js",
+      "_Card-526e725c.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js",
+      "_styleUtils-8a36875c.js",
+      "_colorInversionUtils-4d37075b.js",
+      "_isMuiElement-573e6873.js",
+      "_Skeleton-35f5ec8d.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_SecondaryButton-70a47f80.js",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "_useIsFocusVisible-a86ea076.js",
+      "_useEventCallback-9096ac69.js",
+      "_useEnhancedEffect-346992f7.js",
+      "_Popper-e61842d4.js",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "_PrimaryButton-7fd1b638.js",
+      "_index-d5199ec3.js",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "_extendSxProp-d164df09.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "_createSvgIcon-dfa65f32.js",
+      "_createChainedFunction-0bab83cf.js",
+      "_debounce-517eeb3c.js",
+      "_ownerWindow-09f9bd5f.js",
+      "_Box-5ac5becb.js",
+      "_variantColorInheritance-c1408343.js",
+      "_FormControlContext-3200095e.js",
+      "_Chip-1c999ce1.js",
+      "_useSwitch-b2bda0e8.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "_index-8557a519.js",
+      "_CircularProgress-5764a8a7.js",
+      "_Option-c6a342bc.js",
+      "_ListItemButton-477eeb75.js",
+      "_createSvgIcon-55254c0b.js",
+      "_useForwardedInput-a4d3e062.js",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "_Input-f63195bf.js",
+      "_Select-ac02434c.js",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "_ImageContainer-9a333d0e.js",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "_lodash-46568a0d.js",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "_IconButton-e240f944.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/SubPages/ProjectEditPage copy.jsx"
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-fbb828e3.js",
+    "file": "assets/Welcome-d922969d.js",
     "imports": [
-      "resources/js/app.jsx"
+      "resources/js/app.jsx",
+      "_ApplicationName-e8d4d2b6.js",
+      "_ImageContainer-9a333d0e.js",
+      "_index.es-6f9cfa5f.js",
+      "_index-1074990b.js",
+      "_PrimaryButton-7fd1b638.js",
+      "_Modal-f577344b.js",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "_Skeleton-35f5ec8d.js",
+      "_index-d5199ec3.js",
+      "_toPropertyKey-a23e7eac.js",
+      "_useSlot-a85726b4.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Welcome.jsx"
   },
   "resources/js/app.css": {
-    "file": "assets/app-e559ae17.css",
+    "file": "assets/app-a39c015d.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.jsx": {
     "css": [
-      "assets/app-e559ae17.css"
+      "assets/app-a39c015d.css"
     ],
     "dynamicImports": [
       "resources/js/Pages/Auth/ConfirmPassword.jsx",
       "resources/js/Pages/Auth/ForgotPassword.jsx",
+      "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
+      "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Auth/Login.jsx",
-      "resources/js/Pages/Auth/Register copy.jsx",
-      "resources/js/Pages/Auth/Register.jsx",
+      "resources/js/Pages/Auth/Registration/EmailStep.jsx",
+      "resources/js/Pages/Auth/Registration/Footer.jsx",
+      "resources/js/Pages/Auth/Registration/Register.jsx",
       "resources/js/Pages/Auth/ResetPassword.jsx",
+      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
       "resources/js/Pages/Auth/VerifyEmail.jsx",
-      "resources/js/Pages/Dashboard copy.jsx",
       "resources/js/Pages/Dashboard.jsx",
       "resources/js/Pages/Profile/AccountSettings.jsx",
-      "resources/js/Pages/Profile/Edit copy.jsx",
-      "resources/js/Pages/Profile/Edit.jsx",
+      "resources/js/Pages/Profile/Forms/Address.jsx",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Email.jsx",
+      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
+      "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "resources/js/Pages/Profile/Forms/Time.jsx",
+      "resources/js/Pages/Profile/Forms/UpdateProfileInformationForm.jsx",
+      "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Partials/AccountSettings.jsx",
       "resources/js/Pages/Profile/Partials/BudgetSettings.jsx",
       "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
       "resources/js/Pages/Profile/Partials/JobSettings.jsx",
-      "resources/js/Pages/Profile/Partials/PofileSettings.jsx",
       "resources/js/Pages/Profile/Partials/ProjectSettings.jsx",
       "resources/js/Pages/Profile/Partials/SocialSettings.jsx",
+      "resources/js/Pages/Profile/Partials/SubscriptionSettings.jsx",
       "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
-      "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
+      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
       "resources/js/Pages/Profile/Profile.jsx",
+      "resources/js/Pages/Profile/ProfilePicture.jsx",
+      "resources/js/Pages/Profile/ProfileSettings copy.jsx",
+      "resources/js/Pages/Profile/ProfileSettings.jsx",
+      "resources/js/Pages/Profile/SettingsPage copy.jsx",
+      "resources/js/Pages/Profile/SettingsPage.jsx",
+      "resources/js/Pages/Projects.jsx",
+      "resources/js/Pages/Projects/CallSheets/ActionDrawer/CallSheetActionDetails.jsx",
       "resources/js/Pages/Projects/CallSheets/CallSheetDetails.jsx",
-      "resources/js/Pages/Projects/CallSheets/CallSheetEdit.jsx",
-      "resources/js/Pages/Projects/CallSheets/CallSheetList.jsx",
-      "resources/js/Pages/Projects/CallSheets/CallSheetOverview.jsx",
-      "resources/js/Pages/Projects/CallSheets/Locations/NewLocationForm.jsx",
-      "resources/js/Pages/Projects/CallSheets/NewCallSheetForm.jsx",
-      "resources/js/Pages/Projects/NewProjectForm.jsx",
-      "resources/js/Pages/Projects/Partials/ProjectClientForm.jsx",
-      "resources/js/Pages/Projects/Partials/ProjectDetailsForm.jsx",
-      "resources/js/Pages/Projects/Partials/ProjectList.jsx",
-      "_ProjectNavigation-c8d4cccd.js",
-      "resources/js/Pages/Projects/ProjectEdit.jsx",
+      "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx",
+      "resources/js/Pages/Projects/CallSheets/CallSheetRecipientList.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/Bulletin.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/CallSheetList.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/GeneralCallTime.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/GoogleMap.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/ProductionCompany.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/ProductionDetails.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule copy.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/RecipientList.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather copy.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer copy.jsx",
+      "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
+      "resources/js/Pages/Projects/CallSheets/Locations/LocationDetails.jsx",
+      "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview copy.jsx",
+      "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EOD.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
+      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
+      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
+      "resources/js/Pages/Projects/Components/ProjectList.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ServiceTypeSelector.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster copy.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
+      "resources/js/Pages/Projects/Forms/ProjectClientForm.jsx",
+      "resources/js/Pages/Projects/Forms/ProjectEditForm.jsx",
+      "_ProjectForm-3e4e56c7.js",
+      "resources/js/Pages/Projects/ProjectDetailsPage.jsx",
       "resources/js/Pages/Projects/ProjectEstimate.jsx",
-      "resources/js/Pages/Projects/ProjectsOverview.jsx",
-      "resources/js/Pages/Projects/Skeletons/SkeletonOverview.jsx",
+      "resources/js/Pages/Projects/ProjectListPage.jsx",
+      "resources/js/Pages/Projects/SubPages/CallSheets.jsx",
+      "resources/js/Pages/Projects/SubPages/ProjectEditPage copy.jsx",
       "resources/js/Pages/Welcome.jsx"
     ],
-    "file": "assets/app-968085fd.js",
+    "file": "assets/app-eefe6961.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }
