@@ -82,9 +82,6 @@ class VerificationController extends Controller
         // Log the verification
         info('Verification successful for user: ' . $user->id);
 
-        // Update session
-        $request->session()->put('registration.email_verified', true);
-
         // Return additional user information if needed
         return response()->json(['success' => true, 'user' => $user]);
     }

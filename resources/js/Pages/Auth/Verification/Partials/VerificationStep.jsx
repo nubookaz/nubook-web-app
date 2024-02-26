@@ -127,7 +127,7 @@ export default function VerificationStep({
             <div className='w-1/2 h-full flex flex-col justify-center'>
                 <img className="mx-auto max-w-[15rem]" src="./images/svg_images/undraw_mailbox.svg" alt="" />
             </div>
-            <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
+            <div className='w-1/2 my-auto h-auto justify-center flex flex-col gap-6'>
                 <h2>Verify Your Email</h2>
                 <p>
                     To ensure the security of your account, please check your email inbox for a verification code. To complete the verification process, paste the code in the provided field. Thank you for confirming your email address and enhancing your account's security.
