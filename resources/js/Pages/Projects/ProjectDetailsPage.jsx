@@ -6,28 +6,11 @@ import { router } from '@inertiajs/react';
 
 import CardContainer from '@/Components/Containers/CardContainer';
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
-
  
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import Textarea from '@mui/joy/Textarea';
-import Typography from '@mui/joy/Typography';
-import Tooltip from '@mui/joy/Tooltip';
- 
-import MoviePoster from '@/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster';
-import ViewerRating from '@/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating';
-
- 
-import Modal from '@/Components/Modals/Modal';
-import Snackbar from '@mui/joy/Snackbar';
-
-import Chip from '@mui/joy/Chip';
-
 import ImageContainer from '@/Components/Containers/ImageContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faCircle } from '@fortawesome/free-solid-svg-icons';
-import LinearProgressBar from '@/Components/ProgressBars/LinearProgressBar';
-
+ 
 
 
 export default function ProjectDetailsPage({ 

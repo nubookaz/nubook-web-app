@@ -13,6 +13,7 @@ import CallSheetRecipientForm from '@/Pages/Projects/CallSheets/Forms/CallSheetR
 import ProjectImagePreview from '@/Pages/Projects/Components/ProjectImagePreview';
 import LogOutForm from '@/Pages/Auth/LogOutForm';
 import LocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/LocationForm';
+import AddTaskModal from '@/Pages/Tasks/Modals/AddTaskModal';
 
 export default function Surface({ user, project, callSheet, roles }) {
     const { isModalOpen, toggleModal, modalContent } = useModal();
@@ -22,6 +23,8 @@ export default function Surface({ user, project, callSheet, roles }) {
         switch (modalContent?.type) {
             case 'projectForm':
                 return <ProjectForm />;
+            case 'addTask':
+                return <AddTaskModal onClose={handleCloseClick}/>;
             case 'newLocationForm':
                 return <LocationForm project={project} callSheet={callSheet} onClose={handleCloseClick} />;
             case 'editLocationForm':
@@ -31,7 +34,7 @@ export default function Surface({ user, project, callSheet, roles }) {
             case 'generalCallTime':
                 return <GeneralCallTimeForm callSheet={callSheet} data={modalContent?.data} />;
             case 'newCallSheetForm':
-                return  <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} formType={modalContent?.data}  onClose={handleCloseClick} /> ;
+                return <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} formType={modalContent?.data}  onClose={handleCloseClick} /> ;
             case 'editCallSheetForm':
                 return <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} mode='edit' formType={modalContent?.data} onClose={handleCloseClick} />;   
             case 'productionSchedule':
@@ -83,7 +86,9 @@ export default function Surface({ user, project, callSheet, roles }) {
                 showCloseButton={shouldShowCloseButton}
                 className={`w-${width} h-${height} ${getModalBackgroundColor()}`}  
             >
+
                 {renderContent()}
+
             </Modal>
 
             <Snackbar

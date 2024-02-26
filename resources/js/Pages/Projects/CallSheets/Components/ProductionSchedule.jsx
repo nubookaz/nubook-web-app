@@ -82,7 +82,7 @@ const ProductionScheduleRow = ({ row }) => {
         ):(
           <EmptyContent
               className='saturate-0'
-              imageUrl='/images/svg_images/schedule.svg'
+              imageUrl='schedule.svg'
               buttonText='Add a production schedule'
               onClick={handleProductionScheduleClick}
               svgClass='max-w-[12rem]'

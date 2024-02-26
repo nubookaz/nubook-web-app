@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\VerificationController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CompanyController; 
 use App\Http\Controllers\CallSheetController; 
 use App\Http\Controllers\GoogleController; 
@@ -126,9 +127,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/{id}/poster', [ProjectController::class, 'savePoster'])->name('projects.save.poster');
         Route::delete('/delete-project/{id}', [ProjectController::class, 'softDelete'])->name('projects.delete');
 
-
-
-
         // New routes for the "Call Sheets" page
         Route::prefix('{id}/call-sheets')->group(function () {
 
@@ -163,6 +161,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
 
+        Route::prefix('tasks')->group(function () {
+            Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
+            Route::post('/', [TaskController::class, 'store'])->name('tasks.create');
+            Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
+            Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.delete');
+        });
 
 
 

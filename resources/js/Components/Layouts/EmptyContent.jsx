@@ -9,17 +9,17 @@ function EmptyContent({ imageUrl, children, buttonText, onClick, svgClass, class
     return (
         <div className={`${className} flex flex-col gap-4 items-center justify-center h-full mx-auto text-center `}>
 
-            {children.header}
+            <h2 className='text-slate-500 font-bold text-xl'>{children.header}</h2>
             
-            <div className={`my-4 max-w-[10rem] opacity-[.15] w-full ${svgClass}`}>
-                <img className='w-full' src={svgPath} alt="Custom Icon" />
+            <div className={`my-4 max-w-[10rem] opacity-[.20] w-full ${svgClass}`}>
+                <img className='w-full' src={'/images/svg_images/' + svgPath} alt="Custom Icon" />
             </div>
 
-            <div>
+            <div className='text-slate-400'>
                 {children.description}
             </div>
 
-            <SecondaryButton onClick={onClick} >
+            <SecondaryButton onClick={onClick} className={`text-slate-400`}>
                 {buttonText}
             </SecondaryButton>
 

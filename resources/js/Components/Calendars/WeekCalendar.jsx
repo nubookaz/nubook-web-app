@@ -62,7 +62,7 @@ const Calendar = ({ showDetailsHandle }) => {
   
     return (
       
-      <div className="header py-6 flex-row flex w-full justify-between">
+      <div className="header pt-2 pb-4 flex-row flex w-full justify-between">
 
           <div className="justify-start">
               <div className="cursor-pointer w-[15rem] text-lg font-semibold" onClick={() => changeMonthHandle("prev")}>
@@ -149,7 +149,7 @@ const Calendar = ({ showDetailsHandle }) => {
   const renderFooter = () => {
     return (
 
-        <div className="flex-row flex px-8 py-6 justify-between w-full">
+        <div className="flex-row flex px-8 pt-4 justify-between w-full">
 
             <div className="justify-start" onClick={() => changeWeekHandle("prev")}>
                 <div className="duration-500 transition-all cursor-pointer text-slate-300 hover:text-slate-500 font-bold">

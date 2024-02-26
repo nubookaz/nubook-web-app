@@ -21,15 +21,7 @@ class ProjectController extends Controller
 
     public function index()
     {
-        // Retrieve the user's projects 
-        $user = Auth::user();
-        $projects = $user->projects()->with('productionCompany')->get();
-    
-         return Inertia::render('Projects', [
-            'auth' => $user,
-            'projects' => $projects,
-        ]);    
-    
+         return Inertia::render('Projects');    
     }
 
     public function showList()

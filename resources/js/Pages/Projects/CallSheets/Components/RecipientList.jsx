@@ -1,5 +1,5 @@
 import { useModal } from '@/Components/Contexts/ModalContext';
-import { useCallSheet } from '@/Components/Contexts/CallSheetContext';
+import { useRecipient } from '@/Components/Contexts/RecipientContext';
 
 import React, { useState, useEffect } from 'react';
 
@@ -12,7 +12,7 @@ export default function RecipientList({
     className,
 }) {
     const { toggleModal } = useModal();
-    const { currentCallSheet, callSheetRecipients, setCallSheetRecipients } = useCallSheet(); // Assuming you have a setter for callSheetRecipients
+    const { callSheetRecipients } = useRecipient(); // Assuming you have a setter for callSheetRecipients
     
     const handleRecipientListClick = () => {
         toggleModal({type: 'recipientForm'});  
@@ -143,7 +143,7 @@ export default function RecipientList({
                 ) : (
                 <EmptyContent
                     className='saturate-0'
-                    imageUrl='/images/svg_images/users.svg'
+                    imageUrl='/users.svg'
                     buttonText='Add a recipient'
                     onClick={handleRecipientListClick}
                     svgClass='max-w-[10rem]'

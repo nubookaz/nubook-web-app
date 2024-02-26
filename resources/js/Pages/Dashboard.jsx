@@ -1,24 +1,10 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
+import { useProject } from '@/Components/Contexts/ProjectContext';
 
 import React, { useState, useEffect } from 'react';
 
 import ImageContainer from '@/Components/Containers/ImageContainer';
-
-
-
-
-import { usePage } from '@inertiajs/react';
-
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-
 import CardContainer from '@/Components/Containers/CardContainer';
-import Modal from '@/Components/Modals/Modal';
-import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
-import Overview from '@/Components/Projects/Overview';
-import Budget from '@/Components/Projects/Budget';
-
-
-
 
 import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
@@ -27,8 +13,9 @@ import PortalLayout from '@/Layouts/Partials/PortalLayout';
 
 export default function Dashboard() {
   const { user } = useAuth();
-
-    // Function to get the time of day greeting
+  const { projects } = useProject();
+ 
+  // Function to get the time of day greeting
   const getTimeOfDayGreeting = () => {
       const currentHour = new Date().getHours();
 
@@ -45,8 +32,7 @@ export default function Dashboard() {
   const timeOfDayGreeting = getTimeOfDayGreeting();
   const greeting = `${timeOfDayGreeting} ${user?.first_name} ${user?.last_name}!`;
 
-  console.log(user);
-
+ 
    return (
 
       <PortalLayout 
@@ -57,54 +43,41 @@ export default function Dashboard() {
 
             {{
                 body:(
-                  <>
-                    <ImageContainer
-                      backgroundImage='/images/background_images/bg_image_6.jpg'
-                      className='h-[15rem]'
-                    >
-                    </ImageContainer>
-   
-                  </>
-                ),
-            }}
-                {/* <div className='flex flex-row h-full w-full justify-between gap-4'>
-                    <CardContainer header="Project Overview" className='w-full'>
-                      <Overview
-                        projects={projects}
-                        isPortrait={true}
-                        onClick={openProjectFormPanel}
-                        multiCircularProgressSize="w-[220px] h-[220px]"
-                      />
-                    </CardContainer>
-                    <CardContainer header="Budget Overview" className='w-full h-full'>
-                        <Budget
-                          projects={projects}
-                        />
-                      </CardContainer> */}
-                    {/* <div className='flex flex-col gap-4 h-full w-full'>
+ 
+                    <div className='flex flex-col gap-4 h-full'>
+                      <ImageContainer
+                        backgroundImage='/images/background_images/bg_image_6.jpg'
+                        className='h-[20rem]'
+                      >
+                      </ImageContainer>
 
-                      <div className='flex flex-row gap-4 h-1/2'>
-                         <ImageContainer     
-                          overlay={true}      
-                          className="promo-ad w-full"     
-                          overlayOpacity='50'                       
-                          backgroundImage="./images/cartoon_images/female_professional_filmmaker.png"
-                        >
-                          <h2 className='text-white text-[2rem]'>Hollywood Filmmaker</h2>
-                        </ImageContainer>
+                      <div className='flex flex-row gap-4 h-full'>
+                        
+                        <CardContainer header="Project Overview" className='w-full'>
+                            <div className="flex flex-col">
+                              {projects.map((project) => (
+                                <div key={project.id} className="p-4 border rounded shadow mb-4">
+                                  <h3 className="text-lg font-semibold">{project.project_name}</h3>
+                                  <p><strong>Stage:</strong> {project.project_stage}</p>
+                                  <p><strong>Status:</strong> {project.project_status}</p>
+                                  <p><strong>Type:</strong> {project.project_type}</p>
+                                  <p><strong>Budget:</strong> {project.project_budget || 'N/A'}</p>
+                                  <p><strong>Description:</strong> {project.project_description || 'No description available'}</p>
+                                </div>
+                              ))}
+                            </div>
+                        </CardContainer>
+
+
+                        <CardContainer header="Budget Overview" className='w-full h-full'>
+
+                        </CardContainer>
                       </div>
-                    </div> */}
-                {/* </div>  */}
-
-                {/* <CardContainer header='Projects' className=''>
-                      <Overview
-                        projects={projects}
-                        isPortrait={true}
-                        onClick={openProjectFormPanel}
-                        multiCircularProgressSize="w-[220px] h-[220px]"
-                      />
-                </CardContainer> */}
-
+                    </div>
+                  
+                 ),
+            }}
+  
       </PortalLayout>
    
   );

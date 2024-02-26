@@ -81,8 +81,7 @@ function ProjectList({
             const {project_name, project_stage, project_status, project_description, video_type, project_type, project_budget, is_favorite} = project
             const {filming_days, movie_poster, primary_genre, secondary_genre, viewer_rating} = project.video_production
 
-            console.log(project);
-
+ 
               let projectColor = '';
               let textColor = '';
               if (project_stage === 'Estimate') {
@@ -111,7 +110,7 @@ function ProjectList({
                               {is_favorite ? (
                                   <FontAwesomeIcon className='absolute top-0 left-[1.5rem] h-[4rem] w-[2rem] scale-y-[1.75] text-rose-500' icon={faBookmark} />
                               ) : null}                            
-                              <span className={` ${bannerTextColor || 'text-slate-400'} text-[.70rem]`}>{video_type}</span>  
+                              <span className={` ${bannerTextColor || 'text-slate-400'} text-[.65rem]`}>{video_type}</span>  
                               <span className={` ${bannerTextColor || 'text-slate-400'} text-xs font-bold`}>{project_stage ? (project_stage) : null}</span>
                         </div>
                         <Link className='edit-icon mt-[3rem]' 
@@ -122,12 +121,12 @@ function ProjectList({
 
                         <div className="details">
                               <div className='flex flex-row gap-2'>
-                                  <span className='block font-normal mb-2 text-xs text-white bg-slate-600 px-4 py-1 rounded w-fit'>{project_status}</span>
+                                  <span className='block font-normal mb-2 text-[.70rem] text-white bg-slate-600 px-4 py-1 rounded w-fit'>{project_status}</span>
                                   <span className='block font-normal mb-2 text-xs text-white bg-slate-600 px-4 py-1 rounded w-fit'>{project_type}</span>
                               </div>
 
-                              <a className='font-bold text-2xl hover:text-emerald-500 duration-500' href={project_stage === 'Estimate' ? route('projects.estimate', { id: project.id }) : route('projects.details', { id: project.id })}>{project_name}</a>
-                              <h2 className='text-white'>2023 • {viewer_rating ? ( viewer_rating + ' •' ):null} 1hr 38min</h2>
+                              <a className='font-bold text-lg hover:text-emerald-500 duration-500' href={project_stage === 'Estimate' ? route('projects.estimate', { id: project.id }) : route('projects.details', { id: project.id })}>{project_name}</a>
+                              <h2 className='text-white text-sm'>2023 • {viewer_rating ? ( viewer_rating + ' •' ):null} 1hr 38min</h2>
 
                               <div className="tags">
                                   {primary_genre ? (<span className="tag text-xs">{primary_genre}</span>):null}
@@ -144,21 +143,12 @@ function ProjectList({
                                       )}
                                     </p>
                                   ) : (
-                                    <p className='text-center py-[2rem] px-4 bg-slate-500 rounded-md  text-black'>
+                                    <p className='text-center py-[2rem] text-xs px-4 bg-slate-500 rounded-md  text-black'>
                                       No Project Description Added
                                     </p>
                                   )}
                               </div>
-
-                              <div className="cast">
-                                  <h3 className='text-white'>Cast</h3>
-                                  <ul>
-                                      <li><img src="https://i.postimg.cc/jqgkqhSb/cast-11.jpg" alt="Marco Andrews" title="Marco Andrews"/></li>
-                                      <li><img src="https://i.postimg.cc/8P7X7r7r/cast-12.jpg" alt="Rebecca Floyd" title="Rebecca Floyd"/></li>
-                                      <li><img src="https://i.postimg.cc/2SvHwRFk/cast-13.jpg" alt="Antonio Herrera" title="Antonio Herrera"/></li>
-                                  </ul>
-                              </div>
-                            
+                           
                         </div>
                   </div>         
 

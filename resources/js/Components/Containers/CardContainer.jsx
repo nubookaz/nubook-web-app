@@ -30,7 +30,7 @@ export default function CardContainer({
     };
   
     return (
-      <div className={`${finalClassName} p-6 shadow-sm rounded-2xl flex flex-col gap-2 ${header ? '' : 'relative'}`}>
+      <div className={`${finalClassName} px-6 pb-6 pt-4 shadow-sm rounded-2xl flex flex-col gap-2 ${header ? '' : 'relative'}`}>
         {(header || onClick) && (
           <div className={`${header ? 'w-full flex flex-row justify-between items-center' : 'absolute right-6'}`}>
             {header && (
