@@ -16,6 +16,20 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        // Define the roles to be inserted
+        $roles = [
+            ['name' => 'Super-Admin', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Admin', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Editor', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Talent', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Crew', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Client', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Extra', 'created_at' => now(), 'updated_at' => now()],
+        ];
+
+        // Insert default roles into the roles table
+        DB::table('roles')->insert($roles);
     }
 
     /**
