@@ -44,42 +44,52 @@ class RegisteredUserController extends Controller
             'consent.required' => 'Please make sure to agree to the privacy policy and data collection.',
             'consent.boolean' => 'Invalid consent value.',
         ];
-
+    
         $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'consent' => 'required|boolean', 
         ], $messages);
-
-
+    
+        Log::info('Attempting to register a new user', ['email' => $request->email]);
+    
         $verificationCode = Str::uuid();
         $expiresAt = now()->addMinutes(3)->toIso8601String();
-
-        // Capture the user's IP address
-
-        $user = User::create([
-            'first_name' => 'Placeholder',
-            'last_name' => 'User',
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'verification_code' => $verificationCode,
-            'code_expires_at' => $expiresAt, 
-            'email_verified_at' => null,
-            'email_verified' => false,
-            'consent' => $request->boolean('consent'),
-        ]);
-
-        $adminRoleId = DB::table('roles')->where('name', 'admin')->first()->id;
-        
-        $user->roles()->attach($adminRoleId);    
-
-        event(new Registered($user));
-        Auth::login($user);
-
-        Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
-
-        return redirect(RouteServiceProvider::HOME);   
+    
+        try {
+            $user = User::create([
+                'first_name' => 'Placeholder',
+                'last_name' => 'User',
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'verification_code' => $verificationCode,
+                'code_expires_at' => $expiresAt, 
+                'email_verified_at' => null,
+                'email_verified' => false,
+                'consent' => $request->boolean('consent'),
+            ]);
+    
+            $adminRoleId = DB::table('roles')->where('name', 'admin')->first()->id;
+            
+            $user->roles()->attach($adminRoleId);    
+    
+            event(new Registered($user));
+            Auth::login($user);
+    
+            Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
+    
+            Log::info('User registered successfully', ['user_id' => $user->id]);
+    
+            return redirect(RouteServiceProvider::HOME);
+        } catch (\Exception $e) {
+            Log::error('Registration failed', [
+                'email' => $request->email,
+                'error' => $e->getMessage(),
+            ]);
+            session()->flash('error', 'An unexpected error occurred. Please try again.');
+            return redirect('/');
+        }
     }
-
+    
     
 }
