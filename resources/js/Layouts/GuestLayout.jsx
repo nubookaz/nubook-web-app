@@ -65,7 +65,7 @@ export default function Guest({
                             >
                                 <h2 className='text-[6rem] drop-shadow-lg--md text-white text-right font-extralight'>{greeting}</h2>
                             </ImageContainer>
-                            <CardContainer className='flex flex-col gap-8 p-[2rem] h-full justify-between rounded-none w-full max-w-[30rem]'>
+                            <CardContainer childrenClass='gap-8' className='p-[2rem] h-full justify-between rounded-none w-full max-w-[30rem]'>
 
                                 <ApplicationName className='text-left'/>
 

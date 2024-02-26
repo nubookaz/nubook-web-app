@@ -9,6 +9,7 @@ export default function CardContainer({
     className = '',
     onClick,
     textClassName,
+    childrenClass,
   }) {
     function containsBackgroundClass(className) {
       const bgClassPattern = /\bbg-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
@@ -45,7 +46,7 @@ export default function CardContainer({
           </div>
         )}
   
-        <div style={contentStyle} className="flex flex-col h-full">
+        <div style={contentStyle} className={`${childrenClass} flex flex-col h-full`}>
           {children}
         </div>
       </div>
