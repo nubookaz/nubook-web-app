@@ -16,19 +16,14 @@ const PageNavigation = ({
 
     const { createNewProject } = useAuth();
 
-
-
-
     const projectId = project?.id; 
 
     const initialSubitemVisibility = {
         'projects.callSheets.index': activePage.startsWith('projects.callSheets.details.page')
-        // Add similar lines for other items with subitems if needed
     };
 
     const [visibleSubitems, setVisibleSubitems] = useState(initialSubitemVisibility);
 
- 
     const header = 'text-2xl text-slate-400';
     const isActive = (route) => {
         // Check if the current activePage starts with the provided route
@@ -60,7 +55,7 @@ const PageNavigation = ({
             icon: faCircleInfo,
         },
         {
-            label: 'Projects',
+            label: 'Project Overview',
             routeName: 'projects.list',
             icon: faDiagramProject,
         },

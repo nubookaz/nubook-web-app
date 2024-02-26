@@ -6,7 +6,7 @@
     <title>Email Verification</title>
     <style>
         body {
-            background-color: #f5f5f5; /* Set a background color if needed */
+            background-color: #414141; /* Set a background color if needed */
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
         .email-container {
             max-width: 600px;
             margin: 20px auto;
-            background-color: #fff;
+            background-color: #f4f4f4;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
@@ -46,7 +46,7 @@
       }
       
       .email-footer a {
-        color: rgb(148 163 184);
+        color: rgb(120 113 108);
         font-size: .80rem;
       }
       
@@ -57,12 +57,11 @@
       
         .verification-code {
           margin: 30px auto;
-          padding: 20px;
-          background-color: rgb(241 245 249);
-          max-width: 30rem;
+          padding: 20px 60px;
+          background-color: rgb(16 185 129);
+          max-width: 20rem;
           border-radius: 10px;
-          color: rgb(16 185 129);
-          text-align: center;
+          color: #fff;
         }
       
     </style>

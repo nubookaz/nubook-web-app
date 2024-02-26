@@ -1,6 +1,7 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
 import { useModal } from '@/Components/Contexts/ModalContext';
-
+import { useProject } from '@/Components/Contexts/ProjectContext';
+ 
 import React from 'react';
 
 import ProjectList from '@/Pages/Projects/Components/ProjectList';
@@ -8,16 +9,15 @@ import PortalLayout from '@/Layouts/Partials/PortalLayout';
 import CardContainer from '@/Components/Containers/CardContainer';
 
  import WeekCalendar from '@/Components/Calendars/WeekCalendar';
+import Tasks from './Tasks/Tasks';
    
 export default function Projects({ auth }) {
     const { user } = useAuth();
+    const { projects } = useProject();
     const { toggleModal } = useModal();
     const handleNewProjectClick = () => {
         toggleModal({type: 'projectForm'});  
     };
-
-    const projects = user && user.projects || []; // Use an empty array as a fallback if 'projects' prop is undefined
-    console.log(projects);
 
     const mostRecentProject = projects
         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
@@ -34,9 +34,9 @@ export default function Projects({ auth }) {
                 body:(
                   <div className='flex flex-col gap-4 w-full h-full'>
 
-                      <div className='flex flex-row gap-4 w-full h-full'>
+                      <div className='flex flex-row gap-4 w-full h-full max-h-[26rem]'>
 
-                          <CardContainer header="Recent Updated Project" className='h-full w-full max-w-[21rem]'>
+                          <CardContainer header="Recent Updated Project" className='h-full w-full max-w-[18rem]'>
                             {mostRecentProject.length > 0 ? (
                                 <ProjectList bannerClassName='!bg-slate-600 !text-slate-00' bannerTextColor='text-white' projects={mostRecentProject} showNewProject={false} view="View All" className='w-full !grid-cols-1 !grid-rows-1'/>
                             ):(
@@ -51,10 +51,14 @@ export default function Projects({ auth }) {
                           </CardContainer>
 
                       </div>
+                        
+                      <div className='flex flex-row gap-4 h-full'>
+                        <Tasks />
+                        <CardContainer header="" className='h-full w-full'>
 
-                      <CardContainer header="" className='h-full w-full'>
-                      </CardContainer>
-
+                        </CardContainer>
+                      </div>
+                      
                   </div>
                 ),
             }}

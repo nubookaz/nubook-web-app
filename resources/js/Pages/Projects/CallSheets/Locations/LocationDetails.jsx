@@ -109,7 +109,7 @@ const LocationDetails = ({
             ) : (
                 <EmptyContent
                     className='saturate-0'
-                    imageUrl='/images/svg_images/location.svg'
+                    imageUrl='location.svg'
                     buttonText='Add a Location'
                     onClick={handleAddLocationClick}
                     svgClass='max-w-[13rem]'

@@ -6,6 +6,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { AuthProvider } from '@/Components/Contexts/AuthContext';
 import { CallSheetProvider } from '@/Components/Contexts/CallSheetContext';
+import { RecipientProvider } from '@/Components/Contexts/RecipientContext';
 import { CallSheetLocationProvider } from '@/Components/Contexts/CallSheetLocationContext';
 import { ModalProvider } from '@/Components/Contexts/ModalContext';
 import { SnackProvider } from '@/Components/Contexts/SnackContext';
@@ -13,6 +14,7 @@ import { DarkModeProvider } from '@/Components/Contexts/DarkModeContext';
 import { DrawerProvider } from '@/Components/Contexts/DrawerContext';
 import { ScheduleProvider } from '@/Components/Contexts/ScheduleContext';
 import { ProjectProvider } from '@/Components/Contexts/ProjectContext';
+import { TaskProvider } from '@/Components/Contexts/TaskContext';
 
 
 
@@ -31,13 +33,17 @@ createInertiaApp({
                         <SnackProvider>
                             <DarkModeProvider>
                                 <CallSheetProvider>
-                                    <CallSheetLocationProvider>
-                                        <DrawerProvider>
-                                            <ScheduleProvider>
-                                                <App {...props} />
-                                            </ScheduleProvider>
-                                        </DrawerProvider>
-                                    </CallSheetLocationProvider>
+                                    <RecipientProvider>
+                                        <CallSheetLocationProvider>
+                                            <DrawerProvider>
+                                                <ScheduleProvider>
+                                                    <TaskProvider>
+                                                        <App {...props} />
+                                                    </TaskProvider>
+                                                </ScheduleProvider>
+                                            </DrawerProvider>
+                                        </CallSheetLocationProvider>
+                                    </RecipientProvider>
                                 </CallSheetProvider>
                             </DarkModeProvider>
                         </SnackProvider>

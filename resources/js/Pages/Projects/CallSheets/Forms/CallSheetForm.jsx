@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import { router } from '@inertiajs/react';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
+import { format } from 'date-fns';
 
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
 import Input from '@/Components/Forms/Input';
@@ -53,8 +54,8 @@ export default function CallSheetForm({
   const [selectedRole, setSelectedRole] = useState('');
   const [position, setPosition] = useState('');
   const [selfCallTime, setSelfCallTime] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-
+  const initialDate = callSheet?.call_sheet_date_time ? new Date(callSheet.call_sheet_date_time) : new Date();
+  const [startDate, setStartDate] = useState(initialDate);
 
     const handleRoleChange = (e) => {
         setSelectedRole(e.target.value);
@@ -76,21 +77,21 @@ export default function CallSheetForm({
       };
       
     const handleDateChange = (newDate) => {
-        setDate(newDate);
+        const formattedDate = format(newDate, 'yyyy-MM-dd');
+        setDate(formattedDate); // Assuming 'date' is used for displaying or other logic
         setCallSheetData(prevState => ({
             ...prevState,
-            call_sheet_date_time: prevState.call_sheet_date_time ? `${newDate} ${prevState.call_sheet_date_time.split(' ')[1]}` : `${newDate} 00:00:00`
+            call_sheet_date_time: `${formattedDate} ${generalCallTime}`
         }));
     };
     
     const handleTimeChange = (newTime) => {
-        setGeneralCallTime(newTime);
+        setGeneralCallTime(newTime); // Assuming this is for display or other logic
         setCallSheetData(prevState => ({
             ...prevState,
-            call_sheet_date_time: prevState.call_sheet_date_time ? `${prevState.call_sheet_date_time.split(' ')[0]} ${newTime}` : `2023-01-01 ${newTime}`
+            call_sheet_date_time: `${format(startDate, 'yyyy-MM-dd')} ${newTime}`
         }));
-    };
-      
+    };    
 
    const handleSave = async () => {
         // Prepare the data based on the mode
@@ -100,7 +101,7 @@ export default function CallSheetForm({
             // When creating, build formData from individual state values
             dataToSend = {
                 call_sheet_name: callSheetName,
-                call_sheet_date_time: `${date} ${generalCallTime}`,
+                call_sheet_date_time: `${format(startDate, 'yyyy-MM-dd')} ${generalCallTime}`,
             };
 
             // If adding self as a recipient, include these details
@@ -167,15 +168,7 @@ export default function CallSheetForm({
         />
 
        <div className='flex flex-row gap-6 h-full'>
-            {/* <Input
-                required
-                title="Call Sheet Date"
-                label="Call Sheet Date"
-                type="date"
-                name="call_sheet_date"
-                value={date}
-                onChange={(e) => handleDateChange(e.target.value)}
-            /> */}
+
             <div className='w-full flex flex-col gap-2 h-full'>
                 <label className='text-gray-400 text-sm'>Call Sheet Date</label>
                 <div className='w-full flex h-full'>

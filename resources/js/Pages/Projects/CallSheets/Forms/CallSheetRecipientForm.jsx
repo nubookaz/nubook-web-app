@@ -269,7 +269,7 @@ const CallSheetRecipientForm = ({
                         <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
                     </button>
                 )}
-                <SecondaryButton>Cancel</SecondaryButton>
+                <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
                 <PrimaryButton type="submit" >Submit</PrimaryButton>
           </div>
          
