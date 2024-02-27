@@ -6,10 +6,11 @@ import Modal from '@/Components/Modals/Modal';
 import Snackbar from '@mui/joy/Snackbar';
 
 import ProjectForm from '@/Pages/Projects/Forms/ProjectForm';
-import CallSheetForm from '@/Pages/Projects/CallSheets/Forms/CallSheetForm';
+import CreateCallSheet from '@/Pages/Projects/CallSheets/Forms/CreateCallSheet';
+import UpdateCallSheet from '@/Pages/Projects/CallSheets/Forms/UpdateCallSheet';
 import GeneralCallTimeForm from '@/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm';
 import CallSheetProductionSchedule from '@/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule';
-import CallSheetRecipientForm from '@/Pages/Projects/CallSheets/Forms/CallSheetRecipientForm';
+import CallSheetRecipientForm from '@/Pages/Projects/CallSheets/Recipients/CreateRecipient';
 import ProjectImagePreview from '@/Pages/Projects/Components/ProjectImagePreview';
 import LogOutForm from '@/Pages/Auth/LogOutForm';
 import LocationForm from '@/Pages/Projects/CallSheets/Locations/Forms/LocationForm';
@@ -34,9 +35,9 @@ export default function Surface({ user, project, callSheet, roles }) {
             case 'generalCallTime':
                 return <GeneralCallTimeForm callSheet={callSheet} data={modalContent?.data} />;
             case 'newCallSheetForm':
-                return <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} formType={modalContent?.data}  onClose={handleCloseClick} /> ;
+                return <CreateCallSheet user={user} roles={roles} project={project} callSheet={callSheet} data={modalContent?.data}  onClose={handleCloseClick} /> ;
             case 'editCallSheetForm':
-                return <CallSheetForm user={user} roles={roles} project={project} callSheet={callSheet} mode='edit' formType={modalContent?.data} onClose={handleCloseClick} />;   
+                return <UpdateCallSheet mode='edit' data={modalContent?.data} onClose={handleCloseClick} />;   
             case 'productionSchedule':
                 return <CallSheetProductionSchedule project={project} callSheet={callSheet} />;
             case 'recipientForm':

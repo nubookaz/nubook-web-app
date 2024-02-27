@@ -5,8 +5,7 @@ import Sidebar from '@/Layouts/Partials/Sidebar';
 import Loading from '@/Layouts/Partials/Loading';
 
 import Modal from '@/Components/Modals/Modal';
-import ActionDrawer from '@/Components/Drawer/ActionDrawer';
-
+ 
 import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 
 
@@ -21,22 +20,10 @@ export default function AuthenticatedLayout({
 
 }) {
 
-  const { user, fetchUserData } = useAuth();
-  useEffect(() => {
-    // Fetch user data on component mount
-    fetchUserData();
-  }, []);
-
-
-
-
-
-
-
+  const { user } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState('');
- 
 
   useEffect(() => {
     if (user && user.is_password_temporary) {
@@ -58,9 +45,6 @@ export default function AuthenticatedLayout({
  
   const verification = user && (user.is_password_temporary || !user.email_verified || !user.personal_info_completed || !user.company_info_completed);
 
-  // const verification = true;
- 
-
 
     return (
 
@@ -73,14 +57,14 @@ export default function AuthenticatedLayout({
                   {verification ? (
 
                       <div className="absolute z-40 w-full">
-                            <Modal isOpen={isModalOpen} className="!max-w-[70rem]">
+                          <Modal isOpen={isModalOpen} className="!max-w-[70rem]">
                               <VerificationProcess 
                                 currentStep={currentStep}
                                 setCurrentStep={setCurrentStep}
                                 setIsModalOpen={setIsModalOpen}
                               />
-                            </Modal>
-                            <Loading />
+                          </Modal>
+                          <Loading />
                       </div>
 
                   ):(
@@ -99,7 +83,7 @@ export default function AuthenticatedLayout({
                     </div>
 
                     <main className="flex flex-col w-full h-screen overflow-hidden">
-                          {children.portal}
+                        {children.portal}
                     </main>
 
                 </div>

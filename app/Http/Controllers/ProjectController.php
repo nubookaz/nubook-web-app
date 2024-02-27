@@ -19,6 +19,13 @@ class ProjectController extends Controller
 
     use ProjectTrait;
 
+    public function getUsers($projectId)
+    {
+        $project = Project::findOrFail($projectId);
+        $users = $project->users()->get();  
+        return response()->json($users);
+    }
+
     public function index()
     {
          return Inertia::render('Projects');    
@@ -56,10 +63,10 @@ class ProjectController extends Controller
         })) === 0;
     }
  
-    public function saveFavorite(Request $request, $id) {
+    public function saveFavorite(Request $request, $projectId) {
         // Authorization checks (if necessary)
         // $this->authorize('update', $project);
-        $project = Project::find($id);
+        $project = Project::find($projectId);
         $project->is_favorite = $request->input('isFavorite');
         $project->save();
     
@@ -113,10 +120,10 @@ class ProjectController extends Controller
         return response()->json(['message' => 'Poster saved successfully', 'poster' => $videoProductionData['movie_poster']]);
     }
 
-    public function edit($id)
+    public function edit($projectId)
     {
         // Retrieve the project by its ID
-        $project = Project::find($id);
+        $project = Project::find($projectId);
     
         // Check if the project exists
         if (!$project) {
@@ -129,10 +136,10 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function estimate($id)
+    public function estimate($projectId)
     {
         // Retrieve the project by its ID
-        $project = Project::find($id);
+        $project = Project::find($projectId);
 
         // Check if the project exists
         if (!$project) {
@@ -159,9 +166,9 @@ class ProjectController extends Controller
     }
 
 
-    public function softDelete(Request $request, $id)
+    public function softDelete(Request $request, $projectId)
     {
-        $project = Project::find($id);
+        $project = Project::find($projectId);
 
         if (!$project) {
             return response()->json(['message' => 'Project not found'], 404);

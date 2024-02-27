@@ -18,7 +18,6 @@ export default function ProjectDetailsPage({
   project,
 
 }) {
-    const { updateCurrentProject } = useAuth();
     const { toggleModal } = useModal();
     const handleProjectImagePreviewClick = () => {
         toggleModal({type: 'projectImage', imageUrl: projectData.movie_poster.url });  
@@ -35,7 +34,7 @@ export default function ProjectDetailsPage({
         setIsFavorite(newFavoriteStatus);
   
         // Update favorite status in the database
-        await axios.post(route('projects.favorite', {id: project.id} ), {
+        await axios.post(route('projects.favorite', {projectId: project.id} ), {
           isFavorite: newFavoriteStatus
         });
   
@@ -68,8 +67,7 @@ export default function ProjectDetailsPage({
     if (project) {
         // Set the project data, including is_favorite
         setProjectData({ ...project });
-        updateCurrentProject(project);
-        setIsLoading(false);
+         setIsLoading(false);
     }
 }, [project]);
 
@@ -92,8 +90,7 @@ export default function ProjectDetailsPage({
         project_budget: project.project_budget || '',
       });
 
-      updateCurrentProject(project);
-
+ 
       setIsLoading(false);
  
     }

@@ -20,16 +20,7 @@ export default function VerificationProcess({
     setIsModalOpen,
 
  }) {
-    const { user, fetchUserData } = useAuth();
-    useEffect(() => {
-        // Fetch user data on component mount
-        fetchUserData();
-      }, []);
-    
-
-
-
-
+    const { user } = useAuth();
 
     const [emptyFields, setEmptyFields] = useState({
         first_name: false,
@@ -108,7 +99,6 @@ export default function VerificationProcess({
                 if (response.data.success) {
                     setCurrentStep('verification');
                     console.log("response",response.data);
-                    fetchUserData();
                 }
             });
         } catch (error) {
@@ -180,7 +170,7 @@ export default function VerificationProcess({
  
  
      return (
-        <div className='p-8 w-full !max-w-[80rem] h-[45rem]'>
+        <div className='py-8 px-[4rem] w-full !max-w-[80rem] h-[45rem]'>
 
                 {currentStep === 'changePassword' && 
                     <div className='flex flex-row gap-8 h-full'>
@@ -189,9 +179,7 @@ export default function VerificationProcess({
                         </div>
                         <div className='w-1/2 my-auto h-full justify-center flex flex-col gap-6'>
                             <h2>Create a Password</h2>
-                            <p>
-                            Welcome to our platform! For your account security, we kindly request you to create a unique and strong password. Please proceed to set up your password to ensure a secure and personalized experience on our platform. Thank you for choosing us!                           
-                            </p>
+                            <p> Welcome to our platform! For your account security, we kindly request you to create a unique and strong password. Please proceed to set up your password to ensure a secure and personalized experience on our platform. Thank you for choosing us!</p>
                             <div className="flex flex-col gap-4">
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="password" value="password" className='text-gray-400 text-sm'> Password * </label>

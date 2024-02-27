@@ -37,18 +37,19 @@
         .email-body {
             margin-top: 20px;
             color: #555;
+            text-align: center;
         }
       
-      .email-footer {
-        background-color: rgb(203 213 225);
-        padding: 20px 0px;
-        margin-top: 40px;
-      }
-      
-      .email-footer a {
-        color: rgb(120 113 108);
-        font-size: .80rem;
-      }
+        .email-footer {
+          background-color: rgb(203 213 225);
+          padding: 20px 0px;
+          margin-top: 40px;
+        }
+        
+        .email-footer a {
+          color: rgb(120 113 108);
+          font-size: .80rem;
+        }
       
         .salutation { 
            color: rgb(71 85 105);
@@ -57,12 +58,13 @@
       
         .verification-code {
           margin: 30px auto;
-          padding: 20px 60px;
+          padding: 20px;
           background-color: rgb(16 185 129);
-          max-width: 20rem;
+          max-width: 30rem;
           border-radius: 10px;
+          text-align: center;
           color: #fff;
-        }
+         }
       
     </style>
 </head>

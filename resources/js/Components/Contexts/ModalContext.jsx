@@ -11,16 +11,12 @@ export const ModalProvider = ({ children }) => {
     const toggleModal = (data = {}) => {
         if (isModalOpen) {
             setIsModalOpen(false);
-            // Consider resetting the content here or based on specific conditions
-            // setModalContent(null);
         } else {
             setIsModalOpen(true);
             setModalContent(data);
         }
     };
     
-
- 
     return (
         <ModalContext.Provider value={{
             isModalOpen,

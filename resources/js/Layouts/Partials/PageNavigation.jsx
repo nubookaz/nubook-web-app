@@ -19,7 +19,7 @@ const PageNavigation = ({
     const projectId = project?.id; 
 
     const initialSubitemVisibility = {
-        'projects.callSheets.index': activePage.startsWith('projects.callSheets.details.page')
+        'projects.callSheets.index': activePage.startsWith('callSheet.details.page')
     };
 
     const [visibleSubitems, setVisibleSubitems] = useState(initialSubitemVisibility);
@@ -32,7 +32,7 @@ const PageNavigation = ({
         }
     
         // Additional check for specific cases, like sub-pages of 'Call Sheets'
-        if (route === 'projects.callSheets.index' && activePage.startsWith('projects.callSheets.details.page')) {
+        if (route === 'projects.callSheets.index' && activePage.startsWith('callSheet.details.page')) {
             return true;
         }
     
@@ -72,7 +72,7 @@ const PageNavigation = ({
             label: 'Call Sheets',
             routeName: 'projects.callSheets.index',
             icon: faPaperPlane,
-            subitems: projectId && activePage.startsWith('projects.callSheets.details.page') ? [
+            subitems: projectId && activePage.startsWith('callSheet.details.page') ? [
                 {
                     label: 'Subitem 1',
                     routeName: `projects.callSheets.details.${projectId}.subitem1`,
@@ -111,7 +111,7 @@ const PageNavigation = ({
     
             // Set route parameters for specific items if needed
             if (item.routeName.startsWith('projects.details') || item.routeName === 'projects.callSheets.index') {
-                routeParams = { id: projectId };
+                routeParams = { projectId: projectId };
             }
     
             const hasSubitems = item.subitems && item.subitems.length > 0;
@@ -210,7 +210,7 @@ const PageNavigation = ({
                     <ul className='my-8 flex flex-col gap-6 ml-4'>
                         {renderNavItems(productionBookNavItems)}
                     </ul>
-                    {activePage === 'projects.callSheets.details.page' && (
+                    {activePage === 'callSheet.details.page' && (
                         <div className='filters flex flex-col gap-4 pr-8 justify-end'>
  
                         </div>

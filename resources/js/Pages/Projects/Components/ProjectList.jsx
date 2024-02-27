@@ -1,4 +1,6 @@
 import { useModal } from '@/Components/Contexts/ModalContext';
+import { useProject } from '@/Components/Contexts/ProjectContext';
+import { router } from '@inertiajs/react'; 
 
 import {
   estimateColor,
@@ -11,12 +13,10 @@ import {
 import { faBookmark, faPencil, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Link } from '@inertiajs/react';
-
+ 
 
 function ProjectList({ 
   
-  projects, 
   className, 
   view, 
   maxProjects = 16,
@@ -26,9 +26,25 @@ function ProjectList({
  
 }) {
 
+  const { projects, setCurrentProject } = useProject();
+  const handleSelectProject = (projectId) => {
+    setCurrentProject(projectId);
+  };
+
   const { toggleModal } = useModal();
   const handleNewProjectClick = () => {
     toggleModal({type: 'projectForm'});  
+  };
+
+
+  const handleNavigate = (projectId, projectStage) => {
+    setCurrentProject(projectId);
+  
+    const url = projectStage === 'Estimate'
+      ? route('projects.estimate', { id: projectId })
+      : route('projects.details', { id: projectId });
+  
+    router.visit(url);
   };
 
   const containerClasses = `grid grid-cols-6 grid-rows-2 gap-4 h-full ${className}`;
@@ -64,8 +80,6 @@ function ProjectList({
       return projectsWithOrder;
   };
 
-
-  console.log(projects);
 
   // Get the filtered and sorted call sheets based on the selected view
   const filteredProjects = view === "View All" ? projects : projects.filter(project => project.project_stage === view);
@@ -113,11 +127,10 @@ function ProjectList({
                               <span className={` ${bannerTextColor || 'text-slate-400'} text-[.65rem]`}>{video_type}</span>  
                               <span className={` ${bannerTextColor || 'text-slate-400'} text-xs font-bold`}>{project_stage ? (project_stage) : null}</span>
                         </div>
-                        <Link className='edit-icon mt-[3rem]' 
-                          href={project_stage === 'Estimate' ? route('projects.estimate', { id: project.id }) : route('projects.details', { id: project.id })}
-                        >
+                        <div className='edit-icon mt-[3rem]' 
+                            onClick={() => handleNavigate(project.id, project.project_stage)}>
                             <FontAwesomeIcon className=' text-white text-xs' icon={faPencil} />
-                        </Link>
+                        </div>
 
                         <div className="details">
                               <div className='flex flex-row gap-2'>

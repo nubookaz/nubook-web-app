@@ -55,21 +55,7 @@ const img = {
 
 export default function UploadableProfilePicture({ onClick, className, isUploadable }) {
 
-  const { user, fetchUserData } = useAuth();
-
-  useEffect(() => {
-    // Fetch user data on component mount
-    fetchUserData();
-  }, []);
-
-
-
-
-
-
-
-
-
+  const { user } = useAuth();
 
   const [userProfileImage, setUserProfileImage] = useState(null);  
   const [isLoading, setIsLoading] = useState(true);  

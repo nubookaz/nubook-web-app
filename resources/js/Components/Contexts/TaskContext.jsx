@@ -1,30 +1,39 @@
+import { useAuth } from './AuthContext'; 
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+ 
 
 const TaskContext = createContext();
 
 export const useTasks = () => useContext(TaskContext);
 
 export const TaskProvider = ({ children }) => {
+    const { user } = useAuth(); 
+
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                const response = await axios.get(route('tasks.index')); // Update with your actual API endpoint
-                setTasks(response.data);
-            } catch (error) {
-                console.error("Failed to fetch tasks:", error);
-            }
-        };
+        
+        if(user){
+            const fetchTasks = async () => {
+                try {
+                    const response = await axios.get(route('tasks.index'));  
+                    setTasks(response.data);
+                } catch (error) {
+                    console.error("Failed to fetch tasks:", error);
+                }
+            };
 
-        fetchTasks();
+            fetchTasks();
+        }
+
     }, []);
 
     const addTask = async (task) => {
         try {
-            const response = await axios.post(route('tasks.create'), task); // Add task through API
-            setTasks(prevTasks => [...prevTasks, response.data]); // Add the new task returned by the API to the state
+            const response = await axios.post(route('tasks.create'), task); 
+            setTasks(prevTasks => [...prevTasks, response.data]);  
         } catch (error) {
             console.error("Failed to add task:", error);
         }
@@ -32,12 +41,13 @@ export const TaskProvider = ({ children }) => {
 
     const removeTask = async (taskId) => {
         try {
-            await axios.delete(route('tasks.delete', {taskId} ) ); // Delete task through API
-            setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId)); // Remove the task from the state
+            await axios.delete(route('tasks.delete', { taskId }));
+            setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
         } catch (error) {
-            console.error("Failed to remove task:", error);
+            console.error("Failed to soft delete task:", error);
         }
     };
+    
 
     return (
         <TaskContext.Provider value={{ tasks, addTask, removeTask }}>

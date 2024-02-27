@@ -20,13 +20,12 @@ export default function CallSheets() {
     const project = props.projects || []; 
     const callSheet = props.callSheets || [];  
     const roles = props.roles || [];
-    const [callSheetView, setCallSheetView] = useState("View All");
-
+ 
     return (
         <PortalLayout
             breadcrumbs={[
                 { label: 'Project List', url: route('projects.list') },
-                { label: 'Project Details', url: route('projects.details', {id: project.id}) },
+                { label: 'Project Details', url: route('projects.details', {projectId: project.id}) },
                 { label: 'Call Sheets', url: '' },
             ]}
             user={user}
@@ -35,7 +34,7 @@ export default function CallSheets() {
         >
             {{
                 body:(
-                    <CallSheetList currentCallSheet={currentCallSheet} project={project} callSheets={callSheet} view={callSheetView} ></CallSheetList>
+                    <CallSheetList currentCallSheet={currentCallSheet} project={project} callSheets={callSheet} ></CallSheetList>
                 ),
             }}
         </PortalLayout>

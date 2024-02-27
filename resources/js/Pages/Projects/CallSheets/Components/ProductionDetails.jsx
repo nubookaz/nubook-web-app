@@ -10,7 +10,6 @@ import {  faCalendarDays, faClapperboard, faPaperPlane } from '@fortawesome/free
 export default function ProductionDetails({ 
 
     project,
-    callSheet, 
     className,
 
  }){
@@ -20,7 +19,7 @@ export default function ProductionDetails({
     const handleProductionDetailsClick = () => {
         toggleModal({type: 'editCallSheetForm'});  
     };
-    
+    console.log(currentCallSheet);
     const [callSheetName, setCallSheetName] = useState('');
     const [date, setDate] = useState('');
     const [callTime, setCallTime] = useState('');
@@ -29,7 +28,7 @@ export default function ProductionDetails({
         const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
- 
+
     function formatTime(dateString) {
         const date = new Date(dateString);
         let hours = date.getHours();
@@ -45,18 +44,16 @@ export default function ProductionDetails({
     }
       
     useEffect(() => {
-        const sheetToUse = currentCallSheet?.id === callSheet.id ? currentCallSheet : callSheet;
-
-        if (sheetToUse) {
-            setCallSheetName(sheetToUse.call_sheet_name);
-            if (sheetToUse.call_sheet_date_time) {
-                const dateValue = formatDateWithDay(sheetToUse.call_sheet_date_time);
-                const timeValue = formatTime(sheetToUse.call_sheet_date_time);
+        if (currentCallSheet) {
+            setCallSheetName(currentCallSheet.call_sheet_name);
+            if (currentCallSheet.call_sheet_date_time) {
+                const dateValue = formatDateWithDay(currentCallSheet.call_sheet_date_time);
+                const timeValue = formatTime(currentCallSheet.call_sheet_date_time);
                 setDate(dateValue);
                 setCallTime(timeValue);
             }
         }
-    }, [callSheet, currentCallSheet]);
+    }, [currentCallSheet]);
 
  
     return(
