@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { useProject } from './ProjectContext'; // Ensure this path matches your file structure
+import { useProject } from './ProjectContext'; 
+import { useAuth } from '@/Components/Contexts/AuthContext';
+
 import { router } from '@inertiajs/react'; 
 
 const CallSheetContext = createContext();
@@ -8,36 +10,40 @@ const CallSheetContext = createContext();
 export const useCallSheet = () => useContext(CallSheetContext);
 
 export const CallSheetProvider = ({ children }) => {
+    const { loggedIn } = useAuth();
+
     const { currentProjectId } = useProject();
     const [callSheets, setCallSheets] = useState([]);
     const [currentCallSheetId, setCurrentCallSheetId] = useState(() => localStorage.getItem('currentCallSheetId'));
     const [currentCallSheet, setCurrentCallSheet] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // console.log(loggedIn);
 
+    // console.log(currentCallSheetId);
     useEffect(() => {
-        console.log('Effect running', { isLoading, callSheets, currentCallSheetId });
         if (!isLoading && callSheets.length > 0) {
             const sheet = callSheets.find(sheet => sheet.id.toString() === currentCallSheetId);
-            console.log('Found sheet:', sheet);
             setCurrentCallSheet(sheet || null);
         }
     }, [callSheets, currentCallSheetId, isLoading]);
     
  
     const fetchCallSheets = async () => {
-        setIsLoading(true);
-        if (currentProjectId) {
-            try {
-                const response = await axios.get(route('fetch-user-call-sheets', {projectId: currentProjectId}));
-                setCallSheets(response.data);
-                setIsLoading(false);
-            } catch (error) {
-                console.error("Failed to fetch call sheets:", error);
+        if(loggedIn){
+            setIsLoading(true);
+            if (currentProjectId) {
+                try {
+                    const response = await axios.get(route('fetch-user-call-sheets', {projectId: currentProjectId}));
+                    setCallSheets(response.data);
+                    setIsLoading(false);
+                } catch (error) {
+                    console.error("Failed to fetch call sheets:", error);
+                    setIsLoading(false);
+                }
+            } else {
                 setIsLoading(false);
             }
-        } else {
-            setIsLoading(false);
         }
     };
 

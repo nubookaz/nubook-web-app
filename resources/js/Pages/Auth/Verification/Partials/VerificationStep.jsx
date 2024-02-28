@@ -16,7 +16,7 @@ export default function VerificationStep({
 
     const { userData } = useAuth();
     const [verificationCode, setVerificationCode] = useState('');
-
+    console.log(userData);
     const [timer, setTimer] = useState(null);
     const [showTimer, setShowTimer] = useState(false);
     const [isTimerExpired, setIsTimerExpired] = useState(false);

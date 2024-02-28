@@ -55,12 +55,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-    Route::get('/fetch-auth-status', [ProfileController::class, 'authStatus']);
+    Route::get('/fetch-auth-status', [ProfileController::class, 'authStatus'])->name('fetch-auth-status');
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
     Route::get('/fetch-project-data', [ProjectController::class, 'fetchUserProjects'])->name('fetch-user-projects');
 
+
+
+    
     Route::post('/chat', [ChatGPTController::class, 'chat'])->name('chat.gpt');
     Route::get('/ai-content-info', [ChatGPTController::class, 'getAIGeneratedContentInfo'])->name('ai-content.info');
     Route::get('/fetch-image', [ChatGPTController::class, 'fetchImage']);

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { router } from '@inertiajs/react'; 
 
 const AuthContext = createContext();
 
@@ -10,85 +11,77 @@ export const AuthProvider = ({ children }) => {
     loggedIn: false,
     currentStep: '',
     isModalOpen: false,
-    userData: null,  
+    userData: null,
   });
 
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
+  const checkAuthStatus = async () => {
+    try {
+      const response = await axios.get('/fetch-auth-status');
+      const isLoggedIn = response.data.loggedIn;
+      const userData = response.data.user ? response.data.user : null; // Assuming the backend includes user data
+
+      setAuthState(prevState => ({
+        ...prevState,
+        loggedIn: isLoggedIn,
+        userData: userData,
+      }));
+
+      determineCurrentStep(response.data); // Pass the entire response to handle steps
+    } catch (error) {
+      console.error('User not logged in', error);
+    }
+  };
+
+  const determineCurrentStep = (data) => {
+    let step = '';
+    let modalOpen = false;
+
+    if (data.isPasswordTemporary) {
+      step = 'changePassword';
+      modalOpen = true;
+    } else if (!data.emailVerified) {
+      step = 'verification';
+      modalOpen = true;
+    } else if (!data.personalInfoCompleted) {
+      step = 'personalInfo';
+      modalOpen = true;
+    } else if (!data.companyInfoCompleted) {
+      step = 'companyInfo';
+      modalOpen = true;
+    } else if (!data.registrationComplete) {
+      step = '';
+      modalOpen = false;
+    }
+
+    setAuthState(prevState => ({
+      ...prevState,
+      currentStep: step,
+      isModalOpen: modalOpen,
+    }));
+  };
+
   const setCurrentStep = (step) => {
-    setAuthState((prevState) => ({
+    setAuthState(prevState => ({
       ...prevState,
       currentStep: step,
     }));
   };
 
   const setIsModalOpen = (isOpen) => {
-    setAuthState((prevState) => ({
+    setAuthState(prevState => ({
       ...prevState,
       isModalOpen: isOpen,
     }));
   };
 
-  useEffect(() => {
-    checkAuthStatus();
-    fetchUserData(); 
-  }, []);
-
-  const checkAuthStatus = async () => {
-    try {
-      const response = await axios.get('/fetch-auth-status');
-      determineCurrentStep(response.data); 
-    } catch (error) {
-      console.error('Failed to fetch auth status', error);
-    }
-  };
-
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get('/fetch-user-data');
-      setAuthState(prevState => ({
-        ...prevState,
-        userData: response.data, 
-      }));
-    } catch (error) {
-      console.error('Failed to fetch user data', error);
-    }
-  };
-
-
-  const determineCurrentStep = (userData) => {
-    let step = '';
-    let modalOpen = false;
-
-    if (userData.isPasswordTemporary) {
-      step = 'changePassword';
-      modalOpen = true;
-    } else if (!userData.emailVerified) {
-      step = 'verification';
-      modalOpen = true;
-    } else if (!userData.personalInfoCompleted) {
-      step = 'personalInfo';
-      modalOpen = true;
-    } else if (!userData.companyInfoCompleted) {
-      step = 'companyInfo';
-      modalOpen = true;
-    } else if (!userData.registrationComplete) {
-      step = '';  
-      modalOpen = false;  
-    }
-
-    setAuthState((prevState) => ({
-      ...prevState,
-      currentStep: step,
-      isModalOpen: modalOpen,
-    }));
-};
-
-
   const contextValue = {
     ...authState,
-    checkAuthStatus,
-    fetchUserData, 
-    setCurrentStep, 
-    setIsModalOpen, 
+    setCurrentStep,
+    setIsModalOpen,
   };
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;

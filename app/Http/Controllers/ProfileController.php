@@ -25,10 +25,10 @@ class ProfileController extends Controller
     public function authStatus(Request $request)
     {
         $user = $request->user();
-
-        // Assuming you have methods or attributes in your User model to check these statuses
+        
         $status = [
             'loggedIn' => true,
+            'user' => $user->makeHidden(['sensitiveAttribute1', 'sensitiveAttribute2']),  
             'isPasswordTemporary' => $user->is_password_temporary,
             'consentGiven' => $user->consent,
             'emailVerified' => $user->email_verified,
@@ -37,9 +37,10 @@ class ProfileController extends Controller
             'companyInfoCompleted' => $user->company_info_completed,
             'registrationComplete' => $user->registration_complete,
         ];
-
+    
         return response()->json($status);
     }
+    
 
     public function fetchUserData()
     {
@@ -51,6 +52,7 @@ class ProfileController extends Controller
             'primaryProductionCompany',
             'productionCompanies'
         ]);
+        dd($user);
         return response()->json($user);
     }
     
