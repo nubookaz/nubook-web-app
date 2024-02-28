@@ -51,7 +51,7 @@ class ProjectController extends Controller
         $viewName = $project->project_stage === "Estimate" ? 'projects.estimate' : 'projects.details';
         
         return response()->json([
-            'url' => route($viewName, ['id' => $project->id])
+            'url' => route($viewName, ['projectId' => $project->id])
         ]);
     }
     

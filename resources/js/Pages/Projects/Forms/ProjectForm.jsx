@@ -157,8 +157,6 @@ export default function ProjectForm({ customClasses }) {
     const handleSaveProject = async () => {
 
         const formData = new FormData();
-        
-        // Append all other data to formData
         Object.entries({ 
             ...projectData, 
             ...videoStepOneData, 
@@ -169,16 +167,13 @@ export default function ProjectForm({ customClasses }) {
             formData.append(key, value);
         });
     
-        // Append the 'isImageAIGenerated' flag
-        formData.append('isImageAIGenerated', isImageAIGenerated);
+         formData.append('isImageAIGenerated', isImageAIGenerated);
     
-        // Append the image file if it exists
-        if (uploadedImage) {
+         if (uploadedImage) {
             formData.append('uploadedImage', uploadedImage);
         }
     
-        // Append poster size information
-        if (posterSize) {
+         if (posterSize) {
             formData.append('posterWidth', posterSize.width);
             formData.append('posterHeight', posterSize.height);
         }
@@ -191,8 +186,7 @@ export default function ProjectForm({ customClasses }) {
             });
 
             if (response.data?.url) {
-                // Redirect to the provided URL
-                window.location.href = response.data.url;
+                 window.location.href = response.data.url;
             }
          } catch (error) {
             console.error('Error saving project:', error);
