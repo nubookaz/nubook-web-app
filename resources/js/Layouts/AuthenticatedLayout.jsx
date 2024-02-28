@@ -13,7 +13,7 @@ export default function AuthenticatedLayout({ children, project }) {
     <div className="min-h-screen tertiary-color relative bg-slate-50">
       {isModalOpen && (
         <div className="absolute z-40 w-full">
-          <Modal isOpen={isModalOpen} className="!w-[70rem]">
+          <Modal isOpen={isModalOpen} shouldCloseOnOverlayClick={false} className="!w-[70rem]">
             <VerificationProcess
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
