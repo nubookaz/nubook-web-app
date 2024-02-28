@@ -55,6 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
+    Route::get('/fetch-auth-status', [ProfileController::class, 'authStatus']);
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');

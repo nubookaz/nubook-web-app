@@ -20,7 +20,6 @@ export default function VerificationProcess({
     setIsModalOpen,
 
  }) {
-    const { user } = useAuth();
 
     const [emptyFields, setEmptyFields] = useState({
         first_name: false,
@@ -166,8 +165,6 @@ export default function VerificationProcess({
             handleError(error, 'Error during company info request');
         }
     };
-
- 
  
      return (
         <div className='py-8 px-[4rem] w-full !max-w-[80rem] h-[45rem]'>

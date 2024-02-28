@@ -14,8 +14,7 @@ export default function VerificationStep({
 
 }){
 
-    const { user } = useAuth();
-
+    const { userData } = useAuth();
     const [verificationCode, setVerificationCode] = useState('');
 
     const [timer, setTimer] = useState(null);
@@ -74,14 +73,14 @@ export default function VerificationStep({
 
 
     useEffect(() => {
-        if (!user || !user.code_expires_at) {
+        if (!userData || !userData.code_expires_at) {
             return;
         }
 
          
         setShowTimer(true);
 
-        const expirationTime = new Date(user.code_expires_at + 'Z').getTime();
+        const expirationTime = new Date(userData.code_expires_at + 'Z').getTime();
         const currentTime = Date.now();
     
         if (currentTime >= expirationTime) {
@@ -108,7 +107,7 @@ export default function VerificationStep({
         }, 1000);
     
         return () => clearInterval(interval);
-    }, [user.code_expires_at]);
+    }, [userData.code_expires_at]);
     
  
 

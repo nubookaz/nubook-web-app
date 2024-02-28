@@ -22,20 +22,38 @@ class ProfileController extends Controller
 {
     use ProfileTrait;
 
+    public function authStatus(Request $request)
+    {
+        $user = $request->user();
+
+        // Assuming you have methods or attributes in your User model to check these statuses
+        $status = [
+            'loggedIn' => true,
+            'isPasswordTemporary' => $user->is_password_temporary,
+            'consentGiven' => $user->consent,
+            'emailVerified' => $user->email_verified,
+            'codeVerified' => $user->code_verified,
+            'personalInfoCompleted' => $user->personal_info_completed,
+            'companyInfoCompleted' => $user->company_info_completed,
+            'registrationComplete' => $user->registration_complete,
+        ];
+
+        return response()->json($status);
+    }
+
     public function fetchUserData()
     {
-        // Replace this logic with your actual user data retrieval logic
-        $user = auth()->user()->load(
+        $user = auth()->user()->load([
             'projects.callSheets', 
             'phone', 
             'location.filmLocation', 
             'location.parkingLocation', 
             'primaryProductionCompany',
             'productionCompanies'
-        );
+        ]);
         return response()->json($user);
     }
-
+    
     public function fetchUserProjects()
     {
         $user = auth()->user(); // Get the authenticated user

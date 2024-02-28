@@ -25,7 +25,7 @@ const Modal = ({ isOpen, onClose, children, className, showCloseButton, shouldCl
                     </button>
                 </div>
                 <div className={`fade-in-delay ${fadeInDelay ? 'opacity-1' : 'opacity-0'} modal-body h-full`}>
-                    {children}
+                    {children || <span>--- No content available ---</span>}
                 </div>
             </div>
         </div>

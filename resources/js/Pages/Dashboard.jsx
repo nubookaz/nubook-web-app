@@ -14,8 +14,8 @@ import PortalLayout from '@/Layouts/Partials/PortalLayout';
 export default function Dashboard() {
   const { user } = useAuth();
   const { projects } = useProject();
- 
-  // Function to get the time of day greeting
+  console.log("User Data:", user); // Debug: Check user data
+
   const getTimeOfDayGreeting = () => {
       const currentHour = new Date().getHours();
 
@@ -28,12 +28,19 @@ export default function Dashboard() {
       }
   };
  
-   // Get the time of day greeting
   const timeOfDayGreeting = getTimeOfDayGreeting();
-  const greeting = `${timeOfDayGreeting} ${user?.first_name} ${user?.last_name}!`;
-
+  const userFirstName = user?.first_name;
+  const userLastName = user?.last_name;
+  const isValidName = (name) => name && name !== "Placeholder" && name !== "Name";
+  
+  const greeting = `${timeOfDayGreeting} ${
+    isValidName(userFirstName) && isValidName(userLastName)
+      ? `${userFirstName} ${userLastName}`
+      : ""
+  }!`;
+  
  
-   return (
+  return (
 
       <PortalLayout 
           breadcrumbs={[
