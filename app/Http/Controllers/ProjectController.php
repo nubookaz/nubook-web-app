@@ -26,6 +26,23 @@ class ProjectController extends Controller
         return response()->json($users);
     }
 
+    public function fetchUserProjects()
+    {
+        $user = auth()->user(); 
+        if (!$user) {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
+    
+         $projects = $user->projects()->with([
+            'callSheets',
+            'productionSchedules',
+            'users',
+            'productionCompany',
+         ])->get();
+    
+        return response()->json($projects);
+    }
+
     public function index()
     {
          return Inertia::render('Projects');    

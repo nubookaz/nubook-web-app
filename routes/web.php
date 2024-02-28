@@ -59,7 +59,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
-    Route::get('/fetch-project-data', [ProfileController::class, 'fetchUserProjects'])->name('fetch-project-data');
+    Route::get('/fetch-project-data', [ProjectController::class, 'fetchUserProjects'])->name('fetch-user-projects');
 
     Route::post('/chat', [ChatGPTController::class, 'chat'])->name('chat.gpt');
     Route::get('/ai-content-info', [ChatGPTController::class, 'getAIGeneratedContentInfo'])->name('ai-content.info');
@@ -165,7 +165,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             });
 
-            Route::post('/{callSheet_Id}/recipients', [RecipientController::class, 'saveRecipient'])->name('projects.callSheets.recipient');
+            // Recipients
+            Route::post('/{callSheetId}/recipients', [RecipientController::class, 'saveRecipient'])->name('projects.callSheets.recipient');
             Route::post('/{callSheetId}/recipients/{recipientId}', [RecipientController::class, 'updateRecipient'])->name('projects.callSheets.update.recipient');
             Route::delete('/{callSheetId}/recipients/{recipientId}/delete', [RecipientController::class, 'deleteRecipientFromCallSheet'])->name('projects.callSheets.delete.recipient');
 

@@ -16,46 +16,49 @@ export const CallSheetProvider = ({ children }) => {
 
 
     useEffect(() => {
+        console.log('Effect running', { isLoading, callSheets, currentCallSheetId });
         if (!isLoading && callSheets.length > 0) {
             const sheet = callSheets.find(sheet => sheet.id.toString() === currentCallSheetId);
+            console.log('Found sheet:', sheet);
             setCurrentCallSheet(sheet || null);
         }
     }, [callSheets, currentCallSheetId, isLoading]);
-
+    
+ 
     const fetchCallSheets = async () => {
-        setIsLoading(true);  
+        setIsLoading(true);
         if (currentProjectId) {
             try {
                 const response = await axios.get(route('fetch-user-call-sheets', {projectId: currentProjectId}));
                 setCallSheets(response.data);
-                setIsLoading(false); 
+                setIsLoading(false);
             } catch (error) {
                 console.error("Failed to fetch call sheets:", error);
-                setIsLoading(false);  
+                setIsLoading(false);
             }
         } else {
-            setIsLoading(false); 
+            setIsLoading(false);
         }
     };
-    
-  
+
     useEffect(() => {
         fetchCallSheets();
     }, [currentProjectId]);
+
 
     const createCallSheet = async (callSheetData) => {
         if (!currentProjectId) return;
         try {
             const response = await axios.post(route('callSheet.create', { projectId: currentProjectId }), callSheetData);
             console.log('CallSheetProvider', response);
-                if (response.data && response.data.url) {
-                window.location.href = response.data.url;
+            if (response.data && response.data.id) {
+                setCallSheets(prev => [...prev, response.data]);
+                // Update the currentCallSheetId with the ID of the newly created call sheet
+                setCurrentCallSheetId(response.data.id.toString());
+                // Optionally, update localStorage or your state management solution to reflect the new currentCallSheetId
+                localStorage.setItem('currentCallSheetId', response.data.id.toString());
             } else {
-                if (response.data && response.data.id) {
-                    setCallSheets(prev => [...prev, response.data]);
-                } else {
-                    console.log('Unexpected response data:', response.data);
-                }
+                console.log('Unexpected response data:', response.data);
             }
         } catch (error) {
             console.error("Failed to create call sheet:", error);
@@ -91,6 +94,8 @@ export const CallSheetProvider = ({ children }) => {
             console.error("Failed to delete call sheet:", error);
         }
     };
+
+ 
 
     return (
         <CallSheetContext.Provider value={{

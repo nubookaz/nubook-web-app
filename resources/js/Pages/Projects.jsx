@@ -22,6 +22,7 @@ export default function Projects({ auth }) {
     const mostRecentProject = projects
         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
         .slice(0, 1); 
+    console.log(mostRecentProject);
 
     return (
       
@@ -38,7 +39,7 @@ export default function Projects({ auth }) {
 
                           <CardContainer header="Recent Updated Project" className='h-full w-full max-w-[18rem]'>
                             {mostRecentProject.length > 0 ? (
-                                <ProjectList bannerClassName='!bg-slate-600 !text-slate-00' bannerTextColor='text-white' projects={mostRecentProject} showNewProject={false} view="View All" className='w-full !grid-cols-1 !grid-rows-1'/>
+                                <ProjectList bannerClassName='!bg-slate-600 !text-slate-00' bannerTextColor='text-white' projects={mostRecentProject} showNewProject={false} view="View All" className='w-full !grid-cols-1 !grid-rows-1 !gap-0'/>
                             ):(
                                 <div onClick={handleNewProjectClick} className='cursor-pointer hover:bg-slate-100 duration-500 transition-all flex justify-center items-center p-8 text-center text-slate-400 h-full w-full bg-slate-50 border-2 border-dashed rounded-lg'>
                                     No projects available. Start a new project now!

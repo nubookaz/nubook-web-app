@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // Add useRef here
 import { useProject } from '@/Components/Contexts/ProjectContext';
 import { useCallSheet } from '@/Components/Contexts/CallSheetContext';
 import { useModal } from '@/Components/Contexts/ModalContext';
@@ -16,6 +16,8 @@ export default function CreateCallSheet({ roles, onClose }) {
   const { currentProjectId } = useProject();
   const { createCallSheet } = useCallSheet();
   const { toggleModal } = useModal();
+
+  const roleRef = useRef(null); // Define roleRef here
 
   const [callSheetName, setCallSheetName] = useState('');
   const [startDate, setStartDate] = useState(new Date());

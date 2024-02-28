@@ -1,20 +1,26 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
+import { useProject } from '@/Components/Contexts/ProjectContext'; 
 
 import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons'; 
  
-import ProjectSelector from './Partials/ProjectSelector'; // Import CategorySelector
-import ProjectStepper from './Partials/ProjectStepper'; // Import ProjectStepper
+import ProjectSelector from './Partials/ProjectSelector';  
+import ProjectStepper from './Partials/ProjectStepper'; 
 import PageButton from '@/Components/Buttons/PageButton';
 
 import VideoStepOne from './Partials/VideoProduction/VideoStepOne';
 import VideoStepTwo from './Partials/VideoProduction/VideoStepTwo';
 import VideoStepThree from './Partials/VideoProduction/VideoStepThree';
 
-export default function ProjectForm({ customClasses }) {
-    const { user } = useAuth();
+export default function CreateProject({ customClasses }) {
+    const { userData } = useAuth();
+    const { createProject } = useProject();
+
+
+
+
     const [fadeIn, setFadeIn] = useState(false);
     const [fadeInDelay, setFadeInDelay] = useState(false);
  
@@ -153,44 +159,24 @@ export default function ProjectForm({ customClasses }) {
         { step: 4, header: projectData.video_type, description: 'Lets add additional details for your project' },
     ]
 
-
     const handleSaveProject = async () => {
-
-        const formData = new FormData();
-        Object.entries({ 
-            ...projectData, 
+ 
+        const projectData = {
             ...videoStepOneData, 
             ...videoStepTwoData, 
             ...videoStepThreeData, 
-            ...videoStepFourData 
-        }).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
-    
-         formData.append('isImageAIGenerated', isImageAIGenerated);
-    
-         if (uploadedImage) {
-            formData.append('uploadedImage', uploadedImage);
-        }
-    
-         if (posterSize) {
-            formData.append('posterWidth', posterSize.width);
-            formData.append('posterHeight', posterSize.height);
-        }
-        
-        try {
-            const response = await axios.post(route('projects.create'), formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+            ...videoStepFourData,
+            project_type: projectData.project_type,
+            video_type: projectData.video_type,
+        };
+        const projectAssets = {
+            isImageAIGenerated,
+            uploadedImage,
+            posterWidth: posterSize.width,
+            posterHeight: posterSize.height,
+        };
 
-            if (response.data?.url) {
-                 window.location.href = response.data.url;
-            }
-         } catch (error) {
-            console.error('Error saving project:', error);
-        }
+        createProject(projectData, projectAssets);
     };
     
     
