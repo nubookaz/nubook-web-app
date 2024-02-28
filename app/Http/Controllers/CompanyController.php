@@ -31,7 +31,6 @@ class CompanyController extends Controller
     
     public function edit($id)
     {
-        // Implement your logic to retrieve and edit a specific company
         $company = Company::findOrFail($id);
 
         return view('companies.edit', ['company' => $company]);

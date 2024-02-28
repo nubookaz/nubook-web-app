@@ -31,13 +31,29 @@ class CallSheetController extends Controller
 
     use CallSheetTrait;
    
-    /**
-     * Display a listing of the resource.
-     */
-    public function index($id)
+    public function fetchUserCallSheets($projectId)
     {
-         // Retrieve the project based on the project ID from the route parameter
-        $projects = Project::findOrFail($id);
+        // Fetch call sheets for the specified project including related models
+        $callSheets = CallSheet::with(['users', 'productionCompany', 'project', 'filmLocations', 'productionSchedule'])
+                        ->where('project_id', $projectId)
+                        ->get();
+
+        return response()->json($callSheets);
+    }
+
+
+
+    public function getUsers($projectId, $callSheet_Id)
+    {
+        $callSheet = CallSheet::where('project_id', $projectId)->findOrFail($callSheet_Id);
+        $users = $callSheet->users()->get(); 
+        return response()->json($users);
+    }
+
+    public function index($projectId)
+    {
+ 
+        $projects = Project::findOrFail($projectId);
 
         $callSheets = $projects->callSheets->load(
             'filmLocations'
@@ -47,15 +63,14 @@ class CallSheetController extends Controller
         return Inertia::render('Projects/SubPages/CallSheets', [
             'projects' => $projects,
             'callSheets' => $callSheets,
-            'roles' => $roles, // Pass roles to the frontend
+            'roles' => $roles, 
         ]);
     }
 
-    public function saveWeatherData(Request $request, $id, $callSheetId)
+    public function saveWeatherData(Request $request, $projectId, $callSheetId)
     {
-        // Validate the request data
         $validatedData = $request->validate([
-            'weatherData' => 'required', // Ensure that weatherData is provided
+            'weatherData' => 'required', 
         ]);
     
         $callSheet = CallSheet::find($callSheetId);
@@ -75,7 +90,7 @@ class CallSheetController extends Controller
         }
     }
     
-    public function storeCallSheetDetails(Request $request, $id)
+    public function createCallSheet(Request $request, $projectId)
     {
         $validatedData = $request->validate([
             'call_sheet_name' => 'required',
@@ -88,7 +103,7 @@ class CallSheetController extends Controller
     
         // Create the call sheet
         $callSheet = new CallSheet($validatedData);
-        $callSheet->project_id = $id;
+        $callSheet->project_id = $projectId;
         $callSheet->save();
     
         // Always attach the user as an admin to the call sheet
@@ -111,22 +126,17 @@ class CallSheetController extends Controller
                 $attachData['pay_frequency'] = $request->input('payFrequency'); // Include pay frequency
             }
   
-            // Check to prevent attaching the same user twice with different roles
-            if ($adminRole->id !== $role->id) {
+             if ($adminRole->id !== $role->id) {
                 // Attach the user with the specified non-admin role, position, and rate
                 $callSheet->users()->attach(Auth::id(), $attachData);
             }
         }
-
-        
-        // Return a response with success message and URL to the call sheet details page
-        return response()->json([
-            'message' => 'Call sheet created successfully. You have been added as an admin.',
-            'url' => route('projects.callSheets.details.page', ['id' => $id, 'callSheetId' => $callSheet->id])
+         return response()->json([
+            'url' => route('callSheet.details.page', ['projectId' => $projectId, 'callSheetId' => $callSheet->id])
         ]);
     }
 
-    public function updateCallSheetDetails(Request $request, $id, $callSheetId)
+    public function updateCallSheetDetails(Request $request, $projectId, $callSheetId)
     {
         $data = $request->validate([
             'id' => 'required|exists:call_sheets,id',
@@ -147,23 +157,21 @@ class CallSheetController extends Controller
     }
 
 
-    public function editDetailsPage($id, $callSheetId)
+    public function callSheetDetailsPage($projectId, $callSheetId)
     {
         $project = Project::with([
             'users' => function ($query) {
                 $query->with(['roles', 'phone']);
             },
-            'productionSchedules' // Load the ProductionSchedules relationship
-        ])->find($id);
+            'productionSchedules'  
+        ])->find($projectId);
     
         $callSheet = CallSheet::with(['users' => function($query) {
             $query->with(['phone'])->withPivot('role_id', 'position', 'call_time');
         }])->find($callSheetId);
-        // dd($project);
-        // Fetch roles once to avoid repeated queries
+ 
         $roles = Role::all()->keyBy('id');
-    
-        // Manually iterate over users to append role names
+ 
         foreach ($callSheet->users as $user) {
             $roleId = $user->pivot->role_id;
             $user->pivot->role_name = $roles[$roleId]->name ?? 'Unknown Role';
@@ -171,7 +179,7 @@ class CallSheetController extends Controller
     
         $filteredRoles = Role::whereNotIn('name', ['Super-Admin', 'Admin', 'Editor'])->get();
     
-        return Inertia::render('Projects/CallSheets/CallSheetDetails', [
+        return Inertia::render('Projects/CallSheets/CallSheetDetailsPage', [
             'roles' => $filteredRoles,
             'project' => $project,
             'callSheet' => $callSheet,
@@ -179,172 +187,8 @@ class CallSheetController extends Controller
     }
     
     
-    public function saveRecipient(Request $request, $projectId, $callSheetId)
-    {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'middle_initial' => 'nullable|string|max:1',
-            'last_name' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
-            'tel' => 'nullable|string|max:255',
-            'position' => 'required|string|max:255',
-            'call_time' => 'required|string',
-            'role' => 'required|numeric',
-        ]);
-        
-        $validated['call_time'] = date("H:i", strtotime($validated['call_time']));
 
-        DB::beginTransaction();
-
-        try {
-            // Assuming this is part of the try block where you create or find the user
-            $user = User::where('email', $validated['email'])->firstOrCreate([
-                'email' => $validated['email'],
-            ], [
-                'first_name' => $validated['first_name'],
-                'middle_initial' => $validated['middle_initial'] ?? '',
-                'last_name' => $validated['last_name'] ?? '',
-                'password' => Hash::make(Str::random(10)), // Temporary password
-                'is_password_temporary' => true,
-                'email_verified' => false, // Since they haven't gone through verification
-                'personal_info_completed' => false,
-                'company_info_completed' => false,
-                'registration_complete' => false,
-                // Omit the 'verification_code' and related fields
-            ]);
-
-            $phoneNumber = $user->phone()->updateOrCreate([], ['tel' => $validated['tel'] ?? '']);
- 
-            $project = Project::findOrFail($projectId);
-            $callSheet = CallSheet::findOrFail($callSheetId);
-    
-            // Directly use the role ID from the validated data
-            $roleId = $validated['role'];
-
-            // Ensure the role exists
-            $role = Role::findOrFail($roleId);
-
-            // Attach the user to the project and call sheet with the specified role
-            $project->users()->syncWithoutDetaching([$user->id => ['role_id' => $role->id]]);
-            $callSheet->users()->syncWithoutDetaching([$user->id => [
-                'position' => $validated['position'],
-                'call_time' => $validated['call_time'],
-                'role_id' => $role->id, // Assuming you're storing the role ID in the pivot table
-            ]]);
-    
-            DB::commit();
-
-            $userWithAssociations = $user->load(['callSheets', 'roles', 'phone']);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Recipient saved successfully.',
-                'data' => [
-                    'user' => $userWithAssociations,
-                    'role' => $role->name,
-                    'position' => $validated['position'],
-                    'call_time' => $validated['call_time'],
-                    'phone' => $phoneNumber->tel, // Include the phone number in the response
-                ],
-            ]);
-        } catch (\Exception $e) {
-            DB::rollback();
-            Log::error('Error in saveRecipient', ['message' => $e->getMessage()]);
-            // Return an error JSON response
-            return response()->json([
-                'success' => false,
-                'message' => 'There was a problem saving the information: ' . $e->getMessage(),
-            ], 422); // Use HTTP status code 422 for validation errors
-        }
-    }
-    
-    public function updateRecipient(Request $request, $projectId, $callSheetId, $recipientId)
-    {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'middle_initial' => 'nullable|string|max:1',
-            'last_name' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $recipientId,
-            'tel' => 'nullable|string|max:255',
-            'position' => 'required|string|max:255',
-            'call_time' => 'required|string',
-            'role' => 'required|numeric',
-        ]);
-    
-        $validated['call_time'] = date("H:i", strtotime($validated['call_time']));
-    
-        DB::beginTransaction();
-    
-        try {
-            $user = User::findOrFail($recipientId);
-    
-            $user->update([
-                'first_name' => $validated['first_name'],
-                'middle_initial' => $validated['middle_initial'] ?? '',
-                'last_name' => $validated['last_name'],
-                'email' => $validated['email'],
-            ]);
-    
-            $phoneNumber = $user->phone()->updateOrCreate([], ['tel' => $validated['tel']]);
-    
-            $role = Role::findOrFail($validated['role']);
-    
-            $user->callSheets()->sync([$callSheetId => [
-                'position' => $validated['position'],
-                'call_time' => $validated['call_time'],
-                'role_id' => $role->id,
-            ]]);
-    
-            DB::commit();
-    
-            // Optionally, fetch and return the updated user with related data as needed.
-            $updatedUser = User::with(['phone', 'callSheets', 'roles'])->find($user->id);
-    
-            return response()->json([
-                'success' => true,
-                'message' => 'Recipient updated successfully.',
-                'data' => [
-                    'user' => $updatedUser,
-                    'role' => $role->name, // Include the role name in the response
-                    'position' => $validated['position'],
-                    'call_time' => $validated['call_time'],
-                ],
-            ]);
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'There was a problem updating the recipient: ' . $e->getMessage(),
-            ], 422);
-        }
-    }
-    
-    public function deleteRecipientFromCallSheet(Request $request, $projectId, $callSheetId, $recipientId)
-    {
-        DB::beginTransaction();
-    
-        try {
-            $callSheet = CallSheet::findOrFail($callSheetId);
-            // Detach the recipient from the call sheet
-            $callSheet->users()->detach($recipientId);
-    
-            DB::commit();
-    
-            return response()->json([
-                'success' => true,
-                'message' => 'Recipient removed from call sheet successfully',
-            ]);
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Error removing recipient from call sheet: ' . $e->getMessage(),
-            ], 422);
-        }
-    }
-    
-
-    public function updateBulletin(Request $request, $id, $callSheetId)
+    public function updateBulletin(Request $request, $projectId, $callSheetId)
     {
         try {
             $callSheet = CallSheet::findOrFail($callSheetId);
@@ -376,10 +220,10 @@ class CallSheetController extends Controller
         }
     }
     
-    public function updateGeneralCallTime(Request $request, $id, $callSheetId)
+    public function updateGeneralCallTime(Request $request, $projectId, $callSheetId)
     {
         try {
-            $callSheet = CallSheet::where('project_id', $id)->findOrFail($callSheetId);
+            $callSheet = CallSheet::where('project_id', $projectId)->findOrFail($callSheetId);
     
             // Authorization check
             // if (Gate::denies('update', $callSheet)) {
@@ -417,30 +261,8 @@ class CallSheetController extends Controller
         }
     }
 
-    // public function storeCallSheetSchedule(Request $request, $projectId, $callSheetId)
-    // {
-    //     // Find the CallSheet based on $callSheetId
-    //     $callSheet = CallSheet::find($callSheetId);
-    
-    //     if ($callSheet) {
-    //         // Decode the JSON data from the request
-    //         $scheduleData = json_decode($request->input('schedule'), true);
-    
-    //         // Update the 'schedule' column in your CallSheet model
-    //         $callSheet->schedule = $scheduleData;
-    //         $callSheet->save();
-    
-    //         return response()->json([
-    //             'success' => 'Schedule updated successfully.',
-    //             'callSheet' => $callSheet
-    //         ]);
-            
-    //     } else {
-    //         return response()->json(['error' => 'CallSheet not found'], 404);
-    //     }
-    // }
-    
-    public function storeLocationDetails(Request $request, $id, $callSheetId)
+ 
+    public function storeLocationDetails(Request $request, $projectId, $callSheetId)
     {
         // Debugging line to display incoming request data, can be removed in production
         // dd($request->all());
@@ -500,7 +322,7 @@ class CallSheetController extends Controller
     }
     
     
-    public function updateLocationDetails(Request $request, $id, $callSheetId)
+    public function updateLocationDetails(Request $request, $projectId, $callSheetId)
     {
         $locationData = $request->get('location');
         $parkingData = $request->get('parking');
@@ -541,8 +363,8 @@ class CallSheetController extends Controller
             'hospital_location_id' => $hospitalLocation?->id
         ]);
     
-        return redirect()->route('projects.callSheets.details.page', [
-            'id' => $id,
+        return redirect()->route('callSheet.details.page', [
+            'projectId' => $projectId,
             'callSheetId' => $callSheetId,
         ]);
     }
@@ -595,7 +417,7 @@ class CallSheetController extends Controller
     }    
     
     
-    public function softDelete($id, $callSheetId)
+    public function softDelete($projectId, $callSheetId)
     {
         $callSheet = CallSheet::find($callSheetId);
 
@@ -627,7 +449,7 @@ class CallSheetController extends Controller
     }
 
 
-    public function destroyLocationDetails($id, $callSheetId, $filmLocationId)
+    public function destroyLocationDetails($projectId, $callSheetId, $filmLocationId)
     {
         $callSheet = CallSheet::find($callSheetId);
         if (!$callSheet) {
@@ -666,50 +488,7 @@ class CallSheetController extends Controller
         return response()->json(['error' => 'Film Location not found.'], 404);
     }
     
-    
-
-    // public function getCallSheetSchedule($id, $callSheetId)
-    // {
-    //     // Find the call sheet by ID
-    //     $callSheet = CallSheet::find($callSheetId);
-
-    //     if (!$callSheet) {
-    //         return response()->json(['message' => 'Call Sheet not found'], 404);
-    //     }
-
-    //     // Assuming the schedule data is stored as JSON in a 'schedule' column
-    //     $scheduleData = $callSheet->schedule;
-
-    //     // If the schedule data is not empty, return it
-    //     if (!empty($scheduleData)) {
-    //         return response()->json($scheduleData);
-    //     }
-
-    //     // If the schedule data is empty, you can decide how to handle this.
-    //     // For example, return an empty array or a default value.
-    //     return response()->json([]);
-    // }
-
-    // public function updateCallSheetSchedule(Request $request, $id, $callSheetId)
-    // {
-    //     $callSheet = CallSheet::find($callSheetId);
-
-    //     if (!$callSheet) {
-    //         return response()->json(['message' => 'Call Sheet not found'], 404);
-    //     }
-
-    //     // Validate the incoming data if necessary
-    //     $validatedData = $request->validate([
-    //         'schedule' => 'required|json',
-    //     ]);
-
-    //     // Update the schedule data
-    //     $callSheet->schedule = json_decode($request->schedule, true);
-    //     $callSheet->save();
-
-    //     return response()->json(['message' => 'Schedule updated successfully']);
-    // }
-
+     
     
     public function storeCallSheetSchedule(Request $request, $projectId, $callSheetId)
     {

@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons'; 
-import { CSSTransition } from 'react-transition-group';
-
+ 
 import ProjectSelector from './Partials/ProjectSelector'; // Import CategorySelector
 import ProjectStepper from './Partials/ProjectStepper'; // Import ProjectStepper
 import PageButton from '@/Components/Buttons/PageButton';
@@ -15,7 +14,7 @@ import VideoStepTwo from './Partials/VideoProduction/VideoStepTwo';
 import VideoStepThree from './Partials/VideoProduction/VideoStepThree';
 
 export default function ProjectForm({ customClasses }) {
-    const { user, fetchUserData } = useAuth();
+    const { user } = useAuth();
     const [fadeIn, setFadeIn] = useState(false);
     const [fadeInDelay, setFadeInDelay] = useState(false);
  
@@ -24,11 +23,6 @@ export default function ProjectForm({ customClasses }) {
         setFadeInDelay(true);  
  
     }, []);
-
-    useEffect(() => {
-      fetchUserData();
-    }, []);
-
 
     const [currentStep, setCurrentStep] = useState(0);
     const [emptyFields, setEmptyFields] = useState({});

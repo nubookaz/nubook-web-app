@@ -1,87 +1,95 @@
-// AuthContext.js
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
 
+export const useAuth = () => useContext(AuthContext);
+
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [currentProject, setCurrentProject] = useState(null);
-  const [currentProductionSchedule, setCurrentProductionSchedule] = useState(null);
- 
- 
+  const [authState, setAuthState] = useState({
+    loggedIn: false,
+    currentStep: '',
+    isModalOpen: false,
+    userData: null,  
+  });
 
-
-
-
-  const updateCurrentProject = (newProjectData) => {
-    setCurrentProject(newProjectData);
-  };
-  const updateCurrentProductionSchedule = (newProjectData) => {
-    setCurrentProductionSchedule(newProjectData);
+  const setCurrentStep = (step) => {
+    setAuthState((prevState) => ({
+      ...prevState,
+      currentStep: step,
+    }));
   };
 
+  const setIsModalOpen = (isOpen) => {
+    setAuthState((prevState) => ({
+      ...prevState,
+      isModalOpen: isOpen,
+    }));
+  };
 
+  useEffect(() => {
+    checkAuthStatus();
+    fetchUserData(); 
+  }, []);
 
-
-
+  const checkAuthStatus = async () => {
+    try {
+      const response = await axios.get('/fetch-auth-status');
+      determineCurrentStep(response.data); 
+    } catch (error) {
+      console.error('Failed to fetch auth status', error);
+    }
+  };
 
   const fetchUserData = async () => {
     try {
       const response = await axios.get('/fetch-user-data');
-      setUser(response.data);
+      setAuthState(prevState => ({
+        ...prevState,
+        userData: response.data, 
+      }));
     } catch (error) {
-      console.error('Error fetching user data:', error);
+      console.error('Failed to fetch user data', error);
     }
   };
 
 
+  const determineCurrentStep = (userData) => {
+    let step = '';
+    let modalOpen = false;
 
-  const handleUpdate = () => {
-    // Trigger a fetch when the update event occurs
-    fetchUserData();
-  };
+    if (userData.isPasswordTemporary) {
+      step = 'changePassword';
+      modalOpen = true;
+    } else if (!userData.emailVerified) {
+      step = 'verification';
+      modalOpen = true;
+    } else if (!userData.personalInfoCompleted) {
+      step = 'personalInfo';
+      modalOpen = true;
+    } else if (!userData.companyInfoCompleted) {
+      step = 'companyInfo';
+      modalOpen = true;
+    } else if (!userData.registrationComplete) {
+      step = '';  
+      modalOpen = false;  
+    }
 
-
-
-
-  useEffect(() => {
-    // Listen for the custom update event
-    window.addEventListener('updateUserData', handleUpdate);
- 
-    return () => {
-      // Cleanup: Remove the event listener when the component unmounts
-      window.removeEventListener('updateUserData', handleUpdate);
-    };
-  }, []);
-
-
-
-
-
-
-
-  return (
-    <AuthContext.Provider value={{ 
-        user, 
-        fetchUserData,
-        currentProject, 
-        updateCurrentProject,
-        currentProductionSchedule,
-        updateCurrentProductionSchedule,
-    }}>
-
-      {children}
-
-    </AuthContext.Provider>
-  );
+    setAuthState((prevState) => ({
+      ...prevState,
+      currentStep: step,
+      isModalOpen: modalOpen,
+    }));
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+
+  const contextValue = {
+    ...authState,
+    checkAuthStatus,
+    fetchUserData, 
+    setCurrentStep, 
+    setIsModalOpen, 
+  };
+
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };

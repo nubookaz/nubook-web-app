@@ -28,7 +28,7 @@ function ProjectNavigation({ project }) {
                   variant="plain"
                 >
                   <div>
-                    <IconButton href={route('projects.details', { id: project.id })} active={route().current('projects.details')}  activeClass="active-link" icon={faInfo} size="small" />
+                    <IconButton href={route('projects.details', { projectId: project.id })} active={route().current('projects.details')}  activeClass="active-link" icon={faInfo} size="small" />
                   </div>
               </Tooltip>
 
@@ -47,7 +47,7 @@ function ProjectNavigation({ project }) {
                   variant="plain"
               >
                 <div>
-                  <IconButton href={route('projects.callSheets.index', { id: project.id })} active={route().current('projects.callSheets.*')}  activeClass="active-link" icon={faPaperPlane} size="small" />
+                  <IconButton href={route('projects.callSheets.index', { projectId: project.id })} active={route().current('projects.callSheets.*')}  activeClass="active-link" icon={faPaperPlane} size="small" />
                 </div>
               </Tooltip>
   

@@ -19,12 +19,7 @@ export default function ProfilePicture({
 
 }) {
 
-  const { user, fetchUserData } = useAuth();
-
-  useEffect(() => {
-    // Fetch user data on component mount
-    fetchUserData();
-  }, []);
+  const { user } = useAuth();
 
   const totalImages = 10;
 

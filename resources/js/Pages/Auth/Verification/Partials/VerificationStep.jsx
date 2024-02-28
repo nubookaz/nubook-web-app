@@ -14,14 +14,7 @@ export default function VerificationStep({
 
 }){
 
-    const { user, fetchUserData } = useAuth();
-    useEffect(() => {
-        // Fetch user data on component mount
-        fetchUserData();
-      }, []);
-    
-
-
+    const { userData } = useAuth();
     const [verificationCode, setVerificationCode] = useState('');
 
     const [timer, setTimer] = useState(null);
@@ -44,9 +37,6 @@ export default function VerificationStep({
                 if (response.data.success) {
                    setLastResendTime(new Date());
                    setIsTimerExpired(false);
-
-                   await fetchUserData();
-
                 }
              });
         } catch (error) {
@@ -83,14 +73,14 @@ export default function VerificationStep({
 
 
     useEffect(() => {
-        if (!user || !user.code_expires_at) {
+        if (!userData || !userData.code_expires_at) {
             return;
         }
 
          
         setShowTimer(true);
 
-        const expirationTime = new Date(user.code_expires_at + 'Z').getTime();
+        const expirationTime = new Date(userData.code_expires_at + 'Z').getTime();
         const currentTime = Date.now();
     
         if (currentTime >= expirationTime) {
@@ -117,7 +107,7 @@ export default function VerificationStep({
         }, 1000);
     
         return () => clearInterval(interval);
-    }, [user.code_expires_at]);
+    }, [userData.code_expires_at]);
     
  
 
@@ -128,12 +118,9 @@ export default function VerificationStep({
                 <img className="mx-auto max-w-[15rem]" src="./images/svg_images/undraw_mailbox.svg" alt="" />
             </div>
             <div className='w-1/2 my-auto h-auto justify-center flex flex-col gap-6'>
-                <h2>Verify Your Email</h2>
-                <p>
-                    To ensure the security of your account, please check your email inbox for a verification code. To complete the verification process, paste the code in the provided field. Thank you for confirming your email address and enhancing your account's security.
-                </p>
+                <h2 className='text-2xl text-slate-500'>Verify Your Email</h2>
+                <p>To ensure the security of your account, please check your email inbox for a verification code. To complete the verification process, paste the code in the provided field. Thank you for confirming your email address and enhancing your account's security.</p>
                 
-                   
                     {isTimerExpired ? (
                         <>
                             <p className='text-center w-full p-6 bg-slate-50 flex-none'>Your verification code has expired.</p>
@@ -145,6 +132,7 @@ export default function VerificationStep({
                                 type="text"
                                 id="verification_code"
                                 name="code"
+                                className='text-center'
                                 placeholder="One Time Code"
                                 value={verificationCode}
                                 onChange={(e) => setVerificationCode(e.target.value)}
@@ -155,6 +143,8 @@ export default function VerificationStep({
                                 <div className='text-center secondary-color mb-4'>Time Remaining to Verify: {timer.minutes}:{timer.seconds < 10 ? `0${timer.seconds}` : timer.seconds}</div>
                             ):null}
                             <PrimaryButton onClick={verifyCode}>Verify Code</PrimaryButton>
+                            <p className='h-full grow text-center text-sm cursor-pointer' onClick={onResendCode}>Resend Verification Code</p>
+
                         </>
                     )}
 

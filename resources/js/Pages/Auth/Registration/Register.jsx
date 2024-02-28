@@ -1,3 +1,5 @@
+import { useAuth } from '@/Components/Contexts/AuthContext';
+
 import { useState, useEffect } from 'react';
 
 import GuestLayout from '@/Layouts/GuestLayout';
@@ -8,19 +10,9 @@ import Skeleton from '@mui/joy/Skeleton';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 
 
-
-
-
-
-
-
-
-
-
-
-
 export default function Register() {
-    
+    const { checkAuthStatus, fetchUserData } = useAuth();
+
     const [skeleton, setSkeleton] = useState(false);
     const [privacyPolicyModal, setPrivacyPolicyModal] = useState(false);
     const [showConsentError, setShowConsentError] = useState(false);
@@ -44,13 +36,6 @@ export default function Register() {
             reset('password', 'password_confirmation');
         };
     }, []);
-
-
-
-
-
-
-    
  
     const submit = (e) => {
         e.preventDefault();
@@ -61,21 +46,16 @@ export default function Register() {
         }    
         
         post(route('register'), {
-            // This callback is called before the form submission starts
             onStart: () => setSkeleton(true),
-    
-            // This callback is called when the form submission is complete
             onFinish: () => setSkeleton(false),
+            onSuccess: () => {
+                checkAuthStatus();
+                fetchUserData();
+            },
         });
     };
- 
-
-
-
-
 
     const greeting = ['Speed Up', <br key="linebreak"/>, 'Production!'];
-
 
     return (
         <GuestLayout

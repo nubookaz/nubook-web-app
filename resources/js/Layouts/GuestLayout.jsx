@@ -70,9 +70,11 @@ export default function Guest({
                                 <ApplicationName className='text-left'/>
 
                                 {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                                
+                                <div className='px-2 h-full'>
+                                    {children.body}
+                                </div>
 
-                                {children.body}
-    
                             </CardContainer>
                         </div>
                        

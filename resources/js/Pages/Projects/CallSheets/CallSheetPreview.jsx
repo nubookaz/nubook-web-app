@@ -18,13 +18,7 @@ export default function CallSheetPreview({
     callSheet,
 
 }) {
-    const { user, fetchUserData } = useAuth();
-
-    useEffect(() => {
-      // Fetch user data on component mount
-      fetchUserData();
-   
-    }, []);
+    const { user } = useAuth();
     const [fadeIn, setFadeIn] = useState(false);
 
 

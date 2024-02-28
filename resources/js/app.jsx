@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { AuthProvider } from '@/Components/Contexts/AuthContext';
+import { UserProvider } from '@/Components/Contexts/UserContext';
 import { CallSheetProvider } from '@/Components/Contexts/CallSheetContext';
 import { RecipientProvider } from '@/Components/Contexts/RecipientContext';
 import { CallSheetLocationProvider } from '@/Components/Contexts/CallSheetLocationContext';
@@ -28,28 +29,30 @@ createInertiaApp({
 
         root.render(
             <AuthProvider>
+            <UserProvider>
                 <ProjectProvider>
-                    <ModalProvider>
-                        <SnackProvider>
-                            <DarkModeProvider>
-                                <CallSheetProvider>
-                                    <RecipientProvider>
-                                        <CallSheetLocationProvider>
-                                            <DrawerProvider>
-                                                <ScheduleProvider>
-                                                    <TaskProvider>
-                                                        <App {...props} />
-                                                    </TaskProvider>
-                                                </ScheduleProvider>
-                                            </DrawerProvider>
-                                        </CallSheetLocationProvider>
-                                    </RecipientProvider>
-                                </CallSheetProvider>
-                            </DarkModeProvider>
-                        </SnackProvider>
-                    </ModalProvider>
-                </ProjectProvider>
-             </AuthProvider>
+                        <ModalProvider>
+                            <SnackProvider>
+                                <DarkModeProvider>
+                                    <CallSheetProvider>
+                                        <RecipientProvider>
+                                            <CallSheetLocationProvider>
+                                                <DrawerProvider>
+                                                    <ScheduleProvider>
+                                                        <TaskProvider>
+                                                            <App {...props} />
+                                                        </TaskProvider>
+                                                    </ScheduleProvider>
+                                                </DrawerProvider>
+                                            </CallSheetLocationProvider>
+                                        </RecipientProvider>
+                                    </CallSheetProvider>
+                                </DarkModeProvider>
+                            </SnackProvider>
+                        </ModalProvider>
+                    </ProjectProvider>
+            </UserProvider>
+            </AuthProvider>
         );
 
     },
