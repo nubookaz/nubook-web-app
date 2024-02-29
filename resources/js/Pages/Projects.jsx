@@ -37,7 +37,7 @@ export default function Projects({ auth }) {
 
                       <div className='flex flex-row gap-4 w-full h-full max-h-[26rem]'>
 
-                          <CardContainer header="Recent Updated Project" className='h-full w-full max-w-[18rem]'>
+                          <CardContainer header="Recent Project" className='h-full w-full max-w-[18rem]'>
                             {mostRecentProject.length > 0 ? (
                                 <ProjectList bannerClassName='!bg-slate-600 !text-slate-00' bannerTextColor='text-white' projects={mostRecentProject} showNewProject={false} view="View All" className='w-full !grid-cols-1 !grid-rows-1 !gap-0'/>
                             ):(
@@ -55,7 +55,7 @@ export default function Projects({ auth }) {
                         
                       <div className='flex flex-row gap-4 h-full'>
                         <Tasks />
-                        <CardContainer header="" className='h-full w-full'>
+                        <CardContainer header="Clients" className='h-full w-full'>
 
                         </CardContainer>
                       </div>

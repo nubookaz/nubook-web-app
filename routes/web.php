@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CompanyController; 
@@ -120,6 +121,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/{task}', [TaskController::class, 'updateTask'])->name('tasks.update');
         Route::delete('/{task}', [TaskController::class, 'destroyTask'])->name('tasks.delete');
     });
+
+    // Client routes
+    Route::get('/clients', [ClientController::class, 'index']);
+    Route::post('/clients', [ClientController::class, 'store']);
+    Route::put('/clients/{id}', [ClientController::class, 'update']);
+    Route::delete('/clients/{id}', [ClientController::class, 'destroy']);
+
 
     Route::prefix('projects')->group(function () {
 
