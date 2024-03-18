@@ -4,14 +4,13 @@ import Tooltip from '@mui/joy/Tooltip';
 
 
 
-const UserName = ({ data, onNameChange, emptyFields, setEmptyFields }) => {
+const UserName = ({ data, onNameChange, emptyFields, setEmptyFields, inputClassName }) => {
   const [name, setName] = useState({
     first_name: '',
     middle_initial: '',
     last_name: '',
   });
 
-  console.log(data);
 
   useEffect(() => {
     if (data) {
@@ -47,6 +46,7 @@ const UserName = ({ data, onNameChange, emptyFields, setEmptyFields }) => {
             maxLength={maxLength}
             autoComplete={autoComplete}
             aria-label={label}
+            className={inputClassName}
         />
     </Tooltip>
 );

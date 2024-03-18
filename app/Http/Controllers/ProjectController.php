@@ -26,6 +26,23 @@ class ProjectController extends Controller
         return response()->json($users);
     }
 
+    public function fetchUserProjects()
+    {
+        $user = auth()->user(); 
+        if (!$user) {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
+    
+         $projects = $user->projects()->with([
+            'callSheets',
+            'productionSchedules',
+            'users',
+            'productionCompany',
+         ])->get();
+    
+        return response()->json($projects);
+    }
+
     public function index()
     {
          return Inertia::render('Projects');    
@@ -51,7 +68,7 @@ class ProjectController extends Controller
         $viewName = $project->project_stage === "Estimate" ? 'projects.estimate' : 'projects.details';
         
         return response()->json([
-            'url' => route($viewName, ['id' => $project->id])
+            'url' => route($viewName, ['projectId' => $project->id])
         ]);
     }
     

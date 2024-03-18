@@ -36,6 +36,11 @@ class CallSheet extends Model
         return $this->belongsTo(ProductionCompany::class);
     }
 
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class)->withTimestamps();
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class);

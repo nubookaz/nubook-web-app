@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faVideo, faCamera, faTv, faFilm, faMusic, 
-    faTheaterMasks, faBroadcastTower, faBusinessTime, 
-    faCalendarAlt, faBullhorn, faCircleExclamation 
+    faVideo, faCamera, faMusic 
 } from '@fortawesome/free-solid-svg-icons';
 
 

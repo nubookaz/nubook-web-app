@@ -19,6 +19,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Laravel\Sanctum\HasApiTokens;
 
 
 
@@ -26,6 +27,7 @@ class RegisteredUserController extends Controller
 {
 
 
+    use HasApiTokens;
 
     public function create()
     {
@@ -77,7 +79,9 @@ class RegisteredUserController extends Controller
             Auth::login($user);
     
             Mail::to($user->email)->send(new VerificationEmail($user, $verificationCode));
-    
+
+            $token = $user->createToken('api_token')->plainTextToken;
+
             Log::info('User registered successfully', ['user_id' => $user->id]);
     
             return redirect(RouteServiceProvider::HOME);

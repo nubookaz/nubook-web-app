@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faCaretDown, faCaretUp, faSun } from '@fortawesome/free-solid-svg-icons';
-
+ 
 
 
 

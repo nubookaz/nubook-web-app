@@ -1,0 +1,1 @@
+import{j as t}from"./app-659a3aa2.js";const c=({value:l,options:a,onChange:r,className:n})=>t.jsx("select",{value:l===null?"":l,onChange:e=>r(e.target.value),className:` ${n} w-full border-none bg-transparent text-center`,children:a.map((e,s)=>t.jsx("option",{value:e.value,children:e.label},e.value||s))}),o=c;export{o as default};

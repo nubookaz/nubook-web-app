@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CompanyController; 
@@ -55,12 +56,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-    Route::get('/fetch-auth-status', [ProfileController::class, 'authStatus']);
+    Route::get('/fetch-auth-status', [ProfileController::class, 'authStatus'])->name('fetch-auth-status');
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
-    Route::get('/fetch-project-data', [ProfileController::class, 'fetchUserProjects'])->name('fetch-project-data');
+    Route::get('/fetch-project-data', [ProjectController::class, 'fetchUserProjects'])->name('fetch-user-projects');
 
+
+
+    
     Route::post('/chat', [ChatGPTController::class, 'chat'])->name('chat.gpt');
     Route::get('/ai-content-info', [ChatGPTController::class, 'getAIGeneratedContentInfo'])->name('ai-content.info');
     Route::get('/fetch-image', [ChatGPTController::class, 'fetchImage']);
@@ -117,13 +121,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/{task}', [TaskController::class, 'updateTask'])->name('tasks.update');
         Route::delete('/{task}', [TaskController::class, 'destroyTask'])->name('tasks.delete');
     });
+ 
 
     Route::prefix('projects')->group(function () {
 
         Route::get('{projectId}/users', [ProjectController::class, 'getUsers'])->name('projects.users');
-        Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
-        Route::get('/all-projects', [ProjectController::class, 'showList'])->name('projects.list');
-        Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
+        // Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
+        // Route::get('/all-projects', [ProjectController::class, 'showList'])->name('projects.list');
+        // Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
         Route::get('/{projectId}/details', [ProjectController::class, 'edit'])->name('projects.details');
         Route::post('/{id}/favorite', [ProjectController::class, 'saveFavorite'])->name('projects.favorite');
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');
@@ -165,7 +170,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             });
 
-            Route::post('/{callSheet_Id}/recipients', [RecipientController::class, 'saveRecipient'])->name('projects.callSheets.recipient');
+            // Recipients
+            Route::post('/{callSheetId}/recipients', [RecipientController::class, 'saveRecipient'])->name('projects.callSheets.recipient');
             Route::post('/{callSheetId}/recipients/{recipientId}', [RecipientController::class, 'updateRecipient'])->name('projects.callSheets.update.recipient');
             Route::delete('/{callSheetId}/recipients/{recipientId}/delete', [RecipientController::class, 'deleteRecipientFromCallSheet'])->name('projects.callSheets.delete.recipient');
 

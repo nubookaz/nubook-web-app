@@ -10,7 +10,7 @@ import {
   postProductionColor,
   completedColor,
 } from '@/Components/Scripts/ProjectColors';
-import { faBookmark, faPencil, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
  
@@ -30,7 +30,7 @@ function ProjectList({
   const handleSelectProject = (projectId) => {
     setCurrentProject(projectId);
   };
-
+ 
   const { toggleModal } = useModal();
   const handleNewProjectClick = () => {
     toggleModal({type: 'projectForm'});  
@@ -47,7 +47,7 @@ function ProjectList({
     router.visit(url);
   };
 
-  const containerClasses = `grid grid-cols-6 grid-rows-2 gap-4 h-full ${className}`;
+  const containerClasses = `grid grid-cols-7 grid-rows-3 gap-6 h-full ${className}`;
 
  
   const sortProjects = (projects) => {

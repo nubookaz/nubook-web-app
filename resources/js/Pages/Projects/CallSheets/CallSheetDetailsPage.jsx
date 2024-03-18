@@ -24,8 +24,8 @@ export default function CallSheetDetailsPage() {
     const { user } = useAuth();
     const { project, roles } = usePage().props;
     const { currentCallSheet, isLoading } = useCallSheet();
-
-    if (isLoading || !currentCallSheet) {
+    console.log(currentCallSheet);
+    if (!isLoading || !currentCallSheet) {
         return <div>Loading call sheet details...</div>; // Loading state or placeholder
     }
 
@@ -55,8 +55,8 @@ export default function CallSheetDetailsPage() {
                                 <GeneralCallTime callSheet={currentCallSheet} className='w-full' />
                             </div>
                             <div className='flex flex-col gap-4 h-full'>
-                                <Bulletin callSheet={currentCallSheet} isSave={true} />
-                                <RecipientList callSheet={currentCallSheet}  className='shrink h-full overflow-scroll max-h-[100vh]' />
+                                {/* <Bulletin callSheet={currentCallSheet} isSave={true} /> */}
+                                {/* <RecipientList callSheet={currentCallSheet}  className='shrink h-full overflow-scroll max-h-[100vh]' /> */}
                             </div>
                         </div>
                         <div className='w-full flex flex-col gap-4 h-full'>

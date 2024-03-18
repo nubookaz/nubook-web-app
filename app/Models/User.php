@@ -22,6 +22,7 @@ class User extends Authenticatable
         'first_name',
         'middle_initial', 
         'last_name', 
+        'title',
         'profile_photo', 
         'email',
         'password',
@@ -96,7 +97,6 @@ class User extends Authenticatable
                     ->withPivot('role_id', 'position', 'call_time');
     }
     
-    // Method to check if the user has a specific role
     public function hasRole($role)
     {
         return in_array($role, $this->roles->pluck('name')->toArray());
@@ -112,6 +112,21 @@ class User extends Authenticatable
     public function aiContentGenerations()
     {
         return $this->hasMany(AIContentGeneration::class);
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
+    
+    public function sponsoredClients()
+    {
+        return $this->belongsToMany(User::class, 'client_sponsor', 'sponsor_id', 'client_id');
+    }
+    
+    public function sponsors()
+    {
+        return $this->belongsToMany(User::class, 'client_sponsor', 'client_id', 'sponsor_id');
     }
     
 }

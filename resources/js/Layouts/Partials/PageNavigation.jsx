@@ -3,7 +3,7 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo, faDiagramProject, faCog, faPaperPlane, faCaretDown, faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons'; // Import the necessary icons
+import { faCircleInfo, faDiagramProject, faCog, faPaperPlane, faCaretLeft } from '@fortawesome/free-solid-svg-icons'; // Import the necessary icons
 
 const PageNavigation = ({ 
     

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { useProject } from './ProjectContext';  
+import { useCallSheet } from './CallSheetContext'; 
 
 const RecipientContext = createContext();
 
@@ -8,6 +9,7 @@ export const useRecipient = () => useContext(RecipientContext);
 
 export const RecipientProvider = ({ children }) => {
   const { currentProjectId } = useProject();
+  const { currentCallSheetId } = useCallSheet(); 
   const [callSheetRecipients, setCallSheetRecipients] = useState([]);
 
 
@@ -18,8 +20,8 @@ export const RecipientProvider = ({ children }) => {
       const fetchRecipients = async () => {
         try {
           // Adjust the API endpoint to include the currentProjectId
-          const response = await axios.get(`/api/projects/${currentProjectId}/recipients`);
-          setCallSheetRecipients(response.data);
+          // const response = await axios.get(route('projects.callSheets.recipient', {projectId: currentProjectId, callSheetId: currentCallSheetId}));
+          // setCallSheetRecipients(response.data);
         } catch (error) {
           console.error("Failed to fetch recipients:", error);
         }
@@ -27,13 +29,13 @@ export const RecipientProvider = ({ children }) => {
 
       fetchRecipients();
     }
-  }, [currentProjectId]); // Add currentProjectId as a dependency
+  }, [currentProjectId, currentCallSheetId]); 
 
   const createRecipient = async (recipientData) => {
-    if (!currentProjectId) return; // Guard clause if no project is selected
+    if (!currentProjectId || !currentCallSheetId) return; // Guard clause if no project or call sheet is selected
     try {
-      // Adjust the API call to include the currentProjectId
-      const response = await axios.post(`/api/projects/${currentProjectId}/recipients`, recipientData);
+      // Adjust the API call to include both currentProjectId and currentCallSheetId
+      const response = await axios.post(`/api/projects/${currentProjectId}/call-sheets/${currentCallSheetId}/recipients`, recipientData);
       setCallSheetRecipients(prev => [...prev, response.data]);
     } catch (error) {
       console.error("Failed to create recipient:", error);
@@ -41,10 +43,10 @@ export const RecipientProvider = ({ children }) => {
   };
 
   const updateRecipient = async (recipientId, updatedData) => {
-    if (!currentProjectId) return; // Guard clause if no project is selected
+    if (!currentProjectId || !currentCallSheetId) return; // Guard clause if no project or call sheet is selected
     try {
-      // Adjust the API call to include the currentProjectId
-      await axios.put(`/api/projects/${currentProjectId}/recipients/${recipientId}`, updatedData);
+      // Adjust the API call to include both currentProjectId and currentCallSheetId
+      await axios.put(`/api/projects/${currentProjectId}/call-sheets/${currentCallSheetId}/recipients/${recipientId}`, updatedData);
       setCallSheetRecipients(prev => prev.map(recipient => recipient.id === recipientId ? {...recipient, ...updatedData} : recipient));
     } catch (error) {
       console.error("Failed to update recipient:", error);
@@ -52,10 +54,10 @@ export const RecipientProvider = ({ children }) => {
   };
 
   const deleteRecipient = async (recipientId) => {
-    if (!currentProjectId) return; // Guard clause if no project is selected
+    if (!currentProjectId || !currentCallSheetId) return; // Guard clause if no project or call sheet is selected
     try {
-      // Adjust the API call to include the currentProjectId
-      await axios.delete(`/api/projects/${currentProjectId}/recipients/${recipientId}`);
+      // Adjust the API call to include both currentProjectId and currentCallSheetId
+      await axios.delete(`/api/projects/${currentProjectId}/call-sheets/${currentCallSheetId}/recipients/${recipientId}`);
       setCallSheetRecipients(prev => prev.filter(recipient => recipient.id !== recipientId));
     } catch (error) {
       console.error("Failed to delete recipient:", error);

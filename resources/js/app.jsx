@@ -15,7 +15,9 @@ import { DarkModeProvider } from '@/Components/Contexts/DarkModeContext';
 import { DrawerProvider } from '@/Components/Contexts/DrawerContext';
 import { ScheduleProvider } from '@/Components/Contexts/ScheduleContext';
 import { ProjectProvider } from '@/Components/Contexts/ProjectContext';
+import { MediaProvider } from '@/Components/Contexts/MediaContext';
 import { TaskProvider } from '@/Components/Contexts/TaskContext';
+import { ClientProvider } from '@/Components/Contexts/ClientContext';
 
 
 
@@ -31,6 +33,8 @@ createInertiaApp({
             <AuthProvider>
             <UserProvider>
                 <ProjectProvider>
+                <MediaProvider>
+                    <ClientProvider>
                         <ModalProvider>
                             <SnackProvider>
                                 <DarkModeProvider>
@@ -40,7 +44,9 @@ createInertiaApp({
                                                 <DrawerProvider>
                                                     <ScheduleProvider>
                                                         <TaskProvider>
+                                                            
                                                             <App {...props} />
+
                                                         </TaskProvider>
                                                     </ScheduleProvider>
                                                 </DrawerProvider>
@@ -50,7 +56,9 @@ createInertiaApp({
                                 </DarkModeProvider>
                             </SnackProvider>
                         </ModalProvider>
-                    </ProjectProvider>
+                    </ClientProvider>
+                </MediaProvider>
+                </ProjectProvider>
             </UserProvider>
             </AuthProvider>
         );

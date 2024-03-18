@@ -1,5 +1,6 @@
 import { useModal } from '@/Components/Contexts/ModalContext';
 import { useRecipient } from '@/Components/Contexts/RecipientContext';
+import { useCallSheet } from '@/Components/Contexts/CallSheetContext';
 
 import React, { useState, useEffect } from 'react';
 
@@ -12,8 +13,9 @@ export default function RecipientList({
     className,
 }) {
     const { toggleModal } = useModal();
+    const { currentCallSheet } = useCallSheet();
     const { callSheetRecipients } = useRecipient(); // Assuming you have a setter for callSheetRecipients
-    
+    console.log(currentCallSheet);
     const handleRecipientListClick = () => {
         toggleModal({type: 'recipientForm'});  
     };
@@ -28,11 +30,11 @@ export default function RecipientList({
         // Filters out users with role_name 'Admin'
         const filteredRecipients = callSheet.users?.filter(user => user.pivot.role_name !== 'Admin') || [];
         setRecipients(filteredRecipients);
-    }, [callSheet.users]);
+    }, [currentCallSheet.users]);
 
     useEffect(() => {
         // Only update recipients if there's a change
-        const newRecipients = callSheet.users || [];
+        const newRecipients = currentCallSheet.users || [];
         const currentIds = new Set(recipients.map(r => r.id));
         const newIds = new Set(newRecipients.map(user => user.id));
     
@@ -43,11 +45,11 @@ export default function RecipientList({
         if (hasChanges) {
             setRecipients(newRecipients);
         }
-    }, [callSheet.users]);
+    }, [currentCallSheet.users]);
     
     useEffect(() => {
         // Initialize with callSheet.users, filtering out Admins
-        let initialRecipients = (callSheet.users || []).filter(user => user.pivot.role_name !== 'Admin');
+        let initialRecipients = (currentCallSheet.users || []).filter(user => user.pivot.role_name !== 'Admin');
     
         // Combine with callSheetRecipients, also excluding Admins and avoiding duplicates
         let combinedRecipients = [
@@ -66,7 +68,7 @@ export default function RecipientList({
         });
     
         setRecipients(updatedRecipients);
-    }, [callSheet.users, callSheetRecipients]);
+    }, [currentCallSheet.users, callSheetRecipients]);
     
     const formatTime = (time) => {
         if (!time) return '';

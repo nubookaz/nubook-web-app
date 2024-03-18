@@ -40,6 +40,11 @@ class Project extends Model
         return $this->belongsToMany(ProductionCompany::class, 'production_company_project', 'project_id', 'company_id');
     }
 
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class)->withTimestamps();
+    }
+
     public function callSheets()
     {
         return $this->hasMany(CallSheet::class);
@@ -49,6 +54,11 @@ class Project extends Model
     {
         return $this->hasMany(ProductionSchedule::class);
     }
-    
+
+    public function projectImage()
+    {
+        return $this->hasOne(ProjectImage::class);
+    }
+
 
 }

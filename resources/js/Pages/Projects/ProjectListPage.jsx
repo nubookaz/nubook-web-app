@@ -28,7 +28,7 @@ export default function ProjectListPage( ) {
          >
                 {{
                     body: (
-                        <ProjectList projects={projects} view={projectView}/>
+                        <ProjectList projects={projects} view={projectView} />
                     ),
                 }}
         </PortalLayout>

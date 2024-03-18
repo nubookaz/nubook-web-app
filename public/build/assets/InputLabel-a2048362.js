@@ -1,1 +1,0 @@
-import{j as s}from"./app-e454a32c.js";function m({value:o,className:t="",children:e,...r}){return s.jsx("label",{...r,className:"block font-medium text-sm secondary-color "+t,children:o||e})}export{m as I};
