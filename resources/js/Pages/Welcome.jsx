@@ -145,7 +145,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     <div id="beta-form" className='p-8 pb-[8rem] mt-[30rem]'>
                         <div className='text-center m-auto p-8 mb-8 max-w-[75rem]'>
                             <h3 className='text-[2.5rem] mb-4'>Currently in Development!</h3>
-                            <p className='font-semibold text-[1.65rem]'>Exciting News: Our app is very close to being in beta mode! Be among the first to experience it. Sign up below for exclusive access. Invites are limited! Current Beta release is slated for January 2024</p>
+                            <p className='font-semibold text-[1.65rem]'>Exciting News: Our app is very close to being in beta mode! Be among the first to experience it. Sign up below for exclusive access. Invites are limited! Current Beta release is slated for May 2024</p>
                         </div>
                         <form onSubmit={submit} className='w-full mx-auto relative xl:max-w-[60%] 2xl:max-w-[50%]'>
                             
