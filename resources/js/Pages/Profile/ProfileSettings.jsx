@@ -11,7 +11,7 @@ import PersonalInfo from '@/Pages/Profile/Forms/PersonalInfo';
 import CompanyInfo from '@/Pages/Profile/Forms/CompanyInfo';
 
 
-import CardContainer from '@/Components/containers/CardContainer';
+import CardContainer from '@/Components/Containers/CardContainer';
 
 
 
