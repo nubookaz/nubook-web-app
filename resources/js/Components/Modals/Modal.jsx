@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = ({ isOpen, onClose, children, className, showCloseButton, shouldCloseOnOverlayClick = true }) => {
     const [fadeIn, setFadeIn] = useState(false);
     const [fadeInDelay, setFadeInDelay] = useState(false);
 
+    useEffect(() => {
+        // Store the current overflow value
+        const originalOverflow = document.body.style.overflow;
+
+        // Set the body overflow to 'hidden' when the modal is open
+        document.body.style.overflow = isOpen ? 'hidden' : originalOverflow;
+
+        // Cleanup function to reset the overflow style to its original state
+        return () => {
+            document.body.style.overflow = originalOverflow;
+        };
+    }, [isOpen]);
+
     const handleOverlayClick = (event) => {
-        // Prevent clicks inside the modal content from closing the modal
         event.stopPropagation();
         if (shouldCloseOnOverlayClick) {
             onClose();
@@ -19,11 +31,11 @@ const Modal = ({ isOpen, onClose, children, className, showCloseButton, shouldCl
         <div className={`modal p-8 ${isOpen ? 'modal-open' : 'modal-closed'}`}>
             <div className="modal-overlay overflow-hidden" onClick={handleOverlayClick}></div>
             <div className={`${className} modal-content overflow-hidden`} onClick={(e) => e.stopPropagation()}>
-                <div className={showCloseButton ? 'modal-header' : 'hidden'}>
-                    <button className='modal-close-button cursor-pointer z-50' onClick={onClose}>
-                        <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
+                {showCloseButton && (
+                    <button className='modal-close-button' onClick={onClose}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
-                </div>
+                )}
                 <div className={`fade-in-delay ${fadeInDelay ? 'opacity-1' : 'opacity-0'} modal-body h-full`}>
                     {children || <span>--- No content available ---</span>}
                 </div>

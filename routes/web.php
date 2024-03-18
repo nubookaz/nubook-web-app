@@ -121,20 +121,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/{task}', [TaskController::class, 'updateTask'])->name('tasks.update');
         Route::delete('/{task}', [TaskController::class, 'destroyTask'])->name('tasks.delete');
     });
-
-    // Client routes
-    Route::get('/clients', [ClientController::class, 'index']);
-    Route::post('/clients', [ClientController::class, 'store']);
-    Route::put('/clients/{id}', [ClientController::class, 'update']);
-    Route::delete('/clients/{id}', [ClientController::class, 'destroy']);
-
+ 
 
     Route::prefix('projects')->group(function () {
 
         Route::get('{projectId}/users', [ProjectController::class, 'getUsers'])->name('projects.users');
-        Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
-        Route::get('/all-projects', [ProjectController::class, 'showList'])->name('projects.list');
-        Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
+        // Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
+        // Route::get('/all-projects', [ProjectController::class, 'showList'])->name('projects.list');
+        // Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
         Route::get('/{projectId}/details', [ProjectController::class, 'edit'])->name('projects.details');
         Route::post('/{id}/favorite', [ProjectController::class, 'saveFavorite'])->name('projects.favorite');
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');

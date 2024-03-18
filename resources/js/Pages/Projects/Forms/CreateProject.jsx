@@ -1,314 +1,378 @@
-import { useAuth } from '@/Components/Contexts/AuthContext';
-import { useProject } from '@/Components/Contexts/ProjectContext'; 
-
 import React, { useState, useEffect } from 'react';
-import { router } from '@inertiajs/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons'; 
- 
-import ProjectSelector from './Partials/ProjectSelector';  
-import ProjectStepper from './Partials/ProjectStepper'; 
-import PageButton from '@/Components/Buttons/PageButton';
+import { useProject } from '@/Components/Contexts/ProjectContext';
+import ProjectStepper from './Partials/ProjectStepper';
+import PrimaryButton from '@/Components/Buttons/PrimaryButton';
+import SecondaryButton from '@/Components/Buttons/SecondaryButton';
+import ProjectTypeSelector from './Partials/ProjectTypeSelector';
+import CorporateProjectTypeSelector from './Partials/Corporate/CorporateProjectTypeSelector';
+import FamilyEventsTypeSelector from './Partials/FamilyEvents/FamilyEventsTypeSelector';
+import DigitalContentTypeSelector from './Partials/DigitalContent/DigitalContentTypeSelector';
+import WeddingDetails from './Partials/FamilyEvents/Weddings/WeddingDetails';
 
-import VideoStepOne from './Partials/VideoProduction/VideoStepOne';
-import VideoStepTwo from './Partials/VideoProduction/VideoStepTwo';
-import VideoStepThree from './Partials/VideoProduction/VideoStepThree';
+import LiveBroadcastTypeSelector from './Partials/LiveBroadcast/LiveBroadcastTypeSelector';
+import LiveEventDetails from './Partials/LiveBroadcast/LiveEventDetails/LiveEventDetails';
 
-export default function CreateProject({ customClasses }) {
-    const { userData } = useAuth();
+import CreativeEntertainmentTypeSelector from './Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector';
+import VideoProjectDetails from './Partials/CreativeEntertainment/VideoProjectDetails';
+import VideoAdditionalDetails from './Partials/CreativeEntertainment/VideoAdditionalDetails';
+
+const CreateProject = ({ onClose, resetSignal }) => {
     const { createProject } = useProject();
-
-
-
-
     const [fadeIn, setFadeIn] = useState(false);
-    const [fadeInDelay, setFadeInDelay] = useState(false);
- 
-    useEffect(() => {
-        setFadeIn(true); 
-        setFadeInDelay(true);  
- 
-    }, []);
-
     const [currentStep, setCurrentStep] = useState(0);
-    const [emptyFields, setEmptyFields] = useState({});
-    const totalSteps = 4; 
-    const [isCustomImage, setIsCustomImage] = useState(false);
-    const [uploadedImage, setUploadedImage] = useState(null);
-    const [isImageAIGenerated, setImageIsAIGenerated] = useState(false);
-    const [posterSize, setPosterSize] = useState({ width: 0, height: 0 });
-
-    const handlePosterSizeChange = (size) => {
-        setPosterSize(size);
-    };
- 
- 
-    const [videoStepOneData, setVideoStepOneData] = useState({});
-    const [videoStepTwoData, setVideoStepTwoData] = useState({
-        project_name: '',
-        project_description: '',
-        primary_genre: '',
-        secondary_genre: '',
-        viewer_rating: '',
-        movie_poster: '',
-    });
-
-    const [videoStepThreeData, setVideoStepThreeData] = useState({
-        project_stage: '',
-        project_status: '',
-        filming_days: '',
-        project_budget: '',
-    });
-
-    const [videoStepFourData, setVideoStepFourData] = useState({});
-
     const [projectData, setProjectData] = useState({
-        project_type: '',
-        video_type: '',
-    });
+        corporateType: '',
+        selectedProjectType: '',
+        selectedCorporateType: '',
+        selectedFamilyEventType: '',
+        selectedCreativeType: '',
+        selectedLiveBroadcastType: '',
+        selectedDigitalContentType: '',
+        weddingDetails: {},
+        liveEventDetails: {},
+        videoProjectDetails: {}
+      });
+    
+    const [projectAssets, setProjectAssets] = useState({ uploadedImage: null });
+    const [selectionError, setSelectionError] = useState(false);
 
- 
-    const handleVideoStepTwoDataChange = (newData) => {
-        setVideoStepTwoData(newData); // Updates the videoStepTwoData state
+    const [selectedProjectType, setSelectedProjectType] = useState('');
+    const [selectedCorporateType, setSelectedCorporateType] = useState('');
+    const [selectedFamilyEventType, setSelectedFamilyEventType] = useState('');
+    const [selectedCreativeType, setSelectedCreativeType] = useState('');
+    const [selectedLiveBroadcastType, setSelectedLiveBroadcastType] = useState('');
+    const [selectedDigitalContentType, setSelectedDigitalContentType] = useState('');
+    const [weddingDetails, setWeddingDetails] = useState({});
+    const [liveEventDetails, setLiveEventDetails] = useState({});
+    const [videoProjectDetails, setVideoProjectDetails] = useState({});
+    const [additionalVideoDetails, setAdditionalVideoDetails] = useState({});
+    const [posterImagePreview, setPosterImagePreview] = useState(null);
+    const [selectedClientIds, setSelectedClientIds] = useState([]);
+
+    const handlePosterImageChange = (imageUrl) => {
+      setPosterImagePreview(imageUrl);
     };
     
-    const handleVideoStepThreeDataChange = (newData) => {
-        setVideoStepThreeData(newData); // Updates the videoStepThreeData state
-    };
-    
-    const handleProjectType = (project) => {
-        if (project.active) {
-            // Update projectData with the selected project type
-            setProjectData(prevData => ({
-                ...prevData,
-                project_type: project.name
-            }));
-            setCurrentStep(1); // Move to the next step
-        }
-    };
-    
-    const handleVideoType = (videoType) => {
-        if (videoType.active) {
-            // Update projectData with the selected video type
-            setProjectData(prevData => ({
-                ...prevData,
-                video_type: videoType.name
-            }));
-            setCurrentStep(2); // Move to the next step
-        }
-    };
-    
-    const handleBackClick = () => {
-        if (currentStep > 0) {
-            setCurrentStep(prevStep => prevStep - 1);
-            setEmptyFields({}); // Clear the emptyFields state
-        }
-    };
-    
-    const handleNextClick = () => {
-    
-        if (currentStep === 1 && projectData.project_type === 'Video Production' && !projectData.video_type) {
-            // Check if video_type is selected for Video Production projects
-            setEmptyFields({ ...emptyFields, video_type: true });
-            return; // Prevent moving to the next step if video type is not selected
-        }
-        
-        if (currentStep === 2 && !videoStepTwoData.project_name.trim()) {
-            setEmptyFields({ ...emptyFields, project_name: true });
-            return; // Prevent moving to the next step
-        }
-    
-        // Check for Step 2 completion
-        if (currentStep === 3) {
-            let newEmptyFields = { ...emptyFields };
-        
-            // Existing check for project_stage
-            if (!projectData.project_stage) {
-                newEmptyFields.project_stage = true;
-            }
-        
-            // Additional condition for another field, e.g., project_budget
-            if (!projectData.project_status) {
-                newEmptyFields.project_status = true;
-            }
-        
-            setEmptyFields(newEmptyFields);
-        
-            // Check if there are any true values in newEmptyFields, indicating missing data
-            if (Object.values(newEmptyFields).some(value => value === true)) {
-                return; // Prevent moving to the next step if any required field is empty
-            }
-        }
-        
-        if (currentStep < totalSteps - 1) {
-            setCurrentStep(prevStep => prevStep + 1);
-        }
-    };
-    
+    const [selectedDetailTitle, setSelectedDetailTitle] = useState('');
+    const [stepError, setStepError] = useState('');
 
- 
+    useEffect(() => {
+        setFadeIn(true);
 
+        if (resetSignal) {
+          handleCancel();
+        }
+      }, [resetSignal]);
+      
+      useEffect(() => {
+        console.log('Updated videoProjectDetails:', videoProjectDetails);
+      }, [videoProjectDetails]);
+      
+      const handleSetSelectionError = (hasError) => {
+        setSelectionError(hasError);
+      };
 
+      const updateProjectAssets = (mediaPath) => {
+        setProjectAssets({ ...projectAssets, uploadedImage: mediaPath });
+      };
+      
+      console.log('projectData', projectData);
+      console.log('videoProjectDetails', videoProjectDetails);
+      console.log('additionalVideoDetails', additionalVideoDetails);
+
+      const handleProjectSelection = (type, value) => {
+        let nextStep = currentStep;
     
+        switch (type) {
+            case 'selectedProjectType':
+                setSelectedProjectType(value);
+                setProjectData({ ...projectData, type: value });
+                nextStep = 1;  
+                break;
+            case 'selectedCorporateType':
+                setSelectedCorporateType(value);
+                setProjectData(prev => ({ ...prev, corporateType: value }));
+                nextStep = 2;  
+                break;
+            case 'selectedFamilyEventType':
+                setSelectedFamilyEventType(value);
+                setProjectData(prev => ({ ...prev, familyEventType: value }));
+                nextStep = 2;  
+                break;
+            case 'selectedCreativeType':
+                setSelectedCreativeType(value);
+                setProjectData(prev => ({ ...prev, creativeType: value }));
+                nextStep = 2;  
+                break;
+            case 'selectedLiveBroadcastType':
+                setSelectedLiveBroadcastType(value);
+                setProjectData(prev => ({ ...prev, liveBroadcastType: value }));
+                nextStep = 2;  
+                break;
+            case 'selectedDigitalContentType':
+                setSelectedDigitalContentType(value);
+                setProjectData(prev => ({ ...prev, digitalContentType: value }));
+                nextStep = 2;  
+                break;
+            default:
+                break;
+        }
     
+        setSelectionError(false);
+        setStepError(''); 
+        setSelectedDetailTitle(value);
+        setCurrentStep(nextStep);  
+    };
 
-    const stepInfo = [
-        { step: 1, header: 'Choose a Project Type', description: 'Choose a project type below' },
-        { step: 2, header: projectData.project_type, description: 'What type of project are you working on?' },
-        { step: 3, header: projectData.video_type, description: 'Provide some information about your project below. You must fill out all fields if you want to create an AI generated poster.' },
-        { step: 4, header: projectData.video_type, description: 'Lets add additional details for your project' },
-    ]
+    const handleCancel = () => {
+        setSelectedProjectType('');
+        setSelectedCorporateType('');
+        setSelectedFamilyEventType('');
+        setSelectedCreativeType('');
+        setSelectedLiveBroadcastType('');
+        setSelectedDigitalContentType('');
+        setWeddingDetails({});
+        setLiveEventDetails({});
+        setVideoProjectDetails({});
+        setAdditionalVideoDetails({});
+        setProjectData({ name: '', description: '', type: '' });
+        setProjectAssets({ uploadedImage: null });
+        setSelectionError(false);
+        setStepError('');
+        setCurrentStep(0);
+        onClose();
+    };
 
-    const handleSaveProject = async () => {
- 
-        const projectData = {
-            ...videoStepOneData, 
-            ...videoStepTwoData, 
-            ...videoStepThreeData, 
-            ...videoStepFourData,
-            project_type: projectData.project_type,
-            video_type: projectData.video_type,
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const finalProjectData = {
+            ...projectData,
+            selectedProjectType,
+            selectedCorporateType,
+            selectedFamilyEventType,
+            selectedCreativeType,
+            selectedLiveBroadcastType,
+            selectedDigitalContentType,
+            weddingDetails,
+            liveEventDetails,
+            videoProjectDetails,
+            additionalVideoDetails,
+            projectAssets,
         };
-        const projectAssets = {
-            isImageAIGenerated,
-            uploadedImage,
-            posterWidth: posterSize.width,
-            posterHeight: posterSize.height,
-        };
-
-        createProject(projectData, projectAssets);
+        await createProject(finalProjectData);
     };
     
+    const nextStep = () => {
+        let error = '';
+        const isLastStep = currentStep === stepContent.length - 1;
+
+        if (isLastStep) {
+            handleSubmit();
+            return;
+        }
+
+        switch (currentStep) {
+            case 0:
+                if (!selectedProjectType) error = 'Please select a project type to continue.';
+                break;
+            case 1:
+                if (!selectedCorporateType && !selectedFamilyEventType && !selectedCreativeType && !selectedLiveBroadcastType && !selectedDigitalContentType) {
+                    error = 'Please make a selection to continue.';
+                }
+                break;
+            case 2:
+                if (currentStep === 2 && !videoProjectDetails.projectName) {
+                    error = 'Please enter a project name to continue.';
+                }
+                break;
+            case 2:
+                if (currentStep === 3 && (!additionalVideoDetails.projectStage || !additionalVideoDetails.projectStatus)) {
+                    error = 'Please choose the project stage and status to continue.';
+                }
+                break;
+            default:
+                break;
+        }
     
+        if (error) {
+            setStepError(error);
+        } else {
+            setStepError('');
+            setCurrentStep(currentStep + 1);
+        }
+    };
 
- 
- 
-    return (
+    const prevStep = () => {
+        setCurrentStep(currentStep > 0 ? currentStep - 1 : 0);
+    };
 
-        <div className={`fade-in w-[80rem] py-[4rem] px-[8rem] ${fadeIn ? 'opacity-1' : 'opacity-0'}`}>
+    const getTitleFromType = (type) => {
+        if (typeof type !== 'string') return '';
+        return type.split(' - ')[0];
+    };
+      
+      
+    const renderDetailsComponent = () => {
+        const projectType = getTitleFromType(selectedProjectType);
+        const typeSelectors = {
+            'Corporate & Commercial': <CorporateProjectTypeSelector selectedType={selectedCorporateType} onSelectType={(type) => handleProjectSelection('selectedCorporateType', type)} />,
+            'Family Events & Celebrations': <FamilyEventsTypeSelector selectedType={selectedFamilyEventType} onSelectType={(type) => handleProjectSelection('selectedFamilyEventType', type)} />,
+            'Creative & Entertainment': <CreativeEntertainmentTypeSelector selectedType={selectedCreativeType} onSelectType={(type) => handleProjectSelection('selectedCreativeType', type)} />,
+            'Live Broadcast': <LiveBroadcastTypeSelector selectedType={selectedLiveBroadcastType} onSelectType={(type) => handleProjectSelection('selectedLiveBroadcastType', type)} />,
+            'Digital Content': <DigitalContentTypeSelector selectedType={selectedDigitalContentType} onSelectType={(type) => handleProjectSelection('selectedDigitalContentType', type)} />,
+        };
+        return typeSelectors[projectType] || <div>Please select a project type to see more details.</div>;
+    };
 
-            <div className={`fade-in w-full max-w-[56rem] mx-auto ${fadeIn ? 'opacity-1' : 'opacity-0'}`}>
-                <ProjectStepper 
-                    currentStep={currentStep} 
-                    activeProject={projectData.project_type} 
-                 />
-            </div>
+    const renderAdditionalDetails = () => {
+        const projectType = getTitleFromType(selectedProjectType);
+    
+        switch (projectType) {
+            case 'Corporate & Commercial':
+                return renderCorporateContent();
+            case 'Family Events & Celebrations':
+                return renderFamilyEventsCelebrationsContent()
+            case 'Live Broadcast':
+                return renderLiveBroadCastContent();
+            case 'Creative & Entertainment':
+                return renderCreativeEntertainmentContent();
+            default:
+                return <div>Additional details for the selected project type.</div>;
+        }
+    };
+    
+     const renderCorporateContent = () => {
+        switch (selectedCorporateType) {
+            case 'Corporate Events':
+                return <div>Content for Corporate Events</div>;
+            case 'Conferences/Seminars':
+                return <div>Content for Conferences/Seminars</div>;
+            default:
+                return <div>Select a corporate project type to see more details</div>;
+        }
+    };
 
-            <div className='my-auto mx-auto h-full w-full max-w-[85rem] pt-[3rem]'>
-
-
-                    <div className="h-full">
-
-                        <div className={`fade-in-delay flex flex-col gap-8 h-full ${fadeInDelay ? 'opacity-1' : 'opacity-0'}`}>
-                
-                            {currentStep >= 0 && currentStep < stepInfo.length && (
-                                <div className='flex flex-col justify-start'>
-                                    <h2 className="text-lg font-bold text-center">{stepInfo[currentStep].header}</h2>
-                                    <p className='text-center text-sm'>{stepInfo[currentStep].description}</p>
-                                </div>
-                            )}
-
-                            <div className='flex flex-row gap-4 justify-center h-full py-6 '>
-
-                                <div className={`fade-in-delay w-full h-full ${fadeInDelay ? 'opacity-1' : 'opacity-0'}`}>
-
-                                    {currentStep === 0 && (
-                                        <div className='w-full'>
-                                            <ProjectSelector onProjectClick={handleProjectType} activeProject={projectData.project_type} />
-                                        </div>
-                                     )}
-
-                                    {currentStep === 1 && projectData.project_type === 'Video Production' && (
-                                        <div className='w-full'>
-                                            <VideoStepOne
-                                                onVideoTypeClick={handleVideoType}
-                                                showError={emptyFields.video_type} 
-                                                activeVideoType={projectData.video_type}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {currentStep === 2 && projectData.project_type === 'Video Production' && (
-                                        <div className='w-full'>
-                                            <VideoStepTwo 
-                                                data={videoStepTwoData} 
-                                                projectData={projectData}
-                                                onDataChange={handleVideoStepTwoDataChange}                                         
-                                                emptyFields={emptyFields} 
-                                                setEmptyFields={setEmptyFields}
-                                                isCustomImage={isCustomImage}
-                                                setIsCustomImage={setIsCustomImage}      
-                                                setUploadedImage={setUploadedImage}
-                                                setImageIsAIGenerated={setImageIsAIGenerated}
-                                                onPosterSizeChange={handlePosterSizeChange}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {currentStep === 3 && projectData.project_type === 'Video Production' && (
-                                        <div className='w-full'>
-                                            <VideoStepThree
-                                                data={videoStepThreeData}
-                                                onDataChange={handleVideoStepThreeDataChange}
-                                                emptyFields={emptyFields}
-                                            />
-                                        </div>
-                                    )}
+    const renderFamilyEventsCelebrationsContent = () => {
+        switch (selectedFamilyEventType) {
+            case 'Wedding':
+                return <WeddingDetails weddingDetails={weddingDetails} setWeddingDetails={(details) => setWeddingDetails({ ...details, weddingDetails: details })} />;
+            default:
+                return <div>Select a family event type to see more details</div>;
+        }
+    };
 
 
-                                </div>
+    const renderLiveBroadCastContent = () => {
+        switch (selectedLiveBroadcastType) {
+            case 'Concerts':
+            case 'Conferences':
+            case 'Graduations':
+                return <LiveEventDetails liveEventDetails={liveEventDetails} setLiveEventDetails={(details) => setLiveEventDetails({ ...details, liveEventDetails: details })} />;
+            default:
+                return <div>Select a live broadcast project type to see more details</div>;
+        }
+    };
 
-                                
-                            </div>
-
-                            <div className='flex flex-row justify-end justify-evenly'>
-                                    {currentStep > 0 && (
-                                        <PageButton 
-                                            className="!my-auto !bg-transparent duration-500 ease-in-out py-2 hover:bg-emerald-100" 
-                                            size="small" 
-                                            icon={faArrowLeft} 
-                                            inText='Back'
-                                            onClick={handleBackClick}
-                                        >
-                                         </PageButton>
-                                    )}
-
-                                    { (currentStep === 0 && projectData.project_type) || (currentStep > 0 && currentStep < totalSteps - 1) ? (
-                                        <PageButton 
-                                            iconPosition='right' 
-                                            className="!my-auto !bg-transparent duration-500 ease-in-out py-2 hover:bg-emerald-100" 
-                                            size="small" 
-                                            icon={faArrowRight} 
-                                            inText='Next'
-                                            onClick={handleNextClick}
-                                        >                     
-                                        </PageButton>
-                                    ) : null }
-
-                                    {currentStep === totalSteps - 1 && (
-                                        <PageButton 
-                                            className="!my-auto duration-500 ease-in-out py-2 hover:bg-emerald-100" 
-                                            size="small" 
-                                            icon={faCheck} 
-                                            inText='Submit'
-                                            onClick={handleSaveProject}
-                                        >
-                                        </PageButton>
-                                    )}
-                            </div>
-
-
-
+    const renderCreativeEntertainmentContent = () => {
+        switch (selectedCreativeType) {
+            case 'Documentary Films':
+            case 'Short Films':
+            case 'Feature Films':
+                return <VideoProjectDetails 
+                            videoProjectDetails={videoProjectDetails} 
+                            setVideoProjectDetails={setVideoProjectDetails} 
+                            setSelectionError={handleSetSelectionError} 
+                            updateProjectAssets={updateProjectAssets} 
+                            posterImagePreview={posterImagePreview}  
+                            handlePosterImageChange={handlePosterImageChange} 
                             
-                        </div>
+                        />;
+            default:
+                return <div>Select a creative project type to see more details</div>;
+        }
+    };
 
-                    </div>
- 
-            </div>
+    const renderAdditionalDetailsVideoProduct = () => {
+        if (selectedProjectType.includes('Creative & Entertainment')) {
+            switch (selectedCreativeType) {
+                // Passing selectedClientIds and setSelectedClientIds to VideoAdditionalDetails
+                case 'Documentary Films':
+                case 'Short Films':
+                case 'Feature Films':
+                    return <VideoAdditionalDetails 
+                                additionalVideoDetails={additionalVideoDetails}
+                                setAdditionalVideoDetails={setAdditionalVideoDetails}
+                                selectedClientIds={selectedClientIds}
+                                setSelectedClientIds={setSelectedClientIds}
+                            />;
+                default:
+                    return <div>Select a detailed project type in Creative & Entertainment to see more details here</div>;
+            }
+        } else {
+            return <div>Step 4 content based on other selections</div>;
+        }
+    };
+    
+    const renderProjectSummary = () => {
 
+    };
+
+    const stepContent = [
+        {
+            header: 'Select Project Type',
+            description: 'Choose the type of project you want to create.',
+            content: <ProjectTypeSelector selectedProjectType={selectedProjectType} onProjectTypeSelect={(type) => handleProjectSelection('selectedProjectType', type)} />,
+        },
+        {
+            header: `Select ${currentStep === 1 ? getTitleFromType(selectedProjectType) : 'Details'}`,
+            description: `Provide more details about your ${currentStep === 1 ? getTitleFromType(selectedProjectType).toLowerCase() : 'selection'}.`,
+            content: renderDetailsComponent(),
+        },
+        {
+            header: 'Additional Details',
+            description: 'Provide additional details for the selected project type.',
+            content: renderAdditionalDetails(),
+        },
+        {
+            header: 'Step 4: Additional Form',
+            description: 'Fill out additional information for your project.',
+            content: renderAdditionalDetailsVideoProduct(),
+        },
+        {
+            header: 'Step 5: Project Summary',
+            description: 'Here is the summary of your project.',
+            content: renderProjectSummary(),
+        },
+    ];
+
+    const renderButtons = () => (
+        <div className="flex justify-center justify-end space-x-4 w-[35rem] mx-auto">
+            {currentStep > 0 && <SecondaryButton className={`w-full`} onClick={prevStep}>Back</SecondaryButton>}
+            {currentStep === 0 && <SecondaryButton className={`w-full`} onClick={handleCancel}>Cancel</SecondaryButton>}
+            {currentStep < stepContent.length - 1 ? 
+                <PrimaryButton className={`w-full`} onClick={nextStep}>Next</PrimaryButton> : 
+                <PrimaryButton className={`w-full`} onClick={handleSubmit}>Submit</PrimaryButton>}
         </div>
-
     );
-}
-  
+    
+    return (
+        <div className={`fade-in w-[90rem] h-[60rem] flex flex-col gap-4 justify-between pt-[2rem] pb-[3rem] px-[6rem] ${fadeIn ? 'opacity-1' : 'opacity-0'}`}>
+            <ProjectStepper currentStep={currentStep} activeProject={getTitleFromType(selectedProjectType)} selectedDetailTitle={selectedDetailTitle} />
+            <div>
+                <h2 className='text-[2rem] font-light text-slate-500 text-center mb-2'>{stepContent[currentStep].header}</h2>
+                <p className='text-center'>{stepContent[currentStep].description}</p>
+            </div>
+            <div className="my-4 h-full">
+                {stepContent[currentStep].content}
+            </div>
+            <div className='h-[2rem]'>
+                {stepError && <div className="text-red-500 h-full text-center flex justify-center items-center my-auto text-lg font-bold py-2 ">{stepError}</div>}
+            </div>
+            {renderButtons()}
+        </div>
+    );
+};
 
+
+
+export default CreateProject;

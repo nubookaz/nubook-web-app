@@ -10,6 +10,7 @@ import CardContainer from '@/Components/Containers/CardContainer';
 
  import WeekCalendar from '@/Components/Calendars/WeekCalendar';
 import Tasks from './Tasks/Tasks';
+import ClientForm from './Clients/Form/CreateClient';
    
 export default function Projects({ auth }) {
     const { user } = useAuth();
@@ -56,7 +57,7 @@ export default function Projects({ auth }) {
                       <div className='flex flex-row gap-4 h-full'>
                         <Tasks />
                         <CardContainer header="Clients" className='h-full w-full'>
-
+                        <ClientForm />
                         </CardContainer>
                       </div>
                       

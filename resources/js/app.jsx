@@ -15,6 +15,7 @@ import { DarkModeProvider } from '@/Components/Contexts/DarkModeContext';
 import { DrawerProvider } from '@/Components/Contexts/DrawerContext';
 import { ScheduleProvider } from '@/Components/Contexts/ScheduleContext';
 import { ProjectProvider } from '@/Components/Contexts/ProjectContext';
+import { MediaProvider } from '@/Components/Contexts/MediaContext';
 import { TaskProvider } from '@/Components/Contexts/TaskContext';
 import { ClientProvider } from '@/Components/Contexts/ClientContext';
 
@@ -32,27 +33,31 @@ createInertiaApp({
             <AuthProvider>
             <UserProvider>
                 <ProjectProvider>
-                <ClientProvider>
-                    <ModalProvider>
-                        <SnackProvider>
-                            <DarkModeProvider>
-                                <CallSheetProvider>
-                                    <RecipientProvider>
-                                        <CallSheetLocationProvider>
-                                            <DrawerProvider>
-                                                <ScheduleProvider>
-                                                    <TaskProvider>
-                                                        <App {...props} />
-                                                    </TaskProvider>
-                                                </ScheduleProvider>
-                                            </DrawerProvider>
-                                        </CallSheetLocationProvider>
-                                    </RecipientProvider>
-                                </CallSheetProvider>
-                            </DarkModeProvider>
-                        </SnackProvider>
-                    </ModalProvider>
-                </ClientProvider>
+                <MediaProvider>
+                    <ClientProvider>
+                        <ModalProvider>
+                            <SnackProvider>
+                                <DarkModeProvider>
+                                    <CallSheetProvider>
+                                        <RecipientProvider>
+                                            <CallSheetLocationProvider>
+                                                <DrawerProvider>
+                                                    <ScheduleProvider>
+                                                        <TaskProvider>
+                                                            
+                                                            <App {...props} />
+
+                                                        </TaskProvider>
+                                                    </ScheduleProvider>
+                                                </DrawerProvider>
+                                            </CallSheetLocationProvider>
+                                        </RecipientProvider>
+                                    </CallSheetProvider>
+                                </DarkModeProvider>
+                            </SnackProvider>
+                        </ModalProvider>
+                    </ClientProvider>
+                </MediaProvider>
                 </ProjectProvider>
             </UserProvider>
             </AuthProvider>

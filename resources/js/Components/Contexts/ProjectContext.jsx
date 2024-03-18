@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
-import { router } from '@inertiajs/react'; 
 
 const ProjectContext = createContext();
 
@@ -12,10 +11,11 @@ export const ProjectProvider = ({ children }) => {
     const [projects, setProjects] = useState([]);
     const [currentProjectId, setCurrentProjectId] = useState(null);
 
-    const setCurrentProject = (projectId) => {
+    // Memoize setCurrentProject to avoid unnecessary re-renders
+    const setCurrentProject = useCallback((projectId) => {
         setCurrentProjectId(projectId);
         localStorage.setItem('currentProjectId', projectId); // Save to localStorage
-    };
+    }, []);
 
     useEffect(() => {
         const storedProjectId = localStorage.getItem('currentProjectId');
@@ -24,30 +24,28 @@ export const ProjectProvider = ({ children }) => {
         }
     }, []);
  
-    const fetchUserProjects = async () => {
+    // Memoize fetchUserProjects to prevent function recreation on every render
+    const fetchUserProjects = useCallback(async () => {
+        if (!userData) return; // Exit early if userData is not available
         try {
             const response = await axios.get(route('fetch-user-projects'));  
             setProjects(response.data);
         } catch (error) {
             console.error("Failed to fetch project data:", error);
         }
-    };
-
-    useEffect(() => {
-        if (userData) {
-            fetchUserProjects();
-        }
     }, [userData]);
 
+    useEffect(() => {
+        fetchUserProjects();
+    }, [fetchUserProjects]);
 
-
-    const createProject = async (projectData, projectAssets) => {
+    // Memoize createProject to optimize performance
+    const createProject = useCallback(async (projectData, projectAssets) => {
         const formData = new FormData();
         Object.entries({ ...projectData, ...projectAssets }).forEach(([key, value]) => {
             formData.append(key, value);
         });
 
-        // Assuming projectAssets may contain isImageAIGenerated, uploadedImage, and posterSize
         if (projectAssets.uploadedImage) {
             formData.append('uploadedImage', projectAssets.uploadedImage);
         }
@@ -58,39 +56,45 @@ export const ProjectProvider = ({ children }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            setProjects([...projects, response.data]);
 
-            // Navigate to the new project's detail page or handle success response
+            setProjects(prevProjects => [...prevProjects, response.data]);
             if (response.data?.url) {
                 window.location.href = response.data.url;
             }
         } catch (error) {
             console.error('Error saving project:', error);
-            // Handle error
         }
-    };
+    }, []);
 
-    const updateProject = async (projectId, updatedProject) => {
+    // Memoize updateProject to ensure function stability
+    const updateProject = useCallback(async (projectId, updatedProject) => {
         try {
             await axios.put(`/api/projects/${projectId}`, updatedProject);
-            setProjects(projects.map(project => project.id === projectId ? {...project, ...updatedProject} : project));
+            setProjects(projects.map(project => project.id === projectId ? { ...project, ...updatedProject } : project));
         } catch (error) {
             console.error("Failed to update project:", error);
         }
-    };
+    }, [projects]);
 
-    const deleteProject = async (projectId) => {
+    // Memoize deleteProject to minimize re-creations
+    const deleteProject = useCallback(async (projectId) => {
         try {
             await axios.delete(`/api/projects/${projectId}`);
             setProjects(projects.filter(project => project.id !== projectId));
         } catch (error) {
             console.error("Failed to delete project:", error);
         }
-    };
+    }, [projects]);
 
-    
     return (
-        <ProjectContext.Provider value={{ projects, createProject, updateProject, deleteProject, currentProjectId, setCurrentProject }}>
+        <ProjectContext.Provider value={{
+            projects,
+            createProject,
+            updateProject,
+            deleteProject,
+            currentProjectId,
+            setCurrentProject
+        }}>
             {children}
         </ProjectContext.Provider>
     );

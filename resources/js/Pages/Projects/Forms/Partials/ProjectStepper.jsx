@@ -6,26 +6,21 @@ import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
 import Typography from '@mui/joy/Typography';
 
 
-import {  faGamepad, faInfoCircle, faSitemap, faCheck, faMagnifyingGlass  } from '@fortawesome/free-solid-svg-icons'; 
+import {  faInfoCircle, faSitemap, faCheck, faList, faClipboardList, faLayerGroup  } from '@fortawesome/free-solid-svg-icons'; 
 
 
 
-const ProjectStepper = ({ 
-
-    currentStep,
-    activeProject
- 
-}) => {
-
+const ProjectStepper = ({ currentStep, activeProject, selectedDetailTitle }) => {
     const steps = [
         { icon: faSitemap, label: 'Project Type' },
-        { icon: faInfoCircle, label: activeProject + ' Type' },
-        { icon: faMagnifyingGlass, label: 'Project Details' },
-        { icon: faGamepad, label: 'Step 4' },
-     ];
+        { icon: faLayerGroup, label: activeProject || 'Project Category' },
+        { icon: faList, label: selectedDetailTitle || 'Project Details' }, // Use selectedDetailTitle
+        { icon: faInfoCircle, label: 'Step 4' },
+        { icon: faClipboardList, label: 'Project Summary' },
+    ];
  
     return (
-        <div className='w-full max-w-[56rem] mx-auto'>
+        <div className='w-full max-w-[56rem] mx-auto text-center'>
             <Stepper
                 size="lg"
                 sx={{

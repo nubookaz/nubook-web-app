@@ -54,6 +54,11 @@ class Project extends Model
     {
         return $this->hasMany(ProductionSchedule::class);
     }
-    
+
+    public function projectImage()
+    {
+        return $this->hasOne(ProjectImage::class);
+    }
+
 
 }

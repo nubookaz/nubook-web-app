@@ -1,34 +1,64 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Checkbox from '@/Components/Forms/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 
-import { Link, useForm } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
-import { formGroupClass, inputGroupClass } from '@/Components/Scripts/Form';
+import { inputGroupClass } from '@/Components/Scripts/Form';
 import PrimaryButton from '@/Components/Buttons/PrimaryButton';
 import Input from '@/Components/Forms/Input';
 
 
-export default function Login({ status, canResetPassword }) {
-
-    const { data, setData, post, processing, errors, reset } = useForm({
+export default function Login({ canResetPassword }) {
+    const [data, setData] = useState({
         email: '',
         password: '',
         remember: false,
     });
+    const [errors, setErrors] = useState({});
+    const [processing, setProcessing] = useState(false);
 
-    useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
-
-    const submit = (e) => {
-        e.preventDefault();
-
-        post(route('login'));
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setData({ ...data, [name]: value });
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setProcessing(true);
+        setErrors({});
+    
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Login failed. Please try again.');
+            }
+    
+            const responseData = await response.json();
+            localStorage.setItem('token', responseData.token);
+            window.location.href = '/dashboard';
+        } catch (error) {
+            // Set a user-friendly error message
+            setErrors({ general: error.toString().includes('Failed to fetch') 
+                        ? 'Network error, please try again later.' 
+                        : error.message });
+        } finally {
+            setProcessing(false);
+        }
+    };   
+        
+    useEffect(() => {
+        return () => {
+            setData(currentData => ({ ...currentData, password: '' }));
+        };
+    }, []);
+    
     const greeting = ['Welcome', <br key="linebreak"/>, 'Back!'];
 
     return (
@@ -51,7 +81,7 @@ export default function Login({ status, canResetPassword }) {
                                         placeholder="indy@indianajones.com"
                                         value={data.email}
                                         autoComplete="username"
-                                        onChange={(e) => setData('email', e.target.value)}
+                                        onChange={handleInputChange}
                                         sx={{
                                             "--Input-focusedThickness": "1px",
                                             "--Input-minHeight": "56px",
@@ -69,7 +99,7 @@ export default function Login({ status, canResetPassword }) {
                                         placeholder="********"
                                         value={data.password}
                                         autoComplete="current-password"
-                                        onChange={(e) => setData('password', e.target.value)}
+                                        onChange={handleInputChange}
                                     />
                                 </div>
 
@@ -105,24 +135,26 @@ export default function Login({ status, canResetPassword }) {
                     
                     </div>
 
+                    {errors.general && (
+                        <div className='text-red-600 text-center p-4 bg-red-50 rounded-xl my-4'>{errors.general}</div>
+                    )}
 
-
-                        <div className='flex flex-col gap-4'>
-                            <div>
-                                <PrimaryButton onClick={submit} disabled={processing}>
-                                    Login
-                                </PrimaryButton>
-                            </div>
-
-                            <div>
-                                <Link
-                                    href={route('register')}
-                                    className="text-sm secondary-color"
-                                >
-                                    Don't have an account? Sign up!
-                                </Link>
-                            </div>
+                    <div className='flex flex-col gap-4'>
+                        <div>
+                            <PrimaryButton onClick={handleSubmit} disabled={processing}>
+                                Login
+                            </PrimaryButton>
                         </div>
+
+                        <div>
+                            <Link
+                                href={route('register')}
+                                className="text-sm secondary-color"
+                            >
+                                Don't have an account? Sign up!
+                            </Link>
+                        </div>
+                    </div>
 
                 </div>                   
              ),

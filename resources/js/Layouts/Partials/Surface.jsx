@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useModal } from '@/Components/Contexts/ModalContext';
 import { useSnack } from '@/Components/Contexts/SnackContext';
  
 import Modal from '@/Components/Modals/Modal';
 import Snackbar from '@mui/joy/Snackbar';
 
-import ProjectForm from '@/Pages/Projects/Forms/CreateProject';
+import CreateProject from '@/Pages/Projects/Forms/CreateProject';
 import CreateCallSheet from '@/Pages/Projects/CallSheets/Forms/CreateCallSheet';
 import UpdateCallSheet from '@/Pages/Projects/CallSheets/Forms/UpdateCallSheet';
 import GeneralCallTimeForm from '@/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm';
@@ -19,11 +19,12 @@ import AddTaskModal from '@/Pages/Tasks/Modals/AddTaskModal';
 export default function Surface({ user, project, callSheet, roles }) {
     const { isModalOpen, toggleModal, modalContent } = useModal();
     const { isSnackOpen, setIsSnackOpen, snackContent } = useSnack();
- 
+    const [resetSignal, setResetSignal] = useState(false);
+
     const renderContent = () => {
         switch (modalContent?.type) {
             case 'projectForm':
-                return <ProjectForm />;
+                return <CreateProject onClose={handleCloseClick} resetSignal={resetSignal} />;
             case 'addTask':
                 return <AddTaskModal onClose={handleCloseClick}/>;
             case 'newLocationForm':
@@ -55,6 +56,9 @@ export default function Surface({ user, project, callSheet, roles }) {
     
     const handleCloseClick = () => {
         if (isModalOpen) {
+            if (modalContent?.type === 'projectForm') {
+                setResetSignal(prev => !prev); // Toggle the reset signal
+            }
             toggleModal(false);
         }
     };

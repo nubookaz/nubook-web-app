@@ -19,9 +19,11 @@ function EmptyContent({ imageUrl, children, buttonText, onClick, svgClass, class
                 {children.description}
             </div>
 
-            <SecondaryButton onClick={onClick} className={`text-slate-400`}>
-                {buttonText}
-            </SecondaryButton>
+            {buttonText ? (
+                <SecondaryButton onClick={onClick} className={`text-slate-400`}>
+                    {buttonText}
+                </SecondaryButton>
+            ):null}
 
         </div>
     );

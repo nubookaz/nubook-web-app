@@ -1,0 +1,1 @@
+import{r as t}from"./app-d6201cb1.js";import{u as c}from"./useEnhancedEffect-8ef057d9.js";function o(r){const e=t.useRef(r);return c(()=>{e.current=r}),t.useRef((...u)=>(0,e.current)(...u)).current}export{o as u};

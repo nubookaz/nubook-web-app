@@ -14,6 +14,9 @@ use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\User;  
 use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\HasApiTokens;  
+use Illuminate\Support\Facades\Log;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -31,21 +34,31 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
         $user = User::where('email', $request->email)->first();
-        if (!$user) {
-            throw ValidationException::withMessages([
-                'email' => ['No account found with this email.'],
-            ]);
+
+        if (!$user || !Auth::attempt($request->only('email', 'password'))) {
+            Log::warning('Failed login attempt', ['email' => $request->email]);
+
+            return response()->json([
+                'message' => 'The provided credentials are incorrect.'
+            ], 422); 
         }
 
-        
-        $request->authenticate();
+        $token = $user->createToken('api-token')->plainTextToken;
 
-        $request->session()->regenerate();
+        Log::info('Successful login', ['email' => $request->email]);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return response()->json([
+            'user' => $user,
+            'token' => $token,
+        ]);
     }
 
     /**
