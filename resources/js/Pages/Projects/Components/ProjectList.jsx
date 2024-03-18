@@ -10,7 +10,7 @@ import {
   postProductionColor,
   completedColor,
 } from '@/Components/Scripts/ProjectColors';
-import { faBookmark, faPencil, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
  

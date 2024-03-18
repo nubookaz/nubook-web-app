@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShapes, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faShapes } from '@fortawesome/free-solid-svg-icons';
 import { useDrawer } from '@/Components/Contexts/DrawerContext';
 
 export default function ActionDrawer({

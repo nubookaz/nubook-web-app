@@ -181,18 +181,16 @@ const CreateProject = ({ onClose, resetSignal }) => {
                 }
                 break;
             case 2:
-                if (currentStep === 2 && !videoProjectDetails.projectName) {
+                // Combine the conditions that were previously under two separate "case 2:" clauses
+                if (!videoProjectDetails.projectName) {
                     error = 'Please enter a project name to continue.';
-                }
-                break;
-            case 2:
-                if (currentStep === 3 && (!additionalVideoDetails.projectStage || !additionalVideoDetails.projectStatus)) {
+                } else if (!additionalVideoDetails.projectStage || !additionalVideoDetails.projectStatus) {
                     error = 'Please choose the project stage and status to continue.';
                 }
                 break;
             default:
                 break;
-        }
+        }        
     
         if (error) {
             setStepError(error);

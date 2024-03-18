@@ -8,7 +8,6 @@ import {
   faChalkboard,
   faGraduationCap,
   faGuitar,
-  faCameraRetro,
 
 } from '@fortawesome/free-solid-svg-icons';
 

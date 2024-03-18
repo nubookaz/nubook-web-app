@@ -127,21 +127,22 @@ const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError,
   }, [createMedia, setImagePreview, setPosterImage, updateProjectAssets, videoProjectDetails]);
 
   const handleGenerateAiImage = useCallback(() => {
-    const { projectName, primaryGenre, secondaryGenre, viewerRating, projectDescription } = videoProjectDetails;
-    if (!projectName || !primaryGenre || !viewerRating || !projectDescription || (secondaryGenre === undefined)) {
-        setErrorMessage('Please fill out the entire form before generating the AI image.');
-        return;
-    }
-  
-    setErrorMessage('');
-    const prompt = `Create an image for '${projectName}', a ${primaryGenre} ${secondaryGenre} movie rated ${viewerRating}. Description: ${projectDescription}.`;
-  
-    if (prompt.length > 1000) {
-      prompt = prompt.substring(0, 1000);
-    }
-  
-    generateAiPoster( prompt );
+      const { projectName, primaryGenre, secondaryGenre, viewerRating, projectDescription } = videoProjectDetails;
+      if (!projectName || !primaryGenre || !viewerRating || !projectDescription || (secondaryGenre === undefined)) {
+          setErrorMessage('Please fill out the entire form before generating the AI image.');
+          return;
+      }
+
+      setErrorMessage('');
+      let promptText = `Create an image for '${projectName}', a ${primaryGenre} ${secondaryGenre} movie rated ${viewerRating}. Description: ${projectDescription}.`;
+
+      if (promptText.length > 1000) {
+        promptText = promptText.substring(0, 1000);
+      }
+
+      generateAiPoster(promptText);
   }, [generateAiPoster, videoProjectDetails]);
+
   
   const handleMouseOver = () => {
     setIsHovering(true);
