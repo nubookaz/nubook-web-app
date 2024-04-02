@@ -97,7 +97,6 @@ export default function VerificationProcess({
             handleResponse(response, () => {
                 if (response.data.success) {
                     setCurrentStep('verification');
-                    console.log("response",response.data);
                 }
             });
         } catch (error) {

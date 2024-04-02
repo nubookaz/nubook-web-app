@@ -1,9 +1,19 @@
+import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+
 import React, { useState, useEffect } from 'react';
  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = ({ isOpen, onClose, children, className, showCloseButton, shouldCloseOnOverlayClick = true }) => {
+    const { darkModeSetting } = useDarkMode();
+
+    const defaultClasses = {
+        light: { background: 'bg-white', text: 'text-slate-900' },
+        dark: { background: 'bg-slate-900', text: 'text-white' },
+        midnight: { background: 'bg-slate-800', text: 'text-white' },
+    };
+
     const [fadeIn, setFadeIn] = useState(false);
     const [fadeInDelay, setFadeInDelay] = useState(false);
 

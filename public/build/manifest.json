@@ -1,213 +1,204 @@
 {
-  "_ApplicationName-99bb4d02.js": {
-    "file": "assets/ApplicationName-99bb4d02.js",
+  "_ApplicationName-e46a0827.js": {
+    "file": "assets/ApplicationName-e46a0827.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_AuthenticatedLayout-a56b9925.js": {
-    "file": "assets/AuthenticatedLayout-a56b9925.js",
+  "_AuthenticatedLayout-aa5c18fe.js": {
+    "file": "assets/AuthenticatedLayout-aa5c18fe.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_Modal-cab82769.js",
-      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_Modal-16f11f32.js",
+      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
+      "_CircularProgress-4f3ac99e.js"
     ]
   },
-  "_Autocomplete-653e6d3e.js": {
-    "file": "assets/Autocomplete-653e6d3e.js",
+  "_Autocomplete-f1ff51db.js": {
+    "file": "assets/Autocomplete-f1ff51db.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_createSvgIcon-b106def2.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_Chip-a964b04e.js",
-      "_Popper-26c3d1f1.js"
+      "_useSlot-a2532144.js",
+      "_createSvgIcon-206f586c.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_CircularProgress-4f3ac99e.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "_FormControlContext-c38d435b.js",
+      "_isMuiElement-db9e5794.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_Chip-33927dbc.js",
+      "_Popper-794acb7d.js"
     ]
   },
-  "_Avatar-b00b524c.js": {
-    "file": "assets/Avatar-b00b524c.js",
+  "_Avatar-ef00ce3a.js": {
+    "file": "assets/Avatar-ef00ce3a.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_createSvgIcon-b106def2.js"
+      "_useSlot-a2532144.js",
+      "_createSvgIcon-206f586c.js"
     ]
   },
-  "_Box-d2e1cd8f.js": {
-    "file": "assets/Box-d2e1cd8f.js",
+  "_CardContainer-da7ef859.js": {
+    "file": "assets/CardContainer-da7ef859.js",
     "imports": [
-      "_useSlot-d43794ee.js",
-      "_toPropertyKey-61b1ecea.js",
       "resources/js/app.jsx",
-      "_extendSxProp-9e510b8c.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js"
     ]
   },
-  "_CardContainer-713d9aa9.js": {
-    "file": "assets/CardContainer-713d9aa9.js",
+  "_Checkbox-359b342c.js": {
+    "file": "assets/Checkbox-359b342c.js",
     "imports": [
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js"
+      "_useSlot-a2532144.js",
+      "_createSvgIcon-206f586c.js",
+      "_Typography-3915937a.js",
+      "_FormControlContext-c38d435b.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js"
     ]
   },
-  "_Checkbox-66b75973.js": {
-    "file": "assets/Checkbox-66b75973.js",
+  "_Chip-33927dbc.js": {
+    "file": "assets/Chip-33927dbc.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_createSvgIcon-b106def2.js",
-      "_Typography-4dbb1ff2.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useSwitch-631d032d.js"
+      "_useSlot-a2532144.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
+      "_useIsFocusVisible-97f68d26.js"
     ]
   },
-  "_Chip-a964b04e.js": {
-    "file": "assets/Chip-a964b04e.js",
+  "_CircularProgress-4f3ac99e.js": {
+    "file": "assets/CircularProgress-4f3ac99e.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
-      "_useIsFocusVisible-7ca602c7.js"
+      "_useSlot-a2532144.js"
     ]
   },
-  "_CircularProgress-af137ff7.js": {
-    "file": "assets/CircularProgress-af137ff7.js",
-    "imports": [
-      "_toPropertyKey-61b1ecea.js",
-      "resources/js/app.jsx",
-      "_useSlot-d43794ee.js"
-    ]
-  },
-  "_EmptyContent-f0c7321b.js": {
-    "file": "assets/EmptyContent-f0c7321b.js",
+  "_EmptyContent-4eb16782.js": {
+    "file": "assets/EmptyContent-4eb16782.js",
     "imports": [
       "resources/js/app.jsx",
-      "_SecondaryButton-f759061d.js"
+      "_SecondaryButton-ae44dfd5.js"
     ]
   },
   "_Form-792c5f5e.js": {
     "file": "assets/Form-792c5f5e.js"
   },
-  "_FormControl-ce9c98b9.js": {
-    "file": "assets/FormControl-ce9c98b9.js",
+  "_FormControl-23721afc.js": {
+    "file": "assets/FormControl-23721afc.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_useIsFocusVisible-7ca602c7.js"
+      "_useSlot-a2532144.js",
+      "_FormControlContext-c38d435b.js",
+      "_useIsFocusVisible-97f68d26.js"
     ]
   },
-  "_FormControlContext-dd3b9a17.js": {
-    "file": "assets/FormControlContext-dd3b9a17.js",
+  "_FormControlContext-c38d435b.js": {
+    "file": "assets/FormControlContext-c38d435b.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_GuestLayout-4bd9a40b.js": {
-    "file": "assets/GuestLayout-4bd9a40b.js",
+  "_GuestLayout-78c4bb2d.js": {
+    "file": "assets/GuestLayout-78c4bb2d.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_ImageContainer-307535ce.js",
-      "_ApplicationName-99bb4d02.js",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js",
+      "_ApplicationName-e46a0827.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Modal-cab82769.js"
+      "_Modal-16f11f32.js"
     ]
   },
-  "_IconButton-850b944a.js": {
-    "file": "assets/IconButton-850b944a.js",
+  "_IconButton-265bba41.js": {
+    "file": "assets/IconButton-265bba41.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js"
+      "_index.es-ee268f83.js"
     ]
   },
-  "_ImageContainer-307535ce.js": {
-    "file": "assets/ImageContainer-307535ce.js",
+  "_ImageContainer-9e560b2e.js": {
+    "file": "assets/ImageContainer-9e560b2e.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_Input-4561b985.js": {
-    "file": "assets/Input-4561b985.js",
+  "_Input-77ff0868.js": {
+    "file": "assets/Input-77ff0868.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-a5a4d78a.js"
+      "_Tooltip-1f0ef08d.js"
     ]
   },
-  "_InputLabel-fb2cb734.js": {
-    "file": "assets/InputLabel-fb2cb734.js",
+  "_InputLabel-c672140d.js": {
+    "file": "assets/InputLabel-c672140d.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_ListItemButton-7a78b6ef.js": {
-    "file": "assets/ListItemButton-7a78b6ef.js",
+  "_ListItemButton-cd345c19.js": {
+    "file": "assets/ListItemButton-cd345c19.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_styleUtils-0df93871.js",
-      "_RadioGroupContext-96bab4a2.js"
+      "_useSlot-a2532144.js",
+      "_styleUtils-b870bb2a.js"
     ]
   },
-  "_Modal-cab82769.js": {
-    "file": "assets/Modal-cab82769.js",
+  "_Modal-16f11f32.js": {
+    "file": "assets/Modal-16f11f32.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js"
     ]
   },
-  "_Option-1a04f0cf.js": {
-    "file": "assets/Option-1a04f0cf.js",
+  "_Option-c035352c.js": {
+    "file": "assets/Option-c035352c.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_createSvgIcon-b106def2.js",
-      "_styleUtils-0df93871.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_useSlot-a2532144.js",
+      "_ListItemButton-cd345c19.js",
+      "_createSvgIcon-206f586c.js",
+      "_styleUtils-b870bb2a.js",
+      "_FormControlContext-c38d435b.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ]
   },
-  "_Popper-26c3d1f1.js": {
-    "file": "assets/Popper-26c3d1f1.js",
+  "_Popper-794acb7d.js": {
+    "file": "assets/Popper-794acb7d.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_useEnhancedEffect-12b0a06e.js"
+      "_useSlot-a2532144.js",
+      "_useEnhancedEffect-99238f73.js"
     ]
   },
-  "_PortalLayout-4dd080df.js": {
-    "file": "assets/PortalLayout-4dd080df.js",
+  "_PortalLayout-c0321aa3.js": {
+    "file": "assets/PortalLayout-c0321aa3.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_AuthenticatedLayout-a56b9925.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
-      "_Modal-cab82769.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
@@ -218,245 +209,222 @@
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_styleUtils-0df93871.js",
-      "_Autocomplete-653e6d3e.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js"
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_styleUtils-b870bb2a.js",
+      "_Autocomplete-f1ff51db.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js"
     ]
   },
-  "_PrimaryButton-bfc388c8.js": {
-    "file": "assets/PrimaryButton-bfc388c8.js",
+  "_PrimaryButton-83478115.js": {
+    "file": "assets/PrimaryButton-83478115.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_RadioGroupContext-96bab4a2.js": {
-    "file": "assets/RadioGroupContext-96bab4a2.js",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_SecondaryButton-f759061d.js": {
-    "file": "assets/SecondaryButton-f759061d.js",
+  "_SecondaryButton-ae44dfd5.js": {
+    "file": "assets/SecondaryButton-ae44dfd5.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js"
+      "_index.es-ee268f83.js"
     ]
   },
-  "_Select-a8ef8a22.js": {
-    "file": "assets/Select-a8ef8a22.js",
+  "_Select-33702378.js": {
+    "file": "assets/Select-33702378.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-a5a4d78a.js"
+      "_Tooltip-1f0ef08d.js"
     ]
   },
-  "_Skeleton-22ae0279.js": {
-    "file": "assets/Skeleton-22ae0279.js",
+  "_Skeleton-d73cf450.js": {
+    "file": "assets/Skeleton-d73cf450.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js"
+      "_useSlot-a2532144.js"
     ]
   },
-  "_TextInput-4fecfcba.js": {
-    "file": "assets/TextInput-4fecfcba.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index.es-6780b8c7.js"
-    ]
-  },
-  "_Textarea-853c4165.js": {
-    "file": "assets/Textarea-853c4165.js",
-    "imports": [
-      "_toPropertyKey-61b1ecea.js",
-      "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js"
-    ]
-  },
-  "_Tooltip-a5a4d78a.js": {
-    "file": "assets/Tooltip-a5a4d78a.js",
-    "imports": [
-      "_toPropertyKey-61b1ecea.js",
-      "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_Popper-26c3d1f1.js"
-    ]
-  },
-  "_Typography-4dbb1ff2.js": {
-    "file": "assets/Typography-4dbb1ff2.js",
-    "imports": [
-      "_toPropertyKey-61b1ecea.js",
-      "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js"
-    ]
-  },
-  "_createSvgIcon-3cc30708.js": {
-    "file": "assets/createSvgIcon-3cc30708.js",
+  "_TextInput-1f9a510c.js": {
+    "file": "assets/TextInput-1f9a510c.js",
     "imports": [
       "resources/js/app.jsx",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_extendSxProp-9e510b8c.js",
-      "_ownerWindow-2a12221f.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js"
+      "_index.es-ee268f83.js"
     ]
   },
-  "_createSvgIcon-b106def2.js": {
-    "file": "assets/createSvgIcon-b106def2.js",
+  "_Textarea-db4c002a.js": {
+    "file": "assets/Textarea-db4c002a.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useSlot-d43794ee.js"
+      "_useSlot-a2532144.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ownerWindow-4ddfc24f.js",
+      "_useEnhancedEffect-99238f73.js"
     ]
   },
-  "_extendSxProp-9e510b8c.js": {
-    "file": "assets/extendSxProp-9e510b8c.js",
+  "_Tooltip-1f0ef08d.js": {
+    "file": "assets/Tooltip-1f0ef08d.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js"
+      "_toPropertyKey-39201a13.js",
+      "resources/js/app.jsx",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_Popper-794acb7d.js"
     ]
   },
-  "_index-7f71a8ef.js": {
+  "_Typography-3915937a.js": {
+    "file": "assets/Typography-3915937a.js",
+    "imports": [
+      "_toPropertyKey-39201a13.js",
+      "resources/js/app.jsx",
+      "_useSlot-a2532144.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js"
+    ]
+  },
+  "_createSvgIcon-206f586c.js": {
+    "file": "assets/createSvgIcon-206f586c.js",
+    "imports": [
+      "_toPropertyKey-39201a13.js",
+      "resources/js/app.jsx",
+      "_useSlot-a2532144.js"
+    ]
+  },
+  "_createSvgIcon-2995d89d.js": {
+    "file": "assets/createSvgIcon-2995d89d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_extendSxProp-b0bf4534.js",
+      "_ownerWindow-4ddfc24f.js",
+      "_isMuiElement-db9e5794.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js"
+    ]
+  },
+  "_extendSxProp-b0bf4534.js": {
+    "file": "assets/extendSxProp-b0bf4534.js",
+    "imports": [
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js"
+    ]
+  },
+  "_index-1a2c3076.js": {
     "css": [
       "assets/index-498675b8.css"
     ],
-    "file": "assets/index-7f71a8ef.js",
+    "file": "assets/index-1a2c3076.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js"
+      "_toPropertyKey-39201a13.js"
     ]
   },
-  "_index-84704c9c.js": {
-    "file": "assets/index-84704c9c.js"
-  },
-  "_index-9e3aa4c7.js": {
-    "file": "assets/index-9e3aa4c7.js",
+  "_index-3b70e7e7.js": {
+    "file": "assets/index-3b70e7e7.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_index-b4698f05.js": {
-    "file": "assets/index-b4698f05.js",
+  "_index-e6ab5b50.js": {
+    "file": "assets/index-e6ab5b50.js"
+  },
+  "_index.es-ee268f83.js": {
+    "file": "assets/index.es-ee268f83.js",
+    "imports": [
+      "_index-3b70e7e7.js",
+      "resources/js/app.jsx"
+    ]
+  },
+  "_isMuiElement-db9e5794.js": {
+    "file": "assets/isMuiElement-db9e5794.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_lodash-875d834b.js": {
+    "file": "assets/lodash-875d834b.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_ownerWindow-4ddfc24f.js": {
+    "file": "assets/ownerWindow-4ddfc24f.js",
+    "imports": [
+      "_useEnhancedEffect-99238f73.js"
+    ]
+  },
+  "_styleUtils-b870bb2a.js": {
+    "file": "assets/styleUtils-b870bb2a.js",
+    "imports": [
+      "_toPropertyKey-39201a13.js"
+    ]
+  },
+  "_toPropertyKey-39201a13.js": {
+    "file": "assets/toPropertyKey-39201a13.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_transition-67c2d81c.js": {
+    "file": "assets/transition-67c2d81c.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_useControlled-9031fbe1.js": {
+    "file": "assets/useControlled-9031fbe1.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_useEnhancedEffect-99238f73.js": {
+    "file": "assets/useEnhancedEffect-99238f73.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_useEventCallback-96e4a742.js": {
+    "file": "assets/useEventCallback-96e4a742.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index-9e3aa4c7.js"
+      "_useEnhancedEffect-99238f73.js"
     ]
   },
-  "_index.es-6780b8c7.js": {
-    "file": "assets/index.es-6780b8c7.js",
+  "_useForwardedInput-a35c5661.js": {
+    "file": "assets/useForwardedInput-a35c5661.js",
     "imports": [
-      "_index-9e3aa4c7.js",
-      "resources/js/app.jsx"
-    ]
-  },
-  "_isMuiElement-3bff42a8.js": {
-    "file": "assets/isMuiElement-3bff42a8.js",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_lodash-4de87c17.js": {
-    "file": "assets/lodash-4de87c17.js",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_ownerWindow-2a12221f.js": {
-    "file": "assets/ownerWindow-2a12221f.js",
-    "imports": [
-      "_useEnhancedEffect-12b0a06e.js"
-    ]
-  },
-  "_styleUtils-0df93871.js": {
-    "file": "assets/styleUtils-0df93871.js",
-    "imports": [
-      "_toPropertyKey-61b1ecea.js"
-    ]
-  },
-  "_toPropertyKey-61b1ecea.js": {
-    "file": "assets/toPropertyKey-61b1ecea.js",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_transition-71b1aeda.js": {
-    "file": "assets/transition-71b1aeda.js",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_useControlled-adcd3c46.js": {
-    "file": "assets/useControlled-adcd3c46.js",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_useEnhancedEffect-12b0a06e.js": {
-    "file": "assets/useEnhancedEffect-12b0a06e.js",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_useEventCallback-0c2e09c7.js": {
-    "file": "assets/useEventCallback-0c2e09c7.js",
-    "imports": [
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useEnhancedEffect-12b0a06e.js"
+      "_FormControlContext-c38d435b.js",
+      "_useSlot-a2532144.js"
     ]
   },
-  "_useForwardedInput-be5dd50b.js": {
-    "file": "assets/useForwardedInput-be5dd50b.js",
-    "imports": [
-      "_toPropertyKey-61b1ecea.js",
-      "resources/js/app.jsx",
-      "_FormControlContext-dd3b9a17.js",
-      "_useSlot-d43794ee.js"
-    ]
-  },
-  "_useIsFocusVisible-7ca602c7.js": {
-    "file": "assets/useIsFocusVisible-7ca602c7.js",
+  "_useIsFocusVisible-97f68d26.js": {
+    "file": "assets/useIsFocusVisible-97f68d26.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_useSlot-d43794ee.js": {
-    "file": "assets/useSlot-d43794ee.js",
+  "_useSlot-a2532144.js": {
+    "file": "assets/useSlot-a2532144.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx"
     ]
   },
-  "_useSwitch-631d032d.js": {
-    "file": "assets/useSwitch-631d032d.js",
+  "_variantColorInheritance-d3e3e626.js": {
+    "file": "assets/variantColorInheritance-d3e3e626.js",
     "imports": [
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/app.jsx",
-      "_useControlled-adcd3c46.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useSlot-d43794ee.js"
-    ]
-  },
-  "_variantColorInheritance-f8d1dad2.js": {
-    "file": "assets/variantColorInheritance-f8d1dad2.js",
-    "imports": [
-      "_toPropertyKey-61b1ecea.js",
-      "resources/js/app.jsx",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js"
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js"
     ]
   },
   "index.css": {
@@ -464,217 +432,215 @@
     "src": "index.css"
   },
   "resources/js/Pages/Auth/ConfirmPassword.jsx": {
-    "file": "assets/ConfirmPassword-3bc534d3.js",
+    "file": "assets/ConfirmPassword-7717190d.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-4bd9a40b.js",
-      "_TextInput-4fecfcba.js",
-      "_InputLabel-fb2cb734.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_ImageContainer-307535ce.js",
-      "_ApplicationName-99bb4d02.js",
+      "_GuestLayout-78c4bb2d.js",
+      "_TextInput-1f9a510c.js",
+      "_InputLabel-c672140d.js",
+      "_PrimaryButton-83478115.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_ImageContainer-9e560b2e.js",
+      "_ApplicationName-e46a0827.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Modal-cab82769.js"
+      "_Modal-16f11f32.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ConfirmPassword.jsx"
   },
   "resources/js/Pages/Auth/ForgotPassword.jsx": {
-    "file": "assets/ForgotPassword-3638b91b.js",
+    "file": "assets/ForgotPassword-b0e4525a.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-4bd9a40b.js",
-      "_TextInput-4fecfcba.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_ImageContainer-307535ce.js",
-      "_ApplicationName-99bb4d02.js",
+      "_GuestLayout-78c4bb2d.js",
+      "_TextInput-1f9a510c.js",
+      "_PrimaryButton-83478115.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_ImageContainer-9e560b2e.js",
+      "_ApplicationName-e46a0827.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Modal-cab82769.js"
+      "_Modal-16f11f32.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ForgotPassword.jsx"
   },
   "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx": {
-    "file": "assets/PrivacyPolicy-c1c17d0c.js",
+    "file": "assets/PrivacyPolicy-89a8be4e.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx"
   },
   "resources/js/Pages/Auth/LogOutForm.jsx": {
-    "file": "assets/LogOutForm-2b7d1a74.js",
+    "file": "assets/LogOutForm-3f087925.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/LogOutForm.jsx"
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-020543de.js",
+    "file": "assets/Login-1d908395.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-4bd9a40b.js",
+      "_GuestLayout-78c4bb2d.js",
       "_Form-792c5f5e.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_Input-4561b985.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_ImageContainer-307535ce.js",
-      "_ApplicationName-99bb4d02.js",
+      "_PrimaryButton-83478115.js",
+      "_Input-77ff0868.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_ImageContainer-9e560b2e.js",
+      "_ApplicationName-e46a0827.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Modal-cab82769.js",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Modal-16f11f32.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Login.jsx"
   },
   "resources/js/Pages/Auth/Registration/EmailStep.jsx": {
-    "file": "assets/EmailStep-291cb9d9.js",
+    "file": "assets/EmailStep-558f0a22.js",
     "imports": [
       "resources/js/app.jsx",
-      "_createSvgIcon-3cc30708.js",
-      "_FormControl-ce9c98b9.js",
-      "_Skeleton-22ae0279.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_styleUtils-0df93871.js",
-      "_Typography-4dbb1ff2.js",
-      "_Checkbox-66b75973.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_extendSxProp-9e510b8c.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_createSvgIcon-b106def2.js",
-      "_useSwitch-631d032d.js"
+      "_createSvgIcon-2995d89d.js",
+      "_FormControl-23721afc.js",
+      "_Skeleton-d73cf450.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_styleUtils-b870bb2a.js",
+      "_Typography-3915937a.js",
+      "_Checkbox-359b342c.js",
+      "_FormControlContext-c38d435b.js",
+      "_extendSxProp-b0bf4534.js",
+      "_ownerWindow-4ddfc24f.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_isMuiElement-db9e5794.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_createSvgIcon-206f586c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Registration/EmailStep.jsx"
   },
   "resources/js/Pages/Auth/Registration/Footer.jsx": {
-    "file": "assets/Footer-102fb51c.js",
+    "file": "assets/Footer-ee40ff70.js",
     "imports": [
       "resources/js/app.jsx",
-      "_SecondaryButton-f759061d.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js"
+      "_SecondaryButton-ae44dfd5.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Registration/Footer.jsx"
   },
   "resources/js/Pages/Auth/Registration/Register.jsx": {
-    "file": "assets/Register-870b1df7.js",
+    "file": "assets/Register-bee4a736.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-4bd9a40b.js",
+      "_GuestLayout-78c4bb2d.js",
       "resources/js/Pages/Auth/Registration/EmailStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_ImageContainer-307535ce.js",
-      "_ApplicationName-99bb4d02.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_ImageContainer-9e560b2e.js",
+      "_ApplicationName-e46a0827.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Modal-cab82769.js",
-      "_createSvgIcon-3cc30708.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_extendSxProp-9e510b8c.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_styleUtils-0df93871.js",
-      "_Typography-4dbb1ff2.js",
-      "_Checkbox-66b75973.js",
-      "_createSvgIcon-b106def2.js",
-      "_useSwitch-631d032d.js"
+      "_Modal-16f11f32.js",
+      "_createSvgIcon-2995d89d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_extendSxProp-b0bf4534.js",
+      "_ownerWindow-4ddfc24f.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_isMuiElement-db9e5794.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_styleUtils-b870bb2a.js",
+      "_Typography-3915937a.js",
+      "_Checkbox-359b342c.js",
+      "_createSvgIcon-206f586c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Registration/Register.jsx"
   },
   "resources/js/Pages/Auth/ResetPassword.jsx": {
-    "file": "assets/ResetPassword-4694bb7d.js",
+    "file": "assets/ResetPassword-fbb8ab97.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-4bd9a40b.js",
-      "_TextInput-4fecfcba.js",
-      "_InputLabel-fb2cb734.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_ImageContainer-307535ce.js",
-      "_ApplicationName-99bb4d02.js",
+      "_GuestLayout-78c4bb2d.js",
+      "_TextInput-1f9a510c.js",
+      "_InputLabel-c672140d.js",
+      "_PrimaryButton-83478115.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_ImageContainer-9e560b2e.js",
+      "_ApplicationName-e46a0827.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Modal-cab82769.js"
+      "_Modal-16f11f32.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ResetPassword.jsx"
   },
   "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx": {
-    "file": "assets/VerificationStep-c3c15079.js",
+    "file": "assets/VerificationStep-37877f48.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-bfc388c8.js"
+      "_PrimaryButton-83478115.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx"
   },
   "resources/js/Pages/Auth/Verification/VerificationProcess.jsx": {
-    "file": "assets/VerificationProcess-0d2b000e.js",
+    "file": "assets/VerificationProcess-da2c3136.js",
     "imports": [
       "resources/js/app.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx"
     ],
@@ -682,25 +648,25 @@
     "src": "resources/js/Pages/Auth/Verification/VerificationProcess.jsx"
   },
   "resources/js/Pages/Auth/VerifyEmail.jsx": {
-    "file": "assets/VerifyEmail-08fa6203.js",
+    "file": "assets/VerifyEmail-b372175e.js",
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-4bd9a40b.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_ImageContainer-307535ce.js",
-      "_ApplicationName-99bb4d02.js",
+      "_GuestLayout-78c4bb2d.js",
+      "_PrimaryButton-83478115.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_ImageContainer-9e560b2e.js",
+      "_ApplicationName-e46a0827.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Modal-cab82769.js"
+      "_Modal-16f11f32.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/VerifyEmail.jsx"
   },
   "resources/js/Pages/Clients/Form/CreateClient.jsx": {
-    "file": "assets/CreateClient-b24f170f.js",
+    "file": "assets/CreateClient-b6a71419.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -708,41 +674,42 @@
     "src": "resources/js/Pages/Clients/Form/CreateClient.jsx"
   },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-1d613705.js",
+    "file": "assets/Dashboard-962833aa.js",
     "imports": [
       "resources/js/app.jsx",
-      "_ImageContainer-307535ce.js",
-      "_CardContainer-713d9aa9.js",
-      "_PortalLayout-4dd080df.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_ImageContainer-9e560b2e.js",
+      "_CardContainer-da7ef859.js",
+      "_PortalLayout-c0321aa3.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -754,23 +721,22 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -787,65 +753,66 @@
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Dashboard.jsx"
   },
   "resources/js/Pages/Profile/AccountSettings.jsx": {
-    "file": "assets/AccountSettings-4bad949d.js",
+    "file": "assets/AccountSettings-10dcc5ba.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_Modal-cab82769.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js"
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_CircularProgress-4f3ac99e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/AccountSettings.jsx"
   },
   "resources/js/Pages/Profile/Forms/Address.jsx": {
-    "file": "assets/Address-b2f5ad35.js",
+    "file": "assets/Address-c975a121.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Forms/Address.jsx"
   },
   "resources/js/Pages/Profile/Forms/CompanyInfo.jsx": {
-    "file": "assets/CompanyInfo-5d71478b.js",
+    "file": "assets/CompanyInfo-5174c0f0.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -853,58 +820,58 @@
     "src": "resources/js/Pages/Profile/Forms/CompanyInfo.jsx"
   },
   "resources/js/Pages/Profile/Forms/Email.jsx": {
-    "file": "assets/Email-11da6fc8.js",
+    "file": "assets/Email-6e29c9c3.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Forms/Email.jsx"
   },
   "resources/js/Pages/Profile/Forms/PersonalInfo.jsx": {
-    "file": "assets/PersonalInfo-2c76bf67.js",
+    "file": "assets/PersonalInfo-ae18a3d1.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Forms/PersonalInfo.jsx"
   },
   "resources/js/Pages/Profile/Forms/Phone.jsx": {
-    "file": "assets/Phone-b419726f.js",
+    "file": "assets/Phone-63595ab8.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Forms/Phone.jsx"
   },
   "resources/js/Pages/Profile/Forms/Time.jsx": {
-    "file": "assets/Time-ed827f8c.js",
+    "file": "assets/Time-0bff5189.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -912,56 +879,56 @@
     "src": "resources/js/Pages/Profile/Forms/Time.jsx"
   },
   "resources/js/Pages/Profile/Forms/UpdateProfileInformationForm.jsx": {
-    "file": "assets/UpdateProfileInformationForm-9d090a8c.js",
+    "file": "assets/UpdateProfileInformationForm-ddf16c64.js",
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-4fecfcba.js",
-      "_InputLabel-fb2cb734.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_transition-71b1aeda.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js"
+      "_TextInput-1f9a510c.js",
+      "_InputLabel-c672140d.js",
+      "_PrimaryButton-83478115.js",
+      "_transition-67c2d81c.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Forms/UpdateProfileInformationForm.jsx"
   },
   "resources/js/Pages/Profile/Forms/UserName.jsx": {
-    "file": "assets/UserName-0c92173c.js",
+    "file": "assets/UserName-733c8280.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Forms/UserName.jsx"
   },
   "resources/js/Pages/Profile/Partials/AccountSettings.jsx": {
-    "file": "assets/AccountSettings-dac56cd8.js",
+    "file": "assets/AccountSettings-04c084db.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
       "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
-      "_TextInput-4fecfcba.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_InputLabel-fb2cb734.js",
-      "_Modal-cab82769.js",
-      "_index-84704c9c.js",
-      "_SecondaryButton-f759061d.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_transition-71b1aeda.js"
+      "_TextInput-1f9a510c.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_InputLabel-c672140d.js",
+      "_Modal-16f11f32.js",
+      "_index-e6ab5b50.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_PrimaryButton-83478115.js",
+      "_transition-67c2d81c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/AccountSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/BudgetSettings.jsx": {
-    "file": "assets/BudgetSettings-b2494c23.js",
+    "file": "assets/BudgetSettings-571abc37.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -969,30 +936,39 @@
     "src": "resources/js/Pages/Profile/Partials/BudgetSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx": {
-    "file": "assets/DeleteUserForm-b9609c44.js",
+    "file": "assets/DeleteUserForm-7b1a48cc.js",
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-4fecfcba.js",
-      "_InputLabel-fb2cb734.js",
-      "_Modal-cab82769.js",
-      "_SecondaryButton-f759061d.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js"
+      "_TextInput-1f9a510c.js",
+      "_InputLabel-c672140d.js",
+      "_Modal-16f11f32.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx"
   },
   "resources/js/Pages/Profile/Partials/JobSettings.jsx": {
-    "file": "assets/JobSettings-79e41a3c.js",
+    "file": "assets/JobSettings-bb351fc6.js",
     "imports": [
       "resources/js/app.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/JobSettings.jsx"
   },
+  "resources/js/Pages/Profile/Partials/ProfileImageUpload.jsx": {
+    "file": "assets/ProfileImageUpload-b9119b14.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-3b70e7e7.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Profile/Partials/ProfileImageUpload.jsx"
+  },
   "resources/js/Pages/Profile/Partials/ProjectSettings.jsx": {
-    "file": "assets/ProjectSettings-32b175e6.js",
+    "file": "assets/ProjectSettings-5c325e72.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1000,7 +976,7 @@
     "src": "resources/js/Pages/Profile/Partials/ProjectSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/SocialSettings.jsx": {
-    "file": "assets/SocialSettings-2da955d6.js",
+    "file": "assets/SocialSettings-167ece30.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1008,7 +984,7 @@
     "src": "resources/js/Pages/Profile/Partials/SocialSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/SubscriptionSettings.jsx": {
-    "file": "assets/SubscriptionSettings-14afbe56.js",
+    "file": "assets/SubscriptionSettings-22cde591.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1016,65 +992,55 @@
     "src": "resources/js/Pages/Profile/Partials/SubscriptionSettings.jsx"
   },
   "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx": {
-    "file": "assets/UpdatePasswordForm-2afc2750.js",
+    "file": "assets/UpdatePasswordForm-7d2c8218.js",
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-4fecfcba.js",
-      "_InputLabel-fb2cb734.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_transition-71b1aeda.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js"
+      "_TextInput-1f9a510c.js",
+      "_InputLabel-c672140d.js",
+      "_PrimaryButton-83478115.js",
+      "_transition-67c2d81c.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx"
   },
-  "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx": {
-    "file": "assets/UploadableProfilePicture-7d32e765.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index-b4698f05.js",
-      "_index-9e3aa4c7.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx"
-  },
   "resources/js/Pages/Profile/Profile.jsx": {
-    "file": "assets/Profile-c207e374.js",
+    "file": "assets/Profile-05167d3d.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_index-84704c9c.js",
-      "_SecondaryButton-f759061d.js",
-      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
-      "_IconButton-850b944a.js",
-      "_Tooltip-a5a4d78a.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_Modal-cab82769.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_index-e6ab5b50.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "resources/js/Pages/Profile/Partials/ProfileImageUpload.jsx",
+      "_IconButton-265bba41.js",
+      "_Tooltip-1f0ef08d.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_index-b4698f05.js"
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_CircularProgress-4f3ac99e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Profile.jsx"
   },
   "resources/js/Pages/Profile/ProfilePicture.jsx": {
-    "file": "assets/ProfilePicture-95ba5e02.js",
+    "file": "assets/ProfilePicture-3be45740.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1082,41 +1048,42 @@
     "src": "resources/js/Pages/Profile/ProfilePicture.jsx"
   },
   "resources/js/Pages/Profile/ProfileSettings.jsx": {
-    "file": "assets/ProfileSettings-b1dbdfa9.js",
+    "file": "assets/ProfileSettings-57340ae8.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PortalLayout-4dd080df.js",
-      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
+      "_PortalLayout-c0321aa3.js",
+      "resources/js/Pages/Profile/Partials/ProfileImageUpload.jsx",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
-      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -1128,23 +1095,23 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_ImageContainer-9e560b2e.js",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -1159,54 +1126,53 @@
       "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
-      "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx",
-      "_index-b4698f05.js"
+      "_IconButton-265bba41.js",
+      "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/ProfileSettings.jsx"
   },
   "resources/js/Pages/Profile/SettingsPage.jsx": {
-    "file": "assets/SettingsPage-28eb962b.js",
+    "file": "assets/SettingsPage-2e06b4c2.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PortalLayout-4dd080df.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_PortalLayout-c0321aa3.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -1218,23 +1184,24 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -1249,58 +1216,58 @@
       "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/SettingsPage.jsx"
   },
   "resources/js/Pages/Projects.jsx": {
-    "file": "assets/Projects-7534d3de.js",
+    "file": "assets/Projects-0cdcc6e6.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Projects/Components/ProjectList.jsx",
-      "_PortalLayout-4dd080df.js",
-      "_CardContainer-713d9aa9.js",
-      "_index-7f71a8ef.js",
+      "_PortalLayout-c0321aa3.js",
+      "_CardContainer-da7ef859.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Tasks/Tasks.jsx",
       "resources/js/Pages/Clients/Form/CreateClient.jsx",
-      "_index-84704c9c.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_index-3b70e7e7.js",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -1312,22 +1279,22 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_ImageContainer-9e560b2e.js",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -1342,44 +1309,43 @@
       "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ActionDrawer/CallSheetActionDetails.jsx": {
-    "file": "assets/CallSheetActionDetails-bbd98f10.js",
+    "file": "assets/CallSheetActionDetails-732fa748.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
+      "_PrimaryButton-83478115.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
       "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx",
-      "_index-9e3aa4c7.js",
-      "_IconButton-850b944a.js",
+      "_index-3b70e7e7.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx",
-      "_CardContainer-713d9aa9.js",
+      "_CardContainer-da7ef859.js",
       "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
-      "_ApplicationName-99bb4d02.js"
+      "_ApplicationName-e46a0827.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/ActionDrawer/CallSheetActionDetails.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/CallSheetDetailsPage.jsx": {
-    "file": "assets/CallSheetDetailsPage-6f94f1ee.js",
+    "file": "assets/CallSheetDetailsPage-46c0fc94.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PortalLayout-4dd080df.js",
-      "_lodash-4de87c17.js",
-      "_index.es-6780b8c7.js",
+      "_PortalLayout-c0321aa3.js",
+      "_lodash-875d834b.js",
+      "_index.es-ee268f83.js",
       "resources/js/Pages/Projects/CallSheets/Components/ProductionDetails.jsx",
       "resources/js/Pages/Projects/CallSheets/Components/GeneralCallTime.jsx",
       "resources/js/Pages/Projects/CallSheets/Components/ProductionCompany.jsx",
@@ -1387,34 +1353,35 @@
       "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/LocationDetails.jsx",
       "resources/js/Pages/Projects/CallSheets/ActionDrawer/CallSheetActionDetails.jsx",
-      "_index-84704c9c.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_index-9e3aa4c7.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_index-3b70e7e7.js",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -1426,23 +1393,24 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -1457,107 +1425,104 @@
       "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx",
-      "_CardContainer-713d9aa9.js",
       "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
       "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx",
       "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx",
-      "_ApplicationName-99bb4d02.js"
+      "_ApplicationName-e46a0827.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/CallSheetDetailsPage.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx": {
-    "file": "assets/CallSheetPreview-cc8c93c0.js",
+    "file": "assets/CallSheetPreview-212c1e9d.js",
     "imports": [
       "resources/js/app.jsx",
-      "_IconButton-850b944a.js",
-      "_index-84704c9c.js",
+      "_IconButton-265bba41.js",
+      "_index-e6ab5b50.js",
       "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx",
-      "_index.es-6780b8c7.js",
-      "_ApplicationName-99bb4d02.js",
-      "_CardContainer-713d9aa9.js",
+      "_index.es-ee268f83.js",
+      "_ApplicationName-e46a0827.js",
+      "_CardContainer-da7ef859.js",
       "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
-      "_index-9e3aa4c7.js"
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/CallSheetPreview.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/CallSheetRecipientList.jsx": {
-    "file": "assets/CallSheetRecipientList-900040fa.js",
+    "file": "assets/CallSheetRecipientList-1aa3c3c1.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Checkbox-66b75973.js",
-      "_Avatar-b00b524c.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_createSvgIcon-b106def2.js",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useSwitch-631d032d.js",
-      "_useControlled-adcd3c46.js"
+      "_Checkbox-359b342c.js",
+      "_Avatar-ef00ce3a.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_createSvgIcon-206f586c.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
+      "_FormControlContext-c38d435b.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/CallSheetRecipientList.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/Bulletin.jsx": {
-    "file": "assets/Bulletin-b4443fdd.js",
+    "file": "assets/Bulletin-64d9818a.js",
     "imports": [
       "resources/js/app.jsx",
-      "_lodash-4de87c17.js",
-      "_CardContainer-713d9aa9.js",
-      "_Textarea-853c4165.js",
-      "_Typography-4dbb1ff2.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js"
+      "_lodash-875d834b.js",
+      "_CardContainer-da7ef859.js",
+      "_Textarea-db4c002a.js",
+      "_Typography-3915937a.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useForwardedInput-a35c5661.js",
+      "_FormControlContext-c38d435b.js",
+      "_ownerWindow-4ddfc24f.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/Bulletin.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/CallSheetList.jsx": {
-    "file": "assets/CallSheetList-98f60582.js",
+    "file": "assets/CallSheetList-ebf90df7.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/CallSheetList.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/GeneralCallTime.jsx": {
-    "file": "assets/GeneralCallTime-c67033c0.js",
+    "file": "assets/GeneralCallTime-73c19eb9.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js"
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/GeneralCallTime.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/GoogleMap.jsx": {
-    "file": "assets/GoogleMap-02215837.js",
+    "file": "assets/GoogleMap-889d4a8e.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1565,59 +1530,59 @@
     "src": "resources/js/Pages/Projects/CallSheets/Components/GoogleMap.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/ProductionCompany.jsx": {
-    "file": "assets/ProductionCompany-a2ffe22f.js",
+    "file": "assets/ProductionCompany-f3f55782.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js"
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionCompany.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/ProductionDetails.jsx": {
-    "file": "assets/ProductionDetails-d7337e44.js",
+    "file": "assets/ProductionDetails-38e3f51f.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionDetails.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule copy.jsx": {
-    "file": "assets/ProductionSchedule copy-65df4549.js",
+    "file": "assets/ProductionSchedule copy-87687b5c.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_EmptyContent-f0c7321b.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js",
-      "_SecondaryButton-f759061d.js"
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_EmptyContent-4eb16782.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js",
+      "_SecondaryButton-ae44dfd5.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule copy.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule.jsx": {
-    "file": "assets/ProductionSchedule-4d75046f.js",
+    "file": "assets/ProductionSchedule-bfb7fb7c.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_EmptyContent-f0c7321b.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_SecondaryButton-f759061d.js"
+      "_CardContainer-da7ef859.js",
+      "_EmptyContent-4eb16782.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_SecondaryButton-ae44dfd5.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/ProductionSchedule.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/Weather copy.jsx": {
-    "file": "assets/Weather copy-ac3da079.js",
+    "file": "assets/Weather copy-5d66915a.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1625,7 +1590,7 @@
     "src": "resources/js/Pages/Projects/CallSheets/Components/Weather copy.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx": {
-    "file": "assets/Weather-61be7afc.js",
+    "file": "assets/Weather-382783f4.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1633,133 +1598,133 @@
     "src": "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer copy.jsx": {
-    "file": "assets/WeatherContainer copy-17d8b35f.js",
+    "file": "assets/WeatherContainer copy-90eb2c83.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
       "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer copy.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer.jsx": {
-    "file": "assets/WeatherContainer-c4cfc82b.js",
+    "file": "assets/WeatherContainer-c54e8aa5.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
+      "_CardContainer-da7ef859.js",
       "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js"
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Components/WeatherContainer.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx": {
-    "file": "assets/CreateCallSheet-51bee10a.js",
+    "file": "assets/CreateCallSheet-493e27c0.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_SecondaryButton-f759061d.js",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_PrimaryButton-83478115.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/Time.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx": {
-    "file": "assets/GeneralCallTimeForm-c89879f5.js",
+    "file": "assets/GeneralCallTimeForm-9707d64a.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_SecondaryButton-f759061d.js",
+      "_PrimaryButton-83478115.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/Time.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx": {
-    "file": "assets/CallSheetDetailsForm-6ed5f5d0.js",
+    "file": "assets/CallSheetDetailsForm-945363c8.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Input-4561b985.js",
+      "_Input-77ff0868.js",
       "resources/js/Pages/Profile/Forms/Time.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx": {
-    "file": "assets/UpdateCallSheet-a3e95954.js",
+    "file": "assets/UpdateCallSheet-adce2eb1.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_SecondaryButton-f759061d.js",
-      "_index-7f71a8ef.js",
+      "_PrimaryButton-83478115.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_Input-4561b985.js",
-      "_Tooltip-a5a4d78a.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_toPropertyKey-39201a13.js",
+      "_Input-77ff0868.js",
+      "_Tooltip-1f0ef08d.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/Time.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx": {
-    "file": "assets/LocationForm-600a638c.js",
+    "file": "assets/LocationForm-eea67452.js",
     "imports": [
       "resources/js/app.jsx",
-      "_lodash-4de87c17.js",
-      "_SecondaryButton-f759061d.js",
-      "_PrimaryButton-bfc388c8.js",
+      "_lodash-875d834b.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_PrimaryButton-83478115.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
-      "_IconButton-850b944a.js",
-      "_index-84704c9c.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
+      "_IconButton-265bba41.js",
+      "_index-e6ab5b50.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
-      "_Input-4561b985.js",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Input-77ff0868.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/Address.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx"
     ],
@@ -1767,163 +1732,163 @@
     "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx": {
-    "file": "assets/Accordion-a4ba251b.js",
+    "file": "assets/Accordion-14b3ebdd.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_Input-4561b985.js",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_Input-77ff0868.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_index-9e3aa4c7.js"
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx": {
-    "file": "assets/AccordionContent-02b996ba.js",
+    "file": "assets/AccordionContent-ffa023ab.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Input-4561b985.js",
+      "_Input-77ff0868.js",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx": {
-    "file": "assets/Hospitals-fe8d748f.js",
+    "file": "assets/Hospitals-0e69e761.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Locations/LocationDetails.jsx": {
-    "file": "assets/LocationDetails-161653f8.js",
+    "file": "assets/LocationDetails-2acd28d3.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index-9e3aa4c7.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_EmptyContent-f0c7321b.js",
-      "_SecondaryButton-f759061d.js"
+      "_index-3b70e7e7.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_EmptyContent-4eb16782.js",
+      "_SecondaryButton-ae44dfd5.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Locations/LocationDetails.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview copy.jsx": {
-    "file": "assets/CallSheetDesktopPreview copy-1cbe37dc.js",
+    "file": "assets/CallSheetDesktopPreview copy-87d11eba.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
+      "_CardContainer-da7ef859.js",
       "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js"
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview copy.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx": {
-    "file": "assets/CallSheetDesktopPreview-abbfff2f.js",
+    "file": "assets/CallSheetDesktopPreview-4521af2b.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
+      "_CardContainer-da7ef859.js",
       "resources/js/Pages/Projects/CallSheets/Components/Weather.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js"
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Preview/CallSheetDesktopPreview.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx": {
-    "file": "assets/AddButton-1ab2e6ad.js",
+    "file": "assets/AddButton-923edca3.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_SecondaryButton-f759061d.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js"
+      "_PrimaryButton-83478115.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx": {
-    "file": "assets/BreakRow-461f466a.js",
+    "file": "assets/BreakRow-829d0a7f.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
-      "_index-9e3aa4c7.js"
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx": {
-    "file": "assets/CallSheetProductionSchedule-246588be.js",
+    "file": "assets/CallSheetProductionSchedule-afffb81e.js",
     "imports": [
       "resources/js/app.jsx",
-      "_toPropertyKey-61b1ecea.js",
+      "_toPropertyKey-39201a13.js",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_index.es-6780b8c7.js",
+      "_PrimaryButton-83478115.js",
+      "_index.es-ee268f83.js",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
-      "_index-84704c9c.js",
+      "_index-e6ab5b50.js",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
-      "_index-9e3aa4c7.js",
-      "_SecondaryButton-f759061d.js"
+      "_index-3b70e7e7.js",
+      "_SecondaryButton-ae44dfd5.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx": {
-    "file": "assets/CompanyMoveRow-462377d3.js",
+    "file": "assets/CompanyMoveRow-60ed2975.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
-      "_index-9e3aa4c7.js"
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx": {
-    "file": "assets/Duration-09a34f40.js",
+    "file": "assets/Duration-989debe9.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx"
@@ -1932,7 +1897,7 @@
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EOD.jsx": {
-    "file": "assets/EOD-c1d1875d.js",
+    "file": "assets/EOD-7a922216.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1940,7 +1905,7 @@
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EOD.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx": {
-    "file": "assets/EditableCell-25ac580d.js",
+    "file": "assets/EditableCell-46af34b0.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1948,7 +1913,7 @@
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx": {
-    "file": "assets/EditableSelect-b9b77a41.js",
+    "file": "assets/EditableSelect-6416e67f.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1956,187 +1921,128 @@
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx": {
-    "file": "assets/SceneRow-4a13cc5d.js",
+    "file": "assets/SceneRow-15c83faa.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
       "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
-      "_index-9e3aa4c7.js"
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Recipients/CallSheetRecipientForm copy.jsx": {
-    "file": "assets/CallSheetRecipientForm copy-c697355e.js",
+    "file": "assets/CallSheetRecipientForm copy-f930b2c1.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_SecondaryButton-f759061d.js",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
-      "_index-9e3aa4c7.js"
+      "_PrimaryButton-83478115.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Recipients/CallSheetRecipientForm copy.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx": {
-    "file": "assets/CreateRecipient-c7fa9deb.js",
+    "file": "assets/CreateRecipient-d4223906.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_index.es-6780b8c7.js",
-      "_SecondaryButton-f759061d.js",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
-      "_index-9e3aa4c7.js"
+      "_PrimaryButton-83478115.js",
+      "_index.es-ee268f83.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx"
   },
   "resources/js/Pages/Projects/CallSheets/Recipients/RecipientList.jsx": {
-    "file": "assets/RecipientList-e13c3acb.js",
+    "file": "assets/RecipientList-b9c3b29c.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_EmptyContent-f0c7321b.js",
-      "_Avatar-b00b524c.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_SecondaryButton-f759061d.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_createSvgIcon-b106def2.js"
+      "_CardContainer-da7ef859.js",
+      "_EmptyContent-4eb16782.js",
+      "_Avatar-ef00ce3a.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_createSvgIcon-206f586c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/CallSheets/Recipients/RecipientList.jsx"
   },
   "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx": {
-    "file": "assets/ProjectImagePreview-534c62c0.js",
+    "file": "assets/ProjectImagePreview-1c08a658.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_ImageContainer-307535ce.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_ImageContainer-9e560b2e.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx"
   },
   "resources/js/Pages/Projects/Components/ProjectList.jsx": {
-    "file": "assets/ProjectList-9fb1571c.js",
+    "file": "assets/ProjectList-41822070.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index-84704c9c.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js"
+      "_index-e6ab5b50.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Components/ProjectList.jsx"
   },
   "resources/js/Pages/Projects/Components/ProjectPoster.jsx": {
-    "file": "assets/ProjectPoster-231b66c4.js",
+    "file": "assets/ProjectPoster-8cee9f9d.js",
     "imports": [
       "resources/js/app.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Components/ProjectPoster.jsx"
   },
-  "resources/js/Pages/Projects/Details/ProjectDetails.jsx": {
-    "file": "assets/ProjectDetails-33306658.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_ImageContainer-307535ce.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Details/ProjectDetails.jsx"
-  },
-  "resources/js/Pages/Projects/Forms/CreateProject copy.jsx": {
-    "file": "assets/CreateProject copy-cd469b38.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
-      "_index-9e3aa4c7.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
-      "_createSvgIcon-3cc30708.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_Box-d2e1cd8f.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
-      "_useSwitch-631d032d.js",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
-      "_index-b4698f05.js",
-      "_SecondaryButton-f759061d.js",
-      "_Modal-cab82769.js",
-      "_CircularProgress-af137ff7.js",
-      "_Tooltip-a5a4d78a.js",
-      "_Popper-26c3d1f1.js",
-      "_Option-1a04f0cf.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_createSvgIcon-b106def2.js",
-      "_Textarea-853c4165.js",
-      "_useForwardedInput-be5dd50b.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Forms/CreateProject copy.jsx"
-  },
   "resources/js/Pages/Projects/Forms/CreateProject.jsx": {
-    "file": "assets/CreateProject-e710c587.js",
+    "file": "assets/CreateProject-e8785020.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_SecondaryButton-f759061d.js",
+      "_PrimaryButton-83478115.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -2147,463 +2053,330 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
-      "_EmptyContent-f0c7321b.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
+      "_EmptyContent-4eb16782.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js"
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_CircularProgress-4f3ac99e.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/CreateProject.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx": {
-    "file": "assets/CorporateProjectTypeSelector-2a85e279.js",
+    "file": "assets/CorporateProjectTypeSelector-bb5f68ab.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx": {
-    "file": "assets/CreativeEntertainmentTypeSelector-8a17e34a.js",
+    "file": "assets/CreativeEntertainmentTypeSelector-685d8e35.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx": {
-    "file": "assets/VideoAdditionalDetails-b10bcf4c.js",
+    "file": "assets/VideoAdditionalDetails-c06d3b39.js",
     "imports": [
       "resources/js/app.jsx",
-      "_EmptyContent-f0c7321b.js",
+      "_EmptyContent-4eb16782.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
-      "_FormControl-ce9c98b9.js",
-      "_Autocomplete-653e6d3e.js",
-      "_SecondaryButton-f759061d.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_createSvgIcon-b106def2.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_styleUtils-0df93871.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "_isMuiElement-3bff42a8.js",
-      "_Chip-a964b04e.js"
+      "_FormControl-23721afc.js",
+      "_Autocomplete-f1ff51db.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
+      "_FormControlContext-c38d435b.js",
+      "_createSvgIcon-206f586c.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_CircularProgress-4f3ac99e.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "_styleUtils-b870bb2a.js",
+      "_isMuiElement-db9e5794.js",
+      "_Chip-33927dbc.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx": {
-    "file": "assets/VideoProjectDetails-40e36ef0.js",
+    "file": "assets/VideoProjectDetails-f1fe7105.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_styleUtils-0df93871.js"
+      "_Chip-33927dbc.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_styleUtils-b870bb2a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/DigitalContent/DigitalContentTypeSelector.jsx": {
-    "file": "assets/DigitalContentTypeSelector-91f38218.js",
+    "file": "assets/DigitalContentTypeSelector-1b86e0d7.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/DigitalContent/DigitalContentTypeSelector.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx": {
-    "file": "assets/FamilyEventsTypeSelector-2cc0fb57.js",
+    "file": "assets/FamilyEventsTypeSelector-bf31a51f.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/Weddings/WeddingDetails.jsx": {
-    "file": "assets/WeddingDetails-6575ed78.js",
+    "file": "assets/WeddingDetails-451f2fa7.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/Weddings/WeddingDetails.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/LiveBroadcast/LiveBroadcastTypeSelector.jsx": {
-    "file": "assets/LiveBroadcastTypeSelector-c3d16e4b.js",
+    "file": "assets/LiveBroadcastTypeSelector-e6a285ac.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/LiveBroadcast/LiveBroadcastTypeSelector.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/LiveBroadcast/LiveEventDetails/LiveEventDetails.jsx": {
-    "file": "assets/LiveEventDetails-bae22e22.js",
+    "file": "assets/LiveEventDetails-c7fb151f.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Profile/Forms/Time.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js"
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/LiveBroadcast/LiveEventDetails/LiveEventDetails.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx": {
-    "file": "assets/ProjectSelector-4be16e87.js",
+    "file": "assets/ProjectSelector-83cd8efc.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx"
   },
   "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx": {
-    "file": "assets/ProjectStepper-a31dfa8b.js",
+    "file": "assets/ProjectStepper-19bcc1e2.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_Typography-4dbb1ff2.js",
-      "_index-9e3aa4c7.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_Typography-3915937a.js",
+      "_index-3b70e7e7.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx"
   },
-  "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx": {
-    "file": "assets/ProjectTypeSelector-6f56c21f.js",
+  "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx": {
+    "file": "assets/ProjectSummary-d7c46419.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js",
+      "_index-3b70e7e7.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx"
+  },
+  "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx": {
+    "file": "assets/ProjectTypeSelector-237e6d9e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx"
   },
-  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster copy.jsx": {
-    "file": "assets/MoviePoster copy-486597d3.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_SecondaryButton-f759061d.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_Modal-cab82769.js",
-      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_Box-d2e1cd8f.js",
-      "_CircularProgress-af137ff7.js",
-      "_index-9e3aa4c7.js",
-      "_ImageContainer-307535ce.js",
-      "_useSlot-d43794ee.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_extendSxProp-9e510b8c.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster copy.jsx"
-  },
-  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx": {
-    "file": "assets/MoviePoster-dff0072b.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index-b4698f05.js",
-      "_SecondaryButton-f759061d.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_Modal-cab82769.js",
-      "_Box-d2e1cd8f.js",
-      "_CircularProgress-af137ff7.js",
-      "_index-9e3aa4c7.js",
-      "_useSlot-d43794ee.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_extendSxProp-9e510b8c.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx"
-  },
-  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx": {
-    "file": "assets/VideoStepOne-0474d2d5.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_index-9e3aa4c7.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx"
-  },
-  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx": {
-    "file": "assets/VideoStepThree-544754b6.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_Option-1a04f0cf.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_styleUtils-0df93871.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "_createSvgIcon-b106def2.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_variantColorInheritance-f8d1dad2.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx"
-  },
-  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx": {
-    "file": "assets/VideoStepTwo-b97eab2f.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_Option-1a04f0cf.js",
-      "_Textarea-853c4165.js",
-      "_Typography-4dbb1ff2.js",
-      "_createSvgIcon-3cc30708.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_extendSxProp-9e510b8c.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_Box-d2e1cd8f.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
-      "_useSwitch-631d032d.js",
-      "_index-b4698f05.js",
-      "_index-9e3aa4c7.js",
-      "_SecondaryButton-f759061d.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_Modal-cab82769.js",
-      "_CircularProgress-af137ff7.js",
-      "_Popper-26c3d1f1.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_createSvgIcon-b106def2.js",
-      "_useForwardedInput-be5dd50b.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx"
-  },
-  "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx": {
-    "file": "assets/ViewerRating-fbac7549.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_createSvgIcon-3cc30708.js",
-      "_Box-d2e1cd8f.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_useControlled-adcd3c46.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_Chip-a964b04e.js",
-      "_Typography-4dbb1ff2.js",
-      "_useSwitch-631d032d.js",
-      "_extendSxProp-9e510b8c.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx"
-  },
   "resources/js/Pages/Projects/Forms/ProjectClientForm.jsx": {
-    "file": "assets/ProjectClientForm-376b6e37.js",
+    "file": "assets/ProjectClientForm-0b398c34.js",
     "imports": [
       "resources/js/app.jsx",
       "_Form-792c5f5e.js",
-      "_createSvgIcon-3cc30708.js",
-      "_FormControl-ce9c98b9.js",
-      "_Autocomplete-653e6d3e.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_extendSxProp-9e510b8c.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_createSvgIcon-b106def2.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_styleUtils-0df93871.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "_Chip-a964b04e.js",
-      "_Popper-26c3d1f1.js"
+      "_createSvgIcon-2995d89d.js",
+      "_FormControl-23721afc.js",
+      "_Autocomplete-f1ff51db.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_extendSxProp-b0bf4534.js",
+      "_ownerWindow-4ddfc24f.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_isMuiElement-db9e5794.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_FormControlContext-c38d435b.js",
+      "_createSvgIcon-206f586c.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_CircularProgress-4f3ac99e.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "_styleUtils-b870bb2a.js",
+      "_Chip-33927dbc.js",
+      "_Popper-794acb7d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/ProjectClientForm.jsx"
   },
   "resources/js/Pages/Projects/Forms/ProjectEditForm.jsx": {
-    "file": "assets/ProjectEditForm-339dc5da.js",
+    "file": "assets/ProjectEditForm-53704f2a.js",
     "imports": [
       "resources/js/app.jsx",
-      "_ImageContainer-307535ce.js",
-      "_SecondaryButton-f759061d.js",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_Option-1a04f0cf.js",
-      "_Textarea-853c4165.js",
-      "_Typography-4dbb1ff2.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_createSvgIcon-3cc30708.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_extendSxProp-9e510b8c.js",
-      "_ownerWindow-2a12221f.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_isMuiElement-3bff42a8.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_Box-d2e1cd8f.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
-      "_useSwitch-631d032d.js",
-      "_Popper-26c3d1f1.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_createSvgIcon-b106def2.js",
-      "_useForwardedInput-be5dd50b.js"
+      "_ImageContainer-9e560b2e.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_Tooltip-1f0ef08d.js",
+      "_Option-c035352c.js",
+      "_Textarea-db4c002a.js",
+      "_Typography-3915937a.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
+      "_ListItemButton-cd345c19.js",
+      "_styleUtils-b870bb2a.js",
+      "_createSvgIcon-206f586c.js",
+      "_FormControlContext-c38d435b.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ownerWindow-4ddfc24f.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/Forms/ProjectEditForm.jsx"
   },
   "resources/js/Pages/Projects/ProjectDetailsPage.jsx": {
-    "file": "assets/ProjectDetailsPage-4035ee74.js",
+    "file": "assets/ProjectDetailsPage-e1c06552.js",
     "imports": [
       "resources/js/app.jsx",
-      "_CardContainer-713d9aa9.js",
-      "_PortalLayout-4dd080df.js",
-      "_ImageContainer-307535ce.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_CardContainer-da7ef859.js",
+      "_PortalLayout-c0321aa3.js",
+      "_ImageContainer-9e560b2e.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_index-9e3aa4c7.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_index-3b70e7e7.js",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -2615,23 +2388,22 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -2648,53 +2420,54 @@
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/ProjectDetailsPage.jsx"
   },
   "resources/js/Pages/Projects/ProjectEstimate.jsx": {
-    "file": "assets/ProjectEstimate-c43be951.js",
+    "file": "assets/ProjectEstimate-31c98f56.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_PortalLayout-4dd080df.js",
-      "_Tooltip-a5a4d78a.js",
-      "_Autocomplete-653e6d3e.js",
-      "_Option-1a04f0cf.js",
-      "_Textarea-853c4165.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_Modal-cab82769.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_PortalLayout-c0321aa3.js",
+      "_Tooltip-1f0ef08d.js",
+      "_Autocomplete-f1ff51db.js",
+      "_Option-c035352c.js",
+      "_Textarea-db4c002a.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -2706,22 +2479,23 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -2736,55 +2510,55 @@
       "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx",
-      "_ownerWindow-2a12221f.js"
+      "_ownerWindow-4ddfc24f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/ProjectEstimate.jsx"
   },
   "resources/js/Pages/Projects/ProjectListPage.jsx": {
-    "file": "assets/ProjectListPage-aa845f3e.js",
+    "file": "assets/ProjectListPage-f7dbc8a5.js",
     "imports": [
       "resources/js/app.jsx",
-      "_index.es-6780b8c7.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_index.es-ee268f83.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
-      "_PortalLayout-4dd080df.js",
+      "_PortalLayout-c0321aa3.js",
       "resources/js/Pages/Projects/Components/ProjectList.jsx",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -2796,23 +2570,24 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -2827,54 +2602,54 @@
       "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/ProjectListPage.jsx"
   },
   "resources/js/Pages/Projects/SubPages/CallSheets.jsx": {
-    "file": "assets/CallSheets-71a0b01e.js",
+    "file": "assets/CallSheets-7f0c625c.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Projects/CallSheets/Components/CallSheetList.jsx",
-      "_PortalLayout-4dd080df.js",
-      "_index.es-6780b8c7.js",
-      "_index-9e3aa4c7.js",
-      "_index-84704c9c.js",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_Modal-cab82769.js",
+      "_PortalLayout-c0321aa3.js",
+      "_index.es-ee268f83.js",
+      "_index-3b70e7e7.js",
+      "_index-e6ab5b50.js",
+      "_AuthenticatedLayout-aa5c18fe.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
+      "_SecondaryButton-ae44dfd5.js",
       "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
       "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_Tooltip-a5a4d78a.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
+      "_Tooltip-1f0ef08d.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js",
+      "_useIsFocusVisible-97f68d26.js",
+      "_useControlled-9031fbe1.js",
+      "_useEventCallback-96e4a742.js",
+      "_useEnhancedEffect-99238f73.js",
+      "_Popper-794acb7d.js",
       "resources/js/Pages/Profile/Forms/UserName.jsx",
       "resources/js/Pages/Profile/Forms/Phone.jsx",
       "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
       "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
+      "_PrimaryButton-83478115.js",
+      "_Skeleton-d73cf450.js",
+      "_CircularProgress-4f3ac99e.js",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_Typography-4dbb1ff2.js",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
+      "_Typography-3915937a.js",
+      "_extendSxProp-b0bf4534.js",
+      "_isMuiElement-db9e5794.js",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
@@ -2886,23 +2661,24 @@
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
+      "_Chip-33927dbc.js",
+      "_variantColorInheritance-d3e3e626.js",
+      "_styleUtils-b870bb2a.js",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
+      "_EmptyContent-4eb16782.js",
+      "_FormControl-23721afc.js",
+      "_FormControlContext-c38d435b.js",
+      "_Autocomplete-f1ff51db.js",
+      "_createSvgIcon-206f586c.js",
+      "_useForwardedInput-a35c5661.js",
+      "_ListItemButton-cd345c19.js",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
+      "_CardContainer-da7ef859.js",
+      "_ImageContainer-9e560b2e.js",
       "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
+      "_Input-77ff0868.js",
+      "_Select-33702378.js",
+      "_index-1a2c3076.js",
       "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
       "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
@@ -2917,113 +2693,20 @@
       "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
       "resources/js/Pages/Profile/Forms/Email.jsx",
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
       "resources/js/Pages/Auth/LogOutForm.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
+      "_lodash-875d834b.js",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
       "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
+      "_IconButton-265bba41.js",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Projects/SubPages/CallSheets.jsx"
   },
-  "resources/js/Pages/Projects/SubPages/ProjectEditPage copy.jsx": {
-    "file": "assets/ProjectEditPage copy-5c9cfa1a.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_AuthenticatedLayout-a56b9925.js",
-      "_CardContainer-713d9aa9.js",
-      "_PortalLayout-4dd080df.js",
-      "_index.es-6780b8c7.js",
-      "_Modal-cab82769.js",
-      "_Tooltip-a5a4d78a.js",
-      "_Textarea-853c4165.js",
-      "_Typography-4dbb1ff2.js",
-      "_index-84704c9c.js",
-      "resources/js/Pages/Auth/Verification/VerificationProcess.jsx",
-      "_SecondaryButton-f759061d.js",
-      "resources/js/Pages/Profile/Forms/PersonalInfo.jsx",
-      "resources/js/Pages/Profile/Forms/Address.jsx",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js",
-      "_useIsFocusVisible-7ca602c7.js",
-      "_useControlled-adcd3c46.js",
-      "_useEventCallback-0c2e09c7.js",
-      "_useEnhancedEffect-12b0a06e.js",
-      "_Popper-26c3d1f1.js",
-      "resources/js/Pages/Profile/Forms/UserName.jsx",
-      "resources/js/Pages/Profile/Forms/Phone.jsx",
-      "resources/js/Pages/Profile/Forms/CompanyInfo.jsx",
-      "resources/js/Pages/Auth/Verification/Partials/VerificationStep.jsx",
-      "_PrimaryButton-bfc388c8.js",
-      "_Skeleton-22ae0279.js",
-      "_index-9e3aa4c7.js",
-      "resources/js/Pages/Profile/ProfilePicture.jsx",
-      "resources/js/Pages/Projects/Forms/CreateProject.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
-      "_extendSxProp-9e510b8c.js",
-      "_isMuiElement-3bff42a8.js",
-      "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/FamilyEventsTypeSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/DigitalContent/DigitalContentTypeSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/FamilyEvents/Weddings/WeddingDetails.jsx",
-      "resources/js/Pages/Profile/Forms/Time.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/LiveBroadcast/LiveBroadcastTypeSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/LiveBroadcast/LiveEventDetails/LiveEventDetails.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoProjectDetails.jsx",
-      "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "_Chip-a964b04e.js",
-      "_variantColorInheritance-f8d1dad2.js",
-      "_styleUtils-0df93871.js",
-      "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/VideoAdditionalDetails.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_FormControl-ce9c98b9.js",
-      "_FormControlContext-dd3b9a17.js",
-      "_Autocomplete-653e6d3e.js",
-      "_createSvgIcon-b106def2.js",
-      "_CircularProgress-af137ff7.js",
-      "_useForwardedInput-be5dd50b.js",
-      "_ListItemButton-7a78b6ef.js",
-      "_RadioGroupContext-96bab4a2.js",
-      "resources/js/Pages/Projects/CallSheets/Forms/CreateCallSheet.jsx",
-      "_Input-4561b985.js",
-      "_Select-a8ef8a22.js",
-      "_index-7f71a8ef.js",
-      "resources/js/Pages/Projects/CallSheets/Forms/Partials/CallSheetDetailsForm.jsx",
-      "resources/js/Pages/Projects/CallSheets/Forms/UpdateCallSheet.jsx",
-      "resources/js/Pages/Projects/CallSheets/Forms/GeneralCallTimeForm.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CallSheetProductionSchedule.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/SceneRow.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableCell.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/EditableSelect.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/Duration.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/BreakRow.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/CompanyMoveRow.jsx",
-      "resources/js/Pages/Projects/CallSheets/ProductionSchedule/AddButton.jsx",
-      "resources/js/Pages/Projects/CallSheets/Recipients/CreateRecipient.jsx",
-      "resources/js/Pages/Profile/Forms/Email.jsx",
-      "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
-      "_ImageContainer-307535ce.js",
-      "resources/js/Pages/Auth/LogOutForm.jsx",
-      "resources/js/Pages/Projects/CallSheets/Locations/Forms/LocationForm.jsx",
-      "_lodash-4de87c17.js",
-      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Accordion.jsx",
-      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/AccordionContent.jsx",
-      "resources/js/Pages/Projects/CallSheets/Locations/Forms/Partials/Hospitals.jsx",
-      "_IconButton-850b944a.js",
-      "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx",
-      "_ownerWindow-2a12221f.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Projects/SubPages/ProjectEditPage copy.jsx"
-  },
   "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx": {
-    "file": "assets/AddTaskModal-5b11b501.js",
+    "file": "assets/AddTaskModal-6ed8cc62.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -3031,45 +2714,45 @@
     "src": "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx"
   },
   "resources/js/Pages/Tasks/Tasks.jsx": {
-    "file": "assets/Tasks-b1c1015e.js",
+    "file": "assets/Tasks-4b0bde58.js",
     "imports": [
       "resources/js/app.jsx",
-      "_EmptyContent-f0c7321b.js",
-      "_CardContainer-713d9aa9.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_SecondaryButton-f759061d.js",
-      "_index-9e3aa4c7.js"
+      "_EmptyContent-4eb16782.js",
+      "_CardContainer-da7ef859.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_SecondaryButton-ae44dfd5.js",
+      "_index-3b70e7e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Tasks/Tasks.jsx"
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-a9a34dde.js",
+    "file": "assets/Welcome-b62fd616.js",
     "imports": [
       "resources/js/app.jsx",
-      "_ApplicationName-99bb4d02.js",
-      "_ImageContainer-307535ce.js",
-      "_index.es-6780b8c7.js",
-      "_index-84704c9c.js",
-      "_PrimaryButton-bfc388c8.js",
-      "_Modal-cab82769.js",
+      "_ApplicationName-e46a0827.js",
+      "_ImageContainer-9e560b2e.js",
+      "_index.es-ee268f83.js",
+      "_index-e6ab5b50.js",
+      "_PrimaryButton-83478115.js",
+      "_Modal-16f11f32.js",
       "resources/js/Pages/Auth/Legal/PrivacyPolicy.jsx",
-      "_Skeleton-22ae0279.js",
-      "_index-9e3aa4c7.js",
-      "_toPropertyKey-61b1ecea.js",
-      "_useSlot-d43794ee.js"
+      "_Skeleton-d73cf450.js",
+      "_index-3b70e7e7.js",
+      "_toPropertyKey-39201a13.js",
+      "_useSlot-a2532144.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Welcome.jsx"
   },
   "resources/js/app.css": {
-    "file": "assets/app-2f50929c.css",
+    "file": "assets/app-51be2769.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.jsx": {
     "css": [
-      "assets/app-2f50929c.css"
+      "assets/app-51be2769.css"
     ],
     "dynamicImports": [
       "resources/js/Pages/Auth/ConfirmPassword.jsx",
@@ -3099,11 +2782,11 @@
       "resources/js/Pages/Profile/Partials/BudgetSettings.jsx",
       "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
       "resources/js/Pages/Profile/Partials/JobSettings.jsx",
+      "resources/js/Pages/Profile/Partials/ProfileImageUpload.jsx",
       "resources/js/Pages/Profile/Partials/ProjectSettings.jsx",
       "resources/js/Pages/Profile/Partials/SocialSettings.jsx",
       "resources/js/Pages/Profile/Partials/SubscriptionSettings.jsx",
       "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
-      "resources/js/Pages/Profile/Partials/UploadableProfilePicture.jsx",
       "resources/js/Pages/Profile/Profile.jsx",
       "resources/js/Pages/Profile/ProfilePicture.jsx",
       "resources/js/Pages/Profile/ProfileSettings.jsx",
@@ -3151,8 +2834,6 @@
       "resources/js/Pages/Projects/Components/ProjectImagePreview.jsx",
       "resources/js/Pages/Projects/Components/ProjectList.jsx",
       "resources/js/Pages/Projects/Components/ProjectPoster.jsx",
-      "resources/js/Pages/Projects/Details/ProjectDetails.jsx",
-      "resources/js/Pages/Projects/Forms/CreateProject copy.jsx",
       "resources/js/Pages/Projects/Forms/CreateProject.jsx",
       "resources/js/Pages/Projects/Forms/Partials/Corporate/CorporateProjectTypeSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/CreativeEntertainment/CreativeEntertainmentTypeSelector.jsx",
@@ -3165,25 +2846,19 @@
       "resources/js/Pages/Projects/Forms/Partials/LiveBroadcast/LiveEventDetails/LiveEventDetails.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectSelector.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectStepper.jsx",
+      "resources/js/Pages/Projects/Forms/Partials/ProjectSummary.jsx",
       "resources/js/Pages/Projects/Forms/Partials/ProjectTypeSelector.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster copy.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/MoviePoster.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepOne.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepThree.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/VideoStepTwo.jsx",
-      "resources/js/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating.jsx",
       "resources/js/Pages/Projects/Forms/ProjectClientForm.jsx",
       "resources/js/Pages/Projects/Forms/ProjectEditForm.jsx",
       "resources/js/Pages/Projects/ProjectDetailsPage.jsx",
       "resources/js/Pages/Projects/ProjectEstimate.jsx",
       "resources/js/Pages/Projects/ProjectListPage.jsx",
       "resources/js/Pages/Projects/SubPages/CallSheets.jsx",
-      "resources/js/Pages/Projects/SubPages/ProjectEditPage copy.jsx",
       "resources/js/Pages/Tasks/Modals/AddTaskModal.jsx",
       "resources/js/Pages/Tasks/Tasks.jsx",
       "resources/js/Pages/Welcome.jsx"
     ],
-    "file": "assets/app-659a3aa2.js",
+    "file": "assets/app-8b83436b.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }

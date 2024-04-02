@@ -23,7 +23,7 @@ const ProjectTypeSelector = ({ selectedProjectType, onProjectTypeSelect }) => {
     const isDisabled = (type) => disabledTypes.includes(type.split(' - ')[0]);
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 content-center h-full">
             {projectTypes.map((type, index) => {
                 const [title, description] = type.split(' - ');
                 const iconKey = Object.keys(projectTypeIcons).find(key => title.includes(key));
@@ -33,7 +33,7 @@ const ProjectTypeSelector = ({ selectedProjectType, onProjectTypeSelect }) => {
                 return (
                     <div
                         key={index}
-                        className={`flex items-center space-x-3 py-4 px-6 border cursor-pointer min-h-[8rem] rounded-xl duration-500 ${selectedProjectType === type ? 'border-emerald-400 bg-emerald-50' : 'border-slate-100'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`flex items-center space-x-3 py-4 px-6 border  min-h-[8rem] rounded-xl duration-500  ${selectedProjectType === type ? 'border-emerald-400 bg-emerald-50' : 'border-slate-100'} ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md cursor-pointer'}`}
                         onClick={() => !disabled && onProjectTypeSelect(type)}
                     >
                         <FontAwesomeIcon icon={icon} className={`text-2xl mx-8 duration-500 ${selectedProjectType === type ? 'text-emerald-400' : 'text-slate-300'} ${disabled ? 'opacity-50' : ''}`} />

@@ -27,7 +27,7 @@ function ProjectNavigation({ project }) {
                   variant="plain"
                 >
                   <div>
-                    <IconButton href={route('projects.details', { projectId: project.id })} active={route().current('projects.details')}  activeClass="active-link" icon={faInfo} size="small" />
+                    <IconButton href={route('project.details', { projectId: project.id })} active={route().current('project.details')}  activeClass="active-link" icon={faInfo} size="small" />
                   </div>
               </Tooltip>
 

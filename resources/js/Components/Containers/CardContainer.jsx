@@ -1,4 +1,5 @@
-// CardComponent.jsx
+import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGrip } from '@fortawesome/free-solid-svg-icons';
@@ -11,18 +12,23 @@ export default function CardContainer({
     textClassName,
     childrenClass,
   }) {
-    function containsBackgroundClass(className) {
-      const bgClassPattern = /\bbg-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
-      return bgClassPattern.test(className);
-    }
-    function containsTextClass(className) {
-      const textClassPattern = /\btext-\S+/; // Regular expression to match 'bg-' followed by non-whitespace characters
-      return textClassPattern.test(className);
-    }
-  
-    const finalClassName = containsBackgroundClass(className) ? className : `bg-white ${className}`;
-    const finalTextClassName = containsTextClass(textClassName) ? textClassName : `text-slate-400 ${textClassName}`;
-  
+
+    const { darkModeSetting } = useDarkMode();
+
+    const defaultClasses = {
+      light: { background: 'bg-white', text: 'text-slate-400' },
+      dark: { background: 'bg-slate-900', text: 'text-white' },
+      midnight: { background: 'bg-slate-800', text: 'text-white' },
+    };
+    
+    const getDefaultClass = (type, className) => {
+      const classPattern = new RegExp(`\\b${type}-\\S+`); // Matches 'type-' followed by non-whitespace characters
+      return classPattern.test(className) ? className : `${defaultClasses[darkModeSetting][type]} ${className}`;
+    };
+    
+    const finalClassName = getDefaultClass('background', className);
+    const finalTextClassName = getDefaultClass('text', textClassName);
+    
     // Add styles for the scrolling content
     const contentStyle = {
     //   maxHeight: '100%', // Example height, adjust as needed
@@ -30,17 +36,17 @@ export default function CardContainer({
     };
   
     return (
-      <div className={`${finalClassName} px-6 pb-6 pt-4 shadow-sm rounded-2xl flex flex-col gap-2 ${header ? '' : 'relative'}`}>
+      <div className={`${finalClassName} duration-500 px-6 pb-6 shadow-sm rounded-2xl flex flex-col gap-2 ${header ? 'pt-4' : 'pt-6 relative'}`}>
         {(header || onClick) && (
           <div className={`${header ? 'w-full flex flex-row justify-between items-center' : 'absolute right-6'}`}>
             {header && (
               <div>
-                <h4 className={`${finalTextClassName} w-full text-sm`}>{header}</h4>
+                <h4 className={`${finalTextClassName} duration-500 w-full text-sm`}>{header}</h4>
               </div>
             )}
             {onClick && (
               <div variant="plain">
-                <FontAwesomeIcon onClick={onClick} className={`${finalTextClassName} w-[1.3rem] cursor-pointer hover:text-slate-500 duration-300 text-2xl`} icon={faGrip} />
+                <FontAwesomeIcon onClick={onClick} className={`${finalTextClassName} duration-500 w-[1.3rem] cursor-pointer hover:text-slate-500 duration-300 text-2xl`} icon={faGrip} />
               </div>
             )}
           </div>

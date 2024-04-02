@@ -63,7 +63,7 @@ const LocationForm = ({
   const [mapKey, setMapKey] = useState(Math.random());
   const [resetSignal, setResetSignal] = useState(false);
   const triggerReset = () => {
-    setResetSignal(!resetSignal); // Toggle the state to send a new signal
+    setResetSignal(!resetSignal); 
   };
 
   const handleSave = async () => {
@@ -72,7 +72,6 @@ const LocationForm = ({
           parking: accordionData.parking,
           hospital: accordionData.hospital,
           accordionInfo: accordionInfo,
-          // Include ID if available in edit mode
           id: mode !== 'create' ? callSheet.id : undefined
       };
 
@@ -80,14 +79,11 @@ const LocationForm = ({
           let response;
           if (mode === 'create') {
               response = await axios.post(route('projects.callSheets.save.locations', { id: project.id, callSheetId: callSheet.id }), combinedData);
-              // Handle newly created data with ID from response if needed
           } else {
               response = await axios.put(route('projects.callSheets.update.locations', { id: project.id, callSheetId: callSheet.callSheetId }), combinedData);
           }
 
           if (response.status === 200) {
-              // Update currentCallSheet with new or updated data
-              // Ensure this includes the necessary ID
               updateCurrentCallSheet(response.data);
               onClose();
               triggerReset();
@@ -103,33 +99,23 @@ const LocationForm = ({
 
   const handleDelete = async () => {
     try {
-        // Construct the endpoint URL
         const endpoint = route('projects.callSheets.delete.location', {
             id: project.id,
             callSheetId: callSheet.callSheetId,
             locationId: callSheet.location.id
         });
 
-        // Send the DELETE request
         const response = await axios.delete(endpoint);
 
-        // Check for successful response
         if (response.status === 200) {
-            console.log(response); // Logging the response for debugging
 
-            // Update the current call sheet in your state/context
             updateCurrentCallSheet(response.data.updatedCallSheet);
-
-            // Reset any local state or UI elements if necessary
             triggerReset();
 
-            // Close the modal or dialogue if one is open
             onClose();  
         }
     } catch (error) {
         console.error('Error deleting the location:', error);
-        // Handle errors here, such as displaying a message to the user
-        // Consider using a UI notification or alert to inform the user
     }
 };
 
@@ -141,23 +127,18 @@ const LocationForm = ({
 
   useEffect(() => {
       if (mode !== 'create' && callSheet) {
-          // Extract and map data from callSheet to accordionData structure
           const locationData = callSheet.location ? {
               ...callSheet.location
-              // Add other properties or transformations if needed
           } : {};
 
           const parkingData = callSheet.parking_location ? {
               ...callSheet.parking_location.location
-              // Add other properties or transformations if needed
           } : {};
 
           const hospitalData = callSheet.hospital_location ? {
               ...callSheet.hospital_location
-              // Add other properties or transformations if needed
           } : {};
 
-          // Update accordionData with the mapped data
           setAccordionData({
               location: locationData,
               parking: parkingData,

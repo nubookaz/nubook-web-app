@@ -21,19 +21,19 @@ class Project extends Model
         'project_budget',
         'project_stage',
         'project_status',
-        'video_type',
-        'video_production',  
+        'category_type',
+        'project_details',  
     ];
 
 
     protected $casts = [
-        'video_production' => 'array',
+        'project_details' => 'array',
     ];
     
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('role_id');
-    }
+        return $this->belongsToMany(User::class)->withPivot('role_id')->withTimestamps();
+    }    
     
     public function productionCompany()
     {
@@ -55,10 +55,11 @@ class Project extends Model
         return $this->hasMany(ProductionSchedule::class);
     }
 
-    public function projectImage()
+    public function media()
     {
-        return $this->hasOne(ProjectImage::class);
+        return $this->hasMany(Media::class);
     }
+
 
 
 }

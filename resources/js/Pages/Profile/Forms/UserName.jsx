@@ -13,43 +13,43 @@ const UserName = ({ data, onNameChange, emptyFields, setEmptyFields, inputClassN
 
 
   useEffect(() => {
-    if (data) {
-      setName({
-        first_name: data.first_name || '',
-        middle_initial: data.middle_initial || '',
-        last_name: data.last_name || '',
-      });
-    }
+      if (data) {
+        setName({
+          first_name: data.first_name || '',
+          middle_initial: data.middle_initial || '',
+          last_name: data.last_name || '',
+        });
+      }
   }, [data]);
 
   const handleInputChange = (field, value) => {
-    const updatedName = { ...data, [field]: value };
-    onNameChange(updatedName);
+      const updatedName = { ...data, [field]: value };
+      onNameChange(updatedName);
 
-    // Update emptyFields based on requirements
-    if (field === 'first_name' || field === 'last_name') {
-      setEmptyFields({ ...emptyFields, [field]: !value });
-    }
+      // Update emptyFields based on requirements
+      if (field === 'first_name' || field === 'last_name') {
+        setEmptyFields({ ...emptyFields, [field]: !value });
+      }
   };
 
   const renderInputWithTooltip = (field, label, maxLength, autoComplete) => (
-    <Tooltip 
-        title={`${label} is required`} 
-        open={emptyFields[field] ?? false} 
-        placement="top"
-    >
-        <input
-            type="text"
-            value={data[field]}
-            onChange={(e) => handleInputChange(field, e.target.value)}
-            placeholder={label}
-            maxLength={maxLength}
-            autoComplete={autoComplete}
-            aria-label={label}
-            className={inputClassName}
-        />
-    </Tooltip>
-);
+      <Tooltip 
+          title={`${label} is required`} 
+          open={emptyFields[field] ?? false} 
+          placement="top"
+      >
+          <input
+              type="text"
+              value={data[field]}
+              onChange={(e) => handleInputChange(field, e.target.value)}
+              placeholder={label}
+              maxLength={maxLength}
+              autoComplete={autoComplete}
+              aria-label={label}
+              className={inputClassName}
+          />
+      </Tooltip>
+  );
 
   return (
 

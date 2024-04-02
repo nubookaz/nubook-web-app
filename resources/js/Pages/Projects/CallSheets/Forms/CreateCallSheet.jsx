@@ -16,7 +16,7 @@ export default function CreateCallSheet({ roles, onClose }) {
   const { createCallSheet } = useCallSheet();
   const { toggleModal } = useModal();
 
-  const roleRef = useRef(null); // Define roleRef here
+  const roleRef = useRef(null);  
 
   const [callSheetName, setCallSheetName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
@@ -42,17 +42,19 @@ export default function CreateCallSheet({ roles, onClose }) {
   };
 
   const handleSave = async () => {
-    const formattedDate = format(startDate, 'yyyy-MM-dd') + ' ' + generalCallTime;
+    const formattedDate = format(startDate, 'yyyy-MM-dd');
     const dataToSend = {
       call_sheet_name: callSheetName,
-      call_sheet_date_time: formattedDate,
+      call_sheet_date: formattedDate,
+      general_call_Time: generalCallTime, // Assuming generalCallTime is in the appropriate format (e.g., 'HH:mm')
       project_id: currentProjectId,  
     };
-
+  
     await createCallSheet(dataToSend);
-
+  
     onClose();  
   };
+  
 
 
   const [payFrequency, setPayFrequency] = useState('Day Rate');
@@ -80,7 +82,7 @@ export default function CreateCallSheet({ roles, onClose }) {
   
   return (
 
-    <div className={`p-[4rem] flex flex-col gap-6 h-full w-[55rem]`}>
+    <div className={`p-[4rem] flex flex-col gap-6 h-full w-[40rem]`}>
         <div>
             <h2 className='text-center text-2xl text-slate-500'>Create a New Call Sheet</h2>
             <p className="text-slate-400 text-lg text-center">Add details to the call sheet below </p>
@@ -121,7 +123,7 @@ export default function CreateCallSheet({ roles, onClose }) {
                                 <option key={role.id} value={role.id}>{role.name}</option>
                             ))}
                         </Select>
-                                {console.log(selectedRole)}
+     
                         <Input
                             label={selectedRole == '5' ? 'Position' : 'Name of Role'}
                             value={position}

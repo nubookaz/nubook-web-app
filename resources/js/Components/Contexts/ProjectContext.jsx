@@ -1,6 +1,8 @@
+import { useAuth } from './AuthContext';
+
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useAuth } from './AuthContext';
+import { router } from '@inertiajs/react'; 
 
 const ProjectContext = createContext();
 
@@ -10,25 +12,43 @@ export const ProjectProvider = ({ children }) => {
     const { userData } = useAuth();
     const [projects, setProjects] = useState([]);
     const [currentProjectId, setCurrentProjectId] = useState(null);
+    const [currentProjectData, setCurrentProjectData] = useState(null);
 
-    // Memoize setCurrentProject to avoid unnecessary re-renders
-    const setCurrentProject = useCallback((projectId) => {
+    const setCurrentProject = useCallback(async (projectId) => {
         setCurrentProjectId(projectId);
-        localStorage.setItem('currentProjectId', projectId); // Save to localStorage
+        localStorage.setItem('currentProjectId', projectId);
+    
+        if (!projectId) {
+            setCurrentProjectData(null);
+            return;
+        }
+    
+        try {
+            const response = await axios.get(`/api/projects/${projectId}/details`);
+            const projectData = response.data.project;
+            setCurrentProjectData(projectData);
+    
+            if (response.data.url) {
+                router.visit(response.data.url);
+            }
+            
+        } catch (error) {
+            console.error("Failed to fetch current project:", error);
+            setCurrentProjectData(null);
+        }
     }, []);
-
+    
     useEffect(() => {
         const storedProjectId = localStorage.getItem('currentProjectId');
         if (storedProjectId) {
             setCurrentProjectId(storedProjectId);
         }
     }, []);
- 
-    // Memoize fetchUserProjects to prevent function recreation on every render
+
     const fetchUserProjects = useCallback(async () => {
-        if (!userData) return; // Exit early if userData is not available
+        if (!userData) return; 
         try {
-            const response = await axios.get(route('fetch-user-projects'));  
+            const response = await axios.get('/api/projects/fetch-project-data');  
             setProjects(response.data);
         } catch (error) {
             console.error("Failed to fetch project data:", error);
@@ -39,17 +59,16 @@ export const ProjectProvider = ({ children }) => {
         fetchUserProjects();
     }, [fetchUserProjects]);
 
-    // Memoize createProject to optimize performance
-    const createProject = useCallback(async (projectData, projectAssets) => {
+    const createProject = useCallback(async (projectData) => {
         const formData = new FormData();
-        Object.entries({ ...projectData, ...projectAssets }).forEach(([key, value]) => {
-            formData.append(key, value);
+        Object.entries(projectData).forEach(([key, value]) => {
+            if (value instanceof Object && !Array.isArray(value) && !(value instanceof File)) {
+                formData.append(key, JSON.stringify(value));
+            } else {
+                formData.append(key, value);
+            }
         });
-
-        if (projectAssets.uploadedImage) {
-            formData.append('uploadedImage', projectAssets.uploadedImage);
-        }
-
+    
         try {
             const response = await axios.post('/api/projects', formData, {
                 headers: {
@@ -57,16 +76,19 @@ export const ProjectProvider = ({ children }) => {
                 },
             });
 
-            setProjects(prevProjects => [...prevProjects, response.data]);
-            if (response.data?.url) {
-                window.location.href = response.data.url;
+            const newProjectId = response.data.projectId;
+            setCurrentProjectId(newProjectId);
+            setProjects(prevProjects => [...prevProjects, { ...projectData, id: newProjectId }]);
+
+            if (response.data.url) {
+                router.visit(response.data.url);
             }
         } catch (error) {
             console.error('Error saving project:', error);
         }
-    }, []);
+    }, [setCurrentProjectId]);
+    
 
-    // Memoize updateProject to ensure function stability
     const updateProject = useCallback(async (projectId, updatedProject) => {
         try {
             await axios.put(`/api/projects/${projectId}`, updatedProject);
@@ -76,7 +98,6 @@ export const ProjectProvider = ({ children }) => {
         }
     }, [projects]);
 
-    // Memoize deleteProject to minimize re-creations
     const deleteProject = useCallback(async (projectId) => {
         try {
             await axios.delete(`/api/projects/${projectId}`);
@@ -86,14 +107,15 @@ export const ProjectProvider = ({ children }) => {
         }
     }, [projects]);
 
-    return (
+ return (
         <ProjectContext.Provider value={{
             projects,
             createProject,
             updateProject,
             deleteProject,
             currentProjectId,
-            setCurrentProject
+            currentProjectData,
+            setCurrentProject,
         }}>
             {children}
         </ProjectContext.Provider>

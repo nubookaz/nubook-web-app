@@ -15,7 +15,7 @@ export default function UpdateCallSheet({ data, onClose }) {
     const [callSheetName, setCallSheetName] = useState(data?.call_sheet_name || '');
     const [startDate, setStartDate] = useState(data?.call_sheet_date_time ? new Date(data.call_sheet_date_time) : new Date());
     const [generalCallTime, setGeneralCallTime] = useState('');
-    console.log(data);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         switch (name) {
@@ -45,8 +45,6 @@ export default function UpdateCallSheet({ data, onClose }) {
         await updateCallSheet(data.id, dataToSend);
         onClose();  
     };
-
-
   
   return (
 

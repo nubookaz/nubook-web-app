@@ -18,12 +18,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
-
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Traits\CallSheetTrait;
-
 use Inertia\Inertia;
 
 class CallSheetController extends Controller
@@ -31,18 +27,40 @@ class CallSheetController extends Controller
 
     use CallSheetTrait;
    
-    public function fetchUserCallSheets($projectId)
+    public function fetchCallSheets($projectId)
     {
-        // Fetch call sheets for the specified project including related models
-        $callSheets = CallSheet::with(['users', 'productionCompany', 'project', 'filmLocations', 'productionSchedule'])
+        Log::info('Fetching call sheets', ['project_id' => $projectId]);
+        
+        // Check if the project exists
+        $project = Project::find($projectId);
+        
+        if (!$project) {
+            Log::warning('Project not found', ['project_id' => $projectId]);
+            return response()->json(['message' => 'Project not found'], 404);
+        }
+    
+        // Retrieve call sheets associated with the project, along with related data
+        $callSheets = CallSheet::with([
+                            'users', 
+                            'productionCompany', 
+                            'project', 
+                            'filmLocations', 
+                            'productionSchedule'
+                        ])
                         ->where('project_id', $projectId)
                         ->get();
+    
+        Log::info('Call sheets retrieved', ['project_id' => $projectId, 'count' => $callSheets->count()]);
+
+        // Check if call sheets were found
+        if ($callSheets->isEmpty()) {
+            Log::info('No call sheets found for this project', ['project_id' => $projectId]);
+            return response()->json(['message' => 'No call sheets found for this project'], 404);
+        }
 
         return response()->json($callSheets);
     }
-
-
-
+    
     public function getUsers($projectId, $callSheet_Id)
     {
         $callSheet = CallSheet::where('project_id', $projectId)->findOrFail($callSheet_Id);
@@ -51,8 +69,7 @@ class CallSheetController extends Controller
     }
 
     public function index($projectId)
-    {
- 
+    {   
         $projects = Project::findOrFail($projectId);
 
         $callSheets = $projects->callSheets->load(
@@ -94,22 +111,24 @@ class CallSheetController extends Controller
     {
         $validatedData = $request->validate([
             'call_sheet_name' => 'required',
-            'call_sheet_date_time' => 'required',
+            'call_sheet_date' => 'required',
+            'general_call_time' => 'required', // Ensure this matches your database column exactly
             'selfRole' => 'nullable|string',
             'selfPosition' => 'nullable|string',
             'selfRate' => 'nullable|numeric',
             'payFrequency' => 'nullable|string|in:Day Rate,Hourly Rate', 
         ]);
-    
+
         // Create the call sheet
-        $callSheet = new CallSheet($validatedData);
+        $callSheet = new CallSheet();
+        $callSheet->fill($validatedData);
         $callSheet->project_id = $projectId;
         $callSheet->save();
-    
+
         // Always attach the user as an admin to the call sheet
         $adminRole = Role::where('name', 'admin')->firstOrFail();
         $callSheet->users()->attach(Auth::id(), ['role_id' => $adminRole->id]);
-    
+
         // Additionally, attach the user with a specified role and position if requested
         if (!empty($request->input('selfRole')) && !empty($request->input('selfPosition'))) {
             $role = Role::where('name', $request->input('selfRole'))->firstOrFail();
@@ -125,13 +144,13 @@ class CallSheetController extends Controller
                 $attachData['rate'] = $request->input('selfRate');
                 $attachData['pay_frequency'] = $request->input('payFrequency'); // Include pay frequency
             }
-  
-             if ($adminRole->id !== $role->id) {
+
+            if ($adminRole->id !== $role->id) {
                 // Attach the user with the specified non-admin role, position, and rate
                 $callSheet->users()->attach(Auth::id(), $attachData);
             }
         }
-         return response()->json([
+        return response()->json([
             'url' => route('callSheet.details.page', ['projectId' => $projectId, 'callSheetId' => $callSheet->id])
         ]);
     }
@@ -141,21 +160,22 @@ class CallSheetController extends Controller
         $data = $request->validate([
             'id' => 'required|exists:call_sheets,id',
             'call_sheet_name' => 'required|string',
-            'call_sheet_date_time' => 'required|date'
+            'call_sheet_date' => 'required|date', 
+            'general_call_time' => 'required',  
         ]);
-
+    
         $callSheet = CallSheet::find($data['id']);
         if ($callSheet) {
             $callSheet->update([
                 'call_sheet_name' => $data['call_sheet_name'],
-                'call_sheet_date_time' => $data['call_sheet_date_time']
+                'call_sheet_date' => $data['call_sheet_date'],  
+                'general_call_time' => $data['general_call_time'], 
             ]);
             return response()->json(['message' => 'Call sheet updated successfully.', 'callSheet' => $callSheet]);
         }
-
+    
         return response()->json(['message' => 'Call sheet not found.'], 404);
-    }
-
+    }    
 
     public function callSheetDetailsPage($projectId, $callSheetId)
     {
@@ -185,8 +205,6 @@ class CallSheetController extends Controller
             'callSheet' => $callSheet,
         ]);
     }
-    
-    
 
     public function updateBulletin(Request $request, $projectId, $callSheetId)
     {

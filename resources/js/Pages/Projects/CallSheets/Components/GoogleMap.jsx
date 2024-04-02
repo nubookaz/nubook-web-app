@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 
 
 const GoogleMap = ({ locationData, mapKey }) => {
-  console.log('GoogleMap 1', locationData);
 
   const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
@@ -36,13 +35,12 @@ const GoogleMap = ({ locationData, mapKey }) => {
           console.error('Map is not initialized');
           return;
       }
-      // Clear existing markers
+
       markersRef.current.forEach(marker => marker.setMap(null));
       markersRef.current = [];
     
       const bounds = new window.google.maps.LatLngBounds();
     
-      // Function to add marker and extend bounds
       const addMarkerAndUpdateBounds = (lat, lng, iconUrl, label) => {
           if(lat != null && lng != null) {
               const position = new window.google.maps.LatLng(lat, lng);
@@ -51,7 +49,7 @@ const GoogleMap = ({ locationData, mapKey }) => {
           }
       };
     
-      // Generate address string safely
+
       const locationAddress = locationData?.location?.address ? 
           `${locationData.location.address.street_address || ''} 
           ${locationData.location.address.city || ''} 
@@ -59,7 +57,6 @@ const GoogleMap = ({ locationData, mapKey }) => {
           ${locationData.location.address.zip_code || ''}` :
           undefined;
     
-      // Add markers for location
       if (locationData?.location?.address?.latitude && locationData?.location?.address?.longitude) {
           addMarkerAndUpdateBounds(locationData.location.address.latitude, locationData.location.address.longitude, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png', locationData.location.name || locationAddress);
       }

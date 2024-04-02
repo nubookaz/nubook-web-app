@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useMediaContext } from '@/Components/Contexts/MediaContext';
 import { router } from '@inertiajs/react'; 
 
-const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError, updateProjectAssets, posterImagePreview, handlePosterImageChange }) => {
+const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError, posterImagePreview, handlePosterImageChange }) => {
   const { createMedia } = useMediaContext(); 
 
   const [imagePreview, setImagePreview] = useState(posterImagePreview);
@@ -59,18 +59,15 @@ const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError,
             formData.append('media_type', file.type);
             formData.append('size', file.size);
             formData.append('ai_generated', false);
-
             try {
-                const newMedia = await createMedia(formData);
                 setPosterImage({
                     poster: file,
                     dimensions: { width: image.width, height: image.height },
                     media_type: file.type,
                     size: file.size,
                     ai_generated: false,
-                    media_path: newMedia.media_path, 
+                    media_path: fileUrl, 
                 });
-                updateProjectAssets(newMedia.media_path);
             } catch (error) {
                 console.error('Error while uploading the image: ', error);
             }
@@ -104,18 +101,16 @@ const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError,
             dimensions: JSON.stringify({ width: data.width, height: data.height }),  
             ai_generated: true,
         };
-        setImagePreview(`/storage/${data.media_path}`); // Update to use the /storage prefix
+        setImagePreview(`/storage/${data.media_path}`); 
 
-        // Update the poster image state and project assets as needed
         setPosterImage({
-            poster: data.media_path, // Assuming `poster` should hold the image URL.
+            poster: data.media_path, 
             dimensions: { width: data.width, height: data.height },
             media_type: data.type,
             size: data.size,
             ai_generated: true,
             media_path: `/storage/${data.media_path}`, 
         });
-        updateProjectAssets(`/storage/${data.media_path}`);
       } else {
         throw new Error('Failed to generate AI poster');
       }
@@ -124,17 +119,17 @@ const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError,
     } finally {
       setIsGenerating(false);
     }
-  }, [createMedia, setImagePreview, setPosterImage, updateProjectAssets, videoProjectDetails]);
+  }, [createMedia, setImagePreview, setPosterImage, videoProjectDetails]);
 
   const handleGenerateAiImage = useCallback(() => {
-      const { projectName, primaryGenre, secondaryGenre, viewerRating, projectDescription } = videoProjectDetails;
-      if (!projectName || !primaryGenre || !viewerRating || !projectDescription || (secondaryGenre === undefined)) {
+      const { project_name, primaryGenre, secondaryGenre, viewerRating, projectDescription } = videoProjectDetails;
+      if (!project_name || !primaryGenre || !viewerRating || !projectDescription || (secondaryGenre === undefined)) {
           setErrorMessage('Please fill out the entire form before generating the AI image.');
           return;
       }
 
       setErrorMessage('');
-      let promptText = `Create an image for '${projectName}', a ${primaryGenre} ${secondaryGenre} movie rated ${viewerRating}. Description: ${projectDescription}.`;
+      let promptText = `Create an image for '${project_name}', a ${primaryGenre} ${secondaryGenre} movie rated ${viewerRating}. Description: ${projectDescription}.`;
 
       if (promptText.length > 1000) {
         promptText = promptText.substring(0, 1000);
@@ -171,7 +166,7 @@ const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError,
         style={{ display: 'none' }}
       />
       <label className="block text-gray-700 text-sm text-center w-full font-bold mb-2" htmlFor="projectDescription">Project Poster</label>
-      <div className="mt-4 mb-6 w-full h-auto max-w-[14rem] mx-auto relative cursor-pointer" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}>
+      <div className="mt-4 mb-6 h-[26rem] w-[18rem] shadow-md mx-auto relative cursor-pointer" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}>
         {isHovering && (
           <div className='absolute text-center m-auto h-full duration-500 transition-all w-full'>
             <div className='w-full h-full bg-slate-700/75 absolute z-30'></div>
@@ -186,7 +181,7 @@ const ProjectPoster = ({ videoProjectDetails, setPosterImage, setSelectionError,
         <img 
           src={imagePreview || defaultImagePath} 
           alt="Preview" 
-          className="w-full h-auto h-full max-h-[26rem] rounded-md w-[14rem]"
+          className="w-full h-auto h-full  object-cover rounded-md  border-4 border-white"
         />
       </div>
       {errorMessage && <p className="text-red-500 mt-2 text-center">{errorMessage}</p>}

@@ -314,7 +314,6 @@ const Weather = ({
     <>
        {layoutStyle === 'portrait' ? (
           <div className='flex flex-col gap-4'>
-            {console.log(weatherData.coord.lat + weatherData.coord.long)}
             <div className='flex flex-row gap-6 w-full h-full'>
               <div className='text-[4rem] text-center my-auto'>
                   <img className="w-full max-w-[8rem] mx-auto drop-shadow-xl" src={weatherIconPath} />
@@ -343,7 +342,6 @@ const Weather = ({
          
         ):(
           <div className='flex flex-row gap-6 w-full h-full'>
-            {console.log(weatherData.coord)}
             <div className='text-[4rem] text-center my-auto w-[40%]'>
             <img className="w-full max-w-[8rem] mx-auto drop-shadow-xl" src={weatherIconPath} />
              </div>

@@ -25,8 +25,6 @@ const Accordion = forwardRef(({
         parking: { address: {} },
         hospital: { address: {} }
     });
-    
-    console.log(accordionData);
 
     const [accordionInfo, setAccordionInfo] = useState({
         location: '',

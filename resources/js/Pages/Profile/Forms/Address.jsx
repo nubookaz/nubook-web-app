@@ -90,7 +90,7 @@ const renderInputWithTooltip = (field, label, type = 'text', placeholder, autoCo
  
 
   return (
-    <div className='flex flex-col gap-4 w-full'>
+    <div className='flex flex-col gap-2 w-full'>
         {renderInputWithTooltip('street_address', 'Street Address', 'text', 'Street Address', 'street-address')}
         <div className='flex flex-row gap-2 w-full'>
             {renderInputWithTooltip('city', 'City', 'text', 'City', 'address-level2')}

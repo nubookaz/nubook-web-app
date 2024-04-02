@@ -20,24 +20,21 @@ export default function ProjectDetailsPage({
 }) {
     const { toggleModal } = useModal();
     const handleProjectImagePreviewClick = () => {
-        toggleModal({type: 'projectImage', imageUrl: projectData.movie_poster.url });  
+      toggleModal({ type: 'projectImage', imageUrl: project });
     };
 
-    
-
-    const [isLoading, setIsLoading] = useState(true);
-    const [isFavorite, setIsFavorite] = useState(project.is_favorite); 
+    const [isFavorite, setIsFavorite] = useState(project.is_favorite);
 
     const toggleFavorite = async () => {
       try {
         const newFavoriteStatus = !isFavorite;
         setIsFavorite(newFavoriteStatus);
-  
+    
         // Update favorite status in the database
-        await axios.post(route('projects.favorite', {projectId: project.id} ), {
+        await axios.post(`/api/projects/${project.id}/favorite`, {
           isFavorite: newFavoriteStatus
         });
-  
+    
         // Optionally, handle any response or state updates based on the API call
       } catch (error) {
         console.error('Error updating favorite status:', error);
@@ -45,63 +42,46 @@ export default function ProjectDetailsPage({
         setIsFavorite(isFavorite);
       }
     };
-
+    
     const [projectData, setProjectData] = useState({
       id: '',
       is_favorite: '',
       project_type: '',
-      video_type: '',
+      category_type: '',
       project_name: '',
       project_description: '',
       primary_genre: '',
       secondary_genre: '',
       viewer_rating: '',
-      movie_poster: '',
-
       project_stage: '',
       project_status: '',
       filming_days: '',
       project_budget: '',
   });
+
   useEffect(() => {
     if (project) {
-        // Set the project data, including is_favorite
-        setProjectData({ ...project });
-         setIsLoading(false);
+        const details = JSON.parse(project.project_details || '{}');
+        const moviePoster = project.media.length > 0 ? `/storage/${project.media[0].media_path}` : '/images/movie_posters/coming_soon_poster.jpg';
+
+        setProjectData({ 
+            ...project,
+            primary_genre: details.primaryGenre || '',
+            secondary_genre: details.secondaryGenre || '',
+            viewer_rating: details.viewerRating || 'NR',
+            filming_days: details.filmingDays || '0',
+            project_budget: project.project_budget || '0.00',
+            movie_poster: moviePoster,  // Set the movie poster URL
+        });
     }
 }, [project]);
 
-  useEffect(() => {
-    if (project) {
-      setProjectData({
-        id: project.id || '',
-        is_favorite: project.is_favorite || false,
-        project_type: project.project_type || '',
-        video_type: project.video_type || '',
-        project_name: project.project_name || '',
-        project_description: project.project_description || '',
-        primary_genre: project.video_production.primary_genre || '',
-        secondary_genre: project.video_production.secondary_genre || '',
-        viewer_rating: project.video_production.viewer_rating || '',
-        movie_poster: project.video_production.movie_poster || '',
-        project_stage: project.project_stage || '',
-        project_status: project.project_status || '',
-        filming_days: project.video_production.filming_days || '',
-        project_budget: project.project_budget || '',
-      });
-
- 
-      setIsLoading(false);
- 
-    }
-  }, [project]);
-
   const formatCurrency = (amount) => {
-    return Number(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+      return Number(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   };
- 
- 
 
+
+ 
   return (
     <PortalLayout 
         breadcrumbs={[
@@ -109,24 +89,23 @@ export default function ProjectDetailsPage({
             { label: 'Project List', url: route('projects.list') },
             { label: 'Project Details', url: '' },
         ]}
-        project={project}
     >
 
             {{
                 body:(
                     <div className="w-full h-full flex flex-row gap-4">
                         <div className='flex flex-col gap-4 h-full w-full'>
-                            <CardContainer className='w-full h-full max-h-[24rem]' onClick={toggleFavorite}>
+                            <CardContainer className='w-full h-full max-h-[24rem]'>
                                 <div className='flex flex-row gap-6 w-full h-full'>
                                     <ImageContainer
-                                          backgroundImage={projectData.movie_poster.url ? projectData.movie_poster.url : '/images/movie_posters/coming_soon_poster.jpg'}
-                                          className='cursor-pointer w-full max-w-[15rem] h-full'
+                                          backgroundImage={`${projectData.movie_poster}`}
+                                          className='cursor-pointer w-full max-w-[14rem] h-full'
                                           overlayOpacity='0'
                                           enableHover={true}
                                           onClick={handleProjectImagePreviewClick}
                                       >
                                     </ImageContainer>
-                                    <div className='flex flex-col gap-2 h-full w-full justify-between max-h-[20rem] my-auto'>
+                                    <div className='flex flex-col gap-2 h-full w-full justify-between my-auto'>
                                         <div className='flex flex-col gap-2'>
                                             <div className='flex flex-row gap-2'>
                                               <span className='text-xs py-1 px-4 text-slate-400  bg-slate-100 rounded-md'>{projectData.project_status}</span>
@@ -153,13 +132,13 @@ export default function ProjectDetailsPage({
                                                   <FontAwesomeIcon icon={faCircle} className='text-[.5rem] my-auto'/>
                                                 </>
                                               ):null}
-                                              <span className='text-sm'>{projectData.video_type}</span>
+                                              <span className='text-sm'>{projectData.category_type}</span>
                                             </div>
                                         </div>
 
-                                        <div className='text-sm h-full w-full'>
+                                        <div className='text-sm h-full max-h-[9rem] w-full'>
                                           {projectData.project_description ? (
-                                            <p className=' text-slate-400 h-full w-full'>{projectData.project_description}</p>
+                                            <p className='text-[1rem] leading-7 text-slate-400 h-full w-full'>{projectData.project_description}</p>
                                           ):(
                                             <p className='bg-slate-50 text-slate-300 h-full w-full rounded-md p-4 items-center flex justify-center'>This project does not have a decription.</p>
                                           )}
@@ -178,14 +157,14 @@ export default function ProjectDetailsPage({
                                 </div>
                             </CardContainer>
 
-                            <CardContainer header='Tasks' className='h-full' onClick={toggleFavorite}>
+                            <CardContainer header='Tasks' className='h-full' >
 
                             </CardContainer>
 
                         </div>
                         
                         <div className='flex flex-col h-full w-full max-w-[28rem] gap-4'>
-                          <CardContainer header='Budget' onClick={toggleFavorite}>
+                          <CardContainer header='Budget' >
                               <div className='flex flex-col text-center py-[3rem]'>
                                   <span className='text-slate-400 font-semibold'>Project Budget</span>
                                   <span className='text-[2rem] text-emerald-500 font-bold'>${formatCurrency(projectData.project_budget)}</span>

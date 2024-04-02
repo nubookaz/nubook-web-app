@@ -38,6 +38,7 @@ return new class extends Migration
             $table->boolean('personal_info_completed')->default(false); // Track personal info completion step
             $table->boolean('company_info_completed')->default(false); // Track company info completion step
             $table->boolean('registration_complete')->default(false);
+            $table->string('dark_mode_setting')->default('light');
             $table->rememberToken();
             $table->timestamps();
         });

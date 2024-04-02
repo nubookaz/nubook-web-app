@@ -31,7 +31,7 @@ export default function GeneralCallTimeForm({
     }, []);
 
 
-    const [generalCallTime, setGeneralCallTime] = useState(data); // Assuming 'data' is the initial time
+    const [generalCallTime, setGeneralCallTime] = useState(data);
     const handleTimeChange = (newTime) => {
         setGeneralCallTime(newTime);
     };
@@ -46,9 +46,7 @@ export default function GeneralCallTimeForm({
             if (response.status < 200 || response.status >= 300) {
                 throw new Error('Failed to update general call time');
             }
-            console.log(newGeneralCallTime);
 
-            // Update the callSheet context with the new general call time
             updateCurrentCallSheet({ call_sheet_date_time: newGeneralCallTime });
             setTimeout(() => {
                 setSnackContent('Call time was updated successfully');
@@ -58,7 +56,6 @@ export default function GeneralCallTimeForm({
  
         } catch (error) {
             console.error(error);
-            // Handle the error here, for example, show an error message to the user
         }
     };
     

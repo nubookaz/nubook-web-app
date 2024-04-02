@@ -17,12 +17,12 @@ function ProjectEstimate({ auth }) {
     };
         
     const [projectData, setProjectData] = useState({
-      projectName: project.projectName || '',
+      project_name: project.project_name || '',
       projectType: project.projectType || '',
       projectDescription: project.projectDescription || '',
       projectBudget: project.projectBudget || 0,
       categoryType: project.categoryType || '',
-      projectStage: project.projectStage || '',
+      project_stage: project.project_stage || '',
       projectDays: project.projectDays || 0,
       projectMonths: project.projectMonths || 0,
       projectYears: project.projectYears || 0,
@@ -32,7 +32,7 @@ function ProjectEstimate({ auth }) {
 
 
     const hasData = project;
-    const toolbarTitle = project.projectName; // Provide a title for the toolbar
+    const toolbarTitle = project.project_name; // Provide a title for the toolbar
     const toolbarCTAText = "Create a New Call Sheet"; // Provide the button text
     const buttonText = "Create a New Call Sheet"; // Provide the button text
     const customSvgPath = "../../images/svg_images/undraw_call_sheets_1.svg"; // Provide the SVG path
@@ -58,9 +58,9 @@ function ProjectEstimate({ auth }) {
                   <Tooltip title="Project Name" placement="top">
                     <Input
                       type="text"
-                      id="projectName"
-                      name="projectName"
-                      value={projectData.projectName}
+                      id="project_name"
+                      name="project_name"
+                      value={projectData.project_name}
 
                     />
                   </Tooltip>
@@ -73,7 +73,6 @@ function ProjectEstimate({ auth }) {
                       className="w-full"
                       required
                       onChange={(e, newProjectType) => {
-                        console.log("New Project Type:", newProjectType);
                         setProjectData({
                           ...projectData,
                           projectType: newProjectType,

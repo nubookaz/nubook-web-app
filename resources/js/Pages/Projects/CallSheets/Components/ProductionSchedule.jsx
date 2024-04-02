@@ -44,7 +44,6 @@ const ProductionScheduleRow = ({ row }) => {
     const { rows, addRow, deleteRow, updateRowContent, selectProjectById } = useSchedule();
     const { toggleModal } = useModal();
   
-    console.log(rows);
     const [initialRows, setInitialRows] = React.useState([]);
   
     useEffect(() => {
