@@ -11,16 +11,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import CallSheetDetailsForm from './Partials/CallSheetDetailsForm';
 
-export default function CreateCallSheet({ roles, onClose }) {
-  const { currentProjectId } = useProject();
-  const { createCallSheet } = useCallSheet();
-  const { toggleModal } = useModal();
+export default function CreateCallSheet({ roles, onClose, project }) {
 
+  const { createCallSheet } = useCallSheet();
+ 
   const roleRef = useRef(null);  
 
   const [callSheetName, setCallSheetName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
-  const [generalCallTime, setGeneralCallTime] = useState('');
+  const [generalCallTime, setGeneralCallTime] = useState('8:00 AM');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,22 +39,20 @@ export default function CreateCallSheet({ roles, onClose }) {
   const handleTimeChange = (time) => {
     setGeneralCallTime(time);
   };
-
+ 
   const handleSave = async () => {
     const formattedDate = format(startDate, 'yyyy-MM-dd');
     const dataToSend = {
       call_sheet_name: callSheetName,
       call_sheet_date: formattedDate,
-      general_call_Time: generalCallTime, // Assuming generalCallTime is in the appropriate format (e.g., 'HH:mm')
-      project_id: currentProjectId,  
+      general_call_time: generalCallTime, // Assuming generalCallTime is in the appropriate format (e.g., 'HH:mm')
+      project_id: project.id,  
     };
-  
+ 
     await createCallSheet(dataToSend);
   
     onClose();  
   };
-  
-
 
   const [payFrequency, setPayFrequency] = useState('Day Rate');
   const [rate, setRate] = useState('');

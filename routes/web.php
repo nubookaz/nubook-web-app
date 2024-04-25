@@ -134,7 +134,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Call Sheet Routes
         Route::prefix('{projectId}/call-sheets')->group(function () {
 
-            Route::post('/', [CallSheetController::class, 'createCallSheet'])->name('callSheet.create');
             Route::get('{callSheetId}/details', [CallSheetController::class, 'callSheetDetailsPage'])->name('callSheet.details.page');
 
 
@@ -144,8 +143,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::get('/{callSheetId}/users', [CallSheetController::class, 'getUsers'])->name('call-sheets.users');
 
-            Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
-          
+           
             Route::post('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update');
             Route::post('{callSheetId}/details/locations', [CallSheetController::class, 'storeLocationDetails'])->name('projects.callSheets.save.locations');
             Route::put('{callSheetId}/details/locations/update', [CallSheetController::class, 'updateLocationDetails'])->name('projects.callSheets.update.locations');

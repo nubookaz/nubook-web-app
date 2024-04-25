@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
 
-const DarkModeContext = createContext();
+const UserProfileContext = createContext();
 
-export const useDarkMode = () => useContext(DarkModeContext);
+export const useProfile = () => useContext(UserProfileContext);
 
-export const DarkModeProvider = ({ children }) => {
+export const UserProfileProvider = ({ children }) => {
     const { userData, loggedIn } = useAuth();
     const [darkModeSetting, setDarkModeSetting] = useState('light');
 
@@ -46,11 +46,11 @@ export const DarkModeProvider = ({ children }) => {
     };
 
     return (
-        <DarkModeContext.Provider value={{
+        <UserProfileContext.Provider value={{
             darkModeSetting, 
             setDarkModeSetting: updateDarkModeSetting,
         }}>
             {children}
-        </DarkModeContext.Provider>
+        </UserProfileContext.Provider>
     );
 };

@@ -17,9 +17,9 @@ export default function VerificationProcess({
 
     currentStep, 
     setCurrentStep, 
-    setIsModalOpen,
 
  }) {
+    const { setIsModalOpen } = useAuth();
 
     const [emptyFields, setEmptyFields] = useState({
         first_name: false,
@@ -30,11 +30,9 @@ export default function VerificationProcess({
         state: false,
         zip_code: false,
     });
-    
+
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = React.useState(false);
-
-
 
     const { data, setData, post, processing, errors, reset } = useForm({
         password: '',

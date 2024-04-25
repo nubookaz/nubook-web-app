@@ -12,7 +12,6 @@ export default function ActionDrawer({
     const [fadeInDelay, setFadeInDelay] = useState(false);
     const { expandDrawer, drawerWidth } = useDrawer();
 
-
     const [isOpen, setIsOpen] = useState(false);
     const [showWarning, setShowWarning] = useState(true);
 
@@ -25,8 +24,8 @@ export default function ActionDrawer({
     };
 
     const drawerStyles = {
-        normal: 'w-[25%]', // Example Tailwind class for normal width
-        wide: 'w-[96%]', // Example Tailwind class for wider drawer
+        normal: 'w-[25%]',  
+        wide: 'w-[96%]', 
     };
 
       

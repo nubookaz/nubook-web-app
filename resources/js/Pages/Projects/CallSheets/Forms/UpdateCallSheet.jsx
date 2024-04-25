@@ -65,7 +65,7 @@ export default function UpdateCallSheet({ data, onClose }) {
 
         <div className="flex flex-row justify-between mx-auto items-center w-full max-w-[30rem] gap-4 pt-10">
             <SecondaryButton className='w-full' onClick={onClose}>Cancel</SecondaryButton>
-            <PrimaryButton className='w-full' onClick={handleSave}>Create</PrimaryButton>
+            <PrimaryButton className='w-full' onClick={handleSave}>Update</PrimaryButton>
         </div>
 
     </div>

@@ -14,9 +14,23 @@ export const ProjectProvider = ({ children }) => {
     const [currentProjectId, setCurrentProjectId] = useState(null);
     const [currentProjectData, setCurrentProjectData] = useState(null);
 
+    const fetchUserProjects = useCallback(async () => {
+        if (!userData) return; 
+        try {
+            const response = await axios.get('/projects/fetch-project-data');  
+            setProjects(response.data);
+        } catch (error) {
+            console.error("Failed to fetch project data:", error);
+        }
+    }, [userData]);
+
+    useEffect(() => {
+        fetchUserProjects();
+    }, [fetchUserProjects]);
+
+ 
     const setCurrentProject = useCallback(async (projectId) => {
         setCurrentProjectId(projectId);
-        localStorage.setItem('currentProjectId', projectId);
     
         if (!projectId) {
             setCurrentProjectData(null);
@@ -24,7 +38,7 @@ export const ProjectProvider = ({ children }) => {
         }
     
         try {
-            const response = await axios.get(`/api/projects/${projectId}/details`);
+            const response = await axios.get(`/projects/${projectId}/details`);
             const projectData = response.data.project;
             setCurrentProjectData(projectData);
     
@@ -37,27 +51,6 @@ export const ProjectProvider = ({ children }) => {
             setCurrentProjectData(null);
         }
     }, []);
-    
-    useEffect(() => {
-        const storedProjectId = localStorage.getItem('currentProjectId');
-        if (storedProjectId) {
-            setCurrentProjectId(storedProjectId);
-        }
-    }, []);
-
-    const fetchUserProjects = useCallback(async () => {
-        if (!userData) return; 
-        try {
-            const response = await axios.get('/api/projects/fetch-project-data');  
-            setProjects(response.data);
-        } catch (error) {
-            console.error("Failed to fetch project data:", error);
-        }
-    }, [userData]);
-
-    useEffect(() => {
-        fetchUserProjects();
-    }, [fetchUserProjects]);
 
     const createProject = useCallback(async (projectData) => {
         const formData = new FormData();
@@ -70,7 +63,7 @@ export const ProjectProvider = ({ children }) => {
         });
     
         try {
-            const response = await axios.post('/api/projects', formData, {
+            const response = await axios.post('/projects', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -88,10 +81,9 @@ export const ProjectProvider = ({ children }) => {
         }
     }, [setCurrentProjectId]);
     
-
     const updateProject = useCallback(async (projectId, updatedProject) => {
         try {
-            await axios.put(`/api/projects/${projectId}`, updatedProject);
+            await axios.put(`/projects/${projectId}`, updatedProject);
             setProjects(projects.map(project => project.id === projectId ? { ...project, ...updatedProject } : project));
         } catch (error) {
             console.error("Failed to update project:", error);
@@ -100,13 +92,29 @@ export const ProjectProvider = ({ children }) => {
 
     const deleteProject = useCallback(async (projectId) => {
         try {
-            await axios.delete(`/api/projects/${projectId}`);
+            await axios.delete(`/projects/${projectId}`);
             setProjects(projects.filter(project => project.id !== projectId));
         } catch (error) {
             console.error("Failed to delete project:", error);
         }
     }, [projects]);
 
+    const toggleFavorite = useCallback(async (projectId, newFavoriteStatus) => {
+        try {
+            // Update favorite status in the database
+            await axios.post(`/projects/${projectId}/favorite`, {
+                isFavorite: newFavoriteStatus
+            });
+    
+            // Update favorite status in the context
+            setProjects(projects.map(project => 
+                project.id === projectId ? { ...project, is_favorite: newFavoriteStatus } : project
+            ));
+        } catch (error) {
+            console.error('Error updating favorite status:', error);
+        }
+    }, [projects]);
+    
  return (
         <ProjectContext.Provider value={{
             projects,
@@ -116,6 +124,7 @@ export const ProjectProvider = ({ children }) => {
             currentProjectId,
             currentProjectData,
             setCurrentProject,
+            toggleFavorite,
         }}>
             {children}
         </ProjectContext.Provider>

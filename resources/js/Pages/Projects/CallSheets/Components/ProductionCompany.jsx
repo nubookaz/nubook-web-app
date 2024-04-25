@@ -25,7 +25,7 @@ export default function ProductionCompany({ user, className }){
             {primaryCompanyName ? (
                 <h2 className='text-2xl text-slate-500'>{primaryCompanyName}</h2>
             ) : (
-                <div>Assign a Production Company</div>
+                <div className='text-center my-auto px-8 text-slate-300'>Assign a Production Company (Optional) </div>
             )}
 
         </CardContainer>

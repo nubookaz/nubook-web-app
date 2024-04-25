@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/Components/Contexts/AuthContext';
-import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
 import Sidebar from '@/Layouts/Partials/Sidebar';
-import Modal from '@/Components/Modals/Modal';
-import VerificationProcess from '@/Pages/Auth/Verification/VerificationProcess';
 import CircularProgress from '@mui/joy/CircularProgress';
 
 export default function AuthenticatedLayout({ children, project }) {
-  const { darkModeSetting } = useDarkMode();
-  const { isModalOpen, currentStep, setIsModalOpen, setCurrentStep, isLoading } = useAuth();
+  const { darkModeSetting } = useProfile();
+  const { isModalOpen, isLoading } = useAuth();
   const [showContent, setShowContent] = useState(false);
+  console.log(project);
 
   useEffect(() => {
     let timer;
@@ -29,33 +28,27 @@ export default function AuthenticatedLayout({ children, project }) {
 
   const backgroundColor = backgroundClasses[darkModeSetting] || backgroundClasses.light;
 
-  if (isLoading || !showContent) {
-    return <div className='w-full min-h-screen bg-white text-rose-500 text-center flex justify-center items-center '><CircularProgress variant={'soft'} color="neutral" thickness={4} /></div>;
+  const sidebarComponent = <Sidebar project={project} />;
+
+  if (!showContent || isModalOpen) {
+    return (
+      <div className={`w-full min-h-screen flex duration-500 justify-center tertiary-color items-center ${backgroundColor}`}>
+        <div className={`flex-1 ${backgroundColor}`}>
+          {sidebarComponent}
+        </div>
+        <div className='flex-1 duration-500'>
+          <CircularProgress variant={'soft'} color="neutral" thickness={4} />
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen tertiary-color relative bg-slate-50">
-      {isModalOpen && (
-        <div className="absolute z-40 w-full">
-          <Modal isOpen={isModalOpen} shouldCloseOnOverlayClick={false} className="!w-[70rem]">
-            <VerificationProcess
-              currentStep={currentStep}
-              setCurrentStep={setCurrentStep}
-              setIsModalOpen={setIsModalOpen}
-            />
-          </Modal>
-        </div>
-      )}
-
-      <div className={`duration-500 ${backgroundColor}`}>
-        <div className="absolute z-30 w-full">
-          <Sidebar project={project}/>
-        </div>
-
-        <main className="flex flex-col w-full h-screen overflow-hidden">
-          {children.portal}
-        </main>
-      </div>
+    <div className={`min-h-screen tertiary-color relative ${backgroundColor}`}>
+      {sidebarComponent}
+      <main className="flex flex-col w-full h-screen overflow-hidden">
+        {children.portal}
+      </main>
     </div>
   );
 }

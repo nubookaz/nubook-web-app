@@ -15,17 +15,14 @@ import PortalLayout from '@/Layouts/Partials/PortalLayout';
 export default function CallSheets() {
     
     const { userData } = useAuth();
-    const { currentProjectId } = useProject();
-
+  
     const { currentCallSheet, setCurrentCallSheetId } = useCallSheet();
 
     const { props } = usePage();
-    const project = props.projects || []; 
-    const callSheet = props.callSheets || [];  
+    const project = props.project || []; 
+    const callSheetList = props.callSheets || [];  
     const roles = props.roles || [];
 
- 
- 
     return (
         <PortalLayout
             breadcrumbs={[
@@ -38,7 +35,7 @@ export default function CallSheets() {
         >
             {{
                 body:(
-                    <CallSheetList currentCallSheet={currentCallSheet} project={project} callSheets={callSheet} ></CallSheetList>
+                    <CallSheetList currentCallSheet={currentCallSheet} project={project} callSheetList={callSheetList} ></CallSheetList>
                 ),
             }}
         </PortalLayout>

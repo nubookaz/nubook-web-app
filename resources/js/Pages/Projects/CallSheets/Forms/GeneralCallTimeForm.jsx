@@ -59,12 +59,14 @@ export default function GeneralCallTimeForm({
         }
     };
     
-  
+    console.log(currentCallSheet);
+    console.log(callSheet);
+
     return(
         <div className='flex flex-col gap-2 p-[3rem] w-[30rem] h-full'>
             <h2 className={`text-center text-slate-500 flex justify-center w-full text-2xl mx-auto max-w-[16rem]`}>Adjust your general call time</h2>
             
-            <Time initialTime={currentCallSheet?.call_sheet_date_time || callSheet.call_sheet_date_time} onTimeChange={handleTimeChange} className='py-10'/>
+            <Time initialTime={currentCallSheet?.general_call_Time || callSheet.general_call_Time} onTimeChange={handleTimeChange} className='py-10'/>
 
             <div className='w-full flex flex-row justify-center gap-6'>
                 <SecondaryButton onClick={handleCloseModal}>Cancel</SecondaryButton>

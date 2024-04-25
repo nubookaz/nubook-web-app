@@ -20,7 +20,7 @@ export default function Surface({ user, project, callSheet, roles }) {
     const { isModalOpen, toggleModal, modalContent } = useModal();
     const { isSnackOpen, setIsSnackOpen, snackContent } = useSnack();
     const [resetSignal, setResetSignal] = useState(false);
-
+    console.log(modalContent?.data);
     const renderContent = () => {
         switch (modalContent?.type) {
             case 'projectForm':
@@ -36,7 +36,7 @@ export default function Surface({ user, project, callSheet, roles }) {
             case 'generalCallTime':
                 return <GeneralCallTimeForm callSheet={callSheet} data={modalContent?.data} />;
             case 'newCallSheetForm':
-                return <CreateCallSheet user={user} roles={roles} project={project} callSheet={callSheet} data={modalContent?.data}  onClose={handleCloseClick} /> ;
+                return <CreateCallSheet user={user} roles={roles} project={modalContent?.data} callSheet={callSheet} onClose={handleCloseClick} /> ;
             case 'editCallSheetForm':
                 return <UpdateCallSheet mode='edit' data={modalContent?.data} onClose={handleCloseClick} />;   
             case 'productionSchedule':

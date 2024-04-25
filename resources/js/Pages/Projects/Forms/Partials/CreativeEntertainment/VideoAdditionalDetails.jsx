@@ -112,7 +112,6 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
     const renderClientCards = () => {
         if (isAddingNewClient || !clients || clients.length === 0) return null;
     
-        // Sort clients by first name, falling back to company name if the first name is not available
         const sortedClients = [...clients].sort((a, b) => {
             const nameA = a.first_name || a.company || '';
             const nameB = b.first_name || b.company || '';
@@ -258,7 +257,7 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
                     >
                         {{
                             description: (
-                                <p className='text-slate-300 max-w-[22rem]'>You have not entered a production schedule yet. Add one now!</p>
+                                <p className='text-slate-300 max-w-[22rem]'>You have not entered a client yet. Add one now!</p>
                             )
                         }}
                     </EmptyContent>

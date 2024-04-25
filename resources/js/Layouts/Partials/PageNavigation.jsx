@@ -1,5 +1,5 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
-import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
 import { useProject } from '@/Components/Contexts/ProjectContext';
 
 import React, { useState, useEffect } from 'react';
@@ -18,9 +18,14 @@ const PageNavigation = ({
 
     const { currentProjectId } = useProject();
     const { createNewProject } = useAuth();
-    const { darkModeSetting } = useDarkMode();
- 
-    const projectId = currentProjectId; 
+    const { darkModeSetting } = useProfile();
+    const [projectId, setProjectId] = useState(currentProjectId || project?.id);
+
+    useEffect(() => {
+        // Update projectId when currentProjectId or project.id changes
+        setProjectId(currentProjectId || project?.id);
+    }, [currentProjectId, project]);
+    
     const initialSubitemVisibility = {
         'projects.callSheets.index': activePage.startsWith('callSheet.details.page')
     };
@@ -113,8 +118,6 @@ const PageNavigation = ({
      const renderNavItems = (navItems) => {
         return navItems.map((item, index) => {
             let routeParams = {};
-    
-            // Set route parameters for specific items if needed
             if (item.routeName.startsWith('project.details') || item.routeName === 'projects.callSheets.index') {
                 routeParams = { projectId: projectId };
             }

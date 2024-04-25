@@ -1,7 +1,7 @@
 
 
 import { useAuth } from '@/Components/Contexts/AuthContext';
-import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
 
 import React, { useState, useEffect } from 'react';
 
@@ -27,7 +27,7 @@ export default function PortalLayout({
   
 }) {
     const { userData } = useAuth();
-    const { darkModeSetting } = useDarkMode();
+    const { darkModeSetting } = useProfile();
 
     const breadcrumbTextColor = darkModeSetting === 'light' ? 'text-slate-500' : 'text-white';
     const breadcrumbSeparatorColor = darkModeSetting === 'light' ? 'text-slate-400' : 'text-slate-300';

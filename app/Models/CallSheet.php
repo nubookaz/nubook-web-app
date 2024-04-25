@@ -16,7 +16,8 @@ class CallSheet extends Model
         'production_schedule_id',  
         'status',
         'call_sheet_name',
-        'call_sheet_date_time',
+        'call_sheet_date',
+        'general_call_time',
         'weather',
         'bulletin',
     ];

@@ -17,9 +17,9 @@ export default function ProductionDetails({
 
     const { toggleModal } = useModal();
     const handleProductionDetailsClick = () => {
-        toggleModal({type: 'editCallSheetForm'});  
+        toggleModal({type: 'editCallSheetForm', data: callSheet});  
     };
-
+    
     const [callSheetName, setCallSheetName] = useState('');
     const [date, setDate] = useState('');
     const [callTime, setCallTime] = useState('');
@@ -46,9 +46,9 @@ export default function ProductionDetails({
     useEffect(() => {
         if (callSheet) {
             setCallSheetName(callSheet.call_sheet_name);
-            if (callSheet.call_sheet_date_time) {
-                const dateValue = formatDateWithDay(callSheet.call_sheet_date_time);
-                const timeValue = formatTime(callSheet.call_sheet_date_time);
+            if (callSheet.call_sheet_date) {
+                const dateValue = formatDateWithDay(callSheet.call_sheet_date);
+                const timeValue = formatTime(callSheet.call_sheet_date);
                 setDate(dateValue);
                 setCallTime(timeValue);
             }

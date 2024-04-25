@@ -1,4 +1,4 @@
-import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
 
 import React, { useState, useEffect } from 'react';
  
@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = ({ isOpen, onClose, children, className, showCloseButton, shouldCloseOnOverlayClick = true }) => {
-    const { darkModeSetting } = useDarkMode();
+    const { darkModeSetting } = useProfile();
 
     const defaultClasses = {
         light: { background: 'bg-white', text: 'text-slate-900' },

@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     userData: null,
     latestProfileImageUrl: null,
     defaultProfileImageUrl: '',
-    isLoading: true,  // Added loading state
+    isLoading: false,  // Added loading state
   });
 
   const checkAuthStatus = useCallback(async () => {
@@ -101,7 +101,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchProfileImage = useCallback(async () => {
     try {
-      const response = await axios.get('/api/profile/get-profile-image');
+      const response = await axios.get('/profile/get-profile-image');
       if (response.data && response.data.imageUrl && response.data.imageUrl !== authState.userData?.profile_image) {
         setAuthState(prevState => ({
           ...prevState,
@@ -119,7 +119,7 @@ export const AuthProvider = ({ children }) => {
     formData.append('profileImage', uploadedFile);
 
     try {
-      const response = await axios.post('/api/profile/upload-profile-image', formData);
+      const response = await axios.post('/profile/upload-profile-image', formData);
       if (response.data.imageUrl) {
         setAuthState(prevState => ({
           ...prevState,

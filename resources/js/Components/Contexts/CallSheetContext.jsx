@@ -14,15 +14,15 @@ export const CallSheetProvider = ({ children }) => {
 
     const { currentProjectId } = useProject();
     const [callSheets, setCallSheets] = useState([]);
-    const [currentCallSheetId, setCurrentCallSheetId] = useState(() => localStorage.getItem('currentCallSheetId'));
+    const [currentCallSheetId, setCurrentCallSheetId] = useState('');
     const [currentCallSheet, setCurrentCallSheet] = useState(null);
-    console.log(currentCallSheetId);
+    console.log(currentProjectId);
 
     useEffect(() => {
         if (callSheets.length > 0) {
             console.log(callSheets);
 
-            const sheet = callSheets.find(sheet => sheet.id.toString() === currentCallSheetId);
+            const sheet = callSheets.find(sheet => sheet.callSheetId === currentCallSheetId);
             setCurrentCallSheet(sheet || null);
         }
     }, [callSheets, currentCallSheetId]);
@@ -30,7 +30,7 @@ export const CallSheetProvider = ({ children }) => {
     const fetchCallSheets = async () => {
         if (currentProjectId) {
             try {
-                const response = await axios.get(`/api/projects/${currentProjectId}/call-sheets/fetch-call-sheets`);
+                const response = await axios.get(`/projects/${currentProjectId}/call-sheets/fetch-call-sheets`);
                 setCallSheets(response.data);
             } catch (error) {
                 console.error("Failed to fetch call sheets:", error);
@@ -38,32 +38,33 @@ export const CallSheetProvider = ({ children }) => {
         }  
      };
 
-    useEffect(() => {
+     useEffect(() => {
         if(loggedIn){
             fetchCallSheets();
         }
     }, [loggedIn, currentProjectId]);
-
+ 
     const createCallSheet = async (callSheetData) => {
-        if (!currentProjectId) return;
-        try {
-            const response = await axios.post(route('callSheet.create', { projectId: currentProjectId }), callSheetData);
-            if (response.data && response.data.id) {
+         try {
+            const response = await axios.post(`/projects/${callSheetData.project_id}/call-sheets/create`, callSheetData);
+            if (response.data && response.data.callSheetId) {
+                console.log(response);
+
                 setCallSheets(prev => [...prev, response.data]);
-                setCurrentCallSheetId(response.data.id.toString());
-                // localStorage.setItem('currentCallSheetId', response.data.id.toString());
+                setCurrentCallSheetId(response.data.callSheetId);
             } else {
                 console.log('Unexpected response data:', response.data);
             }
         } catch (error) {
             console.error("Failed to create call sheet:", error);
         }
-    };
+     };
     
+    console.log(currentCallSheetId);
     const updateCallSheet = async (callSheetId, updatedCallSheetData) => {
         if (!currentProjectId) return;
         try {
-            await axios.post(`/api/projects/${currentProjectId}/call-sheets/${callSheetId}`, updatedCallSheetData);
+            await axios.post(`/projects/${currentProjectId}/call-sheets/${callSheetId}`, updatedCallSheetData);
             setCallSheets(prev => prev.map(callSheet => callSheet.id === callSheetId ? { ...callSheet, ...updatedCallSheetData } : callSheet));
             if (currentCallSheetId === callSheetId) {
                 setCurrentCallSheetId({ ...currentCallSheetId, ...updatedCallSheetData });
@@ -76,7 +77,7 @@ export const CallSheetProvider = ({ children }) => {
     const deleteCallSheet = async (callSheetId) => {
         if (!currentProjectId) return;
         try {
-            await axios.delete(`/api/projects/${currentProjectId}/call-sheets/${callSheetId}/softDelete`);
+            await axios.delete(`/projects/${currentProjectId}/call-sheets/${callSheetId}/softDelete`);
             setCallSheets(prev => prev.filter(callSheet => callSheet.id !== callSheetId));
             if (currentCallSheetId === callSheetId) {
                 setCurrentCallSheetId(null);

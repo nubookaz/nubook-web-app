@@ -50,6 +50,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::prefix('{projectId}/call-sheets')->group(function () {
             Route::get('/fetch-call-sheets', [CallSheetController::class, 'fetchCallSheets'])->name('fetch-call-sheets');
+            Route::post('/create', [CallSheetController::class, 'createCallSheet'])->name('callSheet.create');
+            Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
 
         });
 

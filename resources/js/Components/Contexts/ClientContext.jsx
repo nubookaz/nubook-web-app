@@ -17,7 +17,7 @@ export const ClientProvider = ({ children }) => {
     setError(null);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/clients', {
+      const response = await fetch('/clients', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -42,7 +42,7 @@ export const ClientProvider = ({ children }) => {
   // Create a new client
   const createClient = useCallback(async (client) => {
     try {
-      const response = await fetch('/api/clients', {
+      const response = await fetch('/clients', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export const ClientProvider = ({ children }) => {
   // Update an existing client
   const updateClient = useCallback(async (id, updatedInfo) => {
     try {
-      const response = await fetch(`/api/clients/${id}`, {
+      const response = await fetch(`/clients/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export const ClientProvider = ({ children }) => {
   // Delete a client
   const deleteClient = useCallback(async (id) => {
     try {
-      const response = await fetch(`/api/clients/${id}`, {
+      const response = await fetch(`/clients/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

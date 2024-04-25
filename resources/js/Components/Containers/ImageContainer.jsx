@@ -19,7 +19,7 @@ function ImageContainer({
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: `${backgroundSize}`, 
     } : {};
-    const staticClassNames = "overflow-hidden relative  rounded-md ";
+    const staticClassNames = "overflow-hidden relative rounded-xl";
     const dynamicClassNames = className ? className : "";
     const combinedClassNames = staticClassNames + ' ' + dynamicClassNames;
 

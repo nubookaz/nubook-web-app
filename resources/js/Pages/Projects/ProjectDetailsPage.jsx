@@ -1,5 +1,6 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
 import { useModal } from '@/Components/Contexts/ModalContext';
+import { useProject } from '@/Components/Contexts/ProjectContext';
 
 import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
@@ -19,29 +20,25 @@ export default function ProjectDetailsPage({
 
 }) {
     const { toggleModal } = useModal();
+    const { setCurrentProject, toggleFavorite } = useProject();
+
     const handleProjectImagePreviewClick = () => {
       toggleModal({ type: 'projectImage', imageUrl: project });
     };
-
+ 
     const [isFavorite, setIsFavorite] = useState(project.is_favorite);
 
-    const toggleFavorite = async () => {
-      try {
-        const newFavoriteStatus = !isFavorite;
-        setIsFavorite(newFavoriteStatus);
-    
-        // Update favorite status in the database
-        await axios.post(`/api/projects/${project.id}/favorite`, {
-          isFavorite: newFavoriteStatus
-        });
-    
-        // Optionally, handle any response or state updates based on the API call
-      } catch (error) {
-        console.error('Error updating favorite status:', error);
-        // Optionally, reset the favorite status in case of error
-        setIsFavorite(isFavorite);
-      }
-    };
+    const handleToggleFavorite = () => {
+      const newFavoriteStatus = !isFavorite;
+      setIsFavorite(newFavoriteStatus);
+      toggleFavorite(project.id, newFavoriteStatus);
+  };
+
+  useEffect(() => {
+    if (project && project.id) {
+        setCurrentProject(project.id);
+    }
+}, [project, setCurrentProject]);
     
     const [projectData, setProjectData] = useState({
       id: '',
@@ -89,6 +86,9 @@ export default function ProjectDetailsPage({
             { label: 'Project List', url: route('projects.list') },
             { label: 'Project Details', url: '' },
         ]}
+        
+        project={project}
+    
     >
 
             {{
@@ -116,7 +116,7 @@ export default function ProjectDetailsPage({
                                                 <FontAwesomeIcon
                                                   icon={faBookmark} 
                                                   className={`text-2xl my-auto cursor-pointer duration-500 ${isFavorite ? 'text-red-500 drop-shadow-[0_1px_3px_rgba(253,164,175,0.75)]' : 'text-gray-300'}`}
-                                                  onClick={toggleFavorite}
+                                                  onClick={handleToggleFavorite}
                                                 />                                
                                             </div>
                                             <div className='flex flex-row gap-4'>

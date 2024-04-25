@@ -1,5 +1,6 @@
 import { useModal } from '@/Components/Contexts/ModalContext';
-import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
+import { useProject } from '@/Components/Contexts/ProjectContext';
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from '@inertiajs/react';
@@ -14,8 +15,9 @@ export default function Sidebar({
     project,
  
 }) {
+
     const { toggleModal } = useModal();
-    const { darkModeSetting, setDarkModeSetting } = useDarkMode();
+    const { darkModeSetting, setDarkModeSetting } = useProfile();
 
     const handleNewProjectClick = () => {
         toggleModal({type: 'projectForm'});  
@@ -81,31 +83,35 @@ export default function Sidebar({
             router.visit(url);
         }, 200);
     };
+    console.log(project);
 
 
 
     return (
-        <div id='sidebar' className={` fixed left-[1rem] top-[1rem] h-[97%] flex flex-row ${isPageNavVisible ? 'max-w-[25rem] gap-4' : 'gap-0'} duration-500`}>
+        <div id='sidebar' className={` fixed left-[1rem] top-[1rem] h-[97%] flex flex-row z-50 ${isPageNavVisible ? 'max-w-[25rem] gap-4' : 'gap-0'} duration-500`}>
             <div className={`py-6 z-50 rounded-2xl duration-500 ${darkModeSetting === 'dark' ? 'bg-slate-900' : 'bg-white'} w-[4rem] flex flex-col gap-4 justify-between`}>
                 <ApplicationLogo className='text-emerald-500'/>
-                <div ref={openNavRef}  className='open-nav cursor-pointer flex flex-col justify-start justify-center items-center py-8' onClick={openPageNavigation}>
-                    <FontAwesomeIcon 
-                        icon={faHardDrive} 
-                        className={`rounded-lg duration-500 rotate-90 h-[1.2rem] w-[1.2rem] p-[.75rem]
-                            ${isPageNavVisible 
-                                ? 'bg-slate-100 text-emerald-500' 
-                                : `${darkModeSetting === 'dark' 
-                                    ? 'duration-800 text-white bg-rose-600 hover:bg-white hover:text-rose-500' 
-                                    : 'bg-rose-400 text-white hover:bg-rose-600 hover:text-white'}`
-                            } 
-                        `}
-                    />
-                </div>
-                <div className='w-full py-[2rem] flex justify-center items-center'>
-                    <div  onClick={handleNewProjectClick} className='p-[.7rem] border-white border-[.15rem] bg-emerald-500 hover:border-emerald-500 hover:bg-white duration-500 shadow-md rounded-full cursor-pointer group'>
-                        <FontAwesomeIcon icon={faPlus} className={`${darkModeSetting === 'dark' ? '' : ''} h-[1.2rem] w-[1.2rem] text-white group-hover:text-emerald-500 rounded-full duration-500 flex justify-center text-center`} />
+                <div className='mt-10 flex flex-col gap-8'>
+                    <div ref={openNavRef}  className='open-nav cursor-pointer flex flex-col justify-start justify-center items-center ' onClick={openPageNavigation}>
+                        <FontAwesomeIcon 
+                            icon={faHardDrive} 
+                            className={`rounded-lg duration-500 rotate-90 h-[1.2rem] w-[1.2rem] p-[.75rem]
+                                ${isPageNavVisible 
+                                    ? 'bg-slate-100 text-emerald-500' 
+                                    : `${darkModeSetting === 'dark' 
+                                        ? 'duration-800 text-white bg-rose-600 hover:bg-white hover:text-rose-500' 
+                                        : 'bg-slate-900 text-white hover:bg-slate-200 hover:text-slate-900'}`
+                                } 
+                            `}
+                        />
                     </div>
-                </div>   
+                    <div className='w-full flex justify-center items-center'>
+                        <div  onClick={handleNewProjectClick} className='p-[.7rem] border-white border-[.15rem] bg-emerald-500 hover:border-emerald-500 hover:bg-white duration-500 shadow-md rounded-full cursor-pointer group'>
+                            <FontAwesomeIcon icon={faPlus} className={`${darkModeSetting === 'dark' ? '' : ''} h-[1.2rem] w-[1.2rem] text-white group-hover:text-emerald-500 rounded-full duration-500 flex justify-center text-center`} />
+                        </div>
+                    </div>
+                </div>
+                   
                 <div className="sidebar-content grow justify-center pb-[8rem] flex flex-col gap-[8rem]">
                     <nav className="nav-links cursor-pointer flex flex-col gap-4">
                         <Link 

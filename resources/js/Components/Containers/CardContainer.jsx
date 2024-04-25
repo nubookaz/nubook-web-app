@@ -1,4 +1,4 @@
-import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
 
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ export default function CardContainer({
     childrenClass,
   }) {
 
-    const { darkModeSetting } = useDarkMode();
+    const { darkModeSetting } = useProfile();
 
     const defaultClasses = {
       light: { background: 'bg-white', text: 'text-slate-400' },

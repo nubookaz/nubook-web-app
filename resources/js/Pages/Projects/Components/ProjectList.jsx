@@ -1,6 +1,6 @@
 import { useModal } from '@/Components/Contexts/ModalContext';
 import { useProject } from '@/Components/Contexts/ProjectContext';
-import { useDarkMode } from '@/Components/Contexts/DarkModeContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
 
 import { router } from '@inertiajs/react'; 
 import { faBookmark, faPencil } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,7 @@ function ProjectList({
   bannerTextColor
  
 }) {
-  const { darkModeSetting } = useDarkMode();
+  const { darkModeSetting } = useProfile();
 
   const { projects, setCurrentProject } = useProject();
 
@@ -135,7 +135,7 @@ function ProjectList({
                       <div className='my-4'>
                           {project_description ? (
                             <p className='text-white text-sm py-2'>
-                              {project_description.length > 100 ? `${project_description.slice(0, 200)}...` : project_description}
+                              {project_description.length > 0 ? `${project_description.slice(0, 60)}...` : project_description}
                             </p>
                           ) : (
                             <p className='text-center py-[2rem] text-xs px-4 bg-slate-500 rounded-md text-black'>
