@@ -41,7 +41,7 @@ export default function CallSheetDetailsForm({
                     </div>
                 </div>
                 
-                <div className='w-full flex flex-col gap-2 h-full'>
+                <div className='w-full flex flex-col gap-2 h-full max-w-[18rem]'>
                     <label className='text-gray-400 text-sm'>Call Time</label>
                     <Time initialTime={generalCallTime} onTimeChange={handleTimeChange} />
                 </div>

@@ -15,7 +15,7 @@ export default function RecipientList({
     const { toggleModal } = useModal();
     const { currentCallSheet } = useCallSheet();
     const { callSheetRecipients } = useRecipient(); // Assuming you have a setter for callSheetRecipients
-    console.log(currentCallSheet);
+
     const handleRecipientListClick = () => {
         toggleModal({type: 'recipientForm'});  
     };

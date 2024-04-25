@@ -29,12 +29,12 @@ export default function Login({ canResetPassword }) {
         setErrors({});
     
         try {
-            const response = await fetch('/api/login', {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             });
-    
+            console.log(response);
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Login failed. Please try again.');

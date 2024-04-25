@@ -8,7 +8,7 @@ import Option from '@mui/joy/Option';
 import Typography from '@mui/joy/Typography';
 import Textarea from '@mui/joy/Textarea';
 
-import MovieRating from '@/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating';
+// import MovieRating from '@/Pages/Projects/Forms/Partials/VideoProduction/ViewerRating';
 
 export default function ProjectEditForm({
 
@@ -155,14 +155,7 @@ export default function ProjectEditForm({
                     
                     <div className='flex flex-col gap-2'>
                         <label htmlFor="viewer_rating" className='text-gray-400 text-sm'>Movie Rating</label>
-                        {/* <Tooltip arrow sx={{ fontSize: '.75rem' }} title="Movie Rating is Required" open={emptyFields['viewer_rating'] || false} color="danger" placement="top" variant="outlined"> */}
-                            <MovieRating 
-                                boxClassName='pl-2'
-                                name="viewer_rating"
-                                data={data}
-                                onRatingChange={(newRating) => handleChange('viewer_rating', newRating)}
-                            />
-                        {/* </Tooltip> */}
+ 
                     </div>
 
                     <div className='flex flex-col gap-2'>

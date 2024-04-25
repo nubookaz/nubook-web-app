@@ -102,12 +102,10 @@ class User extends Authenticatable
         return in_array($role, $this->roles->pluck('name')->toArray());
     }
     
-
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_user');
-    }
-    
+        return $this->belongsToMany(Project::class, 'project_user')->withPivot('role_id')->withTimestamps();
+    }    
     
     public function aiContentGenerations()
     {

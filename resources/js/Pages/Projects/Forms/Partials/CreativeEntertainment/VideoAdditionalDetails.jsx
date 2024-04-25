@@ -11,8 +11,8 @@ import UserName from '@/Pages/Profile/Forms/UserName';
 
 const filter = createFilterOptions();
 
-const projectStages = ['Planning', 'Pre-production', 'Production', 'Post-production', 'Completed'];
-const projectStatuses = ['Active', 'On Hold', 'Cancelled', 'Completed'];
+const project_stages = ['Planning', 'Pre-production', 'Production', 'Post-production', 'Completed'];
+const project_statuses = ['Active', 'On Hold', 'Cancelled', 'Completed'];
 const currencyTypes = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD'];
 const currencySymbols = {
     USD: '$',
@@ -60,10 +60,13 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (name === 'projectBudget') {
-          const formattedValue = formatBudget(value, currency);
+          // Format the budget using the current currency or default to USD
+          const formattedValue = formatBudget(value, currency || 'USD');
           setAdditionalVideoDetails(prev => ({
             ...prev,
             [name]: formattedValue,
+            // Store the corresponding symbol for the current or default currency
+            currencySymbol: currencySymbols[currency] || currencySymbols['USD'],
           }));
         } else {
           setAdditionalVideoDetails(prev => ({
@@ -71,16 +74,23 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
             [name]: value,
           }));
         }
-      };
+    };
     
-      const handleCurrencyChange = (e) => {
-        setCurrency(e.target.value);
-        const formattedValue = formatBudget(additionalVideoDetails.projectBudget, e.target.value);
+    const handleCurrencyChange = (e) => {
+        const newCurrency = e.target.value || 'USD'; // Default to USD if no value
+        setCurrency(newCurrency);
+    
+        // Update the project budget based on the new or default currency
+        const formattedValue = formatBudget(additionalVideoDetails.projectBudget || '0', newCurrency);
         setAdditionalVideoDetails(prev => ({
           ...prev,
           projectBudget: formattedValue,
+          // Store the corresponding symbol for the new or default currency
+          currencySymbol: currencySymbols[newCurrency],
         }));
-      };
+    };
+    
+    
 
       const handleChange = (event, newValue, reason) => {
         if (newValue && newValue.inputValue) {
@@ -102,46 +112,61 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
     const renderClientCards = () => {
         if (isAddingNewClient || !clients || clients.length === 0) return null;
     
-        return (
-            <div className='relative'>
-                <div className='mb-6'>
-                    <h2 className='text-slate-500'>Existing Clients</h2>
-                    <p>Choose clients below to attach this project to</p>
-                </div>
-
-                <div className='w-full h-[3rem] bottom-0 absolute z-10 bg-gradient-to-t from-white to transparent'></div>
-
-                <div className='max-h-[26rem] overflow-scroll flex flex-col gap-1 px-2 pb-[2.5rem]'>
-                    {clients.map((client, index) => (
-                        <div key={client.id || index} >
-                            <div
-                                className={`w-full cursor-pointer px-4 py-[1rem] rounded-2xl ${selectedClientIds.includes(client.id) ? 'border-emerald-500 border-4 shadow-md bg-emerald-50' : 'border-4 border-white bg-slate-50'}`}
-                                onClick={() => handleClientSelect(client.id)}>
-                                <div className='flex flex-row gap-8'>
-
-                                    <div className='rounded-full shadow-sm w-[6rem] h-[5rem] bg-white my-auto '><span className='font-light text-2xl flex justify-center items-center text-center h-full'>JD</span></div>
-                                    <div className='flex flex-row gap-2 w-full'>
-                                        <div className='flex flex-row gap-2 h-full justify-between w-full'>
-                                            <div className='w-full'>
-                                                <h3 className={`text-xl ${selectedClientIds.includes(client.id) ? 'text-emerald-500' : 'text-slate-400'}`}>{`${client.first_name} ${client.last_name}`}</h3>
-                                                <p className='text-sm'>{client.company || 'No Company'}</p>
-                                                <span className='text-xs'>{client.address || 'No Address Available'}</span>
-                                            </div>
-                                            <div className='flex flex-col gap-2 text-sm w-[12rem]'>
-                                                <span className='font-bold text-slate-500'>M: <span className='text-slate-400 text-sm w-[5rem]'></span> </span> 
-                                                <span className='font-bold text-slate-500'>O: <span className='text-slate-400 text-sm w-[5rem]'></span> </span> 
-                                                <span className='font-bold text-slate-500'>F: <span className='text-slate-400 text-sm w-[5rem]'></span> </span> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+        const sortedClients = [...clients].sort((a, b) => {
+            const nameA = a.first_name || a.company || '';
+            const nameB = b.first_name || b.company || '';
+            return nameA.localeCompare(nameB);
+        });
+    
+        const recentlyAddedClients = sortedClients.slice(0, 4);
+        const existingClients = sortedClients.slice(4);
+    
+        const renderCards = (clientList) => clientList.map((client, index) => (
+            <div key={client.id || index}>
+                <div
+                    className={`w-full cursor-pointer px-4 py-[.5rem] rounded-xl duration-500 transition-all ${selectedClientIds.includes(client.id) ? 'border-emerald-500 border-2 shadow-md bg-emerald-50' : 'border-2 border-white bg-slate-50'}`}
+                    onClick={() => handleClientSelect(client.id)}>
+                    <div className='flex flex-row gap-8'>
+                        <div className='rounded-full shadow-sm w-[4.2rem] h-[3rem] bg-white my-auto'><span className='font-light text-lg flex justify-center items-center text-center h-full'>JD</span></div>
+                        <div className='flex flex-row gap-2 w-full my-auto'>
+                            <div className='w-full'>
+                                <h3 className={`text-lg font-semibold ${selectedClientIds.includes(client.id) ? 'text-emerald-500' : 'text-slate-400'}`}>{client.first_name ? `${client.first_name} ${client.last_name}` : client.company}</h3>
+                                {client.first_name && <p className='text-sm'>{client.company}</p>}
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
+            </div>
+        ));
+    
+        return (
+            <div className='relative'>
+                <div className='text-center mb-6 '>
+                    <h2 className='text-slate-500 text-xl'>Add a Client to your project</h2>
+                    <p>Choose clients below to attach this project to</p>
+                </div>
+                <div className='mb-2 text-center'>
+                    {recentlyAddedClients.length > 0 && <h2 className='text-slate-500 font-semibold'>Recently Added Clients</h2>}
+                </div>
+                <div className='grid grid-cols-2 gap-2 px-2 pb-2'>
+                    {renderCards(recentlyAddedClients)}
+                </div>
+    
+                {existingClients.length > 0 && (
+                    <>
+                        <div className='mb-2 text-center mt-4'>
+                            <h2 className='text-slate-500 font-semibold'>Existing Clients</h2>
+                        </div>
+                        <div className='w-full h-[3rem] bottom-0 absolute z-10 bg-gradient-to-t from-white to transparent'></div>
+                        <div className='max-h-[26rem] overflow-scroll grid grid-cols-2 gap-2 px-2 pb-[2.5rem]'>
+                            {renderCards(existingClients)}
+                        </div>
+                    </>
+                )}
             </div>
         );
     };
+    
 
     const renderNewClientCard = (firstName) => {
         
@@ -158,8 +183,8 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
         
         return (
             <div className=' w-full h-full relative'>
-                <div className='rounded-full w-[9rem] h-[9rem] bg-slate-200 mx-auto absolute z-40 left-[50%] -translate-x-2/4 -top-[4rem] border-4 shadow-md border-white'></div>
-                <div className='bg-white shadow-2xl flex flex-col gap-4 pt-[6rem] h-full w-full max-w-[30rem] mx-auto rounded-2xl px-6 py-2 mt-[3rem]'>
+                <div className='rounded-full w-[7.5rem] h-[7.5rem] bg-slate-200 mx-auto absolute z-40 left-[50%] -translate-x-2/4 -top-[4rem] border-4 shadow-md border-white'></div>
+                <div className='bg-white shadow-2xl flex flex-col gap-4 pt-[5rem] h-full w-full max-w-[30rem] mx-auto rounded-2xl px-6 py-2 mt-[3rem]'>
                     <UserName
                         data={{ first_name: firstName, middle_initial: '', last_name: '' }}
                         onNameChange={handleNameChange}
@@ -232,7 +257,7 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
                     >
                         {{
                             description: (
-                                <p className='text-slate-300 max-w-[22rem]'>You have not entered a production schedule yet. Add one now!</p>
+                                <p className='text-slate-300 max-w-[22rem]'>You have not entered a client yet. Add one now!</p>
                             )
                         }}
                     </EmptyContent>
@@ -279,32 +304,32 @@ const VideoAdditionalDetails = ({ additionalVideoDetails, setAdditionalVideoDeta
                 </div>
                 <div className='flex flex-row gap-4 w-full'>
                     <div className='w-1/2'>
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="projectStage">Project Stage <span className='text-rose-500'>*</span></label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="project_stage">Project Stage <span className='text-rose-500'>*</span></label>
                         <select 
-                            name="projectStage" 
+                            name="project_stage" 
                             onChange={handleInputChange} 
-                            value={additionalVideoDetails.projectStage || ''} 
+                            value={additionalVideoDetails.project_stage || ''} 
                             className="w-full border border-gray-300 rounded-md"
                             required
                         >
                             <option value="" disabled>Select a Project Stage</option>
-                            {projectStages.map(stage => (
+                            {project_stages.map(stage => (
                                 <option key={stage} value={stage}>{stage}</option>
                             ))}
                         </select>
                     </div>
 
                     <div className='w-1/2'>
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="projectStatus">Project Status <span className='text-rose-500'>*</span></label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="project_status">Project Status <span className='text-rose-500'>*</span></label>
                         <select 
-                            name="projectStatus" 
+                            name="project_status" 
                             onChange={handleInputChange} 
-                            value={additionalVideoDetails.projectStatus || ''} 
+                            value={additionalVideoDetails.project_status || ''} 
                             className="w-full border border-gray-300 rounded-md"
                             required
                         >
                             <option value="" disabled>Select a Project Status</option>
-                            {projectStatuses.map(status => (
+                            {project_statuses.map(status => (
                                 <option key={status} value={status}>{status}</option>
                             ))}
                         </select>

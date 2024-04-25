@@ -15,7 +15,7 @@ export default function UpdateCallSheet({ data, onClose }) {
     const [callSheetName, setCallSheetName] = useState(data?.call_sheet_name || '');
     const [startDate, setStartDate] = useState(data?.call_sheet_date_time ? new Date(data.call_sheet_date_time) : new Date());
     const [generalCallTime, setGeneralCallTime] = useState('');
-    console.log(data);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         switch (name) {
@@ -45,8 +45,6 @@ export default function UpdateCallSheet({ data, onClose }) {
         await updateCallSheet(data.id, dataToSend);
         onClose();  
     };
-
-
   
   return (
 
@@ -67,7 +65,7 @@ export default function UpdateCallSheet({ data, onClose }) {
 
         <div className="flex flex-row justify-between mx-auto items-center w-full max-w-[30rem] gap-4 pt-10">
             <SecondaryButton className='w-full' onClick={onClose}>Cancel</SecondaryButton>
-            <PrimaryButton className='w-full' onClick={handleSave}>Create</PrimaryButton>
+            <PrimaryButton className='w-full' onClick={handleSave}>Update</PrimaryButton>
         </div>
 
     </div>

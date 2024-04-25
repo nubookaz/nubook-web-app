@@ -1,25 +1,23 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { useAuth } from './AuthContext';
+
 import { router } from '@inertiajs/react'; 
 
 const ClientContext = createContext();
 export const useClients = () => useContext(ClientContext);
 
 export const ClientProvider = ({ children }) => {
+  const { userData, loggedIn } = useAuth();
   const [clients, setClients] = useState([]);
-
-  useEffect(() => {
-    fetchClients();
-  }, []);
-  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   
-  const fetchClients = async () => {
+  const fetchClients = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/clients', {
+      const response = await fetch('/clients', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -38,12 +36,13 @@ export const ClientProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
   
   // Create a new client
-  const createClient = async (client) => {
+  const createClient = useCallback(async (client) => {
     try {
-      const response = await fetch('/api/clients', {
+      const response = await fetch('/clients', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,12 +57,12 @@ export const ClientProvider = ({ children }) => {
       console.error('Error creating client:', error);
       // Handle error as needed
     }
-  };
+  }, []);
 
   // Update an existing client
-  const updateClient = async (id, updatedInfo) => {
+  const updateClient = useCallback(async (id, updatedInfo) => {
     try {
-      const response = await fetch(`/api/clients/${id}`, {
+      const response = await fetch(`/clients/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -77,12 +76,12 @@ export const ClientProvider = ({ children }) => {
       console.error('Error updating client:', error);
       // Handle error as needed
     }
-  };
+  }, []);
 
   // Delete a client
-  const deleteClient = async (id) => {
+  const deleteClient = useCallback(async (id) => {
     try {
-      const response = await fetch(`/api/clients/${id}`, {
+      const response = await fetch(`/clients/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -94,15 +93,16 @@ export const ClientProvider = ({ children }) => {
       console.error('Error deleting client:', error);
       // Handle error as needed
     }
-  };
+  }, []);
  
-  const value = {
-    clients,
-    fetchClients,
-    createClient,
-    updateClient,
-    deleteClient,
-  };
+
+  useEffect(() => {
+    if (loggedIn) {
+      fetchClients();
+    }
+  }, [loggedIn, fetchClients]);
+  
+  const value = { clients, fetchClients, createClient, updateClient, deleteClient, loading, error };
 
   return (
     <ClientContext.Provider value={value}>

@@ -21,11 +21,8 @@ const PersonalInfo = ({ existingData, onUpdateInfo, emptyFields, setEmptyFields 
       zip_code: '',
     });
 
-    console.log(existingData);
-
     useEffect(() => {
       if (existingData) {
-        // Directly set the state values based on existingData structure
         setPhoneNumber(existingData.tel || '');
         setName({
           first_name: existingData.first_name || '',
@@ -41,32 +38,26 @@ const PersonalInfo = ({ existingData, onUpdateInfo, emptyFields, setEmptyFields 
       }
     }, [existingData]);
        
- 
-    // Update for the phone number
     const handlePhoneNumberChange = (newPhoneNumber) => {
       setPhoneNumber(newPhoneNumber);
-      // Combine updated phone number with current name and address, then push to parent
       onUpdateInfo({ phoneNumber: newPhoneNumber, name, address });
     };
 
     // Update for the name
     const handleNameChange = (newName) => {
       setName(newName);
-      // Combine updated name with current phone number and address, then push to parent
       onUpdateInfo({ phoneNumber, name: newName, address });
     };
 
-    // Update for the address
     const handleAddressChange = (newAddress) => {
       setAddress(newAddress);
-      // Combine updated address with current phone number and name, then push to parent
       onUpdateInfo({ phoneNumber, name, address: newAddress });
     };
 
 
   
     return (
-        <div className='flex flex-col gap-4 grow'>
+        <div className='flex flex-col gap-2 grow'>
 
             <UserName 
                 data={name} 

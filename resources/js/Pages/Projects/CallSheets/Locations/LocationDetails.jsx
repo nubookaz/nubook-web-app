@@ -18,13 +18,10 @@ const LocationDetails = ({
     const handleAddLocationClick = () => {
         toggleModal({ type: 'newLocationForm' });
     };
-    console.log(callSheet);
 
-    // Extract film_locations from callSheet
     const filmLocations = callSheet && Array.isArray(callSheet.film_locations) ? callSheet.film_locations : [];
-    const maxLocations = 5; // Maximum number of locations allowed
+    const maxLocations = 5; 
 
-    // Normalize currentCallSheetLocation data to match filmLocations structure
     let normalizedCurrentCallSheetLocation = null;
     if (currentCallSheetLocation) {
         normalizedCurrentCallSheetLocation = {
@@ -40,13 +37,11 @@ const LocationDetails = ({
         };
     }
 
-    // Combine filmLocations and normalized currentCallSheet into one array
     const combinedData = [...filmLocations];
     if (normalizedCurrentCallSheetLocation) {
         combinedData.push(normalizedCurrentCallSheetLocation);
     }
 
-    // Click event handler for adding a new location
     const handleEditLocationClick = (location, callSheetId, locationType) => {
         toggleModal({ 
             type: 'editLocationForm', 

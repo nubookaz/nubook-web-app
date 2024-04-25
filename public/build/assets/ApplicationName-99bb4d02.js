@@ -1,1 +1,0 @@
-import{j as o,d as r}from"./app-659a3aa2.js";function t({href:e,className:n}){return o.jsx(o.Fragment,{children:e?o.jsx(r,{href:e,className:`application-name primary-green-color text-3xl font-bold ${n}`,children:"Nubook"}):o.jsx("div",{className:`application-name primary-green-color text-3xl font-bold ${n}`,children:"Nubook"})})}export{t as A};

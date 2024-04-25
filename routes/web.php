@@ -60,8 +60,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Data Fetching
     Route::get('/fetch-user-data', [ProfileController::class, 'fetchUserData'])->name('fetch-user-data');
-    Route::get('/fetch-project-data', [ProjectController::class, 'fetchUserProjects'])->name('fetch-user-projects');
+    // Route::get('/fetch-project-data', [ProjectController::class, 'fetchUserProjects'])->name('fetch-user-projects');
 
+    Route::get('/user/{userId}/dark-mode', [ProfileController::class, 'fetchDarkMode']);
+    Route::put('/user/{userId}/dark-mode', [ProfileController::class, 'updateDarkMode']);
 
 
     
@@ -99,8 +101,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/', [ProfileController::class, 'updateProfileInfo'])->name('profile.update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
         
-        Route::get('/get-profile-image', [ProfileController::class, 'getProfileImage'])->name('profile.get-image');
-        Route::post('/upload-profile-image', [ProfileController::class, 'uploadProfileImage'])->name('profile.upload-image');
 
     });
 
@@ -126,11 +126,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('projects')->group(function () {
 
         Route::get('{projectId}/users', [ProjectController::class, 'getUsers'])->name('projects.users');
-        // Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
-        // Route::get('/all-projects', [ProjectController::class, 'showList'])->name('projects.list');
-        // Route::post('/', [ProjectController::class, 'store'])->name('projects.create');
-        Route::get('/{projectId}/details', [ProjectController::class, 'edit'])->name('projects.details');
-        Route::post('/{id}/favorite', [ProjectController::class, 'saveFavorite'])->name('projects.favorite');
         Route::get('/{id}/estimate', [ProjectController::class, 'estimate'])->name('projects.estimate');
         Route::post('/{id}', [ProjectController::class, 'update'])->name('projects.update');
         Route::post('/{id}/poster', [ProjectController::class, 'savePoster'])->name('projects.save.poster');
@@ -139,8 +134,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Call Sheet Routes
         Route::prefix('{projectId}/call-sheets')->group(function () {
 
-            Route::get('/fetch-call-sheet-data', [CallSheetController::class, 'fetchUserCallSheets'])->name('fetch-user-call-sheets');
-            Route::post('/', [CallSheetController::class, 'createCallSheet'])->name('callSheet.create');
             Route::get('{callSheetId}/details', [CallSheetController::class, 'callSheetDetailsPage'])->name('callSheet.details.page');
 
 
@@ -150,8 +143,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::get('/{callSheetId}/users', [CallSheetController::class, 'getUsers'])->name('call-sheets.users');
 
-            Route::get('/', [CallSheetController::class, 'index'])->name('projects.callSheets.index');
-          
+           
             Route::post('/{callSheetId}', [CallSheetController::class, 'updateCallSheetDetails'])->name('projects.callSheets.update');
             Route::post('{callSheetId}/details/locations', [CallSheetController::class, 'storeLocationDetails'])->name('projects.callSheets.save.locations');
             Route::put('{callSheetId}/details/locations/update', [CallSheetController::class, 'updateLocationDetails'])->name('projects.callSheets.update.locations');

@@ -136,7 +136,6 @@ const CallSheetProductionSchedule = ({ project, callSheet }) => {
                 schedule: scheduleData,
             });
     
-            console.log('Schedule saved successfully:', response.data);
         } catch (error) {
             console.error("Error saving schedule:", error.response || error);
         } finally {

@@ -21,10 +21,9 @@ function CreateClient() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Use the createClient function from context
+
       await createClient(clientData);
-      console.log('Client created successfully');
-      // Reset form or handle success (e.g., showing a success message)
+
       setClientData({
         firstName: '',
         middleName: '',

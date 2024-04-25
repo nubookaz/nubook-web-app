@@ -4,7 +4,7 @@ import { useAuth } from '@/Components/Contexts/AuthContext';
 import React, { useEffect, useState } from 'react';
 import { faListCheck, faProjectDiagram, faMoneyCheckDollar, faComments, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import SecondaryButton from '@/Components/Buttons/SecondaryButton';
-import UploadableProfilePicture from '@/Pages/Profile/Partials/UploadableProfilePicture'; 
+import ProfileImageUpload from '@/Pages/Profile/Partials/ProfileImageUpload'; 
 import IconButton from '@/Components/Buttons/IconButton';
 import ProjectNavigation from '@/Components/Navigations/ProjectNavigation';
 import { imageUrl } from '@/Components/Scripts/BannerImage';
@@ -107,7 +107,7 @@ useEffect(() => {
           <div className="banner-footer flex flex-row justify-between gap-8 -mb-[5rem] mt-4">
                 <div className="flex flex-row left-content">
                     <div className='w-[10rem] h-[10rem] min-w-[10rem]'>
-                      <UploadableProfilePicture alt="User Profile" width={200} height={200} className="border-red-500" isUploadable={true} />
+                      <ProfileImageUpload alt="User Profile" width={200} height={200} className="border-red-500" isUploadable={true} />
                     </div>
                     
                     <div className="max-w-[35rem] mantra-text">

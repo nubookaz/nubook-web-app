@@ -47,7 +47,6 @@ const CallSheetRecipientForm = ({
 
     useEffect(() => {
         if (recipient) {
-            // Find the role object that matches the recipient's role name
             const matchingRole = roles.find(role => role.name === recipient.user.pivot.role_name);
             const newFormData = {
                 first_name: recipient.user.first_name || '',
@@ -56,26 +55,24 @@ const CallSheetRecipientForm = ({
                 email: recipient.user.email || '',
                 tel: recipient.user.phone ? recipient.user.phone.tel : '',
                 position: recipient.user.pivot ? recipient.user.pivot.position : '',
-                role: matchingRole ? matchingRole.id : '', // Use the found role's ID
+                role: matchingRole ? matchingRole.id : '', 
             };
             setFormData(newFormData);
         } else {
             setFormData(initialFormState);
         }
     }, [recipient, roles]);
-    
 
-    // State for managing time separately
     const [callTime, setCallTime] = useState('8:00 AM');
 
     const formatCallTime = (timeString) => {
         if (!timeString) {
-            return '8:00 AM'; // Default return value or handle as appropriate
+            return '8:00 AM'; 
         }
         const [hours, minutes] = timeString.split(':');
         const hour = parseInt(hours, 10);
         const ampm = hour >= 12 ? 'PM' : 'AM';
-        const formattedHour = hour % 12 || 12; // Convert 24h to 12h format, 0 becomes 12
+        const formattedHour = hour % 12 || 12; 
         return `${formattedHour}:${minutes} ${ampm}`;
     };
 
@@ -88,7 +85,6 @@ const CallSheetRecipientForm = ({
         }));
     };
 
-    // Handle changes from the UserName component
     const handleNameChange = (updatedName) => {
         setFormData(prevState => ({
             ...prevState,
@@ -96,8 +92,6 @@ const CallSheetRecipientForm = ({
         }));
     };
     
-
-    // Handle phone number changes from the Phone component
     const handlePhoneNumberChange = (phoneNumber) => {
         setFormData(prevState => ({
             ...prevState,
@@ -112,7 +106,6 @@ const CallSheetRecipientForm = ({
         }));
     };
 
-    // Handler for updating callTime from Time component
     const handleTimeChange = (newTime) => {
         setCallTime(newTime);
     };
@@ -127,18 +120,13 @@ const CallSheetRecipientForm = ({
             }
     
             const submissionData = { ...formData, call_time: callTime };
-            console.log('submissionData:', submissionData);
-
             const response = await axios.post(endpoint, submissionData, {
                 headers: { 'Content-Type': 'application/json' },
             });
-    
-            console.log('Success:', response.data);
-    
-            // Reset form fields to initial state after successful submission
+        
             setFormData(initialFormState);
-            setCallTime('8:00 AM'); // Reset call time to default or initial value
-            setEmptyFields({ phone_number: false }); // Reset any state related to empty fields if applicable
+            setCallTime('8:00 AM'); 
+            setEmptyFields({ phone_number: false });
 
             setTimeout(() => {
                 if (recipient) {
@@ -149,16 +137,10 @@ const CallSheetRecipientForm = ({
                     setIsSnackOpen(true);
             }, 600);
 
-
-
-            // After resetting the state, you can call onClose or update UI accordingly
             onClose();
-            console.log('addRecipientToCallSheet:', callSheet.id, response.data);
-
             addRecipientToCallSheet(callSheet.id, response.data);
         } catch (error) {
             console.error('Error during save:', error.response || error.message);
-            // Handle the error, e.g., show an error message to the user
         }
     };
     
@@ -169,10 +151,10 @@ const CallSheetRecipientForm = ({
     };
     
     const handleDelete = async () => {
-        if (!recipient) return; // Safety check
+        if (!recipient) return;
         const confirmDelete = window.confirm("Are you sure you want to remove this recipient from the call sheet?");
         if (!confirmDelete) return;
-        const recipientId = recipient.user.id; // Adjust based on your data structure
+        const recipientId = recipient.user.id;
 
         try {
             const endpoint = route('projects.callSheets.delete.recipient', {
@@ -183,13 +165,9 @@ const CallSheetRecipientForm = ({
 
             await axios.delete(endpoint);
             removeRecipientFromCallSheet(recipientId);
-            console.log('Recipient removed successfully from the call sheet');
 
-            // After deletion, perform any necessary state updates or UI refreshes
-            onClose(); // Assuming onClose will refresh the recipient list or close the modal/form
+            onClose(); 
             
-            // Optionally, trigger any global state updates to reflect the deletion
-            // This could be a context method or an event emission, depending on your state management
         } catch (error) {
             console.error('Error during deletion:', error.response || error.message);
         }
@@ -207,7 +185,7 @@ const CallSheetRecipientForm = ({
            <UserName 
                 data={{
                     first_name: formData.first_name,
-                    middle_initial: formData.middle_initial, // Pass middle_initial to UserName
+                    middle_initial: formData.middle_initial, 
                     last_name: formData.last_name
                 }}
                 onNameChange={handleNameChange}

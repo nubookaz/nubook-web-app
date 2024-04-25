@@ -11,7 +11,7 @@ import { RecipientProvider } from '@/Components/Contexts/RecipientContext';
 import { CallSheetLocationProvider } from '@/Components/Contexts/CallSheetLocationContext';
 import { ModalProvider } from '@/Components/Contexts/ModalContext';
 import { SnackProvider } from '@/Components/Contexts/SnackContext';
-import { DarkModeProvider } from '@/Components/Contexts/DarkModeContext';
+import { UserProfileProvider } from '@/Components/Contexts/UserProfileContext';
 import { DrawerProvider } from '@/Components/Contexts/DrawerContext';
 import { ScheduleProvider } from '@/Components/Contexts/ScheduleContext';
 import { ProjectProvider } from '@/Components/Contexts/ProjectContext';
@@ -37,7 +37,7 @@ createInertiaApp({
                     <ClientProvider>
                         <ModalProvider>
                             <SnackProvider>
-                                <DarkModeProvider>
+                                <UserProfileProvider>
                                     <CallSheetProvider>
                                         <RecipientProvider>
                                             <CallSheetLocationProvider>
@@ -53,7 +53,7 @@ createInertiaApp({
                                             </CallSheetLocationProvider>
                                         </RecipientProvider>
                                     </CallSheetProvider>
-                                </DarkModeProvider>
+                                </UserProfileProvider>
                             </SnackProvider>
                         </ModalProvider>
                     </ClientProvider>

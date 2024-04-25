@@ -14,70 +14,57 @@ export const CallSheetProvider = ({ children }) => {
 
     const { currentProjectId } = useProject();
     const [callSheets, setCallSheets] = useState([]);
-    const [currentCallSheetId, setCurrentCallSheetId] = useState(() => localStorage.getItem('currentCallSheetId'));
+    const [currentCallSheetId, setCurrentCallSheetId] = useState('');
     const [currentCallSheet, setCurrentCallSheet] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    console.log(currentProjectId);
 
-    // console.log(loggedIn);
-
-    // console.log(currentCallSheetId);
     useEffect(() => {
-        if (!isLoading && callSheets.length > 0) {
-            const sheet = callSheets.find(sheet => sheet.id.toString() === currentCallSheetId);
+        if (callSheets.length > 0) {
+            console.log(callSheets);
+
+            const sheet = callSheets.find(sheet => sheet.callSheetId === currentCallSheetId);
             setCurrentCallSheet(sheet || null);
         }
-    }, [callSheets, currentCallSheetId, isLoading]);
-    
- 
+    }, [callSheets, currentCallSheetId]);
+
     const fetchCallSheets = async () => {
-        if(loggedIn){
-            setIsLoading(true);
-            if (currentProjectId) {
-                try {
-                    const response = await axios.get(route('fetch-user-call-sheets', {projectId: currentProjectId}));
-                    setCallSheets(response.data);
-                    setIsLoading(false);
-                } catch (error) {
-                    console.error("Failed to fetch call sheets:", error);
-                    setIsLoading(false);
-                }
-            } else {
-                setIsLoading(false);
+        if (currentProjectId) {
+            try {
+                const response = await axios.get(`/projects/${currentProjectId}/call-sheets/fetch-call-sheets`);
+                setCallSheets(response.data);
+            } catch (error) {
+                console.error("Failed to fetch call sheets:", error);
             }
+        }  
+     };
+
+     useEffect(() => {
+        if(loggedIn){
+            fetchCallSheets();
         }
-    };
-
-    useEffect(() => {
-        fetchCallSheets();
-    }, [currentProjectId]);
-
-
+    }, [loggedIn, currentProjectId]);
+ 
     const createCallSheet = async (callSheetData) => {
-        if (!currentProjectId) return;
-        try {
-            const response = await axios.post(route('callSheet.create', { projectId: currentProjectId }), callSheetData);
-            console.log('CallSheetProvider', response);
-            if (response.data && response.data.id) {
+         try {
+            const response = await axios.post(`/projects/${callSheetData.project_id}/call-sheets/create`, callSheetData);
+            if (response.data && response.data.callSheetId) {
+                console.log(response);
+
                 setCallSheets(prev => [...prev, response.data]);
-                // Update the currentCallSheetId with the ID of the newly created call sheet
-                setCurrentCallSheetId(response.data.id.toString());
-                // Optionally, update localStorage or your state management solution to reflect the new currentCallSheetId
-                localStorage.setItem('currentCallSheetId', response.data.id.toString());
+                setCurrentCallSheetId(response.data.callSheetId);
             } else {
                 console.log('Unexpected response data:', response.data);
             }
         } catch (error) {
             console.error("Failed to create call sheet:", error);
         }
-    };
+     };
     
-    
-
+    console.log(currentCallSheetId);
     const updateCallSheet = async (callSheetId, updatedCallSheetData) => {
         if (!currentProjectId) return;
         try {
-            // Matching the Laravel route for updating a call sheet within a specific project
-            await axios.post(`/api/projects/${currentProjectId}/call-sheets/${callSheetId}`, updatedCallSheetData);
+            await axios.post(`/projects/${currentProjectId}/call-sheets/${callSheetId}`, updatedCallSheetData);
             setCallSheets(prev => prev.map(callSheet => callSheet.id === callSheetId ? { ...callSheet, ...updatedCallSheetData } : callSheet));
             if (currentCallSheetId === callSheetId) {
                 setCurrentCallSheetId({ ...currentCallSheetId, ...updatedCallSheetData });
@@ -90,8 +77,7 @@ export const CallSheetProvider = ({ children }) => {
     const deleteCallSheet = async (callSheetId) => {
         if (!currentProjectId) return;
         try {
-            // Matching the Laravel route for deleting a call sheet within a specific project
-            await axios.delete(`/api/projects/${currentProjectId}/call-sheets/${callSheetId}/softDelete`);
+            await axios.delete(`/projects/${currentProjectId}/call-sheets/${callSheetId}/softDelete`);
             setCallSheets(prev => prev.filter(callSheet => callSheet.id !== callSheetId));
             if (currentCallSheetId === callSheetId) {
                 setCurrentCallSheetId(null);
@@ -100,8 +86,6 @@ export const CallSheetProvider = ({ children }) => {
             console.error("Failed to delete call sheet:", error);
         }
     };
-
- 
 
     return (
         <CallSheetContext.Provider value={{

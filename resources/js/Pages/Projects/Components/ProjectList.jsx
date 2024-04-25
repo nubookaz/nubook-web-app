@@ -1,15 +1,8 @@
 import { useModal } from '@/Components/Contexts/ModalContext';
 import { useProject } from '@/Components/Contexts/ProjectContext';
-import { router } from '@inertiajs/react'; 
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
 
-import {
-  estimateColor,
-  creativeDevelopmentColor,
-  preProductionColor,
-  productionColor,
-  postProductionColor,
-  completedColor,
-} from '@/Components/Scripts/ProjectColors';
+import { router } from '@inertiajs/react'; 
 import { faBookmark, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -25,24 +18,21 @@ function ProjectList({
   bannerTextColor
  
 }) {
+  const { darkModeSetting } = useProfile();
 
   const { projects, setCurrentProject } = useProject();
-  const handleSelectProject = (projectId) => {
-    setCurrentProject(projectId);
-  };
- 
+
   const { toggleModal } = useModal();
   const handleNewProjectClick = () => {
     toggleModal({type: 'projectForm'});  
   };
 
-
-  const handleNavigate = (projectId, projectStage) => {
+  const handleNavigate = (projectId, project_stage) => {
     setCurrentProject(projectId);
   
-    const url = projectStage === 'Estimate'
+    const url = project_stage === 'Estimate'
       ? route('projects.estimate', { id: projectId })
-      : route('projects.details', { id: projectId });
+      : route('project.details', { id: projectId });
   
     router.visit(url);
   };
@@ -51,7 +41,7 @@ function ProjectList({
 
  
   const sortProjects = (projects) => {
-      // Define the desired status order
+
       const statusOrder = {
         "Production": 1,
         "Post-Production": 2,
@@ -61,125 +51,107 @@ function ProjectList({
         "Completed": 6,
       };
 
-      // Create an array to store call sheets with status order information
       const projectsWithOrder = projects.map((project) => ({
         ...project,
         statusOrder: statusOrder[project.project_stage],
       }));
 
-      // Sort call sheets by status order (most recent first)
       projectsWithOrder.sort((a, b) => {
-        // Sort by status order first
         if (a.statusOrder !== b.statusOrder) {
           return a.statusOrder - b.statusOrder;
         }
-        // If status order is the same, sort by last updated time (most recent first)
         return new Date(b.updatedAt) - new Date(a.updatedAt);
       });
 
       return projectsWithOrder;
   };
 
-
-  // Get the filtered and sorted call sheets based on the selected view
   const filteredProjects = view === "View All" ? projects : projects.filter(project => project.project_stage === view);
   const sortedProjects = sortProjects(filteredProjects);
-
   const limitedProjects = sortedProjects.slice(0, maxProjects);
+ 
 
   return (
     <div className={containerClasses}>
-      
-            {limitedProjects.map(project => {
+      {showNewProject ? (
+          <div onClick={handleNewProjectClick} className=' shadow-sm duration-500 bg-slate-50 cursor-pointer px-[4rem] text-center text-lg font-light text-slate-400 rounded-lg h-full w-full flex justify-center items-center m-auto hover:text-slate-500 hover:shadow-lg hover:bg-white'>
+              Click here to start a new project!
+          </div>
+      ):null}
 
-            const {project_name, project_stage, project_status, project_description, video_type, project_type, project_budget, is_favorite} = project
-            const {filming_days, movie_poster, primary_genre, secondary_genre, viewer_rating} = project.video_production
+      {limitedProjects.map(project => {
 
- 
-              let projectColor = '';
-              let textColor = '';
-              if (project_stage === 'Estimate') {
-                projectColor = estimateColor;
-              } else if (project_stage === 'Creative Development') {
-                projectColor = creativeDevelopmentColor;
-              } else if (project_stage === 'Pre-Production') {
-                projectColor = preProductionColor;
-              } else if (project_stage === 'Production') {
-                projectColor = productionColor;
-              } else if (project_stage === 'Post-Production') {
-                projectColor = postProductionColor;
-              } else if (project_stage === 'Completed') {
-                projectColor = completedColor;
-              }  
+          const {
+              id,
+              project_name,
+              project_stage,
+              project_status,
+              project_description,
+              category_type,
+              media,
+              is_favorite,
+              project_details, // Database
+              selectedCreativeType, // Async
+              secondaryGenre, // Async
+              viewerRating, // Async
+          } = project;
 
-              return (
+          const details = project_details ? JSON.parse(project_details) : {};
+          const primaryGenre = details.primaryGenre || secondaryGenre;  
+          const genre = category_type || selectedCreativeType;  
+          const rating = details.viewerRating || viewerRating; 
 
-                  <div key={project.id} className="card">
-                        
-                        <div className="poster">
-                            <img src={movie_poster?.url || '/images/movie_posters/coming_soon_poster.jpg'} alt="Location Unknown"/>
-                        </div>
-                        <div className='overlay'></div>
-                        <div className={` ${bannerClassName} absolute top-0 w-full flex flex-col text-center shadow-lg bg-white py-2 uppercase`}>
-                              {is_favorite ? (
-                                  <FontAwesomeIcon className='absolute top-0 left-[1.5rem] h-[4rem] w-[2rem] scale-y-[1.75] text-rose-500' icon={faBookmark} />
-                              ) : null}                            
-                              <span className={` ${bannerTextColor || 'text-slate-400'} text-[.65rem]`}>{video_type}</span>  
-                              <span className={` ${bannerTextColor || 'text-slate-400'} text-xs font-bold`}>{project_stage ? (project_stage) : null}</span>
-                        </div>
-                        <div className='edit-icon mt-[3rem]' 
-                            onClick={() => handleNavigate(project.id, project.project_stage)}>
-                            <FontAwesomeIcon className=' text-white text-xs' icon={faPencil} />
-                        </div>
+          const moviePosterPath = media?.length > 0 ? `/storage/${media[0].media_path}` : '/images/movie_posters/coming_soon_poster.jpg';
 
-                        <div className="details">
-                              <div className='flex flex-row gap-2'>
-                                  <span className='block font-normal mb-2 text-[.70rem] text-white bg-slate-600 px-4 py-1 rounded w-fit'>{project_status}</span>
-                                  <span className='block font-normal mb-2 text-xs text-white bg-slate-600 px-4 py-1 rounded w-fit'>{project_type}</span>
-                              </div>
+          return (
+              <div key={id} className="card">
+                  <div className="poster">
+                      <img src={moviePosterPath} alt={`${project_name} Poster`} />
+                  </div>
+                  <div className={` ${bannerClassName} absolute top-0 w-full flex flex-col text-center shadow-lg bg-white py-2 uppercase`}>
+                      {is_favorite ? (
+                        <FontAwesomeIcon className='absolute top-0 left-[1.5rem] h-[4rem] w-[2rem] scale-y-[1.75] text-rose-500' icon={faBookmark} />
+                      ) : null}             
+                      <span className={` ${bannerTextColor || 'text-slate-400'} text-[.65rem]`}>{genre}</span>  
+                      <span className={` ${bannerTextColor || 'text-slate-400'} text-xs font-bold`}>{project_stage}</span>
+                  </div>
+                  <div className='edit-icon mt-[3rem]' onClick={() => handleNavigate(id, project_stage)}>
+                      <FontAwesomeIcon className=' text-white text-xs' icon={faPencil} />
+                  </div>
 
-                              <a className='font-bold text-lg hover:text-emerald-500 duration-500' href={project_stage === 'Estimate' ? route('projects.estimate', { id: project.id }) : route('projects.details', { id: project.id })}>{project_name}</a>
-                              <h2 className='text-white text-sm'>2023 • {viewer_rating ? ( viewer_rating + ' •' ):null} 1hr 38min</h2>
+                  <div className="details">
+                      <div className='flex flex-row gap-2'>
+                          <span className='block font-normal mb-2 text-[.70rem] text-white bg-slate-600 px-4 py-1 rounded w-fit'>{project_status}</span>
+                      </div>
 
-                              <div className="tags">
-                                  {primary_genre ? (<span className="tag text-xs">{primary_genre}</span>):null}
-                                  {secondary_genre ? (<span className="tag text-xs">{secondary_genre}</span>):null}
-                              </div>
+                      <a className='font-bold text-lg hover:text-emerald-500 duration-500' href={project_stage === 'Estimate' ? route('projects.estimate', { id }) : route('project.details', { id })}>{project_name}</a>
+                      <h2 className='text-white text-sm'>2023 • {rating} • 1hr 38min</h2>
 
-                              <div className='my-4'>
-                                  {project_description ? (
-                                    <p className='text-white text-sm py-2'>
-                                      {project_description.length > 100 ? (
-                                        `${project_description.slice(0, 200)}...`  
-                                      ) : (
-                                        project_description
-                                      )}
-                                    </p>
-                                  ) : (
-                                    <p className='text-center py-[2rem] text-xs px-4 bg-slate-500 rounded-md  text-black'>
-                                      No Project Description Added
-                                    </p>
-                                  )}
-                              </div>
-                           
-                        </div>
-                  </div>         
+                      <div className="tags">
+                          {primaryGenre && (<span className="tag text-xs">{primaryGenre}</span>)}
+                          {secondaryGenre && (<span className="tag text-xs">{secondaryGenre}</span>)}
+                      </div>
 
-              );
-            })}
-          {showNewProject ? (
-              <div onClick={handleNewProjectClick} className='border-4 border-dashed border-slate-300 duration-500 bg-slate-200 cursor-pointer px-[4rem] text-center text-xl text-slate-300 rounded-lg h-full w-full flex justify-center items-center m-auto hover:bg-slate-300 hover:text-slate-400'>
-                  Click here to start a new project!
+                      <div className='my-4'>
+                          {project_description ? (
+                            <p className='text-white text-sm py-2'>
+                              {project_description.length > 0 ? `${project_description.slice(0, 60)}...` : project_description}
+                            </p>
+                          ) : (
+                            <p className='text-center py-[2rem] text-xs px-4 bg-slate-500 rounded-md text-black'>
+                              No Project Description Added
+                            </p>
+                          )}
+                      </div>
+                  </div>
               </div>
-          ):null}
+          );
+        })}
 
     </div>
 
   );
-
- 
   
 }
-
 
 export default ProjectList;

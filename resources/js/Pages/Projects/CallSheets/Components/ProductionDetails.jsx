@@ -10,16 +10,16 @@ import {  faCalendarDays, faClapperboard, faPaperPlane } from '@fortawesome/free
 export default function ProductionDetails({ 
 
     project,
+    callSheet,
     className,
 
  }){
 
-    const { currentCallSheet } = useCallSheet();
     const { toggleModal } = useModal();
     const handleProductionDetailsClick = () => {
-        toggleModal({type: 'editCallSheetForm'});  
+        toggleModal({type: 'editCallSheetForm', data: callSheet});  
     };
-    console.log(currentCallSheet);
+    
     const [callSheetName, setCallSheetName] = useState('');
     const [date, setDate] = useState('');
     const [callTime, setCallTime] = useState('');
@@ -44,16 +44,16 @@ export default function ProductionDetails({
     }
       
     useEffect(() => {
-        if (currentCallSheet) {
-            setCallSheetName(currentCallSheet.call_sheet_name);
-            if (currentCallSheet.call_sheet_date_time) {
-                const dateValue = formatDateWithDay(currentCallSheet.call_sheet_date_time);
-                const timeValue = formatTime(currentCallSheet.call_sheet_date_time);
+        if (callSheet) {
+            setCallSheetName(callSheet.call_sheet_name);
+            if (callSheet.call_sheet_date) {
+                const dateValue = formatDateWithDay(callSheet.call_sheet_date);
+                const timeValue = formatTime(callSheet.call_sheet_date);
                 setDate(dateValue);
                 setCallTime(timeValue);
             }
         }
-    }, [currentCallSheet]);
+    }, [callSheet]);
 
  
     return(
@@ -62,7 +62,7 @@ export default function ProductionDetails({
 
                 <div className='flex flex-row gap-4 text-center'>
                     <FontAwesomeIcon icon={faClapperboard} className="text-slate-400 text-2xl my-auto w-[2rem]" />
-                    <h2 className='text-slate-500 text-left font-semibold text-4xl'>{project.project_name}</h2>
+                    <h2 className='text-slate-500 text-left font-semibold text-3xl'>{project.project_name}</h2>
                 </div>
                 <div className="text-xl primary-color flex flex-row gap-4 font-semibold ml-8">
                     <FontAwesomeIcon icon={faPaperPlane} className="text-slate-200 my-auto w-[2rem]" />

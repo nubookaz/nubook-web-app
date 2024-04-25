@@ -9,7 +9,7 @@ export const MediaProvider = ({ children }) => {
 
   const fetchMedia = useCallback(async () => {
     try {
-      const response = await fetch('/api/media');
+      const response = await fetch('/media');
       if (response.ok) {
         const data = await response.json();
         setMedia(data);
@@ -35,7 +35,7 @@ export const MediaProvider = ({ children }) => {
         fetchOptions.body = formData;
       }
   
-      const response = await fetch('/api/media', fetchOptions);
+      const response = await fetch('/media', fetchOptions);
   
       if (response.ok) {
         const newMedia = await response.json();
@@ -54,7 +54,7 @@ export const MediaProvider = ({ children }) => {
 
   const updateMedia = useCallback(async (id, updatedData) => {
     try {
-      const response = await fetch(`/api/media/${id}`, {
+      const response = await fetch(`/media/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

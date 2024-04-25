@@ -111,7 +111,7 @@ class ChatGPTController extends Controller
         $userId = auth()->user()->id; 
 
         // Retrieve movie details from the request
-        $projectName = $request->input('project_name');
+        $project_name = $request->input('project_name');
         $primaryGenre = $request->input('primary_genre');
         $secondaryGenre = $request->input('secondary_genre');
         $movieRating = $request->input('movie_rating');
@@ -120,7 +120,7 @@ class ChatGPTController extends Controller
 
     
         // Construct a prompt for generating a movie poster
-        $prompt = "Create an image for '$projectName', with this info: $primaryGenre, $secondaryGenre, $projectDescription, $movieRating.";
+        $prompt = "Create an image for '$project_name', with this info: $primaryGenre, $secondaryGenre, $projectDescription, $movieRating.";
     
         // Adjust the prompt length to meet the character limit
         $maxPromptLength = 1000;

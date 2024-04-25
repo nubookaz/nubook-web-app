@@ -15,7 +15,8 @@ class CreateCallSheetsTable extends Migration
             $table->foreignId('production_company_id')->nullable()->constrained()->onDelete('set null');
             $table->string('status')->default('Draft');
             $table->string('call_sheet_name');
-            $table->string('call_sheet_date_time');
+            $table->string('call_sheet_date');
+            $table->string('general_call_Time');
             $table->text('bulletin')->nullable();
             $table->json('weather')->nullable();
             $table->timestamp('weather_updated_at')->nullable();

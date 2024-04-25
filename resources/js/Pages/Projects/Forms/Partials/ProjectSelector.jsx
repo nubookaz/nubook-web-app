@@ -18,7 +18,7 @@ const ProjectSelector = ({ onProjectClick, activeProject }) => {
 
 
     return (
-        <div className="flex flex-row gap-4 text-slate-500 justify-center">
+        <div className="flex flex-row gap-4 text-slate-500 justify-center ">
             {projects.map((project, index) => (
                 <div key={index} className="flex flex-col items-center">
                     <div 

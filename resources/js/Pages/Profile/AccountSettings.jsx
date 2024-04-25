@@ -7,9 +7,8 @@ export default function AccountSettings() {
         showGreeting: true, // Customize these props based on your conditions
     };
 
-    console.log(bannerProps);
-    
-        return (
+     
+    return (
         <AuthenticatedLayout bannerProps={bannerProps}>
             {{
                 portalBody: (

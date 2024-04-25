@@ -25,7 +25,7 @@ class CompanyController extends Controller
         $company = $this->createCompany($request);
 
         // Redirect back to the project edit page with a success message.
-        // return redirect()->route('projects.details', ['id' => $projectId])->with('success', 'Company created successfully');
+        // return redirect()->route('project.details', ['id' => $projectId])->with('success', 'Company created successfully');
     }
 
     

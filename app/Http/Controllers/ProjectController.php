@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Client;
 use App\Models\Company;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Media;
 use App\Http\Traits\ProjectTrait;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 use Inertia\Inertia;
@@ -32,17 +36,17 @@ class ProjectController extends Controller
         if (!$user) {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
-    
-         $projects = $user->projects()->with([
+        $projects = $user->projects()->with([
             'callSheets',
+            'media',
             'productionSchedules',
             'users',
             'productionCompany',
-         ])->get();
-    
+        ])->get();
+
         return response()->json($projects);
     }
-
+    
     public function index()
     {
          return Inertia::render('Projects');    
@@ -60,37 +64,152 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request)
-    {       
+    {   
+        Log::info('Store method in ProjectController started with request: ', $request->all());
+    
+        try {
 
-         // Validate the incoming data
-        $project = $this->createOrUpdateProject($request);
- 
-        $viewName = $project->project_stage === "Estimate" ? 'projects.estimate' : 'projects.details';
-        
-        return response()->json([
-            'url' => route($viewName, ['projectId' => $project->id])
-        ]);
-    }
-    
-    // Helper function to check if all values in an array are null
-    private function isDataEmpty($data)
-    {
-        return count(array_filter($data, function ($value) {
-            return !is_null($value);
-        })) === 0;
-    }
- 
-    public function saveFavorite(Request $request, $projectId) {
-        // Authorization checks (if necessary)
-        // $this->authorize('update', $project);
-        $project = Project::find($projectId);
-        $project->is_favorite = $request->input('isFavorite');
-        $project->save();
-    
-        return response()->json(['message' => 'Favorite status updated successfully']);
-    }
-    
+            $userId = auth()->id();
+            $user = User::find($userId);  
 
+            if ($request->has('projectBudget')) {
+                $budget = str_replace(',', '', $request->input('projectBudget'));
+                $request->merge(['projectBudget' => $budget]);
+            } else {
+                $request->merge(['projectBudget' => 0.00]);
+            }
+    
+            $imageValidationRule = is_string($request->input('uploadedImage')) ? 'nullable|string' : 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+
+            $validatedData = $request->validate([
+                'selectedProjectType' => 'required|string',
+                'selectedCorporateType' => 'nullable|string',
+                'selectedFamilyEventType' => 'nullable|string',
+                'selectedCreativeType' => 'nullable|string',
+                'selectedLiveBroadcastType' => 'nullable|string',
+                'selectedDigitalContentType' => 'nullable|string',
+                'project_name' => 'required|string',
+                'projectDescription' => 'nullable|string',
+                'primaryGenre' => 'nullable|string',
+                'secondaryGenre' => 'nullable|string',
+                'viewerRating' => 'nullable|string',
+                'selectedClientIds' => 'nullable|array',
+                'project_stage' => 'required|string',
+                'project_status' => 'required|string',
+                'filmingDays' => 'nullable|integer',
+                'projectBudget' => 'nullable|numeric',
+                'uploadedImage' => $imageValidationRule,
+            ]);
+            
+            Log::info('Validation passed', $validatedData);
+    
+            $project = new Project;
+            $project->project_type = $validatedData['selectedProjectType'];
+            $project->project_name = $validatedData['project_name'];
+            $project->project_description = $validatedData['projectDescription'] ?? null;
+            $project->project_budget = $validatedData['projectBudget']; 
+            $project->project_stage = $validatedData['project_stage'];
+            $project->project_status = $validatedData['project_status'];
+    
+            $project->category_type = $this->determineCategoryType($validatedData);
+    
+            $projectDetails = [
+                'primaryGenre' => $validatedData['primaryGenre'] ?? null,
+                'secondaryGenre' => $validatedData['secondaryGenre'] ?? null,
+                'viewerRating' => $validatedData['viewerRating'] ?? null,
+                'filmingDays' => $validatedData['filmingDays'] ?? null,
+            ];
+
+            $project->project_details = json_encode($projectDetails);
+
+            $project->save();
+
+            if ($request->hasFile('poster')) {
+                Log::info('Uploaded image details:', ['poster' => $request->file('poster')]);
+    
+                $media = new Media;
+                $storagePath = 'public/media/user_' . $userId;
+                $path = $request->file('poster')->store($storagePath);
+                $mediaPath = str_replace('public/', '', $path);
+
+                $media->user_id = $userId;
+                $media->media_path = $mediaPath;  
+                $media->project_id = $project->id;
+                $media->media_type = $request->input('media_type');
+                $media->size = $request->input('size');
+                $media->dimensions = $request->input('dimensions');
+                $media->ai_generated = filter_var($request->input('ai_generated'), FILTER_VALIDATE_BOOLEAN);
+                $media->save();
+            
+            }
+
+            $adminRoleId = Role::where('name', 'Admin')->first()->id;
+            $project->users()->attach([$userId => ['role_id' => $adminRoleId]]);
+
+            Log::info('Project created successfully', ['project_id' => $project->id]);
+    
+            $viewName = $project->project_stage === "Estimate" ? 'projects.estimate' : 'project.details';
+            
+            $responseUrl = route($viewName, ['projectId' => $project->id]);
+
+            Log::info('Returning response', ['url' => $responseUrl]);
+    
+            return response()->json([
+                'url' => $responseUrl, 
+                'projectId' => $project->id
+            ]);
+
+        } catch (\Exception $e) {
+
+            Log::error('Error in ProjectController@store', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'requestData' => $request->all()  
+            ]);
+    
+            return response()->json(['error' => 'An error occurred while creating the project'], 500);
+        }
+    }
+    
+    private function determineCategoryType($validatedData) {
+        if (!empty($validatedData['selectedCorporateType'])) {
+            return 'Corporate';
+        }
+    
+        if (!empty($validatedData['selectedFamilyEventType'])) {
+            return 'Family Event';
+        }
+    
+        if (!empty($validatedData['selectedCreativeType'])) {
+            $allowedCreativeTypes = ['Music Video', 'Documentary Film', 'Short Film', 'Fashion Show', 'Feature Film'];
+    
+            if (in_array($validatedData['selectedCreativeType'], $allowedCreativeTypes)) {
+                return $validatedData['selectedCreativeType'];
+            } else {
+                return 'Creative';
+            }
+        }
+    
+        if (!empty($validatedData['selectedLiveBroadcastType'])) {
+            return 'Live Broadcast';
+        }
+    
+        if (!empty($validatedData['selectedDigitalContentType'])) {
+            return 'Digital Content';
+        }
+    
+        return 'General';
+    }
+    
+    private function compileProjectDetails($validatedData) {
+        return array_merge(
+            $validatedData['weddingDetails'] ?: [],
+            $validatedData['liveEventDetails'] ?: [],
+            $validatedData['videoProjectDetails'] ?: [],
+            $validatedData['additionalVideoDetails'] ?: []
+        );
+    }
+    
     public function savePoster(Request $request)
     {
         // dd($request->all());
@@ -139,18 +258,38 @@ class ProjectController extends Controller
 
     public function edit($projectId)
     {
-        // Retrieve the project by its ID
-        $project = Project::find($projectId);
-    
-        // Check if the project exists
+        $project = Project::with('media')->find($projectId);
+ 
         if (!$project) {
             abort(404, 'Project not found');
         }
-    
-        // Render the project edit page using Inertia.js
+        
         return Inertia::render('Projects/ProjectDetailsPage', [
-            'project' => $project, // Pass the project data to the edit page
+            'project' => $project, 
         ]);
+    }
+
+    public function saveFavorite(Request $request, $projectId)
+    {
+        try {
+            $project = Project::findOrFail($projectId);
+            $isFavorite = $request->input('isFavorite');
+
+            // Validate the 'isFavorite' input to ensure it's a boolean
+            if (!is_bool($isFavorite)) {
+                return response()->json(['error' => 'Invalid input for favorite status.'], 400);
+            }
+
+            $project->is_favorite = $isFavorite;
+            $project->save();
+
+            return response()->json([
+                'message' => 'Favorite status updated successfully.',
+                'isFavorite' => $project->is_favorite,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An error occurred while updating the favorite status.'], 500);
+        }
     }
 
     public function estimate($projectId)
@@ -181,7 +320,6 @@ class ProjectController extends Controller
             'project' => $project
         ]);
     }
-
 
     public function softDelete(Request $request, $projectId)
     {

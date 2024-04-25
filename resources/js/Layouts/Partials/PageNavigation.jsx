@@ -1,4 +1,6 @@
 import { useAuth } from '@/Components/Contexts/AuthContext';
+import { useProfile } from '@/Components/Contexts/UserProfileContext';
+import { useProject } from '@/Components/Contexts/ProjectContext';
 
 import React, { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
@@ -14,17 +16,26 @@ const PageNavigation = ({
 
 }) => {
 
+    const { currentProjectId } = useProject();
     const { createNewProject } = useAuth();
+    const { darkModeSetting } = useProfile();
+    const [projectId, setProjectId] = useState(currentProjectId || project?.id);
 
-    const projectId = project?.id; 
-
+    useEffect(() => {
+        // Update projectId when currentProjectId or project.id changes
+        setProjectId(currentProjectId || project?.id);
+    }, [currentProjectId, project]);
+    
     const initialSubitemVisibility = {
         'projects.callSheets.index': activePage.startsWith('callSheet.details.page')
     };
 
     const [visibleSubitems, setVisibleSubitems] = useState(initialSubitemVisibility);
 
-    const header = 'text-2xl text-slate-400';
+    const backgroundColor = darkModeSetting === 'light' ? 'bg-white' : 'bg-slate-800';
+    const textColor = darkModeSetting === 'light' ? 'text-slate-500' : 'text-white';
+    const headerClass = `text-2xl ${textColor}`;
+
     const isActive = (route) => {
         // Check if the current activePage starts with the provided route
         if (activePage.startsWith(route)) {
@@ -61,11 +72,10 @@ const PageNavigation = ({
         },
      ];
 
-    // Navigation items for 'projects.details' section
     const productionBookNavItems = [
         {
             label: 'Details',
-            routeName: 'projects.details',
+            routeName: 'project.details',
             icon: faCircleInfo,
         },
         {
@@ -108,9 +118,7 @@ const PageNavigation = ({
      const renderNavItems = (navItems) => {
         return navItems.map((item, index) => {
             let routeParams = {};
-    
-            // Set route parameters for specific items if needed
-            if (item.routeName.startsWith('projects.details') || item.routeName === 'projects.callSheets.index') {
+            if (item.routeName.startsWith('project.details') || item.routeName === 'projects.callSheets.index') {
                 routeParams = { projectId: projectId };
             }
     
@@ -170,18 +178,18 @@ const PageNavigation = ({
     
     
 
-    const isProjectDetailsActive = activePage.includes('projects.details') || activePage.includes('projects.callSheets');
+    const isProjectDetailsActive = activePage.includes('project.details') || activePage.includes('projects.callSheets');
  
 
     return (
-        <div className={`page-navigation transition-all duration-300 h-full  bg-white shadow-xl rounded-2xl ${isVisible ? 'opacity-1 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`page-navigation transition-all duration-300 h-full ${backgroundColor} shadow-xl rounded-2xl ${isVisible ? 'opacity-1 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
             <div className={`p-8 w-full delay-300 duration-500 h-full ${isVisible ? 'opacity-1' : 'opacity-0'}`}>
                 <div className={`fade-in ${activePage === 'dashboard' ? '' : 'hidden'}`}>
-                    <h2 className={header}>Dashboard</h2>
+                    <h2 className={headerClass}>Dashboard</h2>
                  </div>
 
                 <div className={`fade-in flex flex-col h-full justify-between ${activePage.includes('projects') && !isProjectDetailsActive ? '' : 'hidden'}`}>
-                    <h2 className={header}>Projects</h2>
+                    <h2 className={headerClass}>Projects</h2>
                     <ul className='my-8 flex flex-col gap-6 ml-4 justify-start grow'>
                         {renderNavItems(projectNavItems)}
                     </ul>
@@ -206,7 +214,7 @@ const PageNavigation = ({
                 </div>
 
                  <div className={`fade-in ${isProjectDetailsActive ? '' : 'hidden'}`}>
-                    <h2 className={header}>Production Book</h2>
+                    <h2 className={headerClass}>Production Book</h2>
                     <ul className='my-8 flex flex-col gap-6 ml-4'>
                         {renderNavItems(productionBookNavItems)}
                     </ul>
@@ -218,7 +226,7 @@ const PageNavigation = ({
                 </div>
 
                 <div className={`fade-in ${activePage === 'profile.settings' ? '' : 'hidden'}`}>
-                    <h2 className={header}>Settings</h2>
+                    <h2 className={headerClass}>Settings</h2>
                     <ul className='my-8 flex flex-col gap-6 ml-4'>
                         {renderNavItems(settingsNavItems)}
                     </ul>

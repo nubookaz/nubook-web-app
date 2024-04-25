@@ -15,7 +15,6 @@ export default function CallSheetDesktopPreview({
 
 }) {
 
-  console.log(project);
   const [locationData, setLocationData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [callTime, setCallTime] = useState(null);
